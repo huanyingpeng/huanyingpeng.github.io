@@ -3,17 +3,17 @@ name: Pages
 on:
   push:
     branches:
-      - main  # default branch
+      - master
 
 jobs:
   pages:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
         with:
-          node-version: '16'
+          node-version: '12.x'
       - name: Cache NPM dependencies
         uses: actions/cache@v2
         with:
@@ -23,6 +23,8 @@ jobs:
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
         run: npm install
+      - name: Install pandoc
+        run: wget https://github.com/jgm/pandoc/releases/download/2.10.1/pandoc-2.10.1-1-amd64.deb; sudo dpkg -i pandoc-2.10.1-1-amd64.deb
       - name: Build
         run: npm run build
       - name: Deploy
@@ -30,3 +32,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+          publish_branch: gh-pages
