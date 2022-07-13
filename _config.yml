@@ -103,7 +103,9 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/huan-yp/huan_yp.github.io.git
+  branch: master
 
 markdown:
   plugins:
@@ -120,7 +122,3 @@ search:
   format: html
   limit: 10000
   
-deploy:
-  type: git
-  repo: https://github.com/username/username.github.io.git
-  branch: master
