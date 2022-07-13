@@ -102,10 +102,10 @@ theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: https://github.com/huan-yp/huan_yp.github.io.git
-  branch: master
+#deploy:
+  #type: git
+  #repo: https://github.com/huan-yp/huan_yp.github.io.git
+  #branch: master
 
 markdown:
   plugins:
