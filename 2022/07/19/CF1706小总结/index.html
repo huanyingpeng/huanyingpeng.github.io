@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="CF1706 小总结其实都会做，但是各种各样的原因导致了没在场上 AK ABCA 题没考虑清楚就在写，WA 了一发样例，然后慢悠悠调好交上去过。 B 题愣了一会儿，弄了个伪 DP 上去，稍微有点磨蹭，但还好。 C 题做得无可挑剔。 DD 题先想到可以枚举一个端点，二分另一个，$O(n)$ check，但是发现枚举一个端点之后，可以快速计算另一个端点的最优值，得到一个 $O(n^2)$ 的枚举 ma">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF1706小总结">
+<meta property="og:url" content="http://example.com/2022/07/19/CF1706%E5%B0%8F%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="CF1706 小总结其实都会做，但是各种各样的原因导致了没在场上 AK ABCA 题没考虑清楚就在写，WA 了一发样例，然后慢悠悠调好交上去过。 B 题愣了一会儿，弄了个伪 DP 上去，稍微有点磨蹭，但还好。 C 题做得无可挑剔。 DD 题先想到可以枚举一个端点，二分另一个，$O(n)$ check，但是发现枚举一个端点之后，可以快速计算另一个端点的最优值，得到一个 $O(n^2)$ 的枚举 ma">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-19T12:10:16.000Z">
+<meta property="article:modified_time" content="2022-07-19T12:11:27.575Z">
+<meta property="article:author" content="幻影彭">
+<meta property="article:tag" content="比赛总结">
+<meta property="article:tag" content="LCA">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/07/19/CF1706%E5%B0%8F%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CF1706小总结 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">幻影彭的彩虹</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">现在，这里是记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-fw fa-link"></i>友链</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/19/CF1706%E5%B0%8F%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CF1706小总结
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-19 20:10:16 / 修改时间：20:11:27" itemprop="dateCreated datePublished" datetime="2022-07-19T20:10:16+08:00">2022-07-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">总结</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%80%BB%E7%BB%93/%E6%AF%94%E8%B5%9B%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">比赛总结</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="CF1706-小总结"><a href="#CF1706-小总结" class="headerlink" title="CF1706 小总结"></a>CF1706 小总结</h2><p>其实都会做，但是各种各样的原因导致了没在场上 AK</p>
+<h3 id="ABC"><a href="#ABC" class="headerlink" title="ABC"></a>ABC</h3><p>A 题没考虑清楚就在写，WA 了一发样例，然后慢悠悠调好交上去过。</p>
+<p>B 题愣了一会儿，弄了个伪 DP 上去，稍微有点磨蹭，但还好。</p>
+<p>C 题做得无可挑剔。</p>
+<h3 id="D"><a href="#D" class="headerlink" title="D"></a>D</h3><p>D 题先想到可以枚举一个端点，二分另一个，$O(n)$ check，但是发现枚举一个端点之后，可以快速计算另一个端点的最优值，得到一个 $O(n^2)$ 的枚举 max 的做法过了 D1，然后感觉其实只需要查 $max_val&#x2F;k-max_val&#x2F;k+\sqrt N$ 和 $max_val&#x2F;k-max_val&#x2F;1$，写好交上去过了 Pretests，但是 FST 了，后面想到其实对 min 分类限制更多。暴力算 $min\in [1,B]$，然后对于 $min\in(B,k]$，可以发现 $k\in [1,\lceil\frac{10^5}{B}\rceil]$，考虑维护 max 的变化，可以用一个 vector 记一下 $a_i&#x2F;k$ 的所有可能，共 $n\times \lceil\frac{10^5}{B}\rceil$ 种，可以 $O(1)$ 维护该变量，搞定。</p>
+<p>其实也可以枚举 max，同样考虑 min 的值，考虑每一个 $a_i$ 的最优值，不太可行，于是考虑每一个 $k$ 可以让哪些值取到最优，发现会取 $k$ 的一定是 $a_i\ge(max+1)*(k-1)$ 的，而我们要考虑的是 min，所以取其中最小的计算就行，发现对 $k$ 总的枚举量是 $O(n\log n)$ 级别的。</p>
+<p>启发我们在这种整除最优问题考虑除数对被除数的影响范围。</p>
+<h3 id="E"><a href="#E" class="headerlink" title="E"></a>E</h3><p>E 题在考场上想到了可以类似整体二分的做，先给所有的二分，然后再合并一次，查询每一个询问是否可行。查询的维护可以 Dsu on Tree 带一个维护线段的 Set，复杂度 $O(n\log^3n)$，感觉能信仰，就写了，可惜没交上去。赛后发现其实有些边界的小错，但是交了还是 TLE 了。告诉我们 Set 操作搞个 $10^7$ 问题还是比较大。</p>
+<p>后面发现可以将询问直接塞进 Dsu 的过程中，但是处理询问只能处理较小的那一边，如果是小的合到大的上面去，此时询问挂在大的上面，会非常的恼火。于是就把询问拆到两个上面去，又发现可能两个询问会在合并时变成一个但是还没解决，所以合并的时候如果变成一个就又找了一个还没合并的把询问扔上去。</p>
+<p>然后又 TLE 了，赛后仔细分析复杂度，发现不对劲，比如有个 $O(n)$ 的点，然后又有个略小于它但主要是询问的点，然后合并的时候把询问全部扔到另一个点上去了，然后另一个点同这个 $O(n)$ 点合并的时候又把询问全部扔了，询问就扔了 $O(n^2)$ 次，寄。</p>
+<p>然后想到可以把线段合并的过程记下来，这个就是严格 $O(n\log n)$ 级别了，后面做一个二维偏序回答询问。成功 AC。</p>
+<p>其实 E 题和最近做的题都暴露出几个问题，思维模式僵化，没有办法 Think out of box，同时代码中常常犯一些不容易注意到的小错误，依赖数据调试。</p>
+<h3 id="Sum-up"><a href="#Sum-up" class="headerlink" title="Sum up"></a>Sum up</h3><p>关于代码小错的问题，我觉得一边写一边静态查是一个比较理想的解决方案，<strong>先认真核实思路的正确性，再检查代码和思路是否一致</strong>，同时可以在关键点插入数据输出。</p>
+<p>思维上的问题，估计还只有多做题。</p>
+<h3 id="收获-1：Dsu-on-tree-的复杂度理解"><a href="#收获-1：Dsu-on-tree-的复杂度理解" class="headerlink" title="收获 1：Dsu on tree 的复杂度理解"></a>收获 1：Dsu on tree 的复杂度理解</h3><p>Dsu on tree，复杂度证明的过程是这样的：考虑一个点的权值 $w_i$，当合并时，复杂度贡献为 $O(\min(w_u,w_v)$，将 $w_i$ 视为 $w_i$ 个元素。考虑每个元素的贡献次数，发现每个元素仅在其所在集合大小翻倍时贡献。所以复杂度正确。</p>
+<p><strong>因此，权值的构成不影响其时间复杂度</strong></p>
+<p>如果在合并的时候进行了额外的对 $w_i$ 的修改，比如我的错误做法，时间复杂度就应该认真分析了。</p>
+<h3 id="收获-2-Kruscal-重构树的应用和连通性"><a href="#收获-2-Kruscal-重构树的应用和连通性" class="headerlink" title="收获 2: Kruscal 重构树的应用和连通性"></a>收获 2: Kruscal 重构树的应用和连通性</h3><p>E 题可以用 Kruscal 重构树做，具体的，先做最小生成树，顺便合并点，现在一个连通块就是一个点，合并两个连通块时，新建一个点，点权为这条边的权值，作为被合并的两个点的父亲，任意两个点联通的时最小权值就是它们的 lca，然后区间 lca 应该都会。事实上甚至没有必要做区间 LCA，我们考虑 $i,i+1$ 什么时候联通，设其时间为 $f(i)$，可以发现 $ans(a,b)&#x3D;\max\limits_{i\in[a,b)} f(i)$，证明比较容易，首先必须取到这个值，否则必然有两个点不连通，其次，如果取到这个值，那么一定都联通，over ，复杂度 $O(n\log n)$</p>
+<p>已经知道这个性质了，那么，将询问放到 $dsu$ 合并过程中的方法也不难写了，合并时处理其中一个询问即可。</p>
+<h3 id="收获3-LCA-的一些性质"><a href="#收获3-LCA-的一些性质" class="headerlink" title="收获3:LCA 的一些性质"></a>收获3:LCA 的一些性质</h3><p>从 2 中的性质，我们总结出了一些 LCA 的共有性质。</p>
+<h4 id="Theorem1-1"><a href="#Theorem1-1" class="headerlink" title="Theorem1.1"></a>Theorem1.1</h4><p>不妨叫它 LCA 的排列包含性质。</p>
+<p>对于一棵树的一个点集 $S$ ，以及 $S$ 的任意一个排列 $P$ ，$S$ 的 LCA，必定在集合 ${lca(p_i,p_{i+1}),i\in[0,|S|)}$ 中。</p>
+<p>即 $lca(S)\in {lca(p_i,p_{i+1}),i\in[0,|S|)}$</p>
+<h4 id="Lemma1-2"><a href="#Lemma1-2" class="headerlink" title="Lemma1.2"></a>Lemma1.2</h4><p>对三个点 $u,v,w$ ，$lca(u,v,w)\in{lca(u,v),lca(u,w)}$，即 Theorem1.1 对 $|S|&#x3D;3$ 成立。</p>
+<p>如果 $lca(u,v,w)\neq lca(u,v)$，那么 $w$ 不在 $lca(u,v)$ 子树内。</p>
+<p>所以 $lca(u,v,w)&#x3D;lca(lca(u,v),w)&#x3D;lca(v,w)&#x3D;lca(u,w)$</p>
+<h4 id="Lemma1-3-lca-结合律"><a href="#Lemma1-3-lca-结合律" class="headerlink" title="Lemma1.3(lca 结合律)"></a>Lemma1.3(lca 结合律)</h4><p>$lca(S)&#x3D;lca(lca(S-{u}),u)$</p>
+<p>若 $lca(S)&#x3D;lca(lca(S-{u}))$，则结论显然成立，否则，$u$ 位于 $lca(S-{u})$ 子树外。结论同样成立。</p>
+<h4 id="Proof1-1"><a href="#Proof1-1" class="headerlink" title="Proof1.1"></a>Proof1.1</h4><p>对 $S$ 集合大小归纳，设其大小为  $n$，当前排列为 $P$，且对于 $k&lt;n$，Theorem1.1 成立。</p>
+<p>对于一个点 $u&#x3D;P_n$，记 $S’&#x3D;S-{u}$，由 Lemma1.3 有 $lca(S)&#x3D;lca(S’,u)$，若 $lca(S)&#x3D;lca(S’)$ ，结论显然成立，否则，有 $u$ 在 $lca(S’)$ 子树外，得到 $\forall v\in S’,lca(S)&#x3D;lca(S’,u)&#x3D;lca(u,v)$，得 $lca(S)&#x3D;lca(P_n,P_{n-1})$</p>
+<h4 id="Lemma2-1"><a href="#Lemma2-1" class="headerlink" title="Lemma2.1"></a>Lemma2.1</h4><p>对三个元素 $u,v,w$ ，满足 $dfn[u]&lt;dfn[v]&lt;dfn[w]$，有 $lca(w,u,v)&#x3D;lca(u,w)$。</p>
+<p>由 Lemma1.2，$lca(u,v,w)\in{lca(u,v),lca(u,w)}$。</p>
+<p>假设 $lca(u,v,w)&#x3D;lca(u,v)$ 并且 $lca(u,v)\neq lca(u,w)$。</p>
+<p>有 $w$ 在 $lca(u,w)$ 子数内，为 $lca(u,v)$ 的后代，又有 $dfn[v]&gt;dfn[u]$，因为 $u,w$ 在 $lca(u,v,w)$ 同一儿子的子树内，因此有 $dfn[v]&gt;dfn[w]$，矛盾，故假设不成立。</p>
+<p>故有 $lca(u,v,w)&#x3D;lca(u,w)$</p>
+<h4 id="Theorem2-2-lca-的-dfs-有序性质1"><a href="#Theorem2-2-lca-的-dfs-有序性质1" class="headerlink" title="Theorem2.2(lca 的 dfs 有序性质1)"></a>Theorem2.2(lca 的 dfs 有序性质1)</h4><p>对满足 dfs 序递增的树上点序列 $a$，有 $lca(a_1,a_n)&#x3D;lca(a)$</p>
+<p>归纳证明，设对 $k&#x3D;n-1$ 成立。</p>
+<p>由 Lemma1.3， $lca(a)&#x3D;lca(a_{n},a-{a_n})&#x3D;lca(lca(a_1,a_{n-1}),a_{n})$</p>
+<p>由 Lemma2.1，Lemma1.3，$lca(lca(a_1,a_{n-1}),a_{n})&#x3D;lca(a_1,a_{n-1},a_n)&#x3D;lca(a_1,a_n)$</p>
+<h4 id="Theorem2-3-lca-的-dfs-有序性质2"><a href="#Theorem2-3-lca-的-dfs-有序性质2" class="headerlink" title="Theorem2.3(lca 的 dfs 有序性质2)"></a>Theorem2.3(lca 的 dfs 有序性质2)</h4><p>对满足 dfs 序递增的树上点序列 $a$，有 $lca(a_1,a_n)\in {lca(a_i,a_{i+1}),i\in[1,n)}$</p>
+<p>由 Theorem2.1 ，$lca(a_1,a_n)&#x3D;lca(a)$</p>
+<p>由 Theorem1.1，$lca(a) \in {lca(a_i,a_{i+1}),i\in[1,n)}$</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>幻影彭
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/07/19/CF1706%E5%B0%8F%E6%80%BB%E7%BB%93/" title="CF1706小总结">http://example.com/2022/07/19/CF1706小总结/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN.yml" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%AF%94%E8%B5%9B%E6%80%BB%E7%BB%93/" rel="tag"># 比赛总结</a>
+              <a href="/tags/LCA/" rel="tag"># LCA</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/17/%E5%AF%B9C%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" rel="prev" title="对C++程序进行性能分析">
+      <i class="fa fa-chevron-left"></i> 对C++程序进行性能分析
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CF1706-%E5%B0%8F%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">CF1706 小总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ABC"><span class="nav-number">1.1.</span> <span class="nav-text">ABC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D"><span class="nav-number">1.2.</span> <span class="nav-text">D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E"><span class="nav-number">1.3.</span> <span class="nav-text">E</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sum-up"><span class="nav-number">1.4.</span> <span class="nav-text">Sum up</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B6%E8%8E%B7-1%EF%BC%9ADsu-on-tree-%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%90%86%E8%A7%A3"><span class="nav-number">1.5.</span> <span class="nav-text">收获 1：Dsu on tree 的复杂度理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B6%E8%8E%B7-2-Kruscal-%E9%87%8D%E6%9E%84%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8%E5%92%8C%E8%BF%9E%E9%80%9A%E6%80%A7"><span class="nav-number">1.6.</span> <span class="nav-text">收获 2: Kruscal 重构树的应用和连通性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B6%E8%8E%B73-LCA-%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%A7%E8%B4%A8"><span class="nav-number">1.7.</span> <span class="nav-text">收获3:LCA 的一些性质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem1-1"><span class="nav-number">1.7.1.</span> <span class="nav-text">Theorem1.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lemma1-2"><span class="nav-number">1.7.2.</span> <span class="nav-text">Lemma1.2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lemma1-3-lca-%E7%BB%93%E5%90%88%E5%BE%8B"><span class="nav-number">1.7.3.</span> <span class="nav-text">Lemma1.3(lca 结合律)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Proof1-1"><span class="nav-number">1.7.4.</span> <span class="nav-text">Proof1.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lemma2-1"><span class="nav-number">1.7.5.</span> <span class="nav-text">Lemma2.1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem2-2-lca-%E7%9A%84-dfs-%E6%9C%89%E5%BA%8F%E6%80%A7%E8%B4%A81"><span class="nav-number">1.7.6.</span> <span class="nav-text">Theorem2.2(lca 的 dfs 有序性质1)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Theorem2-3-lca-%E7%9A%84-dfs-%E6%9C%89%E5%BA%8F%E6%80%A7%E8%B4%A82"><span class="nav-number">1.7.7.</span> <span class="nav-text">Theorem2.3(lca 的 dfs 有序性质2)</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="幻影彭"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">幻影彭</p>
+  <div class="site-description" itemprop="description">幻影彭的个人博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN.yml" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+    <span class="author" itemprop="copyrightHolder" display=false></span>
+    <span class="author" itemprop="copyrightHolder" >huan_yp</span>
+</div>
+  <div class="powered-by">powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
