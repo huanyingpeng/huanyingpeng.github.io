@@ -14,7 +14,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://huanyp.cn
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -122,3 +122,13 @@ search:
   format: html
   limit: 10000
   
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
+
+baidu_url_submit:
+  count: 5 				     ## 提交最新的五个链接
+  host: huanyp.cn	     ## 百度站长平台中注册的域名
+  token: baidu_verify_code-tAp5zgOpLf	 ## 准入秘钥
+  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
