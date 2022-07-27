@@ -211,138 +211,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%89%A9%E5%B1%95%E5%BA%93%EF%BC%8C%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E6%B3%95%E7%B3%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/12/%E6%89%A9%E5%B1%95%E5%BA%93%EF%BC%8C%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E6%B3%95%E7%B3%96/" class="post-title-link" itemprop="url">扩展库，语法和语法糖</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-12 15:55:05" itemprop="dateCreated datePublished" datetime="2022-07-12T15:55:05+08:00">2022-07-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-18 16:41:21" itemprop="dateModified" datetime="2022-07-18T16:41:21+08:00">2022-07-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">语法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%AD%E6%B3%95/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="语法和语法糖"><a href="#语法和语法糖" class="headerlink" title="语法和语法糖"></a>语法和语法糖</h2><p>介绍一些有用常用但鲜为人知的 <code>C++</code> 语法，库，语法糖。</p>
-<h3 id="平板电视"><a href="#平板电视" class="headerlink" title="平板电视"></a>平板电视</h3><p>一个 <code>C++</code> 拓展库，<code>STL</code> 升级版，<code>C++11</code> 特性。</p>
-<h4 id="gp-hash-table"><a href="#gp-hash-table" class="headerlink" title="gp_hash_table"></a>gp_hash_table</h4><p>如名称，哈希表，比 <code>unordered_map</code> 快 <code>3~4</code> 倍，用法完全一样，你值得拥有。</p>
-<p>在 <code>ext/pb_ds/assoc_container.hpp</code> 中。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ext/pb_ds/assoc_container.hpp&gt;</span></span></span><br><span class="line">__gnu_pbds:: gp_hash_table &lt;<span class="type">int</span>,<span class="type">int</span>&gt; mp;</span><br><span class="line">mp.<span class="built_in">insert</span>(<span class="built_in">make_pair</span>(<span class="number">1</span>,<span class="number">2</span>));</span><br><span class="line">mp[<span class="number">2</span>]=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">if</span>(mp.<span class="built_in">find</span>(<span class="number">2</span>) != mp.<span class="built_in">end</span>())&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,mp.<span class="built_in">find</span>(<span class="number">2</span>)-&gt;second);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><p>一般来说 <code>class</code> 和 <code>struct</code> 竞赛上差别不大，<code>struct</code> 是默认 <code>public</code> 的 <code>class</code>。</p>
-<h4 id="重载括号"><a href="#重载括号" class="headerlink" title="重载括号"></a>重载括号</h4><p>重载小括号运算符可以让你把结构体当函数用，其实本质上少写了一个 <code>.&#123;function name&#125;</code>。</p>
-<p>它和构造函数不冲突。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett1</span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> m,im;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		ULL z=(ULL)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;bt1;</span><br><span class="line"><span class="type">int</span> a=<span class="number">1</span>,b=<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> c=<span class="built_in">bt1</span>(a,b);</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett2</span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> m,im;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">foo</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		ULL z=(ULL)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;bt2;</span><br><span class="line">c=bt2.<span class="built_in">foo</span>(a,b);</span><br></pre></td></tr></table></figure>
-
-<p>两者没有本质区别。</p>
-<p>中括号可以重载，一般来说，重载中括号返回的是一个引用，中扩号只接受一个参数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">array_2d</span>&#123;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">10005</span>],b[<span class="number">10005</span>];</span><br><span class="line">    <span class="type">int</span> n,m;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> nn,<span class="type">int</span> mm)</span></span>&#123;</span><br><span class="line">    	n=nn,m=mm;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="type">int</span>&amp; <span class="keyword">operator</span>[](<span class="type">int</span> x)&#123;</span><br><span class="line">		<span class="keyword">return</span> a[x];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;a;</span><br><span class="line">a.<span class="built_in">init</span>(<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line">a[<span class="number">3</span>]=<span class="number">1</span>;a.b[<span class="number">4</span>]=<span class="number">2</span>;</span><br><span class="line">a[<span class="number">4</span>]=<span class="number">4</span>;</span><br><span class="line">cout&lt;&lt;a[<span class="number">4</span>]&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;a[<span class="number">3</span>]&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h4><p>结构体的构造函数可以返回一个结构体实例，也可以允许在声明结构体的时候同时构造。</p>
-<p>举个例子</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line"><span class="comment">// st t3; 这句会 CE</span></span><br></pre></td></tr></table></figure>
-
-<p>这两种写法都行，<strong>注意不能变量重名</strong>，不会 <code>CE</code>，但是函数参数里会那个名字会覆盖掉全局的。</p>
-<p>注意写了构造函数，所有的构造都必须带参数。</p>
-<p>定义结构体的时候还可以给变量赋初值。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line"><span class="comment">// t1.str=&quot;str&quot;,t1.b=3</span></span><br><span class="line"><span class="comment">// t2.str=&quot;str&quot;,t2.b=3</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>但是如果构造函数里写了，就会被覆盖。声明的局部变量写了的初值会固定，没写的初值就随机。</p>
-<p>如果没写构造函数，那么会有一个默认的列表构造函数，按照结构体内声明变量的顺序将列表中的每一个值依次赋给对应变量。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=st&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="string">&#x27;huan_yp&#x27;</span>&#125;;</span><br><span class="line">st t2&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="string">&quot;huan_yp&quot;</span>&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>其实构造函数还有另一种写法</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb): <span class="built_in">a</span>(aa), <span class="built_in">b</span>(bb) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>和最开始的写法是等效的。</p>
-<p><strong>注意，如果写了构造函数，默认的列表构造函数会调用它，所以如果你想不同参数个数构造，需要填默认参数</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>() :<span class="built_in">a</span>(), <span class="built_in">b</span>(), <span class="built_in">str</span>()&#123;&#125;</span><br><span class="line">    <span class="comment">//如果没有这一行，下面的第一个构造会 CE</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">	<span class="built_in">st</span>(<span class="type">int</span> aa, <span class="type">int</span> bb,string cc) :<span class="built_in">a</span>(aa), <span class="built_in">b</span>(bb), <span class="built_in">str</span>(cc)&#123;&#125;</span><br><span class="line"><span class="comment">//    st() :a(), b(), str() &#123;&#125;</span></span><br><span class="line"><span class="comment">//    st(int aa,int bb): a(aa), b(bb) &#123;&#125;</span></span><br><span class="line">&#125;;</span><br><span class="line">st t1;</span><br><span class="line">t1=&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="string">&quot;str&quot;</span>&#125;;</span><br><span class="line">t1=&#123;<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">//最后一行会 CE</span></span><br></pre></td></tr></table></figure>
-
-<p>列表构造式还可以自推导。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=&#123;<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">t1=&#123;<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="comment">//t1(2,3)</span></span><br><span class="line"><span class="comment">//括号式式不能自推导的，这个的含义参考第一条。</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h3><h4 id="memcpy"><a href="#memcpy" class="headerlink" title="memcpy"></a>memcpy</h4><p><code>memcpy(dst, src, size)</code></p>
-<p>dst:目标数组起始位置</p>
-<p>src:源数组起始位置</p>
-<p>size:需要复制的字节数</p>
-<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><h4 id="参数模板"><a href="#参数模板" class="headerlink" title="参数模板"></a>参数模板</h4><h4 id="类型模板"><a href="#类型模板" class="headerlink" title="类型模板"></a>类型模板</h4><h3 id="Static-关键字"><a href="#Static-关键字" class="headerlink" title="Static 关键字"></a>Static 关键字</h3><p>声明一个静态的东西，可以用来避免命名冲突，也可以用来更好的实现一个类。</p>
-<p>Static 关键字声明的东西生命周期是整个程序的生命周期，但作用域仅限定为声明处的作用域。</p>
-<p>举个例子，某个函数的执行过程和它被调用的次数有关，这个可以弄个全局变量记一个次数，但是我们也可以在它的内部写个 static 变量记录，这样就不会与外部空间变量名冲突。</p>
-<p>所有静态变量的初始值为 0</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">static</span> <span class="type">int</span> cnt;</span><br><span class="line">	cout&lt;&lt;++cnt&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">fun</span>();cnt=<span class="number">10</span>;</span><br><span class="line">cout&lt;&lt;cnt&lt;&lt;endl;</span><br><span class="line"><span class="built_in">fun</span>();<span class="built_in">fun</span>();cnt++;<span class="built_in">fun</span>();</span><br></pre></td></tr></table></figure>
-
-<p>也可以用静态成员来维护一个类，比如写链表的时候，我们通常要先写个 node 类，然后才能实现 list 类，但我们可以直接将 head 指针作为一个静态变量放入结构体中，这样，这个静态变量就可以被所有结构体的实例访问修改。</p>
-<p><strong>注意，如果需要两个链表，那种这种方式是不可取的，因为静态变量 head 对所有该结构体的实例来说都只有一个。</strong></p>
-<p>我们当然也可以声明静态成员函数。</p>
-<p>对于结构体的静态资源，我们可以用 {结构体名}.{成员名} 来访问。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -691,14 +559,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
