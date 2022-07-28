@@ -21,15 +21,15 @@
     var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="写法优美的常用函数收录一些优美的常用函数写法。 分解质因数有人根本不会用 do while 和 vector。 12345vector&lt;int&gt; v(0);for(int i&#x3D;2;i*i&lt;&#x3D;n;i++)if(n%i&#x3D;&#x3D;0)&amp;#123;    v.push_back(i);    do n&#x2F;&#x3D;i; while(n%i&#x3D;&#x3D;0);&amp;#125;">
+  <meta name="description" content="写法优美的常用函数收录一些优美的常用函数写法。 分解质因数有人根本不会用 do while 和 vector。 12345vector&lt;int&gt; v(0);for(int i&#x3D;2;i*i&lt;&#x3D;n;i++)if(n%i&#x3D;&#x3D;0)&amp;#123;    v.push_back(i);    do n&#x2F;&#x3D;i; while(n%i&#x3D;&#x3D;0);&amp;#125;  SCC缩点。 1234567891011">
 <meta property="og:type" content="article">
 <meta property="og:title" content="写法优美的常用函数">
 <meta property="og:url" content="http://huanyp.cn/2022/07/12/%E5%86%99%E6%B3%95%E4%BC%98%E7%BE%8E%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
-<meta property="og:description" content="写法优美的常用函数收录一些优美的常用函数写法。 分解质因数有人根本不会用 do while 和 vector。 12345vector&lt;int&gt; v(0);for(int i&#x3D;2;i*i&lt;&#x3D;n;i++)if(n%i&#x3D;&#x3D;0)&amp;#123;    v.push_back(i);    do n&#x2F;&#x3D;i; while(n%i&#x3D;&#x3D;0);&amp;#125;">
+<meta property="og:description" content="写法优美的常用函数收录一些优美的常用函数写法。 分解质因数有人根本不会用 do while 和 vector。 12345vector&lt;int&gt; v(0);for(int i&#x3D;2;i*i&lt;&#x3D;n;i++)if(n%i&#x3D;&#x3D;0)&amp;#123;    v.push_back(i);    do n&#x2F;&#x3D;i; while(n%i&#x3D;&#x3D;0);&amp;#125;  SCC缩点。 1234567891011">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-12T08:07:45.000Z">
-<meta property="article:modified_time" content="2022-07-12T08:16:43.167Z">
+<meta property="article:modified_time" content="2022-07-28T07:30:51.322Z">
 <meta property="article:author" content="幻影彭">
 <meta property="article:tag" content="技巧">
 <meta property="article:tag" content="汇总">
@@ -239,10 +239,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-12 16:07:45 / 修改时间：16:16:43" itemprop="dateCreated datePublished" datetime="2022-07-12T16:07:45+08:00">2022-07-12</time>
+              <time title="创建时间：2022-07-12 16:07:45" itemprop="dateCreated datePublished" datetime="2022-07-12T16:07:45+08:00">2022-07-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-28 15:30:51" itemprop="dateModified" datetime="2022-07-28T15:30:51+08:00">2022-07-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -271,6 +277,9 @@
         <h2 id="写法优美的常用函数"><a href="#写法优美的常用函数" class="headerlink" title="写法优美的常用函数"></a>写法优美的常用函数</h2><p>收录一些优美的常用函数写法。</p>
 <h3 id="分解质因数"><a href="#分解质因数" class="headerlink" title="分解质因数"></a>分解质因数</h3><p>有人根本不会用 <code>do while</code> 和 <code>vector</code>。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">v</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i*i&lt;=n;i++)<span class="keyword">if</span>(n%i==<span class="number">0</span>)&#123;</span><br><span class="line">    v.<span class="built_in">push_back</span>(i);</span><br><span class="line">    <span class="keyword">do</span> n/=i; <span class="keyword">while</span>(n%i==<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SCC"><a href="#SCC" class="headerlink" title="SCC"></a>SCC</h3><p>缩点。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;cin&gt;&gt;x;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(<span class="type">int</span> &amp;a,<span class="type">const</span> <span class="type">int</span> b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(<span class="type">int</span> &amp;a,<span class="type">const</span> <span class="type">int</span> b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> i,n,m,top,df,cnt,ans;</span><br><span class="line"><span class="type">int</span> val[N],dp[N],a[N],from[N];</span><br><span class="line"><span class="type">int</span> scc[N],dfn[N],st[N];</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; e[N],e2[N];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> low=dfn[u]=++df;st[++top]=u;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> v:e[u])&#123;</span><br><span class="line">		<span class="keyword">if</span>(!dfn[v])<span class="built_in">cmin</span>(low,<span class="built_in">dfs</span>(v));</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(!scc[v])<span class="built_in">cmin</span>(low,dfn[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(low==dfn[u])&#123;</span><br><span class="line">		++cnt;<span class="type">int</span> v;</span><br><span class="line">		<span class="keyword">do</span> val[cnt]+=a[v=st[top--]],scc[v]=cnt; <span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> low;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">read</span>(n),<span class="built_in">read</span>(m);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(a[i]);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="type">int</span> u,v;<span class="built_in">read</span>(u),<span class="built_in">read</span>(v);</span><br><span class="line">		e[u].<span class="built_in">push_back</span>(v);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> u=<span class="number">1</span>;u&lt;=n;u++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!dfn[u])<span class="built_in">dfs</span>(u);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">auto</span> v:e[u])&#123;</span><br><span class="line">			<span class="keyword">if</span>(scc[v]==scc[u])<span class="keyword">continue</span>;</span><br><span class="line">			e2[scc[u]].<span class="built_in">push_back</span>(scc[v]);</span><br><span class="line">			from[scc[v]]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	queue&lt;<span class="type">int</span>&gt; q;<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())q.<span class="built_in">pop</span>();</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=cnt;i++)<span class="keyword">if</span>(!from[i])q.<span class="built_in">push</span>(i),dp[i]=val[i];</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="type">int</span> u=q.<span class="built_in">front</span>();q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">auto</span> v:e2[u])&#123;</span><br><span class="line">			<span class="built_in">cmax</span>(dp[v],dp[u]+val[v]),from[v]--;</span><br><span class="line">			<span class="keyword">if</span>(from[v]==<span class="number">0</span>)q.<span class="built_in">push</span>(v);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cmax</span>(ans,dp[u]);</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -373,7 +382,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E6%B3%95%E4%BC%98%E7%BE%8E%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">写法优美的常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E8%A7%A3%E8%B4%A8%E5%9B%A0%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">分解质因数</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E6%B3%95%E4%BC%98%E7%BE%8E%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">写法优美的常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E8%A7%A3%E8%B4%A8%E5%9B%A0%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">分解质因数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SCC"><span class="nav-number">1.2.</span> <span class="nav-text">SCC</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -389,20 +398,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
