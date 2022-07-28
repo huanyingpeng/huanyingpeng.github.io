@@ -28,11 +28,13 @@
 <meta property="og:site_name" content="幻影彭的彩虹">
 <meta property="og:description" content="QQ 群一笔画问题Author:Huan_yp 一笔画问题，即给定一张无向图 $G(V,E)$，每个点的度数均为偶数或者仅有两个点度数为奇数，需要求出一条不重复经过边的路径，遍历所有的边。 由于在算法竞赛中，这个问题是简单的，这里只讨论在 QQ 群一笔画中，快速解决问题的方式。 归纳构造法证明已知给定图为一笔画图，故一定满足每个点的度数均为偶数或者仅有两个点度数为奇数，并且图联通，若存在两个点度数">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/4oaujupz.png">
 <meta property="article:published_time" content="2022-07-28T15:42:55.000Z">
-<meta property="article:modified_time" content="2022-07-28T15:43:07.825Z">
+<meta property="article:modified_time" content="2022-07-28T16:00:27.085Z">
 <meta property="article:author" content="幻影彭">
 <meta property="article:tag" content="生活">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/4oaujupz.png">
 
 <link rel="canonical" href="http://huanyp.cn/2022/07/28/%E6%B5%85%E8%B0%88%E4%B8%80%E7%AC%94%E7%94%BB%E9%97%AE%E9%A2%98/">
 
@@ -238,10 +240,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-28 23:42:55 / 修改时间：23:43:07" itemprop="dateCreated datePublished" datetime="2022-07-28T23:42:55+08:00">2022-07-28</time>
+              <time title="创建时间：2022-07-28 23:42:55" itemprop="dateCreated datePublished" datetime="2022-07-28T23:42:55+08:00">2022-07-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-29 00:00:27" itemprop="dateModified" datetime="2022-07-29T00:00:27+08:00">2022-07-29</time>
+              </span>
 
           
 
@@ -263,12 +271,15 @@
 <li>在当前节点任意找一条边，如果可以找到，则重复此过程。</li>
 <li>如果无法找到：<ul>
 <li>图已经被遍历，结束，得到保存的路径。</li>
-<li>该点度数为 $0$，所以一定回到了起点或者到了终点。记录并删除该路径中所有边，并回溯到上一个存在出度的点，<strong>可以证明一定存在这样的点，否则图不连通</strong>。该点的度数一定为 $0$，对该点进行上述过程，得到一条首尾相接的路径，插入到原路径，得到完整的欧拉（回）路。</li>
+<li>该点度数为 $0$，所以一定回到了起点或者到了终点。记录并删除该路径中所有边，并回溯到上一个存在出度的点，<strong>可以证明一定存在这样的点，否则图不连通</strong>。该点的度数一定为偶数，对该点进行上述过程，得到一条<strong>首尾相接</strong>的路径，插入到原路径，得到完整的欧拉（回）路。</li>
 </ul>
 </li>
 <li>容易发现，这样的过程将图遍历了一遍，所以最后得到的是完整的欧拉路径。</li>
 </ul>
 <p>代码实现比较简单，只需要使用栈在退出时记录当前节点，得到的，从栈顶到栈底，就是一条完整的欧拉路径。</p>
+<p>下面是一个例子：</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/4oaujupz.png"></p>
+<p>按 $1-&gt;2-&gt;5$ 走，$5$ 处无路可走，回到 $2$，记录一条路径 $2-&gt;5$，从 $2$ 继续走 $2-&gt;3-&gt;4-&gt;2$，回到了，插入原路径变为 $1-&gt;2-&gt;3-&gt;4-&gt;2-&gt;5$。</p>
 <h3 id="正确的操作方式"><a href="#正确的操作方式" class="headerlink" title="正确的操作方式"></a>正确的操作方式</h3><p>由于找边的耗时比较长，我们需要尽可能少的找边。</p>
 <ul>
 <li>如果有 API 可以读取边的情况，那么直接做一遍上述过程即可得到答案。</li>
