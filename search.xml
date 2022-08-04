@@ -39,6 +39,114 @@
       </tags>
   </entry>
   <entry>
+    <title>从ZKW线段树看线段树的性质</title>
+    <url>/2022/08/04/%E4%BB%8EZKW%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9C%8B%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8/</url>
+    <content><![CDATA[<h2 id="从ZKW线段树看线段树的性质"><a href="#从ZKW线段树看线段树的性质" class="headerlink" title="从ZKW线段树看线段树的性质"></a>从ZKW线段树看线段树的性质</h2><p>最近遇到了很多线段树性质相关的题目，故在此做一个总结。</p>
+<h3 id="常规建树"><a href="#常规建树" class="headerlink" title="常规建树"></a>常规建树</h3><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt)</span></span>&#123;</span><br><span class="line">    <span class="built_in">do_something</span>();</span><br><span class="line">	<span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">build</span>(l,mid,rt&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">build</span>(mid+<span class="number">1</span>,r,rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><ul>
+<li>左儿子长度不小于右儿子。</li>
+<li>节点编号 <code>rt</code> 描述了从根到自身的父子关系，也间接描述了该点长度和根节点长度的关系，具体的，根节点的最大或最小长度是一个关于该节点长度的一次函数，这个一次函数只由 <code>rt</code> 决定。</li>
+<li>编号最大的节点不一定是 <code>r</code>，事实上可以在 $\log n$ 的时间内求出，如果左儿子多一层，那么一定在左儿子，否则在右儿子，<strong>决定某个儿子是否会多一层，当且仅当目前长度为奇数，且 popcount 值为 2</strong>。</li>
+</ul>
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p><a href="https://acm.hdu.edu.cn/showproblem.php?pid=7204">一道简单的题</a></p>
+<p><a href="https://www.luogu.com.cn/problem/P6025">一道比较简单的题</a></p>
+<h3 id="非常规建树"><a href="#非常规建树" class="headerlink" title="非常规建树"></a>非常规建树</h3><p>非常规建树一般会指定建树的 <code>mid</code> 位置。</p>
+<h4 id="区间覆盖数"><a href="#区间覆盖数" class="headerlink" title="区间覆盖数"></a>区间覆盖数</h4><p>即覆盖一个区间 $[l,r]$ 的最小线段数。</p>
+<p>先转成 $(l,r)$，然后依次跳叶节点 $l,r$ 的父亲，先判断 $l,r$ 的父亲是否相同，相同就可以走人了。</p>
+<p>如果 $l$ 作为左儿子跳上去，那么该节点的右儿子会对该区间贡献一次，因为该节点的右儿子的父亲超出了区间，但自身在区间内。如果 $r$ 作为右儿子跳上去，那么该节点的左儿子会对区间贡献一次，原因同理，如此就可以找到区间覆盖数，这也是 ZKW线段树 的原理。</p>
+<h4 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h4><p>给定一个指定 <code>mid</code> 节点的线段树，需要支持 <code>rotate</code> 一个节点，<code>rotate</code> 定义为伸展树(splay)的 <code>rotate</code>，强制在线询问区间覆盖数。</p>
+<p>先考虑没有修改，那么就是找到 $l,r$ 的 $lca$，然后一路统计 $l$，$r$ 作为左右儿子的次数即可，可以用倍增快速解决。</p>
+<p>修改本质上就是断边和加边，用 LCT 维护。</p>
+<h3 id="ZKW线段树简介"><a href="#ZKW线段树简介" class="headerlink" title="ZKW线段树简介"></a>ZKW线段树简介</h3>]]></content>
+      <tags>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简单数论函数和应用</title>
+    <url>/2022/08/03/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="简单数论函数和应用"><a href="#简单数论函数和应用" class="headerlink" title="简单数论函数和应用"></a>简单数论函数和应用</h1><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://oi-wiki.org/math/number-theory/mobius/">OI-WIKI 莫比乌斯反演</a></li>
+<li><a href="https://oi-wiki.org/math/poly/dgf/#dirichlet">OI-WIKI 迪利克雷卷积</a></li>
+<li><a href="https://www.luogu.com.cn/blog/An-Amazing-Blog/ji-miao-di-mu-bi-wu-si-fan-yan">从莫比乌斯到欧拉</a></li>
+<li><a href="https://www.luogu.com.cn/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-从基础开始</a></li>
+</ul>
+<h2 id="部分定义和约定"><a href="#部分定义和约定" class="headerlink" title="部分定义和约定"></a>部分定义和约定</h2><h3 id="符号"><a href="#符号" class="headerlink" title="符号"></a>符号</h3><ul>
+<li>$id$ ：$id$ 数论函数，$id(x)&#x3D;x$</li>
+<li>$\epsilon$ : 单位函数 $\epsilon(x)&#x3D;[x&#x3D;1]$</li>
+<li>$[]$ ：中扩号表达式，中扩号内条件成立则为 $1$，否则为 $0$</li>
+<li>$\bold{1}$：$\bold{1}$ 函数，若 $f(n)&#x3D;\bold{1}$，则 $\forall x \in N^+,f(x)&#x3D;1$</li>
+</ul>
+<h3 id="数论函数"><a href="#数论函数" class="headerlink" title="数论函数"></a>数论函数</h3><ul>
+<li><p>一个数论函数定义域为正整数，值域为复数。</p>
+</li>
+<li><p>一个数论函数为积性函数，当且仅当 $\forall a,b,\gcd(a,b)&#x3D;1\rightarrow f(a\times b)&#x3D;f(a)\times f(b)$</p>
+</li>
+<li><p>一个数论函数为完全积性函数，当且仅当 $\forall a,b,f(a\times b)&#x3D;f(a)\times f(b)$</p>
+</li>
+</ul>
+<h3 id="迪利克雷卷积"><a href="#迪利克雷卷积" class="headerlink" title="迪利克雷卷积"></a>迪利克雷卷积</h3><p>迪利克雷卷积为数论函数的乘法操作，定义两个数论函数的迪利克雷卷积定义为<br>$$<br>g&#x3D;f*h,g(n)&#x3D;\sum\limits_{d|n} f(d)\times h(\frac{n}{d})<br>$$</p>
+<p>迪利克雷卷积的除法操作就是逆操作，一般只能构造得到。</p>
+<p>迪利克雷卷积的性质（证明见下一部分）：</p>
+<ul>
+<li>两个积性函数的迪利克雷卷积仍是积性函数。</li>
+<li>两个积性函数的迪利克雷卷积除法结果仍是积性函数。</li>
+</ul>
+<p><strong>为了方便，以下所有数论函数的乘法未经说明均为迪利克雷卷积。</strong></p>
+<h3 id="常见积性函数"><a href="#常见积性函数" class="headerlink" title="常见积性函数"></a>常见积性函数</h3><ul>
+<li>欧拉函数 $\phi(n)$</li>
+<li>莫比乌斯函数 $\mu(n)$</li>
+<li>约数个数函数 $d(n)$</li>
+</ul>
+<h2 id="一些结论的简单证明"><a href="#一些结论的简单证明" class="headerlink" title="一些结论的简单证明"></a>一些结论的简单证明</h2><h3 id="迪利克雷卷积的性质"><a href="#迪利克雷卷积的性质" class="headerlink" title="迪利克雷卷积的性质"></a>迪利克雷卷积的性质</h3><h4 id="简单性质"><a href="#简单性质" class="headerlink" title="简单性质"></a>简单性质</h4><ul>
+<li>积性函数 $f$，满足 $f(1)&#x3D;1$</li>
+</ul>
+<h4 id="逆元存在且唯一"><a href="#逆元存在且唯一" class="headerlink" title="逆元存在且唯一"></a>逆元存在且唯一</h4><p>所有数论函数存在逆元，即对于所有 $f$，存在 $g$ 使得 $f*g&#x3D;\epsilon$，直接构造对应的 $g(n)$ 即可。<br>$$<br>g(n)&#x3D;-\dfrac{\sum\limits_{d|n,d\neq n}{f(d)\times g(\frac{n}{d})}}{f(1)}\<br>g(1)&#x3D;\frac{1}{f(1)}<br>$$<br>因此数论函数的逆元存在且唯一。</p>
+<h4 id="交换律"><a href="#交换律" class="headerlink" title="交换律"></a>交换律</h4><p>$f<em>g&#x3D;g</em>h$，显然成立</p>
+<h4 id="结合律"><a href="#结合律" class="headerlink" title="结合律"></a>结合律</h4><p>$f<em>g</em>h&#x3D;f*(g*h)$，成立，但不显然。</p>
+<p>令 $f<em>g</em>h&#x3D;f_1,f*(g<em>h)&#x3D;f_2,f</em>g&#x3D;a,g<em>h&#x3D;h</em>g&#x3D;b$<br>$$<br>f_1(n)&#x3D;\sum\limits_{d_1|n} a(d_1)\times h(\frac{n}{d_1})&#x3D;\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} f(d_2)\times g(\frac{d_1}{d_2})\times h(\frac{n}{d_1})\<br>f_2(n)&#x3D;\sum\limits_{d_1|n} b(d_1)\times f(\frac{n}{d_1})&#x3D;\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} h(d_2)\times g(\frac{d_1}{d_2})\times f(\frac{n}{d_1})\<br>$$<br>$g(\frac{d_1}{d_2})$ 抵掉。剩下两项的和显然是相等的，证明方式是枚举 $\frac{n\times d_2}{d_1}$，然后就是一个交换求和符号。</p>
+<h4 id="分配律"><a href="#分配律" class="headerlink" title="分配律"></a>分配律</h4><p>$f*(g+h)&#x3D;f<em>g+f</em>h$</p>
+<p>显然成立。</p>
+<h4 id="两个积性函数的迪利克雷卷积为积性函数"><a href="#两个积性函数的迪利克雷卷积为积性函数" class="headerlink" title="两个积性函数的迪利克雷卷积为积性函数"></a>两个积性函数的迪利克雷卷积为积性函数</h4><p>$f,h$ 为积性函数，则 $f*g&#x3D;h$，$h$ 为积性函数。<br>$$<br>\forall a,b \ , \gcd(a,b)&#x3D;1\ ,h(a\times b)&#x3D;h(a)\times h(b) \<br>\begin{align}<br>h(a\times b)&#x3D;&amp;\sum\limits_{d_1|a}\sum\limits_{d_2|b}f(d_1\times \frac{b}{d_2})\times g(\frac{a}{d_1}\times d_2)\<br>&#x3D;&amp;\sum\limits_{d_1|a}\sum\limits_{d_2|b}f(d_1)\times f(\frac{b}{d_2})\times g(\frac{a}{d_1})\times g( d_2)\<br>&#x3D;&amp;\sum\limits_{d_1|a} f(d_1)\times g(\frac{a}{d_1})\sum\limits_{d_2|b} f(\frac{b}{d_2})\times g(d_2)\<br>&#x3D;&amp;h(a)\times h(b)<br>\end{align}<br>$$</p>
+<h4 id="两个积性函数的迪利克雷卷积除法为积性函数"><a href="#两个积性函数的迪利克雷卷积除法为积性函数" class="headerlink" title="两个积性函数的迪利克雷卷积除法为积性函数"></a>两个积性函数的迪利克雷卷积除法为积性函数</h4><p>证明 $f,h$ 为积性函数，且 $h*g&#x3D;f$，则 $g$ 为积性函数。</p>
+<p>令 $h’<em>h&#x3D;\epsilon$，则 $g&#x3D;f</em>h’$</p>
+<p>即证明积性函数的逆元也为积性函数。</p>
+<p><a href="https://oi-wiki.org/math/poly/dgf/#_10">证明</a></p>
+<p>使用了数学归纳法</p>
+<h3 id="常见的积性函数关系"><a href="#常见的积性函数关系" class="headerlink" title="常见的积性函数关系"></a>常见的积性函数关系</h3><ul>
+<li>$\mu* \bold{1}&#x3D;\epsilon$</li>
+<li>$\phi* \bold{1}&#x3D;\operatorname{id}$</li>
+</ul>
+<h2 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h2><p><strong>莫比乌斯反演的常见做法是用其它易于交换求和符号的项替换掉不容易求和的相关项。</strong></p>
+<p>不容易交换求和的项一般有 $d,\gcd$ 等。</p>
+<h3 id="数论分块"><a href="#数论分块" class="headerlink" title="数论分块"></a>数论分块</h3><p>莫比乌斯反演或者其它数数题中常用的优化方式。</p>
+<p>核心原理是对于 $[1,n]$ 中所有数 $i$，$\frac{n}{i}$  的结果只有 $\sqrt{n}$ 个。</p>
+<p>证明是容易的，对于 $[1,\sqrt{n}]$，一共有 $\sqrt{n}$ 个值，对于 $[\sqrt{n},n]$，一共也只有 $\sqrt{n}$ 个值。</p>
+<p>枚举的方式是先枚举一个 $l$，然后计算出一个最大的 $r$，满足 $\frac{n}{r}&#x3D;\frac{n}{l}$，容易证明 $r&#x3D;\big\lfloor\dfrac{n}{\lfloor\frac{n}{l}\rfloor}\big\rfloor$。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">1</span>,r=<span class="number">1</span>;l&lt;=n;l=r+<span class="number">1</span>,r=n/(n/l))&#123;</span><br><span class="line">	<span class="built_in">do_something</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="莫比乌斯函数"><a href="#莫比乌斯函数" class="headerlink" title="莫比乌斯函数"></a>莫比乌斯函数</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>$$<br>\mu(n)&#x3D;<br>\begin{cases}<br>1&amp;n&#x3D;1\<br>0&amp;n\text{ 含有平方因子}\<br>(-1)^k&amp;k\text{ 为 }n\text{ 的本质不同质因子个数}\<br>\end{cases}<br>$$</p>
+<h4 id="mu-bold-1-x3D-epsilon"><a href="#mu-bold-1-x3D-epsilon" class="headerlink" title="$\mu*\bold{1}&#x3D;\epsilon$"></a>$\mu*\bold{1}&#x3D;\epsilon$</h4><p>这是核心结论了。</p>
+<p>考虑证明 $\forall n&gt;1,\mu(n)&#x3D;0$。</p>
+<p>考虑每个约数的贡献，显然每个质因子只需要考虑一次，如果质因子出现多次，那么根据定义贡献为 $0$。</p>
+<p>设有 $k$ 个质因子，那么选出奇数个和选出偶数个的方案显然是相等的，所以和为 $0$。</p>
+<h3 id="莫比乌斯反演-1"><a href="#莫比乌斯反演-1" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h3><h4 id="一般形式"><a href="#一般形式" class="headerlink" title="一般形式"></a>一般形式</h4><p>$$<br>\begin{align}<br>f<em>\bold{1}&#x3D;g\iff&amp; g</em>\mu&#x3D;f \<br>g(n)&#x3D;\sum\limits_{d|n}f(d)\iff&amp; f(n)&#x3D;\sum\limits_{d|n}\mu(d)\times g(\frac{n}{d})<br>\end{align}<br>$$</p>
+<p>证明是显然的，因为 $\bold{1}*\mu&#x3D;\epsilon$</p>
+<h4 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h4><p>$[\gcd(i,j)&#x3D;1]&#x3D;\sum\limits_{d|\gcd(i,j)}\mu(d)$</p>
+<p>枚举 $d$，即可快速计算。</p>
+<h4 id="欧拉反演"><a href="#欧拉反演" class="headerlink" title="欧拉反演"></a>欧拉反演</h4><p>名字是<a href="https://0x131cc05.github.io/">杰哥</a>取的。</p>
+<h5 id="常用形式"><a href="#常用形式" class="headerlink" title="常用形式"></a>常用形式</h5><p>$\gcd(i,j)&#x3D;\sum\limits_{d|\gcd(i,j)}\phi(d)$</p>
+<h5 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h5><p>即证明 $\phi*\bold{1}&#x3D;\operatorname{id}$ 。</p>
+<p>我们只需要证明 $\phi<em>\bold{1}$ 在 $p^c$ 处取值为 $\operatorname{id}(p^c)$，由于 $\phi,\bold{1},\operatorname{id}$ 均为积性函数，自然在所有位置成立。<br>$$<br>\begin{align}<br>(\phi</em>\bold{1})(p^c)&#x3D;&amp;1+\sum _{i&#x3D;1}^{c} (p-1)\times p^{i-1}\<br>&#x3D;&amp; 1+\frac{p^c-1}{p-1}\times(p-1)\<br>&#x3D;&amp;p^c\<br>&#x3D;&amp;\operatorname{id}(p^c)<br>\end{align}<br>$$</p>
+<h2 id="筛法"><a href="#筛法" class="headerlink" title="筛法"></a>筛法</h2><p>介绍四大筛法。</p>
+]]></content>
+      <tags>
+        <tag>数学</tag>
+        <tag>数论</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Exchange-Argument小总结</title>
     <url>/2022/08/02/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h2 id="Exchange-Argument"><a href="#Exchange-Argument" class="headerlink" title="Exchange-Argument"></a>Exchange-Argument</h2><ul>
@@ -48,7 +156,7 @@
 </li>
 </ul>
 <h3 id="一般形式"><a href="#一般形式" class="headerlink" title="一般形式"></a>一般形式</h3><p>你需要为 $n$ 个元素安排一个排名，得到一个序列 $a$，最小化某函数 $F(a)$。</p>
-<p>如果存在一个满足<strong>传递性和强完全性</strong>的关系 $\le$，满足 $a,b$ 均为元素， $ \forall a&lt;b,F(s_1+a+b+s_2)\le F(s_1+b+a+s_2)$，则按照 $\le$ 排序后的排名可以最小化 $F(a)$。</p>
+<p>如果存在一个满足<strong>传递性和强完全性</strong>的关系 $\le$，满足 $a,b$ 均为元素， $ \forall a\le b,F(s_1+a+b+s_2)\le F(s_1+b+a+s_2)$，则按照 $\le$ 排序后的排名可以最小化 $F(a)$。</p>
 <p>典例为 NOIP2012 国王游戏。</p>
 <p>我们在这里略去证明，详见参考资料。</p>
 <ul>
@@ -58,7 +166,7 @@
 <h3 id="树上问题"><a href="#树上问题" class="headerlink" title="树上问题"></a>树上问题</h3><h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p>给定一棵树，需要为树的每个节点安排排名 $p_u$，父节点的排名需要低于子节点。每个点有一个价值 $c_i$，需要最小化 $\sum c_u\times p_u$。</p>
 <h4 id="分析与结论"><a href="#分析与结论" class="headerlink" title="分析与结论"></a>分析与结论</h4><p>唯一的变化是，对于原问题元素的比较 $\le$，拓展到了对于子序列的比较，即 $a,b$ 为原来元素的一个序列。</p>
 <p><strong>以下是一个重要结论</strong></p>
-<p>考虑一个元素 $v$，我们希望说明如果 $u&gt;v$，那么 $v$ 一定在 $u$ 之后<strong>立刻被选择</strong>，此时将 $v,u$ 合并，可以得到一个规模为 $n-1$ 的子问题。</p>
+<p>考虑一个元素 $v$，我们希望说明如果它的父亲 $u$， $u&gt;v$，那么 $v$ 一定在 $u$ 之后<strong>立刻被选择</strong>，此时将 $v,u$ 合并，可以得到一个规模为 $n-1$ 的子问题。</p>
 <p>考虑证明 $u$ 被选择后一定会选择 $v$，对于一个满足树的限制的排列 $p$，如果 $u,v$ 不相邻，那么由于 $v&gt;u$，所以对于序列 $p_1,p_2\dots u,p_l,p_{l1} \dots p_r,v,\dots,p_n$，一定有 $u&gt;p_{l,r} \or p_{l,r}&gt;v$，否则 $v&lt;u$，如果为前者，那么交换 $u$ 和 $p_{l,r}$，后者同理，所以 $v$ 一定紧接着 $u$ 被选择。</p>
 <p>我们可以用以下两种方式解决问题。</p>
 <h4 id="方式1"><a href="#方式1" class="headerlink" title="方式1"></a>方式1</h4><p>考虑最大的元素 $v$，显然可以合并它和它的父亲 $u$，变成一个新的规模更小的问题。</p>
@@ -1111,7 +1219,7 @@
 <p>容易证明 $\forall\ r_1\in S_n, r_2 \in S_m$，存在唯一 $x \in [1,nm]$ 是上同余方程组的解，且 $x \in T$。</p>
 <p>存在唯一就是 $EXCRT$， $x\in T$ 由事实 1 显然。</p>
 <p>故 $\phi(n*m) \ge \phi(n) *\phi(m)$</p>
-<p>再证明 $\forall\ x$，可以对应以上一个同余方程组的解，假设不是，那么它一定与 $n,m$ 中的一个互质，由事实 1 推出矛盾。</p>
+<p>再证明 $\forall\ x\in T$，可以对应一个以上同余方程组的解，假设不对应，那么它一定与 $n,m$ 中的一个不互质，由事实 1 推出矛盾。</p>
 <p>故 $\phi(n*m) \le \phi(n) *\phi(m)$</p>
 <p>证毕。</p>
 <h3 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h3><h4 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h4><p>$$<br>\Large 若 \ \gcd(a,m)&#x3D; 1 ,\ 则\  a^{\phi(m)}≡1\mod m<br>$$</p>
@@ -1129,7 +1237,10 @@
 <h5 id="性质"><a href="#性质" class="headerlink" title="性质:"></a>性质:</h5><p>质数 $p$ 的原根的方幂能取遍 $[1,p-1]$</p>
 <h4 id="内容："><a href="#内容：" class="headerlink" title="内容："></a>内容：</h4><p>一个数 $x$ 有原根当且仅当 $x&#x3D; 2,4,p^n,2\times p^n$，其中 $p$ 为奇素数。</p>
 <h4 id="证明："><a href="#证明：" class="headerlink" title="证明："></a>证明：</h4><p>我不会。</p>
-<h3 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h3>]]></content>
+<h3 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h3><p>咕咕咕</p>
+<h3 id="平面图欧拉定理"><a href="#平面图欧拉定理" class="headerlink" title="平面图欧拉定理"></a>平面图欧拉定理</h3><p>顶点数-边数-连通块数+区域数&#x3D;1</p>
+<h3 id="几何体欧拉定理"><a href="#几何体欧拉定理" class="headerlink" title="几何体欧拉定理"></a>几何体欧拉定理</h3><p>顶点数-边数+面数&#x3D;2</p>
+]]></content>
       <categories>
         <category>数学</category>
         <category>信息竞赛中的数学</category>
@@ -1282,7 +1393,12 @@
     <title>标准库，扩展库，语法和语法糖</title>
     <url>/2022/07/12/%E6%89%A9%E5%B1%95%E5%BA%93%EF%BC%8C%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E6%B3%95%E7%B3%96/</url>
     <content><![CDATA[<h2 id="语法和语法糖"><a href="#语法和语法糖" class="headerlink" title="语法和语法糖"></a>语法和语法糖</h2><p>介绍一些有用常用但鲜为人知的 <code>C++</code> 语法，库，语法糖。</p>
-<h2 id="标准库"><a href="#标准库" class="headerlink" title="标准库"></a>标准库</h2><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="std-swap"><a href="#std-swap" class="headerlink" title="std::swap"></a>std::swap</h4><p>对于除了 <code>array</code> 容器之外的所有标准库容器，都可以 $O(1)$ 交换</p>
+<h2 id="标准库"><a href="#标准库" class="headerlink" title="标准库"></a>标准库</h2><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="std-swap"><a href="#std-swap" class="headerlink" title="std::swap"></a>std::swap</h4><ul>
+<li><p>对于除了 <code>array</code> 容器之外的所有标准库容器，都可以 $O(1)$ 交换</p>
+</li>
+<li><p>交换数组的复杂度为 $O(size)$，对二维数组的某一维使用，会将当前行视为一维数组进行交换。</p>
+</li>
+</ul>
 <h4 id="memcpy"><a href="#memcpy" class="headerlink" title="memcpy"></a>memcpy</h4><p><code>memcpy(dst, src, size)</code></p>
 <p>dst:目标数组起始位置</p>
 <p>src:源数组起始位置</p>
