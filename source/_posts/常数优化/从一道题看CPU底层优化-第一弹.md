@@ -1,5 +1,5 @@
 ---
-title: 从一道题看CPU底层优化
+title: 从一道题看CPU底层优化-第一弹
 mathjax: true
 date: 2022-07-12 15:31:52
 tags:
@@ -67,10 +67,6 @@ signed main()
 	return 0;
 }
 ```
-
-
-
-
 
 ### 优化
 

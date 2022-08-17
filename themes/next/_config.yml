@@ -533,6 +533,8 @@ lazyload: false
 # For more information: https://github.com/vinta/pangu.js
 pangu: false
 
+
+
 # Quicklink Support
 # Do not enable both `pjax` and `quicklink`.
 # For more information: https://github.com/GoogleChromeLabs/quicklink
@@ -1008,3 +1010,7 @@ mylinks:
 - nickname: An_Account
   site: https://0x131cc05.github.io/
   avatar: ../images/An_Account.jpg
+- nickname: Eray
+  site: https://xxeray.gitlab.io/
+  info: 主要记录 OI 中的算法、题解、经验交流。
+  avatar: https://xxeray.gitlab.io/images/avatar/64x64.jpg
