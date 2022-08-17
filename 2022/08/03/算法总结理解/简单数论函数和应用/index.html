@@ -29,7 +29,7 @@
 <meta property="og:description" content="简单数论函数和应用 参考资料  OI-WIKI 莫比乌斯反演 OI-WIKI 迪利克雷卷积 从莫比乌斯到欧拉 莫比乌斯反演-从基础开始  部分定义和约定 符号  \(id\) ：\(id\) 数论函数，\(id(x)&#x3D;x\) \(\epsilon\) : 单位函数 \(\epsilon(x)&#x3D;[x&#x3D;1]\) \([]\) ：中扩号表达式，中扩号内条件成立则为 \(1">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-03T05:27:13.000Z">
-<meta property="article:modified_time" content="2022-08-17T02:18:09.306Z">
+<meta property="article:modified_time" content="2022-08-17T07:28:00.542Z">
 <meta property="article:author" content="幻影彭">
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="数论">
@@ -247,7 +247,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-17 10:18:09" itemprop="dateModified" datetime="2022-08-17T10:18:09+08:00">2022-08-17</time>
+                <time title="修改时间：2022-08-17 15:28:00" itemprop="dateModified" datetime="2022-08-17T15:28:00+08:00">2022-08-17</time>
               </span>
 
           
@@ -285,9 +285,9 @@ class="math inline">\(\epsilon(x)=[x=1]\)</span></li>
 ：中扩号表达式，中扩号内条件成立则为 <span
 class="math inline">\(1\)</span>，否则为 <span
 class="math inline">\(0\)</span></li>
-<li><span class="math inline">\(\bold{1}\)</span>：<span
-class="math inline">\(\bold{1}\)</span> 函数，若 <span
-class="math inline">\(f(n)=\bold{1}\)</span>，则 <span
+<li><span class="math inline">\(\boldsymbol{1}\)</span>：<span
+class="math inline">\(\boldsymbol{1}\)</span> 函数，若 <span
+class="math inline">\(f(n)=\boldsymbol{1}\)</span>，则 <span
 class="math inline">\(\forall x \in N^+,f(x)=1\)</span></li>
 </ul>
 <h3 id="数论函数">数论函数</h3>
@@ -341,14 +341,10 @@ g(1)=\frac{1}{f(1)}
 <p><span class="math inline">\(f * g * h=f * (g *
 h)\)</span>，成立，但不显然。</p>
 <p>令 <span class="math inline">\(f * g * h=f_1,f * (g * h)=f_2,f *
-g=a,g * h=h * g=b\)</span> <span class="math display">\[
-f_1(n)=\sum\limits_{d_1|n} a(d_1)\times
-h(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} f(d_2)\times
-g(\frac{d_1}{d_2})\times h(\frac{n}{d_1})\\
-f_2(n)=\sum\limits_{d_1|n} b(d_1)\times
-f(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} h(d_2)\times
-g(\frac{d_1}{d_2})\times f(\frac{n}{d_1})\\
-\]</span> <span class="math inline">\(g(\frac{d_1}{d_2})\)</span>
+g=a,g * h=h * g=b\)</span> $$ f_1(n)=<em>{d_1|n}
+a(d_1)h()=</em>{d_1|n}_{d_2|d_1} f(d_2)g()h()\</p>
+<p>f_2(n)=<em>{d_1|n} b(d_1)f()=</em>{d_1|n}_{d_2|d_1} h(d_2)g()f()\ $$
+<span class="math inline">\(g(\frac{d_1}{d_2})\)</span>
 抵掉。剩下两项的和显然是相等的，证明方式是枚举 <span
 class="math inline">\(\frac{n\times
 d_2}{d_1}\)</span>，然后就是一个交换求和符号。</p>
@@ -384,9 +380,10 @@ class="math inline">\(g=f*h&#39;\)</span></p>
 <p>使用了数学归纳法</p>
 <h3 id="常见的积性函数关系">常见的积性函数关系</h3>
 <ul>
-<li><span class="math inline">\(\mu* \bold{1}=\epsilon\)</span></li>
+<li><span class="math inline">\(\mu*
+\boldsymbol{1}=\epsilon\)</span></li>
 <li><span class="math inline">\(\phi*
-\bold{1}=\operatorname{id}\)</span></li>
+\boldsymbol{1}=\operatorname{id}\)</span></li>
 </ul>
 <h2 id="莫比乌斯反演">莫比乌斯反演</h2>
 <p><strong>莫比乌斯反演的常见做法是用其它易于交换求和符号的项替换掉不容易求和的相关项。</strong></p>
@@ -419,8 +416,8 @@ class="math inline">\(r=\big\lfloor\dfrac{n}{\lfloor\frac{n}{l}\rfloor}\big\rflo
 (-1)^k&amp;k\text{ 为 }n\text{ 的本质不同质因子个数}\\
 \end{cases}
 \]</span></p>
-<h4 id="mubold1epsilon"><span
-class="math inline">\(\mu*\bold{1}=\epsilon\)</span></h4>
+<h4 id="muboldsymbol1epsilon"><span
+class="math inline">\(\mu*\boldsymbol{1}=\epsilon\)</span></h4>
 <p>这是核心结论了。</p>
 <p>考虑证明 <span class="math inline">\(\forall
 n&gt;1,\mu(n)=0\)</span>。</p>
@@ -439,7 +436,7 @@ g(\frac{n}{d})
 \end{align}
 \]</span></p>
 <p>证明是显然的，因为 <span
-class="math inline">\(\bold{1}*\mu=\epsilon\)</span></p>
+class="math inline">\(\boldsymbol{1}*\mu=\epsilon\)</span></p>
 <h4 id="常用">常用</h4>
 <p><span
 class="math inline">\([\gcd(i,j)=1]=\sum\limits_{d|\gcd(i,j)}\mu(d)\)</span></p>
@@ -451,11 +448,13 @@ class="math inline">\([\gcd(i,j)=1]=\sum\limits_{d|\gcd(i,j)}\mu(d)\)</span></p>
 class="math inline">\(\gcd(i,j)=\sum\limits_{d|\gcd(i,j)}\phi(d)\)</span></p>
 <h5 id="证明">证明</h5>
 <p>即证明 <span
-class="math inline">\(\phi*\bold{1}=\operatorname{id}\)</span> 。</p>
-<p>我们只需要证明 <span class="math inline">\(\phi*\bold{1}\)</span> 在
-<span class="math inline">\(p^c\)</span> 处取值为 <span
+class="math inline">\(\phi*\boldsymbol{1}=\operatorname{id}\)</span>
+。</p>
+<p>我们只需要证明 <span
+class="math inline">\(\phi*\boldsymbol{1}\)</span> 在 <span
+class="math inline">\(p^c\)</span> 处取值为 <span
 class="math inline">\(\operatorname{id}(p^c)\)</span>，由于 <span
-class="math inline">\(\phi,\bold{1},\operatorname{id}\)</span>
+class="math inline">\(\phi,\boldsymbol{1},\operatorname{id}\)</span>
 均为积性函数，自然在所有位置成立。 <span class="math display">\[
 \begin{align}
 (\phi*\bold{1})(p^c)=&amp;1+\sum _{i=1}^{c} (p-1)\times p^{i-1}\\
@@ -567,7 +566,7 @@ class="math inline">\(\phi,\bold{1},\operatorname{id}\)</span>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">简单数论函数和应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">1.1.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BA%A6%E5%AE%9A"><span class="nav-number">1.2.</span> <span class="nav-text">部分定义和约定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7"><span class="nav-number">1.2.1.</span> <span class="nav-text">符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">数论函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AA%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.2.3.</span> <span class="nav-text">迪利克雷卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.4.</span> <span class="nav-text">常见积性函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%BB%93%E8%AE%BA%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%81%E6%98%8E"><span class="nav-number">1.3.</span> <span class="nav-text">一些结论的简单证明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AA%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.3.1.</span> <span class="nav-text">迪利克雷卷积的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%80%A7%E8%B4%A8"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">简单性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%86%E5%85%83%E5%AD%98%E5%9C%A8%E4%B8%94%E5%94%AF%E4%B8%80"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">逆元存在且唯一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E5%BE%8B"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">交换律</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E5%90%88%E5%BE%8B"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">结合律</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E9%85%8D%E5%BE%8B"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">分配律</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%AA%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF%E4%B8%BA%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.1.6.</span> <span class="nav-text">两个积性函数的迪利克雷卷积为积性函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%AA%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF%E9%99%A4%E6%B3%95%E4%B8%BA%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.1.7.</span> <span class="nav-text">两个积性函数的迪利克雷卷积除法为积性函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.2.</span> <span class="nav-text">常见的积性函数关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94"><span class="nav-number">1.4.</span> <span class="nav-text">莫比乌斯反演</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E8%AE%BA%E5%88%86%E5%9D%97"><span class="nav-number">1.4.1.</span> <span class="nav-text">数论分块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.2.</span> <span class="nav-text">莫比乌斯函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mubold1epsilon"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">\(\mu*\bold{1}&#x3D;\epsilon\)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94-1"><span class="nav-number">1.4.3.</span> <span class="nav-text">莫比乌斯反演</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">一般形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">常用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%8F%8D%E6%BC%94"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">欧拉反演</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.4.3.3.1.</span> <span class="nav-text">常用形式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%81%E6%98%8E"><span class="nav-number">1.4.3.3.2.</span> <span class="nav-text">证明</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%9B%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">筛法</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">简单数论函数和应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">1.1.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BA%A6%E5%AE%9A"><span class="nav-number">1.2.</span> <span class="nav-text">部分定义和约定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7"><span class="nav-number">1.2.1.</span> <span class="nav-text">符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">数论函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AA%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.2.3.</span> <span class="nav-text">迪利克雷卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.4.</span> <span class="nav-text">常见积性函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%BB%93%E8%AE%BA%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%81%E6%98%8E"><span class="nav-number">1.3.</span> <span class="nav-text">一些结论的简单证明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AA%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.3.1.</span> <span class="nav-text">迪利克雷卷积的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%80%A7%E8%B4%A8"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">简单性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%86%E5%85%83%E5%AD%98%E5%9C%A8%E4%B8%94%E5%94%AF%E4%B8%80"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">逆元存在且唯一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E5%BE%8B"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">交换律</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E5%90%88%E5%BE%8B"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">结合律</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E9%85%8D%E5%BE%8B"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">分配律</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%AA%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF%E4%B8%BA%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.1.6.</span> <span class="nav-text">两个积性函数的迪利克雷卷积为积性函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%AA%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF%E9%99%A4%E6%B3%95%E4%B8%BA%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.1.7.</span> <span class="nav-text">两个积性函数的迪利克雷卷积除法为积性函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.2.</span> <span class="nav-text">常见的积性函数关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94"><span class="nav-number">1.4.</span> <span class="nav-text">莫比乌斯反演</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E8%AE%BA%E5%88%86%E5%9D%97"><span class="nav-number">1.4.1.</span> <span class="nav-text">数论分块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.2.</span> <span class="nav-text">莫比乌斯函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#muboldsymbol1epsilon"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">\(\mu*\boldsymbol{1}&#x3D;\epsilon\)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94-1"><span class="nav-number">1.4.3.</span> <span class="nav-text">莫比乌斯反演</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">一般形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">常用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%8F%8D%E6%BC%94"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">欧拉反演</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.4.3.3.1.</span> <span class="nav-text">常用形式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%81%E6%98%8E"><span class="nav-number">1.4.3.3.2.</span> <span class="nav-text">证明</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%9B%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">筛法</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

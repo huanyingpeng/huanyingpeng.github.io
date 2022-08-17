@@ -412,9 +412,9 @@ class="math inline">\(\epsilon(x)=[x=1]\)</span></li>
 ：中扩号表达式，中扩号内条件成立则为 <span
 class="math inline">\(1\)</span>，否则为 <span
 class="math inline">\(0\)</span></li>
-<li><span class="math inline">\(\bold{1}\)</span>：<span
-class="math inline">\(\bold{1}\)</span> 函数，若 <span
-class="math inline">\(f(n)=\bold{1}\)</span>，则 <span
+<li><span class="math inline">\(\boldsymbol{1}\)</span>：<span
+class="math inline">\(\boldsymbol{1}\)</span> 函数，若 <span
+class="math inline">\(f(n)=\boldsymbol{1}\)</span>，则 <span
 class="math inline">\(\forall x \in N^+,f(x)=1\)</span></li>
 </ul>
 <h3 id="数论函数">数论函数</h3>
@@ -468,14 +468,10 @@ g(1)=\frac{1}{f(1)}
 <p><span class="math inline">\(f * g * h=f * (g *
 h)\)</span>，成立，但不显然。</p>
 <p>令 <span class="math inline">\(f * g * h=f_1,f * (g * h)=f_2,f *
-g=a,g * h=h * g=b\)</span> <span class="math display">\[
-f_1(n)=\sum\limits_{d_1|n} a(d_1)\times
-h(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} f(d_2)\times
-g(\frac{d_1}{d_2})\times h(\frac{n}{d_1})\\
-f_2(n)=\sum\limits_{d_1|n} b(d_1)\times
-f(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} h(d_2)\times
-g(\frac{d_1}{d_2})\times f(\frac{n}{d_1})\\
-\]</span> <span class="math inline">\(g(\frac{d_1}{d_2})\)</span>
+g=a,g * h=h * g=b\)</span> $$ f_1(n)=<em>{d_1|n}
+a(d_1)h()=</em>{d_1|n}_{d_2|d_1} f(d_2)g()h()\</p>
+<p>f_2(n)=<em>{d_1|n} b(d_1)f()=</em>{d_1|n}_{d_2|d_1} h(d_2)g()f()\ $$
+<span class="math inline">\(g(\frac{d_1}{d_2})\)</span>
 抵掉。剩下两项的和显然是相等的，证明方式是枚举 <span
 class="math inline">\(\frac{n\times
 d_2}{d_1}\)</span>，然后就是一个交换求和符号。</p>
@@ -511,9 +507,10 @@ class="math inline">\(g=f*h&#39;\)</span></p>
 <p>使用了数学归纳法</p>
 <h3 id="常见的积性函数关系">常见的积性函数关系</h3>
 <ul>
-<li><span class="math inline">\(\mu* \bold{1}=\epsilon\)</span></li>
+<li><span class="math inline">\(\mu*
+\boldsymbol{1}=\epsilon\)</span></li>
 <li><span class="math inline">\(\phi*
-\bold{1}=\operatorname{id}\)</span></li>
+\boldsymbol{1}=\operatorname{id}\)</span></li>
 </ul>
 <h2 id="莫比乌斯反演">莫比乌斯反演</h2>
 <p><strong>莫比乌斯反演的常见做法是用其它易于交换求和符号的项替换掉不容易求和的相关项。</strong></p>
@@ -546,8 +543,8 @@ class="math inline">\(r=\big\lfloor\dfrac{n}{\lfloor\frac{n}{l}\rfloor}\big\rflo
 (-1)^k&amp;k\text{ 为 }n\text{ 的本质不同质因子个数}\\
 \end{cases}
 \]</span></p>
-<h4 id="mubold1epsilon"><span
-class="math inline">\(\mu*\bold{1}=\epsilon\)</span></h4>
+<h4 id="muboldsymbol1epsilon"><span
+class="math inline">\(\mu*\boldsymbol{1}=\epsilon\)</span></h4>
 <p>这是核心结论了。</p>
 <p>考虑证明 <span class="math inline">\(\forall
 n&gt;1,\mu(n)=0\)</span>。</p>
@@ -566,7 +563,7 @@ g(\frac{n}{d})
 \end{align}
 \]</span></p>
 <p>证明是显然的，因为 <span
-class="math inline">\(\bold{1}*\mu=\epsilon\)</span></p>
+class="math inline">\(\boldsymbol{1}*\mu=\epsilon\)</span></p>
 <h4 id="常用">常用</h4>
 <p><span
 class="math inline">\([\gcd(i,j)=1]=\sum\limits_{d|\gcd(i,j)}\mu(d)\)</span></p>
@@ -578,11 +575,13 @@ class="math inline">\([\gcd(i,j)=1]=\sum\limits_{d|\gcd(i,j)}\mu(d)\)</span></p>
 class="math inline">\(\gcd(i,j)=\sum\limits_{d|\gcd(i,j)}\phi(d)\)</span></p>
 <h5 id="证明">证明</h5>
 <p>即证明 <span
-class="math inline">\(\phi*\bold{1}=\operatorname{id}\)</span> 。</p>
-<p>我们只需要证明 <span class="math inline">\(\phi*\bold{1}\)</span> 在
-<span class="math inline">\(p^c\)</span> 处取值为 <span
+class="math inline">\(\phi*\boldsymbol{1}=\operatorname{id}\)</span>
+。</p>
+<p>我们只需要证明 <span
+class="math inline">\(\phi*\boldsymbol{1}\)</span> 在 <span
+class="math inline">\(p^c\)</span> 处取值为 <span
 class="math inline">\(\operatorname{id}(p^c)\)</span>，由于 <span
-class="math inline">\(\phi,\bold{1},\operatorname{id}\)</span>
+class="math inline">\(\phi,\boldsymbol{1},\operatorname{id}\)</span>
 均为积性函数，自然在所有位置成立。 <span class="math display">\[
 \begin{align}
 (\phi*\bold{1})(p^c)=&amp;1+\sum _{i=1}^{c} (p-1)\times p^{i-1}\\
