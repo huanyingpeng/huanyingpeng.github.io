@@ -468,10 +468,16 @@ g(1)=\frac{1}{f(1)}
 <p><span class="math inline">\(f * g * h=f * (g *
 h)\)</span>，成立，但不显然。</p>
 <p>令 <span class="math inline">\(f * g * h=f_1,f * (g * h)=f_2,f *
-g=a,g * h=h * g=b\)</span> $$ f_1(n)=<em>{d_1|n}
-a(d_1)h()=</em>{d_1|n}_{d_2|d_1} f(d_2)g()h()\</p>
-<p>f_2(n)=<em>{d_1|n} b(d_1)f()=</em>{d_1|n}_{d_2|d_1} h(d_2)g()f()\ $$
-<span class="math inline">\(g(\frac{d_1}{d_2})\)</span>
+g=a,g * h=h * g=b\)</span> <span class="math display">\[
+f_1(n)=\sum\limits_{d_1|n} a(d_1)\times
+h(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} f(d_2)\times
+g(\frac{d_1}{d_2})\times h(\frac{n}{d_1})
+\]</span></p>
+<p><span class="math display">\[
+f_2(n)=\sum\limits_{d_1|n} b(d_1)\times
+f(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} h(d_2)\times
+g(\frac{d_1}{d_2})\times f(\frac{n}{d_1})
+\]</span> <span class="math inline">\(g(\frac{d_1}{d_2})\)</span>
 抵掉。剩下两项的和显然是相等的，证明方式是枚举 <span
 class="math inline">\(\frac{n\times
 d_2}{d_1}\)</span>，然后就是一个交换求和符号。</p>
@@ -621,8 +627,8 @@ class="math inline">\(F(a)\)</span>。</p>
 <p>典例为 NOIP2012 国王游戏。</p>
 <p>我们在这里略去证明，详见参考资料。</p>
 <ul>
-<li>强完全性指 <span class="math inline">\(\forall a,b, a\le b\or b\le
-a\)</span>，显然满足强完全性一定满足自反性。</li>
+<li>强完全性指 <span class="math inline">\(\forall a,b, a\le b\bigvee
+b\le a\)</span>，显然满足强完全性一定满足自反性。</li>
 <li>条件中 <span class="math inline">\(\{s_1+a+b+s_2\}\)</span>
 为全集。</li>
 </ul>
@@ -652,8 +658,8 @@ class="math inline">\(u,v\)</span> 不相邻，那么由于 <span
 class="math inline">\(v&gt;u\)</span>，所以对于序列 <span
 class="math inline">\(p_1,p_2\dots u,p_l,p_{l1} \dots
 p_r,v,\dots,p_n\)</span>，一定有 <span
-class="math inline">\(u&gt;p_{l,r} \or p_{l,r}&gt;v\)</span>，否则 <span
-class="math inline">\(v&lt;u\)</span>，如果为前者，那么交换 <span
+class="math inline">\(u&gt;p_{l,r} \bigvee p_{l,r}&gt;v\)</span>，否则
+<span class="math inline">\(v&lt;u\)</span>，如果为前者，那么交换 <span
 class="math inline">\(u\)</span> 和 <span
 class="math inline">\(p_{l,r}\)</span>，后者同理，所以 <span
 class="math inline">\(v\)</span> 一定紧接着 <span
