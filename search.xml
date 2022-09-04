@@ -31,6 +31,145 @@ ID（一般不强调大小写）：幻影彭，琴风幻影，huan_yp，Phantom_
       </tags>
   </entry>
   <entry>
+    <title>随记20220904</title>
+    <url>/2022/09/05/%E9%9A%8F%E8%AE%B020220904/</url>
+    <content><![CDATA[<h2 id="随记20220904">随记20220904</h2>
+<p>双膝折叠，跪坐在算不上柔软的沙发上，两臂枕在凸起的窗沿。我有些懒散的将下巴靠在小臂，又竭力不让窗沿压迫小臂，以免有些脆弱敏感的手部神经受到刺激，<span
+class="math inline">\(P=\frac{F}{S}\)</span>，一个非常优美的公式。我开始估算手臂和窗沿的接触面积，我脑袋的半径，以便带入人体平均密度计算出手部受到的压强相当于几个大气压。</p>
+<p>不得不说，物理和数学公式都是优美的，只需要用上统一的几个名字，就能尽情将身边的一切等效。或者说，公式本身不够优美，但是人们设计的物理单位是那么的精巧，避免了那些繁杂的常量，一些无比熟悉的数字又飞入脑海，<span
+class="math inline">\(e\approx2.718\)</span>,<span
+class="math inline">\(\pi\approx3.1415927,G\approx6.67\times
+10^{-11}m^3kg^{-1}s^{-2}\cdots\)</span>。</p>
+<p>将越跑越远的联想收回来，生活不是科学，生活不需要那些能精确到小数点后几十几百位的数字。生活的美感，是一种无法用任何数学语言描述的美感。</p>
+<p>陶渊明的 “采菊东篱下，悠然见南山”，带来田园的悠然自得。</p>
+<p>王维的 “大漠孤烟直，长河落日圆”，给出荒凉的独特答案。</p>
+<p>马致远的
+“枯藤老树昏鸦，小桥流水人家，古道西风瘦马。”，留下秋日的那份伤感。</p>
+<p>但我只是一个平常的理科生，对感性的语文并不敏感，但窗外的宁静，也足以让我有感写下一些拙劣幼稚的文字。</p>
+<p>我不知道今年的干旱具体给天府之国带来了多大的影响，但是从居民区的停电和学校的被迫放假还是能够管中窥豹。刚回到学校没多久，COVID
+就横扫四川所有中学，没有一所逃过延迟开学的结局，即使是强硬如某校，也只不过多坚持了半天，就匆匆将神兽们赶了回去——就在高温假结束后的
+2 天。</p>
+<p>所以我就在这个时候，趴在了窗前，半夜的街道很冷清，只能听见百草路地铁口
+“握紧扶手，注意脚下” 的提醒。目光向上
+90度，我甚至能分辨出夜空中的云朵，它们和蓝色的天空还有一丝界限，但其实都很暗，它们一起向目光尽头的高楼收敛。如果你想具体的体会一下，你可以打开
+<code>mspaint</code>，天的颜色是 <code>0 60 85</code>，云的颜色是
+<code>212 212 212</code>，而它们收敛向 <code>69 24 34</code>。RGB
+空间还是很无力，区区 3Byte
+无法描绘出世界上的，甚至无法描绘出人肉眼可以分辨的所有颜色。</p>
+<p>黯淡的云朵没有动作，视野的右侧有一颗明亮的光点，它是星星。按照不知道从哪里得知的观星技巧，我快速的扫过窗口狭小的天空，又有数十的光点在视野中闪过，但我尝试正眼捕捉，它们又藏入了深色的天空，像是一个个纯黑背景下的白色像素点，于缩放后在显存中被彻底删除，我再也找不到它们。即使有着凹透镜的帮助，变形略显严重的晶状体也失去了精确的将波长仅有
+<span class="math inline">\(300-500nm\)</span>
+的可见光折射到每一个感光细胞的能力。</p>
+<p>一段时间的沉寂后，波浪状的云遮住了唯一那颗被轻易捕捉到的星星，视野渐渐下移，移过
+“立德树人”
+四个大字，是熟悉的水泥路。很突然，沥青从路面翻起，回到工人的铲子，回到工程车辆，回到工厂，最后在分馏器中重新变成原油，再顺着磕头机的管道流入地底。远处的高楼被荒芜的草地替换，眼前的工地，正热火朝天。。。</p>
+<p>又重归沉寂，只有略冷的风打在脸上，我看了看最近都在 1.5km
+之外的高楼，并细细感受周遭的气温，思考着这股风的来历，但已经有些陌生的地理和物理知识不再能闪着光告诉我答案。</p>
+<p><code>shutdown -f</code>，我告诉大脑，但又用留在海马体里的数据恢复了这段文字，像是被设置了关机命令为休眠的计算机。</p>
+]]></content>
+      <tags>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从2D1D到1D1D</title>
+    <url>/2022/09/03/%E4%BB%8E2D1D%E5%88%B01D1D/</url>
+    <content><![CDATA[<h2 id="从区间-dp-到线性-dp">从区间 DP 到线性 DP</h2>
+<h3 id="题目">题目</h3>
+<p>你有 <span class="math inline">\(n\)</span> 个区间，每个区间是 <span
+class="math inline">\(l,r,w\)</span>
+三个参数描述，表示左右端点和权值，如果区间有交（包括端点），那么就在有交的两个区间连边，形成一张无向图，有个参数
+<span
+class="math inline">\(k\)</span>，你需要删去一些区间，使得每个联通块大小不超过
+<span class="math inline">\(k\)</span>。</p>
+<ul>
+<li><p><span class="math inline">\(n\leq 500\)</span></p></li>
+<li><p><span class="math inline">\(n\leq 2500\)</span></p></li>
+</ul>
+<h3 id="思考">思考</h3>
+<p>首先这肯定不是一个图论问题，给一张图做这个问题是 <span
+class="math inline">\(NP\)</span> 的，所以要利用好区间的性质。</p>
+<p>先把区间离散化。</p>
+<p>发现可以考虑一段区间 <span
+class="math inline">\([l,r]\)</span>，只考虑在区间内的区间，计算其答案，有两种方式，第一种是将区间继续划分成两个子区间，另一种是直接在当前区间选最大的
+<span class="math inline">\(k\)</span> 个保留。</p>
+<p>划分区间的方式，就是选一个地方断开，删掉越过这个地方的所有区间，变成两个子问题。</p>
+<p>有了这样的思路，我们很容易设计出一个 <span
+class="math inline">\(O(n^3)\)</span> 的区间动态规划出来。</p>
+<h3 id="优化">优化</h3>
+<p><span class="math inline">\(O(n^3)\)</span> 可以通过 <span
+class="math inline">\(n\leq 500\)</span> 的数据点，但是无法通过 <span
+class="math inline">\(n\leq 2500\)</span>，所以需要优化为 <span
+class="math inline">\(O(n^2)\)</span>，其中预处理 <span
+class="math inline">\([l,r]\)</span> 的复杂度是 <span
+class="math inline">\(O(n^2\log n)\)</span>
+的，但是常数较小能够接受。</p>
+<p>于是可以考虑利用区间 <span class="math inline">\(dp\)</span>
+的一些常见优化手段，打个表，发现决策点并不单调，所以对于这类 <span
+class="math inline">\(2D1D\)</span>
+问题我们有点束手无策。但是感觉上记录区间有点浪费，于是考虑能不能线性的搞出来。发现如果设
+<span class="math inline">\(dp[i]\)</span> 表示考虑前 <span
+class="math inline">\(i\)</span> 个的答案，从 <span
+class="math inline">\(j&lt;i\)</span> 转移，<span
+class="math inline">\([j,i]\)</span> 采用直接减少到 <span
+class="math inline">\(k\)</span>
+的方式，也能得到和区间DP方式相同的转移考虑。</p>
+<p>所以被优化成了 <span
+class="math inline">\(O(n^2)\)</span>。越过每个点的区间总数，是可以动态维护的，均摊
+<span class="math inline">\(O(1)\)</span>。</p>
+<h3 id="从2d1d到1d1d">从2D1D到1D1D</h3>
+<p>其实这类问题，是伪区间DP问题，比较它和真区间DP问题，比如《石子合并》，《优雅的闪电》的差异。它本质上是
+1D1D
+问题，石子合并很明显就是需要体现区间合并的顺序，所以必须采用区间DP。优雅的闪电的转移，无法被
+1D1D 的转移考虑完全，所以仍然需要区间 DP。</p>
+<p>关于一些 2D1D 的问题，可以仔细考察它的转移，能否被 1D1D
+的形式描述，以便优化。</p>
+]]></content>
+      <tags>
+        <tag>动态规划</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>STL 容器的一些复杂度澄清</title>
+    <url>/2022/08/30/STL-%E5%AE%B9%E5%99%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%BE%84%E6%B8%85/</url>
+    <content><![CDATA[<h2 id="map">map</h2>
+<p>本质上是 <code>set&lt;pair&lt;T1,T2&gt;&gt;</code>，见
+<code>set</code>。</p>
+<h2 id="set">set</h2>
+<h3 id="insert">insert</h3>
+<p>可以插入一段区间，支持数组，同类型的 <code>set vector</code>
+容器。</p>
+<p>开 O2，<span class="math inline">\(1\)</span> 秒 <span
+class="math inline">\(1.5\times 10^6\)</span> 次操作。</p>
+<p>如果接下来的一段插入有序，开 O2，<span
+class="math inline">\(1\)</span> 秒 <span
+class="math inline">\(4.5\times 10^6\)</span>
+次，所以尽量排序后再插入。</p>
+<h3 id="erase">erase</h3>
+<p>开 O2，<span class="math inline">\(1\)</span> 秒 <span
+class="math inline">\(1.5\times 10^6\)</span> 次操作。</p>
+<p>如果接下来的一段插入有序，开 O2，<span
+class="math inline">\(1\)</span> 秒 <span
+class="math inline">\(4.5\times 10^6\)</span> 次。</p>
+<h3 id="迭代器操作">迭代器操作</h3>
+<p>开 O2，<span class="math inline">\(1\)</span> 秒 <span
+class="math inline">\(10^7\)</span>。</p>
+<h3 id="遍历">遍历</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> v:st)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> it=st.<span class="built_in">begin</span>();it!=st.<span class="built_in">end</span>();it++)</span><br></pre></td></tr></table></figure>
+<p>以上两种均为 <span class="math inline">\(O(n\log n)\)</span></p>
+<p>开 O2，<span class="math inline">\(1\)</span> 秒 <span
+class="math inline">\(10^7\)</span> 次操作。</p>
+<h2 id="unordered_set">unordered_set</h2>
+<p>基础操作相比 <code>set</code> 快 <span
+class="math inline">\(2\)</span> 倍。</p>
+<p>有序操作和 <code>set</code> 效率差不多。</p>
+<h2 id="unoedered_map">unoedered_map</h2>
+<p>本质上是 <code>unordered_set&lt;pair&lt;T1,T2&gt;&gt;</code>。</p>
+]]></content>
+      <tags>
+        <tag>STL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>GeogeBra计算器简易使用教程</title>
     <url>/2022/08/17/%E6%9D%82%E9%A1%B9/GeogeBra%E8%AE%A1%E7%AE%97%E5%99%A8%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="geogebra-计算器简易教程">Geogebra 计算器简易教程</h2>
@@ -3242,9 +3381,11 @@ class="math inline">\(c_{u,v}\)</span></li>
 <p>最大流 = 最小割。</p>
 <p>残量网络中不存在增广路是当前流为最大流的充要条件。</p>
 <h4 id="证明">证明</h4>
-<p>若当前流为最大流，显然不存在增广路。</p>
-<p>若当前流等于某个割，显然当前流为最大流，且该割为最小割。</p>
-<p>若不存在增广路，我们尝试证明当前流等于一个割。</p>
+<ol type="1">
+<li><p>若当前流为最大流，显然不存在增广路。</p></li>
+<li><p>若当前流等于某个割，显然当前流为最大流，且该割为最小割。</p></li>
+<li><p>若不存在增广路，我们证明当前流等于一个割。</p></li>
+</ol>
 <p>令 <span class="math inline">\(S=\{v,\exist\
 p_{s,v}\}\)</span>，<span class="math inline">\(S\)</span> 即 <span
 class="math inline">\(s\)</span> 在残量网络中能到达的点的集合。令 <span
@@ -3255,10 +3396,16 @@ class="math inline">\(\forall x \in S,\forall y\in T\)</span>，边 <span
 class="math inline">\((x,y)\)</span> 满流，否则 <span
 class="math inline">\(y\in S\)</span>。容易证明当前流恰好为 <span
 class="math inline">\(S\)</span> 到 <span
-class="math inline">\(T\)</span> 的所有边的容量和，也就是割的大小。因为
-<span class="math inline">\(S\)</span> 到 <span
-class="math inline">\(T\)</span> 所有的正向边流量为容量，反向边流量为
-<span class="math inline">\(0\)</span>，所以流量为正向边容量和。</p>
+class="math inline">\(T\)</span>
+的所有边的容量和，也就是割的大小。因为此时原图 <span
+class="math inline">\(S\)</span> 到 <span
+class="math inline">\(T\)</span> 所有的边流量为容量，<span
+class="math inline">\(T\)</span> 到 <span
+class="math inline">\(S\)</span> 的边流量为 <span
+class="math inline">\(0\)</span>，所以流量为 <span
+class="math inline">\(S\)</span> 到 <span
+class="math inline">\(T\)</span> 的边的流量之和，也就是割 <span
+class="math inline">\(S,T\)</span>。</p>
 <h3 id="算法">算法</h3>
 <h4 id="dinic">Dinic</h4>
 <p>考虑对残量网络 bfs 分层，强制流量只能流向下一层，再进行一次
@@ -4034,6 +4181,16 @@ class="math inline">\(\sqrt n\)</span> 下面。</p>
 <p>树上莫队和普通莫队区别不大。</p>
 <p>(差一个二次离线要补)</p>
 <h3 id="拓展kmp">拓展KMP</h3>
+<p>咕咕咕</p>
+<h3 id="树哈希">树哈希</h3>
+<p>一般来讲，可以这么哈希，<strong>再加上树大小的判断</strong>，就不会出问题。
+<span class="math display">\[
+f_{now}=1+\sum f_{son(now,i)} \times prime(size_{son(now,i)})
+\]</span></p>
+<p>但这个哈希是有错的，可以对最小括号序列哈希。</p>
+<p>具体的，一颗无标号有根树按照遍历顺序可以得到一个括号序列，即将子树的括号序列拼起来再套一个括号。</p>
+<p>然后考虑对这个括号序列哈希，因为遍历顺序无关，所以要最小括号序列。</p>
+<p>实际上可以直接对子树哈希值排序之后，按这个顺序往后写，外面添一层括号，对括号序列（二进制串）哈希。</p>
 ]]></content>
       <categories>
         <category>算法</category>
