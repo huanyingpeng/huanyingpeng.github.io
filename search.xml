@@ -31,6 +31,31 @@ ID（一般不强调大小写）：幻影彭，琴风幻影，huan_yp，Phantom_
       </tags>
   </entry>
   <entry>
+    <title>20220919小记</title>
+    <url>/2022/09/19/20220919%E5%B0%8F%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="某道-gcd-题">某道 GCD 题</h2>
+<p>给一个 <span class="math inline">\(n\times m\)</span> 矩阵，元素为
+<span class="math inline">\(1-n\times m\)</span>
+的排列，问你所有子矩阵的 GCD 之和。</p>
+<p>反正我想的是考虑一个右下角，移动左上角来统计答案，这样的话考虑到 gcd
+的变化次数是<span class="math inline">\(\log\)</span>
+的，说不定有救，但是需要完成区间取 GCD，这个不好做。</p>
+<p>想一下，这个做法没有利用到每个数只出现一次的性质，通常这种只出现一次的性质往往和倍数这些相联系，不妨换个思路考虑，考虑
+<span class="math inline">\(i\)</span>
+的倍数的子矩阵的数量，然后发现容斥一下就可以得到答案。统计 <span
+class="math inline">\(i\)</span> 的倍数的子矩阵数量不难。</p>
+<h2 id="noi2021d1t1">NOI2021D1T1</h2>
+<p>我想了一下，链是会做的，<strong>树链剖分</strong>，就是把树变成 <span
+class="math inline">\(\log\)</span> 个链来做。</p>
+<p>然后其实每条重链按照链的方式来做，重链的交汇处需要特殊处理。</p>
+<p>不妨把边下放到点，发现如果一个点的父亲的修改时间晚于该点的修改时间，那么这个点所代表的链就没用，所以对每个点维护两个东西，一个是该点的修改时间，另一个是该点代表的边是否被修改成重边。</p>
+<p>查询的时候对链的交界处需要查修改时间判断是否有效。</p>
+<p>其实有个更简易的方式，就是把修改看成染色，一条边有贡献当且仅当其两个端点颜色相同，这个很容易用树剖维护。</p>
+<p>这两种方式其实体现出处理边的两种方式——下放到点考虑，考虑两个端点的状态。</p>
+<p>需要灵活运用这两种方式解题。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>随记20220904</title>
     <url>/2022/09/05/%E9%9A%8F%E8%AE%B020220904/</url>
     <content><![CDATA[<h2 id="随记20220904">随记20220904</h2>
@@ -4078,6 +4103,25 @@ class="math inline">\(b&lt;a\)</span></li>
 <p>列表构造式还可以自推导。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=&#123;<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">t1=&#123;<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="comment">//t1(2,3)</span></span><br><span class="line"><span class="comment">//括号式式不能自推导的，这个的含义参考第一条。</span></span><br></pre></td></tr></table></figure>
 <h2 id="语法">语法</h2>
+<h3 id="引用">引用</h3>
+<p>引用可以认为是一个<strong>隐式指针</strong>，不需要 <code>*</code>
+的修饰便可以直接访问内容。它既然是一个指针，自然会占用一个
+<code>long</code> 的空间。</p>
+<h4 id="定义返回一个引用">定义，返回一个引用</h4>
+<p>可以在函数中返回一个引用，只需要在函数名前面后加一个
+<code>&amp;</code>，定义引用也在变量名加一个
+<code>&amp;</code>，和指针类似。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> &amp;<span class="title">setValues</span><span class="params">(<span class="type">int</span> i)</span> </span>&#123;  </span><br><span class="line">   <span class="type">double</span> &amp;ref = vals[i];    </span><br><span class="line">   <span class="keyword">return</span> ref;   <span class="comment">// 返回第 i 个元素的引用，ref 是一个引用变量，ref 引用 vals[i]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义引用的示例：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> n=<span class="number">0</span>,m=<span class="number">0</span>;</span><br><span class="line"><span class="type">int</span>&amp; nn=n,mm=m;</span><br><span class="line">n=<span class="number">10</span>,m=<span class="number">20</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;n,m:%d,%d\n&quot;</span>,n,m);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;nn,mm:%d,%d\n&quot;</span>,nn,mm); </span><br><span class="line"><span class="comment">//输出:</span></span><br><span class="line"><span class="comment">//10,20</span></span><br><span class="line"><span class="comment">//10,0</span></span><br></pre></td></tr></table></figure>
+<p>在重载结构体 <code>+=,=</code> 运算符号的时候比较常用。</p>
+<p>引用传参应该已经很熟悉了吧。</p>
+<h4 id="左值引用和右值引用">左值引用和右值引用</h4>
+<p><code>C++11</code> 新概念。<a
+href="https://eli.thegreenplace.net/2011/12/15/understanding-lvalues-and-rvalues-in-c-and-c">参考阅读</a></p>
+<p>一般的，使用引用传参时，如果接受的参数为右值，那么不能修改右值，参数必须声明为
+<code>const</code> 类型。</p>
+<p>算了，先咕咕咕了吧。</p>
 <h3 id="模板">模板</h3>
 <h4 id="参数模板">参数模板</h4>
 <p>咕咕咕</p>

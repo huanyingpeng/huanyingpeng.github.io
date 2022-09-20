@@ -311,6 +311,85 @@ ID（一般不强调大小写）：幻影彭，琴风幻影，huan_yp，Phantom_
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/19/20220919%E5%B0%8F%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/19/20220919%E5%B0%8F%E8%AE%B0/" class="post-title-link" itemprop="url">20220919小记</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-19 20:49:12 / 修改时间：21:16:52" itemprop="dateCreated datePublished" datetime="2022-09-19T20:49:12+08:00">2022-09-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="某道-gcd-题">某道 GCD 题</h2>
+<p>给一个 <span class="math inline">\(n\times m\)</span> 矩阵，元素为
+<span class="math inline">\(1-n\times m\)</span>
+的排列，问你所有子矩阵的 GCD 之和。</p>
+<p>反正我想的是考虑一个右下角，移动左上角来统计答案，这样的话考虑到 gcd
+的变化次数是<span class="math inline">\(\log\)</span>
+的，说不定有救，但是需要完成区间取 GCD，这个不好做。</p>
+<p>想一下，这个做法没有利用到每个数只出现一次的性质，通常这种只出现一次的性质往往和倍数这些相联系，不妨换个思路考虑，考虑
+<span class="math inline">\(i\)</span>
+的倍数的子矩阵的数量，然后发现容斥一下就可以得到答案。统计 <span
+class="math inline">\(i\)</span> 的倍数的子矩阵数量不难。</p>
+<h2 id="noi2021d1t1">NOI2021D1T1</h2>
+<p>我想了一下，链是会做的，<strong>树链剖分</strong>，就是把树变成 <span
+class="math inline">\(\log\)</span> 个链来做。</p>
+<p>然后其实每条重链按照链的方式来做，重链的交汇处需要特殊处理。</p>
+<p>不妨把边下放到点，发现如果一个点的父亲的修改时间晚于该点的修改时间，那么这个点所代表的链就没用，所以对每个点维护两个东西，一个是该点的修改时间，另一个是该点代表的边是否被修改成重边。</p>
+<p>查询的时候对链的交界处需要查修改时间判断是否有效。</p>
+<p>其实有个更简易的方式，就是把修改看成染色，一条边有贡献当且仅当其两个端点颜色相同，这个很容易用树剖维护。</p>
+<p>这两种方式其实体现出处理边的两种方式——下放到点考虑，考虑两个端点的状态。</p>
+<p>需要灵活运用这两种方式解题。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/05/%E9%9A%8F%E8%AE%B020220904/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1214,281 +1293,6 @@ class="math inline">\(l\)</span>，<span class="math inline">\(r\)</span>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/03/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/03/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">简单数论函数和应用</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-03 13:27:13" itemprop="dateCreated datePublished" datetime="2022-08-03T13:27:13+08:00">2022-08-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-17 15:31:15" itemprop="dateModified" datetime="2022-08-17T15:31:15+08:00">2022-08-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="简单数论函数和应用">简单数论函数和应用</h1>
-<h2 id="参考资料">参考资料</h2>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/mobius/">OI-WIKI
-莫比乌斯反演</a></li>
-<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/poly/dgf/#dirichlet">OI-WIKI
-迪利克雷卷积</a></li>
-<li><a
-target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/An-Amazing-Blog/ji-miao-di-mu-bi-wu-si-fan-yan">从莫比乌斯到欧拉</a></li>
-<li><a
-target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-从基础开始</a></li>
-</ul>
-<h2 id="部分定义和约定">部分定义和约定</h2>
-<h3 id="符号">符号</h3>
-<ul>
-<li><span class="math inline">\(id\)</span> ：<span
-class="math inline">\(id\)</span> 数论函数，<span
-class="math inline">\(id(x)=x\)</span></li>
-<li><span class="math inline">\(\epsilon\)</span> : 单位函数 <span
-class="math inline">\(\epsilon(x)=[x=1]\)</span></li>
-<li><span class="math inline">\([]\)</span>
-：中扩号表达式，中扩号内条件成立则为 <span
-class="math inline">\(1\)</span>，否则为 <span
-class="math inline">\(0\)</span></li>
-<li><span class="math inline">\(\boldsymbol{1}\)</span>：<span
-class="math inline">\(\boldsymbol{1}\)</span> 函数，若 <span
-class="math inline">\(f(n)=\boldsymbol{1}\)</span>，则 <span
-class="math inline">\(\forall x \in N^+,f(x)=1\)</span></li>
-</ul>
-<h3 id="数论函数">数论函数</h3>
-<ul>
-<li><p>一个数论函数定义域为正整数，值域为复数。</p></li>
-<li><p>一个数论函数为积性函数，当且仅当 <span
-class="math inline">\(\forall a,b,\gcd(a,b)=1\rightarrow f(a\times
-b)=f(a)\times f(b)\)</span></p></li>
-<li><p>一个数论函数为完全积性函数，当且仅当 <span
-class="math inline">\(\forall a,b,f(a\times b)=f(a)\times
-f(b)\)</span></p></li>
-</ul>
-<h3 id="迪利克雷卷积">迪利克雷卷积</h3>
-<p>迪利克雷卷积为数论函数的乘法操作，定义两个数论函数的迪利克雷卷积定义为
-<span class="math display">\[
-g=f*h,g(n)=\sum\limits_{d|n} f(d)\times h(\frac{n}{d})
-\]</span></p>
-<p>迪利克雷卷积的除法操作就是逆操作，一般只能构造得到。</p>
-<p>迪利克雷卷积的性质（证明见下一部分）：</p>
-<ul>
-<li>两个积性函数的迪利克雷卷积仍是积性函数。</li>
-<li>两个积性函数的迪利克雷卷积除法结果仍是积性函数。</li>
-</ul>
-<p><strong>为了方便，以下所有数论函数的乘法未经说明均为迪利克雷卷积。</strong></p>
-<h3 id="常见积性函数">常见积性函数</h3>
-<ul>
-<li>欧拉函数 <span class="math inline">\(\phi(n)\)</span></li>
-<li>莫比乌斯函数 <span class="math inline">\(\mu(n)\)</span></li>
-<li>约数个数函数 <span class="math inline">\(d(n)\)</span></li>
-</ul>
-<h2 id="一些结论的简单证明">一些结论的简单证明</h2>
-<h3 id="迪利克雷卷积的性质">迪利克雷卷积的性质</h3>
-<h4 id="简单性质">简单性质</h4>
-<ul>
-<li>积性函数 <span class="math inline">\(f\)</span>，满足 <span
-class="math inline">\(f(1)=1\)</span></li>
-</ul>
-<h4 id="逆元存在且唯一">逆元存在且唯一</h4>
-<p>所有数论函数存在逆元，即对于所有 <span
-class="math inline">\(f\)</span>，存在 <span
-class="math inline">\(g\)</span> 使得 <span
-class="math inline">\(f*g=\epsilon\)</span>，直接构造对应的 <span
-class="math inline">\(g(n)\)</span> 即可。 <span class="math display">\[
-g(n)=-\dfrac{\sum\limits_{d|n,d\neq n}{f(d)\times
-g(\frac{n}{d})}}{f(1)}\\
-g(1)=\frac{1}{f(1)}
-\]</span> 因此数论函数的逆元存在且唯一。</p>
-<h4 id="交换律">交换律</h4>
-<p><span class="math inline">\(f * g=g * h\)</span>，显然成立</p>
-<h4 id="结合律">结合律</h4>
-<p><span class="math inline">\(f * g * h=f * (g *
-h)\)</span>，成立，但不显然。</p>
-<p>令 <span class="math inline">\(f * g * h=f_1,f * (g * h)=f_2,f *
-g=a,g * h=h * g=b\)</span> <span class="math display">\[
-f_1(n)=\sum\limits_{d_1|n} a(d_1)\times
-h(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} f(d_2)\times
-g(\frac{d_1}{d_2})\times h(\frac{n}{d_1})
-\]</span></p>
-<p><span class="math display">\[
-f_2(n)=\sum\limits_{d_1|n} b(d_1)\times
-f(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} h(d_2)\times
-g(\frac{d_1}{d_2})\times f(\frac{n}{d_1})
-\]</span> <span class="math inline">\(g(\frac{d_1}{d_2})\)</span>
-抵掉。剩下两项的和显然是相等的，证明方式是枚举 <span
-class="math inline">\(\frac{n\times
-d_2}{d_1}\)</span>，然后就是一个交换求和符号。</p>
-<h4 id="分配律">分配律</h4>
-<p><span class="math inline">\(f*(g+h)=f*g+f*h\)</span></p>
-<p>显然成立。</p>
-<h4
-id="两个积性函数的迪利克雷卷积为积性函数">两个积性函数的迪利克雷卷积为积性函数</h4>
-<p><span class="math inline">\(f,h\)</span> 为积性函数，则 <span
-class="math inline">\(f*g=h\)</span>，<span
-class="math inline">\(h\)</span> 为积性函数。</p>
-<p><span class="math inline">\(\forall a,b \ , \gcd(a,b)=1\ ,h(a\times
-b)=h(a)\times h(b)\)</span>，满足 <span class="math display">\[
-\begin{align}
-h(a\times b)=&amp;\sum\limits_{d_1|a}\sum\limits_{d_2|b}f(d_1\times
-\frac{b}{d_2})\times g(\frac{a}{d_1}\times d_2)\\
-=&amp;\sum\limits_{d_1|a}\sum\limits_{d_2|b}f(d_1)\times
-f(\frac{b}{d_2})\times g(\frac{a}{d_1})\times g( d_2)\\
-=&amp;\sum\limits_{d_1|a} f(d_1)\times
-g(\frac{a}{d_1})\sum\limits_{d_2|b} f(\frac{b}{d_2})\times g(d_2)\\
-=&amp;h(a)\times h(b)
-\end{align}
-\]</span></p>
-<h4
-id="两个积性函数的迪利克雷卷积除法为积性函数">两个积性函数的迪利克雷卷积除法为积性函数</h4>
-<p>证明 <span class="math inline">\(f,h\)</span> 为积性函数，且 <span
-class="math inline">\(h*g=f\)</span>，则 <span
-class="math inline">\(g\)</span> 为积性函数。</p>
-<p>令 <span class="math inline">\(h&#39;*h=\epsilon\)</span>，则 <span
-class="math inline">\(g=f*h&#39;\)</span></p>
-<p>即证明积性函数的逆元也为积性函数。</p>
-<p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/poly/dgf/#_10">证明</a></p>
-<p>使用了数学归纳法</p>
-<h3 id="常见的积性函数关系">常见的积性函数关系</h3>
-<ul>
-<li><span class="math inline">\(\mu*
-\boldsymbol{1}=\epsilon\)</span></li>
-<li><span class="math inline">\(\phi*
-\boldsymbol{1}=\operatorname{id}\)</span></li>
-</ul>
-<h2 id="莫比乌斯反演">莫比乌斯反演</h2>
-<p><strong>莫比乌斯反演的常见做法是用其它易于交换求和符号的项替换掉不容易求和的相关项。</strong></p>
-<p>不容易交换求和的项一般有 <span class="math inline">\(d,\gcd\)</span>
-等。</p>
-<h3 id="数论分块">数论分块</h3>
-<p>莫比乌斯反演或者其它数数题中常用的优化方式。</p>
-<p>核心原理是对于 <span class="math inline">\([1,n]\)</span> 中所有数
-<span class="math inline">\(i\)</span>，<span
-class="math inline">\(\frac{n}{i}\)</span> 的结果只有 <span
-class="math inline">\(\sqrt{n}\)</span> 个。</p>
-<p>证明是容易的，对于 <span
-class="math inline">\([1,\sqrt{n}]\)</span>，一共有 <span
-class="math inline">\(\sqrt{n}\)</span> 个值，对于 <span
-class="math inline">\([\sqrt{n},n]\)</span>，一共也只有 <span
-class="math inline">\(\sqrt{n}\)</span> 个值。</p>
-<p>枚举的方式是先枚举一个 <span
-class="math inline">\(l\)</span>，然后计算出一个最大的 <span
-class="math inline">\(r\)</span>，满足 <span
-class="math inline">\(\frac{n}{r}=\frac{n}{l}\)</span>，容易证明 <span
-class="math inline">\(r=\big\lfloor\dfrac{n}{\lfloor\frac{n}{l}\rfloor}\big\rfloor\)</span>。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">1</span>,r=<span class="number">1</span>;l&lt;=n;l=r+<span class="number">1</span>,r=n/(n/l))&#123;</span><br><span class="line">	<span class="built_in">do_something</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="莫比乌斯函数">莫比乌斯函数</h3>
-<h4 id="定义">定义</h4>
-<p><span class="math display">\[
-\mu(n)=
-\begin{cases}
-1&amp;n=1\\
-0&amp;n\text{ 含有平方因子}\\
-(-1)^k&amp;k\text{ 为 }n\text{ 的本质不同质因子个数}\\
-\end{cases}
-\]</span></p>
-<h4 id="muboldsymbol1epsilon"><span
-class="math inline">\(\mu*\boldsymbol{1}=\epsilon\)</span></h4>
-<p>这是核心结论了。</p>
-<p>考虑证明 <span class="math inline">\(\forall
-n&gt;1,\mu(n)=0\)</span>。</p>
-<p>考虑每个约数的贡献，显然每个质因子只需要考虑一次，如果质因子出现多次，那么根据定义贡献为
-<span class="math inline">\(0\)</span>。</p>
-<p>设有 <span class="math inline">\(k\)</span>
-个质因子，那么选出奇数个和选出偶数个的方案显然是相等的，所以和为 <span
-class="math inline">\(0\)</span>。</p>
-<h3 id="莫比乌斯反演-1">莫比乌斯反演</h3>
-<h4 id="一般形式">一般形式</h4>
-<p><span class="math display">\[
-\begin{align}
-f*\bold{1}=g\iff&amp; g*\mu=f \\
-g(n)=\sum\limits_{d|n}f(d)\iff&amp; f(n)=\sum\limits_{d|n}\mu(d)\times
-g(\frac{n}{d})
-\end{align}
-\]</span></p>
-<p>证明是显然的，因为 <span
-class="math inline">\(\boldsymbol{1}*\mu=\epsilon\)</span></p>
-<h4 id="常用">常用</h4>
-<p><span
-class="math inline">\([\gcd(i,j)=1]=\sum\limits_{d|\gcd(i,j)}\mu(d)\)</span></p>
-<p>枚举 <span class="math inline">\(d\)</span>，即可快速计算。</p>
-<h4 id="欧拉反演">欧拉反演</h4>
-<p>名字是<a target="_blank" rel="noopener" href="https://0x131cc05.github.io/">杰哥</a>取的。</p>
-<h5 id="常用形式">常用形式</h5>
-<p><span
-class="math inline">\(\gcd(i,j)=\sum\limits_{d|\gcd(i,j)}\phi(d)\)</span></p>
-<h5 id="证明">证明</h5>
-<p>即证明 <span
-class="math inline">\(\phi*\boldsymbol{1}=\operatorname{id}\)</span>
-。</p>
-<p>我们只需要证明 <span
-class="math inline">\(\phi*\boldsymbol{1}\)</span> 在 <span
-class="math inline">\(p^c\)</span> 处取值为 <span
-class="math inline">\(\operatorname{id}(p^c)\)</span>，由于 <span
-class="math inline">\(\phi,\boldsymbol{1},\operatorname{id}\)</span>
-均为积性函数，自然在所有位置成立。 <span class="math display">\[
-\begin{align}
-(\phi*\bold{1})(p^c)=&amp;1+\sum _{i=1}^{c} (p-1)\times p^{i-1}\\
-=&amp; 1+\frac{p^c-1}{p-1}\times(p-1)\\
-=&amp;p^c\\
-=&amp;\operatorname{id}(p^c)
-\end{align}
-\]</span></p>
-<h2 id="筛法">筛法</h2>
-<p>介绍四大筛法。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1560,7 +1364,7 @@ class="math inline">\(\phi,\boldsymbol{1},\operatorname{id}\)</span>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
