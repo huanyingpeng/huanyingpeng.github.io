@@ -21,17 +21,26 @@
     var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="题目和状况  未完成，咕咕咕中。  NOI2013书法家 这道题，我写了个 DP+枚举 的方法交了上去，第一发喜提 TLE，开 O2 后成功通过，并且速度是不开 O2 的 10 倍，看题解后发现，相比于纯粹的 DP 做法，自己的枚举做法其实很蠢很难想也很难写，于是对 DP 和枚举的关系进行了一些思考。 O2 优化的高达 10 的效率改进因子也着实让我觉得有些不可思议，于是便对">
+  <meta name="description" content="题目和状况 未完成，咕咕咕中。  NOI2013书法家这道题，我写了个 DP+枚举 的方法交了上去，第一发喜提 TLE，开 O2 后成功通过，并且速度是不开 O2 的 10 倍，看题解后发现，相比于纯粹的 DP 做法，自己的枚举做法其实很蠢很难想也很难写，于是对 DP 和枚举的关系进行了一些思考。 O2 优化的高达 10 的效率改进因子也着实让我觉得有些不可思议，于是便对 O2 优化在份代码上到底">
 <meta property="og:type" content="article">
 <meta property="og:title" content="幻影彭的彩虹">
 <meta property="og:url" content="http://huanyp.cn/2022/08/01/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
-<meta property="og:description" content="题目和状况  未完成，咕咕咕中。  NOI2013书法家 这道题，我写了个 DP+枚举 的方法交了上去，第一发喜提 TLE，开 O2 后成功通过，并且速度是不开 O2 的 10 倍，看题解后发现，相比于纯粹的 DP 做法，自己的枚举做法其实很蠢很难想也很难写，于是对 DP 和枚举的关系进行了一些思考。 O2 优化的高达 10 的效率改进因子也着实让我觉得有些不可思议，于是便对">
+<meta property="og:description" content="题目和状况 未完成，咕咕咕中。  NOI2013书法家这道题，我写了个 DP+枚举 的方法交了上去，第一发喜提 TLE，开 O2 后成功通过，并且速度是不开 O2 的 10 倍，看题解后发现，相比于纯粹的 DP 做法，自己的枚举做法其实很蠢很难想也很难写，于是对 DP 和枚举的关系进行了一些思考。 O2 优化的高达 10 的效率改进因子也着实让我觉得有些不可思议，于是便对 O2 优化在份代码上到底">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/vo4uhkxr.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/9waojsv1.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/s1qbflc5.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/g3gkj0w9.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/oznw58na.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/xsdaledv.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/wlcmiq0z.png">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/it2y7adt.png">
 <meta property="article:published_time" content="2022-08-01T10:40:36.230Z">
 <meta property="article:modified_time" content="2022-07-23T15:16:57.881Z">
 <meta property="article:author" content="幻影彭">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/vo4uhkxr.png">
 
 <link rel="canonical" href="http://huanyp.cn/2022/08/01/%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/">
 
@@ -259,123 +268,57 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="题目和状况">题目和状况</h2>
-<ul>
+        <h2 id="题目和状况"><a href="#题目和状况" class="headerlink" title="题目和状况"></a>题目和状况</h2><ul>
 <li>未完成，咕咕咕中。</li>
 </ul>
-<h3 id="noi2013书法家"><a
-target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1398">NOI2013书法家</a></h3>
-<p>这道题，我写了个 DP+枚举 的方法交了上去，第一发喜提 TLE，开 O2
-后成功通过，并且速度是不开 O2 的 10 倍，看题解后发现，相比于纯粹的 DP
-做法，自己的枚举做法其实很蠢很难想也很难写，于是对 DP
-和枚举的关系进行了一些思考。</p>
-<p>O2 优化的高达 10 的效率改进因子也着实让我觉得有些不可思议，于是便对
-O2 优化在份代码上到底干了什么做了一些探索.</p>
+<h3 id="NOI2013书法家"><a href="#NOI2013书法家" class="headerlink" title="NOI2013书法家"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1398">NOI2013书法家</a></h3><p>这道题，我写了个 DP+枚举 的方法交了上去，第一发喜提 TLE，开 O2 后成功通过，并且速度是不开 O2 的 10 倍，看题解后发现，相比于纯粹的 DP 做法，自己的枚举做法其实很蠢很难想也很难写，于是对 DP 和枚举的关系进行了一些思考。</p>
+<p>O2 优化的高达 10 的效率改进因子也着实让我觉得有些不可思议，于是便对 O2 优化在份代码上到底干了什么做了一些探索.</p>
 <p>同时，将内联函数改为宏定义后，我的程序也得到了明显的效率改进，便有了宏定义与函数的比较。</p>
 <p>下文将从这些角度入手，进一步分析一些底层的程序效率问题。</p>
-<h3 id="cf1709f"><a
-target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1709F">CF1709F</a></h3>
-<p>考场上图方便 <code>#define int long long</code>，用
-<code>Codeforces</code> 的 <code>C++14</code> 提交喜提 TLE，改为
-<code>C++20(64bit)</code> 后成功通过，于是便有了对 64bit 机子和 32bit
-机子，<code>int</code> 与 <code>long long</code> 比较的想法。</p>
-<h2 id="浅谈-dp-枚举与一般枚举算法的差异与优劣">浅谈 DP
-枚举与一般枚举算法的差异与优劣</h2>
-<h3 id="dp-枚举也是枚举">DP 枚举也是枚举</h3>
-<p>回到题目本身，我们考虑处理字母 <code>O</code> 和 <code>I</code>
-时，枚举算法的本质。</p>
-<p>处理 <code>O</code>
-的时候，枚举算法枚举了上下两个行，和一个左端点，通过前缀和算出了类似这样的一个结构的权值</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/vo4uhkxr.png" /></p>
+<h3 id="CF1709F"><a href="#CF1709F" class="headerlink" title="CF1709F"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1709F">CF1709F</a></h3><p>考场上图方便 <code>#define int long long</code>，用 <code>Codeforces</code> 的  <code>C++14</code>  提交喜提 TLE，改为 <code>C++20(64bit)</code> 后成功通过，于是便有了对 64bit 机子和 32bit 机子，<code>int</code> 与 <code>long long</code> 比较的想法。 </p>
+<h2 id="浅谈-DP-枚举与一般枚举算法的差异与优劣"><a href="#浅谈-DP-枚举与一般枚举算法的差异与优劣" class="headerlink" title="浅谈 DP 枚举与一般枚举算法的差异与优劣"></a>浅谈 DP 枚举与一般枚举算法的差异与优劣</h2><h3 id="DP-枚举也是枚举"><a href="#DP-枚举也是枚举" class="headerlink" title="DP 枚举也是枚举"></a>DP 枚举也是枚举</h3><p>回到题目本身，我们考虑处理字母 <code>O</code> 和 <code>I</code> 时，枚举算法的本质。</p>
+<p>处理 <code>O</code> 的时候，枚举算法枚举了上下两个行，和一个左端点，通过前缀和算出了类似这样的一个结构的权值</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/vo4uhkxr.png" alt=""></p>
 <p>红色部分是负权值。</p>
 <p>然后我们又计算了一个这样的结构的后缀最大值。</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/9waojsv1.png" /></p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/9waojsv1.png" alt=""></p>
 <p>如果把这两个结构拼在一起，就得到我们想要的答案。</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/s1qbflc5.png" /></p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/s1qbflc5.png" alt=""></p>
 <p>红色部分和黑色部分抵消掉了，得到了想要的答案。</p>
-<p>如果用 <span class="math inline">\(dp\)</span> 来处理，我们就设了
-<span class="math inline">\(dp[i][l][r]\)</span> 考虑到第 <span
-class="math inline">\(i\)</span> 行，顶部和底部分别是 <span
-class="math inline">\(l,r\)</span>
-的最大值，转移相当自然，从没有到一列，再到两格，从两格加上一列计算答案。</p>
-<p>其实这种 <span class="math inline">\(dp\)</span>
-和我们的枚举算法没有差异，都是确定了上下以及左右的一个端点，通过记录的辅助状态来完成转移。<strong>DP
-记录的辅助状态就是答案，而枚举记录的辅助状态是抽象的前缀和。</strong>因而后者比前者要更难理解。</p>
-<h3 id="dp-比枚举更加自然">DP 比枚举更加自然</h3>
-<p>从刚刚处理简单的 <code>O</code>
-还看不出来差异，我们现在来处理更为复杂的
-<code>I</code>，实际上，我们用枚举算法计算 <code>I</code>
-的时候，处理了三个辅助状态。</p>
+<p>如果用 $dp$ 来处理，我们就设了 $dp[i][l][r]$ 考虑到第 $i$ 行，顶部和底部分别是 $l,r$ 的最大值，转移相当自然，从没有到一列，再到两格，从两格加上一列计算答案。</p>
+<p>其实这种 $dp$ 和我们的枚举算法没有差异，都是确定了上下以及左右的一个端点，通过记录的辅助状态来完成转移。<strong>DP 记录的辅助状态就是答案，而枚举记录的辅助状态是抽象的前缀和。</strong>因而后者比前者要更难理解。</p>
+<h3 id="DP-比枚举更加自然"><a href="#DP-比枚举更加自然" class="headerlink" title="DP 比枚举更加自然"></a>DP 比枚举更加自然</h3><p>从刚刚处理简单的 <code>O</code> 还看不出来差异，我们现在来处理更为复杂的 <code>I</code>，实际上，我们用枚举算法计算 <code>I</code> 的时候，处理了三个辅助状态。</p>
 <p><del>MSPAINT已经满足不了绘图要求了，还是手最靠谱</del></p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/g3gkj0w9.png" /></p>
-<p>不难发现对 <code>O</code>
-来说，确定了左上右下就已经确定了整个图形的结构了，而对于 <code>I</code>
-来说，确定了左上右下，还需要额外确定两个参数才能确定权值，这样带来了
-<span class="math inline">\(O(n^2)\)</span> 种方案。</p>
-<p>直接枚举，我们思考的量就是 <span class="math inline">\(3^2\)</span>
-级别的，因为我们需要考虑这三种情况相互之间的影响。</p>
-<p>而如果考虑
-DP。我们就只需要设计三种不同状态，而每种状态保存的辅助数据又是直观的答案，相比于枚举算法的弯弯绕绕计算答案，DP，在计算答案时只需要简单的加和，转移的方式也只有
-<span class="math inline">\(2\)</span> 种，孰优孰劣不言而喻。</p>
-<p>在跨域三种状态转移的过程中，其实就已经完成了枚举算法对上图里所有情况的考虑，所以不会和枚举算法有任何本质差异，但是
-DP
-这种<strong>直接记录答案作为辅助数据</strong>的方式，无疑更加自然，思考也更加简单。</p>
-<h2 id="浅谈-o2-优化在公共子表达式与寻址中的实际作用">浅谈 O2
-优化在公共子表达式与寻址中的实际作用。</h2>
-<h3 id="对公共子表达式的优化">对公共子表达式的优化</h3>
-<p>提到了一个定义，公共子表达式。一般的，公共子表达式，指的是这种</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/g3gkj0w9.png" alt=""></p>
+<p>不难发现对 <code>O</code> 来说，确定了左上右下就已经确定了整个图形的结构了，而对于 <code>I</code> 来说，确定了左上右下，还需要额外确定两个参数才能确定权值，这样带来了 $O(n^2)$ 种方案。</p>
+<p>直接枚举，我们思考的量就是 $3^2$ 级别的，因为我们需要考虑这三种情况相互之间的影响。</p>
+<p>而如果考虑 DP。我们就只需要设计三种不同状态，而每种状态保存的辅助数据又是直观的答案，相比于枚举算法的弯弯绕绕计算答案，DP，在计算答案时只需要简单的加和，转移的方式也只有 $2$ 种，孰优孰劣不言而喻。</p>
+<p>在跨域三种状态转移的过程中，其实就已经完成了枚举算法对上图里所有情况的考虑，所以不会和枚举算法有任何本质差异，但是 DP 这种<strong>直接记录答案作为辅助数据</strong>的方式，无疑更加自然，思考也更加简单。</p>
+<h2 id="浅谈-O2-优化在公共子表达式与寻址中的实际作用。"><a href="#浅谈-O2-优化在公共子表达式与寻址中的实际作用。" class="headerlink" title="浅谈 O2 优化在公共子表达式与寻址中的实际作用。"></a>浅谈 O2 优化在公共子表达式与寻址中的实际作用。</h2><h3 id="对公共子表达式的优化"><a href="#对公共子表达式的优化" class="headerlink" title="对公共子表达式的优化"></a>对公共子表达式的优化</h3><p>提到了一个定义，公共子表达式。一般的，公共子表达式，指的是这种</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>,d=<span class="number">4</span>;</span><br><span class="line">cout&lt;&lt;a+c*d;</span><br><span class="line">cout&lt;&lt;b+c*d;</span><br></pre></td></tr></table></figure>
 <p>其中，<code>c*d</code> 就是公共子表达式。</p>
 <p>看一个不同优化下两种代码的汇编</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/oznw58na.png" /></p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/oznw58na.png" alt=""></p>
 <p>无优化版本。</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/xsdaledv.png" /></p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/xsdaledv.png" alt=""></p>
 <p>有优化版本。</p>
-<p>编译器帮我们把 <span class="math inline">\(c*d\)</span>
-算好了，扔进了寄存器以反复调用。</p>
-<p>相比于无优化的版本，开启优化后对寄存器的使用变得非常灵活，不再是死板的仅作为计算时的存储工具，内存操作减少了
-<span class="math inline">\(\frac{2}{3}\)</span> 。</p>
-<p>那为什么实际上汇编代码量 O2
-后成倍数减少，但运行时间没有成倍数减少呢。这就涉及内存延迟的概念。</p>
-<p>内存读取有一个延迟时间，相比于计算耗时，这个延时要大得多，但这个延迟只会在最开始被等待一次，因为读取过程中
-CPU
-可以在等待延迟的同时发出读取指令，同时读取。就像烧水一样，烧一壶的同时灌上另一壶，可以有效节省时间。被读取过一次的内存，会被放入高速缓存，读取变得更快。</p>
+<p>编译器帮我们把 $c*d$ 算好了，扔进了寄存器以反复调用。</p>
+<p>相比于无优化的版本，开启优化后对寄存器的使用变得非常灵活，不再是死板的仅作为计算时的存储工具，内存操作减少了 $\frac{2}{3}$ 。</p>
+<p>那为什么实际上汇编代码量 O2 后成倍数减少，但运行时间没有成倍数减少呢。这就涉及内存延迟的概念。</p>
+<p>内存读取有一个延迟时间，相比于计算耗时，这个延时要大得多，但这个延迟只会在最开始被等待一次，因为读取过程中 CPU 可以在等待延迟的同时发出读取指令，同时读取。就像烧水一样，烧一壶的同时灌上另一壶，可以有效节省时间。被读取过一次的内存，会被放入高速缓存，读取变得更快。</p>
 <p>这是 O2 优化的第一个部分。</p>
-<h3 id="对寻址的优化">对寻址的优化</h3>
-<p>寻址主要指<strong>将数据从内存或者缓存加载的寄存器的过程</strong>。我们再这里忽略计算地址需要的时间。</p>
+<h3 id="对寻址的优化"><a href="#对寻址的优化" class="headerlink" title="对寻址的优化"></a>对寻址的优化</h3><p>寻址主要指<strong>将数据从内存或者缓存加载的寄存器的过程</strong>。我们再这里忽略计算地址需要的时间。</p>
 <p>还是两张图说明。</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/wlcmiq0z.png" /></p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/it2y7adt.png" /></p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/wlcmiq0z.png" alt=""></p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/it2y7adt.png" alt=""></p>
 <p>可以看到，在做前缀和的过程中，开启优化后的代码，只有一次寻址和一次加操作，而我们没开优化的代码，操作的毒瘤程度就难以形容了。</p>
-<p>平常有些代码看起来很傻，实际上开了 O2
-之后效率更优秀，就是采用的对编译器更友好的写法，当然，我们也没必要去太注意这些。</p>
-<h2
-id="从汇编角度比较函数调用和宏定义">从汇编角度比较函数调用和宏定义</h2>
-<p>开了 O2 之后，这俩的区别不大，不开 O2，由于在 CPU 流水线中 ret
-指令会带来严重中断，所以<strong>小函数还是写宏定义比较好。</strong></p>
-<p><strong>注意，在 C++11 以后，inline 关键字已经被启用，开启 O2
-优化后会自动内联，减少函数调用带来的开支。</strong></p>
-<p>可以通过和 <code>g++</code> 同时安装的 <code>gprof</code>
-对程序进行性能分析确定复杂度瓶颈。</p>
+<p>平常有些代码看起来很傻，实际上开了 O2 之后效率更优秀，就是采用的对编译器更友好的写法，当然，我们也没必要去太注意这些。</p>
+<h2 id="从汇编角度比较函数调用和宏定义"><a href="#从汇编角度比较函数调用和宏定义" class="headerlink" title="从汇编角度比较函数调用和宏定义"></a>从汇编角度比较函数调用和宏定义</h2><p>开了 O2 之后，这俩的区别不大，不开 O2，由于在 CPU 流水线中 ret 指令会带来严重中断，所以<strong>小函数还是写宏定义比较好。</strong></p>
+<p><strong>注意，在 C++11 以后，inline 关键字已经被启用，开启 O2 优化后会自动内联，减少函数调用带来的开支。</strong></p>
+<p>可以通过和 <code>g++</code> 同时安装的 <code>gprof</code> 对程序进行性能分析确定复杂度瓶颈。</p>
 <p>引用一些宏定义的资料。</p>
-<p><a
-target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/macro-definition.html">宏定义的坑</a></p>
-<h2 id="long-long-与-int-的效率之争">long long 与 int 的效率之争</h2>
-<p>通常来说，在 64bit 下，long long 和 int
-的运算效率是没有差别的。但是由于高速缓存的问题，尤其是在某些数组大小为
-<span class="math inline">\(10^5\)</span> 左右的题目，如果
-<code>#define int long long</code>，就很容易造成高速缓存不够用然后被迫放进内存减慢读写的情况。又或者是发生出现寄存器溢出，两个
-int 类型可以共用一个寄存器但是一个 long long
-不行。<strong>编译器不敢假定你的 long long 类型存储的数据是 int
-范围的</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/macro-definition.html">宏定义的坑</a></p>
+<h2 id="long-long-与-int-的效率之争"><a href="#long-long-与-int-的效率之争" class="headerlink" title="long long 与 int 的效率之争"></a>long long 与 int 的效率之争</h2><p>通常来说，在 64bit 下，long long 和 int  的运算效率是没有差别的。但是由于高速缓存的问题，尤其是在某些数组大小为 $10^5$ 左右的题目，如果 <code>#define int long long</code>，就很容易造成高速缓存不够用然后被迫放进内存减慢读写的情况。又或者是发生出现寄存器溢出，两个 int 类型可以共用一个寄存器但是一个 long long 不行。<strong>编译器不敢假定你的 long long 类型存储的数据是 int 范围的</strong></p>
 
     </div>
 
@@ -473,9 +416,7 @@ int 类型可以共用一个寄存器但是一个 long long
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%92%8C%E7%8A%B6%E5%86%B5"><span class="nav-number">1.</span> <span class="nav-text">题目和状况</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#noi2013%E4%B9%A6%E6%B3%95%E5%AE%B6"><span class="nav-number">1.1.</span> <span class="nav-text">NOI2013书法家</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cf1709f"><span class="nav-number">1.2.</span> <span class="nav-text">CF1709F</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%85%E8%B0%88-dp-%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%80%E8%88%AC%E6%9E%9A%E4%B8%BE%E7%AE%97%E6%B3%95%E7%9A%84%E5%B7%AE%E5%BC%82%E4%B8%8E%E4%BC%98%E5%8A%A3"><span class="nav-number">2.</span> <span class="nav-text">浅谈 DP
-枚举与一般枚举算法的差异与优劣</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dp-%E6%9E%9A%E4%B8%BE%E4%B9%9F%E6%98%AF%E6%9E%9A%E4%B8%BE"><span class="nav-number">2.1.</span> <span class="nav-text">DP 枚举也是枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dp-%E6%AF%94%E6%9E%9A%E4%B8%BE%E6%9B%B4%E5%8A%A0%E8%87%AA%E7%84%B6"><span class="nav-number">2.2.</span> <span class="nav-text">DP 比枚举更加自然</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%85%E8%B0%88-o2-%E4%BC%98%E5%8C%96%E5%9C%A8%E5%85%AC%E5%85%B1%E5%AD%90%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E5%AF%BB%E5%9D%80%E4%B8%AD%E7%9A%84%E5%AE%9E%E9%99%85%E4%BD%9C%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">浅谈 O2
-优化在公共子表达式与寻址中的实际作用。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E5%85%AC%E5%85%B1%E5%AD%90%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E4%BC%98%E5%8C%96"><span class="nav-number">3.1.</span> <span class="nav-text">对公共子表达式的优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E5%AF%BB%E5%9D%80%E7%9A%84%E4%BC%98%E5%8C%96"><span class="nav-number">3.2.</span> <span class="nav-text">对寻址的优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E6%B1%87%E7%BC%96%E8%A7%92%E5%BA%A6%E6%AF%94%E8%BE%83%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%92%8C%E5%AE%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">4.</span> <span class="nav-text">从汇编角度比较函数调用和宏定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#long-long-%E4%B8%8E-int-%E7%9A%84%E6%95%88%E7%8E%87%E4%B9%8B%E4%BA%89"><span class="nav-number">5.</span> <span class="nav-text">long long 与 int 的效率之争</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%92%8C%E7%8A%B6%E5%86%B5"><span class="nav-number">1.</span> <span class="nav-text">题目和状况</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NOI2013%E4%B9%A6%E6%B3%95%E5%AE%B6"><span class="nav-number">1.1.</span> <span class="nav-text">NOI2013书法家</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF1709F"><span class="nav-number">1.2.</span> <span class="nav-text">CF1709F</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%85%E8%B0%88-DP-%E6%9E%9A%E4%B8%BE%E4%B8%8E%E4%B8%80%E8%88%AC%E6%9E%9A%E4%B8%BE%E7%AE%97%E6%B3%95%E7%9A%84%E5%B7%AE%E5%BC%82%E4%B8%8E%E4%BC%98%E5%8A%A3"><span class="nav-number">2.</span> <span class="nav-text">浅谈 DP 枚举与一般枚举算法的差异与优劣</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DP-%E6%9E%9A%E4%B8%BE%E4%B9%9F%E6%98%AF%E6%9E%9A%E4%B8%BE"><span class="nav-number">2.1.</span> <span class="nav-text">DP 枚举也是枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DP-%E6%AF%94%E6%9E%9A%E4%B8%BE%E6%9B%B4%E5%8A%A0%E8%87%AA%E7%84%B6"><span class="nav-number">2.2.</span> <span class="nav-text">DP 比枚举更加自然</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%85%E8%B0%88-O2-%E4%BC%98%E5%8C%96%E5%9C%A8%E5%85%AC%E5%85%B1%E5%AD%90%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E5%AF%BB%E5%9D%80%E4%B8%AD%E7%9A%84%E5%AE%9E%E9%99%85%E4%BD%9C%E7%94%A8%E3%80%82"><span class="nav-number">3.</span> <span class="nav-text">浅谈 O2 优化在公共子表达式与寻址中的实际作用。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E5%85%AC%E5%85%B1%E5%AD%90%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E4%BC%98%E5%8C%96"><span class="nav-number">3.1.</span> <span class="nav-text">对公共子表达式的优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E5%AF%BB%E5%9D%80%E7%9A%84%E4%BC%98%E5%8C%96"><span class="nav-number">3.2.</span> <span class="nav-text">对寻址的优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E6%B1%87%E7%BC%96%E8%A7%92%E5%BA%A6%E6%AF%94%E8%BE%83%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%92%8C%E5%AE%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">4.</span> <span class="nav-text">从汇编角度比较函数调用和宏定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#long-long-%E4%B8%8E-int-%E7%9A%84%E6%95%88%E7%8E%87%E4%B9%8B%E4%BA%89"><span class="nav-number">5.</span> <span class="nav-text">long long 与 int 的效率之争</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -491,7 +432,7 @@ int 类型可以共用一个寄存器但是一个 long long
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -504,7 +445,7 @@ int 类型可以共用一个寄存器但是一个 long long
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="总结一些科技 主要收录比较神仙的，实用的算法技巧。 快速取模 原理 找到一个近似 \(m^{-1}\) 的形如 \(m&#39;&gt;&gt;k\) 的数。 不妨就取 \(k&#x3D;64,m&#39;&#x3D;\lceil\frac{2^{64}}{m}\rceil\) 然后 \(a\%b &#x3D; a-a\times\lfloor\frac{a}{b}\rfloor &#x3D; a-(a\times m&amp;">
+  <meta name="description" content="总结一些科技主要收录比较神仙的，实用的算法技巧。 快速取模原理找到一个近似 $m^{-1}$ 的形如 $m’&gt;&gt;k$ 的数。 不妨就取 $k&#x3D;64,m’&#x3D;\lceil\frac{2^{64}}{m}\rceil$ 然后 $a\%b &#x3D; a-a\times\lfloor\frac{a}{b}\rfloor &#x3D; a-(a\times m’&gt;&gt;64)$ 纯纯的整数运算，经过误差分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些科技的总结">
 <meta property="og:url" content="http://huanyp.cn/2022/07/12/%E6%9D%82%E9%A1%B9/%E4%B8%80%E4%BA%9B%E7%A7%91%E6%8A%80%E7%9A%84%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
-<meta property="og:description" content="总结一些科技 主要收录比较神仙的，实用的算法技巧。 快速取模 原理 找到一个近似 \(m^{-1}\) 的形如 \(m&#39;&gt;&gt;k\) 的数。 不妨就取 \(k&#x3D;64,m&#39;&#x3D;\lceil\frac{2^{64}}{m}\rceil\) 然后 \(a\%b &#x3D; a-a\times\lfloor\frac{a}{b}\rfloor &#x3D; a-(a\times m&amp;">
+<meta property="og:description" content="总结一些科技主要收录比较神仙的，实用的算法技巧。 快速取模原理找到一个近似 $m^{-1}$ 的形如 $m’&gt;&gt;k$ 的数。 不妨就取 $k&#x3D;64,m’&#x3D;\lceil\frac{2^{64}}{m}\rceil$ 然后 $a\%b &#x3D; a-a\times\lfloor\frac{a}{b}\rfloor &#x3D; a-(a\times m’&gt;&gt;64)$ 纯纯的整数运算，经过误差分">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-12T08:05:26.000Z">
 <meta property="article:modified_time" content="2022-07-16T09:17:40.067Z">
@@ -274,46 +274,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="总结一些科技">总结一些科技</h2>
-<p>主要收录比较神仙的，实用的算法技巧。</p>
-<h3 id="快速取模">快速取模</h3>
-<h4 id="原理">原理</h4>
-<p>找到一个近似 <span class="math inline">\(m^{-1}\)</span> 的形如 <span
-class="math inline">\(m&#39;&gt;&gt;k\)</span> 的数。</p>
-<p>不妨就取 <span
-class="math inline">\(k=64,m&#39;=\lceil\frac{2^{64}}{m}\rceil\)</span></p>
-<p>然后 <span class="math inline">\(a\%b =
-a-a\times\lfloor\frac{a}{b}\rfloor = a-(a\times
-m&#39;&gt;&gt;64)\)</span></p>
-<p>纯纯的整数运算，经过误差分析，可以知道后式结果最多多减去一个 <span
-class="math inline">\(m\)</span>，判断掉就行。</p>
-<p>因为 <span class="math inline">\(a\)</span> 常常是 <span
-class="math inline">\(\text{long long}\)</span> 级别的数，所以开
-<code>__int128</code></p>
-<p>优化据说有 <span class="math inline">\(5-6\)</span> 倍，如果模数是
-<code>const</code>，编译器会自动帮忙用这个优化。</p>
-<h4 id="代码">代码</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett</span>&#123;</span><br><span class="line">	<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> im;<span class="type">int</span> m;</span><br><span class="line">	<span class="built_in">barrett</span>(<span class="type">unsigned</span> m) :<span class="built_in">m</span>(m), <span class="built_in">im</span>(~<span class="number">0ull</span>/m+<span class="number">1</span>) &#123;&#125;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> z=(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;<span class="built_in">bt</span>(<span class="number">1</span>);</span><br><span class="line">  bt=<span class="built_in">barrett</span>(p);</span><br><span class="line">  c=<span class="built_in">bt</span>(a,b);</span><br><span class="line"><span class="comment">//c=a*b%p</span></span><br></pre></td></tr></table></figure>
-<h4 id="注意事项">注意事项</h4>
-<ul>
-<li>为啥 <code>im,m</code> 用 <code>ull,uint</code>，因为
-<code>m=2</code> 时，会爆 <code>long long</code>。</li>
+        <h2 id="总结一些科技"><a href="#总结一些科技" class="headerlink" title="总结一些科技"></a>总结一些科技</h2><p>主要收录比较神仙的，实用的算法技巧。</p>
+<h3 id="快速取模"><a href="#快速取模" class="headerlink" title="快速取模"></a>快速取模</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>找到一个近似 $m^{-1}$ 的形如 $m’&gt;&gt;k$ 的数。</p>
+<p>不妨就取 $k=64,m’=\lceil\frac{2^{64}}{m}\rceil$</p>
+<p>然后 $a\%b = a-a\times\lfloor\frac{a}{b}\rfloor = a-(a\times m’&gt;&gt;64)$</p>
+<p>纯纯的整数运算，经过误差分析，可以知道后式结果最多多减去一个 $m$，判断掉就行。</p>
+<p>因为 $a$ 常常是 $\text{long long}$ 级别的数，所以开 <code>__int128</code></p>
+<p>优化据说有 $5-6$ 倍，如果模数是 <code>const</code>，编译器会自动帮忙用这个优化。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett</span>&#123;</span><br><span class="line">	<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> im;<span class="type">int</span> m;</span><br><span class="line">	<span class="built_in">barrett</span>(<span class="type">unsigned</span> m) :<span class="built_in">m</span>(m), <span class="built_in">im</span>(~<span class="number">0ull</span>/m+<span class="number">1</span>) &#123;&#125;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> z=(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;<span class="built_in">bt</span>(<span class="number">1</span>);</span><br><span class="line">  bt=<span class="built_in">barrett</span>(p);</span><br><span class="line">  c=<span class="built_in">bt</span>(a,b);</span><br><span class="line"><span class="comment">//c=a*b%p</span></span><br></pre></td></tr></table></figure>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>为啥 <code>im,m</code> 用 <code>ull,uint</code>，因为 <code>m=2</code> 时，会爆 <code>long long</code>。</li>
 <li>可以重载括号。</li>
 </ul>
-<h3 id="光速乘">光速乘</h3>
-<p>用于计算两个 long long 级别的数乘积对一个 long long
-级别的数取模的结果。</p>
+<h3 id="光速乘"><a href="#光速乘" class="headerlink" title="光速乘"></a>光速乘</h3><p>用于计算两个 long long 级别的数乘积对一个 long long 级别的数取模的结果。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">multi</span><span class="params">(<span class="type">long</span> <span class="type">long</span> a,<span class="type">long</span> <span class="type">long</span> b,<span class="type">long</span> <span class="type">long</span> mod)</span></span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> x=(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)a*b-(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)((<span class="type">long</span> <span class="type">double</span>)a*b/mod<span class="number">-0.5</span>)*mod;</span><br><span class="line">    <span class="keyword">return</span> x&gt;=mod?x-mod:x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">mul</span><span class="params">(<span class="type">long</span> <span class="type">long</span> A, <span class="type">long</span> <span class="type">long</span> B, <span class="type">long</span> <span class="type">long</span> P)</span></span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> C = A * B - (<span class="type">long</span> <span class="type">long</span>)((<span class="type">long</span> <span class="type">double</span>)A * B / P + <span class="number">0.1</span>) * P;</span><br><span class="line">	<span class="keyword">return</span> C &lt; <span class="number">0</span> ? C + P : C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>原理很简单，long double 的精度误差虽然有，但是我们 -0.5
-之和核查范围变成了 [0,1]，肯定不会超出这个。</p>
-<p>C++ 标准中要求了 unsigned long long 类型在溢出后保证为原值对 <span
-class="math inline">\(2^{64}\)</span> 取模的结果，所以直接用就行。</p>
-<p>第二个原理类似，在 G++ 编译器中，O2 中，保证 long long
-的溢出行为有定义。</p>
+<p>原理很简单，long double 的精度误差虽然有，但是我们 -0.5 之和核查范围变成了 [0,1]，肯定不会超出这个。</p>
+<p>C++ 标准中要求了 unsigned long long 类型在溢出后保证为原值对 $2^{64}$ 取模的结果，所以直接用就行。</p>
+<p>第二个原理类似，在 G++ 编译器中，O2 中，保证 long long 的溢出行为有定义。</p>
 <p>推荐用第一个，各个平台都不会出锅。</p>
-<p>如果 <span class="math inline">\(P\leq 10^{14}\)</span> 可以改成
-double</p>
+<p>如果 $P\leq 10^{14}$ 可以改成 double</p>
 <p>判断一下是否减少了就行。</p>
 
     </div>
@@ -432,7 +412,7 @@ double</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -445,7 +425,7 @@ double</p>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -21,13 +21,14 @@
     var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="ARC144D 题意略。 观察，发现 \(x \&amp; y + x |y &#x3D; x+y\)，原因是每个二进制位，如果出现两次，会计入二次，如果出现一次，会计入一次。猜想 \(f(x)\) 的值与每个二进制位相关且对于每个二进制位独立。 考虑证明，对 \(x\) 的二进制下 \(1\) 的个数 \(n\) 做归纳。 对于 \(n&#x3D;0\)，\(f(0)&#x3D;f(0)\) 对于 \(n&#x3D;1">
+  <meta name="description" content="ARC144D题意略。 观察，发现 $x \&amp; y + x |y &#x3D; x+y$，原因是每个二进制位，如果出现两次，会计入二次，如果出现一次，会计入一次。猜想 $f(x)$ 的值与每个二进制位相关且对于每个二进制位独立。 考虑证明，对 $x$ 的二进制下 $1$ 的个数 $n$ 做归纳。 对于 $n&#x3D;0$，$f(0)&#x3D;f(0)$ 对于 $n&#x3D;1$，$f(2^i) &#x3D; f(2^i)$ 对于 $">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ARC144D与组合恒等式">
 <meta property="og:url" content="http://huanyp.cn/2022/07/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/ARC144D%E4%B8%8E%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
-<meta property="og:description" content="ARC144D 题意略。 观察，发现 \(x \&amp; y + x |y &#x3D; x+y\)，原因是每个二进制位，如果出现两次，会计入二次，如果出现一次，会计入一次。猜想 \(f(x)\) 的值与每个二进制位相关且对于每个二进制位独立。 考虑证明，对 \(x\) 的二进制下 \(1\) 的个数 \(n\) 做归纳。 对于 \(n&#x3D;0\)，\(f(0)&#x3D;f(0)\) 对于 \(n&#x3D;1">
+<meta property="og:description" content="ARC144D题意略。 观察，发现 $x \&amp; y + x |y &#x3D; x+y$，原因是每个二进制位，如果出现两次，会计入二次，如果出现一次，会计入一次。猜想 $f(x)$ 的值与每个二进制位相关且对于每个二进制位独立。 考虑证明，对 $x$ 的二进制下 $1$ 的个数 $n$ 做归纳。 对于 $n&#x3D;0$，$f(0)&#x3D;f(0)$ 对于 $n&#x3D;1$，$f(2^i) &#x3D; f(2^i)$ 对于 $">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/ewpo1rn4.png">
 <meta property="article:published_time" content="2022-07-17T05:52:25.000Z">
 <meta property="article:modified_time" content="2022-07-20T07:22:54.058Z">
 <meta property="article:author" content="幻影彭">
@@ -35,6 +36,7 @@
 <meta property="article:tag" content="数学">
 <meta property="article:tag" content="生成函数">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.luogu.com.cn/upload/image_hosting/ewpo1rn4.png">
 
 <link rel="canonical" href="http://huanyp.cn/2022/07/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/ARC144D%E4%B8%8E%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F/">
 
@@ -275,95 +277,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="arc144d">ARC144D</h2>
-<p>题意略。</p>
-<p>观察，发现 <span class="math inline">\(x \&amp; y + x |y =
-x+y\)</span>，原因是每个二进制位，如果出现两次，会计入二次，如果出现一次，会计入一次。猜想
-<span class="math inline">\(f(x)\)</span>
-的值与每个二进制位相关且对于每个二进制位独立。</p>
-<p>考虑证明，对 <span class="math inline">\(x\)</span> 的二进制下 <span
-class="math inline">\(1\)</span> 的个数 <span
-class="math inline">\(n\)</span> 做归纳。</p>
-<p>对于 <span class="math inline">\(n=0\)</span>，<span
-class="math inline">\(f(0)=f(0)\)</span></p>
-<p>对于 <span class="math inline">\(n=1\)</span>，<span
-class="math inline">\(f(2^i) = f(2^i)\)</span></p>
-<p>对于 <span class="math inline">\(n=2\)</span>，<span
-class="math inline">\(f(2^i+2^j) + f(0) = f(2^i) +f(2^j)\)</span></p>
-<p>考虑证明 <span class="math inline">\(n=k\)</span> 时， <span
-class="math inline">\(f(x) +(k-1)f(0) = \sum\limits_{i\in x}
-f(2^i)\)</span></p>
-<p>设对于 <span class="math inline">\(n=k-1\)</span>
-其成立，对于二进制位 1 个数为 k 的 x， <span
-class="math inline">\(\forall i\in x,f(x)+f(0)=f(x-2^i) +
-f(2^i)\)</span>，易证 <span class="math inline">\(f(x) +(k-1)f(0) =
-\sum\limits_{i\in x} f(2^i)\)</span>，且对于所有涉及元素二进制下 1
-个数少于 n 的，所有限制满足。</p>
-<p>故只需要确定 <span class="math inline">\(f(2^i)\)</span> 和 <span
-class="math inline">\(f(0)\)</span>。其最终限制有两个，其一是，最大值不能超过
-<span class="math inline">\(k\)</span>，其二是最小值不能小于
-0，最大值一定是把所有大于 <span class="math inline">\(f(0)\)</span>
-的元素加起来，最小值则是把所有小于 <span
-class="math inline">\(f(0)\)</span> 的元素加起来。</p>
-<p>枚举 <span class="math inline">\(f(0)\)</span> 和小于 <span
-class="math inline">\(f(0)\)</span>
-的元素个数，我们可以将限制分配给对应元素 ，得到和式： <span
-class="math display">\[
-ans=\sum\limits_{f(0)=0}^{k}\sum\limits_{i=0}^{n}\binom{n}{i}\binom{f(0)}{i}\binom{k-f(0)+n-i}{n-i}
-\]</span> 第一项计算那些小于 <span
-class="math inline">\(f(0)\)</span>，第二项是将<strong>至多</strong>
-<span class="math inline">\(k\)</span> 个冗余值分配给 <span
-class="math inline">\(i\)</span> 个小于 <span
-class="math inline">\(f(0)\)</span>
-的元素的方案数，每个元素至少分配一个，或者说 <span
-class="math inline">\(i\)</span> 个正整数变量和为 <span
-class="math inline">\(f(0)\)</span>
-的方案，可以给一个虚拟元素分别大于等于 0
-个表示放弃，所以先给虚拟元素一个，变成 <span
-class="math inline">\(f(0)+1\)</span> 个元素插 <span
-class="math inline">\(i\)</span> 个板。最后一项是 <span
-class="math inline">\(n-i\)</span> 个非负整数变量，和不超过 <span
-class="math inline">\(k-f(0)\)</span>
-的方案。先来个虚拟变量，然后先各自加 <span
-class="math inline">\(1\)</span>，然后就是 <span
-class="math inline">\(k-f(0)+n-i+1\)</span> ，间隔是 <span
-class="math inline">\(k-f(0)+n-i\)</span> 个，版一共 <span
-class="math inline">\(n\)</span> 个。</p>
+        <h2 id="ARC144D"><a href="#ARC144D" class="headerlink" title="ARC144D"></a>ARC144D</h2><p>题意略。</p>
+<p>观察，发现 $x \&amp; y + x |y = x+y$，原因是每个二进制位，如果出现两次，会计入二次，如果出现一次，会计入一次。猜想 $f(x)$ 的值与每个二进制位相关且对于每个二进制位独立。</p>
+<p>考虑证明，对 $x$ 的二进制下 $1$ 的个数 $n$ 做归纳。</p>
+<p>对于 $n=0$，$f(0)=f(0)$</p>
+<p>对于 $n=1$，$f(2^i) = f(2^i)$</p>
+<p>对于 $n=2$，$f(2^i+2^j) + f(0) = f(2^i) +f(2^j)$</p>
+<p>考虑证明 $n=k$ 时， $f(x) +(k-1)f(0) = \sum\limits_{i\in x} f(2^i)$</p>
+<p>设对于 $n=k-1$ 其成立，对于二进制位 1 个数为 k 的 x， $\forall i\in x,f(x)+f(0)=f(x-2^i) + f(2^i)$，易证 $f(x) +(k-1)f(0) = \sum\limits_{i\in x} f(2^i)$，且对于所有涉及元素二进制下 1 个数少于 n 的，所有限制满足。</p>
+<p>故只需要确定 $f(2^i)$ 和 $f(0)$。其最终限制有两个，其一是，最大值不能超过 $k$，其二是最小值不能小于 0，最大值一定是把所有大于 $f(0)$ 的元素加起来，最小值则是把所有小于 $f(0)$ 的元素加起来。</p>
+<p>枚举 $f(0)$ 和小于 $f(0)$ 的元素个数，我们可以将限制分配给对应元素 ，得到和式：</p>
+<script type="math/tex; mode=display">
+ans=\sum\limits_{f(0)=0}^{k}\sum\limits_{i=0}^{n}\binom{n}{i}\binom{f(0)}{i}\binom{k-f(0)+n-i}{n-i}</script><p>第一项计算那些小于 $f(0)$，第二项是将<strong>至多</strong> $k$ 个冗余值分配给 $i$ 个小于 $f(0)$ 的元素的方案数，每个元素至少分配一个，或者说 $i$ 个正整数变量和为 $f(0)$ 的方案，可以给一个虚拟元素分别大于等于 0 个表示放弃，所以先给虚拟元素一个，变成 $f(0)+1$ 个元素插 $i$ 个板。最后一项是 $n-i$ 个非负整数变量，和不超过 $k-f(0)$ 的方案。先来个虚拟变量，然后先各自加 $1$，然后就是 $k-f(0)+n-i+1$ ，间隔是 $k-f(0)+n-i$ 个，版一共 $n$ 个。</p>
 <p>解释完了，考虑计算，二维的，算不了。</p>
 <p>考虑后两项的组合意义。</p>
 <p>根据组合恒等式中的第五个。</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/ewpo1rn4.png" /></p>
-<p>对原式变形有 <span class="math display">\[
-ans=\sum\limits_{i=0}^{n}\binom{n}{i}\binom{k-f(0)+n-i+1}{n-i+1}
-\]</span> 然后 <span class="math inline">\(n\)</span>
-不大，维护个区间乘积枚举计算就行，记得对计算乘积的元素取模。</p>
-<h2 id="组合恒等式">组合恒等式</h2>
-<p>题不是终点，组合恒等式才是重点</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/ewpo1rn4.png" alt=""></p>
+<p>对原式变形有</p>
+<script type="math/tex; mode=display">
+ans=\sum\limits_{i=0}^{n}\binom{n}{i}\binom{k-f(0)+n-i+1}{n-i+1}</script><p>然后 $n$ 不大，维护个区间乘积枚举计算就行，记得对计算乘积的元素取模。</p>
+<h2 id="组合恒等式"><a href="#组合恒等式" class="headerlink" title="组合恒等式"></a>组合恒等式</h2><p>题不是终点，组合恒等式才是重点</p>
 <p>对上面那种图的组合恒等式，我们一一证明</p>
-<h3 id="式子1">式子1</h3>
-<p><span class="math display">\[
-\sum\limits_{k}\binom{r}{m+k}\binom{s}{n-k}=\binom{r+s}{m+n}
-\]</span></p>
-<h4 id="组合意义证明">组合意义证明</h4>
-<p>第一项是从 <span class="math inline">\(r\)</span> 个选 <span
-class="math inline">\(m+k\)</span> 个，第二项是从 <span
-class="math inline">\(s\)</span> 个选 <span
-class="math inline">\(n-k\)</span> 个，把两个拼在一起，从 <span
-class="math inline">\(r+s\)</span> 个中选 <span
-class="math inline">\(n+m\)</span>
-个，容易发现和前者一一对应，故恒等。</p>
-<h4 id="代数证明">代数证明</h4>
-<p>咕咕咕</p>
-<h3 id="式子2">式子2</h3>
-<p><span class="math display">\[
-\sum\limits_{k}\binom{l}{m+k}\binom{s}{n+k} = \binom{l+s}{l-m+n},l\ge0
-\]</span></p>
-<h4 id="组合意义证明-1">组合意义证明</h4>
-<h4 id="代数证明-1">代数证明</h4>
-<p>咕咕咕</p>
-<h3 id="式子3">式子3</h3>
-
+<h3 id="式子1"><a href="#式子1" class="headerlink" title="式子1"></a>式子1</h3><script type="math/tex; mode=display">
+\sum\limits_{k}\binom{r}{m+k}\binom{s}{n-k}=\binom{r+s}{m+n}</script><h4 id="组合意义证明"><a href="#组合意义证明" class="headerlink" title="组合意义证明"></a>组合意义证明</h4><p>第一项是从 $r$ 个选 $m+k$ 个，第二项是从 $s$ 个选 $n-k$ 个，把两个拼在一起，从 $r+s$ 个中选 $n+m$ 个，容易发现和前者一一对应，故恒等。</p>
+<h4 id="代数证明"><a href="#代数证明" class="headerlink" title="代数证明"></a>代数证明</h4><p>咕咕咕</p>
+<h3 id="式子2"><a href="#式子2" class="headerlink" title="式子2"></a>式子2</h3><script type="math/tex; mode=display">
+\sum\limits_{k}\binom{l}{m+k}\binom{s}{n+k} = \binom{l+s}{l-m+n},l\ge0</script><h4 id="组合意义证明-1"><a href="#组合意义证明-1" class="headerlink" title="组合意义证明"></a>组合意义证明</h4><h4 id="代数证明-1"><a href="#代数证明-1" class="headerlink" title="代数证明"></a>代数证明</h4><p>咕咕咕</p>
+<h3 id="式子3"><a href="#式子3" class="headerlink" title="式子3"></a>式子3</h3>
     </div>
 
     
@@ -465,7 +405,7 @@ class="math inline">\(n+m\)</span>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#arc144d"><span class="nav-number">1.</span> <span class="nav-text">ARC144D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">组合恒等式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%8F%E5%AD%901"><span class="nav-number">2.1.</span> <span class="nav-text">式子1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%84%8F%E4%B9%89%E8%AF%81%E6%98%8E"><span class="nav-number">2.1.1.</span> <span class="nav-text">组合意义证明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E6%95%B0%E8%AF%81%E6%98%8E"><span class="nav-number">2.1.2.</span> <span class="nav-text">代数证明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%8F%E5%AD%902"><span class="nav-number">2.2.</span> <span class="nav-text">式子2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%84%8F%E4%B9%89%E8%AF%81%E6%98%8E-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">组合意义证明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E6%95%B0%E8%AF%81%E6%98%8E-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">代数证明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%8F%E5%AD%903"><span class="nav-number">2.3.</span> <span class="nav-text">式子3</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ARC144D"><span class="nav-number">1.</span> <span class="nav-text">ARC144D</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">组合恒等式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%8F%E5%AD%901"><span class="nav-number">2.1.</span> <span class="nav-text">式子1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%84%8F%E4%B9%89%E8%AF%81%E6%98%8E"><span class="nav-number">2.1.1.</span> <span class="nav-text">组合意义证明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E6%95%B0%E8%AF%81%E6%98%8E"><span class="nav-number">2.1.2.</span> <span class="nav-text">代数证明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%8F%E5%AD%902"><span class="nav-number">2.2.</span> <span class="nav-text">式子2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%84%8F%E4%B9%89%E8%AF%81%E6%98%8E-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">组合意义证明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E6%95%B0%E8%AF%81%E6%98%8E-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">代数证明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%8F%E5%AD%903"><span class="nav-number">2.3.</span> <span class="nav-text">式子3</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -481,7 +421,7 @@ class="math inline">\(n+m\)</span>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -494,7 +434,7 @@ class="math inline">\(n+m\)</span>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

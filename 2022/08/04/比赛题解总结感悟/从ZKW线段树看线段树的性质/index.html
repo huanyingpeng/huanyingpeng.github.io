@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="从ZKW线段树看线段树的性质 最近遇到了很多线段树性质相关的题目，故在此做一个总结。 常规建树 代码 123456789void build(int l,int r,int rt)&amp;#123;    do_something();	if(l&#x3D;&#x3D;r)&amp;#123;		return ;	&amp;#125;    int mid&#x3D;l+r&gt;&gt;1;    build(l,mid,rt&lt;&amp;l">
+  <meta name="description" content="从ZKW线段树看线段树的性质最近遇到了很多线段树性质相关的题目，故在此做一个总结。 常规建树代码123456789void build(int l,int r,int rt)&amp;#123;    do_something();	if(l&#x3D;&#x3D;r)&amp;#123;		return ;	&amp;#125;    int mid&#x3D;l+r&gt;&gt;1;    build(l,mid,rt&lt;&lt;1);">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从ZKW线段树看线段树的性质">
 <meta property="og:url" content="http://huanyp.cn/2022/08/04/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E4%BB%8EZKW%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9C%8B%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
-<meta property="og:description" content="从ZKW线段树看线段树的性质 最近遇到了很多线段树性质相关的题目，故在此做一个总结。 常规建树 代码 123456789void build(int l,int r,int rt)&amp;#123;    do_something();	if(l&#x3D;&#x3D;r)&amp;#123;		return ;	&amp;#125;    int mid&#x3D;l+r&gt;&gt;1;    build(l,mid,rt&lt;&amp;l">
+<meta property="og:description" content="从ZKW线段树看线段树的性质最近遇到了很多线段树性质相关的题目，故在此做一个总结。 常规建树代码123456789void build(int l,int r,int rt)&amp;#123;    do_something();	if(l&#x3D;&#x3D;r)&amp;#123;		return ;	&amp;#125;    int mid&#x3D;l+r&gt;&gt;1;    build(l,mid,rt&lt;&lt;1);">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-04T12:40:11.000Z">
 <meta property="article:modified_time" content="2022-08-04T12:41:01.740Z">
@@ -254,52 +254,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="从zkw线段树看线段树的性质">从ZKW线段树看线段树的性质</h2>
-<p>最近遇到了很多线段树性质相关的题目，故在此做一个总结。</p>
-<h3 id="常规建树">常规建树</h3>
-<h4 id="代码">代码</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt)</span></span>&#123;</span><br><span class="line">    <span class="built_in">do_something</span>();</span><br><span class="line">	<span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">build</span>(l,mid,rt&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">build</span>(mid+<span class="number">1</span>,r,rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="性质">性质</h4>
-<ul>
+        <h2 id="从ZKW线段树看线段树的性质"><a href="#从ZKW线段树看线段树的性质" class="headerlink" title="从ZKW线段树看线段树的性质"></a>从ZKW线段树看线段树的性质</h2><p>最近遇到了很多线段树性质相关的题目，故在此做一个总结。</p>
+<h3 id="常规建树"><a href="#常规建树" class="headerlink" title="常规建树"></a>常规建树</h3><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt)</span></span>&#123;</span><br><span class="line">    <span class="built_in">do_something</span>();</span><br><span class="line">	<span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">build</span>(l,mid,rt&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">build</span>(mid+<span class="number">1</span>,r,rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><ul>
 <li>左儿子长度不小于右儿子。</li>
-<li>节点编号 <code>rt</code>
-描述了从根到自身的父子关系，也间接描述了该点长度和根节点长度的关系，具体的，根节点的最大或最小长度是一个关于该节点长度的一次函数，这个一次函数只由
-<code>rt</code> 决定。</li>
-<li>编号最大的节点不一定是 <code>r</code>，事实上可以在 <span
-class="math inline">\(\log n\)</span>
-的时间内求出，如果左儿子多一层，那么一定在左儿子，否则在右儿子，<strong>决定某个儿子是否会多一层，当且仅当目前长度为奇数，且
-popcount 值为 2</strong>。</li>
+<li>节点编号 <code>rt</code> 描述了从根到自身的父子关系，也间接描述了该点长度和根节点长度的关系，具体的，根节点的最大或最小长度是一个关于该节点长度的一次函数，这个一次函数只由 <code>rt</code> 决定。</li>
+<li>编号最大的节点不一定是 <code>r</code>，事实上可以在 $\log n$ 的时间内求出，如果左儿子多一层，那么一定在左儿子，否则在右儿子，<strong>决定某个儿子是否会多一层，当且仅当目前长度为奇数，且 popcount 值为 2</strong>。</li>
 </ul>
-<h4 id="例题">例题</h4>
-<p><a
-target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/showproblem.php?pid=7204">一道简单的题</a></p>
-<p><a
-target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6025">一道比较简单的题</a></p>
-<h3 id="非常规建树">非常规建树</h3>
-<p>非常规建树一般会指定建树的 <code>mid</code> 位置。</p>
-<h4 id="区间覆盖数">区间覆盖数</h4>
-<p>即覆盖一个区间 <span class="math inline">\([l,r]\)</span>
-的最小线段数。</p>
-<p>先转成 <span class="math inline">\((l,r)\)</span>，然后依次跳叶节点
-<span class="math inline">\(l,r\)</span> 的父亲，先判断 <span
-class="math inline">\(l,r\)</span>
-的父亲是否相同，相同就可以走人了。</p>
-<p>如果 <span class="math inline">\(l\)</span>
-作为左儿子跳上去，那么该节点的右儿子会对该区间贡献一次，因为该节点的右儿子的父亲超出了区间，但自身在区间内。如果
-<span class="math inline">\(r\)</span>
-作为右儿子跳上去，那么该节点的左儿子会对区间贡献一次，原因同理，如此就可以找到区间覆盖数，这也是
-ZKW线段树 的原理。</p>
-<h4 id="例题-1">例题</h4>
-<p>给定一个指定 <code>mid</code> 节点的线段树，需要支持
-<code>rotate</code> 一个节点，<code>rotate</code> 定义为伸展树(splay)的
-<code>rotate</code>，强制在线询问区间覆盖数。</p>
-<p>先考虑没有修改，那么就是找到 <span class="math inline">\(l,r\)</span>
-的 <span class="math inline">\(lca\)</span>，然后一路统计 <span
-class="math inline">\(l\)</span>，<span class="math inline">\(r\)</span>
-作为左右儿子的次数即可，可以用倍增快速解决。</p>
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p><a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/showproblem.php?pid=7204">一道简单的题</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6025">一道比较简单的题</a></p>
+<h3 id="非常规建树"><a href="#非常规建树" class="headerlink" title="非常规建树"></a>非常规建树</h3><p>非常规建树一般会指定建树的 <code>mid</code> 位置。</p>
+<h4 id="区间覆盖数"><a href="#区间覆盖数" class="headerlink" title="区间覆盖数"></a>区间覆盖数</h4><p>即覆盖一个区间 $[l,r]$ 的最小线段数。</p>
+<p>先转成 $(l,r)$，然后依次跳叶节点 $l,r$ 的父亲，先判断 $l,r$ 的父亲是否相同，相同就可以走人了。</p>
+<p>如果 $l$ 作为左儿子跳上去，那么该节点的右儿子会对该区间贡献一次，因为该节点的右儿子的父亲超出了区间，但自身在区间内。如果 $r$ 作为右儿子跳上去，那么该节点的左儿子会对区间贡献一次，原因同理，如此就可以找到区间覆盖数，这也是 ZKW线段树 的原理。</p>
+<h4 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h4><p>给定一个指定 <code>mid</code> 节点的线段树，需要支持 <code>rotate</code> 一个节点，<code>rotate</code> 定义为伸展树(splay)的 <code>rotate</code>，强制在线询问区间覆盖数。</p>
+<p>先考虑没有修改，那么就是找到 $l,r$ 的 $lca$，然后一路统计 $l$，$r$ 作为左右儿子的次数即可，可以用倍增快速解决。</p>
 <p>修改本质上就是断边和加边，用 LCT 维护。</p>
-<h3 id="zkw线段树简介">ZKW线段树简介</h3>
-
+<h3 id="ZKW线段树简介"><a href="#ZKW线段树简介" class="headerlink" title="ZKW线段树简介"></a>ZKW线段树简介</h3>
     </div>
 
     
@@ -399,7 +370,7 @@ class="math inline">\(l\)</span>，<span class="math inline">\(r\)</span>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8Ezkw%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9C%8B%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.</span> <span class="nav-text">从ZKW线段树看线段树的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%84%E5%BB%BA%E6%A0%91"><span class="nav-number">1.1.</span> <span class="nav-text">常规建树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.1.3.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E5%B8%B8%E8%A7%84%E5%BB%BA%E6%A0%91"><span class="nav-number">1.2.</span> <span class="nav-text">非常规建树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E8%A6%86%E7%9B%96%E6%95%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">区间覆盖数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zkw%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%AE%80%E4%BB%8B"><span class="nav-number">1.3.</span> <span class="nav-text">ZKW线段树简介</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8EZKW%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9C%8B%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.</span> <span class="nav-text">从ZKW线段树看线段树的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%84%E5%BB%BA%E6%A0%91"><span class="nav-number">1.1.</span> <span class="nav-text">常规建树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.1.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.1.3.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E5%B8%B8%E8%A7%84%E5%BB%BA%E6%A0%91"><span class="nav-number">1.2.</span> <span class="nav-text">非常规建树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E8%A6%86%E7%9B%96%E6%95%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">区间覆盖数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZKW%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%AE%80%E4%BB%8B"><span class="nav-number">1.3.</span> <span class="nav-text">ZKW线段树简介</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -415,7 +386,7 @@ class="math inline">\(l\)</span>，<span class="math inline">\(r\)</span>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -428,7 +399,7 @@ class="math inline">\(l\)</span>，<span class="math inline">\(r\)</span>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

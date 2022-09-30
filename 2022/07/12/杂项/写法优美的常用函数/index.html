@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="写法优美的常用函数 收录一些优美的常用函数写法。 分解质因数 有人根本不会用 do while 和 vector。 12345vector&lt;int&gt; v(0);for(int i&#x3D;2;i*i&lt;&#x3D;n;i++)if(n%i&#x3D;&#x3D;0)&amp;#123;    v.push_back(i);    do n&#x2F;&#x3D;i; while(n%i&#x3D;&#x3D;0);&amp;#125; SCC 缩点。 1234">
+  <meta name="description" content="写法优美的常用函数收录一些优美的常用函数写法。 分解质因数有人根本不会用 do while 和 vector。 12345vector&lt;int&gt; v(0);for(int i&#x3D;2;i*i&lt;&#x3D;n;i++)if(n%i&#x3D;&#x3D;0)&amp;#123;    v.push_back(i);    do n&#x2F;&#x3D;i; while(n%i&#x3D;&#x3D;0);&amp;#125; SCC缩点。 12345678910111">
 <meta property="og:type" content="article">
 <meta property="og:title" content="写法优美的常用函数">
 <meta property="og:url" content="http://huanyp.cn/2022/07/12/%E6%9D%82%E9%A1%B9/%E5%86%99%E6%B3%95%E4%BC%98%E7%BE%8E%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
-<meta property="og:description" content="写法优美的常用函数 收录一些优美的常用函数写法。 分解质因数 有人根本不会用 do while 和 vector。 12345vector&lt;int&gt; v(0);for(int i&#x3D;2;i*i&lt;&#x3D;n;i++)if(n%i&#x3D;&#x3D;0)&amp;#123;    v.push_back(i);    do n&#x2F;&#x3D;i; while(n%i&#x3D;&#x3D;0);&amp;#125; SCC 缩点。 1234">
+<meta property="og:description" content="写法优美的常用函数收录一些优美的常用函数写法。 分解质因数有人根本不会用 do while 和 vector。 12345vector&lt;int&gt; v(0);for(int i&#x3D;2;i*i&lt;&#x3D;n;i++)if(n%i&#x3D;&#x3D;0)&amp;#123;    v.push_back(i);    do n&#x2F;&#x3D;i; while(n%i&#x3D;&#x3D;0);&amp;#125; SCC缩点。 12345678910111">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-12T08:07:45.000Z">
 <meta property="article:modified_time" content="2022-08-02T06:07:56.925Z">
@@ -274,17 +274,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="写法优美的常用函数">写法优美的常用函数</h2>
-<p>收录一些优美的常用函数写法。</p>
-<h3 id="分解质因数">分解质因数</h3>
-<p>有人根本不会用 <code>do while</code> 和 <code>vector</code>。</p>
+        <h2 id="写法优美的常用函数"><a href="#写法优美的常用函数" class="headerlink" title="写法优美的常用函数"></a>写法优美的常用函数</h2><p>收录一些优美的常用函数写法。</p>
+<h3 id="分解质因数"><a href="#分解质因数" class="headerlink" title="分解质因数"></a>分解质因数</h3><p>有人根本不会用 <code>do while</code> 和 <code>vector</code>。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">v</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i*i&lt;=n;i++)<span class="keyword">if</span>(n%i==<span class="number">0</span>)&#123;</span><br><span class="line">    v.<span class="built_in">push_back</span>(i);</span><br><span class="line">    <span class="keyword">do</span> n/=i; <span class="keyword">while</span>(n%i==<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="scc">SCC</h3>
-<p>缩点。</p>
+<h3 id="SCC"><a href="#SCC" class="headerlink" title="SCC"></a>SCC</h3><p>缩点。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> low=dfn[u]=++df;st[++top]=u;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> v:e[u])&#123;</span><br><span class="line">		<span class="keyword">if</span>(!dfn[v])<span class="built_in">cmin</span>(low,<span class="built_in">dfs</span>(v));</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(!scc[v])<span class="built_in">cmin</span>(low,dfn[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(low==dfn[u])&#123;</span><br><span class="line">		++cnt;<span class="type">int</span> v;</span><br><span class="line">		<span class="keyword">do</span> val[cnt]+=a[v=st[top--]],scc[v]=cnt; <span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> low;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="最短路-dijskstra">最短路 Dijskstra</h3>
-<p>如果 <span class="math inline">\(dis\times n\le 8\times
-10^{18}\)</span>，完全可以它们压成一个数。</p>
+<h3 id="最短路-Dijskstra"><a href="#最短路-Dijskstra" class="headerlink" title="最短路 Dijskstra"></a>最短路 Dijskstra</h3><p>如果 $dis\times n\le 8\times 10^{18}$，完全可以它们压成一个数。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;LL,vector&lt;LL&gt;,greater&lt;LL&gt;&gt; q;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dij</span><span class="params">(<span class="type">int</span> s,<span class="type">int</span> t)</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="built_in">sizeof</span>(vis));</span><br><span class="line">	<span class="built_in">memset</span>(dis,<span class="number">1</span>,<span class="built_in">sizeof</span>(dis));</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())q.<span class="built_in">pop</span>();</span><br><span class="line">	dis[s]=<span class="number">0</span>;q.<span class="built_in">push</span>(s);</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="type">int</span> u=q.<span class="built_in">top</span>()%M;q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">if</span>(vis[u])<span class="keyword">continue</span>;vis[u]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(vis[t])<span class="keyword">return</span> ;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=head[u];~i;i=a[i].next)&#123;</span><br><span class="line">			<span class="type">int</span> v=a[i].v,w=a[i].w;</span><br><span class="line">			<span class="keyword">if</span>(dis[u]+w&gt;=dis[v])<span class="keyword">continue</span>;</span><br><span class="line">			dis[v]=dis[u]+w;q.<span class="built_in">push</span>(dis[v]*M+v);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -387,7 +382,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E6%B3%95%E4%BC%98%E7%BE%8E%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">写法优美的常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E8%A7%A3%E8%B4%A8%E5%9B%A0%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">分解质因数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scc"><span class="nav-number">1.2.</span> <span class="nav-text">SCC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF-dijskstra"><span class="nav-number">1.3.</span> <span class="nav-text">最短路 Dijskstra</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E6%B3%95%E4%BC%98%E7%BE%8E%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">写法优美的常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E8%A7%A3%E8%B4%A8%E5%9B%A0%E6%95%B0"><span class="nav-number">1.1.</span> <span class="nav-text">分解质因数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SCC"><span class="nav-number">1.2.</span> <span class="nav-text">SCC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E7%9F%AD%E8%B7%AF-Dijskstra"><span class="nav-number">1.3.</span> <span class="nav-text">最短路 Dijskstra</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -403,7 +398,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -416,7 +411,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

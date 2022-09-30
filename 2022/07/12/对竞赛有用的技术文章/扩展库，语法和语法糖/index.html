@@ -21,15 +21,15 @@
     var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="语法和语法糖 介绍一些有用常用但鲜为人知的 C++ 语法，库，语法糖。 标准库 函数 std::swap  对于除了 array 容器之外的所有标准库容器，都可以 \(O(1)\) 交换 交换数组的复杂度为 \(O(size)\)，对二维数组的某一维使用，会将当前行视为一维数组进行交换。  memcpy memcpy(dst, src, size) dst:目标数组起始位置">
+  <meta name="description" content="语法和语法糖介绍一些有用常用但鲜为人知的 C++ 语法，库，语法糖。 标准库函数std::swap 对于除了 array 容器之外的所有标准库容器，都可以 $O(1)$ 交换  交换数组的复杂度为 $O(size)$，对二维数组的某一维使用，会将当前行视为一维数组进行交换。   memcpymemcpy(dst, src, size) dst:目标数组起始位置 src:源数组起始位置 size:需">
 <meta property="og:type" content="article">
 <meta property="og:title" content="标准库，扩展库，语法和语法糖">
 <meta property="og:url" content="http://huanyp.cn/2022/07/12/%E5%AF%B9%E7%AB%9E%E8%B5%9B%E6%9C%89%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E6%89%A9%E5%B1%95%E5%BA%93%EF%BC%8C%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E6%B3%95%E7%B3%96/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
-<meta property="og:description" content="语法和语法糖 介绍一些有用常用但鲜为人知的 C++ 语法，库，语法糖。 标准库 函数 std::swap  对于除了 array 容器之外的所有标准库容器，都可以 \(O(1)\) 交换 交换数组的复杂度为 \(O(size)\)，对二维数组的某一维使用，会将当前行视为一维数组进行交换。  memcpy memcpy(dst, src, size) dst:目标数组起始位置">
+<meta property="og:description" content="语法和语法糖介绍一些有用常用但鲜为人知的 C++ 语法，库，语法糖。 标准库函数std::swap 对于除了 array 容器之外的所有标准库容器，都可以 $O(1)$ 交换  交换数组的复杂度为 $O(size)$，对二维数组的某一维使用，会将当前行视为一维数组进行交换。   memcpymemcpy(dst, src, size) dst:目标数组起始位置 src:源数组起始位置 size:需">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-12T07:55:05.000Z">
-<meta property="article:modified_time" content="2022-09-06T02:41:19.786Z">
+<meta property="article:modified_time" content="2022-09-22T08:35:16.338Z">
 <meta property="article:author" content="幻影彭">
 <meta property="article:tag" content="汇总">
 <meta property="article:tag" content="语法">
@@ -248,7 +248,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-06 10:41:19" itemprop="dateModified" datetime="2022-09-06T10:41:19+08:00">2022-09-06</time>
+                <time title="修改时间：2022-09-22 16:35:16" itemprop="dateModified" datetime="2022-09-22T16:35:16+08:00">2022-09-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -275,79 +275,54 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="语法和语法糖">语法和语法糖</h2>
-<p>介绍一些有用常用但鲜为人知的 <code>C++</code> 语法，库，语法糖。</p>
-<h2 id="标准库">标准库</h2>
-<h3 id="函数">函数</h3>
-<h4 id="stdswap">std::swap</h4>
-<ul>
-<li><p>对于除了 <code>array</code> 容器之外的所有标准库容器，都可以
-<span class="math inline">\(O(1)\)</span> 交换</p></li>
-<li><p>交换数组的复杂度为 <span
-class="math inline">\(O(size)\)</span>，对二维数组的某一维使用，会将当前行视为一维数组进行交换。</p></li>
+        <h2 id="语法和语法糖"><a href="#语法和语法糖" class="headerlink" title="语法和语法糖"></a>语法和语法糖</h2><p>介绍一些有用常用但鲜为人知的 <code>C++</code> 语法，库，语法糖。</p>
+<h2 id="标准库"><a href="#标准库" class="headerlink" title="标准库"></a>标准库</h2><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="std-swap"><a href="#std-swap" class="headerlink" title="std::swap"></a>std::swap</h4><ul>
+<li><p>对于除了 <code>array</code> 容器之外的所有标准库容器，都可以 $O(1)$ 交换</p>
+</li>
+<li><p>交换数组的复杂度为 $O(size)$，对二维数组的某一维使用，会将当前行视为一维数组进行交换。</p>
+</li>
 </ul>
-<h4 id="memcpy">memcpy</h4>
-<p><code>memcpy(dst, src, size)</code></p>
+<h4 id="memcpy"><a href="#memcpy" class="headerlink" title="memcpy"></a>memcpy</h4><p><code>memcpy(dst, src, size)</code></p>
 <p>dst:目标数组起始位置</p>
 <p>src:源数组起始位置</p>
 <p>size:需要复制的字节数</p>
-<h3 id="容器">容器</h3>
+<h4 id="lower-bound-upper-bound"><a href="#lower-bound-upper-bound" class="headerlink" title="lower_bound,upper_bound"></a>lower_bound,upper_bound</h4><p>看下实现吧：</p>
 <ul>
-<li>STL
-内的所有基于比较的容器，都需要定义一个满足<strong>严格弱序</strong>的比较符号
-<code>&lt;</code>，要求如下：
-<ul>
-<li>满足传递性：<span class="math inline">\(a&lt;b,b&lt;c\rightarrow
-a&lt;c\)</span></li>
-<li>不能同时满足 <span class="math inline">\(a&lt;b\)</span> 且 <span
-class="math inline">\(b&lt;a\)</span></li>
-<li>如果 <code>!(a&lt;b)&amp;&amp;!(b&lt;a)</code> 那么
-<code>a=b</code></li>
-</ul></li>
-<li>除开 <code>array</code> 之外的所有 <code>STL</code>
-容器，定义时都会初始化，即初始化为空或者(全为 <code>0</code>，对于
-<code>bitset</code>)。</li>
+<li><code>upper_bound</code> 如果对类使用，那么<strong>类的比较函数需要定义为友元函数</strong>。</li>
+<li><code>lower_bound</code> 返回第一个大于等于它的位置，<code>upper_bound</code> 返回第一个大于它的位置，<code>comp</code> 为默认小于号。</li>
+<li>如果要对不增序列操作，那么 <code>comp</code> 为大于号，<code>lower_bound</code> 返回第一个小于等于它的位置，<code>upper_bound</code> 返回第一个小于它的位置。</li>
 </ul>
-<h4 id="priority_queue">priority_queue</h4>
-<p>优先队列，默认为大根堆，即在定义的 <code>&lt;</code>
-下，最大的元素在堆顶。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">lower_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value, Compare comp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ForwardIt it;</span><br><span class="line">    <span class="keyword">typename</span> std::iterator_traits&lt;ForwardIt&gt;::difference_type count, step;</span><br><span class="line">    count = std::<span class="built_in">distance</span>(first, last);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        it = first;</span><br><span class="line">        step = count / <span class="number">2</span>;</span><br><span class="line">        std::<span class="built_in">advance</span>(it, step);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">comp</span>(*it, value)) &#123;</span><br><span class="line">            first = ++it;</span><br><span class="line">            count -= step + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count = step;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">upper_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value, Compare comp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ForwardIt it;</span><br><span class="line">    <span class="keyword">typename</span> std::iterator_traits&lt;ForwardIt&gt;::difference_type count, step;</span><br><span class="line">    count = std::<span class="built_in">distance</span>(first,last);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        it = first; </span><br><span class="line">        step = count / <span class="number">2</span>;</span><br><span class="line">        std::<span class="built_in">advance</span>(it, step);</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">comp</span>(value, *it)) &#123;</span><br><span class="line">            first = ++it;</span><br><span class="line">            count -= step + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count = step;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h3><ul>
+<li>STL 内的所有基于比较的容器，都需要定义一个满足<strong>严格弱序</strong>的比较符号 <code>&lt;</code>，要求如下：<ul>
+<li>满足传递性：$a&lt;b,b&lt;c\rightarrow a&lt;c$</li>
+<li>不能同时满足 $a&lt;b$ 且 $b&lt;a$</li>
+<li>如果 <code>!(a&lt;b)&amp;&amp;!(b&lt;a)</code> 那么 <code>a=b</code></li>
+</ul>
+</li>
+<li>除开 <code>array</code> 之外的所有 <code>STL</code> 容器，定义时都会初始化，即初始化为空或者(全为 <code>0</code>，对于 <code>bitset</code>)。</li>
+<li>基于比较的容器，需要定义<strong>友元类型的大小比较符号</strong>，因为实现的时候使用了右值做比较。</li>
+</ul>
+<h4 id="priority-queue"><a href="#priority-queue" class="headerlink" title="priority_queue"></a>priority_queue</h4><p>优先队列，默认为大根堆，即在定义的 <code>&lt;</code> 下，最大的元素在堆顶。</p>
 <ul>
 <li>注意，如果要实现可删除优先队列，那么需要</li>
 </ul>
-<h4 id="set">set</h4>
-<p>需要定义一个满足传递性的 <code>&lt;</code></p>
-<h4 id="multiset">multiset</h4>
-<h4 id="map">map</h4>
-<h4 id="vector">vector</h4>
-<h4 id="array">array</h4>
-<h4 id="deque">deque</h4>
-<h2 id="拓展库">拓展库</h2>
-<h3 id="平板电视">平板电视</h3>
-<p>一个 <code>C++</code> 拓展库，<code>STL</code>
-升级版，<code>C++11</code> 特性。</p>
-<h4 id="gp_hash_table">gp_hash_table</h4>
-<p>如名称，哈希表，比 <code>unordered_map</code> 快 <code>3~4</code>
-倍，用法完全一样，你值得拥有。</p>
+<h4 id="set"><a href="#set" class="headerlink" title="set"></a>set</h4><p>需要定义一个满足传递性的 <code>&lt;</code></p>
+<h4 id="multiset"><a href="#multiset" class="headerlink" title="multiset"></a>multiset</h4><h4 id="map"><a href="#map" class="headerlink" title="map"></a>map</h4><h4 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h4><h4 id="array"><a href="#array" class="headerlink" title="array"></a>array</h4><h4 id="deque"><a href="#deque" class="headerlink" title="deque"></a>deque</h4><h2 id="拓展库"><a href="#拓展库" class="headerlink" title="拓展库"></a>拓展库</h2><h3 id="平板电视"><a href="#平板电视" class="headerlink" title="平板电视"></a>平板电视</h3><p>一个 <code>C++</code> 拓展库，<code>STL</code> 升级版，<code>C++11</code> 特性。</p>
+<h4 id="gp-hash-table"><a href="#gp-hash-table" class="headerlink" title="gp_hash_table"></a>gp_hash_table</h4><p>如名称，哈希表，比 <code>unordered_map</code> 快 <code>3~4</code> 倍，用法完全一样，你值得拥有。</p>
 <p>在 <code>ext/pb_ds/assoc_container.hpp</code> 中。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ext/pb_ds/assoc_container.hpp&gt;</span></span></span><br><span class="line">__gnu_pbds:: gp_hash_table &lt;<span class="type">int</span>,<span class="type">int</span>&gt; mp;</span><br><span class="line">mp.<span class="built_in">insert</span>(<span class="built_in">make_pair</span>(<span class="number">1</span>,<span class="number">2</span>));</span><br><span class="line">mp[<span class="number">2</span>]=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">if</span>(mp.<span class="built_in">find</span>(<span class="number">2</span>) != mp.<span class="built_in">end</span>())&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,mp.<span class="built_in">find</span>(<span class="number">2</span>)-&gt;second);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="结构体">结构体</h3>
-<p>一般来说 <code>class</code> 和 <code>struct</code>
-竞赛上差别不大，<code>struct</code> 是默认 <code>public</code> 的
-<code>class</code>。</p>
-<h4 id="重载括号">重载括号</h4>
-<p>重载小括号运算符可以让你把结构体当函数用，其实本质上少写了一个
-<code>.&#123;function name&#125;</code>。</p>
+<h3 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h3><p>一般来说 <code>class</code> 和 <code>struct</code> 竞赛上差别不大，<code>struct</code> 是默认 <code>public</code> 的 <code>class</code>。</p>
+<h4 id="重载括号"><a href="#重载括号" class="headerlink" title="重载括号"></a>重载括号</h4><p>重载小括号运算符可以让你把结构体当函数用，其实本质上少写了一个 <code>.&#123;function name&#125;</code>。</p>
 <p>它和构造函数不冲突。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett1</span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> m,im;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		ULL z=(ULL)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;bt1;</span><br><span class="line"><span class="type">int</span> a=<span class="number">1</span>,b=<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> c=<span class="built_in">bt1</span>(a,b);</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett2</span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> m,im;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">foo</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		ULL z=(ULL)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;bt2;</span><br><span class="line">c=bt2.<span class="built_in">foo</span>(a,b);</span><br></pre></td></tr></table></figure>
 <p>两者没有本质区别。</p>
 <p>中括号可以重载，一般来说，重载中括号返回的是一个引用，中扩号只接受一个参数。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">array_2d</span>&#123;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">10005</span>],b[<span class="number">10005</span>];</span><br><span class="line">    <span class="type">int</span> n,m;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> nn,<span class="type">int</span> mm)</span></span>&#123;</span><br><span class="line">    	n=nn,m=mm;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="type">int</span>&amp; <span class="keyword">operator</span>[](<span class="type">int</span> x)&#123;</span><br><span class="line">		<span class="keyword">return</span> a[x];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;a;</span><br><span class="line">a.<span class="built_in">init</span>(<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line">a[<span class="number">3</span>]=<span class="number">1</span>;a.b[<span class="number">4</span>]=<span class="number">2</span>;</span><br><span class="line">a[<span class="number">4</span>]=<span class="number">4</span>;</span><br><span class="line">cout&lt;&lt;a[<span class="number">4</span>]&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;a[<span class="number">3</span>]&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
-<h4 id="构造">构造</h4>
-<p>结构体的构造函数可以返回一个结构体实例，也可以允许在声明结构体的时候同时构造。</p>
+<h4 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h4><p>结构体的构造函数可以返回一个结构体实例，也可以允许在声明结构体的时候同时构造。</p>
 <p>举个例子</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line"><span class="comment">// st t3; 这句会 CE</span></span><br></pre></td></tr></table></figure>
-<p>这两种写法都行，<strong>注意不能变量重名</strong>，不会
-<code>CE</code>，但是函数参数里会那个名字会覆盖掉全局的。</p>
+<p>这两种写法都行，<strong>注意不能变量重名</strong>，不会 <code>CE</code>，但是函数参数里会那个名字会覆盖掉全局的。</p>
 <p>注意写了构造函数，所有的构造都必须带参数。</p>
 <p>定义结构体的时候还可以给变量赋初值。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line"><span class="comment">// t1.str=&quot;str&quot;,t1.b=3</span></span><br><span class="line"><span class="comment">// t2.str=&quot;str&quot;,t2.b=3</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -361,44 +336,25 @@ class="math inline">\(b&lt;a\)</span></li>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>() :<span class="built_in">a</span>(), <span class="built_in">b</span>(), <span class="built_in">str</span>()&#123;&#125;</span><br><span class="line">    <span class="comment">//如果没有这一行，下面的第一个构造会 CE</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">	<span class="built_in">st</span>(<span class="type">int</span> aa, <span class="type">int</span> bb,string cc) :<span class="built_in">a</span>(aa), <span class="built_in">b</span>(bb), <span class="built_in">str</span>(cc)&#123;&#125;</span><br><span class="line"><span class="comment">//    st() :a(), b(), str() &#123;&#125;</span></span><br><span class="line"><span class="comment">//    st(int aa,int bb): a(aa), b(bb) &#123;&#125;</span></span><br><span class="line">&#125;;</span><br><span class="line">st t1;</span><br><span class="line">t1=&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="string">&quot;str&quot;</span>&#125;;</span><br><span class="line">t1=&#123;<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">//最后一行会 CE</span></span><br></pre></td></tr></table></figure>
 <p>列表构造式还可以自推导。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=&#123;<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">t1=&#123;<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="comment">//t1(2,3)</span></span><br><span class="line"><span class="comment">//括号式式不能自推导的，这个的含义参考第一条。</span></span><br></pre></td></tr></table></figure>
-<h2 id="语法">语法</h2>
-<h3 id="引用">引用</h3>
-<p>引用可以认为是一个<strong>隐式指针</strong>，不需要 <code>*</code>
-的修饰便可以直接访问内容。它既然是一个指针，自然会占用一个
-<code>long</code> 的空间。</p>
-<h4 id="定义返回一个引用">定义，返回一个引用</h4>
-<p>可以在函数中返回一个引用，只需要在函数名前面后加一个
-<code>&amp;</code>，定义引用也在变量名加一个
-<code>&amp;</code>，和指针类似。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>引用可以认为是一个<strong>隐式指针</strong>，不需要 <code>*</code> 的修饰便可以直接访问内容。它既然是一个指针，自然会占用一个 <code>long</code> 的空间。</p>
+<h4 id="定义，返回一个引用"><a href="#定义，返回一个引用" class="headerlink" title="定义，返回一个引用"></a>定义，返回一个引用</h4><p>可以在函数中返回一个引用，只需要在函数名前面后加一个 <code>&amp;</code>，定义引用也在变量名加一个 <code>&amp;</code>，和指针类似。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> &amp;<span class="title">setValues</span><span class="params">(<span class="type">int</span> i)</span> </span>&#123;  </span><br><span class="line">   <span class="type">double</span> &amp;ref = vals[i];    </span><br><span class="line">   <span class="keyword">return</span> ref;   <span class="comment">// 返回第 i 个元素的引用，ref 是一个引用变量，ref 引用 vals[i]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>定义引用的示例：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n=<span class="number">0</span>,m=<span class="number">0</span>;</span><br><span class="line"><span class="type">int</span>&amp; nn=n,mm=m;</span><br><span class="line">n=<span class="number">10</span>,m=<span class="number">20</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;n,m:%d,%d\n&quot;</span>,n,m);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;nn,mm:%d,%d\n&quot;</span>,nn,mm); </span><br><span class="line"><span class="comment">//输出:</span></span><br><span class="line"><span class="comment">//10,20</span></span><br><span class="line"><span class="comment">//10,0</span></span><br></pre></td></tr></table></figure>
 <p>在重载结构体 <code>+=,=</code> 运算符号的时候比较常用。</p>
 <p>引用传参应该已经很熟悉了吧。</p>
-<h4 id="左值引用和右值引用">左值引用和右值引用</h4>
-<p><code>C++11</code> 新概念。<a
-target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/12/15/understanding-lvalues-and-rvalues-in-c-and-c">参考阅读</a></p>
-<p>一般的，使用引用传参时，如果接受的参数为右值，那么不能修改右值，参数必须声明为
-<code>const</code> 类型。</p>
+<h4 id="左值引用和右值引用"><a href="#左值引用和右值引用" class="headerlink" title="左值引用和右值引用"></a>左值引用和右值引用</h4><p><code>C++11</code> 新概念。<a target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/12/15/understanding-lvalues-and-rvalues-in-c-and-c">参考阅读</a></p>
+<p>一般的，使用引用传参时，如果接受的参数为右值，那么不能修改右值，参数必须声明为 <code>const</code> 类型。</p>
 <p>算了，先咕咕咕了吧。</p>
-<h3 id="模板">模板</h3>
-<h4 id="参数模板">参数模板</h4>
-<p>咕咕咕</p>
-<h4 id="类型模板">类型模板</h4>
-<p>咕咕咕</p>
-<h3 id="static-关键字">Static 关键字</h3>
-<p>声明一个静态的东西，可以用来避免命名冲突，也可以用来更好的实现一个类。</p>
-<p>Static
-关键字声明的东西生命周期是整个程序的生命周期，但作用域仅限定为声明处的作用域。</p>
-<p>举个例子，某个函数的执行过程和它被调用的次数有关，这个可以弄个全局变量记一个次数，但是我们也可以在它的内部写个
-static 变量记录，这样就不会与外部空间变量名冲突。</p>
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><h4 id="参数模板"><a href="#参数模板" class="headerlink" title="参数模板"></a>参数模板</h4><p>咕咕咕</p>
+<h4 id="类型模板"><a href="#类型模板" class="headerlink" title="类型模板"></a>类型模板</h4><p>咕咕咕</p>
+<h3 id="Static-关键字"><a href="#Static-关键字" class="headerlink" title="Static 关键字"></a>Static 关键字</h3><p>声明一个静态的东西，可以用来避免命名冲突，也可以用来更好的实现一个类。</p>
+<p>Static 关键字声明的东西生命周期是整个程序的生命周期，但作用域仅限定为声明处的作用域。</p>
+<p>举个例子，某个函数的执行过程和它被调用的次数有关，这个可以弄个全局变量记一个次数，但是我们也可以在它的内部写个 static 变量记录，这样就不会与外部空间变量名冲突。</p>
 <p>所有静态变量的初始值为 0</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">static</span> <span class="type">int</span> cnt;</span><br><span class="line">	cout&lt;&lt;++cnt&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">fun</span>();cnt=<span class="number">10</span>;</span><br><span class="line">cout&lt;&lt;cnt&lt;&lt;endl;</span><br><span class="line"><span class="built_in">fun</span>();<span class="built_in">fun</span>();cnt++;<span class="built_in">fun</span>();</span><br></pre></td></tr></table></figure>
-<p>也可以用静态成员来维护一个类，比如写链表的时候，我们通常要先写个 node
-类，然后才能实现 list 类，但我们可以直接将 head
-指针作为一个静态变量放入结构体中，这样，这个静态变量就可以被所有结构体的实例访问修改。</p>
-<p><strong>注意，如果需要两个链表，那种这种方式是不可取的，因为静态变量
-head 对所有该结构体的实例来说都只有一个。</strong></p>
+<p>也可以用静态成员来维护一个类，比如写链表的时候，我们通常要先写个 node 类，然后才能实现 list 类，但我们可以直接将 head 指针作为一个静态变量放入结构体中，这样，这个静态变量就可以被所有结构体的实例访问修改。</p>
+<p><strong>注意，如果需要两个链表，那种这种方式是不可取的，因为静态变量 head 对所有该结构体的实例来说都只有一个。</strong></p>
 <p>我们当然也可以声明静态成员函数。</p>
 <p>对于结构体的静态资源，我们可以用 {结构体名}.{成员名} 来访问。</p>
 
@@ -503,7 +459,7 @@ head 对所有该结构体的实例来说都只有一个。</strong></p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E6%B3%95%E7%B3%96"><span class="nav-number">1.</span> <span class="nav-text">语法和语法糖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">标准库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#stdswap"><span class="nav-number">2.1.1.</span> <span class="nav-text">std::swap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#memcpy"><span class="nav-number">2.1.2.</span> <span class="nav-text">memcpy</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#priority_queue"><span class="nav-number">2.2.1.</span> <span class="nav-text">priority_queue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set"><span class="nav-number">2.2.2.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#multiset"><span class="nav-number">2.2.3.</span> <span class="nav-text">multiset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#map"><span class="nav-number">2.2.4.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vector"><span class="nav-number">2.2.5.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#array"><span class="nav-number">2.2.6.</span> <span class="nav-text">array</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#deque"><span class="nav-number">2.2.7.</span> <span class="nav-text">deque</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">拓展库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E6%9D%BF%E7%94%B5%E8%A7%86"><span class="nav-number">3.1.</span> <span class="nav-text">平板电视</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gp_hash_table"><span class="nav-number">3.1.1.</span> <span class="nav-text">gp_hash_table</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">3.2.</span> <span class="nav-text">结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E8%BD%BD%E6%8B%AC%E5%8F%B7"><span class="nav-number">3.2.1.</span> <span class="nav-text">重载括号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E9%80%A0"><span class="nav-number">3.2.2.</span> <span class="nav-text">构造</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">4.1.</span> <span class="nav-text">引用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AA%E5%BC%95%E7%94%A8"><span class="nav-number">4.1.1.</span> <span class="nav-text">定义，返回一个引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8"><span class="nav-number">4.1.2.</span> <span class="nav-text">左值引用和右值引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-number">4.2.</span> <span class="nav-text">模板</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E6%A8%A1%E6%9D%BF"><span class="nav-number">4.2.1.</span> <span class="nav-text">参数模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%A8%A1%E6%9D%BF"><span class="nav-number">4.2.2.</span> <span class="nav-text">类型模板</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">4.3.</span> <span class="nav-text">Static 关键字</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E6%B3%95%E7%B3%96"><span class="nav-number">1.</span> <span class="nav-text">语法和语法糖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">标准库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#std-swap"><span class="nav-number">2.1.1.</span> <span class="nav-text">std::swap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#memcpy"><span class="nav-number">2.1.2.</span> <span class="nav-text">memcpy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lower-bound-upper-bound"><span class="nav-number">2.1.3.</span> <span class="nav-text">lower_bound,upper_bound</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#priority-queue"><span class="nav-number">2.2.1.</span> <span class="nav-text">priority_queue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set"><span class="nav-number">2.2.2.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#multiset"><span class="nav-number">2.2.3.</span> <span class="nav-text">multiset</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#map"><span class="nav-number">2.2.4.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vector"><span class="nav-number">2.2.5.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#array"><span class="nav-number">2.2.6.</span> <span class="nav-text">array</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#deque"><span class="nav-number">2.2.7.</span> <span class="nav-text">deque</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E5%BA%93"><span class="nav-number">3.</span> <span class="nav-text">拓展库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E6%9D%BF%E7%94%B5%E8%A7%86"><span class="nav-number">3.1.</span> <span class="nav-text">平板电视</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#gp-hash-table"><span class="nav-number">3.1.1.</span> <span class="nav-text">gp_hash_table</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">3.2.</span> <span class="nav-text">结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E8%BD%BD%E6%8B%AC%E5%8F%B7"><span class="nav-number">3.2.1.</span> <span class="nav-text">重载括号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E9%80%A0"><span class="nav-number">3.2.2.</span> <span class="nav-text">构造</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">4.1.</span> <span class="nav-text">引用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%EF%BC%8C%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AA%E5%BC%95%E7%94%A8"><span class="nav-number">4.1.1.</span> <span class="nav-text">定义，返回一个引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%E5%92%8C%E5%8F%B3%E5%80%BC%E5%BC%95%E7%94%A8"><span class="nav-number">4.1.2.</span> <span class="nav-text">左值引用和右值引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-number">4.2.</span> <span class="nav-text">模板</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E6%A8%A1%E6%9D%BF"><span class="nav-number">4.2.1.</span> <span class="nav-text">参数模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%A8%A1%E6%9D%BF"><span class="nav-number">4.2.2.</span> <span class="nav-text">类型模板</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Static-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">4.3.</span> <span class="nav-text">Static 关键字</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -519,7 +475,7 @@ head 对所有该结构体的实例来说都只有一个。</strong></p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -532,7 +488,7 @@ head 对所有该结构体的实例来说都只有一个。</strong></p>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

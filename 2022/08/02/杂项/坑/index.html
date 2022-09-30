@@ -21,12 +21,12 @@
     var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="多测的奇妙问题 最短路 你清空了吗？ 你真的清空了吗？ 你真的真的真的清空了吗？ 123456789101112131415161718void dij(int s,int t)&amp;#123;	memset(vis,0,sizeof(vis));	memset(dis,1,sizeof(dis));	&#x2F;&#x2F;while(!q.empty())q.pop();	dis[s]&#x3D;0;q.push(s">
+  <meta name="description" content="多测的奇妙问题最短路你清空了吗？ 你真的清空了吗？ 你真的真的真的清空了吗？ 123456789101112131415161718void dij(int s,int t)&amp;#123;	memset(vis,0,sizeof(vis));	memset(dis,1,sizeof(dis));	&#x2F;&#x2F;while(!q.empty())q.pop();	dis[s]&#x3D;0;q.push(s);	whil">
 <meta property="og:type" content="article">
 <meta property="og:title" content="坑">
 <meta property="og:url" content="http://huanyp.cn/2022/08/02/%E6%9D%82%E9%A1%B9/%E5%9D%91/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
-<meta property="og:description" content="多测的奇妙问题 最短路 你清空了吗？ 你真的清空了吗？ 你真的真的真的清空了吗？ 123456789101112131415161718void dij(int s,int t)&amp;#123;	memset(vis,0,sizeof(vis));	memset(dis,1,sizeof(dis));	&#x2F;&#x2F;while(!q.empty())q.pop();	dis[s]&#x3D;0;q.push(s">
+<meta property="og:description" content="多测的奇妙问题最短路你清空了吗？ 你真的清空了吗？ 你真的真的真的清空了吗？ 123456789101112131415161718void dij(int s,int t)&amp;#123;	memset(vis,0,sizeof(vis));	memset(dis,1,sizeof(dis));	&#x2F;&#x2F;while(!q.empty())q.pop();	dis[s]&#x3D;0;q.push(s);	whil">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-02T05:46:46.000Z">
 <meta property="article:modified_time" content="2022-08-02T06:08:26.881Z">
@@ -254,27 +254,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="多测的奇妙问题">多测的奇妙问题</h2>
-<h3 id="最短路">最短路</h3>
-<p>你清空了吗？</p>
+        <h2 id="多测的奇妙问题"><a href="#多测的奇妙问题" class="headerlink" title="多测的奇妙问题"></a>多测的奇妙问题</h2><h3 id="最短路"><a href="#最短路" class="headerlink" title="最短路"></a>最短路</h3><p>你清空了吗？</p>
 <p>你真的清空了吗？</p>
 <p>你真的真的真的清空了吗？</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dij</span><span class="params">(<span class="type">int</span> s,<span class="type">int</span> t)</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="built_in">sizeof</span>(vis));</span><br><span class="line">	<span class="built_in">memset</span>(dis,<span class="number">1</span>,<span class="built_in">sizeof</span>(dis));</span><br><span class="line">	<span class="comment">//while(!q.empty())q.pop();</span></span><br><span class="line">	dis[s]=<span class="number">0</span>;q.<span class="built_in">push</span>(s);</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="type">int</span> u=q.<span class="built_in">top</span>()%M;q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">if</span>(vis[u])<span class="keyword">continue</span>;vis[u]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(vis[t])<span class="keyword">return</span> ;</span><br><span class="line">        <span class="comment">//!!! priority_queue 还没空就跑路了，你不玩完谁玩完</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=head[u];~i;i=a[i].next)&#123;</span><br><span class="line">			<span class="type">int</span> v=a[i].v,w=a[i].w;</span><br><span class="line">			<span class="keyword">if</span>(dis[u]+w&gt;=dis[v])<span class="keyword">continue</span>;</span><br><span class="line">			dis[v]=dis[u]+w;</span><br><span class="line">			q.<span class="built_in">push</span>(dis[v]*M+v);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="一些技巧的坑">一些技巧的坑</h2>
-<h3 id="非显式建边">非显式建边</h3>
-<p>举个例子，点有个性质 <span
-class="math inline">\(c_i\)</span>，可以花费 <span
-class="math inline">\(k_j\)</span> 的代价从任意 <span
-class="math inline">\(c_{a_j}\)</span> 的跳到任意 <span
-class="math inline">\(c_{b_j}\)</span> 的点。</p>
-<p>然后你对每个 <span class="math inline">\(c\)</span>
-建立一个点，从每个点向它连了一条边。</p>
-<p>然后你发现你的每一个 <span class="math inline">\(c\)</span> 可以花费
-<span class="math inline">\(0\)</span> 的代价互相到达。</p>
-<p>正确的方式是每个 <span class="math inline">\(c\)</span>
-建立入点和出点。</p>
-<h3 id="可删除的优先队列">可删除的优先队列</h3>
-<p>一般用两个优先队列实现。</p>
+<h2 id="一些技巧的坑"><a href="#一些技巧的坑" class="headerlink" title="一些技巧的坑"></a>一些技巧的坑</h2><h3 id="非显式建边"><a href="#非显式建边" class="headerlink" title="非显式建边"></a>非显式建边</h3><p>举个例子，点有个性质 $c_i$，可以花费 $k_j$ 的代价从任意 $c_{a_j}$ 的跳到任意 $c_{b_j}$ 的点。</p>
+<p>然后你对每个 $c$ 建立一个点，从每个点向它连了一条边。</p>
+<p>然后你发现你的每一个 $c$ 可以花费 $0$ 的代价互相到达。</p>
+<p>正确的方式是每个 $c$ 建立入点和出点。</p>
+<h3 id="可删除的优先队列"><a href="#可删除的优先队列" class="headerlink" title="可删除的优先队列"></a>可删除的优先队列</h3><p>一般用两个优先队列实现。</p>
 
     </div>
 
@@ -391,7 +379,7 @@ class="math inline">\(c_{b_j}\)</span> 的点。</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -404,7 +392,7 @@ class="math inline">\(c_{b_j}\)</span> 的点。</p>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
