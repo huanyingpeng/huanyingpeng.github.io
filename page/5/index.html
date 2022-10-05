@@ -211,6 +211,304 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%9D%82%E9%A1%B9/%E5%86%99%E6%B3%95%E4%BC%98%E7%BE%8E%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/12/%E6%9D%82%E9%A1%B9/%E5%86%99%E6%B3%95%E4%BC%98%E7%BE%8E%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">写法优美的常用函数</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-12 16:07:45" itemprop="dateCreated datePublished" datetime="2022-07-12T16:07:45+08:00">2022-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-02 14:07:56" itemprop="dateModified" datetime="2022-08-02T14:07:56+08:00">2022-08-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7/" itemprop="url" rel="index"><span itemprop="name">技巧</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="写法优美的常用函数"><a href="#写法优美的常用函数" class="headerlink" title="写法优美的常用函数"></a>写法优美的常用函数</h2><p>收录一些优美的常用函数写法。</p>
+<h3 id="分解质因数"><a href="#分解质因数" class="headerlink" title="分解质因数"></a>分解质因数</h3><p>有人根本不会用 <code>do while</code> 和 <code>vector</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">v</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i*i&lt;=n;i++)<span class="keyword">if</span>(n%i==<span class="number">0</span>)&#123;</span><br><span class="line">    v.<span class="built_in">push_back</span>(i);</span><br><span class="line">    <span class="keyword">do</span> n/=i; <span class="keyword">while</span>(n%i==<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="SCC"><a href="#SCC" class="headerlink" title="SCC"></a>SCC</h3><p>缩点。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> low=dfn[u]=++df;st[++top]=u;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> v:e[u])&#123;</span><br><span class="line">		<span class="keyword">if</span>(!dfn[v])<span class="built_in">cmin</span>(low,<span class="built_in">dfs</span>(v));</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(!scc[v])<span class="built_in">cmin</span>(low,dfn[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(low==dfn[u])&#123;</span><br><span class="line">		++cnt;<span class="type">int</span> v;</span><br><span class="line">		<span class="keyword">do</span> val[cnt]+=a[v=st[top--]],scc[v]=cnt; <span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> low;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="最短路-Dijskstra"><a href="#最短路-Dijskstra" class="headerlink" title="最短路 Dijskstra"></a>最短路 Dijskstra</h3><p>如果 $dis\times n\le 8\times 10^{18}$，完全可以它们压成一个数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;LL,vector&lt;LL&gt;,greater&lt;LL&gt;&gt; q;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dij</span><span class="params">(<span class="type">int</span> s,<span class="type">int</span> t)</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="built_in">sizeof</span>(vis));</span><br><span class="line">	<span class="built_in">memset</span>(dis,<span class="number">1</span>,<span class="built_in">sizeof</span>(dis));</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())q.<span class="built_in">pop</span>();</span><br><span class="line">	dis[s]=<span class="number">0</span>;q.<span class="built_in">push</span>(s);</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="type">int</span> u=q.<span class="built_in">top</span>()%M;q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">if</span>(vis[u])<span class="keyword">continue</span>;vis[u]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(vis[t])<span class="keyword">return</span> ;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=head[u];~i;i=a[i].next)&#123;</span><br><span class="line">			<span class="type">int</span> v=a[i].v,w=a[i].w;</span><br><span class="line">			<span class="keyword">if</span>(dis[u]+w&gt;=dis[v])<span class="keyword">continue</span>;</span><br><span class="line">			dis[v]=dis[u]+w;q.<span class="built_in">push</span>(dis[v]*M+v);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/12/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">网络流相关</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-12 16:06:50" itemprop="dateCreated datePublished" datetime="2022-07-12T16:06:50+08:00">2022-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-28 22:00:58" itemprop="dateModified" datetime="2022-08-28T22:00:58+08:00">2022-08-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/%E7%BD%91%E7%BB%9C%E6%B5%81/" itemprop="url" rel="index"><span itemprop="name">网络流</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h2><p>内容主要为自己对网络流的一些理解和一些典例。</p>
+<h3 id="一些约定："><a href="#一些约定：" class="headerlink" title="一些约定："></a>一些约定：</h3><ul>
+<li>s 为源点，t 为汇点</li>
+<li>对于集合 $S,T,T\subseteq S$，约定 $S-T$ 为从 $S$ 中删掉 $T$ 中每个元素之后的集合</li>
+<li>网络流图为 $G=(V,E)$，边 $(u,v)$ 容量记为 $c_{u,v}$ </li>
+</ul>
+<h3 id="最大流最小割定理和增广路定理"><a href="#最大流最小割定理和增广路定理" class="headerlink" title="最大流最小割定理和增广路定理"></a>最大流最小割定理和增广路定理</h3><p>这两个定理是网络流问题的核心定理。</p>
+<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>最大流 = 最小割。</p>
+<p>残量网络中不存在增广路是当前流为最大流的充要条件。</p>
+<h4 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h4><ol>
+<li><p>若当前流为最大流，显然不存在增广路。</p>
+</li>
+<li><p>若当前流等于某个割，显然当前流为最大流，且该割为最小割。</p>
+</li>
+<li><p>若不存在增广路，我们证明当前流等于一个割。</p>
+</li>
+</ol>
+<p>令 $S=\{v,\exist\ p_{s,v}\}$，$S$ 即 $s$ 在残量网络中能到达的点的集合。令 $T=V-S$。显然 $(S,T)$ 是一个割，对于当前残量网络 $G’=(V,E’)$，一定有 $\forall x \in S,\forall y\in T$，边 $(x,y)$ 满流，否则 $y\in S$。容易证明当前流恰好为 $S$ 到 $T$ 的所有边的容量和，也就是割的大小。因为此时原图 $S$ 到 $T$ 所有的边流量为容量，$T$ 到 $S$ 的边流量为 $0$，所以流量为 $S$ 到 $T$ 的边的流量之和，也就是割 $S,T$。  </p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><h4 id="Dinic"><a href="#Dinic" class="headerlink" title="Dinic"></a>Dinic</h4><p>考虑对残量网络 bfs 分层，强制流量只能流向下一层，再进行一次 dfs，求限制下所有的增广路，搞定。</p>
+<p>复杂度 $O(n^2m)$</p>
+<p>每次增广复杂度为 $O(nm)$，共计增广 $n$ 次，因为每次增广都会让 $dep[t]$ 增加 1。</p>
+<p>每次增广的复杂度不是很好证，但加了当前弧优化其实就很松。</p>
+<p>代码记在脑子里了，不放了。</p>
+<h4 id="ISAP"><a href="#ISAP" class="headerlink" title="ISAP"></a>ISAP</h4><p>咕咕咕</p>
+<h4 id="HLPP"><a href="#HLPP" class="headerlink" title="HLPP"></a>HLPP</h4><p>咕咕咕</p>
+<h3 id="费用流相关"><a href="#费用流相关" class="headerlink" title="费用流相关"></a>费用流相关</h3><p>一般指最小费用最大流，暂时没啥感觉，不写。</p>
+<h2 id="最小割"><a href="#最小割" class="headerlink" title="最小割"></a>最小割</h2><p>非常常见的一个网络流模型应用。</p>
+<h3 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h3><p>通过构造一个图的割到决策方案的映射，其中决策必须可拆分计算，求出最小的代价，一般来说决策的限制如果比较奇怪就应该考虑最小割。</p>
+<p>常用于规划 $0/1$ 独立贡献决策问题。</p>
+<h3 id="适用条件"><a href="#适用条件" class="headerlink" title="适用条件"></a>适用条件</h3><ul>
+<li>不能存在负容量边权，我不知道有没有人会，反正我是不会。</li>
+</ul>
+<h3 id="1-最大闭合权子图问题"><a href="#1-最大闭合权子图问题" class="headerlink" title="1.最大闭合权子图问题"></a>1.最大闭合权子图问题</h3><p>给定一张有向图，点带权（权可以为负），选一个子图出来，要求如果 $u$ 选了那如果存在 $(u,v)$，那 $v$ 也要选。求最大权值和。</p>
+<p>决策贡献独立，决策类型为 0/1。应该可以最小割。令割中与 $s$ 同集合的点为选择的点，与 $t$ 同一个集合的点为未选择的点。那么每个点应该和 $t$ 连一条流量为权值的相反数的边，代表选它的代价，再对于每条 $(u,v)$ 从 $u$ 向 $v$ 连一条 inf 边,代表选了 $u$ 不选 $v$ 的代价。考虑这张图的一个最小割，它必然不会包含 inf 边，也就是说，我们选了 $u$ 在 $s$ 中一定会让 $v$ 在 $s$ 中，所以一定合法。然后发现原问题的每一个答案都可以和图上的一个不含 inf 边的割一一对应，故最小割就是原问题的答案的相反数。</p>
+<p>这张图有负数，不行，所以考虑先默认选所有正数。那么选负数的代价为相反数，不选正数的代价为本身。</p>
+<p>那么应该从 $s$ 向正权点连边，从负权点向 $t$ 连边，最后对于 $(u,v)$ 从 $u$ 向 $v$ 连 inf 边即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%9D%82%E9%A1%B9/%E4%B8%80%E4%BA%9B%E7%A7%91%E6%8A%80%E7%9A%84%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/12/%E6%9D%82%E9%A1%B9/%E4%B8%80%E4%BA%9B%E7%A7%91%E6%8A%80%E7%9A%84%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">一些科技的总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-12 16:05:26" itemprop="dateCreated datePublished" datetime="2022-07-12T16:05:26+08:00">2022-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-16 17:17:40" itemprop="dateModified" datetime="2022-07-16T17:17:40+08:00">2022-07-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7/" itemprop="url" rel="index"><span itemprop="name">技巧</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="总结一些科技"><a href="#总结一些科技" class="headerlink" title="总结一些科技"></a>总结一些科技</h2><p>主要收录比较神仙的，实用的算法技巧。</p>
+<h3 id="快速取模"><a href="#快速取模" class="headerlink" title="快速取模"></a>快速取模</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>找到一个近似 $m^{-1}$ 的形如 $m’&gt;&gt;k$ 的数。</p>
+<p>不妨就取 $k=64,m’=\lceil\frac{2^{64}}{m}\rceil$</p>
+<p>然后 $a\%b = a-a\times\lfloor\frac{a}{b}\rfloor = a-(a\times m’&gt;&gt;64)$</p>
+<p>纯纯的整数运算，经过误差分析，可以知道后式结果最多多减去一个 $m$，判断掉就行。</p>
+<p>因为 $a$ 常常是 $\text{long long}$ 级别的数，所以开 <code>__int128</code></p>
+<p>优化据说有 $5-6$ 倍，如果模数是 <code>const</code>，编译器会自动帮忙用这个优化。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett</span>&#123;</span><br><span class="line">	<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> im;<span class="type">int</span> m;</span><br><span class="line">	<span class="built_in">barrett</span>(<span class="type">unsigned</span> m) :<span class="built_in">m</span>(m), <span class="built_in">im</span>(~<span class="number">0ull</span>/m+<span class="number">1</span>) &#123;&#125;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> z=(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;<span class="built_in">bt</span>(<span class="number">1</span>);</span><br><span class="line">  bt=<span class="built_in">barrett</span>(p);</span><br><span class="line">  c=<span class="built_in">bt</span>(a,b);</span><br><span class="line"><span class="comment">//c=a*b%p</span></span><br></pre></td></tr></table></figure>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>为啥 <code>im,m</code> 用 <code>ull,uint</code>，因为 <code>m=2</code> 时，会爆 <code>long long</code>。</li>
+<li>可以重载括号。</li>
+</ul>
+<h3 id="光速乘"><a href="#光速乘" class="headerlink" title="光速乘"></a>光速乘</h3><p>用于计算两个 long long 级别的数乘积对一个 long long 级别的数取模的结果。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">multi</span><span class="params">(<span class="type">long</span> <span class="type">long</span> a,<span class="type">long</span> <span class="type">long</span> b,<span class="type">long</span> <span class="type">long</span> mod)</span></span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> x=(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)a*b-(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)((<span class="type">long</span> <span class="type">double</span>)a*b/mod<span class="number">-0.5</span>)*mod;</span><br><span class="line">    <span class="keyword">return</span> x&gt;=mod?x-mod:x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">mul</span><span class="params">(<span class="type">long</span> <span class="type">long</span> A, <span class="type">long</span> <span class="type">long</span> B, <span class="type">long</span> <span class="type">long</span> P)</span></span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> C = A * B - (<span class="type">long</span> <span class="type">long</span>)((<span class="type">long</span> <span class="type">double</span>)A * B / P + <span class="number">0.1</span>) * P;</span><br><span class="line">	<span class="keyword">return</span> C &lt; <span class="number">0</span> ? C + P : C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>原理很简单，long double 的精度误差虽然有，但是我们 -0.5 之和核查范围变成了 [0,1]，肯定不会超出这个。</p>
+<p>C++ 标准中要求了 unsigned long long 类型在溢出后保证为原值对 $2^{64}$ 取模的结果，所以直接用就行。</p>
+<p>第二个原理类似，在 G++ 编译器中，O2 中，保证 long long 的溢出行为有定义。</p>
+<p>推荐用第一个，各个平台都不会出锅。</p>
+<p>如果 $P\leq 10^{14}$ 可以改成 double</p>
+<p>判断一下是否减少了就行。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%BB%93%E8%AE%BA%E8%AF%81%E6%98%8E%E6%B1%87%E6%80%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -670,7 +968,7 @@ T_1-T_2=-2(A_2B_2-A_2B_1i)</script><p>弄出 $T_1,T_2$ 的系数表示法就行�
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-22 16:35:16" itemprop="dateModified" datetime="2022-09-22T16:35:16+08:00">2022-09-22</time>
+                <time title="修改时间：2022-10-04 21:25:22" itemprop="dateModified" datetime="2022-10-04T21:25:22+08:00">2022-10-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -715,6 +1013,7 @@ T_1-T_2=-2(A_2B_2-A_2B_1i)</script><p>弄出 $T_1,T_2$ 的系数表示法就行�
 <li>如果要对不增序列操作，那么 <code>comp</code> 为大于号，<code>lower_bound</code> 返回第一个小于等于它的位置，<code>upper_bound</code> 返回第一个小于它的位置。</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">lower_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value, Compare comp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ForwardIt it;</span><br><span class="line">    <span class="keyword">typename</span> std::iterator_traits&lt;ForwardIt&gt;::difference_type count, step;</span><br><span class="line">    count = std::<span class="built_in">distance</span>(first, last);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        it = first;</span><br><span class="line">        step = count / <span class="number">2</span>;</span><br><span class="line">        std::<span class="built_in">advance</span>(it, step);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">comp</span>(*it, value)) &#123;</span><br><span class="line">            first = ++it;</span><br><span class="line">            count -= step + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count = step;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">upper_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value, Compare comp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ForwardIt it;</span><br><span class="line">    <span class="keyword">typename</span> std::iterator_traits&lt;ForwardIt&gt;::difference_type count, step;</span><br><span class="line">    count = std::<span class="built_in">distance</span>(first,last);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        it = first; </span><br><span class="line">        step = count / <span class="number">2</span>;</span><br><span class="line">        std::<span class="built_in">advance</span>(it, step);</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">comp</span>(value, *it)) &#123;</span><br><span class="line">            first = ++it;</span><br><span class="line">            count -= step + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count = step;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="atan2"><a href="#atan2" class="headerlink" title="atan2"></a>atan2</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">atan2</span><span class="params">(<span class="type">double</span> x,<span class="type">double</span> y)</span></span>&#123;</span><br><span class="line">    <span class="comment">//返回 [actan(y/x)],[-Pi,Pi)</span></span><br><span class="line">    <span class="comment">//计算几何的神，怎么神就不用说了吧。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h3><ul>
 <li>STL 内的所有基于比较的容器，都需要定义一个满足<strong>严格弱序</strong>的比较符号 <code>&lt;</code>，要求如下：<ul>
 <li>满足传递性：$a&lt;b,b&lt;c\rightarrow a&lt;c$</li>
@@ -1137,7 +1436,7 @@ f_{now}=1+\sum f_{son(now,i)} \times prime(size_{son(now,i)})</script><p>但这�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1150,7 +1449,7 @@ f_{now}=1+\sum f_{son(now,i)} \times prime(size_{son(now,i)})</script><p>但这�
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -211,6 +211,223 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/21/0824%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/21/0824%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">0824考试总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-21 11:14:34" itemprop="dateCreated datePublished" datetime="2022-09-21T11:14:34+08:00">2022-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-30 16:44:02" itemprop="dateModified" datetime="2022-09-30T16:44:02+08:00">2022-09-30</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="某场考试总结"><a href="#某场考试总结" class="headerlink" title="某场考试总结"></a>某场考试总结</h2><p>考完了一个月之后再来写总结也是没谁了。。。</p>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0112">考试</a></p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>简单题，随手构造出来就行。</p>
+<p>可以加强，比如弄成质数个，或者干脆 $10^{18}$ 个。</p>
+<p>然而有个结论，考虑往一个字符串后添加 $k$ 个 $0/1$，那么本质不同子序列个数一定可以写成 $k(x-b)+x$ 的形式，其中 $x$ 为该字符串的本质不同子序列个数，$b$ 为上一个 $0/1$ 前一个位置的答案。根据这个玩意来构造，不会太好做。</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>发现本质不同子序列个数随 $n$ 的增长近乎呈指数增长，猜想满足条件的不会太多，所以暴力处理即可。</p>
+<p>实际上设 $DP$ 状态，$dp[i]$ 表示考虑到前 $i$ 个字符，本质不同子串个数，有转移 $dp[i]=2\times dp[i-1]-dp[lst[i]-1]$，$lst$ 表示 $i$ 处字符上一次出现的位置。</p>
+<p>于是设 $dp[i][j][k]$ 为考虑前 $i$ 个字符，上一个 $0$ 处本质不同子序列数量 $j$，上一个 $1$ 处本质不同子序列数量为 $k$，枚举 $0,1$，直接转移。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>我想的是折半之后爆搜，然后剪一下枝，比 $std$ 快 $5$ 倍。</p>
+<p>确实也是折半，但是其实可以考虑偏序关系，两个 $(x,y,z)$ 三元组合并，不妨要求 $x_1+x_2\le y_1+y_2\le z_1+z_2$，然后值为 $z_1+z_2-(x_1+x_2)$，本质上是个二维偏序。</p>
+<p>还可以剪个枝，强制要求 $x_1\le y_1\le z_1$。同样能对应上去。</p>
+<p>实际上还可以发现强制要求 $z_2\le y_2\le x_2$ 也没有问题，证明比较繁琐，故省略。</p>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>很妙的一道题，我想的是，需要将相同城市联系起来，考虑它们在虚树上的关系，每个点需要和它倾向的所有点连边，然后实际上只会连 $O(n)$ 条边，连好之后 $tarjan$ 求下 $SCC$ 就行。</p>
+<p>有一种非常神奇的做法，考虑点分治，暴力求分治中心的答案，然后考虑其它点，发现之后的所有点的答案都不会跨过分治中心，可以暴力计算。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/20/20220920%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/20/20220920%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20220920总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-20 19:27:26 / 修改时间：20:30:33" itemprop="dateCreated datePublished" datetime="2022-09-20T19:27:26+08:00">2022-09-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="某场考试T1"><a href="#某场考试T1" class="headerlink" title="某场考试T1"></a><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0123/problem/A">某场考试T1</a></h2><p>怎么说，题不难，但是需要想一下。</p>
+<p>考虑右端点进行贪心的思路挺妙的。</p>
+<h2 id="某场考试T2"><a href="#某场考试T2" class="headerlink" title="某场考试T2"></a><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0123/problem/B">某场考试T2</a></h2><p>比较套路的题，先弄出一个 $t\times n^4$ 的凑合做，然后发现两维转移系数独立，转移答案为三角形和形式乘上两维系数，可以考虑固定第二维，单独计算第一维不同转移系数对应的式子，每一种系数的变化量为 $O(1)$，所以一次转移可以做到 $O(n)$。</p>
+<h2 id="某场考试T3"><a href="#某场考试T3" class="headerlink" title="某场考试T3"></a><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0123/problem/C">某场考试T3</a></h2><p>神仙题，考场上猜到树一定有解，但是想的是通过背包来构造解，事实上，可以归纳的证明每棵子树带来的差异可以取 $[-sz_u,sz_u]$ 中的任意值，所以对于树暴力构造一条从根到某个点的路径，可以满足路径两边大小相等。</p>
+<p>考虑图上的结果。</p>
+<p>09 年的一篇集训队论文告诉我们对于图上的问题，往往可以考虑其生成树的解法，从而进行拓展，发现无向图的生成树没有横插边，所以直接选取生成树上的答案，由于没有返祖边，所以原来合法的同样合法。</p>
+<h2 id="某场考试T4"><a href="#某场考试T4" class="headerlink" title="某场考试T4"></a><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0123/problem/D">某场考试T4</a></h2><p>也是比较套路的题。</p>
+<p>很明显本质上是给你个一次函数做路径边权，然后 $k$ 的值为 $1$，所以计算出每个点每个 $k$ 的值即可。</p>
+<p>我选择分层图跑 $dij$ 外加大力卡常，但这是一种非常 $SB$ 的行为，$dij$ 本质上还是保证了转移的无环性，但 $TM$ 这个转移本来就无环还跑你大爷的 $dij$，暴力 $dp$ 出来做凸包就行。</p>
+<p>然后从 $n$ 的各个在凸包上的 $k$，倒推回去看那些点可能被用到，倒推可以写成记搜，这样只用存一遍边。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/19/20220919%E5%B0%8F%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/19/20220919%E5%B0%8F%E8%AE%B0/" class="post-title-link" itemprop="url">20220919小记</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-19 20:49:12 / 修改时间：21:16:52" itemprop="dateCreated datePublished" datetime="2022-09-19T20:49:12+08:00">2022-09-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="某道-GCD-题"><a href="#某道-GCD-题" class="headerlink" title="某道 GCD 题"></a>某道 GCD 题</h2><p>给一个 $n\times m$ 矩阵，元素为 $1-n\times m$ 的排列，问你所有子矩阵的 GCD 之和。</p>
+<p>反正我想的是考虑一个右下角，移动左上角来统计答案，这样的话考虑到 gcd 的变化次数是$\log$ 的，说不定有救，但是需要完成区间取 GCD，这个不好做。</p>
+<p>想一下，这个做法没有利用到每个数只出现一次的性质，通常这种只出现一次的性质往往和倍数这些相联系，不妨换个思路考虑，考虑 $i$ 的倍数的子矩阵的数量，然后发现容斥一下就可以得到答案。统计 $i$ 的倍数的子矩阵数量不难。</p>
+<h2 id="NOI2021D1T1"><a href="#NOI2021D1T1" class="headerlink" title="NOI2021D1T1"></a>NOI2021D1T1</h2><p>我想了一下，链是会做的，<strong>树链剖分</strong>，就是把树变成 $\log$ 个链来做。</p>
+<p>然后其实每条重链按照链的方式来做，重链的交汇处需要特殊处理。</p>
+<p>不妨把边下放到点，发现如果一个点的父亲的修改时间晚于该点的修改时间，那么这个点所代表的链就没用，所以对每个点维护两个东西，一个是该点的修改时间，另一个是该点代表的边是否被修改成重边。</p>
+<p>查询的时候对链的交界处需要查修改时间判断是否有效。</p>
+<p>其实有个更简易的方式，就是把修改看成染色，一条边有贡献当且仅当其两个端点颜色相同，这个很容易用树剖维护。</p>
+<p>这两种方式其实体现出处理边的两种方式——下放到点考虑，考虑两个端点的状态。</p>
+<p>需要灵活运用这两种方式解题。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/05/%E9%9A%8F%E8%AE%B020220904/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -782,345 +999,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/04/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E4%BB%8EZKW%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9C%8B%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/04/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E4%BB%8EZKW%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9C%8B%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8/" class="post-title-link" itemprop="url">从ZKW线段树看线段树的性质</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-08-04 20:40:11 / 修改时间：20:41:01" itemprop="dateCreated datePublished" datetime="2022-08-04T20:40:11+08:00">2022-08-04</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="从ZKW线段树看线段树的性质"><a href="#从ZKW线段树看线段树的性质" class="headerlink" title="从ZKW线段树看线段树的性质"></a>从ZKW线段树看线段树的性质</h2><p>最近遇到了很多线段树性质相关的题目，故在此做一个总结。</p>
-<h3 id="常规建树"><a href="#常规建树" class="headerlink" title="常规建树"></a>常规建树</h3><h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt)</span></span>&#123;</span><br><span class="line">    <span class="built_in">do_something</span>();</span><br><span class="line">	<span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">build</span>(l,mid,rt&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">build</span>(mid+<span class="number">1</span>,r,rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><ul>
-<li>左儿子长度不小于右儿子。</li>
-<li>节点编号 <code>rt</code> 描述了从根到自身的父子关系，也间接描述了该点长度和根节点长度的关系，具体的，根节点的最大或最小长度是一个关于该节点长度的一次函数，这个一次函数只由 <code>rt</code> 决定。</li>
-<li>编号最大的节点不一定是 <code>r</code>，事实上可以在 $\log n$ 的时间内求出，如果左儿子多一层，那么一定在左儿子，否则在右儿子，<strong>决定某个儿子是否会多一层，当且仅当目前长度为奇数，且 popcount 值为 2</strong>。</li>
-</ul>
-<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p><a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/showproblem.php?pid=7204">一道简单的题</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6025">一道比较简单的题</a></p>
-<h3 id="非常规建树"><a href="#非常规建树" class="headerlink" title="非常规建树"></a>非常规建树</h3><p>非常规建树一般会指定建树的 <code>mid</code> 位置。</p>
-<h4 id="区间覆盖数"><a href="#区间覆盖数" class="headerlink" title="区间覆盖数"></a>区间覆盖数</h4><p>即覆盖一个区间 $[l,r]$ 的最小线段数。</p>
-<p>先转成 $(l,r)$，然后依次跳叶节点 $l,r$ 的父亲，先判断 $l,r$ 的父亲是否相同，相同就可以走人了。</p>
-<p>如果 $l$ 作为左儿子跳上去，那么该节点的右儿子会对该区间贡献一次，因为该节点的右儿子的父亲超出了区间，但自身在区间内。如果 $r$ 作为右儿子跳上去，那么该节点的左儿子会对区间贡献一次，原因同理，如此就可以找到区间覆盖数，这也是 ZKW线段树 的原理。</p>
-<h4 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h4><p>给定一个指定 <code>mid</code> 节点的线段树，需要支持 <code>rotate</code> 一个节点，<code>rotate</code> 定义为伸展树(splay)的 <code>rotate</code>，强制在线询问区间覆盖数。</p>
-<p>先考虑没有修改，那么就是找到 $l,r$ 的 $lca$，然后一路统计 $l$，$r$ 作为左右儿子的次数即可，可以用倍增快速解决。</p>
-<p>修改本质上就是断边和加边，用 LCT 维护。</p>
-<h3 id="ZKW线段树简介"><a href="#ZKW线段树简介" class="headerlink" title="ZKW线段树简介"></a>ZKW线段树简介</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/03/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/03/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">简单数论函数和应用</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-03 13:27:13" itemprop="dateCreated datePublished" datetime="2022-08-03T13:27:13+08:00">2022-08-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-17 15:31:15" itemprop="dateModified" datetime="2022-08-17T15:31:15+08:00">2022-08-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="简单数论函数和应用"><a href="#简单数论函数和应用" class="headerlink" title="简单数论函数和应用"></a>简单数论函数和应用</h1><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/mobius/">OI-WIKI 莫比乌斯反演</a></li>
-<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/poly/dgf/#dirichlet">OI-WIKI 迪利克雷卷积</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/An-Amazing-Blog/ji-miao-di-mu-bi-wu-si-fan-yan">从莫比乌斯到欧拉</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-从基础开始</a></li>
-</ul>
-<h2 id="部分定义和约定"><a href="#部分定义和约定" class="headerlink" title="部分定义和约定"></a>部分定义和约定</h2><h3 id="符号"><a href="#符号" class="headerlink" title="符号"></a>符号</h3><ul>
-<li>$id$ ：$id$ 数论函数，$id(x)=x$</li>
-<li>$\epsilon$ : 单位函数 $\epsilon(x)=[x=1]$</li>
-<li>$[]$ ：中扩号表达式，中扩号内条件成立则为 $1$，否则为 $0$</li>
-<li>$\boldsymbol{1}$：$\boldsymbol{1}$ 函数，若 $f(n)=\boldsymbol{1}$，则 $\forall x \in N^+,f(x)=1$</li>
-</ul>
-<h3 id="数论函数"><a href="#数论函数" class="headerlink" title="数论函数"></a>数论函数</h3><ul>
-<li><p>一个数论函数定义域为正整数，值域为复数。</p>
-</li>
-<li><p>一个数论函数为积性函数，当且仅当 $\forall a,b,\gcd(a,b)=1\rightarrow f(a\times b)=f(a)\times f(b)$</p>
-</li>
-<li>一个数论函数为完全积性函数，当且仅当 $\forall a,b,f(a\times b)=f(a)\times f(b)$</li>
-</ul>
-<h3 id="迪利克雷卷积"><a href="#迪利克雷卷积" class="headerlink" title="迪利克雷卷积"></a>迪利克雷卷积</h3><p>迪利克雷卷积为数论函数的乘法操作，定义两个数论函数的迪利克雷卷积定义为</p>
-<script type="math/tex; mode=display">
-g=f*h,g(n)=\sum\limits_{d|n} f(d)\times h(\frac{n}{d})</script><p>迪利克雷卷积的除法操作就是逆操作，一般只能构造得到。</p>
-<p>迪利克雷卷积的性质（证明见下一部分）：</p>
-<ul>
-<li>两个积性函数的迪利克雷卷积仍是积性函数。</li>
-<li>两个积性函数的迪利克雷卷积除法结果仍是积性函数。</li>
-</ul>
-<p><strong>为了方便，以下所有数论函数的乘法未经说明均为迪利克雷卷积。</strong></p>
-<h3 id="常见积性函数"><a href="#常见积性函数" class="headerlink" title="常见积性函数"></a>常见积性函数</h3><ul>
-<li>欧拉函数 $\phi(n)$</li>
-<li>莫比乌斯函数 $\mu(n)$</li>
-<li>约数个数函数 $d(n)$</li>
-</ul>
-<h2 id="一些结论的简单证明"><a href="#一些结论的简单证明" class="headerlink" title="一些结论的简单证明"></a>一些结论的简单证明</h2><h3 id="迪利克雷卷积的性质"><a href="#迪利克雷卷积的性质" class="headerlink" title="迪利克雷卷积的性质"></a>迪利克雷卷积的性质</h3><h4 id="简单性质"><a href="#简单性质" class="headerlink" title="简单性质"></a>简单性质</h4><ul>
-<li>积性函数 $f$，满足 $f(1)=1$</li>
-</ul>
-<h4 id="逆元存在且唯一"><a href="#逆元存在且唯一" class="headerlink" title="逆元存在且唯一"></a>逆元存在且唯一</h4><p>所有数论函数存在逆元，即对于所有 $f$，存在 $g$ 使得 $f*g=\epsilon$，直接构造对应的 $g(n)$ 即可。</p>
-<script type="math/tex; mode=display">
-g(n)=-\dfrac{\sum\limits_{d|n,d\neq n}{f(d)\times g(\frac{n}{d})}}{f(1)}\\
-g(1)=\frac{1}{f(1)}</script><p>因此数论函数的逆元存在且唯一。</p>
-<h4 id="交换律"><a href="#交换律" class="headerlink" title="交换律"></a>交换律</h4><p>$f <em> g=g </em> h$，显然成立</p>
-<h4 id="结合律"><a href="#结合律" class="headerlink" title="结合律"></a>结合律</h4><p>$f <em> g </em> h=f <em> (g </em> h)$，成立，但不显然。</p>
-<p>令 $f <em> g </em> h=f_1,f <em> (g </em> h)=f_2,f <em> g=a,g </em> h=h * g=b$</p>
-<script type="math/tex; mode=display">
-f_1(n)=\sum\limits_{d_1|n} a(d_1)\times h(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} f(d_2)\times g(\frac{d_1}{d_2})\times h(\frac{n}{d_1})</script><script type="math/tex; mode=display">
-f_2(n)=\sum\limits_{d_1|n} b(d_1)\times f(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} h(d_2)\times g(\frac{d_1}{d_2})\times f(\frac{n}{d_1})</script><p>$g(\frac{d_1}{d_2})$ 抵掉。剩下两项的和显然是相等的，证明方式是枚举 $\frac{n\times d_2}{d_1}$，然后就是一个交换求和符号。</p>
-<h4 id="分配律"><a href="#分配律" class="headerlink" title="分配律"></a>分配律</h4><p>$f<em>(g+h)=f</em>g+f*h$</p>
-<p>显然成立。</p>
-<h4 id="两个积性函数的迪利克雷卷积为积性函数"><a href="#两个积性函数的迪利克雷卷积为积性函数" class="headerlink" title="两个积性函数的迪利克雷卷积为积性函数"></a>两个积性函数的迪利克雷卷积为积性函数</h4><p>$f,h$ 为积性函数，则 $f*g=h$，$h$ 为积性函数。</p>
-<p>$\forall a,b \ , \gcd(a,b)=1\ ,h(a\times b)=h(a)\times h(b)$，满足</p>
-<script type="math/tex; mode=display">
-\begin{align}
-h(a\times b)=&\sum\limits_{d_1|a}\sum\limits_{d_2|b}f(d_1\times \frac{b}{d_2})\times g(\frac{a}{d_1}\times d_2)\\
-=&\sum\limits_{d_1|a}\sum\limits_{d_2|b}f(d_1)\times f(\frac{b}{d_2})\times g(\frac{a}{d_1})\times g( d_2)\\
-=&\sum\limits_{d_1|a} f(d_1)\times g(\frac{a}{d_1})\sum\limits_{d_2|b} f(\frac{b}{d_2})\times g(d_2)\\
-=&h(a)\times h(b)
-\end{align}</script><h4 id="两个积性函数的迪利克雷卷积除法为积性函数"><a href="#两个积性函数的迪利克雷卷积除法为积性函数" class="headerlink" title="两个积性函数的迪利克雷卷积除法为积性函数"></a>两个积性函数的迪利克雷卷积除法为积性函数</h4><p>证明 $f,h$ 为积性函数，且 $h*g=f$，则 $g$ 为积性函数。</p>
-<p>令 $h’<em>h=\epsilon$，则 $g=f</em>h’$</p>
-<p>即证明积性函数的逆元也为积性函数。</p>
-<p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/poly/dgf/#_10">证明</a></p>
-<p>使用了数学归纳法</p>
-<h3 id="常见的积性函数关系"><a href="#常见的积性函数关系" class="headerlink" title="常见的积性函数关系"></a>常见的积性函数关系</h3><ul>
-<li>$\mu* \boldsymbol{1}=\epsilon$</li>
-<li>$\phi* \boldsymbol{1}=\operatorname{id}$</li>
-</ul>
-<h2 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h2><p><strong>莫比乌斯反演的常见做法是用其它易于交换求和符号的项替换掉不容易求和的相关项。</strong></p>
-<p>不容易交换求和的项一般有 $d,\gcd$ 等。</p>
-<h3 id="数论分块"><a href="#数论分块" class="headerlink" title="数论分块"></a>数论分块</h3><p>莫比乌斯反演或者其它数数题中常用的优化方式。</p>
-<p>核心原理是对于 $[1,n]$ 中所有数 $i$，$\frac{n}{i}$  的结果只有 $\sqrt{n}$ 个。</p>
-<p>证明是容易的，对于 $[1,\sqrt{n}]$，一共有 $\sqrt{n}$ 个值，对于 $[\sqrt{n},n]$，一共也只有 $\sqrt{n}$ 个值。</p>
-<p>枚举的方式是先枚举一个 $l$，然后计算出一个最大的 $r$，满足 $\frac{n}{r}=\frac{n}{l}$，容易证明 $r=\big\lfloor\dfrac{n}{\lfloor\frac{n}{l}\rfloor}\big\rfloor$。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">1</span>,r=<span class="number">1</span>;l&lt;=n;l=r+<span class="number">1</span>,r=n/(n/l))&#123;</span><br><span class="line">	<span class="built_in">do_something</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="莫比乌斯函数"><a href="#莫比乌斯函数" class="headerlink" title="莫比乌斯函数"></a>莫比乌斯函数</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><script type="math/tex; mode=display">
-\mu(n)=
-\begin{cases}
-1&n=1\\
-0&n\text{ 含有平方因子}\\
-(-1)^k&k\text{ 为 }n\text{ 的本质不同质因子个数}\\
-\end{cases}</script><h4 id="mu-boldsymbol-1-epsilon"><a href="#mu-boldsymbol-1-epsilon" class="headerlink" title="$\mu*\boldsymbol{1}=\epsilon$"></a>$\mu*\boldsymbol{1}=\epsilon$</h4><p>这是核心结论了。</p>
-<p>考虑证明 $\forall n&gt;1,\mu(n)=0$。</p>
-<p>考虑每个约数的贡献，显然每个质因子只需要考虑一次，如果质因子出现多次，那么根据定义贡献为 $0$。</p>
-<p>设有 $k$ 个质因子，那么选出奇数个和选出偶数个的方案显然是相等的，所以和为 $0$。</p>
-<h3 id="莫比乌斯反演-1"><a href="#莫比乌斯反演-1" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h3><h4 id="一般形式"><a href="#一般形式" class="headerlink" title="一般形式"></a>一般形式</h4><script type="math/tex; mode=display">
-\begin{align}
-f*\bold{1}=g\iff& g*\mu=f \\
-g(n)=\sum\limits_{d|n}f(d)\iff& f(n)=\sum\limits_{d|n}\mu(d)\times g(\frac{n}{d})
-\end{align}</script><p>证明是显然的，因为 $\boldsymbol{1}*\mu=\epsilon$</p>
-<h4 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h4><p>$[\gcd(i,j)=1]=\sum\limits_{d|\gcd(i,j)}\mu(d)$</p>
-<p>枚举 $d$，即可快速计算。</p>
-<h4 id="欧拉反演"><a href="#欧拉反演" class="headerlink" title="欧拉反演"></a>欧拉反演</h4><p>名字是<a target="_blank" rel="noopener" href="https://0x131cc05.github.io/">杰哥</a>取的。</p>
-<h5 id="常用形式"><a href="#常用形式" class="headerlink" title="常用形式"></a>常用形式</h5><p>$\gcd(i,j)=\sum\limits_{d|\gcd(i,j)}\phi(d)$</p>
-<h5 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h5><p>即证明 $\phi*\boldsymbol{1}=\operatorname{id}$ 。</p>
-<p>我们只需要证明 $\phi*\boldsymbol{1}$ 在 $p^c$ 处取值为 $\operatorname{id}(p^c)$，由于 $\phi,\boldsymbol{1},\operatorname{id}$ 均为积性函数，自然在所有位置成立。</p>
-<script type="math/tex; mode=display">
-\begin{align}
-(\phi*\bold{1})(p^c)=&1+\sum _{i=1}^{c} (p-1)\times p^{i-1}\\
-=& 1+\frac{p^c-1}{p-1}\times(p-1)\\
-=&p^c\\
-=&\operatorname{id}(p^c)
-\end{align}</script><h2 id="筛法"><a href="#筛法" class="headerlink" title="筛法"></a>筛法</h2><p>介绍四大筛法。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/02/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/02/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Exchange-Argument小总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-02 23:04:58" itemprop="dateCreated datePublished" datetime="2022-08-02T23:04:58+08:00">2022-08-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-17 15:32:48" itemprop="dateModified" datetime="2022-08-17T15:32:48+08:00">2022-08-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Exchange-Argument"><a href="#Exchange-Argument" class="headerlink" title="Exchange-Argument"></a>Exchange-Argument</h2><ul>
-<li><p>参考资料：2022 集训队论文《浅谈一类基于交换的贪心在信息学竞赛中的应用》</p>
-</li>
-<li><p>本文主要介绍树上形式。</p>
-</li>
-</ul>
-<h3 id="一般形式"><a href="#一般形式" class="headerlink" title="一般形式"></a>一般形式</h3><p>你需要为 $n$ 个元素安排一个排名，得到一个序列 $a$，最小化某函数 $F(a)$。</p>
-<p>如果存在一个满足<strong>传递性和强完全性</strong>的关系 $\le$，满足 $a,b$ 均为元素， $ \forall a\le b,F(s_1+a+b+s_2)\le F(s_1+b+a+s_2)$，则按照 $\le$ 排序后的排名可以最小化 $F(a)$。</p>
-<p>典例为 NOIP2012 国王游戏。</p>
-<p>我们在这里略去证明，详见参考资料。</p>
-<ul>
-<li>强完全性指 $\forall  a,b, a\le b\bigvee b\le a$，显然满足强完全性一定满足自反性。</li>
-<li>条件中 $\{s_1+a+b+s_2\}$ 为全集。</li>
-</ul>
-<h3 id="树上问题"><a href="#树上问题" class="headerlink" title="树上问题"></a>树上问题</h3><h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p>给定一棵树，需要为树的每个节点安排排名 $p_u$，父节点的排名需要低于子节点。每个点有一个价值 $c_i$，需要最小化 $\sum c_u\times p_u$。</p>
-<h4 id="分析与结论"><a href="#分析与结论" class="headerlink" title="分析与结论"></a>分析与结论</h4><p>唯一的变化是，对于原问题元素的比较 $\le$，拓展到了对于子序列的比较，即 $a,b$ 为原来元素的一个序列。</p>
-<p><strong>以下是一个重要结论</strong></p>
-<p>考虑一个元素 $v$，我们希望说明如果它的父亲 $u$， $u&gt;v$，那么 $v$ 一定在 $u$ 之后<strong>立刻被选择</strong>，此时将 $v,u$ 合并，可以得到一个规模为 $n-1$ 的子问题。</p>
-<p>考虑证明 $u$ 被选择后一定会选择 $v$，对于一个满足树的限制的排列 $p$，如果 $u,v$ 不相邻，那么由于 $v&gt;u$，所以对于序列 $p_1,p_2\dots u,p_l,p_{l1} \dots p_r,v,\dots,p_n$，一定有 $u&gt;p_{l,r} \bigvee p_{l,r}&gt;v$，否则 $v&lt;u$，如果为前者，那么交换 $u$ 和 $p_{l,r}$，后者同理，所以 $v$ 一定紧接着 $u$ 被选择。</p>
-<p>我们可以用以下两种方式解决问题。</p>
-<h4 id="方式1"><a href="#方式1" class="headerlink" title="方式1"></a>方式1</h4><p>考虑最大的元素 $v$，显然可以合并它和它的父亲 $u$，变成一个新的规模更小的问题。</p>
-<p>合并的过程可以用并查集维护连通块，注意区分并查集父亲和实际父亲。</p>
-<p>使用 <code>priority_queue</code> 或者 <code>set</code> 可以实现加入删除和查询最小值，<code>priority_queue</code> 的方式是同时维护一个代表删除的 <code>priority_queue</code>，实际上 <code>priority_queue</code> 会比 <code>set</code> 快 $1$ 倍。</p>
-<p>注意实现的时候，如果找到了根，那么根其实有可能不在 <code>priority_queue</code> 里面，可删除的 <code>priority_queue</code> 如果删除了不存在的元素是会出问题的，所以一定要特判掉。</p>
-<p>复杂度 $O(n\log n)$</p>
-<h4 id="方式2"><a href="#方式2" class="headerlink" title="方式2"></a>方式2</h4><p>我们考虑对每个子树求其答案。</p>
-<p>利用分析中的结论，不妨将一棵子树划分成一些<strong>必须连续选择的序列</strong>，作为<strong>树对排列顺序的要求</strong>，将这些连续的序列视为一个元素后，我们可以对序列按照正常方式排序得到最优解。</p>
-<p>划分序列的过程是对于一棵子树 $u$，将它的所有儿子的序列拿来排序，尝试将 $u$ 与最小的序列合并得到新的序列，如果 $u$ 当前所在的序列较大，由于结论我们知道合并后一定能拿到最优解，否则停止合并，此时 $u$ 所在序列的权值最小，一定会被最先选择，其中 $u$ 又一定会被第一个选择。</p>
-<p>容易发现合并的过程一定不会改变子树内的选择顺序。</p>
-<p>合并时采用启发式合并，利用 <code>set</code> 或 <code>priority_queue</code>  维护当前子树序列，复杂度为 $O(n\log^2n)$，但优势在于可以求出所有子树的答案。</p>
-<p>当然可以使用可并堆达到 $O(n\log n)$</p>
-<p>注意到其实一遍 <code>dfs</code> 就可以解决问题，因为启发式合并复杂度保证的来源是合并一次的复杂度为 $O(\min(|u|,|v|))$，所以并不需要提前计算子树大小，直接合并即可，<code>set</code> 或 <code>priority_queue</code> 的 <code>swap</code> 操作是 $O(1)$ 的。</p>
-<h3 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h3><p>Exc-Arg 除了直接解决问题外，也可以用来简化问题，将选择元素并重排的问题变为<strong>排序后</strong>选择子序列的问题。</p>
-<p>对于树上的情况，我还没有见到过相关的问题。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1192,7 +1070,7 @@ g(n)=\sum\limits_{d|n}f(d)\iff& f(n)=\sum\limits_{d|n}\mu(d)\times g(\frac{n}{d}
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1205,7 +1083,7 @@ g(n)=\sum\limits_{d|n}f(d)\iff& f(n)=\sum\limits_{d|n}\mu(d)\times g(\frac{n}{d}
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
