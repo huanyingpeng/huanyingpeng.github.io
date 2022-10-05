@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://huanyp.cn/2022/10/04/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/</loc>
+    
+    <lastmod>2022-10-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://huanyp.cn/2022/10/04/20220930%E6%80%BB%E7%BB%93/</loc>
+    
+    <lastmod>2022-10-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://huanyp.cn/2022/10/05/20221005%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/</loc>
     
     <lastmod>2022-10-05</lastmod>
@@ -11,25 +29,7 @@
   </url>
   
   <url>
-    <loc>http://huanyp.cn/2022/10/04/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/</loc>
-    
-    <lastmod>2022-10-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://huanyp.cn/2022/07/12/%E5%AF%B9%E7%AB%9E%E8%B5%9B%E6%9C%89%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E6%89%A9%E5%B1%95%E5%BA%93%EF%BC%8C%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E6%B3%95%E7%B3%96/</loc>
-    
-    <lastmod>2022-10-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://huanyp.cn/2022/10/04/20220930%E6%80%BB%E7%BB%93/</loc>
     
     <lastmod>2022-10-04</lastmod>
     
@@ -748,13 +748,6 @@
   </url>
   
   <url>
-    <loc>http://huanyp.cn/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/</loc>
-    <lastmod>2022-10-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://huanyp.cn/tags/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -770,6 +763,13 @@
   
   <url>
     <loc>http://huanyp.cn/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/</loc>
+    <lastmod>2022-10-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://huanyp.cn/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -897,7 +897,7 @@
   </url>
   
   <url>
-    <loc>http://huanyp.cn/categories/%E7%AE%97%E6%B3%95/%E7%BD%91%E7%BB%9C%E6%B5%81/</loc>
+    <loc>http://huanyp.cn/categories/%E9%A2%98%E8%A7%A3/%E8%80%83%E8%AF%95%E9%A2%98%E8%A7%A3/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -911,7 +911,7 @@
   </url>
   
   <url>
-    <loc>http://huanyp.cn/categories/%E9%A2%98%E8%A7%A3/%E8%80%83%E8%AF%95%E9%A2%98%E8%A7%A3/</loc>
+    <loc>http://huanyp.cn/categories/%E7%AE%97%E6%B3%95/%E7%BD%91%E7%BB%9C%E6%B5%81/</loc>
     <lastmod>2022-10-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
