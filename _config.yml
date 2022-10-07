@@ -4,7 +4,7 @@
 
 # Site
 title: 幻影彭的彩虹
-subtitle: '现在，这里是记录青春的扇区'
+subtitle: '记录青春的扇区'
 description: '幻影彭的个人博客'
 keywords:
 author: 幻影彭
@@ -41,7 +41,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: true
+post_asset_folder: false
 relative_link: false
 future: true
 highlight:
