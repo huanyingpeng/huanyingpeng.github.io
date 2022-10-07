@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="考试总结考试 自闭场，T1 磕了一万年 T1我不会的题。 T2会但是考场写不出来的题。 T3非常有意思的题 Method1考场上的想法，主要受到某道题的启发。 只考虑最大值，$O(n)$ 可以扫一遍，单调栈维护当前每一段的最大值与和。 很浪费，因为我们本质上对每个右端点都求了合法左端点区间的答案，考虑能不能复用右端点的答案。 其中一种方式是分块，考虑一段右端点到每个左端点的答案的前缀和，然后查询就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="20221006考试总结">
+<meta property="og:url" content="http://huanyp.cn/2022/10/06/20221006%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="考试总结考试 自闭场，T1 磕了一万年 T1我不会的题。 T2会但是考场写不出来的题。 T3非常有意思的题 Method1考场上的想法，主要受到某道题的启发。 只考虑最大值，$O(n)$ 可以扫一遍，单调栈维护当前每一段的最大值与和。 很浪费，因为我们本质上对每个右端点都求了合法左端点区间的答案，考虑能不能复用右端点的答案。 其中一种方式是分块，考虑一段右端点到每个左端点的答案的前缀和，然后查询就">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-06T13:24:52.000Z">
+<meta property="article:modified_time" content="2022-10-07T02:49:57.149Z">
+<meta property="article:author" content="幻影彭">
+<meta property="article:tag" content="分块">
+<meta property="article:tag" content="线段树">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://huanyp.cn/2022/10/06/20221006%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>20221006考试总结 | 幻影彭的彩虹</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">幻影彭的彩虹</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-fw fa-link"></i>友链</a>
+
+  </li>
+        <li class="menu-item menu-item-novels">
+
+    <a href="/novels/" rel="section"><i class="fa fa-fw fa-fa-soild fa-book"></i>小说</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/06/20221006%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          20221006考试总结
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-06 21:24:52" itemprop="dateCreated datePublished" datetime="2022-10-06T21:24:52+08:00">2022-10-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-07 10:49:57" itemprop="dateModified" datetime="2022-10-07T10:49:57+08:00">2022-10-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="考试总结"><a href="#考试总结" class="headerlink" title="考试总结"></a>考试总结</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0130">考试</a></p>
+<p>自闭场，T1 磕了一万年</p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>我不会的题。</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>会但是考场写不出来的题。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>非常有意思的题</p>
+<h4 id="Method1"><a href="#Method1" class="headerlink" title="Method1"></a>Method1</h4><p>考场上的想法，主要受到<a href="还没写">某道题</a>的启发。</p>
+<p>只考虑最大值，$O(n)$ 可以扫一遍，单调栈维护当前每一段的最大值与和。</p>
+<p>很浪费，因为我们本质上对每个右端点都求了合法左端点区间的答案，考虑能不能复用右端点的答案。</p>
+<p>其中一种方式是分块，考虑一段右端点到每个左端点的答案的前缀和，然后查询就可以被拆分了。</p>
+<h4 id="Method2"><a href="#Method2" class="headerlink" title="Method2"></a>Method2</h4><p>为什么我们会分块，回到那道题，我们有办法通过一些预处理结果得到两个区间并的答案，但是无法快速合并两个预处理结果，所以我们分块，只需要预处理一次。</p>
+<p>但是利用随机数的性质我们发现其实可以快速合并预处理的结果。</p>
+<p>将问题转化为两种基本形式，相离和重合，这是容易的。</p>
+<p>先考虑相离怎么做</p>
+<p>考虑利用随机的性质，发现任意一段区间，其有效的贡献个数为 $\ln$ 个，即从区间首或位开始的最长连续上升序列，然后枚举两个 $\ln$ 的区间合并，搞定相离的情况，视实现是 $\ln^2$ 或者 $\ln$，后者常数较大可能并不优秀。</p>
+<p>然后是重合，能不能合并两个重合的区间得到新的区间，可以！转化为一个相离和两个更小的重合问题，因为数量是 $\ln$ 的，所以合并预处理信息是可能的。</p>
+<p>但是，为啥要用线段树，因为没有逆元！但是这道题是可以将一个大重合问题减去一个相离和一个小重合问题得到另一个小重合问题的，所以对大重合问题做前缀和即可。</p>
+<h4 id="Method3"><a href="#Method3" class="headerlink" title="Method3"></a>Method3</h4><p>对于二维统计问题，常常可以考虑固定预处理其中一维，尝试快速通过预处理结果查询第二维。</p>
+<p>这道题中，我们可以预处理每个点作为第二个区间中的点时，在第一个区间中每个点的答案。但实际上这个数据量是 $O(n)$ 的，没有办法快速搞定，那不妨考虑只处理其前缀和与后缀和，看看是否能够压缩信息。</p>
+<h5 id="一些不太正确的思考"><a href="#一些不太正确的思考" class="headerlink" title="一些不太正确的思考"></a>一些不太正确的思考</h5><p>考虑单个右端点对一段区间查询，考虑区间最大值，如果落在自身或者空区间，那么答案容易计算，如果落在左区间</p>
+<p>考虑它前面第一个比它大的位置，如果不存在或者在空区间，那么答案可以通过前缀和快速计算</p>
+<h5 id="正确的思考"><a href="#正确的思考" class="headerlink" title="正确的思考"></a>正确的思考</h5><p>考虑区间相离的基本情况。由于单点我们都没有办法做，所以不太能直接搞，但是容易发现区间重合时可以搞定的，考虑区间最大值的位置，跨过它的答案容易统计，不跨过它，我们处理了每个点为右端点和左端点时答案的前缀和，那么由于不跨过最大值时，在最大值另一侧的答案完全不受同侧的影响，所以前后缀和减去最大值所在位置的前后缀和就可以得到重合的答案。</p>
+<p>有了重合，我们可以解决区间相邻的答案，定义求两个区间答案的运算是 $\oplus$，那么对于两个相邻区间有$(a+b)\oplus(a+b)=a\oplus a+b\oplus b+a\oplus b$。</p>
+<p>我们能搞定的是 $a\oplus a$，对于相离的区间，转化为相邻区间做 $a\oplus c = (a+b+c)\oplus (a+b+c)-a\oplus a-b \oplus b-c\oplus c - a\oplus b -b\oplus c$。</p>
+<p>因而搞定了所有情况。</p>
+<h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><p>如果直接这么写，写出来很丑，实际上由更优雅的写法，考虑差分区间，如果左端点大于右端点那么没有问题，$[l_1,r_2]$ 全部统计，那么会有重复 $[l_1,l_2-1]$ 这一段区间就是被重复统计的，当然这个区间可以不存在，需要减去，然后再减去 $[r_1+1,r_2]$ 这段有可能不存在的区间的答案，最后加上可能被算重的 $[r_1+1,l_2-1]$ 区间。</p>
+<p>反正这个思想挺神的，看上去有问题但确实是对的，比直接写优雅很多。</p>
+<h4 id="Method4"><a href="#Method4" class="headerlink" title="Method4"></a>Method4</h4><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>考虑每个数对答案的贡献，弄出左右两边第一个比它大的数，那么这些区间以内跨过它的，都在它的贡献范围内，左右端点可以弄成 $x,y$ 坐标，这是一个矩阵加。</p>
+<p>考虑查询，本质上也是在查询 $x,y$ 坐标各在一段区间内的答案。</p>
+<p>于是就是一个修改全部在查询前面的矩阵加矩阵查问题，可以用树状数组解决。</p>
+<h5 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h5><p>说着轻松，但其实还没写过这种东西，简单思考下怎么做。</p>
+<p>首先区间查被差分成 $\ge x,\ge y$ 的区域加一，区间查变成 $\le x,\le y$ 的区域查询，还是回到了二维偏序问题。</p>
+<p>点是 $(x_1,y_1),(x_2,y_2)$，条件是 $x_2\ge x_1\wedge y_2\ge y_1$，贡献是 $(x_2-x_1)\times(y_2-y_1)$，是不是很阴间？所以多维护点东西，一个 $cnt$ 树状数组搞定 $x_2\times y_2$，两个分别加 $x,y$ 来搞定 $x_2\times y_1,x_1\times y_2$ ，再来一个统计 $xy$ 搞定剩下那一项，其实还算好写。</p>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>考虑刻画出图的形态，它是一个基环内向树森林。</p>
+<p>容易发现只用将 $1$ 和其它点连边，然后有些点是必须连的，入度为 $0$ 的，编号非 $1$ 的点必须连。</p>
+<p>先不考虑环，这样连了之后，又有一些点是必连的，而且容易发现连这些点一定最优，所以继续连。</p>
+<p>连到不是环上的所有点都连上为止。</p>
+<p>现在还剩一些环，环上一些点是合法的，需要用长度为 $k-1$ 的线段取覆盖环，让所有点合法。</p>
+<p>容易发现确定某个起点之后就能贪心了，考虑连续的 $k+1$ 个不合法点，枚举每一个并确定最少数量，然后取 $\min$ 就行，因为这连续的 $k+1$ 个不合法点一定有一个是起点。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>幻影彭
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://huanyp.cn/2022/10/06/20221006%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" title="20221006考试总结">http://huanyp.cn/2022/10/06/20221006考试总结/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN.yml" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%88%86%E5%9D%97/" rel="tag"># 分块</a>
+              <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag"># 线段树</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/05/20221005%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" rel="prev" title="20221005考试总结">
+      <i class="fa fa-chevron-left"></i> 20221005考试总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/07/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="next" title="最小生成树和动态规划">
+      最小生成树和动态规划 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">考试总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1"><span class="nav-number">1.1.</span> <span class="nav-text">T1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2"><span class="nav-number">1.2.</span> <span class="nav-text">T2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3"><span class="nav-number">1.3.</span> <span class="nav-text">T3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Method1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Method1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Method2"><span class="nav-number">1.3.2.</span> <span class="nav-text">Method2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Method3"><span class="nav-number">1.3.3.</span> <span class="nav-text">Method3</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E4%B8%8D%E5%A4%AA%E6%AD%A3%E7%A1%AE%E7%9A%84%E6%80%9D%E8%80%83"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">一些不太正确的思考</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E7%9A%84%E6%80%9D%E8%80%83"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">正确的思考</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Method4"><span class="nav-number">1.3.4.</span> <span class="nav-text">Method4</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T4"><span class="nav-number">1.4.</span> <span class="nav-text">T4</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="幻影彭"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">幻影彭</p>
+  <div class="site-description" itemprop="description">幻影彭的个人博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN.yml" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+    <span class="author" itemprop="copyrightHolder" display=false></span>
+    <span class="author" itemprop="copyrightHolder" >huan_yp</span>
+</div>
+  <div class="powered-by">powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
