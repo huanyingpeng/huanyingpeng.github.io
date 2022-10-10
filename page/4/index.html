@@ -211,6 +211,157 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/%E8%AF%84%E8%AE%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/%E8%AF%84%E8%AE%B2/" class="post-title-link" itemprop="url">评讲</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-27 21:29:18" itemprop="dateCreated datePublished" datetime="2022-07-27T21:29:18+08:00">2022-07-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-28 18:17:52" itemprop="dateModified" datetime="2022-07-28T18:17:52+08:00">2022-07-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h2><p>签到题。</p>
+<p>简单观察，发现最后的数为 $\sum_{i=1}^{n}a_i\times\tbinom{n-1}{i-1} \pmod m$</p>
+<p>题目需要求出无关量，本质上是求系数为 $0$ 的项，即求 $\tbinom{n-i}{i-1} \equiv 0\pmod m$ 的 $i$。</p>
+<p>因为 $m$ 不为质数，所以没法直接处理阶乘，但很容易给出一个递推的 $O(n^2)$ 做法。</p>
+<p>注意到我们只关心 $\tbinom{n-i}{i-1}$ 是否为 $m$ 的倍数，$m$ 的质因子也比较少 $\leq 10$，所以我们可以直接记录每一个质因子的质数即可，这样就可以直接阶乘。</p>
+<h2 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h2><p>简单题。</p>
+<p>有个很重要的限制，一条边只能经过两次，说白了就是进入一棵子树之后，必须先确定叶节点有没有他的女朋友之后才能出去。</p>
+<p>所以就能设计出树形 DP，$dp[u][0/1]$，表示 $u$ 的子树是否有渡边女朋友，走完子树 $u$ 的期望。</p>
+<p>最终答案为 $dp[u][1]$。</p>
+<p>考虑转移，首先，有小弟把守的节点，$dp[u][0]=0$，因为渡边家兴只需要询问小弟就可以走完这棵子树。</p>
+<p>计算 $dp[u][0]$，就是 $\sum\limits_{v\in E(u)}dp[v][0]+2$，就是搜索完所有的儿子节点加上进入每个儿子节点的消耗。</p>
+<p>计算 $dp[u][1]$，本质上我们是要确定一个搜索子树的顺序，让期望搜索时间最小，考虑对于一个顺序 $p$，期望时间是多少，记 $v$ 子树中叶子个数为 $sz_v$，显然是</p>
+<script type="math/tex; mode=display">
+\Large\sum\limits_{i=1}^{k} dp[p_i][1]\times \frac{sz_{p_i}}{sz_u} + (dp[p_i][0]+2)\times\frac{\sum\limits_{j=i+1}^{k}sz_{p_j}}{sz_v}</script><p>即枚举所在子树，加上额外的搜索空子树的时间。</p>
+<p>我们可以证明，按照 $\frac{dp[v][0]+2}{sz_v}$ 升序排序后的顺序是最优的，具体证明参考国王游戏。</p>
+<h2 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h2><p>有些毒瘤的题。</p>
+<p>简单观察发现每个字符都和其上下的位置高度相关，将 <code>NOI</code> 划分为 9 个部分，三个字母均分为中间和两边三个部分，再加上两个空白部分共 <code>11</code> 部分，考虑 DP，设 $dp[i][s][l][r]$ 表示第 $i$ 列，状态为 $s$ ，上下为 $l,r$ 的最大值。</p>
+<p>其它的转移是简单的，我们着重强调 <code>N</code> 中间部分的转移。它转枚举了上一个上下端点 $l’,r’$，向 $l,r$ 转移，条件为 $l\le r’+1$，枚举当前的上端点 $l$，我们可以动态维护一个数组 $dp_max[i]$ 表示考虑所有 $r=i,l’\le l$。转移使用<strong>当前的 $l$ 对应的 $dp_max$ 数组</strong>的 $[1,r]$ 的  $\max$ 即可。</p>
+<p>这道题的思维难度甚至没有 T2 大。</p>
+<h2 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h2><p>思维题。</p>
+<p>找规律和暴力各有 10pts。</p>
+<h3 id="Solution1"><a href="#Solution1" class="headerlink" title="Solution1"></a>Solution1</h3><p>先把 BFS 序转化为 $1,2,\dots n$，然后再来考虑。</p>
+<p>因为要求平均高度，所以我们需要求出总高度和总个数，转化后一棵树的高度等于 $n$ 号节点的深度。</p>
+<p>现在考虑划分 $1-n$ 这个 BFS 序列。可以发现一个划分<strong>最多只能对应一棵树。</strong></p>
+<p>一个显然的必要条件是<strong>相同高度的元素在 DFS 序列中递增</strong>，另一个显然的必要条件是 DFS 序列中 $dep_{a_i}+1\ge dep_{a_{i+1}}$。</p>
+<p>事实上，这两个条件也是充分的。</p>
+<p>设 $dp[i][0/1]$ 表示考虑到 $i$，总数和总高度。转移检查哪些左端点可以转移即可，事实上，可以转移的左端点一定是一个区间，可以处理 $dp$ 数组的前缀和完成快速转移。</p>
+<p>判断转移区间和结论证明，留作思考，后文有 Details。</p>
+<p><strong>如果可能，尽量不要看 Details，自行思考</strong>。</p>
+<h3 id="Solution2"><a href="#Solution2" class="headerlink" title="Solution2"></a>Solution2</h3><p>考虑一个划分合法的必要条件，Solution1 中已经提到。</p>
+<p>考虑哪些位置可以划分，把一个间隔看成一个 01  变量，选择划分为 $1$，发现可以转化为一个这样的问题：</p>
+<p>你需要确定长度为 $n-1$ 的二进制串，有若干个限制。每个限制形如 </p>
+<ul>
+<li>$[l,r]$ 至多有一个 $1$。即：$dep_{a_i}+1\ge dep_{a_{i+1}}$ 转化而来的 $[a_i,a_{i+1})$</li>
+<li>$x$ 位置必须为 $1$ 。即：如果 $pos_i&gt;pos_{i+1}$，那么由于同高度在 $a$ 中的位置递增，则 $i$ 位置必须为 $1$。</li>
+</ul>
+<p>很容易设计出一个 $O(n^2)$ 的动态规划做法。</p>
+<p>观察第一个条件，如果 $a_{i+1}&gt;a_i$ 才会有第一个限制，如果 $a_i+1=a_{i+1}$，那么相当于这个限制不存在。</p>
+<p>否则，因为保证一定存在一棵合法的树，所以 $[a_i,a_{i+1}]$ 区间的 $pos$ 数组必须能够被划分为两个连续上升子序列。$a_i$ 又和 $a_{i+1}$ 紧紧挨在一起，那么得知必定会被划分，因为中间的某个数一定会冲突。我们很容易模拟得到被划分的位置，之后这个区间的所有数都不能再被划分。</p>
+<p>对于没有限制的位置，我们划分与不划分的方案数是相同的，因此对期望的贡献是 $0.5$。</p>
+<p>将所有位置的期望加起来就是答案。</p>
+<h3 id="Solution1-Details"><a href="#Solution1-Details" class="headerlink" title="Solution1 Details"></a>Solution1 Details</h3><h4 id="Transform"><a href="#Transform" class="headerlink" title="Transform"></a>Transform</h4><p>看看样例，发现从 $1-n$ 排列比较好想，所以考虑先把点做个变换，弄成 $1-n$，所以 $b$ 变成了 $1,2,3,\dots,n$。</p>
+<p>然后记 $u$ 的深度为 $dep_u$，发现 $\forall i\in[1,n),dep_i\le dep_{i+1}\le dep_i+1$。</p>
+<p>然后又发现，对于 BFS 序列为 $1,2,3,\dots n$ 的树，一个点遍历子节点的顺序一定是<strong>按编号从小到大遍历</strong>。</p>
+<p>所以，确定了每个点的深度和 DFS 序列。可以唯一确定一颗树。</p>
+<p>感性证明的话，确定深度之后把点画出来，画在一个二维平面上，深度相同的点在一层按编号从小到大排列，然后在 DFS 序列上走，如果下一个点深度更大，那肯定是往下连，如果深度不变或者更小，那一定是回去了一部分再往下走了一个，这样的逻辑可以唯一确定一棵树。</p>
+<p><strong>自上到下，自左到右遍历二维平面所有点的过程，就是 BFS 的过程</strong></p>
+<p><strong>请认真理解二维平面的含义。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/maxtir/solution-p1232">内含比较严格的证明</a></p>
+<p><strong>本质上，确定深度的过程就是划分 $b$ 序列的过程</strong></p>
+<h4 id="Native-DP-Algorithm"><a href="#Native-DP-Algorithm" class="headerlink" title="Native DP Algorithm"></a>Native DP Algorithm</h4><p>所以考虑对 BFS 序列的划分过程 DP，设 $dp[i][k]$ 表示考虑到第 $i$ 个点，深度为 $k$ 的合法划分方案总数。</p>
+<p>然后我们需要枚举一个左端点 $j$，考虑如何判断这个划分是否合法。</p>
+<p>首先有个必要条件：<strong>同一深度的点，在 DFS 序列上的位置必须递增</strong>，因为我们遍历一个点的儿子的顺序是从小到大。<strong>称该条件为条件一</strong></p>
+<p>其次，我们模拟一下在 DFS 序列上走的过程，发现<strong>一个点 $u$ 的下一个点 $x$ 一定有 $dep_u+1\ge dep_x$</strong>，原因是显然的。<strong>称该条件为条件二</strong></p>
+<p>满足了以上条件，我们可以说明一定可以构造出一棵唯一对应的树。具体的，对于一个点 $u$，下一个点是 $v$，找到它或者它的祖先 $u’$，  满足 $dep_v=dep_{u’}+1$，那么 $v$ 的父亲就是 $u’$。由于第一个条件，限制了处理的 $v$ 一定是该层<strong>第一个还没有安排父亲的点</strong>。所以每个点只会<strong>恰好被安排一次父亲</strong>，得到一个合法的树。</p>
+<p>这样的话，我们再记录一维划分起点，变成 $dp[i][j][k]$。</p>
+<p>转移枚举当前起点和上一个划分的起点，判断两个条件可以简单的 $O(n)$ 做。</p>
+<p>复杂度为 $O(n^4)$，因为对于 $n$ 个深度 $k$ ，一共只需要判断一次。</p>
+<h4 id="Observaion1-amp-amp-Optimization1"><a href="#Observaion1-amp-amp-Optimization1" class="headerlink" title="Observaion1&amp;&amp;Optimization1"></a>Observaion1&amp;&amp;Optimization1</h4><ul>
+<li>发现其实不用记录具体每个深度有几个元素，只需要记录<strong>深度之和与树的个数</strong>就可以计算答案。</li>
+<li>假设划分的区间为 $[l,r]$ ，深度为 $d$。条件二等价于，$a$ 中 $[1,l)$ 的后一个元素 $x$，一定满足 $x\le r$。因为每次加入一段区间的点之后，上一次的深度为 $d-1$ 的点的右端点，如果还没有确定深度，就会被确定为 $d$。所以加入后，存在右端点还没确定深度的点，其本身深度只能为 $d$ 了。所以可以直接<strong>判断交界处的深度关系</strong>，判断方式是 $\forall i\in[1,n),a_i&gt;j \or a_{i+1}\ge i$。</li>
+</ul>
+<p>40Pts 的代码运用了第二个观察，请阅读。</p>
+<p>运用第一个观察，DP 状态简化为 $dp[i][j][0/1]$</p>
+<p>再次运用第二个观察，其实已经无需记录 $j$，DP 状态进一步简化为 $dp[i][0/1]$。</p>
+<p>上述做法的复杂度是 $O(n^3)$ 的，考虑优化。</p>
+<p>参看 Codes 部分的 40Pts 做法。$sum$ 数组的含义是，$sum[i][j]$ 表示以 $i$ 结尾，深度为 $j$ 的方案总数。</p>
+<p><strong>40Pts 的部分没有对层数做简化</strong></p>
+<h4 id="Observaion2-amp-amp-Optimization2"><a href="#Observaion2-amp-amp-Optimization2" class="headerlink" title="Observaion2&amp;&amp;Optimization2"></a>Observaion2&amp;&amp;Optimization2</h4><ul>
+<li><p>其实 $dp$ 数组没有用，只需要记录一个 $sum$ 数组就可以了。</p>
+</li>
+<li><p>条件一，显然可行的 $j$ 是一个右端点为 $i$ 的区间，对于每个 $i$，可以处理出满足 $p$ 数组(参考题解开头的定义)区间递增的最小左端点，作为 $j$ 左端点的限制。</p>
+</li>
+<li><p>条件二，显然可行的 $j$ 是一个前缀，并且右端点随 $i$ 增大，这限制了 $j$ 的右端点。</p>
+</li>
+</ul>
+<p>由于条件一，二的限为区间转移限制，所以记录一下 $sum$ 的前缀和即可做到转移 $O(n)$</p>
+<p>利用尺取法的思想可以 $O(n^2)$ 的计算条件二的右端点。</p>
+<p>但进一步观察，发现对条件二进行了一些无用的 check，每次移动端点时，有用的 check 只有一个，就是值为右端点本身的位置。</p>
+<p>所以 check 变成了 $O(1)$，总复杂度 $O(n)$</p>
+<p>参考 100Pts 代码，注意，其中的 $dp$ 代表 40pts 写法中的 $sum$，$sum$ 代表其前缀和。</p>
+<h4 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h4><ul>
+<li><strong>DP 过程中最大值达到了 $2^{n}$，需要手写科学计数法，可以忽略指数差距过大的加减运算。</strong></li>
+</ul>
+<h4 id="Codes"><a href="#Codes" class="headerlink" title="Codes"></a>Codes</h4><h5 id="40pts-O-n-3"><a href="#40pts-O-n-3" class="headerlink" title="40pts $O(n^3)$"></a>40pts $O(n^3)$</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;<span class="type">const</span> <span class="type">int</span> N=<span class="number">205</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,tp1,tp2;</span><br><span class="line"><span class="type">int</span> a[N],p[N],b[N];</span><br><span class="line"><span class="type">double</span> dp[N][N][N],sum[N][N];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(a[i]);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(b[i]),p[b[i]]=i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=p[a[i]];</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)p[a[i]]=i;</span><br><span class="line">	dp[<span class="number">1</span>][<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;sum[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">2</span>;j&lt;=i;j++)&#123;</span><br><span class="line">            <span class="comment">//条件1</span></span><br><span class="line">			<span class="keyword">for</span>(k=j+<span class="number">1</span>;k&lt;=i;k++)</span><br><span class="line">			<span class="keyword">if</span>(p[k<span class="number">-1</span>]&gt;p[k])<span class="keyword">break</span>;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>(k!=i+<span class="number">1</span>)<span class="keyword">continue</span>;</span><br><span class="line">			</span><br><span class="line">            <span class="comment">//条件2</span></span><br><span class="line">            <span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;n;k++)</span><br><span class="line">			<span class="keyword">if</span>(a[k]&lt;j&amp;&amp;a[k+<span class="number">1</span>]&gt;i)<span class="keyword">break</span>;</span><br><span class="line">			<span class="comment">//如果交界处，一个深度小于 d,另一个大于 d，那么寄。					</span></span><br><span class="line">			<span class="keyword">if</span>(k!=n)<span class="keyword">continue</span>;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">			dp[i][j][k]+=sum[j<span class="number">-1</span>][k<span class="number">-1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=i;j++)</span><br><span class="line">		<span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">		sum[i][k]+=dp[i][j][k];</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">double</span> ans=<span class="number">0</span>,cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		cnt+=sum[n][i];</span><br><span class="line">		ans+=sum[n][i]*i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%0.3lf&quot;</span>,ans/cnt);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="100-pts-O-n"><a href="#100-pts-O-n" class="headerlink" title="100 pts $O(n)$"></a>100 pts $O(n)$</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">202005</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,tp1,tp2;</span><br><span class="line"><span class="type">int</span> a[N],p[N],b[N],lst[N],far[N];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Double</span>&#123;</span><br><span class="line">	<span class="type">double</span> val;</span><br><span class="line">	<span class="type">int</span> p;</span><br><span class="line">	<span class="function">Double <span class="title">cap</span><span class="params">(Double x)</span></span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(<span class="built_in">abs</span>(x.val)&gt;<span class="number">1e18</span>)&#123;</span><br><span class="line">			x.val/=<span class="number">2</span>;</span><br><span class="line">			x.p++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span>(<span class="built_in">abs</span>(x.val)&lt;<span class="number">1e-18</span>)&#123;</span><br><span class="line">			x.val*=<span class="number">2</span>;</span><br><span class="line">			x.p--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">void</span> <span class="keyword">operator</span> =(<span class="type">int</span> x)&#123;p=<span class="number">0</span>,val=x;&#125;</span><br><span class="line">	Double <span class="keyword">operator</span> +(<span class="type">const</span> Double &amp;x)&#123;</span><br><span class="line">		<span class="keyword">if</span>(x.p-p&gt;<span class="number">50</span>)<span class="keyword">return</span> x;</span><br><span class="line">		<span class="keyword">if</span>(p-x.p&gt;<span class="number">50</span>)<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">cap</span>(&#123;val+x.val*<span class="built_in">pow</span>(<span class="number">2</span>,x.p-p),p&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">void</span> <span class="keyword">operator</span> +=(<span class="type">const</span> Double &amp;x)&#123;*<span class="keyword">this</span>=*<span class="keyword">this</span>+x;<span class="built_in">cap</span>(x);&#125;</span><br><span class="line">	Double <span class="keyword">operator</span> -()&#123;<span class="keyword">return</span> Double&#123;-val,p&#125;;&#125;</span><br><span class="line">	Double <span class="keyword">operator</span> -(Double &amp;x)&#123;<span class="keyword">return</span> <span class="built_in">cap</span>((*<span class="keyword">this</span>)+(-x));&#125;</span><br><span class="line">	Double <span class="keyword">operator</span> /(<span class="type">const</span> Double &amp;x)&#123;<span class="keyword">return</span> <span class="built_in">cap</span>(&#123;val/x.val,p-x.p&#125;);&#125;</span><br><span class="line">	<span class="function"><span class="type">double</span> <span class="title">get</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> val*<span class="built_in">pow</span>(<span class="number">2.0</span>,p);&#125;</span><br><span class="line">&#125;;</span><br><span class="line">Double dp[N][<span class="number">2</span>],sum[N][<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">read</span>(n);lst[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(a[i]);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(b[i]),p[b[i]]=i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=p[a[i]];</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)p[a[i]]=i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(p[i]&gt;p[i<span class="number">-1</span>])lst[i]=lst[i<span class="number">-1</span>];</span><br><span class="line">		<span class="keyword">else</span> lst[i]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	dp[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>,dp[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	sum[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>,sum[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	far[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=far[i<span class="number">-1</span>]+<span class="number">1</span>;j&lt;=i;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[p[j<span class="number">-1</span>]+<span class="number">1</span>]&lt;=i||p[j<span class="number">-1</span>]==n)<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">		&#125;	</span><br><span class="line">		far[i]=--j;</span><br><span class="line">		<span class="keyword">if</span>(far[i]&gt;=lst[i])&#123;</span><br><span class="line">			dp[i][<span class="number">0</span>]=sum[j<span class="number">-1</span>][<span class="number">0</span>]-sum[lst[i]<span class="number">-2</span>][<span class="number">0</span>];</span><br><span class="line">			dp[i][<span class="number">1</span>]=(sum[j<span class="number">-1</span>][<span class="number">1</span>]-sum[lst[i]<span class="number">-2</span>][<span class="number">1</span>])+(sum[j<span class="number">-1</span>][<span class="number">0</span>]-sum[lst[i]<span class="number">-2</span>][<span class="number">0</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		sum[i][<span class="number">0</span>]=dp[i][<span class="number">0</span>]+sum[i<span class="number">-1</span>][<span class="number">0</span>];</span><br><span class="line">		sum[i][<span class="number">1</span>]=dp[i][<span class="number">1</span>]+sum[i<span class="number">-1</span>][<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%0.3lf&quot;</span>,(dp[n][<span class="number">1</span>]/dp[n][<span class="number">0</span>]).<span class="built_in">get</span>());</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/25/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E6%A0%91%E5%BD%A2%E8%83%8C%E5%8C%85%E7%9A%84%E8%BE%83%E4%B8%A5%E8%B0%A8%E5%A4%8D%E6%9D%82%E5%BA%A6%E8%AF%81%E6%98%8E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1055,111 +1206,6 @@ ans=\sum\limits_{i=0}^{n}\binom{n}{i}\binom{k-f(0)+n-i+1}{n-i+1}</script><p>然�
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E5%81%9A%E9%A2%98%E6%84%9F%E6%82%9F%E6%80%BB%E7%BB%93%E8%AE%B0%E5%BD%95/%E5%81%9A%E9%A2%983/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/12/%E5%81%9A%E9%A2%98%E6%84%9F%E6%82%9F%E6%80%BB%E7%BB%93%E8%AE%B0%E5%BD%95/%E5%81%9A%E9%A2%983/" class="post-title-link" itemprop="url">做题3</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-07-12 16:13:03 / 修改时间：16:13:31" itemprop="dateCreated datePublished" datetime="2022-07-12T16:13:03+08:00">2022-07-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/%E8%AE%AD%E7%BB%83%E9%A2%98%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">训练题目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="CF1698F"><a href="#CF1698F" class="headerlink" title="CF1698F"></a>CF1698F</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>变过来变过去，还 TM 离谱的操作当然要找不变量，算是半个套路。</p>
-<p><code>reverse</code> 两端相等的区间，可以发现每两个相邻元素构成的无序对不变，然后第一个元素和最后一个元素不改变。</p>
-<p>换句话说，$\{(a_i,a_{i+1},i \in [1,n)\}$ 这个集合不随 $a$ 中操作改变。或者说，如果从 $a_i$ 到 $a_{i+1}$ 连边，这张无向图是不变的，同时 $a_1,a_n$ 不改变。这个条件和上个条件之间的转换是解题的关键点之一。</p>
-<p>套路又来了，看看样例，集合相同并且首尾相同这个条件貌似挺充分的，所以考虑证明。</p>
-<p><strong>对于构造问题，常用的证明方式是数学归纳法。</strong></p>
-<p>事实上，如果我们能证明如果第二个数可以成功调整为相同，那么整个数组也可以，因为满足条件的 $a,b$ 如果同时删掉第一个数，仍满足条件。</p>
-<p>考虑构造方案，由结论可以知道，如果 $a$ 中必定存在 $(b_1,b_2)$ 无序对，因为 $a_2\neq b_2$，不妨让这对无序对是 $(a_x,a_{x+1}),x\in[2,n)$，如果 $a_x=b_2$，考虑直接将这一对中的 $a_{x+1}$ 和 $a_1$ 子数组 <code>reverse</code> ，完事。如果 $a_{x+1}=b_2$，事情有点麻烦。</p>
-<p><code>if only i could find a pair which...</code></p>
-<p>补上那句话，如果能找到一对可以被翻转的，左端点在 $[1,x]$ ，右端点在 $(x,n]$ 的，那么我们就翻转，改变了 $a_x,a_{x+1}$ 的顺序。</p>
-<p>尝试证明一定能找到，即 $\{a_i ,i\in [1,x]\} \bigcap \{a_i.i\in(x,n]\} \neq \emptyset$</p>
-<p>反证法，如果找不到，那么可知 $a_i,i\in[1,x] $ 与 $a_j,j\in (x,n]$ 除开 $(a_i,a_i+1)$ 这一次相邻外均不相邻，考虑 $b_2$ 即 $a_{x+1}$ 的情况，它与 $b_3$ 相邻，可知 $b_3 \in \{a_i.i\in(x,n]\}$，同理有  $\forall j\ge 2,b_j\in\{a_i.i\in(x,n]\}$</p>
-<p>考虑 $a_2$，它显然不存在于 $b$，故矛盾。</p>
-<h4 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h4><p>这题比较难的有两个点，一是注意到这个不变量极大可能是充分条件，二是发现 $a_{x+1}=b_2$ 的 case 中一定存在可交换项，搞定了这两个，问题就迎刃而解。关键点在于第二个，找到 $a_{[1,x]},a_{[x+1,n]}$ 交集的关系，并尝试用反证法证明交集不为空是比较困难的。</p>
-<h3 id="ABC259G"><a href="#ABC259G" class="headerlink" title="ABC259G"></a>ABC259G</h3><p>很有意思的网络流题。</p>
-<p>最开始想到二分图相关，因为 $A_{i,j} &lt;0$ 的限制指向性比较明确，然后发现如果二分图的决策正数话会出现不同块之间相互影响，所以考虑决策负数，决策负数不同联通块互不影响，但是无法计算答案，因为最终还是需要确定到底哪些正数被选了。</p>
-<h4 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h4><p>题解给出了一个新思路，考虑先只把所有正数选了，然后再来看满足条件的代价。</p>
-<p>代价被分为了三类，第一类是顺带选择的负数的代价，如果选了一行或者一列，就会有这一行或列所有负数绝对值之和的代价。</p>
-<p>第二类是无法选择正数的代价，如果正数所在的行和列都没被选择，那么就会有这个正数的代价。</p>
-<p>第三类是重复选择负数的代价，如果一个负数被行和列同时选择（为了付出更少的第二类和其它第一类代价），那么这个代价是无穷大。</p>
-<p>我们需要最小化代价。</p>
-<p>0/1 决策问题，考虑套最小割上去，每一行每一列视为一个点。</p>
-<p>令与 $s$ 同集合的为选择，与 $t$ 同集合的为不选，选一行或一列的代价为该行或列负数绝对值之和，从个点到 $t$ 连边就行，行列同时选择负数，代价为 inf，woc，怎么连呢？从行连向列，意义为选了行不选列的代价，从列向行连，意义为选了列不选行的代价。所以我们前面的安排有些问题，需要做出调整。</p>
-<p><strong>对于行和列，我们让属于 s,t 所在集合对它们有不同意义，下面让属于 s 的行为不选择，属于 t 的列为不选择</strong>，我们让 $s$ 向行连边，<strong>这条边</strong>表示选该行的代价，让列向 $t$ 连边，表示选该列的代价。于是，对于一个点，行列都选的代价当且仅当 $A_{i,j}&lt;0$ 时为 inf，此时从列向行连边，表示都选的代价，行列都不选的代价当且仅当 $A_{i,j}\ge0$ 时为 $A_{i,j}$，此时从行向列连边。</p>
-<p>注意，我们的割中如果出现了行列都不选，那么对应的行和列与 $s,t$ 的边一定没有断开，所以必须断开行到列的边。如果出现了行和列都选的不合法情况，我们发现，断掉的行能到 $t$，从 $s$ 一定能到断掉的列。如果不满足，那么这个割就不是最小割，不会被我们考虑。所以我们需要从列到行连边，保证不会给负数打上两个标记。</p>
-<p>这种思路和某类 dp 的思路很类似，相当值得学习，其实在原问题的求解中，并没有什么条件来保证不会给一个负数打上两个标记，但是我们在通过最小割求解时，限定了决策的范围和最优性，获得了额外的信息，也就能帮助我们排除掉难处理但是不可能的情况，本质上，这种排除还和我们先假定所有正数都选上的前提有关系，这种解法相当精妙。</p>
-<h4 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h4><p>从直觉上来看，应该不会选择和为负数的行或者列。考虑一个最终方案，它的答案会是 $\sum 选择的行+\sum 选择的列 -\sum 行列交叉处的正数$。考虑从这里面剔除和为负数的列或行，发现最终值一定变大。</p>
-<p>所以删掉和为负数的行和列。</p>
-<p>考虑先把剩下的行和列全选了，然后解决冲突。</p>
-<p>解决冲突的方式有三种，一种时不选行，一种是不选列，另一种是硬吃同时选的代价。</p>
-<p>这样的建图就很简洁了，从 $s$ 向行，列向 $t$ 连边，对于交点，正数连其值的边，负数连 inf 边。很容易发现一个合法解和一个割一一对应，over。</p>
-<h4 id="Sum-up"><a href="#Sum-up" class="headerlink" title="Sum up"></a>Sum up</h4><p><strong>最小割解决实际问题的核心，在于用一个割，或者可能成为最小割的割，来代表一个实际的决策方案，最小割的容量，代表代价，每个点在哪个割集分别代表什么含义并不重要，重要的是割掉每条边的意义，和决策方案与最小割的对应关系。</strong></p>
-<p>其实这道题还给我们一个启发，就是在考虑0/1决策问题时，可以先考虑钦定一个决策，再来调整使得它合理或者变优，这可能会使得问题变得简单，也许算是一个套路。</p>
-<p><strong>本质上，最小割表达了一种最优的解决决策冲突的方案，我们在 0/1 决策问题钦定决策的过程中，制造了一些冲突，用一个图的割来表达解决着些冲突的方案。</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1231,7 +1277,7 @@ ans=\sum\limits_{i=0}^{n}\binom{n}{i}\binom{k-f(0)+n-i+1}{n-i+1}</script><p>然�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">52</span>
+          <span class="site-state-item-count">53</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
