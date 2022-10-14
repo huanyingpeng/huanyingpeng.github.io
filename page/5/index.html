@@ -211,6 +211,110 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/ARC144D%E4%B8%8E%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/ARC144D%E4%B8%8E%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F/" class="post-title-link" itemprop="url">ARC144D与组合恒等式</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-17 13:52:25" itemprop="dateCreated datePublished" datetime="2022-07-17T13:52:25+08:00">2022-07-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-10 21:08:28" itemprop="dateModified" datetime="2022-10-10T21:08:28+08:00">2022-10-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">组合数学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="ARC144D"><a href="#ARC144D" class="headerlink" title="ARC144D"></a>ARC144D</h2><p>题意略。</p>
+<p>观察，发现 $x \&amp; y + x |y = x+y$，原因是每个二进制位，如果出现两次，会计入二次，如果出现一次，会计入一次。猜想 $f(x)$ 的值与每个二进制位相关且对于每个二进制位独立。</p>
+<p>考虑证明，对 $x$ 的二进制下 $1$ 的个数 $n$ 做归纳。</p>
+<p>对于 $n=0$，$f(0)=f(0)$</p>
+<p>对于 $n=1$，$f(2^i) = f(2^i)$</p>
+<p>对于 $n=2$，$f(2^i+2^j) + f(0) = f(2^i) +f(2^j)$</p>
+<p>考虑证明 $n=k$ 时， $f(x) +(k-1)f(0) = \sum\limits_{i\in x} f(2^i)$</p>
+<p>设对于 $n=k-1$ 其成立，对于二进制位 1 个数为 k 的 x， $\forall i\in x,f(x)+f(0)=f(x-2^i) + f(2^i)$，易证 $f(x) +(k-1)f(0) = \sum\limits_{i\in x} f(2^i)$，且对于所有涉及元素二进制下 1 个数少于 n 的，所有限制满足。</p>
+<p>故只需要确定 $f(2^i)$ 和 $f(0)$。其最终限制有两个，其一是，最大值不能超过 $k$，其二是最小值不能小于 0，最大值一定是把所有大于 $f(0)$ 的元素加起来，最小值则是把所有小于 $f(0)$ 的元素加起来。</p>
+<p>枚举 $f(0)$ 和小于 $f(0)$ 的元素个数，我们可以将限制分配给对应元素 ，得到和式：</p>
+<script type="math/tex; mode=display">
+ans=\sum\limits_{f(0)=0}^{k}\sum\limits_{i=0}^{n}\binom{n}{i}\binom{f(0)}{i}\binom{k-f(0)+n-i}{n-i}</script><p>第一项计算那些小于 $f(0)$，第二项是将<strong>至多</strong> $k$ 个冗余值分配给 $i$ 个小于 $f(0)$ 的元素的方案数，每个元素至少分配一个，或者说 $i$ 个正整数变量和为 $f(0)$ 的方案，可以给一个虚拟元素分别大于等于 0 个表示放弃，所以先给虚拟元素一个，变成 $f(0)+1$ 个元素插 $i$ 个板。最后一项是 $n-i$ 个非负整数变量，和不超过 $k-f(0)$ 的方案。先来个虚拟变量，然后先各自加 $1$，然后就是 $k-f(0)+n-i+1$ ，间隔是 $k-f(0)+n-i$ 个，版一共 $n$ 个。</p>
+<p>解释完了，考虑计算，二维的，算不了。</p>
+<p>考虑后两项的组合意义。</p>
+<p>根据组合恒等式中的第五个。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/ewpo1rn4.png" alt=""></p>
+<p>对原式变形有</p>
+<script type="math/tex; mode=display">
+ans=\sum\limits_{i=0}^{n}\binom{n}{i}\binom{k-f(0)+n-i+1}{n-i+1}</script><p>然后 $n$ 不大，维护个区间乘积枚举计算就行，记得对计算乘积的元素取模。</p>
+<h2 id="组合恒等式"><a href="#组合恒等式" class="headerlink" title="组合恒等式"></a>组合恒等式</h2><p>题不是终点，组合恒等式才是重点</p>
+<p>对上面那种图的组合恒等式，我们一一证明</p>
+<h3 id="式子1"><a href="#式子1" class="headerlink" title="式子1"></a>式子1</h3><script type="math/tex; mode=display">
+\sum\limits_{k}\binom{r}{m+k}\binom{s}{n-k}=\binom{r+s}{m+n}</script><h4 id="组合意义证明"><a href="#组合意义证明" class="headerlink" title="组合意义证明"></a>组合意义证明</h4><p>第一项是从 $r$ 个选 $m+k$ 个，第二项是从 $s$ 个选 $n-k$ 个，把两个拼在一起，从 $r+s$ 个中选 $n+m$ 个，容易发现和前者一一对应，故恒等。</p>
+<h4 id="代数证明"><a href="#代数证明" class="headerlink" title="代数证明"></a>代数证明</h4><p>咕咕咕</p>
+<h3 id="式子2"><a href="#式子2" class="headerlink" title="式子2"></a>式子2</h3><script type="math/tex; mode=display">
+\sum\limits_{k}\binom{l}{m+k}\binom{s}{n+k} = \binom{l+s}{l-m+n},l\ge0</script><h4 id="组合意义证明-1"><a href="#组合意义证明-1" class="headerlink" title="组合意义证明"></a>组合意义证明</h4><h4 id="代数证明-1"><a href="#代数证明-1" class="headerlink" title="代数证明"></a>代数证明</h4><p>咕咕咕</p>
+<h3 id="式子3"><a href="#式子3" class="headerlink" title="式子3"></a>式子3</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022-7-5%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1264,105 +1368,6 @@ f(k) = \sum_{i=k}^{n-1}C(i,k) \times g(i)</script><p>这个很好理解，枚举
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%9D%82%E9%A1%B9/%E4%B8%80%E4%BA%9B%E7%A7%91%E6%8A%80%E7%9A%84%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/12/%E6%9D%82%E9%A1%B9/%E4%B8%80%E4%BA%9B%E7%A7%91%E6%8A%80%E7%9A%84%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">一些科技的总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-12 16:05:26" itemprop="dateCreated datePublished" datetime="2022-07-12T16:05:26+08:00">2022-07-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-16 17:17:40" itemprop="dateModified" datetime="2022-07-16T17:17:40+08:00">2022-07-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7/" itemprop="url" rel="index"><span itemprop="name">技巧</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="总结一些科技"><a href="#总结一些科技" class="headerlink" title="总结一些科技"></a>总结一些科技</h2><p>主要收录比较神仙的，实用的算法技巧。</p>
-<h3 id="快速取模"><a href="#快速取模" class="headerlink" title="快速取模"></a>快速取模</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>找到一个近似 $m^{-1}$ 的形如 $m’&gt;&gt;k$ 的数。</p>
-<p>不妨就取 $k=64,m’=\lceil\frac{2^{64}}{m}\rceil$</p>
-<p>然后 $a\%b = a-a\times\lfloor\frac{a}{b}\rfloor = a-(a\times m’&gt;&gt;64)$</p>
-<p>纯纯的整数运算，经过误差分析，可以知道后式结果最多多减去一个 $m$，判断掉就行。</p>
-<p>因为 $a$ 常常是 $\text{long long}$ 级别的数，所以开 <code>__int128</code></p>
-<p>优化据说有 $5-6$ 倍，如果模数是 <code>const</code>，编译器会自动帮忙用这个优化。</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett</span>&#123;</span><br><span class="line">	<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> im;<span class="type">int</span> m;</span><br><span class="line">	<span class="built_in">barrett</span>(<span class="type">unsigned</span> m) :<span class="built_in">m</span>(m), <span class="built_in">im</span>(~<span class="number">0ull</span>/m+<span class="number">1</span>) &#123;&#125;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> z=(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;<span class="built_in">bt</span>(<span class="number">1</span>);</span><br><span class="line">  bt=<span class="built_in">barrett</span>(p);</span><br><span class="line">  c=<span class="built_in">bt</span>(a,b);</span><br><span class="line"><span class="comment">//c=a*b%p</span></span><br></pre></td></tr></table></figure>
-<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
-<li>为啥 <code>im,m</code> 用 <code>ull,uint</code>，因为 <code>m=2</code> 时，会爆 <code>long long</code>。</li>
-<li>可以重载括号。</li>
-</ul>
-<h3 id="光速乘"><a href="#光速乘" class="headerlink" title="光速乘"></a>光速乘</h3><p>用于计算两个 long long 级别的数乘积对一个 long long 级别的数取模的结果。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">multi</span><span class="params">(<span class="type">long</span> <span class="type">long</span> a,<span class="type">long</span> <span class="type">long</span> b,<span class="type">long</span> <span class="type">long</span> mod)</span></span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> x=(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)a*b-(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)((<span class="type">long</span> <span class="type">double</span>)a*b/mod<span class="number">-0.5</span>)*mod;</span><br><span class="line">    <span class="keyword">return</span> x&gt;=mod?x-mod:x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">mul</span><span class="params">(<span class="type">long</span> <span class="type">long</span> A, <span class="type">long</span> <span class="type">long</span> B, <span class="type">long</span> <span class="type">long</span> P)</span></span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> C = A * B - (<span class="type">long</span> <span class="type">long</span>)((<span class="type">long</span> <span class="type">double</span>)A * B / P + <span class="number">0.1</span>) * P;</span><br><span class="line">	<span class="keyword">return</span> C &lt; <span class="number">0</span> ? C + P : C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>原理很简单，long double 的精度误差虽然有，但是我们 -0.5 之和核查范围变成了 [0,1]，肯定不会超出这个。</p>
-<p>C++ 标准中要求了 unsigned long long 类型在溢出后保证为原值对 $2^{64}$ 取模的结果，所以直接用就行。</p>
-<p>第二个原理类似，在 G++ 编译器中，O2 中，保证 long long 的溢出行为有定义。</p>
-<p>推荐用第一个，各个平台都不会出锅。</p>
-<p>如果 $P\leq 10^{14}$ 可以改成 double</p>
-<p>判断一下是否减少了就行。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1434,7 +1439,7 @@ f(k) = \sum_{i=k}^{n-1}C(i,k) \times g(i)</script><p>这个很好理解，枚举
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1447,7 +1452,7 @@ f(k) = \sum_{i=k}^{n-1}C(i,k) \times g(i)</script><p>这个很好理解，枚举
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">48</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
