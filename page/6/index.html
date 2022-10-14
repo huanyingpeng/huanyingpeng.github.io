@@ -211,6 +211,606 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%BB%93%E8%AE%BA%E8%AF%81%E6%98%8E%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/12/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%BB%93%E8%AE%BA%E8%AF%81%E6%98%8E%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">常用数学结论证明汇总</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-12 16:04:07" itemprop="dateCreated datePublished" datetime="2022-07-12T16:04:07+08:00">2022-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-07 09:25:36" itemprop="dateModified" datetime="2022-10-07T09:25:36+08:00">2022-10-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E4%BF%A1%E6%81%AF%E7%AB%9E%E8%B5%9B%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">信息竞赛中的数学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="简单事实"><a href="#简单事实" class="headerlink" title="简单事实"></a>简单事实</h3><ol>
+<li>$\gcd(a,x_1)=1,\gcd(a,x_2)=1 \leftrightarrow \gcd(a,x_1x_2)$</li>
+<li>若 $n\ |\ m$ 则 $\phi(n)\ |\ \phi(m)$</li>
+<li>若 $\gcd(a,p)=1$,则 $ax,x \in [1,p]$ 模 $p$ 意义下互不相同，反之亦然。</li>
+</ol>
+<h3 id="模运算和满足的运算率"><a href="#模运算和满足的运算率" class="headerlink" title="模运算和满足的运算率"></a>模运算和满足的运算率</h3><p>注：符号均为模 $p$ 意义下。</p>
+<ul>
+<li>加法交换律</li>
+<li>加法结合律</li>
+<li>乘法交换律</li>
+<li>乘法结合率</li>
+<li>如果 $p$ 为质数 ，$g$ 为 $p$ 的一个原根，则 $\log_x(y) = \frac{\log_g(y)}{\log_g(x)} \pmod {p-1}$</li>
+</ul>
+<h3 id="复数运算满足的运算性质"><a href="#复数运算满足的运算性质" class="headerlink" title="复数运算满足的运算性质"></a>复数运算满足的运算性质</h3><ul>
+<li>加法交换律</li>
+<li>加法结合律</li>
+</ul>
+<h3 id="一些抽象代数内容"><a href="#一些抽象代数内容" class="headerlink" title="一些抽象代数内容"></a>一些抽象代数内容</h3><h4 id="事实1"><a href="#事实1" class="headerlink" title="事实1"></a>事实1</h4><p>令 $g$ 为 $p$ 的一个原根，记 $\log_g(x) = y$，模 $p$ 意义下 $x$ 的阶数为 </p>
+<script type="math/tex; mode=display">
+\Large ord = \frac{\phi(p)}{\gcd(\phi(p),\log_g(x))}</script><h4 id="证明1"><a href="#证明1" class="headerlink" title="证明1"></a>证明1</h4><p> 显然 $g$ 的阶数为 $\phi(p)$，又因为 $g^y = x$。所以 $x^{ord} = 1$。</p>
+<p>然后证明 $x^i,i \in [1,ord]$ 互不相同。</p>
+<p>反证，如果相同，设为 $i,j(i\ge j)$，那么 $g^{yi} = g^{yj}$ 得到 $\phi(x) |\ y(i-j)$ 两边同时除以 $\gcd(\phi(p),y)$，得到 $ord |\ y’(i-j)$，其中 $\gcd(y’,ord) = 1$ ，得出 $i-j \ge ord$ 矛盾。</p>
+<p>所以 $x$ 的阶数为 $ord$</p>
+<h3 id="裴蜀定理"><a href="#裴蜀定理" class="headerlink" title="裴蜀定理"></a>裴蜀定理</h3><h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>$\exist\  x,y \in \Z$ 使得 $ax+by=\gcd(x,y)$</p>
+<h4 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h4><p>归纳构造。</p>
+<p>先证明 $\exist\ x’,y’\in \Z$ 使得 $bx’+(a\%b)y’ = \gcd(a,b)$</p>
+<p>即 $ay’ + b(x’-\big\lfloor\dfrac{a}{b}\big\rfloor y’) = \gcd(a,b)$</p>
+<p>构造 $x = y’,y=x’- \big\lfloor\dfrac{a}{b}\big\rfloor y’$ 即可满足条件。</p>
+<p>递归证明构造式子，得到边界证明 $\exist \ x,y$ 使得 $\gcd(a,b)x + 0 \times y =\gcd(a,b)$</p>
+<p>令 $x=1,y=0$</p>
+<h3 id="欧拉函数是积性函数"><a href="#欧拉函数是积性函数" class="headerlink" title="欧拉函数是积性函数"></a>欧拉函数是积性函数</h3><p> 即证明若 $\gcd(n,m) =1,$ 则  $\phi(n<em>m) = \phi(n) </em>\phi(m)$</p>
+<p>考虑若干个同余方程组 </p>
+<script type="math/tex; mode=display">
+x ≡ r_1 \pmod n\\
+x ≡ r_2 \pmod m\\</script><p>列出 $n,m,nm$ 意义下的最小缩系 $S_n,S_m,T$</p>
+<p>容易证明 $\forall\ r_1\in S_n, r_2 \in S_m$，存在唯一 $x \in [1,nm]$ 是上同余方程组的解，且 $x \in T$。</p>
+<p>存在唯一就是 $EXCRT$， $x\in T$ 由事实 1 显然。</p>
+<p>故 $\phi(n<em>m) \ge \phi(n) </em>\phi(m)$</p>
+<p>再证明 $\forall\ x\in T$，可以对应一个以上同余方程组的解，假设不对应，那么它一定与 $n,m$ 中的一个不互质，由事实 1 推出矛盾。</p>
+<p>故 $\phi(n<em>m) \le \phi(n) </em>\phi(m)$</p>
+<p>证毕。</p>
+<h3 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h3><h4 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h4><script type="math/tex; mode=display">
+\Large 若 \ \gcd(a,m)= 1 ,\ 则\  a^{\phi(m)}≡1\mod m</script><h4 id="证明-1"><a href="#证明-1" class="headerlink" title="证明"></a>证明</h4><p>考虑模 $m$ 意义下的最小缩系，即最小完全剩余系删去与 $m$ 不互质的元素后的剩余系，记为 $S$。</p>
+<p>构造 $T = \{ax,x \in S\}$</p>
+<p>可以证明 $T=S$， 若 $\exist\ x_1,x_2$ 使得 $x_1\neq x_2$ 且 $ax_1 ≡ ax_2 \pmod m$ ，因为 $\gcd(a,m)=1$</p>
+<p>所以 $m\ |\ x_1 - x_2$，并推出 $x_1 \neq x_2$，故 $T$ 中元素两两不同且均与 $m$ 互质，即为 $S$。</p>
+<p>考虑 $T,S$ 中所有元素的乘积，得到 $\prod\limits_{i=1}^{\phi(n)} ax_i ≡ \prod\limits_{i=1}^{\phi(n)} x_i \pmod n$，又因为 $\prod\limits_{i=1}^{\phi(n)} x_i$ 与 $m$ 互质，所以 $a^{\phi(n)} ≡ 1\pmod n$</p>
+<h3 id="扩展欧拉定理"><a href="#扩展欧拉定理" class="headerlink" title="扩展欧拉定理"></a>扩展欧拉定理</h3><h4 id="内容-2"><a href="#内容-2" class="headerlink" title="内容"></a>内容</h4><script type="math/tex; mode=display">
+\Large 若 \ b≥φ(m) ,\ 则\  a^b≡a^{b \mod φ(m) +φ(m)}\mod m</script><h4 id="证明-2"><a href="#证明-2" class="headerlink" title="证明"></a>证明</h4><p>对 $m$ 考虑唯一分解定理。</p>
+<p>对于任意因子 $p_i^{k_i}$，若与 $a$ 互质，那就有 $a^b≡a^{b \mod φ(m) +φ(m)}\mod p^{k_i}_i$。</p>
+<p>如果和 $a$ 不互质，因为  $b\ge \phi(m)$，那么因为有 $b\ge \phi(m)\ge k_i$，所以 $a^b,a^{(b \mod φ(m)) +φ(m)}$ 都是 $p^{k_i}_i$ 的倍数。</p>
+<p>得到 $a^b - a^{(b \mod φ(m)) +φ(m)}$ 是 $p_i^{k_i}$ 的倍数，故同余。</p>
+<h3 id="原根："><a href="#原根：" class="headerlink" title="原根："></a>原根：</h3><h4 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h4><p>如果 $x^1,x^2,x^3 \cdots x^{\phi(n)}$ 模 $n$ 意义下互不相同，且 $\gcd(x,n)=1$，则称 $x$ 为 $n$ 的原根。</p>
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质:"></a>性质:</h4><p>质数 $p$ 的原根的方幂能取遍 $[1,p-1]$</p>
+<h4 id="求质数的原根"><a href="#求质数的原根" class="headerlink" title="求质数的原根"></a>求质数的原根</h4><p>数学大佬证明了一个数 $n$ 的最小正原根不超过 $n^{\frac{1}{4}+\epsilon}$，所以枚举每个数，检查所有 $n$ 的约数是否是 $a$ 的阶，如果不是，那么 $a$ 为一个原根，复杂度 $\sqrt n$，瓶颈在分解质因数。</p>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>开离散对数的时候上原根和换底公式有奇效。</p>
+<h4 id="原根存在定理"><a href="#原根存在定理" class="headerlink" title="原根存在定理"></a>原根存在定理</h4><p>一个数 $x$ 有原根当且仅当 $x= 2,4,p^n,2\times p^n$，其中 $p$ 为奇素数。</p>
+<p>证明不会。</p>
+<h3 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h3><p>咕咕咕</p>
+<h3 id="平面图欧拉定理"><a href="#平面图欧拉定理" class="headerlink" title="平面图欧拉定理"></a>平面图欧拉定理</h3><p>顶点数-边数-连通块数+区域数=1</p>
+<h3 id="几何体欧拉定理"><a href="#几何体欧拉定理" class="headerlink" title="几何体欧拉定理"></a>几何体欧拉定理</h3><p>顶点数-边数+面数=2</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E6%95%B0%E5%AD%A6%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/12/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E6%95%B0%E5%AD%A6%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">数学算法汇总</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-12 16:02:23" itemprop="dateCreated datePublished" datetime="2022-07-12T16:02:23+08:00">2022-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-23 09:44:35" itemprop="dateModified" datetime="2022-08-23T09:44:35+08:00">2022-08-23</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="数学算法介绍"><a href="#数学算法介绍" class="headerlink" title="数学算法介绍"></a>数学算法介绍</h1><p>主要介绍一些数学相关的算法。</p>
+<h2 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h2><ul>
+<li>DFT:离散傅里叶变换，方式有两种， FFT 和 NTT。</li>
+<li>IDFT:逆离散傅里叶变换。</li>
+</ul>
+<h3 id="FFT-多项式乘法"><a href="#FFT-多项式乘法" class="headerlink" title="FFT 多项式乘法"></a>FFT 多项式乘法</h3><p><del>最开始学这玩意的时候感觉非常迷，后面数学水平上去了其实也不难。</del></p>
+<p>多项式有两种表示方法，一种是系数法，另一种是点值法，总所周知 $n$ 个不同点唯一确定一个 $n-1$ 次多项式。</p>
+<p>原理：多项式的两个系数表达式相乘是 $O(n^2)$ 的，但是其点值表达式相乘却是  $O(n)$ 的，所以考虑将系数表达式转成点值表达式然后相乘。</p>
+<p>事实上，点值表达式和系数表达式的互相转化，如果点值取特殊点，可以做到 $O(n\log n)$，即使是任意点，即多项式多点求值和多项式多点插值也可以做到 $O(n \log^2n)$</p>
+<p>设最终多项式次数为 $n-1$，我们进行多项式乘法时选择的点值叫单位根，即 $x^n=1$ 在复数域上的所有根。</p>
+<p>这玩意有一些性质，不过我们得先把次数变为 $n=2^k$ 形式。</p>
+<p>无法想象发明这个东西的人是怎么想到的，可能这就是被记在历史书上的人的水平。</p>
+<p><em>以下内容如果将坐标系视为极坐标系会更好理解</em></p>
+<script type="math/tex; mode=display">
+W_n^i = -W_n^{i+\frac{n}{2}}\\
+W_{\frac{n}{2}}^{i} = W_{n}^{2i}\\</script><p>考虑这样一个问题，对于一个多项式 $a_0+a_1x+a_2x^2 \cdots a_{n-1}x^{n-1}$ ，我们需要同时求出它在 $W_n^{0},W_n^{1}\cdots W_n^{n-1}$ 处的取值。发现由于第一个性质，貌似可以偷个懒，因为后 $\frac{n}{2}$ 个数就是前 $\frac{n}{2}$ 个数的相反数。</p>
+<p>相反数的性质，奇变偶不变。考虑对系数按奇偶性分类，式子变成了这个样子。</p>
+<p>$(a_0+a_2x^2+\cdots +a_{n-2}x^{n-2})+x(a_1+a_3x^2+\cdots + a_{n-1}x^{n-2})$</p>
+<p>然后考虑前后两个部分，需要对他们求 $x=W_n^0,W_n^1\cdots W_n^{\frac{n}{2}-1}$ 处的取值，本质上是求 $x^2=W_n^0,W_n^2\cdots W_n^{n-2}$ 处的取值，结合第二个性质，woc，就是两个子问题，解决之后就可以 $O(n)$ 得到原问题的解，边界显然是 $n=1$。</p>
+<p>复杂度 $T(n)=2T(\frac{n}{2}) + O(n) = O(n\log n)$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">FFT</span><span class="params">(<span class="type">int</span> now,com *a,<span class="type">int</span> op)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(now==<span class="number">0</span>)</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">	com a1[<span class="number">1</span>&lt;&lt;now],a2[<span class="number">1</span>&lt;&lt;now];</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;now;i+=<span class="number">2</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		a1[i/<span class="number">2</span>]=a[i];</span><br><span class="line">		a2[i/<span class="number">2</span>]=a[i+<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">FFT</span>(now<span class="number">-1</span>,a1,op);</span><br><span class="line">	<span class="built_in">FFT</span>(now<span class="number">-1</span>,a2,op);</span><br><span class="line">	com w0=(com&#123;<span class="built_in">cos</span>(<span class="number">2.0</span>*Pi/(<span class="number">1</span>&lt;&lt;now)),op*<span class="built_in">sin</span>(<span class="number">2.0</span>*Pi/(<span class="number">1</span>&lt;&lt;now))&#125;),w=(com)&#123;<span class="number">1</span>,<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;now<span class="number">-1</span>;i++,w=w*w0)</span><br><span class="line">	&#123;</span><br><span class="line">		a[i]=a1[i]+w*a2[i];</span><br><span class="line">		a[i+(<span class="number">1</span>&lt;&lt;(now<span class="number">-1</span>))]=a1[i]-w*a2[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是如果递归的话，常数会比较拉跨。因为递归必然需要复制数组重新弄成一个下标 $1-n$ 的问题，无论用什么办法解决，你的高速缓存都会表示意见很大，所以考虑迭代写法。</p>
+<p>本质上递归是一层一层合并了两个数组，那么能不能直接模拟这个合并的过程呢，答案是可以的。</p>
+<p>观察发现本质上是将下标二进制 <code>reverse</code> 之后逐层合并的，我们也这么做就行。</p>
+<p>求 <code>reverse</code> 可以 $O(n)$，如下（如果你不了解运算顺序，请老老实实打括号）</p>
+<p>这个原理很简单，不看最后一位，其它位先 <code>reverse</code>，然后处理一下最后一位就行。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)res[i]=res[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>|(i&amp;<span class="number">1</span>)&lt;&lt;<span class="number">1</span>-lim;</span><br></pre></td></tr></table></figure>
+<p>下面是迭代写法代码，本质是模拟了递归合并的过程。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">FFT</span><span class="params">(com a[],com b[],<span class="type">int</span> op)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;maxn;i++)</span><br><span class="line">    <span class="keyword">if</span>(r[i]&gt;i)<span class="built_in">swap</span>(a[r[i]],a[i]),<span class="built_in">swap</span>(b[r[i]],b[i]);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=maxn;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">1</span>&lt;&lt;maxn;j+=<span class="number">1</span>&lt;&lt;i)&#123;</span><br><span class="line">			com w0=(com)&#123;<span class="built_in">cos</span>(<span class="number">2.0</span>*Pi/(<span class="number">1</span>&lt;&lt;i)),op*<span class="built_in">sin</span>(<span class="number">2.0</span>*Pi/(<span class="number">1</span>&lt;&lt;i))&#125;,w=(com)&#123;<span class="number">1</span>,<span class="number">0</span>&#125;;</span><br><span class="line">			<span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>;k++,w=w*w0)&#123;</span><br><span class="line">				com x=a[j+k],y=a[j+k+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]*w;</span><br><span class="line">				a[j+k]=x+y;</span><br><span class="line">				a[j+k+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]=x-y;</span><br><span class="line">                </span><br><span class="line">				x=b[j+k],y=b[j+k+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]*w;</span><br><span class="line">				b[j+k]=x+y;</span><br><span class="line">				b[j+k+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]=x-y;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>搞完了系数转点值，接下来是点值转系数。</p>
+<p>前人告诉我们只需要将单位根改为 $W_n^{0},W_n^{-1}\cdots W_n^{-n+1}$，再做一遍系数转点值的过程就可以得到系数，但是系数会变成原来的 $n$ 倍，除掉就行。</p>
+<p>给出简要证明，$i$ 次项的系数为 $a_i$，转一次点值</p>
+<p>之后变为 $b_i$，再做一次变成 $c_i$</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+c_x &=& \sum\limits_{i=0}^{n-1}b_iW_n^{-ix} \\
+ &=& \sum\limits_{i=0}^{n-1} W_n^{-ix}\sum\limits_{j=0}^{n-1}a_jW_n^{ij}\\
+ &=& \sum\limits_{i=0}^{n-1} \sum\limits_{j=0}^{n-1}a_jW_n^{i(j-x)}\\
+\end{eqnarray}</script><p>对于 $j=x$，贡献显然为 $\sum\limits_{i=0}^{n-1}a_xW_n^{i\times0} = na_x$</p>
+<p>对于 $j\neq x$ 贡献为 $a_j \sum\limits_{i=0}^{n-1}(W_n^{j-x})^{i}$</p>
+<p>对这个式子的求和用等比数列求和公式有贡献为 $\dfrac{W_n^{n(j-x)}-1}{W_n^{j-x}-1}$</p>
+<p>显然分子为 $0$，分母不为 $0$，所以贡献是 $0$，所以结果就是 $na_x$</p>
+<p>搞定。</p>
+<h3 id="NTT-多项式乘法"><a href="#NTT-多项式乘法" class="headerlink" title="NTT 多项式乘法"></a>NTT 多项式乘法</h3><p>FFT 多项式乘法是由缺陷的，由于浮点数精度和运算速度问题，FFT 可能并不能很好的解决一些问题，所以引入了 NTT，NTT 从有限整数域中找到了这样一组具有同样优秀性质的 $W_n$，即 $g$，也就是原根。</p>
+<p>原根的内容可以参考数学证明总结中的介绍。</p>
+<p><strong>注意，和 FFT 一样，NTT 也需要严格的按照 $2^k$ 取次数，因为我们利用了 $W_n^{2i} = W_{\frac{n}{2}}^{i}$ 这一重要性质</strong> </p>
+<p>所以能取出较大的 $2^k$ 作为阶的质数才可以作为 NTT 的模数，常见的 NTT 模数是 $998244353=2^{23}\times 7\times 17 +1$ ，我们可以取它的原根 $g=3$ 作为基本单位根带入，实际上如果要找到一个应用于 $n$ 的单位根 $W_n$，需要取 $W_n=g^{\frac{p-1}{n}}$。这样它就满足了我们在 FFT 证明中用到的一切性质。</p>
+<p>然后照着 FFT 打一遍就行，只是基本运算这些换为模 $p$ 意义下的运算就行。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">NTT</span><span class="params">(<span class="type">int</span> *a,<span class="type">int</span> type)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;s;i++)</span><br><span class="line">	<span class="keyword">if</span>(rk[i]&gt;i)<span class="built_in">swap</span>(a[rk[i]],a[i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> len=<span class="number">1</span>;len&lt;=s;len++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> w=<span class="number">1</span>,wn=<span class="built_in">quick</span>(g,mod<span class="number">-1</span>&gt;&gt;len);</span><br><span class="line">		<span class="keyword">if</span>(type==<span class="number">-1</span>)wn=<span class="built_in">quick</span>(wn,mod<span class="number">-2</span>);</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j+(<span class="number">1</span>&lt;&lt;len)&lt;=<span class="number">1</span>&lt;&lt;s;j+=<span class="number">1</span>&lt;&lt;len,w=<span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(k=j;k&lt;j+(<span class="number">1</span>&lt;&lt;len<span class="number">-1</span>);k++,w=<span class="number">1ll</span>*w*wn%mod)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="type">int</span> x=a[k],y=a[k+(<span class="number">1</span>&lt;&lt;len<span class="number">-1</span>)];</span><br><span class="line">				a[k]=(x+<span class="number">1ll</span>*w*y%mod)%mod,a[k+(<span class="number">1</span>&lt;&lt;len<span class="number">-1</span>)]=(x<span class="number">-1ll</span>*w*y%mod)%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="其它多项式乘法和一些优化"><a href="#其它多项式乘法和一些优化" class="headerlink" title="其它多项式乘法和一些优化"></a>其它多项式乘法和一些优化</h3><h4 id="FFT-三次变两次"><a href="#FFT-三次变两次" class="headerlink" title="FFT 三次变两次"></a>FFT 三次变两次</h4><p>FFT 三次变两次，把 $b$ 扔到 $a$ 的虚部去，变成了 $A(x) = (a_0+b_0i) + (a_1+b_1i)x+ \cdots + (a_{n-1}+b_{n-1}i)x^{n-1}$</p>
+<p>然后求 $A^2(x)$，得到的系数表达式的虚部就是 $2ab$。</p>
+<p>证明显然，会比 NTT 略快。</p>
+<h4 id="任意模数-NTT"><a href="#任意模数-NTT" class="headerlink" title="任意模数 NTT"></a>任意模数 NTT</h4><p>NTT 解决的是模意义下的乘法问题，当然，如果<strong>确保值域不超出模数</strong>，那么模意义下的结果就是正确结果。</p>
+<p>如果模数不是 NTT 模数，就需要写任意模数 NTT。</p>
+<p>实现方式有两种，其一是拆系数 FFT，其二是多模数 NTT 后用 CRT 合并。</p>
+<h5 id="多模数-NTT"><a href="#多模数-NTT" class="headerlink" title="多模数 NTT"></a>多模数 NTT</h5><p>一般选取 <code>998244353 1004535809 469726049</code> 作为 NTT 模数，它们的原根都是 <code>3</code>。分别进行 NTT 后，可以得到在模它们意义下的结果，用中国剩余定理合并，得到一个模约 $5\times 10^{26}$ 的数的结果，一般来说任意的模数不会超过 $10^9$，所以乘起来的结果不超过 $10^{24}$，直接用合并的结果就行。</p>
+<p>提一下实现细节。</p>
+<p>一种方式是写个 Num 类，里面放三个 int，重写一下加减乘除，正常做。</p>
+<p>另一种方式是写个 Poly 类，封装个乘法，用 for 做三次，都比较阳间。</p>
+<p>用 CRT 时记得 __int128。或者用一个科技</p>
+<p>一共三个方程，考虑这样合并。</p>
+<p>其中 $mod_1^{-1}$ 表示 $mod_1$ 在 $mod_2$ 意义下的逆元。</p>
+<script type="math/tex; mode=display">
+x = x_1 \pmod {mod1} \\
+x = x_2 \pmod {mod2} \\
+k_1 mod_1 + x_1 = x_2 \pmod{mod2}\\
+x = (x_2-x_1)mod_1^{-1}mod_1 + x_1  \pmod {mod_2*mod_1}</script><p>发现这样第二次合并的时候可以直接在模需要的模数 $p$ 下进行计算。</p>
+<p><strong>注意，务必考虑好取模的顺序，计算第二个时不能先对 p 取模，因为可能结果还需要先模上 $mod_1<em>mod_2</em>mod_3$</strong>，</p>
+<p>怎样避免 __int128 ?</p>
+<p>把 $(x_2-x_1)mod_1^{-1}$ 对 $mod_2$ 取模即可，注意处理正负号，保证<strong>任意时刻</strong>结果在 [0,对应模数) 内。</p>
+<h5 id="拆系数-FFT"><a href="#拆系数-FFT" class="headerlink" title="拆系数 FFT"></a>拆系数 FFT</h5><p>FFT 精度不高，一般来说 double 跑个 $10^{14}$ 问题不大（最后除掉 $n$ 以后的结果，也就是乘出来的多项式的系数，举个例子就是如果跑 $n=10^4$，那需要保证 $a_i,b_i\leq 10^5$），但是跑 $10^{24}$  次方， FFT 表示我做不到，用 long double 也不行。</p>
+<p>所以考虑拆系数，把每个数写成 $a_1\times2^{15} + a_2$ 的形式。</p>
+<p>然后乘法就变成了 $a_1b_1<em>2^{30}+(a_1b_2+a_2b_1)</em>2^{15}+a_2b_2$。</p>
+<p>设新的四个多项式为 $A_1,A_2,B_1,B_2$</p>
+<p>一共 8 次 FFT，但可以优化，考虑复多项式 </p>
+<script type="math/tex; mode=display">
+P=B_1+B_2i\\
+T_1=P\times A_1 \\
+T_2=P\times A_2</script><p>发现需要的系数在 $T_1,T_2$ 的实部和虚部，对这俩做 IDFT，收工。</p>
+<p>一共 5 次 DFT。</p>
+<p>也可以这样:</p>
+<p>先考虑</p>
+<script type="math/tex; mode=display">
+P=A_1+A_2i\\
+P'=A_1-A_2i\\
+Q=B_1+B_2i</script><p>再考虑：</p>
+<script type="math/tex; mode=display">
+T_1=PQ=(A_1B_1-A_2B_2)+(A_1B_2+A_2B_1)i\\
+T_2=P'Q=(A_1B_1+A_2B_2)+(A_1B_2-A_2B_1)i</script><p>最后：</p>
+<script type="math/tex; mode=display">
+T_1+T_2=2(A_1B_1+A_1B_2i)\\
+T_1-T_2=-2(A_2B_2-A_2B_1i)</script><p>弄出 $T_1,T_2$ 的系数表示法就行。其实复系数多项式乘法和普通系数多项式乘法没有什么区别。</p>
+<p>这种 5 次的思路还有其它方式，不一一介绍了。</p>
+<p>听说有种方法可以把两次实数域多项式的 DFT 和 IDFT 整成一次复数域的，但我觉得没啥必要会。</p>
+<p>DFT 思路是构造一个多项式 $P=A+Bi$，对其做 DFT，然后线性求 $Q=A-Bi$ 的 DFT 结果。</p>
+<p>IDFT 思路不会。</p>
+<p><strong>更推荐第一种写法，不会出现精度问题，如果效率不够再考虑改成第二种</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E5%8D%95%E7%BA%AF%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/12/%E5%8D%95%E7%BA%AF%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">深入理解计算机系统学习笔记</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-12 15:57:08" itemprop="dateCreated datePublished" datetime="2022-07-12T15:57:08+08:00">2022-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-16 17:06:51" itemprop="dateModified" datetime="2022-07-16T17:06:51+08:00">2022-07-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/" itemprop="url" rel="index"><span itemprop="name">计算机</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">系统</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="C-语言编译过程"><a href="#C-语言编译过程" class="headerlink" title="C 语言编译过程"></a>C 语言编译过程</h3><ul>
+<li>源文本———-预处理，处理 define,include 等</li>
+<li>预处理文本————编译</li>
+<li>汇编文本—————汇编得到二进制文件 .o</li>
+<li>目标格式—————链接</li>
+<li>可执行文件</li>
+</ul>
+<h3 id="二进制补码原理和-C-语言处理类型转换"><a href="#二进制补码原理和-C-语言处理类型转换" class="headerlink" title="二进制补码原理和 C 语言处理类型转换"></a>二进制补码原理和 C 语言处理类型转换</h3><ul>
+<li>二进制补码最高位本质是一个 $-2^x$</li>
+<li>同时处理有符号和无符号整数比较时或者进行其它二元运算时，C 语言会默认无符号且均为正数。</li>
+<li>编译器处理一个 <code>-x</code> 的表达式时，会先读 <code>x</code> 然后取反，所以 <code>-2147483648</code> 是不合法的，应该写为 <code>-2147483647-1</code></li>
+</ul>
+<h3 id="简单的汇编语言"><a href="#简单的汇编语言" class="headerlink" title="简单的汇编语言"></a>简单的汇编语言</h3><ul>
+<li><p>操作系统将物理内存抽象为了一个一维数组，所有汇编层面的操作均在一维数组内进行</p>
+</li>
+<li><p>每一条汇编指令都可以被描述为两个部分，指令和操作对象，这两部分的<strong>整体</strong>可以被一个或多个字节描述，此规则本质上是一颗哈夫曼树。</p>
+</li>
+<li><p>一个程序的汇编指令会被保存在主存上，有一个程序计数器 <code>epi</code> 指出当前执行到的地方。</p>
+</li>
+<li><p>常用寄存器名有 <code>eax,ecx,edx,ebx,esi,edi,esp,ebp</code>。前三者的数据由当前程序保存在栈中，后三者的值由下级程序保存，最后二者为帧指针和栈指针，一般不使用。前四个寄存器可以通过 <code>ah,al,ax</code> 等形式访问低二字节和低一字，但都可以用 <code>di</code> 形式访问低一字。 </p>
+</li>
+<li><p>传送指令分为三种 <code>movb movw movl</code> 分别表示字节，字和双字。传送对应类型时，应该使用对应的寄存器位置。 <code>push,pop</code> 指令为压栈和弹栈，本质上是操作了主存和栈指针。</p>
+</li>
+<li><p><code>lea</code> 指令可以快速计算 <code>a+b*(1,2,4,8)+c</code> ，<code>a</code> 必须为常量，<code>b,c</code> 必须为寄存器中的数。</p>
+</li>
+<li><p>操作数分为三类，一类是立即数，一类是寄存器，一类是主存数据，访问格式如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$imm //立即数 imm</span><br><span class="line">eg. $0x3f</span><br><span class="line"></span><br><span class="line">E	//寄存器 E</span><br><span class="line">eg. eax</span><br><span class="line"></span><br><span class="line">Imm(e1,e2,s) //主存上 Imm+e1+e2*s 位置上的数据，Imm 可以缺省，后二者可以缺省，e1 缺省时不能省略 &#x27;,&#x27;</span><br><span class="line">eg. 0x3f(eax,ebx,4)</span><br><span class="line">eg. (eax)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>用 <code>test</code> 和 <code>cmp</code> 指令来控指条件，本质上，它们改变了条件寄存器内的值，<code>test x x</code> 等价于 <code>cmp 0 x</code>。执行 <code>cmp</code> 后，<code>jl</code> 等条件跳转语句会在 <code>cmp</code> 成立时执行，<code>jl</code> 表示小于时跳转，<code>cmp x y</code> 可以看作是 <code>y&lt;x</code> 时执行 <code>jl</code></p>
+</li>
+<li><p><code>call</code> 指令会将返回地址 (call) 语句后那条语句的地址入栈后跳转到函数所在位置。<code>ret</code> 指令利用返回地址跳转回去，一般来说，用 <code>eax</code> 保存返回内容。</p>
+</li>
+<li><p>由于程序寄存器中的某些值会被缓存到主存中，所以使用 <code>gets</code> 等不安全函数读取时，如果读取的内容过长超出了为此缓存区分别的字节后，会污染一些<strong>先前被存储在主存中的寄存器值</strong>，因为超出分配的内存后，会写在外面，通过这样的操作，我们可以改变一些系统寄存器的值，让程序跳转执行一些我们希望让它执行的代码（这样的代码通常被写在我们的输入里），这就是缓冲区攻击，通常操作是改变 <code>ebp</code> 的值使得 <code>ret</code> 操作跳到我们希望的地方。</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E5%AF%B9%E7%AB%9E%E8%B5%9B%E6%9C%89%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E6%B3%95%E7%B3%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/12/%E5%AF%B9%E7%AB%9E%E8%B5%9B%E6%9C%89%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E6%B3%95%E7%B3%96/" class="post-title-link" itemprop="url">语法，语法糖，标准库函数</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-12 15:55:05" itemprop="dateCreated datePublished" datetime="2022-07-12T15:55:05+08:00">2022-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-13 20:27:26" itemprop="dateModified" datetime="2022-10-13T20:27:26+08:00">2022-10-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">语法</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%AD%E6%B3%95/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="语法，语法糖，标准库函数"><a href="#语法，语法糖，标准库函数" class="headerlink" title="语法，语法糖，标准库函数"></a>语法，语法糖，标准库函数</h1><p>介绍一些有用常用但鲜为人知的 <code>C++</code> 语法，语法糖。 </p>
+<h2 id="标准库"><a href="#标准库" class="headerlink" title="标准库"></a>标准库</h2><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="std-swap"><a href="#std-swap" class="headerlink" title="std::swap"></a>std::swap</h4><ul>
+<li><p>对于除了 <code>array</code> 容器之外的所有标准库容器，都可以 $O(1)$ 交换</p>
+</li>
+<li><p>交换数组的复杂度为 $O(size)$，对二维数组的某一维使用，会将当前行视为一维数组进行交换。</p>
+</li>
+</ul>
+<h4 id="memcpy"><a href="#memcpy" class="headerlink" title="memcpy"></a>memcpy</h4><p><code>memcpy(dst, src, size)</code></p>
+<p>dst:目标数组起始位置</p>
+<p>src:源数组起始位置</p>
+<p>size:需要复制的字节数</p>
+<h4 id="lower-bound-upper-bound"><a href="#lower-bound-upper-bound" class="headerlink" title="lower_bound,upper_bound"></a>lower_bound,upper_bound</h4><p>看下实现吧：</p>
+<ul>
+<li><code>upper_bound</code> 如果对类使用，那么<strong>类的比较函数需要定义为友元函数</strong>。</li>
+<li><code>lower_bound</code> 返回第一个大于等于它的位置，<code>upper_bound</code> 返回第一个大于它的位置，<code>comp</code> 为默认小于号。</li>
+<li>如果要对不增序列操作，那么 <code>comp</code> 为大于号，<code>lower_bound</code> 返回第一个小于等于它的位置，<code>upper_bound</code> 返回第一个小于它的位置。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">lower_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value, Compare comp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ForwardIt it;</span><br><span class="line">    <span class="keyword">typename</span> std::iterator_traits&lt;ForwardIt&gt;::difference_type count, step;</span><br><span class="line">    count = std::<span class="built_in">distance</span>(first, last);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        it = first;</span><br><span class="line">        step = count / <span class="number">2</span>;</span><br><span class="line">        std::<span class="built_in">advance</span>(it, step);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">comp</span>(*it, value)) &#123;</span><br><span class="line">            first = ++it;</span><br><span class="line">            count -= step + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count = step;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">upper_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value, Compare comp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ForwardIt it;</span><br><span class="line">    <span class="keyword">typename</span> std::iterator_traits&lt;ForwardIt&gt;::difference_type count, step;</span><br><span class="line">    count = std::<span class="built_in">distance</span>(first,last);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        it = first; </span><br><span class="line">        step = count / <span class="number">2</span>;</span><br><span class="line">        std::<span class="built_in">advance</span>(it, step);</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">comp</span>(value, *it)) &#123;</span><br><span class="line">            first = ++it;</span><br><span class="line">            count -= step + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count = step;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="atan2"><a href="#atan2" class="headerlink" title="atan2"></a>atan2</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">atan2</span><span class="params">(<span class="type">double</span> x,<span class="type">double</span> y)</span></span>&#123;</span><br><span class="line">    <span class="comment">//返回 [actan(y/x)],[-Pi,Pi)</span></span><br><span class="line">    <span class="comment">//计算几何的神，怎么神就不用说了吧。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="for-each-begin-end-fun"><a href="#for-each-begin-end-fun" class="headerlink" title="for_each(begin,end,fun)"></a>for_each(begin,end,fun)</h4><p>对 begin 到 end 区间的每一个元素 x，执行 fun(x)。  </p>
+<p>如果需要传参，可以利用类的构造函数。</p>
+<p>即给类重载一个 <code>()</code> 运算，然后构造输出。</p>
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><p>一般来说 <code>class</code> 和 <code>struct</code> 竞赛上差别不大，<code>struct</code> 是默认 <code>public</code> 的 <code>class</code>。</p>
+<h3 id="重载括号"><a href="#重载括号" class="headerlink" title="重载括号"></a>重载括号</h3><p>重载小括号运算符可以让你把结构体当函数用，其实本质上少写了一个 <code>.&#123;function name&#125;</code>。</p>
+<p>它和构造函数不冲突。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett1</span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> m,im;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		ULL z=(ULL)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;bt1;</span><br><span class="line"><span class="type">int</span> a=<span class="number">1</span>,b=<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> c=<span class="built_in">bt1</span>(a,b);</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett2</span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> m,im;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">foo</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		ULL z=(ULL)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;bt2;</span><br><span class="line">c=bt2.<span class="built_in">foo</span>(a,b);</span><br></pre></td></tr></table></figure>
+<p>两者没有本质区别。</p>
+<p>中括号可以重载，一般来说，重载中括号返回的是一个引用，中扩号只接受一个参数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">array_2d</span>&#123;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">10005</span>],b[<span class="number">10005</span>];</span><br><span class="line">    <span class="type">int</span> n,m;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> nn,<span class="type">int</span> mm)</span></span>&#123;</span><br><span class="line">    	n=nn,m=mm;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="type">int</span>&amp; <span class="keyword">operator</span>[](<span class="type">int</span> x)&#123;</span><br><span class="line">		<span class="keyword">return</span> a[x];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;a;</span><br><span class="line">a.<span class="built_in">init</span>(<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line">a[<span class="number">3</span>]=<span class="number">1</span>;a.b[<span class="number">4</span>]=<span class="number">2</span>;</span><br><span class="line">a[<span class="number">4</span>]=<span class="number">4</span>;</span><br><span class="line">cout&lt;&lt;a[<span class="number">4</span>]&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;a[<span class="number">3</span>]&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><p>结构体的构造函数可以返回一个结构体实例，也可以允许在声明结构体的时候同时构造。</p>
+<p>举个例子</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line"><span class="comment">// st t3; 这句会 CE</span></span><br></pre></td></tr></table></figure>
+<p>这两种写法都行，<strong>注意不能变量重名</strong>，不会 <code>CE</code>，但是函数参数里会那个名字会覆盖掉全局的。</p>
+<p>注意写了构造函数，所有的构造都必须带参数。</p>
+<p>定义结构体的时候还可以给变量赋初值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line"><span class="comment">// t1.str=&quot;str&quot;,t1.b=3</span></span><br><span class="line"><span class="comment">// t2.str=&quot;str&quot;,t2.b=3</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>但是如果构造函数里写了，就会被覆盖。声明的局部变量写了的初值会固定，没写的初值就随机。</p>
+<p>如果没写构造函数，那么会有一个默认的列表构造函数，按照结构体内声明变量的顺序将列表中的每一个值依次赋给对应变量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=st&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="string">&#x27;huan_yp&#x27;</span>&#125;;</span><br><span class="line">st t2&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="string">&quot;huan_yp&quot;</span>&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其实构造函数还有另一种写法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb): <span class="built_in">a</span>(aa), <span class="built_in">b</span>(bb) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>和最开始的写法是等效的。</p>
+<p><strong>注意，如果写了构造函数，默认的列表构造函数会调用它，所以如果你想不同参数个数构造，需要填默认参数</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>() :<span class="built_in">a</span>(), <span class="built_in">b</span>(), <span class="built_in">str</span>()&#123;&#125;</span><br><span class="line">    <span class="comment">//如果没有这一行，下面的第一个构造会 CE</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">	<span class="built_in">st</span>(<span class="type">int</span> aa, <span class="type">int</span> bb,string cc) :<span class="built_in">a</span>(aa), <span class="built_in">b</span>(bb), <span class="built_in">str</span>(cc)&#123;&#125;</span><br><span class="line"><span class="comment">//    st() :a(), b(), str() &#123;&#125;</span></span><br><span class="line"><span class="comment">//    st(int aa,int bb): a(aa), b(bb) &#123;&#125;</span></span><br><span class="line">&#125;;</span><br><span class="line">st t1;</span><br><span class="line">t1=&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="string">&quot;str&quot;</span>&#125;;</span><br><span class="line">t1=&#123;<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">//最后一行会 CE</span></span><br></pre></td></tr></table></figure>
+<p>列表构造式还可以自推导。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=&#123;<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">t1=&#123;<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="comment">//t1(2,3)</span></span><br><span class="line"><span class="comment">//括号式式不能自推导的，这个的含义参考第一条。</span></span><br></pre></td></tr></table></figure>
+<h2 id="语法概念"><a href="#语法概念" class="headerlink" title="语法概念"></a>语法概念</h2><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>引用可以认为是一个<strong>隐式指针</strong>，不需要 <code>*</code> 的修饰便可以直接访问内容。它既然是一个指针，自然会占用一个 <code>long</code> 的空间。</p>
+<h4 id="定义，返回一个引用"><a href="#定义，返回一个引用" class="headerlink" title="定义，返回一个引用"></a>定义，返回一个引用</h4><p>可以在函数中返回一个引用，只需要在函数名前面后加一个 <code>&amp;</code>，定义引用也在变量名加一个 <code>&amp;</code>，和指针类似。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> &amp;<span class="title">setValues</span><span class="params">(<span class="type">int</span> i)</span> </span>&#123;  </span><br><span class="line">   <span class="type">double</span> &amp;ref = vals[i];    </span><br><span class="line">   <span class="keyword">return</span> ref;   <span class="comment">// 返回第 i 个元素的引用，ref 是一个引用变量，ref 引用 vals[i]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义引用的示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n=<span class="number">0</span>,m=<span class="number">0</span>;</span><br><span class="line"><span class="type">int</span>&amp; nn=n,mm=m;</span><br><span class="line">n=<span class="number">10</span>,m=<span class="number">20</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;n,m:%d,%d\n&quot;</span>,n,m);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;nn,mm:%d,%d\n&quot;</span>,nn,mm); </span><br><span class="line"><span class="comment">//输出:</span></span><br><span class="line"><span class="comment">//10,20</span></span><br><span class="line"><span class="comment">//10,0</span></span><br></pre></td></tr></table></figure>
+<p>在重载结构体 <code>+=,=</code> 运算符号的时候比较常用。</p>
+<p>引用传参应该已经很熟悉了吧。</p>
+<h4 id="左值引用和右值引用"><a href="#左值引用和右值引用" class="headerlink" title="左值引用和右值引用"></a>左值引用和右值引用</h4><p><code>C++11</code> 新概念。<a target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/12/15/understanding-lvalues-and-rvalues-in-c-and-c">参考阅读</a></p>
+<p>一般的，使用引用传参时，如果接受的参数为右值，那么不能修改右值，参数必须声明为 <code>const</code> 类型。</p>
+<p>算了，先咕咕咕了吧。</p>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p>如果用的不好，容易出现找不到实现的问题。</p>
+<p>一个原则：所有东西的类型必须在使用前就得知。</p>
+<h3 id="类模板"><a href="#类模板" class="headerlink" title="类模板"></a>类模板</h3><p>继承的时候需要写明父类的类型参数，如果子类也是模板类，可以用子类的类型模板参数作为父类的类型模板参数。</p>
+<h3 id="函数模板"><a href="#函数模板" class="headerlink" title="函数模板"></a>函数模板</h3><p>函数模板是可以自动推导类型的，如果出现类型冲突，那么会报 <code>CE</code>。</p>
+<p>常见例子是 <code>std::max(1,1ll)</code> 报错。</p>
+<p>注意字面量的类型。</p>
+<p>指定模板参数可以仅指定一段前缀，剩下的采用自动推导。</p>
+<h3 id="多文件的一些问题"><a href="#多文件的一些问题" class="headerlink" title="多文件的一些问题"></a>多文件的一些问题</h3><h4 id="按惯例编写的问题"><a href="#按惯例编写的问题" class="headerlink" title="按惯例编写的问题"></a>按惯例编写的问题</h4><p>通常情况下，你会在 .h 文件中声明函数和类，而将它们的定义放置在一个单独的 .cpp 文件中。但是在使用模板时，这种习惯性做法将变得不再有用，因为当实例化一个模板时，编译器必须看到模板确切的定义，而不仅仅是它的声明。</p>
+<h4 id="定义和声明一起写"><a href="#定义和声明一起写" class="headerlink" title="定义和声明一起写"></a>定义和声明一起写</h4><p>可以将模板的声明和定义都放置在同一个 .h 文件中。这就是为什么所有的 STL 头文件都包含模板定义的原因。</p>
+<p>习惯来说，一般把这种包含定义的头文件后缀名写为 <code>.hpp</code>。</p>
+<h4 id="使用-export"><a href="#使用-export" class="headerlink" title="使用 export"></a>使用 export</h4><p>咕咕咕</p>
+<h2 id="Static-关键字"><a href="#Static-关键字" class="headerlink" title="Static 关键字"></a>Static 关键字</h2><p>声明一个静态的东西，可以用来避免命名冲突，也可以用来更好的实现一个类。</p>
+<p>Static 关键字声明的东西生命周期是整个程序的生命周期，但作用域仅限定为声明处的作用域。</p>
+<p>举个例子，某个函数的执行过程和它被调用的次数有关，这个可以弄个全局变量记一个次数，但是我们也可以在它的内部写个 static 变量记录，这样就不会与外部空间变量名冲突。</p>
+<p>所有静态变量的初始值为 0</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">static</span> <span class="type">int</span> cnt;</span><br><span class="line">	cout&lt;&lt;++cnt&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">fun</span>();cnt=<span class="number">10</span>;</span><br><span class="line">cout&lt;&lt;cnt&lt;&lt;endl;</span><br><span class="line"><span class="built_in">fun</span>();<span class="built_in">fun</span>();cnt++;<span class="built_in">fun</span>();</span><br></pre></td></tr></table></figure>
+<p>也可以用静态成员来维护一个类，比如写链表的时候，我们通常要先写个 node 类，然后才能实现 list 类，但我们可以直接将 head 指针作为一个静态变量放入结构体中，这样，这个静态变量就可以被所有结构体的实例访问修改。</p>
+<p><strong>注意，如果需要两个链表，那种这种方式是不可取的，因为静态变量 head 对所有该结构体的实例来说都只有一个。</strong></p>
+<p>我们当然也可以声明静态成员函数。</p>
+<p>对于结构体的静态资源，我们可以用 {结构体名}.{成员名} 来访问。</p>
+<h2 id="函数，匿名函数"><a href="#函数，匿名函数" class="headerlink" title="函数，匿名函数"></a>函数，匿名函数</h2><p>C++ 的函数名，本质上是一个指向某个函数的指针，函数在二进制层面和数据没有差异。</p>
+<p>functor (一般译为算子)，也可以调用，但它是一个对象。</p>
+<h4 id="函数类"><a href="#函数类" class="headerlink" title="函数类"></a>函数类</h4><p>C++ 的函数可以当作一个对象处理的，<strong>函数名是指向该对象的指针</strong>，比如说：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;x++;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">del</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;x--;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">doit</span><span class="params">(<span class="type">int</span> &amp;x,function&lt;<span class="type">void</span>(<span class="type">int</span>&amp;)&gt; f)</span></span>&#123;(x);&#125;</span><br><span class="line">n=<span class="number">10</span>;<span class="built_in">doit</span>(n,del);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,n);</span><br><span class="line">n=<span class="number">20</span>;<span class="built_in">doit</span>(n,add);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,n);</span><br></pre></td></tr></table></figure>
+<h4 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h4><p>格式：<code>[&quot;捕获列表&quot;](&quot;参数列表&quot;)-&gt;&quot;返回类型&quot;&#123;&quot;函数体&quot;&#125;</code></p>
+<p>捕获列表指的捕获局部变量，在函数中可以使用和修改。</p>
+<p>参数列表无参数时可以省略，返回值如果不指定则会自动推导。</p>
+<p>捕获列表不可省略，[] 为强制不捕获，[&amp;] 为引用捕获全部，[=] 为取值捕获全部，也可以用变量名 [x,&amp;y] 取值捕获 x，引用捕获 y。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">end</span>(),[](<span class="type">const</span> <span class="type">int</span> &amp;x,<span class="type">const</span> <span class="type">int</span> &amp;y)&#123;<span class="keyword">return</span> x&gt;y;&#125;); <span class="comment">//降序排序</span></span><br></pre></td></tr></table></figure>
+<p>匿名函数也可以作为一个对象处理。</p>
+<h4 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h4><p>这个东西自己写的时候用的比较少，毕竟不太注重面向对象，</p>
+<p>这玩意和 <code>Python</code> 的 <code>abstract_method</code> 类似，我也不知道怎么解释，反正会用就够了。</p>
+<p>竞赛中应用的话，可以用来重写 <code>pd_ds</code> 里面的平衡树。</p>
+<h2 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h2><h3 id="函数相关"><a href="#函数相关" class="headerlink" title="函数相关"></a>函数相关</h3><h4 id="返回值为-void-的函数"><a href="#返回值为-void-的函数" class="headerlink" title="返回值为 void 的函数"></a>返回值为 void 的函数</h4><p>你是否碰到过这样的情况，函数返回值为 void，但是返回又是有条件，并且还需要执行一些简单的操作，用 <code>&#123;&#125;</code> 括起来显得代码冗长，不妨试试：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">do_cool_thing</span><span class="params">(<span class="type">int</span> arg)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(some_condition) <span class="keyword">return</span> <span class="built_in">void</span>(a_simple_expression);</span><br><span class="line">    <span class="built_in">do_cool_thing</span>(arg);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">do_cool_thing</span><span class="params">(<span class="type">int</span> arg)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(some_condition) <span class="keyword">return</span> <span class="built_in">void</span>(ans++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="有返回值的函数"><a href="#有返回值的函数" class="headerlink" title="有返回值的函数"></a>有返回值的函数</h4><p><code>,</code> 可以用在 return 语句，会返回最后一个值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_v</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">3</span>,<span class="number">5</span>;<span class="comment">// return value is 5</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">new_node</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a[++t]=node&#123;<span class="built_in">mt_rand</span>(), <span class="number">1</span>, x, <span class="number">0</span>, <span class="number">0</span>&#125;, t;</span><br><span class="line">    <span class="comment">//can you guess what it do and when we use it?</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -550,7 +1150,7 @@ f_{now}=1+\sum f_{son(now,i)} \times prime(size_{son(now,i)})</script><p>但这�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -563,7 +1163,7 @@ f_{now}=1+\sum f_{son(now,i)} \times prime(size_{son(now,i)})</script><p>但这�
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">47</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

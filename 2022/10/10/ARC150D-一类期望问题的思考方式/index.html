@@ -21,20 +21,19 @@
     var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="某场考试总结&amp;&amp;OI 中的解析几何考试 有人几何学的很差，考场上还非要写。 T1exchange-argument，已经是咱非常了解的题目啦啦啦。 Ex-Ar T2套路题，二分然后最短路 T3对这种题还是比较熟悉了，不好处理的区间问题分类讨论变偏序，二维偏序解决区间交，贡献独立的情况，李超树搞定贡献分离的情况。 当然可以 CDQ 然后凸包上二分，但是我觉得我更擅长一般的数据结构。">
+  <meta name="description" content="题意 给你一棵有根树，定义一个点合法当且仅当它到根上的点全为黑色，否则不合法。  最开始所有点为白色，每次选一个不合法的点涂黑，每个点可以被涂黑多次。  问所有点被涂黑的期望次数  思考1这次想题引爆了某人概率论基础不扎实的炸弹。 考虑每个点被涂黑的顺序，是一个排列，取到每种排列的概率相同。 考虑使用全期望公式计算，先考虑固定一个排列时的答案。 先假设只有 $3$ 个点，且顺序为 $3,2,1$，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20220930总结">
-<meta property="og:url" content="http://huanyp.cn/2022/10/04/20220930%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="ARC150D-一类期望问题的思考方式">
+<meta property="og:url" content="http://huanyp.cn/2022/10/10/ARC150D-%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
-<meta property="og:description" content="某场考试总结&amp;&amp;OI 中的解析几何考试 有人几何学的很差，考场上还非要写。 T1exchange-argument，已经是咱非常了解的题目啦啦啦。 Ex-Ar T2套路题，二分然后最短路 T3对这种题还是比较熟悉了，不好处理的区间问题分类讨论变偏序，二维偏序解决区间交，贡献独立的情况，李超树搞定贡献分离的情况。 当然可以 CDQ 然后凸包上二分，但是我觉得我更擅长一般的数据结构。">
+<meta property="og:description" content="题意 给你一棵有根树，定义一个点合法当且仅当它到根上的点全为黑色，否则不合法。  最开始所有点为白色，每次选一个不合法的点涂黑，每个点可以被涂黑多次。  问所有点被涂黑的期望次数  思考1这次想题引爆了某人概率论基础不扎实的炸弹。 考虑每个点被涂黑的顺序，是一个排列，取到每种排列的概率相同。 考虑使用全期望公式计算，先考虑固定一个排列时的答案。 先假设只有 $3$ 个点，且顺序为 $3,2,1$，">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-04T12:09:27.000Z">
-<meta property="article:modified_time" content="2022-10-05T13:22:44.681Z">
+<meta property="article:published_time" content="2022-10-10T13:08:17.000Z">
+<meta property="article:modified_time" content="2022-10-10T13:59:13.604Z">
 <meta property="article:author" content="幻影彭">
-<meta property="article:tag" content="解析几何">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://huanyp.cn/2022/10/04/20220930%E6%80%BB%E7%BB%93/">
+<link rel="canonical" href="http://huanyp.cn/2022/10/10/ARC150D-%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/">
 
 
 <script id="page-configurations">
@@ -47,7 +46,7 @@
   };
 </script>
 
-  <title>20220930总结 | 幻影彭的彩虹</title>
+  <title>ARC150D-一类期望问题的思考方式 | 幻影彭的彩虹</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o"></script>
     <script>
@@ -215,7 +214,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/04/20220930%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/10/ARC150D-%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -228,7 +227,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          20220930总结
+          ARC150D-一类期望问题的思考方式
         </h1>
 
         <div class="post-meta">
@@ -238,16 +237,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-10-04 20:09:27" itemprop="dateCreated datePublished" datetime="2022-10-04T20:09:27+08:00">2022-10-04</time>
+              <time title="创建时间：2022-10-10 21:08:17 / 修改时间：21:59:13" itemprop="dateCreated datePublished" datetime="2022-10-10T21:08:17+08:00">2022-10-10</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-05 21:22:44" itemprop="dateModified" datetime="2022-10-05T21:22:44+08:00">2022-10-05</time>
-              </span>
 
           
 
@@ -260,21 +253,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="某场考试总结-amp-amp-OI-中的解析几何"><a href="#某场考试总结-amp-amp-OI-中的解析几何" class="headerlink" title="某场考试总结&amp;&amp;OI 中的解析几何"></a>某场考试总结&amp;&amp;OI 中的解析几何</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0128">考试</a></p>
-<p>有人几何学的很差，考场上还非要写。</p>
-<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>exchange-argument，已经是咱非常了解的题目啦啦啦。</p>
-<p><a href="https://huanyp.cn/2022/08/02/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/">Ex-Ar</a></p>
-<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>套路题，二分然后最短路</p>
-<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>对这种题还是比较熟悉了，不好处理的区间问题分类讨论变偏序，二维偏序解决区间交，贡献独立的情况，李超树搞定贡献分离的情况。</p>
-<p>当然可以 CDQ 然后凸包上二分，但是我觉得我更擅长一般的数据结构。</p>
-<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>我…. 不会解析几何。/ll /ll。</p>
-<p>办法其实非常蠢，一条可行的最短路一定经过圆弧交点，且只会在这些交点拐弯。</p>
-<p>所以求出所有交点，然后判断交点两两路径是否合法，连边跑最短路。</p>
-<p>可行的交点其实不多，得判掉在圆内的点，然后剩下点的个数感觉上是 $O(n)$ 的，实际也是 $O(n)$ 的，证明我不会，等问数学竞赛的回来再补。</p>
-<p>然后判合法本质上是判一条路径是否被覆盖，需要写线圆交，然后前面要写圆圆交，这玩意不是一次函数，会非常裂开，我写的很丑。</p>
-<p>圆圆交直径相同，比较好办，用极坐标可以偷懒，线圆交相当折磨。</p>
-<p>见 <a href="https://huanyp.cn/2022/10/04/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/">计算几何入门</a>。</p>
-<p>用向量写会相当舒适。</p>
+        <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><ul>
+<li><p>给你一棵有根树，定义一个点合法当且仅当它到根上的点全为黑色，否则不合法。</p>
+</li>
+<li><p>最开始所有点为白色，每次选一个不合法的点涂黑，每个点可以被涂黑多次。</p>
+</li>
+<li>问所有点被涂黑的期望次数</li>
+</ul>
+<h2 id="思考1"><a href="#思考1" class="headerlink" title="思考1"></a>思考1</h2><p>这次想题引爆了某人概率论基础不扎实的炸弹。</p>
+<p>考虑每个点被涂黑的顺序，是一个排列，取到每种排列的概率相同。</p>
+<p>考虑使用全期望公式计算，先考虑固定一个排列时的答案。</p>
+<p>先假设只有 $3$ 个点，且顺序为 $3,2,1$，也就是赠券收集问题。</p>
+<p>选第一个点的期望次数为 $1$，因为所有满足这个排列的样本点都是以 $1$ 开头，选第二个点，期望次数是多少，或者说，选出第一个点后，下一个被选择的点，在顺序为 $3,2,1$ 的前提下，是 $2$ 的概率是多少？</p>
+<h3 id="frac-1-2-的来历"><a href="#frac-1-2-的来历" class="headerlink" title="$\frac{1}{2}$ 的来历"></a>$\frac{1}{2}$ 的来历</h3><p>选第二个点时，可以选的点有 $3,2$，选择每个点的概率相同，所以概率为 $\frac{1}{2}$</p>
+<h3 id="frac-2-3-的来历"><a href="#frac-2-3-的来历" class="headerlink" title="$\frac{2}{3}$ 的来历"></a>$\frac{2}{3}$ 的来历</h3><p>考虑概率的定义，$P=\frac{事件大小}{样本空间大小}$，考虑该条件的集合和事件与条件的交集，因为此题样本空间无限大，所以考虑将一个无限长序列映射到我们的样本空间，容易发现这样的映射不会改变概率函数。</p>
+<p>设 $k$ 为已经选取的数的个数，$n$ 为数的总数。</p>
+<script type="math/tex; mode=display">
+\begin{align}
+
+P=&\lim\limits_{m\rightarrow \infty}\dfrac{n^{m-1}}{\sum\limits_{1\le i\le m} k^{i-1}\times n^{m-i}}\\
+=&\dfrac{n^{m-1}}{\frac{n^{m}}{n-k}}\\
+=&\frac{n-k}{n}
+\end{align}</script><p>从贝叶斯公式考虑：</p>
+<p>$P=\dfrac{P(下一个值不出现以前的值\wedge 下一个值为目标)}{P(下一个值为目标)}$</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>样本空间无线大的时候要小心，不能轻易认为两个元素等价，因为此时 $\infty \ne \infty$</strong>。</p>
+<p>草率的断言概率为 $\frac{1}{2}$，很大一部分原因都是认为两个正无穷时相等的。</p>
+<h2 id="思考2"><a href="#思考2" class="headerlink" title="思考2"></a>思考2</h2><p>其实这种题还有一种更加普遍的做法，期望线性性，考虑每个点被选的次数，相加可以得到最终答案。</p>
+<p>期望线性性来源于期望的定义，一个随机变量是一个函数，定义域为样本空间，值域为 $\R$，随机变量的期望为其密度函数积分的收敛值。</p>
+<p>因此，无论两个随机变量是否独立，它们的期望都是可加的。</p>
+<p>感性理解的话，两个随机变量之和的期望等于这样一个随机变量的期望：每个样本点的取值为两个随机变量在该样本点的取值之和，期望可以粗略理解为随机变量在样本空间每个点的平均值，因此随机变量的期望可加。</p>
+<p>每个点被选的次数，一直到它</p>
 
     </div>
 
@@ -290,7 +298,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://huanyp.cn/2022/10/04/20220930%E6%80%BB%E7%BB%93/" title="20220930总结">http://huanyp.cn/2022/10/04/20220930总结/</a>
+    <a href="http://huanyp.cn/2022/10/10/ARC150D-%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/" title="ARC150D-一类期望问题的思考方式">http://huanyp.cn/2022/10/10/ARC150D-一类期望问题的思考方式/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN.yml" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -300,9 +308,6 @@
 
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95/" rel="tag"># 解析几何</a>
-          </div>
 
         
 
@@ -310,12 +315,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/09/29/20220928%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" rel="prev" title="20220928考试总结">
-      <i class="fa fa-chevron-left"></i> 20220928考试总结
+    <a href="/2022/10/10/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/" rel="prev" title="概率期望--三门问题及其变形">
+      <i class="fa fa-chevron-left"></i> 概率期望--三门问题及其变形
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/10/04/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/" rel="next" title="计算几何入门">
-      计算几何入门 <i class="fa fa-chevron-right"></i>
+    <a href="/2022/10/12/20221011%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" rel="next" title="20221011考试总结">
+      20221011考试总结 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -375,7 +380,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%90%E5%9C%BA%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93-amp-amp-OI-%E4%B8%AD%E7%9A%84%E8%A7%A3%E6%9E%90%E5%87%A0%E4%BD%95"><span class="nav-number">1.</span> <span class="nav-text">某场考试总结&amp;&amp;OI 中的解析几何</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1"><span class="nav-number">1.1.</span> <span class="nav-text">T1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2"><span class="nav-number">1.2.</span> <span class="nav-text">T2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3"><span class="nav-number">1.3.</span> <span class="nav-text">T3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T4"><span class="nav-number">1.4.</span> <span class="nav-text">T4</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%80%831"><span class="nav-number">2.</span> <span class="nav-text">思考1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#frac-1-2-%E7%9A%84%E6%9D%A5%E5%8E%86"><span class="nav-number">2.1.</span> <span class="nav-text">$\frac{1}{2}$ 的来历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#frac-2-3-%E7%9A%84%E6%9D%A5%E5%8E%86"><span class="nav-number">2.2.</span> <span class="nav-text">$\frac{2}{3}$ 的来历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%80%832"><span class="nav-number">3.</span> <span class="nav-text">思考2</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -391,7 +396,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -404,7 +409,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">47</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -21,18 +21,18 @@
     var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="三门问题 有三个门，一个门后面有汽车，另外两个门后面是山羊。  你可以先选择一个门，之后主持人打开一个门，门后是山羊  问此时两个门后有汽车的概率是多少  思考方式一（错误）每个门后有山羊的概率是相等的，打开一个门不会影响另外两个门的状态，故另外两个门后有山羊的概率是相等的，故答案为 $50\%$ 思考方式二（不严谨）另外两个门有山羊的概率是 $\frac{2}{3}$，排除一个选项，所以选择的门">
+  <meta name="description" content="事件和条件以下概率均为古典概率模型，暂时不讨论几何概型。 这两个东西是我自己定义的，算概率之前，必须搞清楚事件和条件的区别，下面提两个搞不清楚事件和条件导致的问题。 三门问题 有三个门，一个门后面有汽车，另外两个门后面是山羊。  你可以先选择一个门，之后主持人打开一个门，门后是山羊  问此时两个门后有汽车的概率是多少  思考方式一（错误）每个门后有山羊的概率是相等的，打开一个门不会影响另外两个门的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="概率期望--三门问题及其变形">
 <meta property="og:url" content="http://huanyp.cn/2022/10/10/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
-<meta property="og:description" content="三门问题 有三个门，一个门后面有汽车，另外两个门后面是山羊。  你可以先选择一个门，之后主持人打开一个门，门后是山羊  问此时两个门后有汽车的概率是多少  思考方式一（错误）每个门后有山羊的概率是相等的，打开一个门不会影响另外两个门的状态，故另外两个门后有山羊的概率是相等的，故答案为 $50\%$ 思考方式二（不严谨）另外两个门有山羊的概率是 $\frac{2}{3}$，排除一个选项，所以选择的门">
+<meta property="og:description" content="事件和条件以下概率均为古典概率模型，暂时不讨论几何概型。 这两个东西是我自己定义的，算概率之前，必须搞清楚事件和条件的区别，下面提两个搞不清楚事件和条件导致的问题。 三门问题 有三个门，一个门后面有汽车，另外两个门后面是山羊。  你可以先选择一个门，之后主持人打开一个门，门后是山羊  问此时两个门后有汽车的概率是多少  思考方式一（错误）每个门后有山羊的概率是相等的，打开一个门不会影响另外两个门的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-10T03:47:36.000Z">
-<meta property="article:modified_time" content="2022-10-10T04:22:49.410Z">
+<meta property="article:modified_time" content="2022-10-10T12:48:11.906Z">
 <meta property="article:author" content="幻影彭">
-<meta property="article:tag" content="概率">
 <meta property="article:tag" content="数学">
+<meta property="article:tag" content="概率">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://huanyp.cn/2022/10/10/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/">
@@ -241,7 +241,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-10-10 11:47:36 / 修改时间：12:22:49" itemprop="dateCreated datePublished" datetime="2022-10-10T11:47:36+08:00">2022-10-10</time>
+              <time title="创建时间：2022-10-10 11:47:36 / 修改时间：20:48:11" itemprop="dateCreated datePublished" datetime="2022-10-10T11:47:36+08:00">2022-10-10</time>
             </span>
 
           
@@ -255,20 +255,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="三门问题"><a href="#三门问题" class="headerlink" title="三门问题"></a>三门问题</h2><ul>
+        <h2 id="事件和条件"><a href="#事件和条件" class="headerlink" title="事件和条件"></a>事件和条件</h2><p>以下概率均为古典概率模型，暂时不讨论几何概型。</p>
+<p>这两个东西是我自己定义的，算概率之前，必须搞清楚事件和条件的区别，下面提两个搞不清楚事件和条件导致的问题。</p>
+<h3 id="三门问题"><a href="#三门问题" class="headerlink" title="三门问题"></a>三门问题</h3><ul>
 <li><p>有三个门，一个门后面有汽车，另外两个门后面是山羊。</p>
 </li>
 <li><p>你可以先选择一个门，之后主持人打开一个门，门后是山羊</p>
 </li>
 <li>问此时两个门后有汽车的概率是多少</li>
 </ul>
-<h3 id="思考方式一（错误）"><a href="#思考方式一（错误）" class="headerlink" title="思考方式一（错误）"></a>思考方式一（错误）</h3><p>每个门后有山羊的概率是相等的，打开一个门不会影响另外两个门的状态，故另外两个门后有山羊的概率是相等的，故答案为 $50\%$</p>
-<h3 id="思考方式二（不严谨）"><a href="#思考方式二（不严谨）" class="headerlink" title="思考方式二（不严谨）"></a>思考方式二（不严谨）</h3><p>另外两个门有山羊的概率是 $\frac{2}{3}$，排除一个选项，所以选择的门后有山羊的概率是 $\frac{1}{3}$，另一个门的概率为 $\frac{2}{3}$。</p>
+<h4 id="思考方式一（错误）"><a href="#思考方式一（错误）" class="headerlink" title="思考方式一（错误）"></a>思考方式一（错误）</h4><p>每个门后有山羊的概率是相等的，打开一个门不会影响另外两个门的状态，故另外两个门后有山羊的概率是相等的，故答案为 $50\%$</p>
+<h4 id="思考方式二（不严谨）"><a href="#思考方式二（不严谨）" class="headerlink" title="思考方式二（不严谨）"></a>思考方式二（不严谨）</h4><p>另外两个门有山羊的概率是 $\frac{2}{3}$，排除一个选项，所以选择的门后有山羊的概率是 $\frac{1}{3}$，另一个门的概率为 $\frac{2}{3}$。</p>
+<h3 id="不知道叫什么名字的问题"><a href="#不知道叫什么名字的问题" class="headerlink" title="不知道叫什么名字的问题"></a>不知道叫什么名字的问题</h3><p>有个酒鬼，每天各有 $30\%$ 的概率去 $A,B,C$ 三个酒吧，还有 $10\%$ 的概率呆在家。</p>
+<p>一个警察要找他，警察已经找了 $A,B$ 酒吧，都没找到他，问在 $C$ 酒吧找到酒鬼的概率。</p>
+<h4 id="思考方式一（错误）-1"><a href="#思考方式一（错误）-1" class="headerlink" title="思考方式一（错误）"></a>思考方式一（错误）</h4><p>在酒吧的概率是 $90\%$，$A,B$ 都没找到，说明一定在 $C$，所以在 $C$ 找到酒鬼的概率是 $90\%$。</p>
+<p>这个思路和上一个问题思考方式二类似，但是是错误的，因此说它不严谨。</p>
+<h4 id="思考方式二（不严谨）-1"><a href="#思考方式二（不严谨）-1" class="headerlink" title="思考方式二（不严谨）"></a>思考方式二（不严谨）</h4><p>已知不在 $A,B$ 酒吧，那么在 $C$ 酒吧和在家的概率之比是 $3:1$，因此答案为 $75\%$。</p>
+<p>这种方式的问题在哪里不必多说了。</p>
 <h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p>思考这个问题前应该回到概率定义的几个要素：样本空间，样本点，事件。</p>
-<h4 id="事件域"><a href="#事件域" class="headerlink" title="事件域"></a>事件域</h4><p>通常解决一个概率问题需要明确事件域，即我们关心的所有事件，如果事件域不合法，那么</p>
+<p>一个事件的概率被定义为事件大小除以样本空间大小。</p>
+<h4 id="三门问题-1"><a href="#三门问题-1" class="headerlink" title="三门问题"></a>三门问题</h4><p>第一个问题中，样本空间的大小为 $3$，需要计算在某个不被选择的门后面是羊的情况下，选择的门后面是车的概率。</p>
+<p>事件的大小为 $1$，因此概率为 $\frac{1}{3}$，另一个不被选择的门后面有车，其事件大小为 $2$，因为最初样本空间中在两个门后的样本点都属于该事件（如果是这两个事件之一，那么没被打开的另一扇门后必定是车）。</p>
+<p>推广到 $n$ 门问题，主持人随机打开一个<strong>未被选择且没有车的门</strong>，那么样本空间大小为 $1$，不改变选择的事件大小为 $n-2$，改变选择的事件大小为 $n$。</p>
+<h4 id="酒吧问题"><a href="#酒吧问题" class="headerlink" title="酒吧问题"></a>酒吧问题</h4><h4 id="事件域"><a href="#事件域" class="headerlink" title="事件域"></a>事件域</h4><p>通常解决一个概率问题需要明确事件域，即我们关心的所有事件，如果事件域不合法，那么</p>
 <h4 id="某个样本空间不正确导致的悖论"><a href="#某个样本空间不正确导致的悖论" class="headerlink" title="某个样本空间不正确导致的悖论"></a>某个样本空间不正确导致的悖论</h4><p>假设选的门是 $1$ 号，已知 $2$ 号门没有车，那么 $3$ 号门有车的概率是 $$</p>
 <p>我们需要明确问题中这个概率定义是在哪个样本空间下的，问题中样本空间的大小很明显是 $3$，而在被开的门后是山羊的事件大小为 $2$</p>
-
+<h2 id="样本空间无限的问题"><a href="#样本空间无限的问题" class="headerlink" title="样本空间无限的问题"></a>样本空间无限的问题</h2>
     </div>
 
     
@@ -294,8 +306,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%A6%82%E7%8E%87/" rel="tag"># 概率</a>
               <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+              <a href="/tags/%E6%A6%82%E7%8E%87/" rel="tag"># 概率</a>
           </div>
 
         
@@ -307,7 +319,10 @@
     <a href="/2022/10/07/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="prev" title="最小生成树和动态规划">
       <i class="fa fa-chevron-left"></i> 最小生成树和动态规划
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/10/ARC150D-%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/" rel="next" title="ARC150D-一类期望问题的思考方式">
+      ARC150D-一类期望问题的思考方式 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -366,7 +381,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">三门问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%88%E9%94%99%E8%AF%AF%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">思考方式一（错误）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%88%E4%B8%8D%E4%B8%A5%E8%B0%A8%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">思考方式二（不严谨）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A"><span class="nav-number">1.3.</span> <span class="nav-text">解释</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%9F%9F"><span class="nav-number">1.3.1.</span> <span class="nav-text">事件域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%90%E4%B8%AA%E6%A0%B7%E6%9C%AC%E7%A9%BA%E9%97%B4%E4%B8%8D%E6%AD%A3%E7%A1%AE%E5%AF%BC%E8%87%B4%E7%9A%84%E6%82%96%E8%AE%BA"><span class="nav-number">1.3.2.</span> <span class="nav-text">某个样本空间不正确导致的悖论</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%92%8C%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">事件和条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">三门问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%88%E9%94%99%E8%AF%AF%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">思考方式一（错误）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%88%E4%B8%8D%E4%B8%A5%E8%B0%A8%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">思考方式二（不严谨）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E7%9F%A5%E9%81%93%E5%8F%AB%E4%BB%80%E4%B9%88%E5%90%8D%E5%AD%97%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">不知道叫什么名字的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%88%E9%94%99%E8%AF%AF%EF%BC%89-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">思考方式一（错误）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%88%E4%B8%8D%E4%B8%A5%E8%B0%A8%EF%BC%89-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">思考方式二（不严谨）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A"><span class="nav-number">1.3.</span> <span class="nav-text">解释</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">三门问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%92%E5%90%A7%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.2.</span> <span class="nav-text">酒吧问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E5%9F%9F"><span class="nav-number">1.3.3.</span> <span class="nav-text">事件域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%90%E4%B8%AA%E6%A0%B7%E6%9C%AC%E7%A9%BA%E9%97%B4%E4%B8%8D%E6%AD%A3%E7%A1%AE%E5%AF%BC%E8%87%B4%E7%9A%84%E6%82%96%E8%AE%BA"><span class="nav-number">1.3.4.</span> <span class="nav-text">某个样本空间不正确导致的悖论</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B7%E6%9C%AC%E7%A9%BA%E9%97%B4%E6%97%A0%E9%99%90%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">样本空间无限的问题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -382,7 +397,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -395,7 +410,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">47</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
