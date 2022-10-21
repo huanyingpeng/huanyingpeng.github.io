@@ -312,6 +312,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/21/20221020%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/21/20221020%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221020考试总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-21 11:06:48 / 修改时间：11:33:54" itemprop="dateCreated datePublished" datetime="2022-10-21T11:06:48+08:00">2022-10-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0139">考试</a></p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>套路状压题，有一些关于分支的常数优化技巧</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>有趣的容斥原理题，但是不太适合出在考试。</p>
+<p>首先猜想答案比较多，所以考场上直接一个随机化过掉。</p>
+<p>考虑两人集合交的大小 $\sum|S_i\bigcap S_j|$ ，如果能算出这玩意，很容易用鸽巢原理算出答案个数的下界。</p>
+<p>考虑每个元素对它的贡献，是 $\binom{cnt_i}{2}$ 的，所以 $cnt$ 的分布需要尽可能平均，不妨让它就为 $cnt_i$。</p>
+<p>所以上面那个式子的下界是 $\dfrac{n^3}{4}$ 级别的。鸽巢原理，集合总个数为 $\dfrac{n\times(n+1)}{2}$，每一个集合先分配 $\lfloor\frac{n-1}{2}\rfloor$ 个，剩下的数级别是 $O(n^2)$ 的，因此答案个数是 $O(n)$ 的，期望随机 $n$ 次可以找到一组合法解。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>能看出很多问题的题。</p>
+<p>题目本身不难，但是坑点极多。</p>
+<p>考虑转化问题的时候一定要搞清楚转化的前提条件，以及对应的<strong>充要条件</strong>。</p>
+<p>第一次出错：认为选定合法的删除子序列后一定有解，实际上没有位置放 $1/0$</p>
+<p>第二次出错：认为必须留位置给 $1/0$，但实际上有可能根本不存在 $1/0$，留位置是没有意义的，需要特判。</p>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>有趣的贪心题。</p>
+<p>我们给矿工分级，并认为操作是放一组矿工，每个矿工只能挖一个，$k$ 级矿工能挖掉距离小于 $k$ 的点。</p>
+<p>考虑有一条线从下往上扫描，我们需要尽可能把矿工往上放，这样能够到更多的点。</p>
+<p>先考虑最深的必须放矿工的点，它一定满足，$k$ 级儿子有一个还没有被挖的宝藏，否则可以继续往上，这一定不劣，不妨从最简单的情况开始。</p>
+<p>假设在这个点放了矿工，那矿工必须挖掉 $k$ 级儿子，否则上面就处理不了了。如果矿工还能挖，那么需要让他把 $k-1$ 级儿子也尽可能挖，因为如果让父亲处理，需要付出一个 $k$ 级矿工的代价，但是这个点的矿工上到父亲的时候降级为 $k-1$ 级，矿工等级显然越高越好，对于等级低的儿子，在这里挖可以看成于先上去降级再挖。</p>
+<p>所以在第一个必须放矿工的点，矿工<strong>必须</strong>挖掉 $k$ 级儿子，<strong>尽可能</strong>挖 $k-1$ 级儿子，意思是如果还有 $k-1$ 级儿子没有挖完，那就没必要再放矿工，可以留给父亲处理。</p>
+<p>接下来的点就有不同等级的矿工了，对于 $i$ 级矿工，他会尽可能挖掉和它同级的儿子，如果还有剩余，会挖掉 $i-1$ 级儿子，<strong>这个过程一定要从等级小的矿工到等级大的矿工考虑</strong>，否则会变劣。</p>
+<p>剩余的矿工降级后上传，儿子升级后上传。  </p>
+<p> 按照这个策略贪心即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/19/%E5%85%B3%E4%BA%8E%E5%B8%B8%E6%95%B0%E4%BC%98%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1015,86 +1095,6 @@ ans=\sum\limits_{n\ge 0}\sum\limits_{i=0}^{k} (-1)^{i}\binom{n+k-1-i\times(x+1)}
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/12/20221012%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/12/20221012%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221012考试总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-12 20:43:39" itemprop="dateCreated datePublished" datetime="2022-10-12T20:43:39+08:00">2022-10-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-14 14:51:16" itemprop="dateModified" datetime="2022-10-14T14:51:16+08:00">2022-10-14</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="考试总结"><a href="#考试总结" class="headerlink" title="考试总结"></a>考试总结</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0132">考试</a></p>
-<p>发挥一般</p>
-<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>很趣味的题，考虑计算答案的过程，首先从某个点开始，遇到</p>
-<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>平衡树模板，不做评价，权当练习使用 <code>pb_ds</code>。</p>
-<p>其实有平衡树之外的多种解法。</p>
-<h4 id="值域分块"><a href="#值域分块" class="headerlink" title="值域分块"></a>值域分块</h4><p>对这个东西其实一直不熟悉，如果序列分块不容易解决或者复杂度多一个 $\log$，那么考虑对值域分块，记录和每块数值有关的信息。</p>
-<p>$O(1)$ 改可以只改对应数值块和自身的数据，$O(1)$ 查可以对块和块内维护前缀信息或者其它预处理信息。</p>
-<h4 id="树状数组上二分"><a href="#树状数组上二分" class="headerlink" title="树状数组上二分"></a>树状数组上二分</h4><p>写过若干次，但不熟练。</p>
-<p>以前缀和树状数组为例，它每个节点 $x$ 维护的信息是  $(x-lowbit(x),x]$ 区间的全部信息。</p>
-<p>更新时一直 +lowbit，保证了恰好能够维护这些信息。</p>
-<p>所以如何二分也比较明晰了。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> now=<span class="number">0</span>,sum=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">18</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">    <span class="comment">// 现在认为在 (now,now+1&lt;&lt;i+1]</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="number">1</span>&lt;&lt;i|now&lt;=n&amp;&amp;sum+c[now|<span class="number">1</span>&lt;&lt;i]&lt;k)&#123;<span class="comment">//在 (now|1&lt;&lt;i,now|1&lt;&lt;i+1]</span></span><br><span class="line">        now |= <span class="number">1</span>&lt;&lt;i;</span><br><span class="line">        sum += c[now];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> res = now + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>有些价值的题，”优化状压DP” 还是有一些话题可谈。</p>
-<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>李超树模板题，类似 <code>CDQ</code> 分治的思路或者平衡树维护凸包其实很趣味，但是没有什么启发意义。</p>
-<p>等有时间了写一份斜率优化的总结。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1166,7 +1166,7 @@ ans=\sum\limits_{n\ge 0}\sum\limits_{i=0}^{k} (-1)^{i}\binom{n+k-1-i\times(x+1)}
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

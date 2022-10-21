@@ -211,6 +211,113 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/30/%E5%AF%B9%E7%AB%9E%E8%B5%9B%E6%9C%89%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E5%85%B3%E4%BA%8EC++%E6%8F%90%E4%BE%9B%E7%9A%84%E5%AE%B9%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/30/%E5%AF%B9%E7%AB%9E%E8%B5%9B%E6%9C%89%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E5%85%B3%E4%BA%8EC++%E6%8F%90%E4%BE%9B%E7%9A%84%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">C++ 容器</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-30 09:19:43" itemprop="dateCreated datePublished" datetime="2022-08-30T09:19:43+08:00">2022-08-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-12 20:50:59" itemprop="dateModified" datetime="2022-10-12T20:50:59+08:00">2022-10-12</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="标准库"><a href="#标准库" class="headerlink" title="标准库"></a>标准库</h2><ul>
+<li>STL 内的所有基于比较的容器，都需要定义一个满足<strong>严格弱序</strong>的比较符号 <code>&lt;</code>，要求如下：<ul>
+<li>满足传递性：$a&lt;b,b&lt;c\rightarrow a&lt;c$</li>
+<li>不能同时满足 $a&lt;b$ 且 $b&lt;a$</li>
+<li>如果 <code>!(a&lt;b)&amp;&amp;!(b&lt;a)</code> 那么 <code>a=b</code></li>
+</ul>
+</li>
+<li>除开 <code>array</code> 之外的所有 <code>STL</code> 容器，定义时都会初始化，即初始化为空或者(全为 <code>0</code>，对于 <code>bitset</code>)。</li>
+<li>基于比较的容器，需要定义<strong>友元类型的大小比较符号</strong>，因为实现的时候使用了右值做比较。</li>
+</ul>
+<h3 id="priority-queue"><a href="#priority-queue" class="headerlink" title="priority_queue"></a>priority_queue</h3><p>默认是大根堆，跑得很快，1 秒 $3\times 10^6$</p>
+<p>如果需要实现可以删除的优先队列，<strong>必须保证每次删除时对应元素存在</strong>。 </p>
+<p>构造方式 <code>priority_queue&lt;type,container,cmp&gt;</code>，<code>container</code> 是实现 <code>priority_queue</code> 的容器，一般用 <code>vector</code>，<code>cmp</code> 是比较算子（因此它是一个类名）。</p>
+<p>通过 <code>greater&lt;typename&gt;</code> 可以用重载的 <code>&gt;</code> 构造出一个大于算子。</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>本质上是 <code>set&lt;pair&lt;T1,T2&gt;&gt;</code>，见 <code>set</code>。</p>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><h4 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h4><p>可以插入一段区间，支持数组，同类型的 <code>set vector</code> 容器。</p>
+<p>开 O2，$1$ 秒 $1.5\times 10^6$ 次操作。</p>
+<p>如果接下来的一段插入有序，开 O2，$1$ 秒 $4.5\times 10^6$ 次，所以尽量排序后再插入。</p>
+<h4 id="erase"><a href="#erase" class="headerlink" title="erase"></a>erase</h4><p>开 O2，$1$ 秒 $1.5\times 10^6$ 次操作。</p>
+<p>如果接下来的一段插入有序，开 O2，$1$ 秒 $4.5\times 10^6$ 次。</p>
+<h4 id="迭代器操作"><a href="#迭代器操作" class="headerlink" title="迭代器操作"></a>迭代器操作</h4><p>开 O2，$1$ 秒 $10^7$。</p>
+<h4 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> v:st)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> it=st.<span class="built_in">begin</span>();it!=st.<span class="built_in">end</span>();it++)</span><br></pre></td></tr></table></figure>
+<p>以上两种均为 $O(n\log n)$</p>
+<p>开 O2，$1$ 秒 $10^7$ 次操作。</p>
+<h3 id="unordered-set"><a href="#unordered-set" class="headerlink" title="unordered_set"></a>unordered_set</h3><p>基础操作相比 <code>set</code> 快 $2$ 倍。</p>
+<p>有序操作和 <code>set</code> 效率差不多。</p>
+<h3 id="unoedered-map"><a href="#unoedered-map" class="headerlink" title="unoedered_map"></a>unoedered_map</h3><p>本质上是 <code>unordered_set&lt;pair&lt;T1,T2&gt;&gt;</code>。</p>
+<h3 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h3><p>比较理想的一个容器。</p>
+<h4 id="push-back"><a href="#push-back" class="headerlink" title="push_back()"></a>push_back()</h4><p>一个 <code>vector</code> 做 <code>push_back</code> 需要 <code>log</code> 次 <code>new</code>，而 <code>new</code> 操作一般只能接受 $2\times 10^7$ 次，所以尽量避免用太多 <code>vector</code>，如果能事先确定容器的 <code>capacity</code>，最好用 <code>resize</code></p>
+<h4 id="iterator-insert-iterator-val"><a href="#iterator-insert-iterator-val" class="headerlink" title="iterator insert(iterator,val)"></a>iterator insert(iterator,val)</h4><p>将 <code>val</code> 插入 <code>iterator</code> 位置，原 <code>iterator</code> 位置往后移动。</p>
+<p>复杂度 $O(n)$，但是跑得飞快。</p>
+<h4 id="iterator-erase-iterator"><a href="#iterator-erase-iterator" class="headerlink" title="iterator erase(iterator)"></a>iterator erase(iterator)</h4><p>删除 <code>iterator</code> 位置的值，返回原容器(删除前)下一个位置的 <code>iterator</code>。 </p>
+<h4 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h4><p>这东西的迭代器本质上是个指针，但是不能和指针做强转，<strong>所以 <code>iterator</code> 在被 <code>erase</code> 后会指向错误的数据，不同于 <code>set</code> 这一类基于 <code>RBT</code> 的容器</strong> </p>
+<p><strong>vector 所有的 $O(n)$ 操作都很快</strong>，如果题目性质决定了很可能 $O(n^2)$ 卡不满，那么 <code>vector</code> 可以得到很高的分数。</p>
+<h2 id="拓展库"><a href="#拓展库" class="headerlink" title="拓展库"></a>拓展库</h2><p>一个 <code>C++</code> 拓展库，<code>STL</code> 升级版，<code>C++11</code> 特性。</p>
+<h3 id="gp-hash-table"><a href="#gp-hash-table" class="headerlink" title="gp_hash_table"></a>gp_hash_table</h3><p>如名称，哈希表，比 <code>unordered_map</code> 快 <code>3~4</code> 倍，用法完全一样，你值得拥有。</p>
+<p>效率 1S 能做 4e7 次基本操作</p>
+<p>在 <code>ext/pb_ds/assoc_container.hpp</code> 中。</p>
+<p>如果对非标准结构，例如类和 <code>pair</code> ，容器等，需要自己写哈希方法，哈希方式为一个类，重载了 <code>()</code> 运算，该重载必须被声明为常函数，且参数必须为常值引用。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ext/pb_ds/assoc_container.hpp&gt;</span></span></span><br><span class="line">__gnu_pbds:: gp_hash_table &lt;<span class="type">int</span>,<span class="type">int</span>,hash_fun&gt; mp;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">	<span class="type">int</span> a,b;</span><br><span class="line">	<span class="keyword">friend</span> <span class="type">bool</span> <span class="keyword">operator</span> ==(<span class="type">const</span> node &amp;x,<span class="type">const</span> node &amp;y)&#123;</span><br><span class="line">		<span class="keyword">return</span> x.a==y.a;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">hash_fun</span>&#123;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span><span class="params">(<span class="type">const</span> node &amp;a)</span> <span class="type">const</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a.a;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">__gnu_pbds:: gp_hash_table&lt;node,<span class="type">int</span>,hash_fun&gt; mp;</span><br><span class="line">mp.<span class="built_in">insert</span>(<span class="built_in">make_pair</span>(<span class="number">1</span>,<span class="number">2</span>));</span><br><span class="line">mp[<span class="number">2</span>]=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">if</span>(mp.<span class="built_in">find</span>(<span class="number">2</span>) != mp.<span class="built_in">end</span>())&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,mp.<span class="built_in">find</span>(<span class="number">2</span>)-&gt;second);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Tree"><a href="#Tree" class="headerlink" title="Tree"></a>Tree</h3><p>虽然有这个东西，但是还是应该学习如何写平衡树。</p>
+<p>效率还可以，开 O2 和以前手写差不多，估计现在手写的会快一些，不过问题不大。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/17/%E6%9D%82%E9%A1%B9/GeogeBra%E8%AE%A1%E7%AE%97%E5%99%A8%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1079,102 +1186,6 @@ g(n)=\sum\limits_{d|n}f(d)\iff& f(n)=\sum\limits_{d|n}\mu(d)\times g(\frac{n}{d}
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/28/%E9%97%B2%E7%9A%84%E6%B2%A1%E4%BA%8B%E5%86%99%E7%9A%84%E7%A7%91%E6%99%AE/%E6%B5%85%E8%B0%88%E4%B8%80%E7%AC%94%E7%94%BB%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/28/%E9%97%B2%E7%9A%84%E6%B2%A1%E4%BA%8B%E5%86%99%E7%9A%84%E7%A7%91%E6%99%AE/%E6%B5%85%E8%B0%88%E4%B8%80%E7%AC%94%E7%94%BB%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">浅谈一笔画问题</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-28 23:42:55" itemprop="dateCreated datePublished" datetime="2022-07-28T23:42:55+08:00">2022-07-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-29 00:00:27" itemprop="dateModified" datetime="2022-07-29T00:00:27+08:00">2022-07-29</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="QQ-群一笔画问题"><a href="#QQ-群一笔画问题" class="headerlink" title="QQ 群一笔画问题"></a>QQ 群一笔画问题</h2><p><strong>Author:Huan_yp</strong></p>
-<p>一笔画问题，即给定一张无向图 $G(V,E)$，每个点的度数均为偶数或者<strong>仅有</strong>两个点度数为奇数，需要求出一条不重复经过边的路径，遍历所有的边。</p>
-<p>由于在算法竞赛中，这个问题是简单的，这里只讨论在 QQ 群一笔画中，快速解决问题的方式。</p>
-<h3 id="归纳构造法证明"><a href="#归纳构造法证明" class="headerlink" title="归纳构造法证明"></a>归纳构造法证明</h3><p>已知给定图为一笔画图，故一定满足每个点的度数均为偶数或者<strong>仅有</strong>两个点度数为奇数，并且图联通，若存在两个点度数为奇数，则从其中一个点开始，否则可以从任意点开始。</p>
-<p>执行以下过程。</p>
-<ul>
-<li>在当前节点任意找一条边，如果可以找到，则重复此过程。</li>
-<li>如果无法找到：<ul>
-<li>图已经被遍历，结束，得到保存的路径。</li>
-<li>该点度数为 $0$，所以一定回到了起点或者到了终点。记录并删除该路径中所有边，并回溯到上一个存在出度的点，<strong>可以证明一定存在这样的点，否则图不连通</strong>。该点的度数一定为偶数，对该点进行上述过程，得到一条<strong>首尾相接</strong>的路径，插入到原路径，得到完整的欧拉（回）路。</li>
-</ul>
-</li>
-<li>容易发现，这样的过程将图遍历了一遍，所以最后得到的是完整的欧拉路径。</li>
-</ul>
-<p>代码实现比较简单，只需要使用栈在退出时记录当前节点，得到的，从栈顶到栈底，就是一条完整的欧拉路径。</p>
-<p>下面是一个例子：</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/4oaujupz.png" alt=""></p>
-<p>按 $1-&gt;2-&gt;5$ 走，$5$ 处无路可走，回到 $2$，记录一条路径 $2-&gt;5$，从 $2$ 继续走 $2-&gt;3-&gt;4-&gt;2$，回到了，插入原路径变为 $1-&gt;2-&gt;3-&gt;4-&gt;2-&gt;5$。</p>
-<h3 id="正确的操作方式"><a href="#正确的操作方式" class="headerlink" title="正确的操作方式"></a>正确的操作方式</h3><p>由于找边的耗时比较长，我们需要尽可能少的找边。</p>
-<ul>
-<li>如果有 API 可以读取边的情况，那么直接做一遍上述过程即可得到答案。</li>
-<li>如果不存在对应的 API，我们直接进行上诉操作，可以拿一个程序记录已经走过的点和边并提示路径。</li>
-<li>如果图不为欧拉回路，则存在死路，判断方式比较简单，当前点是否为起始点，如果死路位于起始点，直接进行路径回溯操作，即步骤二。否则撤销所有操作，从当前节点开始逆向进行已经进行过的操作。</li>
-</ul>
-<p>这样单纯的找边的次数恰好为 m 次，即边数。</p>
-<p>回溯和走边的操作总和不会超过 2m。</p>
-<h3 id="平均执行次数"><a href="#平均执行次数" class="headerlink" title="平均执行次数"></a>平均执行次数</h3><p>考虑图为随机生成，期望的行走次数，感觉是 polylog 级别，但是我不会证明。</p>
-<h4 id="蒙特卡洛模拟"><a href="#蒙特卡洛模拟" class="headerlink" title="蒙特卡洛模拟"></a>蒙特卡洛模拟</h4><p>咕咕咕，没时间写代码。</p>
-<p>采用蒙特卡洛模拟算法对该结论进行验证</p>
-<h4 id="严谨数学证明"><a href="#严谨数学证明" class="headerlink" title="严谨数学证明"></a>严谨数学证明</h4><p>咕咕咕。</p>
-<p>也许可以考虑每条边回溯次数期望 $e_{u,v}$。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1246,7 +1257,7 @@ g(n)=\sum\limits_{d|n}f(d)\iff& f(n)=\sum\limits_{d|n}\mu(d)\times g(\frac{n}{d}
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">65</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
