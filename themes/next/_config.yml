@@ -1014,3 +1014,7 @@ mylinks:
   site: https://xxeray.gitlab.io/
   info: 主要记录 OI 中的算法、题解、经验交流。
   avatar: https://xxeray.gitlab.io/images/avatar/64x64.jpg
+- nickname: black_trees
+  site: https://hylwxqwq.github.io/
+  info: just for fun, not for honor.
+  avatar: ../images/black_trees.jpg
