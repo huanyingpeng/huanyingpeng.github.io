@@ -211,6 +211,298 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/17/%E5%AF%B9%E7%AB%9E%E8%B5%9B%E6%9C%89%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E5%AF%B9C%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/17/%E5%AF%B9%E7%AB%9E%E8%B5%9B%E6%9C%89%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E5%AF%B9C%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">对C++程序进行性能分析</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-17 16:33:08 / 修改时间：16:59:33" itemprop="dateCreated datePublished" datetime="2022-07-17T16:33:08+08:00">2022-07-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h2><p>某道题，某人写了，然后交了，然后过了，但跑的很慢。</p>
+<p>某人卡了好几次常，都不行。</p>
+<p>看了下跑得比较快的代码，其实没啥差别。</p>
+<p>输出运行时间，发现没什么差异，所以某人要对程序做个性能分析。</p>
+<p>性能分析本质上是运行了一遍程序，然后把占用大量时间的函数抓出来，对这个函数进行优化。</p>
+<h2 id="在-Windows-下使用-gprof-对程序进行性能分析"><a href="#在-Windows-下使用-gprof-对程序进行性能分析" class="headerlink" title="在 Windows 下使用 gprof 对程序进行性能分析"></a>在 Windows 下使用 gprof 对程序进行性能分析</h2><p>gprof 是 g++ 自带的性能分析工具，简单易用，命令行中 <code>gprof --version</code> 查看是否可用，如果不行，先把  <code>g++</code> 添加进系统路径里，多半就可以了。</p>
+<p>性能分析需要特殊的编译参数，格式为</p>
+<p><code>g++ -pg demo.cpp -o demo</code></p>
+<p>其它参数可以照常添加，但是不能开 <code>O2</code> 等性能优化，这会破坏掉程序结构。</p>
+<p> 然后运行程序，<strong>这一步必不可少。</strong></p>
+<p><code>./demo</code></p>
+<p><strong>不要使用其它IDE编译执行后的gmon.out文件进行性能分析,请在命令行使用以上命令编译运行后进行下面的操作</strong></p>
+<p><code>gprof demo.exe gmon.out &gt; result.txt</code></p>
+<p>这会生成性能数据到 result.txt 中，查看一下就行。</p>
+<p><strong>最后一步中，.exe 不能省略</strong></p>
+<p>给出一个性能数据的例子,例子中有详细的解释，我就不解释了</p>
+<p> <del>啥，看不懂英文？那就别学了。</del></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br></pre></td><td class="code"><pre><span class="line">Flat profile:</span><br><span class="line"></span><br><span class="line">Each sample counts as 0.01 seconds.</span><br><span class="line">  %   cumulative   self              self     total           </span><br><span class="line"> time   seconds   seconds    calls  ms/call  ms/call  name    </span><br><span class="line"> 17.14      0.06     0.06        3    20.00    74.92  NTT(num*, int)</span><br><span class="line"> 17.14      0.12     0.06                             _mcount_private</span><br><span class="line"> 14.29      0.17     0.05 14680064     0.00     0.00  num::num(int, int, int)</span><br><span class="line"> 14.29      0.22     0.05  7602174     0.00     0.00  num::operator*(num const&amp;)</span><br><span class="line"> 11.43      0.26     0.04  7077888     0.00     0.00  num::operator-(num const&amp;)</span><br><span class="line"> 11.43      0.30     0.04                             __fentry__</span><br><span class="line">  5.71      0.32     0.02  7077888     0.00     0.00  num::operator+=(num const&amp;)</span><br><span class="line">  2.86      0.33     0.01   392448     0.00     0.00  std::enable_if&lt;std::__and_&lt;std::__not_&lt;std::__is_tuple_like&lt;num&gt; &gt;, std::is_move_constructible&lt;num&gt;, std::is_move_assignable&lt;num&gt; &gt;::value, void&gt;::type std::swap&lt;num&gt;(num&amp;, num&amp;)</span><br><span class="line">  2.86      0.34     0.01   262144     0.00     0.00  num::operator*=(num const&amp;)</span><br><span class="line">  2.86      0.35     0.01                             main</span><br><span class="line">  0.00      0.35     0.00  1177344     0.00     0.00  std::remove_reference&lt;num&amp;&gt;::type&amp;&amp; std::move&lt;num&amp;&gt;(num&amp;)</span><br><span class="line">  0.00      0.35     0.00   149817     0.00     0.00  void read&lt;int&gt;(int&amp;)</span><br><span class="line">  0.00      0.35     0.00   149815     0.00     0.00  num::num(int)</span><br><span class="line">  0.00      0.35     0.00   149813     0.00     0.00  printf(char const*, ...)</span><br><span class="line">  0.00      0.35     0.00   149813     0.00     0.00  num::get()</span><br><span class="line">  0.00      0.35     0.00       16     0.00     0.00  quick(int, int, int, int)</span><br><span class="line"></span><br><span class="line"> %         the percentage of the total running time of the</span><br><span class="line">time       program used by this function.</span><br><span class="line"></span><br><span class="line">cumulative a running sum of the number of seconds accounted</span><br><span class="line"> seconds   for by this function and those listed above it.</span><br><span class="line"></span><br><span class="line"> self      the number of seconds accounted for by this</span><br><span class="line">seconds    function alone.  This is the major sort for this</span><br><span class="line">           listing.</span><br><span class="line"></span><br><span class="line">calls      the number of times this function was invoked, if</span><br><span class="line">           this function is profiled, else blank.</span><br><span class="line"></span><br><span class="line"> self      the average number of milliseconds spent in this</span><br><span class="line">ms/call    function per call, if this function is profiled,</span><br><span class="line">	   else blank.</span><br><span class="line"></span><br><span class="line"> total     the average number of milliseconds spent in this</span><br><span class="line">ms/call    function and its descendents per call, if this</span><br><span class="line">	   function is profiled, else blank.</span><br><span class="line"></span><br><span class="line">name       the name of the function.  This is the minor sort</span><br><span class="line">           for this listing. The index shows the location of</span><br><span class="line">	   the function in the gprof listing. If the index is</span><br><span class="line">	   in parenthesis it shows where it would appear in</span><br><span class="line">	   the gprof listing if it were to be printed.</span><br><span class="line"></span><br><span class="line">Copyright (C) 2012-2018 Free Software Foundation, Inc.</span><br><span class="line"></span><br><span class="line">Copying and distribution of this file, with or without modification,</span><br><span class="line">are permitted in any medium without royalty provided the copyright</span><br><span class="line">notice and this notice are preserved.</span><br><span class="line"></span><br><span class="line">		     Call graph (explanation follows)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">granularity: each sample hit covers 4 byte(s) for 2.86% of 0.35 seconds</span><br><span class="line"></span><br><span class="line">index % time    self  children    called     name</span><br><span class="line">                                                 &lt;spontaneous&gt;</span><br><span class="line">[1]     71.4    0.01    0.24                 main [1]</span><br><span class="line">                0.06    0.16       3/3           NTT(num*, int) [2]</span><br><span class="line">                0.01    0.00  262144/262144      num::operator*=(num const&amp;) [10]</span><br><span class="line">                0.00    0.00  524286/7602174     num::operator*(num const&amp;) [3]</span><br><span class="line">                0.00    0.00       2/14680064     num::num(int, int, int) [6]</span><br><span class="line">                0.00    0.00  149817/149817      void read&lt;int&gt;(int&amp;) [96]</span><br><span class="line">                0.00    0.00  149815/149815      num::num(int) [97]</span><br><span class="line">                0.00    0.00  149813/149813      num::get() [99]</span><br><span class="line">                0.00    0.00  149813/149813      printf(char const*, ...) [98]</span><br><span class="line">                0.00    0.00      16/16          quick(int, int, int, int) [100]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.06    0.16       3/3           main [1]</span><br><span class="line">[2]     64.2    0.06    0.16       3         NTT(num*, int) [2]</span><br><span class="line">                0.05    0.02 7077888/7602174     num::operator*(num const&amp;) [3]</span><br><span class="line">                0.04    0.02 7077888/7077888     num::operator-(num const&amp;) [4]</span><br><span class="line">                0.02    0.00 7077888/7077888     num::operator+=(num const&amp;) [8]</span><br><span class="line">                0.01    0.00  392448/392448      std::enable_if&lt;std::__and_&lt;std::__not_&lt;std::__is_tuple_like&lt;num&gt; &gt;, std::is_move_constructible&lt;num&gt;, std::is_move_assignable&lt;num&gt; &gt;::value, void&gt;::type std::swap&lt;num&gt;(num&amp;, num&amp;) [9]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00  524286/7602174     main [1]</span><br><span class="line">                0.05    0.02 7077888/7602174     NTT(num*, int) [2]</span><br><span class="line">[3]     21.7    0.05    0.03 7602174         num::operator*(num const&amp;) [3]</span><br><span class="line">                0.03    0.00 7602174/14680064     num::num(int, int, int) [6]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.04    0.02 7077888/7077888     NTT(num*, int) [2]</span><br><span class="line">[4]     18.3    0.04    0.02 7077888         num::operator-(num const&amp;) [4]</span><br><span class="line">                0.02    0.00 7077888/14680064     num::num(int, int, int) [6]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                                                 &lt;spontaneous&gt;</span><br><span class="line">[5]     17.1    0.06    0.00                 _mcount_private [5]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00       2/14680064     main [1]</span><br><span class="line">                0.02    0.00 7077888/14680064     num::operator-(num const&amp;) [4]</span><br><span class="line">                0.03    0.00 7602174/14680064     num::operator*(num const&amp;) [3]</span><br><span class="line">[6]     14.3    0.05    0.00 14680064         num::num(int, int, int) [6]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                                                 &lt;spontaneous&gt;</span><br><span class="line">[7]     11.4    0.04    0.00                 __fentry__ [7]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.02    0.00 7077888/7077888     NTT(num*, int) [2]</span><br><span class="line">[8]      5.7    0.02    0.00 7077888         num::operator+=(num const&amp;) [8]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.01    0.00  392448/392448      NTT(num*, int) [2]</span><br><span class="line">[9]      2.9    0.01    0.00  392448         std::enable_if&lt;std::__and_&lt;std::__not_&lt;std::__is_tuple_like&lt;num&gt; &gt;, std::is_move_constructible&lt;num&gt;, std::is_move_assignable&lt;num&gt; &gt;::value, void&gt;::type std::swap&lt;num&gt;(num&amp;, num&amp;) [9]</span><br><span class="line">                0.00    0.00 1177344/1177344     std::remove_reference&lt;num&amp;&gt;::type&amp;&amp; std::move&lt;num&amp;&gt;(num&amp;) [95]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.01    0.00  262144/262144      main [1]</span><br><span class="line">[10]     2.9    0.01    0.00  262144         num::operator*=(num const&amp;) [10]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00 1177344/1177344     std::enable_if&lt;std::__and_&lt;std::__not_&lt;std::__is_tuple_like&lt;num&gt; &gt;, std::is_move_constructible&lt;num&gt;, std::is_move_assignable&lt;num&gt; &gt;::value, void&gt;::type std::swap&lt;num&gt;(num&amp;, num&amp;) [9]</span><br><span class="line">[95]     0.0    0.00    0.00 1177344         std::remove_reference&lt;num&amp;&gt;::type&amp;&amp; std::move&lt;num&amp;&gt;(num&amp;) [95]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00  149817/149817      main [1]</span><br><span class="line">[96]     0.0    0.00    0.00  149817         void read&lt;int&gt;(int&amp;) [96]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00  149815/149815      main [1]</span><br><span class="line">[97]     0.0    0.00    0.00  149815         num::num(int) [97]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00  149813/149813      main [1]</span><br><span class="line">[98]     0.0    0.00    0.00  149813         printf(char const*, ...) [98]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00  149813/149813      main [1]</span><br><span class="line">[99]     0.0    0.00    0.00  149813         num::get() [99]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00      16/16          main [1]</span><br><span class="line">[100]    0.0    0.00    0.00      16         quick(int, int, int, int) [100]</span><br><span class="line">-----------------------------------------------</span><br><span class="line"></span><br><span class="line"> This table describes the call tree of the program, and was sorted by</span><br><span class="line"> the total amount of time spent in each function and its children.</span><br><span class="line"></span><br><span class="line"> Each entry in this table consists of several lines.  The line with the</span><br><span class="line"> index number at the left hand margin lists the current function.</span><br><span class="line"> The lines above it list the functions that called this function,</span><br><span class="line"> and the lines below it list the functions this one called.</span><br><span class="line"> This line lists:</span><br><span class="line">     index	A unique number given to each element of the table.</span><br><span class="line">		Index numbers are sorted numerically.</span><br><span class="line">		The index number is printed next to every function name so</span><br><span class="line">		it is easier to look up where the function is in the table.</span><br><span class="line"></span><br><span class="line">     % time	This is the percentage of the `total&#x27; time that was spent</span><br><span class="line">		in this function and its children.  Note that due to</span><br><span class="line">		different viewpoints, functions excluded by options, etc,</span><br><span class="line">		these numbers will NOT add up to 100%.</span><br><span class="line"></span><br><span class="line">     self	This is the total amount of time spent in this function.</span><br><span class="line"></span><br><span class="line">     children	This is the total amount of time propagated into this</span><br><span class="line">		function by its children.</span><br><span class="line"></span><br><span class="line">     called	This is the number of times the function was called.</span><br><span class="line">		If the function called itself recursively, the number</span><br><span class="line">		only includes non-recursive calls, and is followed by</span><br><span class="line">		a `+&#x27; and the number of recursive calls.</span><br><span class="line"></span><br><span class="line">     name	The name of the current function.  The index number is</span><br><span class="line">		printed after it.  If the function is a member of a</span><br><span class="line">		cycle, the cycle number is printed between the</span><br><span class="line">		function&#x27;s name and the index number.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> For the function&#x27;s parents, the fields have the following meanings:</span><br><span class="line"></span><br><span class="line">     self	This is the amount of time that was propagated directly</span><br><span class="line">		from the function into this parent.</span><br><span class="line"></span><br><span class="line">     children	This is the amount of time that was propagated from</span><br><span class="line">		the function&#x27;s children into this parent.</span><br><span class="line"></span><br><span class="line">     called	This is the number of times this parent called the</span><br><span class="line">		function `/&#x27; the total number of times the function</span><br><span class="line">		was called.  Recursive calls to the function are not</span><br><span class="line">		included in the number after the `/&#x27;.</span><br><span class="line"></span><br><span class="line">     name	This is the name of the parent.  The parent&#x27;s index</span><br><span class="line">		number is printed after it.  If the parent is a</span><br><span class="line">		member of a cycle, the cycle number is printed between</span><br><span class="line">		the name and the index number.</span><br><span class="line"></span><br><span class="line"> If the parents of the function cannot be determined, the word</span><br><span class="line"> `&lt;spontaneous&gt;&#x27; is printed in the `name&#x27; field, and all the other</span><br><span class="line"> fields are blank.</span><br><span class="line"></span><br><span class="line"> For the function&#x27;s children, the fields have the following meanings:</span><br><span class="line"></span><br><span class="line">     self	This is the amount of time that was propagated directly</span><br><span class="line">		from the child into the function.</span><br><span class="line"></span><br><span class="line">     children	This is the amount of time that was propagated from the</span><br><span class="line">		child&#x27;s children to the function.</span><br><span class="line"></span><br><span class="line">     called	This is the number of times the function called</span><br><span class="line">		this child `/&#x27; the total number of times the child</span><br><span class="line">		was called.  Recursive calls by the child are not</span><br><span class="line">		listed in the number after the `/&#x27;.</span><br><span class="line"></span><br><span class="line">     name	This is the name of the child.  The child&#x27;s index</span><br><span class="line">		number is printed after it.  If the child is a</span><br><span class="line">		member of a cycle, the cycle number is printed</span><br><span class="line">		between the name and the index number.</span><br><span class="line"></span><br><span class="line"> If there are any cycles (circles) in the call graph, there is an</span><br><span class="line"> entry for the cycle-as-a-whole.  This entry shows who called the</span><br><span class="line"> cycle (as parents) and the members of the cycle (as children.)</span><br><span class="line"> The `+&#x27; recursive calls entry shows the number of function calls that</span><br><span class="line"> were internal to the cycle, and the calls entry for each member shows,</span><br><span class="line"> for that member, how many times it was called from other members of</span><br><span class="line"> the cycle.</span><br><span class="line"></span><br><span class="line">Copyright (C) 2012-2018 Free Software Foundation, Inc.</span><br><span class="line"></span><br><span class="line">Copying and distribution of this file, with or without modification,</span><br><span class="line">are permitted in any medium without royalty provided the copyright</span><br><span class="line">notice and this notice are preserved.</span><br><span class="line"></span><br><span class="line">Index by function name</span><br><span class="line"></span><br><span class="line">   [2] NTT(num*, int)          [6] num::num(int, int, int) [9] std::enable_if&lt;std::__and_&lt;std::__not_&lt;std::__is_tuple_like&lt;num&gt; &gt;, std::is_move_constructible&lt;num&gt;, std::is_move_assignable&lt;num&gt; &gt;::value, void&gt;::type std::swap&lt;num&gt;(num&amp;, num&amp;)</span><br><span class="line">  [96] void read&lt;int&gt;(int&amp;)   [10] num::operator*=(num const&amp;) [7] __fentry__</span><br><span class="line"> [100] quick(int, int, int, int) [4] num::operator-(num const&amp;) [5] _mcount_private</span><br><span class="line">  [98] printf(char const*, ...) [3] num::operator*(num const&amp;) [1] main</span><br><span class="line">  [99] num::get()              [8] num::operator+=(num const&amp;)</span><br><span class="line">  [97] num::num(int)          [95] std::remove_reference&lt;num&amp;&gt;::type&amp;&amp; std::move&lt;num&amp;&gt;(num&amp;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="VTune"><a href="#VTune" class="headerlink" title="VTune"></a>VTune</h2><p>一个更厉害的性能分析工具，可以分析 CPU 流水线利用率和高速缓存命中率等进一步性能。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/ARC144D%E4%B8%8E%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/ARC144D%E4%B8%8E%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F/" class="post-title-link" itemprop="url">ARC144D与组合恒等式</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-17 13:52:25" itemprop="dateCreated datePublished" datetime="2022-07-17T13:52:25+08:00">2022-07-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-10 21:08:28" itemprop="dateModified" datetime="2022-10-10T21:08:28+08:00">2022-10-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">组合数学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="ARC144D"><a href="#ARC144D" class="headerlink" title="ARC144D"></a>ARC144D</h2><p>题意略。</p>
+<p>观察，发现 $x \&amp; y + x |y = x+y$，原因是每个二进制位，如果出现两次，会计入二次，如果出现一次，会计入一次。猜想 $f(x)$ 的值与每个二进制位相关且对于每个二进制位独立。</p>
+<p>考虑证明，对 $x$ 的二进制下 $1$ 的个数 $n$ 做归纳。</p>
+<p>对于 $n=0$，$f(0)=f(0)$</p>
+<p>对于 $n=1$，$f(2^i) = f(2^i)$</p>
+<p>对于 $n=2$，$f(2^i+2^j) + f(0) = f(2^i) +f(2^j)$</p>
+<p>考虑证明 $n=k$ 时， $f(x) +(k-1)f(0) = \sum\limits_{i\in x} f(2^i)$</p>
+<p>设对于 $n=k-1$ 其成立，对于二进制位 1 个数为 k 的 x， $\forall i\in x,f(x)+f(0)=f(x-2^i) + f(2^i)$，易证 $f(x) +(k-1)f(0) = \sum\limits_{i\in x} f(2^i)$，且对于所有涉及元素二进制下 1 个数少于 n 的，所有限制满足。</p>
+<p>故只需要确定 $f(2^i)$ 和 $f(0)$。其最终限制有两个，其一是，最大值不能超过 $k$，其二是最小值不能小于 0，最大值一定是把所有大于 $f(0)$ 的元素加起来，最小值则是把所有小于 $f(0)$ 的元素加起来。</p>
+<p>枚举 $f(0)$ 和小于 $f(0)$ 的元素个数，我们可以将限制分配给对应元素 ，得到和式：</p>
+<script type="math/tex; mode=display">
+ans=\sum\limits_{f(0)=0}^{k}\sum\limits_{i=0}^{n}\binom{n}{i}\binom{f(0)}{i}\binom{k-f(0)+n-i}{n-i}</script><p>第一项计算那些小于 $f(0)$，第二项是将<strong>至多</strong> $k$ 个冗余值分配给 $i$ 个小于 $f(0)$ 的元素的方案数，每个元素至少分配一个，或者说 $i$ 个正整数变量和为 $f(0)$ 的方案，可以给一个虚拟元素分别大于等于 0 个表示放弃，所以先给虚拟元素一个，变成 $f(0)+1$ 个元素插 $i$ 个板。最后一项是 $n-i$ 个非负整数变量，和不超过 $k-f(0)$ 的方案。先来个虚拟变量，然后先各自加 $1$，然后就是 $k-f(0)+n-i+1$ ，间隔是 $k-f(0)+n-i$ 个，版一共 $n$ 个。</p>
+<p>解释完了，考虑计算，二维的，算不了。</p>
+<p>考虑后两项的组合意义。</p>
+<p>根据组合恒等式中的第五个。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/ewpo1rn4.png" alt=""></p>
+<p>对原式变形有</p>
+<script type="math/tex; mode=display">
+ans=\sum\limits_{i=0}^{n}\binom{n}{i}\binom{k-f(0)+n-i+1}{n-i+1}</script><p>然后 $n$ 不大，维护个区间乘积枚举计算就行，记得对计算乘积的元素取模。</p>
+<h2 id="组合恒等式"><a href="#组合恒等式" class="headerlink" title="组合恒等式"></a>组合恒等式</h2><p>题不是终点，组合恒等式才是重点</p>
+<p>对上面那种图的组合恒等式，我们一一证明</p>
+<h3 id="式子1"><a href="#式子1" class="headerlink" title="式子1"></a>式子1</h3><script type="math/tex; mode=display">
+\sum\limits_{k}\binom{r}{m+k}\binom{s}{n-k}=\binom{r+s}{m+n}</script><h4 id="组合意义证明"><a href="#组合意义证明" class="headerlink" title="组合意义证明"></a>组合意义证明</h4><p>第一项是从 $r$ 个选 $m+k$ 个，第二项是从 $s$ 个选 $n-k$ 个，把两个拼在一起，从 $r+s$ 个中选 $n+m$ 个，容易发现和前者一一对应，故恒等。</p>
+<h4 id="代数证明"><a href="#代数证明" class="headerlink" title="代数证明"></a>代数证明</h4><p>咕咕咕</p>
+<h3 id="式子2"><a href="#式子2" class="headerlink" title="式子2"></a>式子2</h3><script type="math/tex; mode=display">
+\sum\limits_{k}\binom{l}{m+k}\binom{s}{n+k} = \binom{l+s}{l-m+n},l\ge0</script><h4 id="组合意义证明-1"><a href="#组合意义证明-1" class="headerlink" title="组合意义证明"></a>组合意义证明</h4><h4 id="代数证明-1"><a href="#代数证明-1" class="headerlink" title="代数证明"></a>代数证明</h4><p>咕咕咕</p>
+<h3 id="式子3"><a href="#式子3" class="headerlink" title="式子3"></a>式子3</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022-7-5%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/12/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022-7-5%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">2022.7.5考试总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-12 16:32:56" itemprop="dateCreated datePublished" datetime="2022-07-12T16:32:56+08:00">2022-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-07 09:14:10" itemprop="dateModified" datetime="2022-10-07T09:14:10+08:00">2022-10-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A2%98%E8%A7%A3/%E8%80%83%E8%AF%95%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">考试题解</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h2><p><a target="_blank" rel="noopener" href="https://haltoj.top/d/haoba/p/224">T1</a></p>
+<h3 id="某个不太正确的方式"><a href="#某个不太正确的方式" class="headerlink" title="某个不太正确的方式"></a>某个不太正确的方式</h3><p>想到了分块，暴力没操过去。</p>
+<p>考虑暴力计算出前 $\sqrt P$ 个数的值，期望得到的最大值为 $P-\sqrt P$，剩下来的数一定不多，我的想法是分块探测一下下一个块中是否存在比当前最大值更大的数，探测方式是用个 $\text{hash_table}$ 记录下每块的每个数的方幂，然后把等式左边乘上逆元后再查找，但是这个做法只有 $60pts$，虽然我本机能跑过。</p>
+<p>后面想了一下还看了下代码，这个方式的复杂度是错的，因为探测总次数还是不对头。2022.10.7</p>
+<h3 id="正常的考虑方式"><a href="#正常的考虑方式" class="headerlink" title="正常的考虑方式"></a>正常的考虑方式</h3><p>发现我们对同一个数的探测次数有点多，考虑能不能对一个数只探测一次。本质上是需要求 $P-1,P-2,\cdots P - \sqrt P$ 这些数在数列中出现的第一个位置。我们的探测实际上是判断了一个幂函数的解是否存在于一个区间。所以直接考虑求解这个幂函数方程 $x^r = a$。</p>
+<p>考虑 $BSGS$，但是需要解 $T\times \sqrt{P}$ 次，每次的复杂度为 $O(\sqrt P)$，不如暴力。</p>
+<p>考虑平衡复杂度，设暴力处理的长度为 $S$，$BSGS$ 预处理长度为 $B$，那么复杂度为 $T\times (S+\frac{P^2}{S\times B} + B) $</p>
+<p>后面那一坨最优应该是 $3e6$ ，压力山大。</p>
+<p>发现质数是同一个质数，有没有什么办法可以优化一下。</p>
+<p>答案是，处理离散对数。</p>
+<p>离散对数有着和正常对数一样优美的换底公式，如果我们对 $x,P-1,P-2\cdots P-\sqrt P$。向 $P$  的原根 $g$，取对数，那么可以利用换底公式很方便的求解 $x^r = a$，取对数的过程就是 $BSGS$，注意到换底公式的除法变成了模 $P-1$ 意义下的除法，因为 $g^{P-1} = 1$。</p>
+<p>所以 $BSGS$ 的总次数变为了 $O(\frac{P}{S})$ 次，预处理只需要一次。这里可以放开玩。</p>
+<p>总复杂度变为了 $O(T*(S+\frac{P}{S})+ B  + \frac{P}{S}\times\frac{P}{B})$</p>
+<p>取 $B = P^{\frac{3}{4}}$，$S=\sqrt P$ 可以取到最优。</p>
+<p>我实现的时候写的比较丑，算了每个东西的位置之后，还需要排个序，实际上从大到小倒着做就可以了。</p>
+<p>看看佳老师的代码，长进不少。</p>
+<h2 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h2><p><a target="_blank" rel="noopener" href="https://haltoj.top/d/haoba/p/224">T2</a></p>
+<p>定义字符串的 border 为一个它的前缀，这个前缀也是它的后缀。</p>
+<p>场上是只会 $O(n^2)$ 的，还 TM 暴力打挂了只有 40。</p>
+<p>后面了解到可以用 FFT 处理带通配符的字符串匹配问题。</p>
+<p>具体的，定义距离函数 $d_i=\sum\limits_{j=1}^{m} s_{i+j-1}t_i(s_{i+j-1}-t_j)^2$</p>
+<p>显然，如果距离 $d_i$ 为 $0$，那么 $i$ 开头的字符串就能匹配上。</p>
+<p>下标有点问题，所以把 $t$ 反转一下，把式子拆了，就是三遍 FFT 求出来每一个 $d_i$。</p>
+<p>我们就知道了哪些结束位置可能可以匹配上。</p>
+<p>不是所有能匹配上的位置一定可以对答案贡献，因为如果前面的匹配上了，通配符就没了，所以后面要匹配上，就要求重叠的部分必须是一个 border。</p>
+<p>其实 border 在字符串随机的情况下是很少的。我们可以考虑记录下所有的 border，然后 dp，设 dp[i] 表示强制 i 结尾匹配上了，最多能匹配的个数，如果 $j\leq i-m$，就是个前缀 max，如果 $j&gt; i-m$，就只有 border 能转移。</p>
+<p>border 有个性质，就是它们的长度构成 $\log n$ 个等差数列，所以我们考虑对每个等差数列做转移。</p>
+<p>更具体的，如果 $next[n]&gt;\frac{n}{2}$，那么模板串一定是一个循环，并且最小循环长度为 $n-next[n]$，它的长度大于等于 $r=n\%(n-next[n])$ 的 border 一定构成一个公差为 $d=n-next[n]$ 的等差数列。这样的话，$n$ 每次至少减半，所以至多有 $\log n$ 个等差数列。</p>
+<p>考虑证明。如果存在一个长度大于 $r$ 的 border  $x$ 长度不能写成 $kd+r$，感性理解下，把原串划分为长度为 $d$ 的小串，把 $x$ 在末尾的部分平移到开头，显然它还有一个更小的循环。</p>
+<p>所以我们对于一个点，含 border 的转移就可以分为 $\log n$ 类，对每一类记一个前缀 $\max$ 即可转移，注意每一类需要按照模公差分类。</p>
+<p>注意转移细节。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">2e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">double</span> Pi=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">comple</span>&#123;</span><br><span class="line">	<span class="type">double</span> x,y;</span><br><span class="line">	comple <span class="keyword">operator</span> +(<span class="type">const</span> comple &amp;a)&#123;<span class="keyword">return</span> comple&#123;x+a.x,y+a.y&#125;;&#125;</span><br><span class="line">	comple <span class="keyword">operator</span> -(<span class="type">const</span> comple &amp;a)&#123;<span class="keyword">return</span> comple&#123;x-a.x,y-a.y&#125;;&#125;</span><br><span class="line">	comple <span class="keyword">operator</span> *(<span class="type">const</span> comple &amp;a)&#123;<span class="keyword">return</span> comple&#123;x*a.x-y*a.y,x*a.y+y*a.x&#125;;&#125;</span><br><span class="line">	<span class="type">void</span> <span class="keyword">operator</span> +=(<span class="type">const</span> comple &amp;a)&#123;x+=a.x,y+=a.y;&#125;</span><br><span class="line">	<span class="type">void</span> <span class="keyword">operator</span> -=(<span class="type">const</span> comple &amp;a)&#123;x-=a.x,y-=a.y;&#125;</span><br><span class="line">	<span class="type">void</span> <span class="keyword">operator</span> *=(<span class="type">const</span> comple &amp;a)&#123;<span class="type">double</span> tp=x;x=x*a.x-y*a.y,y=tp*a.y+y*a.x;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,lim,ans;</span><br><span class="line"><span class="type">int</span> res[N],vala[N],valb[N],sum[N],nxt[N];</span><br><span class="line"><span class="type">int</span> dp[N],border[N][<span class="number">2</span>],pre[<span class="number">32</span>][N][<span class="number">2</span>],from[N];</span><br><span class="line"><span class="type">char</span> ch[N],str[N];</span><br><span class="line"><span class="type">double</span> d[N];</span><br><span class="line">comple a[N],b[N],c[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">FFT</span><span class="params">(comple val[],<span class="type">int</span> type=<span class="number">1</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)<span class="keyword">if</span>(res[i]&gt;i)<span class="built_in">swap</span>(val[res[i]],val[i]);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=lim;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">1</span>&lt;&lt;lim;j+=<span class="number">1</span>&lt;&lt;i)&#123;</span><br><span class="line">			comple w=&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,wn=&#123;<span class="built_in">cos</span>(<span class="number">2</span>*Pi/(<span class="number">1</span>&lt;&lt;i)),type*<span class="built_in">sin</span>(<span class="number">2</span>*Pi/(<span class="number">1</span>&lt;&lt;i))&#125;;</span><br><span class="line">			<span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>;k++,w*=wn)&#123;</span><br><span class="line">				comple y=val[k+j+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]*w;</span><br><span class="line">				val[k+j+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]=val[k+j]-y,val[k+j]+=y;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(type==<span class="number">-1</span>)<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)c[i].x/=(<span class="number">1</span>&lt;&lt;lim);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">get_border</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x==<span class="number">0</span>)<span class="keyword">return</span> ;</span><br><span class="line">	border[++s][<span class="number">0</span>]=nxt[x],border[s][<span class="number">1</span>]=x-nxt[x];</span><br><span class="line">	<span class="keyword">if</span>(nxt[x]*<span class="number">2</span>&gt;x)<span class="built_in">get_border</span>(x%(x-nxt[x]));</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">get_border</span>(nxt[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">int</span> pos,<span class="type">int</span> lst)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(dp[pos]==<span class="number">0</span>)<span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>,j=pos-m+<span class="number">1</span>;i&lt;=m&amp;&amp;j&lt;lst;i++,j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(ch[j]!=<span class="string">&#x27;?&#x27;</span>&amp;&amp;ch[j]!=str[i])&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;Error&quot;</span>);</span><br><span class="line">			<span class="keyword">return</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(j&lt;<span class="number">1</span>)<span class="keyword">continue</span>;</span><br><span class="line">		ch[j]=str[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">print</span>(from[pos],pos-m+<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> 	<span class="built_in">freopen</span>(<span class="string">&quot;match.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;match.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">	<span class="comment">//freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%s%s&quot;</span>,ch+<span class="number">1</span>,str+<span class="number">1</span>);</span><br><span class="line">	n=<span class="built_in">strlen</span>(ch+<span class="number">1</span>),m=<span class="built_in">strlen</span>(str+<span class="number">1</span>);</span><br><span class="line">	nxt[<span class="number">0</span>]=j=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;str[j+<span class="number">1</span>]!=str[i])j=nxt[j];</span><br><span class="line">		nxt[i]=++j;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">get_border</span>(m);border[s][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>&lt;&lt;lim&lt;=n+m)lim++;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)res[i]=res[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>|(i&amp;<span class="number">1</span>)&lt;&lt;lim<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)vala[i]=ch[i]==<span class="string">&#x27;?&#x27;</span>?<span class="number">0</span>:ch[i]-<span class="string">&#x27;a&#x27;</span>+<span class="number">1</span>,sum[i]=sum[i<span class="number">-1</span>]+vala[i]*vala[i]*vala[i];</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)valb[i]=str[i]-<span class="string">&#x27;a&#x27;</span>+<span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=&#123;<span class="built_in">pow</span>(vala[i],<span class="number">2</span>)&#125;;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)b[i]=&#123;<span class="number">-2</span>*valb[m-i+<span class="number">1</span>]&#125;;</span><br><span class="line">	<span class="built_in">FFT</span>(a),<span class="built_in">FFT</span>(b);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)c[i]+=a[i]*b[i];</span><br><span class="line">	<span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="built_in">sizeof</span>(a)),<span class="built_in">memset</span>(b,<span class="number">0</span>,<span class="built_in">sizeof</span>(b));</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=&#123;vala[i]&#125;;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)b[i]=&#123;<span class="built_in">pow</span>(valb[m-i+<span class="number">1</span>],<span class="number">2</span>)&#125;;</span><br><span class="line">	<span class="built_in">FFT</span>(a),<span class="built_in">FFT</span>(b);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)c[i]+=a[i]*b[i];</span><br><span class="line">	<span class="built_in">FFT</span>(c,<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=m;i&lt;=n;i++)</span><br><span class="line">	d[i]=sum[i]-sum[i-m]+c[i+<span class="number">1</span>].x;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=m;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=s;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(pre[j][i-m+border[j][<span class="number">0</span>]][<span class="number">0</span>]+<span class="number">1</span>&gt;dp[i])&#123;</span><br><span class="line">				dp[i]=pre[j][i-m+border[j][<span class="number">0</span>]][<span class="number">0</span>]+<span class="number">1</span>;</span><br><span class="line">				from[i]=pre[j][i-m+border[j][<span class="number">0</span>]][<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">abs</span>(d[i])&gt;<span class="number">0.1</span>)dp[i]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=s;j++)&#123;</span><br><span class="line">			pre[j][i][<span class="number">0</span>]=dp[i],pre[j][i][<span class="number">1</span>]=i;</span><br><span class="line">			<span class="keyword">if</span>(pre[j][i-border[j][<span class="number">1</span>]][<span class="number">0</span>]&gt;pre[j][i][<span class="number">0</span>])&#123;</span><br><span class="line"></span><br><span class="line">				pre[j][i][<span class="number">0</span>]=pre[j][i-border[j][<span class="number">1</span>]][<span class="number">0</span>];</span><br><span class="line">				pre[j][i][<span class="number">1</span>]=pre[j][i-border[j][<span class="number">1</span>]][<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(dp[i]&gt;dp[ans])ans=i;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;dp[ans]&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">print</span>(ans,ans+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(ch[i]==<span class="string">&#x27;?&#x27;</span>)ch[i]=<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">	cout&lt;&lt;ch+<span class="number">1</span>&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E5%8D%95%E7%BA%AF%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/python-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1041,358 +1333,6 @@ f(k) = \sum_{i=k}^{n-1}C(i,k) \times g(i)</script><p>这个很好理解，枚举
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%9B%B8%E5%85%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/12/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">网络流相关</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-12 16:06:50" itemprop="dateCreated datePublished" datetime="2022-07-12T16:06:50+08:00">2022-07-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-28 22:00:58" itemprop="dateModified" datetime="2022-08-28T22:00:58+08:00">2022-08-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/%E7%BD%91%E7%BB%9C%E6%B5%81/" itemprop="url" rel="index"><span itemprop="name">网络流</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h2><p>内容主要为自己对网络流的一些理解和一些典例。</p>
-<h3 id="一些约定："><a href="#一些约定：" class="headerlink" title="一些约定："></a>一些约定：</h3><ul>
-<li>s 为源点，t 为汇点</li>
-<li>对于集合 $S,T,T\subseteq S$，约定 $S-T$ 为从 $S$ 中删掉 $T$ 中每个元素之后的集合</li>
-<li>网络流图为 $G=(V,E)$，边 $(u,v)$ 容量记为 $c_{u,v}$ </li>
-</ul>
-<h3 id="最大流最小割定理和增广路定理"><a href="#最大流最小割定理和增广路定理" class="headerlink" title="最大流最小割定理和增广路定理"></a>最大流最小割定理和增广路定理</h3><p>这两个定理是网络流问题的核心定理。</p>
-<h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>最大流 = 最小割。</p>
-<p>残量网络中不存在增广路是当前流为最大流的充要条件。</p>
-<h4 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h4><ol>
-<li><p>若当前流为最大流，显然不存在增广路。</p>
-</li>
-<li><p>若当前流等于某个割，显然当前流为最大流，且该割为最小割。</p>
-</li>
-<li><p>若不存在增广路，我们证明当前流等于一个割。</p>
-</li>
-</ol>
-<p>令 $S=\{v,\exist\ p_{s,v}\}$，$S$ 即 $s$ 在残量网络中能到达的点的集合。令 $T=V-S$。显然 $(S,T)$ 是一个割，对于当前残量网络 $G’=(V,E’)$，一定有 $\forall x \in S,\forall y\in T$，边 $(x,y)$ 满流，否则 $y\in S$。容易证明当前流恰好为 $S$ 到 $T$ 的所有边的容量和，也就是割的大小。因为此时原图 $S$ 到 $T$ 所有的边流量为容量，$T$ 到 $S$ 的边流量为 $0$，所以流量为 $S$ 到 $T$ 的边的流量之和，也就是割 $S,T$。  </p>
-<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><h4 id="Dinic"><a href="#Dinic" class="headerlink" title="Dinic"></a>Dinic</h4><p>考虑对残量网络 bfs 分层，强制流量只能流向下一层，再进行一次 dfs，求限制下所有的增广路，搞定。</p>
-<p>复杂度 $O(n^2m)$</p>
-<p>每次增广复杂度为 $O(nm)$，共计增广 $n$ 次，因为每次增广都会让 $dep[t]$ 增加 1。</p>
-<p>每次增广的复杂度不是很好证，但加了当前弧优化其实就很松。</p>
-<p>代码记在脑子里了，不放了。</p>
-<h4 id="ISAP"><a href="#ISAP" class="headerlink" title="ISAP"></a>ISAP</h4><p>咕咕咕</p>
-<h4 id="HLPP"><a href="#HLPP" class="headerlink" title="HLPP"></a>HLPP</h4><p>咕咕咕</p>
-<h3 id="费用流相关"><a href="#费用流相关" class="headerlink" title="费用流相关"></a>费用流相关</h3><p>一般指最小费用最大流，暂时没啥感觉，不写。</p>
-<h2 id="最小割"><a href="#最小割" class="headerlink" title="最小割"></a>最小割</h2><p>非常常见的一个网络流模型应用。</p>
-<h3 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h3><p>通过构造一个图的割到决策方案的映射，其中决策必须可拆分计算，求出最小的代价，一般来说决策的限制如果比较奇怪就应该考虑最小割。</p>
-<p>常用于规划 $0/1$ 独立贡献决策问题。</p>
-<h3 id="适用条件"><a href="#适用条件" class="headerlink" title="适用条件"></a>适用条件</h3><ul>
-<li>不能存在负容量边权，我不知道有没有人会，反正我是不会。</li>
-</ul>
-<h3 id="1-最大闭合权子图问题"><a href="#1-最大闭合权子图问题" class="headerlink" title="1.最大闭合权子图问题"></a>1.最大闭合权子图问题</h3><p>给定一张有向图，点带权（权可以为负），选一个子图出来，要求如果 $u$ 选了那如果存在 $(u,v)$，那 $v$ 也要选。求最大权值和。</p>
-<p>决策贡献独立，决策类型为 0/1。应该可以最小割。令割中与 $s$ 同集合的点为选择的点，与 $t$ 同一个集合的点为未选择的点。那么每个点应该和 $t$ 连一条流量为权值的相反数的边，代表选它的代价，再对于每条 $(u,v)$ 从 $u$ 向 $v$ 连一条 inf 边,代表选了 $u$ 不选 $v$ 的代价。考虑这张图的一个最小割，它必然不会包含 inf 边，也就是说，我们选了 $u$ 在 $s$ 中一定会让 $v$ 在 $s$ 中，所以一定合法。然后发现原问题的每一个答案都可以和图上的一个不含 inf 边的割一一对应，故最小割就是原问题的答案的相反数。</p>
-<p>这张图有负数，不行，所以考虑先默认选所有正数。那么选负数的代价为相反数，不选正数的代价为本身。</p>
-<p>那么应该从 $s$ 向正权点连边，从负权点向 $t$ 连边，最后对于 $(u,v)$ 从 $u$ 向 $v$ 连 inf 边即可。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%9D%82%E9%A1%B9/%E4%B8%80%E4%BA%9B%E7%A7%91%E6%8A%80%E7%9A%84%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/12/%E6%9D%82%E9%A1%B9/%E4%B8%80%E4%BA%9B%E7%A7%91%E6%8A%80%E7%9A%84%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">一些科技的总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-12 16:05:26" itemprop="dateCreated datePublished" datetime="2022-07-12T16:05:26+08:00">2022-07-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-16 17:17:40" itemprop="dateModified" datetime="2022-07-16T17:17:40+08:00">2022-07-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/%E6%8A%80%E5%B7%A7/" itemprop="url" rel="index"><span itemprop="name">技巧</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="总结一些科技"><a href="#总结一些科技" class="headerlink" title="总结一些科技"></a>总结一些科技</h2><p>主要收录比较神仙的，实用的算法技巧。</p>
-<h3 id="快速取模"><a href="#快速取模" class="headerlink" title="快速取模"></a>快速取模</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>找到一个近似 $m^{-1}$ 的形如 $m’&gt;&gt;k$ 的数。</p>
-<p>不妨就取 $k=64,m’=\lceil\frac{2^{64}}{m}\rceil$</p>
-<p>然后 $a\%b = a-a\times\lfloor\frac{a}{b}\rfloor = a-(a\times m’&gt;&gt;64)$</p>
-<p>纯纯的整数运算，经过误差分析，可以知道后式结果最多多减去一个 $m$，判断掉就行。</p>
-<p>因为 $a$ 常常是 $\text{long long}$ 级别的数，所以开 <code>__int128</code></p>
-<p>优化据说有 $5-6$ 倍，如果模数是 <code>const</code>，编译器会自动帮忙用这个优化。</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett</span>&#123;</span><br><span class="line">	<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> im;<span class="type">int</span> m;</span><br><span class="line">	<span class="built_in">barrett</span>(<span class="type">unsigned</span> m) :<span class="built_in">m</span>(m), <span class="built_in">im</span>(~<span class="number">0ull</span>/m+<span class="number">1</span>) &#123;&#125;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> z=(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;<span class="built_in">bt</span>(<span class="number">1</span>);</span><br><span class="line">  bt=<span class="built_in">barrett</span>(p);</span><br><span class="line">  c=<span class="built_in">bt</span>(a,b);</span><br><span class="line"><span class="comment">//c=a*b%p</span></span><br></pre></td></tr></table></figure>
-<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
-<li>为啥 <code>im,m</code> 用 <code>ull,uint</code>，因为 <code>m=2</code> 时，会爆 <code>long long</code>。</li>
-<li>可以重载括号。</li>
-</ul>
-<h3 id="光速乘"><a href="#光速乘" class="headerlink" title="光速乘"></a>光速乘</h3><p>用于计算两个 long long 级别的数乘积对一个 long long 级别的数取模的结果。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">multi</span><span class="params">(<span class="type">long</span> <span class="type">long</span> a,<span class="type">long</span> <span class="type">long</span> b,<span class="type">long</span> <span class="type">long</span> mod)</span></span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> x=(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)a*b-(<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>)((<span class="type">long</span> <span class="type">double</span>)a*b/mod<span class="number">-0.5</span>)*mod;</span><br><span class="line">    <span class="keyword">return</span> x&gt;=mod?x-mod:x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">mul</span><span class="params">(<span class="type">long</span> <span class="type">long</span> A, <span class="type">long</span> <span class="type">long</span> B, <span class="type">long</span> <span class="type">long</span> P)</span></span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> C = A * B - (<span class="type">long</span> <span class="type">long</span>)((<span class="type">long</span> <span class="type">double</span>)A * B / P + <span class="number">0.1</span>) * P;</span><br><span class="line">	<span class="keyword">return</span> C &lt; <span class="number">0</span> ? C + P : C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>原理很简单，long double 的精度误差虽然有，但是我们 -0.5 之和核查范围变成了 [0,1]，肯定不会超出这个。</p>
-<p>C++ 标准中要求了 unsigned long long 类型在溢出后保证为原值对 $2^{64}$ 取模的结果，所以直接用就行。</p>
-<p>第二个原理类似，在 G++ 编译器中，O2 中，保证 long long 的溢出行为有定义。</p>
-<p>推荐用第一个，各个平台都不会出锅。</p>
-<p>如果 $P\leq 10^{14}$ 可以改成 double</p>
-<p>判断一下是否减少了就行。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%BB%93%E8%AE%BA%E8%AF%81%E6%98%8E%E6%B1%87%E6%80%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/12/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%BB%93%E8%AE%BA%E8%AF%81%E6%98%8E%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">常用数学结论证明汇总</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-12 16:04:07" itemprop="dateCreated datePublished" datetime="2022-07-12T16:04:07+08:00">2022-07-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-07 09:25:36" itemprop="dateModified" datetime="2022-10-07T09:25:36+08:00">2022-10-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E4%BF%A1%E6%81%AF%E7%AB%9E%E8%B5%9B%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">信息竞赛中的数学</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="简单事实"><a href="#简单事实" class="headerlink" title="简单事实"></a>简单事实</h3><ol>
-<li>$\gcd(a,x_1)=1,\gcd(a,x_2)=1 \leftrightarrow \gcd(a,x_1x_2)$</li>
-<li>若 $n\ |\ m$ 则 $\phi(n)\ |\ \phi(m)$</li>
-<li>若 $\gcd(a,p)=1$,则 $ax,x \in [1,p]$ 模 $p$ 意义下互不相同，反之亦然。</li>
-</ol>
-<h3 id="模运算和满足的运算率"><a href="#模运算和满足的运算率" class="headerlink" title="模运算和满足的运算率"></a>模运算和满足的运算率</h3><p>注：符号均为模 $p$ 意义下。</p>
-<ul>
-<li>加法交换律</li>
-<li>加法结合律</li>
-<li>乘法交换律</li>
-<li>乘法结合率</li>
-<li>如果 $p$ 为质数 ，$g$ 为 $p$ 的一个原根，则 $\log_x(y) = \frac{\log_g(y)}{\log_g(x)} \pmod {p-1}$</li>
-</ul>
-<h3 id="复数运算满足的运算性质"><a href="#复数运算满足的运算性质" class="headerlink" title="复数运算满足的运算性质"></a>复数运算满足的运算性质</h3><ul>
-<li>加法交换律</li>
-<li>加法结合律</li>
-</ul>
-<h3 id="一些抽象代数内容"><a href="#一些抽象代数内容" class="headerlink" title="一些抽象代数内容"></a>一些抽象代数内容</h3><h4 id="事实1"><a href="#事实1" class="headerlink" title="事实1"></a>事实1</h4><p>令 $g$ 为 $p$ 的一个原根，记 $\log_g(x) = y$，模 $p$ 意义下 $x$ 的阶数为 </p>
-<script type="math/tex; mode=display">
-\Large ord = \frac{\phi(p)}{\gcd(\phi(p),\log_g(x))}</script><h4 id="证明1"><a href="#证明1" class="headerlink" title="证明1"></a>证明1</h4><p> 显然 $g$ 的阶数为 $\phi(p)$，又因为 $g^y = x$。所以 $x^{ord} = 1$。</p>
-<p>然后证明 $x^i,i \in [1,ord]$ 互不相同。</p>
-<p>反证，如果相同，设为 $i,j(i\ge j)$，那么 $g^{yi} = g^{yj}$ 得到 $\phi(x) |\ y(i-j)$ 两边同时除以 $\gcd(\phi(p),y)$，得到 $ord |\ y’(i-j)$，其中 $\gcd(y’,ord) = 1$ ，得出 $i-j \ge ord$ 矛盾。</p>
-<p>所以 $x$ 的阶数为 $ord$</p>
-<h3 id="裴蜀定理"><a href="#裴蜀定理" class="headerlink" title="裴蜀定理"></a>裴蜀定理</h3><h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>$\exist\  x,y \in \Z$ 使得 $ax+by=\gcd(x,y)$</p>
-<h4 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h4><p>归纳构造。</p>
-<p>先证明 $\exist\ x’,y’\in \Z$ 使得 $bx’+(a\%b)y’ = \gcd(a,b)$</p>
-<p>即 $ay’ + b(x’-\big\lfloor\dfrac{a}{b}\big\rfloor y’) = \gcd(a,b)$</p>
-<p>构造 $x = y’,y=x’- \big\lfloor\dfrac{a}{b}\big\rfloor y’$ 即可满足条件。</p>
-<p>递归证明构造式子，得到边界证明 $\exist \ x,y$ 使得 $\gcd(a,b)x + 0 \times y =\gcd(a,b)$</p>
-<p>令 $x=1,y=0$</p>
-<h3 id="欧拉函数是积性函数"><a href="#欧拉函数是积性函数" class="headerlink" title="欧拉函数是积性函数"></a>欧拉函数是积性函数</h3><p> 即证明若 $\gcd(n,m) =1,$ 则  $\phi(n<em>m) = \phi(n) </em>\phi(m)$</p>
-<p>考虑若干个同余方程组 </p>
-<script type="math/tex; mode=display">
-x ≡ r_1 \pmod n\\
-x ≡ r_2 \pmod m\\</script><p>列出 $n,m,nm$ 意义下的最小缩系 $S_n,S_m,T$</p>
-<p>容易证明 $\forall\ r_1\in S_n, r_2 \in S_m$，存在唯一 $x \in [1,nm]$ 是上同余方程组的解，且 $x \in T$。</p>
-<p>存在唯一就是 $EXCRT$， $x\in T$ 由事实 1 显然。</p>
-<p>故 $\phi(n<em>m) \ge \phi(n) </em>\phi(m)$</p>
-<p>再证明 $\forall\ x\in T$，可以对应一个以上同余方程组的解，假设不对应，那么它一定与 $n,m$ 中的一个不互质，由事实 1 推出矛盾。</p>
-<p>故 $\phi(n<em>m) \le \phi(n) </em>\phi(m)$</p>
-<p>证毕。</p>
-<h3 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h3><h4 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h4><script type="math/tex; mode=display">
-\Large 若 \ \gcd(a,m)= 1 ,\ 则\  a^{\phi(m)}≡1\mod m</script><h4 id="证明-1"><a href="#证明-1" class="headerlink" title="证明"></a>证明</h4><p>考虑模 $m$ 意义下的最小缩系，即最小完全剩余系删去与 $m$ 不互质的元素后的剩余系，记为 $S$。</p>
-<p>构造 $T = \{ax,x \in S\}$</p>
-<p>可以证明 $T=S$， 若 $\exist\ x_1,x_2$ 使得 $x_1\neq x_2$ 且 $ax_1 ≡ ax_2 \pmod m$ ，因为 $\gcd(a,m)=1$</p>
-<p>所以 $m\ |\ x_1 - x_2$，并推出 $x_1 \neq x_2$，故 $T$ 中元素两两不同且均与 $m$ 互质，即为 $S$。</p>
-<p>考虑 $T,S$ 中所有元素的乘积，得到 $\prod\limits_{i=1}^{\phi(n)} ax_i ≡ \prod\limits_{i=1}^{\phi(n)} x_i \pmod n$，又因为 $\prod\limits_{i=1}^{\phi(n)} x_i$ 与 $m$ 互质，所以 $a^{\phi(n)} ≡ 1\pmod n$</p>
-<h3 id="扩展欧拉定理"><a href="#扩展欧拉定理" class="headerlink" title="扩展欧拉定理"></a>扩展欧拉定理</h3><h4 id="内容-2"><a href="#内容-2" class="headerlink" title="内容"></a>内容</h4><script type="math/tex; mode=display">
-\Large 若 \ b≥φ(m) ,\ 则\  a^b≡a^{b \mod φ(m) +φ(m)}\mod m</script><h4 id="证明-2"><a href="#证明-2" class="headerlink" title="证明"></a>证明</h4><p>对 $m$ 考虑唯一分解定理。</p>
-<p>对于任意因子 $p_i^{k_i}$，若与 $a$ 互质，那就有 $a^b≡a^{b \mod φ(m) +φ(m)}\mod p^{k_i}_i$。</p>
-<p>如果和 $a$ 不互质，因为  $b\ge \phi(m)$，那么因为有 $b\ge \phi(m)\ge k_i$，所以 $a^b,a^{(b \mod φ(m)) +φ(m)}$ 都是 $p^{k_i}_i$ 的倍数。</p>
-<p>得到 $a^b - a^{(b \mod φ(m)) +φ(m)}$ 是 $p_i^{k_i}$ 的倍数，故同余。</p>
-<h3 id="原根："><a href="#原根：" class="headerlink" title="原根："></a>原根：</h3><h4 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h4><p>如果 $x^1,x^2,x^3 \cdots x^{\phi(n)}$ 模 $n$ 意义下互不相同，且 $\gcd(x,n)=1$，则称 $x$ 为 $n$ 的原根。</p>
-<h4 id="性质"><a href="#性质" class="headerlink" title="性质:"></a>性质:</h4><p>质数 $p$ 的原根的方幂能取遍 $[1,p-1]$</p>
-<h4 id="求质数的原根"><a href="#求质数的原根" class="headerlink" title="求质数的原根"></a>求质数的原根</h4><p>数学大佬证明了一个数 $n$ 的最小正原根不超过 $n^{\frac{1}{4}+\epsilon}$，所以枚举每个数，检查所有 $n$ 的约数是否是 $a$ 的阶，如果不是，那么 $a$ 为一个原根，复杂度 $\sqrt n$，瓶颈在分解质因数。</p>
-<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>开离散对数的时候上原根和换底公式有奇效。</p>
-<h4 id="原根存在定理"><a href="#原根存在定理" class="headerlink" title="原根存在定理"></a>原根存在定理</h4><p>一个数 $x$ 有原根当且仅当 $x= 2,4,p^n,2\times p^n$，其中 $p$ 为奇素数。</p>
-<p>证明不会。</p>
-<h3 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h3><p>咕咕咕</p>
-<h3 id="平面图欧拉定理"><a href="#平面图欧拉定理" class="headerlink" title="平面图欧拉定理"></a>平面图欧拉定理</h3><p>顶点数-边数-连通块数+区域数=1</p>
-<h3 id="几何体欧拉定理"><a href="#几何体欧拉定理" class="headerlink" title="几何体欧拉定理"></a>几何体欧拉定理</h3><p>顶点数-边数+面数=2</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1464,7 +1404,7 @@ x ≡ r_2 \pmod m\\</script><p>列出 $n,m,nm$ 意义下的最小缩系 $S_n,S_m
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
