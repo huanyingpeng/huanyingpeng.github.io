@@ -211,203 +211,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/05/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/20221005%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/05/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/20221005%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221005考试总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-05 14:42:17 / 修改时间：21:53:13" itemprop="dateCreated datePublished" datetime="2022-10-05T14:42:17+08:00">2022-10-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0129">考试</a></p>
-<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>挺套路的题，通过 <code>00 11</code> 得到 $1,0$ 的个数，容易发现 <code>10 01</code> 的总个数已经被确定且容易构造。</p>
-<p>但是有边界，考虑 <code>00 11</code> 个数为 $0$，此时可以取 $1$ 个也可以取 $0$ 个。然后 <code>100-&gt;55</code></p>
-<p>这种两个构成的计数问题，一定要考虑只有一个的边界情况，</p>
-<p>注意我们通过题目信息得到新信息的过程，要看看是否为一一映射。</p>
-<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>有趣的题。</p>
-<p>我先思考了如果一个问题我限定一个时间 $T$，等 $T$ 秒过完，得到的收益，实际上我们可能有根据当前信息改变等待的这个时间，所以这样不行。</p>
-<p>接着考虑 $t$ 时刻到 Trie 上 $j$ 点的最优方案，发现其实不好转移。</p>
-<p>注意到我们能决定的只有回答还是等待，所以这样的话转移会带上一个概率，但是这个概率却是无法相加后取最值的。</p>
-<p><strong>正难则反</strong>，考虑到 $j$ 点时还剩时间 $t$，最优能得到什么，这样的话，转移就只和我们的决定有关，成功解决这道题。</p>
-<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>等价于求最优解并构造方案。</p>
-<p>它的修改本质上是需要决定一个最值，付出对应的代价，然后如果某个数绝对值<strong>严格小于</strong>最值，那么这个数的正负性就可以被指定，然后指定最值后最优化代价就是要求出删去的数的最小个数。</p>
-<p>我们需要求出对于每个最值的删除数最小个数。</p>
-<p>由于不让 $0$ 出现，所以先判掉不修改只删除的方案，这个是简单的。</p>
-<p>有两种思考方式，对应了两种求答案的方式。</p>
-<p>一个数为负视为 <code>-1</code>，为正视为 <code>1</code>，可调整视为 <code>0</code></p>
-<h4 id="Method1"><a href="#Method1" class="headerlink" title="Method1"></a>Method1</h4><p>考虑一段极长连续相同子段，如果不为 <code>0</code>，那么必须删去然后只剩下一个。</p>
-<p>如果为 <code>0</code>，其左右两边的状态和自身长度决定了它应该被删去一个或者不做任何处理。</p>
-<p>如果能够维护机场连续相同子段，就可以得到答案。</p>
-<p>考虑最值从小到大变化的过程，每次会把一个非 <code>0</code> 数改为 <code>0</code>，经典的 <code>set</code> 维护线段问题。</p>
-<h4 id="Method2"><a href="#Method2" class="headerlink" title="Method2"></a>Method2</h4><p>考虑动态规划。</p>
-<p>设 $dp[i][0/1]$ 表示考虑到第 $i$ 个数，末尾为 $-1/1$ 的代价。</p>
-<script type="math/tex; mode=display">
-v_i=0:dp[i][o]=\min(dp[i-1][o\oplus 1],dp[i-1][o]+1)\\</script><script type="math/tex; mode=display">
-v_i\ne0:
-\begin{cases}
-dp[i][v_i]&=\min(dp[i-1][v_i\oplus 1],dp[i-1][v_i]+1)\\
-dp[i][v_i\oplus1]&=dp[i-1][v_i\oplus 1]+1\\
-\end{cases}</script><p>然后就是动态 DP，考虑能不能写成矩阵乘法的形式，发现是一个 $+\min$ 矩阵乘法。</p>
-<p>线段树维护即可。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/04/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/04/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">计算几何入门</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-04 20:34:24" itemprop="dateCreated datePublished" datetime="2022-10-04T20:34:24+08:00">2022-10-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-05 20:04:47" itemprop="dateModified" datetime="2022-10-05T20:04:47+08:00">2022-10-05</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="计算几何"><a href="#计算几何" class="headerlink" title="计算几何"></a>计算几何</h2><p>写一下学计算几何的感悟。</p>
-<h3 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h3><h4 id="点积"><a href="#点积" class="headerlink" title="点积"></a>点积</h4><p>$\mathbf{a} \cdot \mathbf{b} = |\mathbf{a}|\times|\mathbf{b}| \times \cos\theta = x_1x_2+y_1y_2$</p>
-<p>常用来计算向量夹角。</p>
-<h4 id="叉积"><a href="#叉积" class="headerlink" title="叉积"></a>叉积</h4><p>$\mathbf{a} \times \mathbf{b} = |\mathbf{a}|\times |\mathbf{b}|\times \sin\theta = x_1y_2-x_2y_1$</p>
-<p>几何意义是两个向量围成的平行四边形的面积。</p>
-<p>从 $\mathbf{a}$ 旋转到 $\mathbf{b}$，如果角度小于 $\pi$，那么为正，否则为负。</p>
-<p>证明的话，方向是直接定义的，先不管，尝试证明。</p>
-<script type="math/tex; mode=display">
-(x_1y_2-x_2y_1)^2=\sin^2\theta \mathbf{a}^2\mathbf{b}^2\\</script><p>我觉得这个不太适合用 <code>markdown</code> 写下来。</p>
-<p>为什么方向是对的，可以替换一下 $x,y$ 变成 $\sin,\cos$，然后很自然是对的。</p>
-<p>可以用来求线段交点。</p>
-<p>算一下 $BCD,ACD$ 的面积，用相似求 $AO$，就可以得到 $O$ 点坐标。</p>
-<p><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202210042107116.png" alt="image-20221004210732068"></p>
-<h4 id="向量旋转"><a href="#向量旋转" class="headerlink" title="向量旋转"></a>向量旋转</h4><p>有人不会用这个东西，我不说是谁。</p>
-<p>$\mathbf{a}$ 转 $\alpha$ 角：$(|\mathbf{a}|\cos(\theta+\alpha),|\mathbf{a}|\sin(\theta+\alpha))$。</p>
-<p>和差角公式记不住的话朱某要来找麻烦，所以有人还是能记住。</p>
-<h3 id="多边形"><a href="#多边形" class="headerlink" title="多边形"></a>多边形</h3><h4 id="三角剖分"><a href="#三角剖分" class="headerlink" title="三角剖分"></a>三角剖分</h4><p>$S=\dfrac{\sum\mathbf{a_i}\times \mathbf{a_{(i+1)\%n}}}{2}$</p>
-<p>盗一波图。</p>
-<p><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202210042117115.png" alt="image-20221004211714058"></p>
-<h4 id="凸包"><a href="#凸包" class="headerlink" title="凸包"></a>凸包</h4><p>按照逆时针方向看，多边形凸包永远往左拐。</p>
-<h3 id="直线"><a href="#直线" class="headerlink" title="直线"></a>直线</h3><p>可以用一个点 $P$ 加方向向量 $\mathbf{v}$ 存储，也可以顺便记一个 $P_2$。</p>
-<h4 id="点在直线的哪边"><a href="#点在直线的哪边" class="headerlink" title="点在直线的哪边"></a>点在直线的哪边</h4><p>求 $PQ\times \mathbf{v}$ 即可，为正在下方，为负在上方，$0$ 则在线上，前提条件是向量 $\mathbf{v}$ 的 $x$ 为正 。</p>
-<h4 id="快速排斥实验和跨立实验"><a href="#快速排斥实验和跨立实验" class="headerlink" title="快速排斥实验和跨立实验"></a>快速排斥实验和跨立实验</h4><p><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202210051602392.png" alt="image-20221005160200348"></p>
-<p>两个矩阵不交，则通过快速排斥实验。</p>
-<p>比较简易的方式是对于两维独立判断线段是否有交，如果任何一维无交，则通过快速排斥实验。</p>
-<p>跨立实验则是判断一条线段的两端是否在另一条线段的两边，可以用向量叉乘做。</p>
-<p>相互做跨立实验，如果均能通过，则线段有交或共线，<strong>结合快速排斥实验可以判断线段是否有交</strong>。</p>
-<p><strong>两条线段共线但不交也能通过跨立实验。</strong></p>
-<h4 id="两直线交点"><a href="#两直线交点" class="headerlink" title="两直线交点"></a>两直线交点</h4><p>先判断平行和重合。</p>
-<p>然后对于两条直线 $(P_1,\mathbf{a_1}),(P_2,\mathbf{a_2})$，设 $Q=k\mathbf{a_1}+P_1$，则有 $(P_2-(k\mathbf{a_1}+P_1))\times \mathbf{a_2}=0$</p>
-<p>叉积有分配律，所以直接拆开解 $k$ 然后带回去。</p>
-<p>$k=\dfrac{(P_2-P_1)\times \mathbf{a_2}}{\mathbf{a_1}\times\mathbf{a_2}}$</p>
-<p>如果你敢约分，朱某就敢把你鲨了。</p>
-<h4 id="线和直线的垂足"><a href="#线和直线的垂足" class="headerlink" title="线和直线的垂足"></a>线和直线的垂足</h4><p>算出 $PQ$ 在 $\mathbf{v}$ 上投影的长度和方向（点积），$P$ 加上这个就行。</p>
-<h4 id="点到直线距离"><a href="#点到直线距离" class="headerlink" title="点到直线距离"></a>点到直线距离</h4><p>可以先算垂足，也可以用记下来的另一个点带面积公式算。</p>
-<h4 id="角平分线"><a href="#角平分线" class="headerlink" title="角平分线"></a>角平分线</h4><p>模长相同的方向向量相加，得到角平分线的方向向量，证明考虑构造菱形。</p>
-<h4 id="凸包-1"><a href="#凸包-1" class="headerlink" title="凸包"></a>凸包</h4><p>于是乎求凸包的时候多了一种判定方式：</p>
-<p>如果是上凸包，弹出点的充要条件是上个点在<strong>该点与上上个点的连线</strong>下方</p>
-<p>下凸包，弹出条件就是在上方，比斜率好一点，而且判共线很方便。</p>
-<h3 id="圆"><a href="#圆" class="headerlink" title="圆"></a>圆</h3><h4 id="线援交圆交"><a href="#线援交圆交" class="headerlink" title="线援交圆交"></a>线<del>援交</del>圆交</h4><p>求出点到直线距离和垂足，然后勾股定理算两个点。</p>
-<h4 id="圆圆交"><a href="#圆圆交" class="headerlink" title="圆圆交"></a>圆圆交</h4><p>半径相等可以求中点勾股定理偷懒，半径不等可以选一个三角形解三角形。</p>
-<p>具体的，可以算出一个角的 $\cos$ 然后旋转向量，最后乘半径再加上去。</p>
-<h4 id="切点"><a href="#切点" class="headerlink" title="切点"></a>切点</h4><p>勾股定理，旋转，解三角形。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/04/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/20220930%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -999,6 +802,144 @@ dp[i][v_i\oplus1]&=dp[i-1][v_i\oplus 1]+1\\
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/20/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/20220920%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/20/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/20220920%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20220920总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-20 19:27:26 / 修改时间：20:30:33" itemprop="dateCreated datePublished" datetime="2022-09-20T19:27:26+08:00">2022-09-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="某场考试T1"><a href="#某场考试T1" class="headerlink" title="某场考试T1"></a><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0123/problem/A">某场考试T1</a></h2><p>怎么说，题不难，但是需要想一下。</p>
+<p>考虑右端点进行贪心的思路挺妙的。</p>
+<h2 id="某场考试T2"><a href="#某场考试T2" class="headerlink" title="某场考试T2"></a><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0123/problem/B">某场考试T2</a></h2><p>比较套路的题，先弄出一个 $t\times n^4$ 的凑合做，然后发现两维转移系数独立，转移答案为三角形和形式乘上两维系数，可以考虑固定第二维，单独计算第一维不同转移系数对应的式子，每一种系数的变化量为 $O(1)$，所以一次转移可以做到 $O(n)$。</p>
+<h2 id="某场考试T3"><a href="#某场考试T3" class="headerlink" title="某场考试T3"></a><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0123/problem/C">某场考试T3</a></h2><p>神仙题，考场上猜到树一定有解，但是想的是通过背包来构造解，事实上，可以归纳的证明每棵子树带来的差异可以取 $[-sz_u,sz_u]$ 中的任意值，所以对于树暴力构造一条从根到某个点的路径，可以满足路径两边大小相等。</p>
+<p>考虑图上的结果。</p>
+<p>09 年的一篇集训队论文告诉我们对于图上的问题，往往可以考虑其生成树的解法，从而进行拓展，发现无向图的生成树没有横插边，所以直接选取生成树上的答案，由于没有返祖边，所以原来合法的同样合法。</p>
+<h2 id="某场考试T4"><a href="#某场考试T4" class="headerlink" title="某场考试T4"></a><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0123/problem/D">某场考试T4</a></h2><p>也是比较套路的题。</p>
+<p>很明显本质上是给你个一次函数做路径边权，然后 $k$ 的值为 $1$，所以计算出每个点每个 $k$ 的值即可。</p>
+<p>我选择分层图跑 $dij$ 外加大力卡常，但这是一种非常 $SB$ 的行为，$dij$ 本质上还是保证了转移的无环性，但 $TM$ 这个转移本来就无环还跑你大爷的 $dij$，暴力 $dp$ 出来做凸包就行。</p>
+<p>然后从 $n$ 的各个在凸包上的 $k$，倒推回去看那些点可能被用到，倒推可以写成记搜，这样只用存一遍边。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/19/20220919%E5%B0%8F%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/19/20220919%E5%B0%8F%E8%AE%B0/" class="post-title-link" itemprop="url">20220919小记</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-19 20:49:12 / 修改时间：21:16:52" itemprop="dateCreated datePublished" datetime="2022-09-19T20:49:12+08:00">2022-09-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="某道-GCD-题"><a href="#某道-GCD-题" class="headerlink" title="某道 GCD 题"></a>某道 GCD 题</h2><p>给一个 $n\times m$ 矩阵，元素为 $1-n\times m$ 的排列，问你所有子矩阵的 GCD 之和。</p>
+<p>反正我想的是考虑一个右下角，移动左上角来统计答案，这样的话考虑到 gcd 的变化次数是$\log$ 的，说不定有救，但是需要完成区间取 GCD，这个不好做。</p>
+<p>想一下，这个做法没有利用到每个数只出现一次的性质，通常这种只出现一次的性质往往和倍数这些相联系，不妨换个思路考虑，考虑 $i$ 的倍数的子矩阵的数量，然后发现容斥一下就可以得到答案。统计 $i$ 的倍数的子矩阵数量不难。</p>
+<h2 id="NOI2021D1T1"><a href="#NOI2021D1T1" class="headerlink" title="NOI2021D1T1"></a>NOI2021D1T1</h2><p>我想了一下，链是会做的，<strong>树链剖分</strong>，就是把树变成 $\log$ 个链来做。</p>
+<p>然后其实每条重链按照链的方式来做，重链的交汇处需要特殊处理。</p>
+<p>不妨把边下放到点，发现如果一个点的父亲的修改时间晚于该点的修改时间，那么这个点所代表的链就没用，所以对每个点维护两个东西，一个是该点的修改时间，另一个是该点代表的边是否被修改成重边。</p>
+<p>查询的时候对链的交界处需要查修改时间判断是否有效。</p>
+<p>其实有个更简易的方式，就是把修改看成染色，一条边有贡献当且仅当其两个端点颜色相同，这个很容易用树剖维护。</p>
+<p>这两种方式其实体现出处理边的两种方式——下放到点考虑，考虑两个端点的状态。</p>
+<p>需要灵活运用这两种方式解题。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1070,7 +1011,7 @@ dp[i][v_i\oplus1]&=dp[i-1][v_i\oplus 1]+1\\
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">77</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
