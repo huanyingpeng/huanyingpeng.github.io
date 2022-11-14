@@ -211,6 +211,270 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/03/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/03/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">简单数论函数和应用</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-03 13:27:13" itemprop="dateCreated datePublished" datetime="2022-08-03T13:27:13+08:00">2022-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-17 15:31:15" itemprop="dateModified" datetime="2022-08-17T15:31:15+08:00">2022-08-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="简单数论函数和应用"><a href="#简单数论函数和应用" class="headerlink" title="简单数论函数和应用"></a>简单数论函数和应用</h1><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/mobius/">OI-WIKI 莫比乌斯反演</a></li>
+<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/poly/dgf/#dirichlet">OI-WIKI 迪利克雷卷积</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/An-Amazing-Blog/ji-miao-di-mu-bi-wu-si-fan-yan">从莫比乌斯到欧拉</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-从基础开始</a></li>
+</ul>
+<h2 id="部分定义和约定"><a href="#部分定义和约定" class="headerlink" title="部分定义和约定"></a>部分定义和约定</h2><h3 id="符号"><a href="#符号" class="headerlink" title="符号"></a>符号</h3><ul>
+<li>$id$ ：$id$ 数论函数，$id(x)=x$</li>
+<li>$\epsilon$ : 单位函数 $\epsilon(x)=[x=1]$</li>
+<li>$[]$ ：中扩号表达式，中扩号内条件成立则为 $1$，否则为 $0$</li>
+<li>$\boldsymbol{1}$：$\boldsymbol{1}$ 函数，若 $f(n)=\boldsymbol{1}$，则 $\forall x \in N^+,f(x)=1$</li>
+</ul>
+<h3 id="数论函数"><a href="#数论函数" class="headerlink" title="数论函数"></a>数论函数</h3><ul>
+<li><p>一个数论函数定义域为正整数，值域为复数。</p>
+</li>
+<li><p>一个数论函数为积性函数，当且仅当 $\forall a,b,\gcd(a,b)=1\rightarrow f(a\times b)=f(a)\times f(b)$</p>
+</li>
+<li>一个数论函数为完全积性函数，当且仅当 $\forall a,b,f(a\times b)=f(a)\times f(b)$</li>
+</ul>
+<h3 id="迪利克雷卷积"><a href="#迪利克雷卷积" class="headerlink" title="迪利克雷卷积"></a>迪利克雷卷积</h3><p>迪利克雷卷积为数论函数的乘法操作，定义两个数论函数的迪利克雷卷积定义为</p>
+<script type="math/tex; mode=display">
+g=f*h,g(n)=\sum\limits_{d|n} f(d)\times h(\frac{n}{d})</script><p>迪利克雷卷积的除法操作就是逆操作，一般只能构造得到。</p>
+<p>迪利克雷卷积的性质（证明见下一部分）：</p>
+<ul>
+<li>两个积性函数的迪利克雷卷积仍是积性函数。</li>
+<li>两个积性函数的迪利克雷卷积除法结果仍是积性函数。</li>
+</ul>
+<p><strong>为了方便，以下所有数论函数的乘法未经说明均为迪利克雷卷积。</strong></p>
+<h3 id="常见积性函数"><a href="#常见积性函数" class="headerlink" title="常见积性函数"></a>常见积性函数</h3><ul>
+<li>欧拉函数 $\phi(n)$</li>
+<li>莫比乌斯函数 $\mu(n)$</li>
+<li>约数个数函数 $d(n)$</li>
+</ul>
+<h2 id="一些结论的简单证明"><a href="#一些结论的简单证明" class="headerlink" title="一些结论的简单证明"></a>一些结论的简单证明</h2><h3 id="迪利克雷卷积的性质"><a href="#迪利克雷卷积的性质" class="headerlink" title="迪利克雷卷积的性质"></a>迪利克雷卷积的性质</h3><h4 id="简单性质"><a href="#简单性质" class="headerlink" title="简单性质"></a>简单性质</h4><ul>
+<li>积性函数 $f$，满足 $f(1)=1$</li>
+</ul>
+<h4 id="逆元存在且唯一"><a href="#逆元存在且唯一" class="headerlink" title="逆元存在且唯一"></a>逆元存在且唯一</h4><p>所有数论函数存在逆元，即对于所有 $f$，存在 $g$ 使得 $f*g=\epsilon$，直接构造对应的 $g(n)$ 即可。</p>
+<script type="math/tex; mode=display">
+g(n)=-\dfrac{\sum\limits_{d|n,d\neq n}{f(d)\times g(\frac{n}{d})}}{f(1)}\\
+g(1)=\frac{1}{f(1)}</script><p>因此数论函数的逆元存在且唯一。</p>
+<h4 id="交换律"><a href="#交换律" class="headerlink" title="交换律"></a>交换律</h4><p>$f <em> g=g </em> h$，显然成立</p>
+<h4 id="结合律"><a href="#结合律" class="headerlink" title="结合律"></a>结合律</h4><p>$f <em> g </em> h=f <em> (g </em> h)$，成立，但不显然。</p>
+<p>令 $f <em> g </em> h=f_1,f <em> (g </em> h)=f_2,f <em> g=a,g </em> h=h * g=b$</p>
+<script type="math/tex; mode=display">
+f_1(n)=\sum\limits_{d_1|n} a(d_1)\times h(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} f(d_2)\times g(\frac{d_1}{d_2})\times h(\frac{n}{d_1})</script><script type="math/tex; mode=display">
+f_2(n)=\sum\limits_{d_1|n} b(d_1)\times f(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} h(d_2)\times g(\frac{d_1}{d_2})\times f(\frac{n}{d_1})</script><p>$g(\frac{d_1}{d_2})$ 抵掉。剩下两项的和显然是相等的，证明方式是枚举 $\frac{n\times d_2}{d_1}$，然后就是一个交换求和符号。</p>
+<h4 id="分配律"><a href="#分配律" class="headerlink" title="分配律"></a>分配律</h4><p>$f<em>(g+h)=f</em>g+f*h$</p>
+<p>显然成立。</p>
+<h4 id="两个积性函数的迪利克雷卷积为积性函数"><a href="#两个积性函数的迪利克雷卷积为积性函数" class="headerlink" title="两个积性函数的迪利克雷卷积为积性函数"></a>两个积性函数的迪利克雷卷积为积性函数</h4><p>$f,h$ 为积性函数，则 $f*g=h$，$h$ 为积性函数。</p>
+<p>$\forall a,b \ , \gcd(a,b)=1\ ,h(a\times b)=h(a)\times h(b)$，满足</p>
+<script type="math/tex; mode=display">
+\begin{align}
+h(a\times b)=&\sum\limits_{d_1|a}\sum\limits_{d_2|b}f(d_1\times \frac{b}{d_2})\times g(\frac{a}{d_1}\times d_2)\\
+=&\sum\limits_{d_1|a}\sum\limits_{d_2|b}f(d_1)\times f(\frac{b}{d_2})\times g(\frac{a}{d_1})\times g( d_2)\\
+=&\sum\limits_{d_1|a} f(d_1)\times g(\frac{a}{d_1})\sum\limits_{d_2|b} f(\frac{b}{d_2})\times g(d_2)\\
+=&h(a)\times h(b)
+\end{align}</script><h4 id="两个积性函数的迪利克雷卷积除法为积性函数"><a href="#两个积性函数的迪利克雷卷积除法为积性函数" class="headerlink" title="两个积性函数的迪利克雷卷积除法为积性函数"></a>两个积性函数的迪利克雷卷积除法为积性函数</h4><p>证明 $f,h$ 为积性函数，且 $h*g=f$，则 $g$ 为积性函数。</p>
+<p>令 $h’<em>h=\epsilon$，则 $g=f</em>h’$</p>
+<p>即证明积性函数的逆元也为积性函数。</p>
+<p><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/poly/dgf/#_10">证明</a></p>
+<p>使用了数学归纳法</p>
+<h3 id="常见的积性函数关系"><a href="#常见的积性函数关系" class="headerlink" title="常见的积性函数关系"></a>常见的积性函数关系</h3><ul>
+<li>$\mu* \boldsymbol{1}=\epsilon$</li>
+<li>$\phi* \boldsymbol{1}=\operatorname{id}$</li>
+</ul>
+<h2 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h2><p><strong>莫比乌斯反演的常见做法是用其它易于交换求和符号的项替换掉不容易求和的相关项。</strong></p>
+<p>不容易交换求和的项一般有 $d,\gcd$ 等。</p>
+<h3 id="数论分块"><a href="#数论分块" class="headerlink" title="数论分块"></a>数论分块</h3><p>莫比乌斯反演或者其它数数题中常用的优化方式。</p>
+<p>核心原理是对于 $[1,n]$ 中所有数 $i$，$\frac{n}{i}$  的结果只有 $\sqrt{n}$ 个。</p>
+<p>证明是容易的，对于 $[1,\sqrt{n}]$，一共有 $\sqrt{n}$ 个值，对于 $[\sqrt{n},n]$，一共也只有 $\sqrt{n}$ 个值。</p>
+<p>枚举的方式是先枚举一个 $l$，然后计算出一个最大的 $r$，满足 $\frac{n}{r}=\frac{n}{l}$，容易证明 $r=\big\lfloor\dfrac{n}{\lfloor\frac{n}{l}\rfloor}\big\rfloor$。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">1</span>,r=<span class="number">1</span>;l&lt;=n;l=r+<span class="number">1</span>,r=n/(n/l))&#123;</span><br><span class="line">	<span class="built_in">do_something</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="莫比乌斯函数"><a href="#莫比乌斯函数" class="headerlink" title="莫比乌斯函数"></a>莫比乌斯函数</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><script type="math/tex; mode=display">
+\mu(n)=
+\begin{cases}
+1&n=1\\
+0&n\text{ 含有平方因子}\\
+(-1)^k&k\text{ 为 }n\text{ 的本质不同质因子个数}\\
+\end{cases}</script><h4 id="mu-boldsymbol-1-epsilon"><a href="#mu-boldsymbol-1-epsilon" class="headerlink" title="$\mu*\boldsymbol{1}=\epsilon$"></a>$\mu*\boldsymbol{1}=\epsilon$</h4><p>这是核心结论了。</p>
+<p>考虑证明 $\forall n&gt;1,\mu(n)=0$。</p>
+<p>考虑每个约数的贡献，显然每个质因子只需要考虑一次，如果质因子出现多次，那么根据定义贡献为 $0$。</p>
+<p>设有 $k$ 个质因子，那么选出奇数个和选出偶数个的方案显然是相等的，所以和为 $0$。</p>
+<h3 id="莫比乌斯反演-1"><a href="#莫比乌斯反演-1" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h3><h4 id="一般形式"><a href="#一般形式" class="headerlink" title="一般形式"></a>一般形式</h4><script type="math/tex; mode=display">
+\begin{align}
+f*\bold{1}=g\iff& g*\mu=f \\
+g(n)=\sum\limits_{d|n}f(d)\iff& f(n)=\sum\limits_{d|n}\mu(d)\times g(\frac{n}{d})
+\end{align}</script><p>证明是显然的，因为 $\boldsymbol{1}*\mu=\epsilon$</p>
+<h4 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h4><p>$[\gcd(i,j)=1]=\sum\limits_{d|\gcd(i,j)}\mu(d)$</p>
+<p>枚举 $d$，即可快速计算。</p>
+<h4 id="欧拉反演"><a href="#欧拉反演" class="headerlink" title="欧拉反演"></a>欧拉反演</h4><p>名字是<a target="_blank" rel="noopener" href="https://0x131cc05.github.io/">杰哥</a>取的。</p>
+<h5 id="常用形式"><a href="#常用形式" class="headerlink" title="常用形式"></a>常用形式</h5><p>$\gcd(i,j)=\sum\limits_{d|\gcd(i,j)}\phi(d)$</p>
+<h5 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h5><p>即证明 $\phi*\boldsymbol{1}=\operatorname{id}$ 。</p>
+<p>我们只需要证明 $\phi*\boldsymbol{1}$ 在 $p^c$ 处取值为 $\operatorname{id}(p^c)$，由于 $\phi,\boldsymbol{1},\operatorname{id}$ 均为积性函数，自然在所有位置成立。</p>
+<script type="math/tex; mode=display">
+\begin{align}
+(\phi*\bold{1})(p^c)=&1+\sum _{i=1}^{c} (p-1)\times p^{i-1}\\
+=& 1+\frac{p^c-1}{p-1}\times(p-1)\\
+=&p^c\\
+=&\operatorname{id}(p^c)
+\end{align}</script><h2 id="筛法"><a href="#筛法" class="headerlink" title="筛法"></a>筛法</h2><p>介绍四大筛法。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/02/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/02/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Exchange-Argument小总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-02 23:04:58" itemprop="dateCreated datePublished" datetime="2022-08-02T23:04:58+08:00">2022-08-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-17 15:32:48" itemprop="dateModified" datetime="2022-08-17T15:32:48+08:00">2022-08-17</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Exchange-Argument"><a href="#Exchange-Argument" class="headerlink" title="Exchange-Argument"></a>Exchange-Argument</h2><ul>
+<li><p>参考资料：2022 集训队论文《浅谈一类基于交换的贪心在信息学竞赛中的应用》</p>
+</li>
+<li><p>本文主要介绍树上形式。</p>
+</li>
+</ul>
+<h3 id="一般形式"><a href="#一般形式" class="headerlink" title="一般形式"></a>一般形式</h3><p>你需要为 $n$ 个元素安排一个排名，得到一个序列 $a$，最小化某函数 $F(a)$。</p>
+<p>如果存在一个满足<strong>传递性和强完全性</strong>的关系 $\le$，满足 $a,b$ 均为元素， $ \forall a\le b,F(s_1+a+b+s_2)\le F(s_1+b+a+s_2)$，则按照 $\le$ 排序后的排名可以最小化 $F(a)$。</p>
+<p>典例为 NOIP2012 国王游戏。</p>
+<p>我们在这里略去证明，详见参考资料。</p>
+<ul>
+<li>强完全性指 $\forall  a,b, a\le b\bigvee b\le a$，显然满足强完全性一定满足自反性。</li>
+<li>条件中 $\{s_1+a+b+s_2\}$ 为全集。</li>
+</ul>
+<h3 id="树上问题"><a href="#树上问题" class="headerlink" title="树上问题"></a>树上问题</h3><h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p>给定一棵树，需要为树的每个节点安排排名 $p_u$，父节点的排名需要低于子节点。每个点有一个价值 $c_i$，需要最小化 $\sum c_u\times p_u$。</p>
+<h4 id="分析与结论"><a href="#分析与结论" class="headerlink" title="分析与结论"></a>分析与结论</h4><p>唯一的变化是，对于原问题元素的比较 $\le$，拓展到了对于子序列的比较，即 $a,b$ 为原来元素的一个序列。</p>
+<p><strong>以下是一个重要结论</strong></p>
+<p>考虑一个元素 $v$，我们希望说明如果它的父亲 $u$， $u&gt;v$，那么 $v$ 一定在 $u$ 之后<strong>立刻被选择</strong>，此时将 $v,u$ 合并，可以得到一个规模为 $n-1$ 的子问题。</p>
+<p>考虑证明 $u$ 被选择后一定会选择 $v$，对于一个满足树的限制的排列 $p$，如果 $u,v$ 不相邻，那么由于 $v&gt;u$，所以对于序列 $p_1,p_2\dots u,p_l,p_{l1} \dots p_r,v,\dots,p_n$，一定有 $u&gt;p_{l,r} \bigvee p_{l,r}&gt;v$，否则 $v&lt;u$，如果为前者，那么交换 $u$ 和 $p_{l,r}$，后者同理，所以 $v$ 一定紧接着 $u$ 被选择。</p>
+<p>我们可以用以下两种方式解决问题。</p>
+<h4 id="方式1"><a href="#方式1" class="headerlink" title="方式1"></a>方式1</h4><p>考虑最大的元素 $v$，显然可以合并它和它的父亲 $u$，变成一个新的规模更小的问题。</p>
+<p>合并的过程可以用并查集维护连通块，注意区分并查集父亲和实际父亲。</p>
+<p>使用 <code>priority_queue</code> 或者 <code>set</code> 可以实现加入删除和查询最小值，<code>priority_queue</code> 的方式是同时维护一个代表删除的 <code>priority_queue</code>，实际上 <code>priority_queue</code> 会比 <code>set</code> 快 $1$ 倍。</p>
+<p>注意实现的时候，如果找到了根，那么根其实有可能不在 <code>priority_queue</code> 里面，可删除的 <code>priority_queue</code> 如果删除了不存在的元素是会出问题的，所以一定要特判掉。</p>
+<p>复杂度 $O(n\log n)$</p>
+<h4 id="方式2"><a href="#方式2" class="headerlink" title="方式2"></a>方式2</h4><p>我们考虑对每个子树求其答案。</p>
+<p>利用分析中的结论，不妨将一棵子树划分成一些<strong>必须连续选择的序列</strong>，作为<strong>树对排列顺序的要求</strong>，将这些连续的序列视为一个元素后，我们可以对序列按照正常方式排序得到最优解。</p>
+<p>划分序列的过程是对于一棵子树 $u$，将它的所有儿子的序列拿来排序，尝试将 $u$ 与最小的序列合并得到新的序列，如果 $u$ 当前所在的序列较大，由于结论我们知道合并后一定能拿到最优解，否则停止合并，此时 $u$ 所在序列的权值最小，一定会被最先选择，其中 $u$ 又一定会被第一个选择。</p>
+<p>容易发现合并的过程一定不会改变子树内的选择顺序。</p>
+<p>合并时采用启发式合并，利用 <code>set</code> 或 <code>priority_queue</code>  维护当前子树序列，复杂度为 $O(n\log^2n)$，但优势在于可以求出所有子树的答案。</p>
+<p>当然可以使用可并堆达到 $O(n\log n)$</p>
+<p>注意到其实一遍 <code>dfs</code> 就可以解决问题，因为启发式合并复杂度保证的来源是合并一次的复杂度为 $O(\min(|u|,|v|))$，所以并不需要提前计算子树大小，直接合并即可，<code>set</code> 或 <code>priority_queue</code> 的 <code>swap</code> 操作是 $O(1)$ 的。</p>
+<h3 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h3><p>Exc-Arg 除了直接解决问题外，也可以用来简化问题，将选择元素并重排的问题变为<strong>排序后</strong>选择子序列的问题。</p>
+<p>对于树上的情况，我还没有见到过相关的问题。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/02/%E6%9D%82%E9%A1%B9/%E5%9D%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -235,10 +499,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-08-02 13:46:46 / 修改时间：14:08:26" itemprop="dateCreated datePublished" datetime="2022-08-02T13:46:46+08:00">2022-08-02</time>
+              <time title="创建时间：2022-08-02 13:46:46" itemprop="dateCreated datePublished" datetime="2022-08-02T13:46:46+08:00">2022-08-02</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-14 15:09:10" itemprop="dateModified" datetime="2022-11-14T15:09:10+08:00">2022-11-14</time>
+              </span>
 
           
 
@@ -255,11 +525,14 @@
 <p>你真的清空了吗？</p>
 <p>你真的真的真的清空了吗？</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dij</span><span class="params">(<span class="type">int</span> s,<span class="type">int</span> t)</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="built_in">sizeof</span>(vis));</span><br><span class="line">	<span class="built_in">memset</span>(dis,<span class="number">1</span>,<span class="built_in">sizeof</span>(dis));</span><br><span class="line">	<span class="comment">//while(!q.empty())q.pop();</span></span><br><span class="line">	dis[s]=<span class="number">0</span>;q.<span class="built_in">push</span>(s);</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="type">int</span> u=q.<span class="built_in">top</span>()%M;q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">if</span>(vis[u])<span class="keyword">continue</span>;vis[u]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(vis[t])<span class="keyword">return</span> ;</span><br><span class="line">        <span class="comment">//!!! priority_queue 还没空就跑路了，你不玩完谁玩完</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=head[u];~i;i=a[i].next)&#123;</span><br><span class="line">			<span class="type">int</span> v=a[i].v,w=a[i].w;</span><br><span class="line">			<span class="keyword">if</span>(dis[u]+w&gt;=dis[v])<span class="keyword">continue</span>;</span><br><span class="line">			dis[v]=dis[u]+w;</span><br><span class="line">			q.<span class="built_in">push</span>(dis[v]*M+v);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Prim-最短路"><a href="#Prim-最短路" class="headerlink" title="Prim 最短路"></a>Prim 最短路</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    <span class="type">int</span> tar=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=n;j++)<span class="keyword">if</span>(dis[tar]&gt;dis[j]&amp;&amp;!pd[j])tar=j;</span><br><span class="line">    pd[tar]=<span class="number">1</span>;ans+=dis[tar];dis[tar]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=n;j++)<span class="built_in">cmin</span>(dis[j],dis[tar]+val[tar][j]+val[j][tar]);</span><br><span class="line">    <span class="comment">//	for(j=1;j&lt;=n;j++)if(!pd[j])cmin(dis[j],dis[tar]+val[tar][j]+val[j][tar]);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你的边权算对了吗？</p>
+<p><del>有人之前写的 <code>Prime</code> 算法</del></p>
 <h2 id="一些技巧的坑"><a href="#一些技巧的坑" class="headerlink" title="一些技巧的坑"></a>一些技巧的坑</h2><h3 id="非显式建边"><a href="#非显式建边" class="headerlink" title="非显式建边"></a>非显式建边</h3><p>举个例子，点有个性质 $c_i$，可以花费 $k_j$ 的代价从任意 $c_{a_j}$ 的跳到任意 $c_{b_j}$ 的点。</p>
 <p>然后你对每个 $c$ 建立一个点，从每个点向它连了一条边。</p>
 <p>然后你发现你的每一个 $c$ 可以花费 $0$ 的代价互相到达。</p>
 <p>正确的方式是每个 $c$ 建立入点和出点。</p>
-<h3 id="可删除的优先队列"><a href="#可删除的优先队列" class="headerlink" title="可删除的优先队列"></a>可删除的优先队列</h3><p>一般用两个优先队列实现。</p>
+<h3 id="可删除的优先队列"><a href="#可删除的优先队列" class="headerlink" title="可删除的优先队列"></a>可删除的优先队列</h3><p>一般用两个优先队列实现，<strong>需要保证被删除的元素一定存在</strong>。</p>
 
       
     </div>
@@ -1062,188 +1335,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/17/%E5%AF%B9%E7%AB%9E%E8%B5%9B%E6%9C%89%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E5%AF%B9C%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/17/%E5%AF%B9%E7%AB%9E%E8%B5%9B%E6%9C%89%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E5%AF%B9C%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">对C++程序进行性能分析</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-07-17 16:33:08 / 修改时间：16:59:33" itemprop="dateCreated datePublished" datetime="2022-07-17T16:33:08+08:00">2022-07-17</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h2><p>某道题，某人写了，然后交了，然后过了，但跑的很慢。</p>
-<p>某人卡了好几次常，都不行。</p>
-<p>看了下跑得比较快的代码，其实没啥差别。</p>
-<p>输出运行时间，发现没什么差异，所以某人要对程序做个性能分析。</p>
-<p>性能分析本质上是运行了一遍程序，然后把占用大量时间的函数抓出来，对这个函数进行优化。</p>
-<h2 id="在-Windows-下使用-gprof-对程序进行性能分析"><a href="#在-Windows-下使用-gprof-对程序进行性能分析" class="headerlink" title="在 Windows 下使用 gprof 对程序进行性能分析"></a>在 Windows 下使用 gprof 对程序进行性能分析</h2><p>gprof 是 g++ 自带的性能分析工具，简单易用，命令行中 <code>gprof --version</code> 查看是否可用，如果不行，先把  <code>g++</code> 添加进系统路径里，多半就可以了。</p>
-<p>性能分析需要特殊的编译参数，格式为</p>
-<p><code>g++ -pg demo.cpp -o demo</code></p>
-<p>其它参数可以照常添加，但是不能开 <code>O2</code> 等性能优化，这会破坏掉程序结构。</p>
-<p> 然后运行程序，<strong>这一步必不可少。</strong></p>
-<p><code>./demo</code></p>
-<p><strong>不要使用其它IDE编译执行后的gmon.out文件进行性能分析,请在命令行使用以上命令编译运行后进行下面的操作</strong></p>
-<p><code>gprof demo.exe gmon.out &gt; result.txt</code></p>
-<p>这会生成性能数据到 result.txt 中，查看一下就行。</p>
-<p><strong>最后一步中，.exe 不能省略</strong></p>
-<p>给出一个性能数据的例子,例子中有详细的解释，我就不解释了</p>
-<p> <del>啥，看不懂英文？那就别学了。</del></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br></pre></td><td class="code"><pre><span class="line">Flat profile:</span><br><span class="line"></span><br><span class="line">Each sample counts as 0.01 seconds.</span><br><span class="line">  %   cumulative   self              self     total           </span><br><span class="line"> time   seconds   seconds    calls  ms/call  ms/call  name    </span><br><span class="line"> 17.14      0.06     0.06        3    20.00    74.92  NTT(num*, int)</span><br><span class="line"> 17.14      0.12     0.06                             _mcount_private</span><br><span class="line"> 14.29      0.17     0.05 14680064     0.00     0.00  num::num(int, int, int)</span><br><span class="line"> 14.29      0.22     0.05  7602174     0.00     0.00  num::operator*(num const&amp;)</span><br><span class="line"> 11.43      0.26     0.04  7077888     0.00     0.00  num::operator-(num const&amp;)</span><br><span class="line"> 11.43      0.30     0.04                             __fentry__</span><br><span class="line">  5.71      0.32     0.02  7077888     0.00     0.00  num::operator+=(num const&amp;)</span><br><span class="line">  2.86      0.33     0.01   392448     0.00     0.00  std::enable_if&lt;std::__and_&lt;std::__not_&lt;std::__is_tuple_like&lt;num&gt; &gt;, std::is_move_constructible&lt;num&gt;, std::is_move_assignable&lt;num&gt; &gt;::value, void&gt;::type std::swap&lt;num&gt;(num&amp;, num&amp;)</span><br><span class="line">  2.86      0.34     0.01   262144     0.00     0.00  num::operator*=(num const&amp;)</span><br><span class="line">  2.86      0.35     0.01                             main</span><br><span class="line">  0.00      0.35     0.00  1177344     0.00     0.00  std::remove_reference&lt;num&amp;&gt;::type&amp;&amp; std::move&lt;num&amp;&gt;(num&amp;)</span><br><span class="line">  0.00      0.35     0.00   149817     0.00     0.00  void read&lt;int&gt;(int&amp;)</span><br><span class="line">  0.00      0.35     0.00   149815     0.00     0.00  num::num(int)</span><br><span class="line">  0.00      0.35     0.00   149813     0.00     0.00  printf(char const*, ...)</span><br><span class="line">  0.00      0.35     0.00   149813     0.00     0.00  num::get()</span><br><span class="line">  0.00      0.35     0.00       16     0.00     0.00  quick(int, int, int, int)</span><br><span class="line"></span><br><span class="line"> %         the percentage of the total running time of the</span><br><span class="line">time       program used by this function.</span><br><span class="line"></span><br><span class="line">cumulative a running sum of the number of seconds accounted</span><br><span class="line"> seconds   for by this function and those listed above it.</span><br><span class="line"></span><br><span class="line"> self      the number of seconds accounted for by this</span><br><span class="line">seconds    function alone.  This is the major sort for this</span><br><span class="line">           listing.</span><br><span class="line"></span><br><span class="line">calls      the number of times this function was invoked, if</span><br><span class="line">           this function is profiled, else blank.</span><br><span class="line"></span><br><span class="line"> self      the average number of milliseconds spent in this</span><br><span class="line">ms/call    function per call, if this function is profiled,</span><br><span class="line">	   else blank.</span><br><span class="line"></span><br><span class="line"> total     the average number of milliseconds spent in this</span><br><span class="line">ms/call    function and its descendents per call, if this</span><br><span class="line">	   function is profiled, else blank.</span><br><span class="line"></span><br><span class="line">name       the name of the function.  This is the minor sort</span><br><span class="line">           for this listing. The index shows the location of</span><br><span class="line">	   the function in the gprof listing. If the index is</span><br><span class="line">	   in parenthesis it shows where it would appear in</span><br><span class="line">	   the gprof listing if it were to be printed.</span><br><span class="line"></span><br><span class="line">Copyright (C) 2012-2018 Free Software Foundation, Inc.</span><br><span class="line"></span><br><span class="line">Copying and distribution of this file, with or without modification,</span><br><span class="line">are permitted in any medium without royalty provided the copyright</span><br><span class="line">notice and this notice are preserved.</span><br><span class="line"></span><br><span class="line">		     Call graph (explanation follows)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">granularity: each sample hit covers 4 byte(s) for 2.86% of 0.35 seconds</span><br><span class="line"></span><br><span class="line">index % time    self  children    called     name</span><br><span class="line">                                                 &lt;spontaneous&gt;</span><br><span class="line">[1]     71.4    0.01    0.24                 main [1]</span><br><span class="line">                0.06    0.16       3/3           NTT(num*, int) [2]</span><br><span class="line">                0.01    0.00  262144/262144      num::operator*=(num const&amp;) [10]</span><br><span class="line">                0.00    0.00  524286/7602174     num::operator*(num const&amp;) [3]</span><br><span class="line">                0.00    0.00       2/14680064     num::num(int, int, int) [6]</span><br><span class="line">                0.00    0.00  149817/149817      void read&lt;int&gt;(int&amp;) [96]</span><br><span class="line">                0.00    0.00  149815/149815      num::num(int) [97]</span><br><span class="line">                0.00    0.00  149813/149813      num::get() [99]</span><br><span class="line">                0.00    0.00  149813/149813      printf(char const*, ...) [98]</span><br><span class="line">                0.00    0.00      16/16          quick(int, int, int, int) [100]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.06    0.16       3/3           main [1]</span><br><span class="line">[2]     64.2    0.06    0.16       3         NTT(num*, int) [2]</span><br><span class="line">                0.05    0.02 7077888/7602174     num::operator*(num const&amp;) [3]</span><br><span class="line">                0.04    0.02 7077888/7077888     num::operator-(num const&amp;) [4]</span><br><span class="line">                0.02    0.00 7077888/7077888     num::operator+=(num const&amp;) [8]</span><br><span class="line">                0.01    0.00  392448/392448      std::enable_if&lt;std::__and_&lt;std::__not_&lt;std::__is_tuple_like&lt;num&gt; &gt;, std::is_move_constructible&lt;num&gt;, std::is_move_assignable&lt;num&gt; &gt;::value, void&gt;::type std::swap&lt;num&gt;(num&amp;, num&amp;) [9]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00  524286/7602174     main [1]</span><br><span class="line">                0.05    0.02 7077888/7602174     NTT(num*, int) [2]</span><br><span class="line">[3]     21.7    0.05    0.03 7602174         num::operator*(num const&amp;) [3]</span><br><span class="line">                0.03    0.00 7602174/14680064     num::num(int, int, int) [6]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.04    0.02 7077888/7077888     NTT(num*, int) [2]</span><br><span class="line">[4]     18.3    0.04    0.02 7077888         num::operator-(num const&amp;) [4]</span><br><span class="line">                0.02    0.00 7077888/14680064     num::num(int, int, int) [6]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                                                 &lt;spontaneous&gt;</span><br><span class="line">[5]     17.1    0.06    0.00                 _mcount_private [5]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00       2/14680064     main [1]</span><br><span class="line">                0.02    0.00 7077888/14680064     num::operator-(num const&amp;) [4]</span><br><span class="line">                0.03    0.00 7602174/14680064     num::operator*(num const&amp;) [3]</span><br><span class="line">[6]     14.3    0.05    0.00 14680064         num::num(int, int, int) [6]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                                                 &lt;spontaneous&gt;</span><br><span class="line">[7]     11.4    0.04    0.00                 __fentry__ [7]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.02    0.00 7077888/7077888     NTT(num*, int) [2]</span><br><span class="line">[8]      5.7    0.02    0.00 7077888         num::operator+=(num const&amp;) [8]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.01    0.00  392448/392448      NTT(num*, int) [2]</span><br><span class="line">[9]      2.9    0.01    0.00  392448         std::enable_if&lt;std::__and_&lt;std::__not_&lt;std::__is_tuple_like&lt;num&gt; &gt;, std::is_move_constructible&lt;num&gt;, std::is_move_assignable&lt;num&gt; &gt;::value, void&gt;::type std::swap&lt;num&gt;(num&amp;, num&amp;) [9]</span><br><span class="line">                0.00    0.00 1177344/1177344     std::remove_reference&lt;num&amp;&gt;::type&amp;&amp; std::move&lt;num&amp;&gt;(num&amp;) [95]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.01    0.00  262144/262144      main [1]</span><br><span class="line">[10]     2.9    0.01    0.00  262144         num::operator*=(num const&amp;) [10]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00 1177344/1177344     std::enable_if&lt;std::__and_&lt;std::__not_&lt;std::__is_tuple_like&lt;num&gt; &gt;, std::is_move_constructible&lt;num&gt;, std::is_move_assignable&lt;num&gt; &gt;::value, void&gt;::type std::swap&lt;num&gt;(num&amp;, num&amp;) [9]</span><br><span class="line">[95]     0.0    0.00    0.00 1177344         std::remove_reference&lt;num&amp;&gt;::type&amp;&amp; std::move&lt;num&amp;&gt;(num&amp;) [95]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00  149817/149817      main [1]</span><br><span class="line">[96]     0.0    0.00    0.00  149817         void read&lt;int&gt;(int&amp;) [96]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00  149815/149815      main [1]</span><br><span class="line">[97]     0.0    0.00    0.00  149815         num::num(int) [97]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00  149813/149813      main [1]</span><br><span class="line">[98]     0.0    0.00    0.00  149813         printf(char const*, ...) [98]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00  149813/149813      main [1]</span><br><span class="line">[99]     0.0    0.00    0.00  149813         num::get() [99]</span><br><span class="line">-----------------------------------------------</span><br><span class="line">                0.00    0.00      16/16          main [1]</span><br><span class="line">[100]    0.0    0.00    0.00      16         quick(int, int, int, int) [100]</span><br><span class="line">-----------------------------------------------</span><br><span class="line"></span><br><span class="line"> This table describes the call tree of the program, and was sorted by</span><br><span class="line"> the total amount of time spent in each function and its children.</span><br><span class="line"></span><br><span class="line"> Each entry in this table consists of several lines.  The line with the</span><br><span class="line"> index number at the left hand margin lists the current function.</span><br><span class="line"> The lines above it list the functions that called this function,</span><br><span class="line"> and the lines below it list the functions this one called.</span><br><span class="line"> This line lists:</span><br><span class="line">     index	A unique number given to each element of the table.</span><br><span class="line">		Index numbers are sorted numerically.</span><br><span class="line">		The index number is printed next to every function name so</span><br><span class="line">		it is easier to look up where the function is in the table.</span><br><span class="line"></span><br><span class="line">     % time	This is the percentage of the `total&#x27; time that was spent</span><br><span class="line">		in this function and its children.  Note that due to</span><br><span class="line">		different viewpoints, functions excluded by options, etc,</span><br><span class="line">		these numbers will NOT add up to 100%.</span><br><span class="line"></span><br><span class="line">     self	This is the total amount of time spent in this function.</span><br><span class="line"></span><br><span class="line">     children	This is the total amount of time propagated into this</span><br><span class="line">		function by its children.</span><br><span class="line"></span><br><span class="line">     called	This is the number of times the function was called.</span><br><span class="line">		If the function called itself recursively, the number</span><br><span class="line">		only includes non-recursive calls, and is followed by</span><br><span class="line">		a `+&#x27; and the number of recursive calls.</span><br><span class="line"></span><br><span class="line">     name	The name of the current function.  The index number is</span><br><span class="line">		printed after it.  If the function is a member of a</span><br><span class="line">		cycle, the cycle number is printed between the</span><br><span class="line">		function&#x27;s name and the index number.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> For the function&#x27;s parents, the fields have the following meanings:</span><br><span class="line"></span><br><span class="line">     self	This is the amount of time that was propagated directly</span><br><span class="line">		from the function into this parent.</span><br><span class="line"></span><br><span class="line">     children	This is the amount of time that was propagated from</span><br><span class="line">		the function&#x27;s children into this parent.</span><br><span class="line"></span><br><span class="line">     called	This is the number of times this parent called the</span><br><span class="line">		function `/&#x27; the total number of times the function</span><br><span class="line">		was called.  Recursive calls to the function are not</span><br><span class="line">		included in the number after the `/&#x27;.</span><br><span class="line"></span><br><span class="line">     name	This is the name of the parent.  The parent&#x27;s index</span><br><span class="line">		number is printed after it.  If the parent is a</span><br><span class="line">		member of a cycle, the cycle number is printed between</span><br><span class="line">		the name and the index number.</span><br><span class="line"></span><br><span class="line"> If the parents of the function cannot be determined, the word</span><br><span class="line"> `&lt;spontaneous&gt;&#x27; is printed in the `name&#x27; field, and all the other</span><br><span class="line"> fields are blank.</span><br><span class="line"></span><br><span class="line"> For the function&#x27;s children, the fields have the following meanings:</span><br><span class="line"></span><br><span class="line">     self	This is the amount of time that was propagated directly</span><br><span class="line">		from the child into the function.</span><br><span class="line"></span><br><span class="line">     children	This is the amount of time that was propagated from the</span><br><span class="line">		child&#x27;s children to the function.</span><br><span class="line"></span><br><span class="line">     called	This is the number of times the function called</span><br><span class="line">		this child `/&#x27; the total number of times the child</span><br><span class="line">		was called.  Recursive calls by the child are not</span><br><span class="line">		listed in the number after the `/&#x27;.</span><br><span class="line"></span><br><span class="line">     name	This is the name of the child.  The child&#x27;s index</span><br><span class="line">		number is printed after it.  If the child is a</span><br><span class="line">		member of a cycle, the cycle number is printed</span><br><span class="line">		between the name and the index number.</span><br><span class="line"></span><br><span class="line"> If there are any cycles (circles) in the call graph, there is an</span><br><span class="line"> entry for the cycle-as-a-whole.  This entry shows who called the</span><br><span class="line"> cycle (as parents) and the members of the cycle (as children.)</span><br><span class="line"> The `+&#x27; recursive calls entry shows the number of function calls that</span><br><span class="line"> were internal to the cycle, and the calls entry for each member shows,</span><br><span class="line"> for that member, how many times it was called from other members of</span><br><span class="line"> the cycle.</span><br><span class="line"></span><br><span class="line">Copyright (C) 2012-2018 Free Software Foundation, Inc.</span><br><span class="line"></span><br><span class="line">Copying and distribution of this file, with or without modification,</span><br><span class="line">are permitted in any medium without royalty provided the copyright</span><br><span class="line">notice and this notice are preserved.</span><br><span class="line"></span><br><span class="line">Index by function name</span><br><span class="line"></span><br><span class="line">   [2] NTT(num*, int)          [6] num::num(int, int, int) [9] std::enable_if&lt;std::__and_&lt;std::__not_&lt;std::__is_tuple_like&lt;num&gt; &gt;, std::is_move_constructible&lt;num&gt;, std::is_move_assignable&lt;num&gt; &gt;::value, void&gt;::type std::swap&lt;num&gt;(num&amp;, num&amp;)</span><br><span class="line">  [96] void read&lt;int&gt;(int&amp;)   [10] num::operator*=(num const&amp;) [7] __fentry__</span><br><span class="line"> [100] quick(int, int, int, int) [4] num::operator-(num const&amp;) [5] _mcount_private</span><br><span class="line">  [98] printf(char const*, ...) [3] num::operator*(num const&amp;) [1] main</span><br><span class="line">  [99] num::get()              [8] num::operator+=(num const&amp;)</span><br><span class="line">  [97] num::num(int)          [95] std::remove_reference&lt;num&amp;&gt;::type&amp;&amp; std::move&lt;num&amp;&gt;(num&amp;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="VTune"><a href="#VTune" class="headerlink" title="VTune"></a>VTune</h2><p>一个更厉害的性能分析工具，可以分析 CPU 流水线利用率和高速缓存命中率等进一步性能。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/ARC144D%E4%B8%8E%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/07/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/ARC144D%E4%B8%8E%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F/" class="post-title-link" itemprop="url">ARC144D与组合恒等式</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-07-17 13:52:25" itemprop="dateCreated datePublished" datetime="2022-07-17T13:52:25+08:00">2022-07-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-10 21:08:28" itemprop="dateModified" datetime="2022-10-10T21:08:28+08:00">2022-10-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">组合数学</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="ARC144D"><a href="#ARC144D" class="headerlink" title="ARC144D"></a>ARC144D</h2><p>题意略。</p>
-<p>观察，发现 $x \&amp; y + x |y = x+y$，原因是每个二进制位，如果出现两次，会计入二次，如果出现一次，会计入一次。猜想 $f(x)$ 的值与每个二进制位相关且对于每个二进制位独立。</p>
-<p>考虑证明，对 $x$ 的二进制下 $1$ 的个数 $n$ 做归纳。</p>
-<p>对于 $n=0$，$f(0)=f(0)$</p>
-<p>对于 $n=1$，$f(2^i) = f(2^i)$</p>
-<p>对于 $n=2$，$f(2^i+2^j) + f(0) = f(2^i) +f(2^j)$</p>
-<p>考虑证明 $n=k$ 时， $f(x) +(k-1)f(0) = \sum\limits_{i\in x} f(2^i)$</p>
-<p>设对于 $n=k-1$ 其成立，对于二进制位 1 个数为 k 的 x， $\forall i\in x,f(x)+f(0)=f(x-2^i) + f(2^i)$，易证 $f(x) +(k-1)f(0) = \sum\limits_{i\in x} f(2^i)$，且对于所有涉及元素二进制下 1 个数少于 n 的，所有限制满足。</p>
-<p>故只需要确定 $f(2^i)$ 和 $f(0)$。其最终限制有两个，其一是，最大值不能超过 $k$，其二是最小值不能小于 0，最大值一定是把所有大于 $f(0)$ 的元素加起来，最小值则是把所有小于 $f(0)$ 的元素加起来。</p>
-<p>枚举 $f(0)$ 和小于 $f(0)$ 的元素个数，我们可以将限制分配给对应元素 ，得到和式：</p>
-<script type="math/tex; mode=display">
-ans=\sum\limits_{f(0)=0}^{k}\sum\limits_{i=0}^{n}\binom{n}{i}\binom{f(0)}{i}\binom{k-f(0)+n-i}{n-i}</script><p>第一项计算那些小于 $f(0)$，第二项是将<strong>至多</strong> $k$ 个冗余值分配给 $i$ 个小于 $f(0)$ 的元素的方案数，每个元素至少分配一个，或者说 $i$ 个正整数变量和为 $f(0)$ 的方案，可以给一个虚拟元素分别大于等于 0 个表示放弃，所以先给虚拟元素一个，变成 $f(0)+1$ 个元素插 $i$ 个板。最后一项是 $n-i$ 个非负整数变量，和不超过 $k-f(0)$ 的方案。先来个虚拟变量，然后先各自加 $1$，然后就是 $k-f(0)+n-i+1$ ，间隔是 $k-f(0)+n-i$ 个，版一共 $n$ 个。</p>
-<p>解释完了，考虑计算，二维的，算不了。</p>
-<p>考虑后两项的组合意义。</p>
-<p>根据组合恒等式中的第五个。</p>
-<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/ewpo1rn4.png" alt=""></p>
-<p>对原式变形有</p>
-<script type="math/tex; mode=display">
-ans=\sum\limits_{i=0}^{n}\binom{n}{i}\binom{k-f(0)+n-i+1}{n-i+1}</script><p>然后 $n$ 不大，维护个区间乘积枚举计算就行，记得对计算乘积的元素取模。</p>
-<h2 id="组合恒等式"><a href="#组合恒等式" class="headerlink" title="组合恒等式"></a>组合恒等式</h2><p>题不是终点，组合恒等式才是重点</p>
-<p>对上面那种图的组合恒等式，我们一一证明</p>
-<h3 id="式子1"><a href="#式子1" class="headerlink" title="式子1"></a>式子1</h3><script type="math/tex; mode=display">
-\sum\limits_{k}\binom{r}{m+k}\binom{s}{n-k}=\binom{r+s}{m+n}</script><h4 id="组合意义证明"><a href="#组合意义证明" class="headerlink" title="组合意义证明"></a>组合意义证明</h4><p>第一项是从 $r$ 个选 $m+k$ 个，第二项是从 $s$ 个选 $n-k$ 个，把两个拼在一起，从 $r+s$ 个中选 $n+m$ 个，容易发现和前者一一对应，故恒等。</p>
-<h4 id="代数证明"><a href="#代数证明" class="headerlink" title="代数证明"></a>代数证明</h4><p>咕咕咕</p>
-<h3 id="式子2"><a href="#式子2" class="headerlink" title="式子2"></a>式子2</h3><script type="math/tex; mode=display">
-\sum\limits_{k}\binom{l}{m+k}\binom{s}{n+k} = \binom{l+s}{l-m+n},l\ge0</script><h4 id="组合意义证明-1"><a href="#组合意义证明-1" class="headerlink" title="组合意义证明"></a>组合意义证明</h4><h4 id="代数证明-1"><a href="#代数证明-1" class="headerlink" title="代数证明"></a>代数证明</h4><p>咕咕咕</p>
-<h3 id="式子3"><a href="#式子3" class="headerlink" title="式子3"></a>式子3</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1315,7 +1406,7 @@ ans=\sum\limits_{i=0}^{n}\binom{n}{i}\binom{k-f(0)+n-i+1}{n-i+1}</script><p>然�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

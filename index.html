@@ -440,6 +440,169 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/10/1110%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/10/1110%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1110总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-10 21:23:57" itemprop="dateCreated datePublished" datetime="2022-11-10T21:23:57+08:00">2022-11-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-11 09:56:08" itemprop="dateModified" datetime="2022-11-11T09:56:08+08:00">2022-11-11</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1110总结"><a href="#1110总结" class="headerlink" title="1110总结"></a>1110总结</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0152">考试</a></p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>莫名奇妙写挂的题。</p>
+<p>题本身意义不大，但是我写了很蠢的做法。</p>
+<p>分析问题本质上是需要动态查 $i\ge l,a_i\in x_i$，$a_i$ 不是很大，可以直接预处理每一个元素的 $next$，就很方便了，但是考场上写了扫描做法，还写挂了，非常蠢。</p>
+<p><strong>拿到题不要直接开冲，可以多想一下有没有更好写的做法/更方便，前面的题没那么难。</strong></p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>观察发现答案不超过 $1$ 的充要条件是存在一条长度为奇数的路径，答案不超过 $2$ 的充要条件是存在一条路径。</p>
+<p>先假定图联通，所以问题变成了计算无向图 $s,t$ 之间是否存在长度为奇数的路径，有以下三种方式</p>
+<h4 id="直接最短路"><a href="#直接最短路" class="headerlink" title="直接最短路"></a>直接最短路</h4><p>思想是分层图跑最短路，但实现上没那么麻烦，考场写的这个做法。</p>
+<h4 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h4><p>如果有奇环，那在奇环上绕一圈任意可达了，所以考虑先 DFS 求个深度，如果有奇环答案全部为 $1$，否则路径唯一求出来就行</p>
+<h4 id="二分图"><a href="#二分图" class="headerlink" title="二分图"></a>二分图</h4><p>还是奇环的思想，实现上使用黑白染色。</p>
+<h4 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h4><p>这是常数最小的写法，还是考虑分层图，有一条边则合并不同层的两个点，查奇数路径就是不同层是否联通，偶数路径就是相同层是否联通。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>不算太难的题，但是确实没有想出来。</p>
+<p>首先有个经典结论</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/08/1108%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/08/1108%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1108总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-08 20:58:55" itemprop="dateCreated datePublished" datetime="2022-11-08T20:58:55+08:00">2022-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-10 07:48:21" itemprop="dateModified" datetime="2022-11-10T07:48:21+08:00">2022-11-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="线程阻塞"><a href="#线程阻塞" class="headerlink" title="线程阻塞"></a>线程阻塞</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0151">考试</a><br>考试的时候还很清醒，考完脑子就乱了。</p>
+<p>大脑从 i7-9th 退化成 i3-4th，四个字来说就是线程阻塞。</p>
+<p>如果说整个社会是一个计算机系统，那一个人自己的大脑就是主板上的所有部件，而其他人，则是一块块只读 HDD 中的数据。当某一块 HDD 损坏，不能存储数据，但是又不想丢失它，就只能将数据保存于主存。主存的大小是有限的，它本不是用来保存数据，如果占用过多，会影响主板部分的正常运行，受到内存大小的限制，CPU 的运算能力自然会退化。</p>
+<p>我不太想找心理医生，心理医生会帮我清除掉主存的数据，但是我不想清除。</p>
+<h2 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h2><h3 id="AC-自动机"><a href="#AC-自动机" class="headerlink" title="AC 自动机"></a>AC 自动机</h3><p>比较模板的 AC 自动机匹配题，但是 AC 自动机做法需要细算常数，这道题倒是将缓存行访问连续的重要性体现的相当清楚，可以参考几次提交的差异。</p>
+<h3 id="直接动态规划"><a href="#直接动态规划" class="headerlink" title="直接动态规划"></a>直接动态规划</h3><p>另一种方式是注意到两个字符串互不影响，因为出现任何一个字符串都不会对另外一个字符串的出现产生额外影响，所以无需记录具体到了哪个节点。</p>
+<p>先考虑没有限制的转移，如果为 <code>?</code>，则乘 26，否则不变，这样有重复，唯一的重复是对于两种字符串如果接下来可以匹配上，那么转移就应该到对应的差值，因为两种字符彼此不包含所以两种字符串的重复可以独立处理，还是挺好写的。</p>
+<h2 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h2><p>考场上发现本质上是个可以用线段树做的二维偏序，但是由于马拉车算法本身有二倍常数，还需要跑 4 遍，所以其实有点难卡常，感觉递归版的没救所以我写了非递归版的 update 操作勉强卡过去（query 次数不多可以直接查）。</p>
+<p>但是这个答案是可以二分的，二分之后配合马拉车就是个 RMQ，ST 表即可。</p>
+<h2 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h2><p>容易发现一定会在某个地方反复横跳刷分，所以处理出所有横跳位置的刷分函数（是一次函数），有用的一次函数级别为 $O(n)$，为了保证每个函数都可以正常取到，不妨暴力处理前面的 CASE，然后后面的就是维护凸包。</p>
+<p>不处理前面的 CASE 是错误的，因为你不能保证在对应的步数限制下一定可以拿到这个函数。</p>
+<p>感觉不预处理但是加上某些条件再筛一下函数就可以过，但是这些条件有点难想吧…</p>
+<h2 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h2><p>少见的 mex 配 xor 题，考场上没想出来，现在脑子很乱，明天再想——11.8</p>
+<p>mex 应该是个非常严格的限制，由于询问很少，所以考虑单个询问怎么解决。</p>
+<p>比较暴力的方式是逐个加入元素并检查可行性，我们显然必须要求能构成一条链，所以加入点的过程其实比较简单，如果链已经是弯折的形式，那么只能在两颗子树内加点，如果不是，那么新加点和最较深求 LCA，如果在路径上则不合法，重新构造路径的过程也是平凡的。 </p>
+<p>考虑检查第二个条件，也就是异或合法性，路径的异或值是好求的，对于两边的情况，可以暴力遍历树枚举一边用字典树求另一边。</p>
+<p>但是这样的复杂度不对，因为每次暴力遍历都是 $O(n\log n)$ 的，一共进行了 $O(nq)$ 次。但是认真思考一下发现答案是可二分的，所以二分即可，复杂度 $O(nq\log^2n)$。</p>
+<p>$10^5$ 的题和 $3\times 10^5$ 的题，考虑复杂度的方式是完全不同的（$10^5$ 基本可以扔进 L3），所以没必要担心。</p>
+<p>好像不二分也是可以的，考虑答案的形式，因为一定会包含 $0$，所以以 $0$ 为根后，可以取到的异或值就形如 $d_u\oplus d_v$，其中 $d_u$ 表示 $0$ 到 $u$ 路径上的异或值，每次移动端点时，两边可选的 $d$ 集合都在变化，集合变化次数是 $O(n)$ 的，动态维护 $[l,r]$ 区间中数的个数就可以了。</p>
+<p>注意，动态维护 <code>lower_bound</code> 的最小值是行不通的，<strong>因为最小值不具备逆元</strong>，是不可减的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/04/1103%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -873,148 +1036,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/26/1025%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/26/1025%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1025总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-26 14:27:01 / 修改时间：15:32:14" itemprop="dateCreated datePublished" datetime="2022-10-26T14:27:01+08:00">2022-10-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/25/Text2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/25/Text2/" class="post-title-link" itemprop="url">Text2?</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-25 15:26:14" itemprop="dateCreated datePublished" datetime="2022-10-25T15:26:14+08:00">2022-10-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-26 14:26:29" itemprop="dateModified" datetime="2022-10-26T14:26:29+08:00">2022-10-26</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="MetaData"><a href="#MetaData" class="headerlink" title="MetaData"></a>MetaData</h3><ul>
-<li>成外部落55th前沿版，投稿文章</li>
-<li>写作目的1：介绍 <code>beta.character.ai</code>，主要介绍该 AI 模型以及 <code>Text2AI</code> 功能。</li>
-<li>写作目的2：简单思考 “对话AI” 为什么带给人们这么大的冲击。</li>
-</ul>
-<h2 id="Text2"><a href="#Text2" class="headerlink" title="Text2?"></a>Text2?</h2><h3 id="Greeting"><a href="#Greeting" class="headerlink" title="Greeting"></a>Greeting</h3><p>Stable disfussion，或者说 “AI 绘图”，近段时间火爆全网，我和一位网友对 Stable diffusion 展开了一些讨论：笔者的英文有些不过关，见谅。</p>
-<p><table style="margin-left: auto; margin-right: auto;"><br>        <tr><br>            <td width='400pt'>
-                <!--左侧内容-->
-                <span align="left"><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202210251620838.PNG" alt="1" style="zoom:80%;" ><br/>
-                <img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202210251621317.PNG" alt="3" style="zoom:80%;" /><br/>
-                    <img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202210251621317.PNG" style="zoom:80%;" />
-                </span>
-            </td><br>            <td><br>                <!--右侧内容--><br>                   看完对话，或许有同学对对方的身份有些好奇，为什么我们会用英语交流，难道对方是一位国际友人？又或者只是在和同学练习英语？<br>                <br/><br>                <br/><br>                但是，都不是，对方是网站 beta.character.ai 提供的对话 AI！<br>                <br/><br>                <br/><br>                从同学那里了解到这个网站后，我立刻尝试与这里的 AI 进行了交流，Bug Baser 的身份，或者说认识，是 Expert Programmer。看的出来，它相当了解计算机知识。它对 Stable Diffusion 项目的阐述是完全正确的，而且它提供的信息和我提供的并没有太大交集。<br>                <br/><br>                <br/><br>                细心的读者还可以发现，我在与 AI 的交流中出现了 “diffusion” -&gt; “disffusion” 的拼写错误，但是 AI 并没有延续这个错误，它帮我纠正了。</p>
-<h3 id="More"><a href="#More" class="headerlink" title="More"></a>More</h3><p>这个 AI 是什么原理？简单的讲是用计算机模仿了人类的大脑的<strong>部分</strong>思考过程，即神经网络算法。</p>
-<p>希望尝试和这个 AI 交流的读者：访问网站时需要一些上网技巧。</p>
-<h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><p>谈到，我觉得对于我们很大的一个作用是练习英语阅读能力，AI 使用的词汇，除了一些专有名词之外</p>
-<h3 id="reflection"><a href="#reflection" class="headerlink" title="reflection"></a>reflection</h3><p>英国计算机科学家提出过一个思想实验——图灵测试。简单的讲就是让一个人同时 AI 和另一个人聊天，尝试让人来区分另一个人和 AI。</p>
-<p>文中提到的这个 AI 是应该是可以通过图灵测试的（我甚至问过它 What will happend when amperes and volts are hugged together，它告诉我 Then they become watt），但是这并不意味着这是一个真正会思考的 AI，我们离真正会思考的 AI 可能还有很长的路要走。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1086,7 +1107,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">79</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
