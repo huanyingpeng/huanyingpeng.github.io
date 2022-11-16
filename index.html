@@ -440,6 +440,163 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/15/1115%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/15/1115%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1115总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-15 15:38:42" itemprop="dateCreated datePublished" datetime="2022-11-15T15:38:42+08:00">2022-11-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/15/1112%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/15/1112%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1112总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-15 15:38:35" itemprop="dateCreated datePublished" datetime="2022-11-15T15:38:35+08:00">2022-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-16 09:19:46" itemprop="dateModified" datetime="2022-11-16T09:19:46+08:00">2022-11-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0153">考试</a></p>
+<p>周末做题脑袋一团浆糊</p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>参考 11.10 T4 的思路，按照 height 从小到大考虑，<strong>这样同时也方便了安排 $a_i$</strong>，然后发现当前叶子只能有被占用或者继续拓展，如果当前的 height 为 $i$，那么拓展到 $i+1$ 还需要考虑右儿子，所以只记一维是不行的。</p>
+<p>于是记 $dp[x][y]$ 表示当前 height 有 $x$ 个，height-1 有 $y$ 个，其实可以不用记高度，因为只需要算答案， $height$ 增加的时候答案整体增加就可以了。</p>
+<p>转移的话还需要套上一层已经安排到的位置，设 $dp[i][x][y]$ 表示前 $i$ 个已经被安排，当前 height 有 $x$ 个，height-1 有 $y$ 个，由于 height-1 已经被强制选过了，延申过左儿子了，所以不能作为叶子，作为叶子转移的只有 height，这样的话阶段是 $i$，然后再是 $x$，最后是 $y$。保证了无环性。</p>
+<p>同阶段转移，顺序先枚举 $x$，再枚举 $y$，转移到 $dp[i][x+y][x]$，容易发现除了 $0\ 0$ 都是无环的且符合拓扑序的。</p>
+<p>不同阶段转移很简单。</p>
+<p>小猪猪经常把 height 写成 heigh，我不说是谁。</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>非常非常妙的一道题。</p>
+<p>暴力无非就是并查集，但是如果加边比较多，暴力并查集就寄了。</p>
+<p><strong>并查集有交换律</strong>，考虑改变并查集运算的顺序，达到加速的目的。</p>
+<p>可以用倍增的思路设计一种广义并查集，然后操作就被暂时拆了，$fa[x][i]$ 表示 $x$ 为起点的 $2^i$ 个数的并查集父亲，意义是 $x,x+1,x+2\cdots$ 的并查集父亲分别为 $fa[x][i],fa[x][i]+1,fa[x][i]+2\cdots$。</p>
+<p>注意这里的<strong>操作是具有整体性的</strong>，必须对于 $2^i$ 个点都满足，才能改广义并查集的父亲。</p>
+<p>考虑下放操作，这是简单的，只需要将 $(fa[x][i],i-1)$ 和 $(x,i-1)$ ，$(fa[x][i]+(1&lt;&lt;i-1),i-1)$ 和 $(x+(1&lt;&lt;i-1),i-1)$ 连边就行。</p>
+<p>很难从一道题中总结出有用的东西，但是不妨作为一个启发性的思路。</p>
+<p>这个思路也可以被认为是 <code>lazy_tag</code>，具体怎么思考会得到不同的启发。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>感觉每次考贪心都不会。</p>
+<p>考虑先排除掉包含其它线段的线段，变成左右双单调。</p>
+<p>然后容易发现选的线段是一段区间，一旦选线段变成选区间，就好做了，朴素的方式是动态规划，可以做到 $O(n^2)$，看上去已经不容易优化了。</p>
+<p>发现答案的计算方式是比较简单的，考虑最终情况，假设选了 $i$ 作为终点，那么实际上每个 $i$ 的贡献是独立的，为 $-L_i+R_{i+1}$（注意这里忽略了无交的情况，无交的情况下面再讨论），这里的 $i$ 不能为 $n$，因为 $n$ 本来就是终点，排序取前 $k-1$ 大即可。</p>
+<p>加上那些被排除的线段，被排除的线段，要么原封不动放回去，不对答案贡献，要么就自成一段，枚举前面选了几个区间就行，取最大值。</p>
+<p>注意到，我们对无交的情况，答案计算方式是有问题的，需要和无交情况的最大值再比较一下，无交情况的最大值就是选最长的 $k-1$ 个。</p>
+<p>总的来说，这是一道分类讨论题，先讨论包含的情况变成双单调，再排除无交的情况变为排序贪心。</p>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>Boruvka 题。</p>
+<p>Boruvka 本质上是把 Prim 和 Kruscal 结合了起来，然后需要求一个 $mn[i]$ 表示连通块 $i$ 连出去的所有边的最小值，然后尝试连边。</p>
+<p>Boruvka 的过程会进行 $\log n$ 次，可以这么说，Boruvka 以一个 log 的代价，换来了通过预处理同一连通块求 多个 Prim 中的最小值的机会。</p>
+<p>Boruvka 是来自异世界的神秘算法，请和我念：“$\text{B—oru—vka}$”</p>
+<p>Boruvka 的核心是要求 $mn[i]$，但是一般来说也可以用分析连边性质（一般是三元环或者四元环）来减小边数，比如边权为异或的题目，分析 $Kruscal$ 的过程可以做到 $n\log^2n$，而不必拘泥于 Boruvka。</p>
+<h4 id="Boruvka"><a href="#Boruvka" class="headerlink" title="Boruvka"></a>Boruvka</h4><p>考虑对于连通块怎么求 $mn[i]$，一件非常阴间的事情是需要排除掉同一联通块的元素。</p>
+<p>如果看成染色，那么就是元素有颜色，就是求全局不同于某个颜色的最小值，区间修改。</p>
+<p>还是可以线段树，维护一个最小值和颜色，<strong>不同于最小值颜色的次小值</strong>，然后就可以做了。</p>
+<p>一个矩阵加需要映射成两个。</p>
+<h4 id="仿-Kruscal"><a href="#仿-Kruscal" class="headerlink" title="仿 Kruscal"></a>仿 Kruscal</h4><p>好困难，不会。</p>
+<p>用主席树维护求出整个邻接矩阵，考虑哪些边是有用的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/10/1110%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -472,7 +629,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-11 09:56:08" itemprop="dateModified" datetime="2022-11-11T09:56:08+08:00">2022-11-11</time>
+                <time title="修改时间：2022-11-16 12:52:04" itemprop="dateModified" datetime="2022-11-16T12:52:04+08:00">2022-11-16</time>
               </span>
 
           
@@ -498,7 +655,30 @@
 <h4 id="二分图"><a href="#二分图" class="headerlink" title="二分图"></a>二分图</h4><p>还是奇环的思想，实现上使用黑白染色。</p>
 <h4 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h4><p>这是常数最小的写法，还是考虑分层图，有一条边则合并不同层的两个点，查奇数路径就是不同层是否联通，偶数路径就是相同层是否联通。</p>
 <h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>不算太难的题，但是确实没有想出来。</p>
-<p>首先有个经典结论</p>
+<p>首先有个经典结论，先手必败的充要条件为所有可选元素为偶数，证明归纳，显然。</p>
+<p>算先手必败显然比先手必胜好算，所以算必败。</p>
+<p>先把元素做前缀和，再对 $2$ 取模。问题就是需要选一个子矩阵，满足首尾两列元素值相同。</p>
+<p>考场上想到了可以哈希，由于常数，虽然是 $n^2m$ 的，但只有 $52pts$。</p>
+<h4 id="非哈希做法"><a href="#非哈希做法" class="headerlink" title="非哈希做法"></a>非哈希做法</h4><p>考虑固定下边界，移动上边界的过程，发现相同元素的集合在不断变小，而有了这个集合就可以算答案，这个东西是可以每次 $O(m)$ 计算的，这样的常数较小，可以得到 $76pts$。</p>
+<h4 id="正解1"><a href="#正解1" class="headerlink" title="正解1"></a>正解1</h4><p>先得想到它已经是个字符串题了，考虑上边界不断变化的过程，发现不合法的矩阵个数等于当前 $m$ 个字符串两两之间 $LCP$ 的和，然后考虑字符串排序的方式求 LCP，类似后缀排序的 $height$ 数组，发现后缀排序是很好做的，因为每次上移一行，就是归并排序的过程，$height$ 和 $rk$ 都可以线性维护，得到了 $height$ 之后就单调栈搞定。</p>
+<h4 id="Another-Approach"><a href="#Another-Approach" class="headerlink" title="Another Approach"></a>Another Approach</h4><p>考虑非哈希做法的等价类思想，发现虽然维护过程是 $O(nm)$ 的，但实际上等价类的个数是 $O(m)$ 的，考虑以移动下边界的方式考察当前下边界所有上边界的等价类，自顶向下的更新等价类，该拆分的拆分，实际上和正解1本质相同。</p>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>条件比较特殊，需要先观察。</p>
+<p>记 $T’$ 为 $T$ 的修剪。</p>
+<p>$T$ 的修剪和 $T$ 的右子树相同，那么考虑 $T$ 的右子树 $R(T)$，那么 $L(R(T))=L(T’)$，递归的，$R(R(T))$ 和 $R(T)$ 的修剪相同。</p>
+<p>归纳边界是 $L(T)=\empty$，此时右子树可以任意延申右儿子而不受限制，先假设当左儿子为空时右儿子也必须为空，这样就有了一个边界。</p>
+<p>因此，如果 $L(T)$ 确定了，就可以确定出有边界的树的唯一形态。</p>
+<p>考察 $L(T)$ 的各项数据对应到的 $T$ 的数据。</p>
+<p>容易发现：</p>
+<script type="math/tex; mode=display">
+leaf_T=size_{L(T)} + 1\\
+height_T=height_{L(T)}+1\\
+size_T=height_T+\sum\limits_{u\in L(T)} height_u</script><p>接下来的事情变成了设计一种合理的方式去枚举合法的 $L(T)$，并能够计算这些数据。</p>
+<h4 id="子树合并枚举二叉树"><a href="#子树合并枚举二叉树" class="headerlink" title="子树合并枚举二叉树"></a>子树合并枚举二叉树</h4><p>枚举二叉树，比较合理的一种方式是以子树大小为阶段来合并，需要记录的信息是 $dp[i][j][k]$ 表示子树大小为 $i$，高度为 $j$，$\sum height_u$ 为 $k$ 的总方案数，合并的时候需要枚举三维做卷积，复杂度为 $n^2k^2m^2$，难以通过本题。</p>
+<p>不难发现 $j$ 可以用前缀和优化，但是其它两维是卷积，动不了的，复杂度 $O(n^2km^2)$，实际上常数比较小，可以过掉。</p>
+<h4 id="深度顺序枚举二叉树"><a href="#深度顺序枚举二叉树" class="headerlink" title="深度顺序枚举二叉树"></a>深度顺序枚举二叉树</h4><p>刚刚的方式是子树合并的方式构造二叉树，现在考虑用深度顺序构造，设 $dp[i][j][k][s]$ 为构造深度为 $i$，树大小为 $j$，$\sum height$ 为 $k$，可用点数为 $s$ 的方案数，转移需要枚举向下构造的点数 $t$，得到 $t$ 后可以预处理转移系数，顺便计算出新的 $j,k,s$，复杂度为 $O(kmn^3)$，更加优秀，事实上 $j,s,t$ 远远取不到 $n$，是非常优秀的复杂度。</p>
+<p>但是这个方法是假的，因为深度和 $\sum height$ 没有必然联系，所以无法计算 $k$。</p>
+<h4 id="高度顺序枚举二叉树"><a href="#高度顺序枚举二叉树" class="headerlink" title="高度顺序枚举二叉树"></a>高度顺序枚举二叉树</h4><p>考虑以子树高度的顺序，降序构造二叉树，这和深度顺序又不一样。</p>
+<p>考虑设 $dp[i][j][k][s]$ 表示子树高度为 $i$，大小为 $j$，$\sum height$ 为 $k$ ，叶子个数为 $s$ 时的方案数，注意这里是按照高度顺序构造，即强制要求先选的部分的高度大于后选的。所以又额外的要求是枚举接下来的增量时需要将所有叶子至少叠加一层，枚举增量 $t$ 时预处理系数即可，复杂度和深度顺序类似。 </p>
 
       
     </div>
@@ -906,140 +1086,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/27/1027%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/27/1027%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1027总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-27 14:22:42 / 修改时间：14:24:24" itemprop="dateCreated datePublished" datetime="2022-10-27T14:22:42+08:00">2022-10-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><p>首先求什么东西的<strong>和</strong>，这类题，一看到就要想是不是该开 <code>long long</code>。</p>
-<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p><strong>多测题，特别是样例水的题，一定要认真检查清空，以及不要读入到一半 break 出去！！！</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/26/ABC274/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/26/ABC274/" class="post-title-link" itemprop="url">ABC274</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-26 15:32:41 / 修改时间：15:53:10" itemprop="dateCreated datePublished" datetime="2022-10-26T15:32:41+08:00">2022-10-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><p>不算难但有坑点的题。</p>
-<p>很容易想到可以抓鱼的时间是当且仅当某两条鱼距离为 $A$ 时。</p>
-<p>所以考虑左边那条鱼，分别计算右边的鱼是哪一条时可以抓到的最大重量。</p>
-<p>我实现的时候出现了负数时间，但是不能在负数时间抓，故我忽略了负数时间的最大值贡献。</p>
-<p>但是考虑到可能第一个正数时间的事件是某条鱼游出了范围，所以需要修正，要么弄个 $0$，要么在每个事件发生前取下最值。</p>
-<h2 id="G"><a href="#G" class="headerlink" title="G"></a>G</h2><p>有趣的题。你需要放最小数量的监视器到一个矩阵中，矩阵中有监视器<strong>不能越过</strong>的障碍，每个监视器往上下左右中一个方向看，可以看到自身位置。你需要保证所有非障碍点都被监视。</p>
-<p>最开始想的是假定先放横着的贪心放竖着的，但是不行。</p>
-<p>后面思考了横着和竖着的关系，发现如果将所有的横块看成一个点，竖块看成一个点，那么能构成一张二分图，二分图的每个边就是每个需要监视的点！</p>
-<p>本质上是最小点覆盖问题，可以用网络流解决。</p>
-<p><strong>二维网格图的行和列，和二分图有着紧密的联系，涉及对横边和竖边分别操作时，需要求最小或者最大值，一定要考虑到网络流，数据范围如果在 $100-500$，那么就更应该思考网络流的方式。</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1107,7 +1157,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">79</span>
+          <span class="site-state-item-count">81</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
