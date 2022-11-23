@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="线程阻塞考试考试的时候还很清醒，考完脑子就乱了。 大脑从 i7-9th 退化成 i3-4th，四个字来说就是线程阻塞。 如果说整个社会是一个计算机系统，那一个人自己的大脑就是主板上的所有部件，而其他人，则是一块块只读 HDD 中的数据。当某一块 HDD 损坏，不能存储数据，但是又不想丢失它，就只能将数据保存于主存。主存的大小是有限的，它本不是用来保存数据，如果占用过多，会影响主板部分的正常运行，受">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1108总结">
+<meta property="og:url" content="http://huanyp.cn/2022/11/08/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1108%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="线程阻塞考试考试的时候还很清醒，考完脑子就乱了。 大脑从 i7-9th 退化成 i3-4th，四个字来说就是线程阻塞。 如果说整个社会是一个计算机系统，那一个人自己的大脑就是主板上的所有部件，而其他人，则是一块块只读 HDD 中的数据。当某一块 HDD 损坏，不能存储数据，但是又不想丢失它，就只能将数据保存于主存。主存的大小是有限的，它本不是用来保存数据，如果占用过多，会影响主板部分的正常运行，受">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-08T12:58:55.000Z">
+<meta property="article:modified_time" content="2022-11-09T23:48:21.067Z">
+<meta property="article:author" content="幻影彭">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://huanyp.cn/2022/11/08/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1108%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>1108总结 | 幻影彭的彩虹</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">幻影彭的彩虹</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-fw fa-link"></i>友链</a>
+
+  </li>
+        <li class="menu-item menu-item-novels">
+
+    <a href="/novels/" rel="section"><i class="fa fa-fw fa-fa-soild fa-book"></i>小说</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/08/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1108%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          1108总结
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-08 20:58:55" itemprop="dateCreated datePublished" datetime="2022-11-08T20:58:55+08:00">2022-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-10 07:48:21" itemprop="dateModified" datetime="2022-11-10T07:48:21+08:00">2022-11-10</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="线程阻塞"><a href="#线程阻塞" class="headerlink" title="线程阻塞"></a>线程阻塞</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0151">考试</a><br>考试的时候还很清醒，考完脑子就乱了。</p>
+<p>大脑从 i7-9th 退化成 i3-4th，四个字来说就是线程阻塞。</p>
+<p>如果说整个社会是一个计算机系统，那一个人自己的大脑就是主板上的所有部件，而其他人，则是一块块只读 HDD 中的数据。当某一块 HDD 损坏，不能存储数据，但是又不想丢失它，就只能将数据保存于主存。主存的大小是有限的，它本不是用来保存数据，如果占用过多，会影响主板部分的正常运行，受到内存大小的限制，CPU 的运算能力自然会退化。</p>
+<p>我不太想找心理医生，心理医生会帮我清除掉主存的数据，但是我不想清除。</p>
+<h2 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h2><h3 id="AC-自动机"><a href="#AC-自动机" class="headerlink" title="AC 自动机"></a>AC 自动机</h3><p>比较模板的 AC 自动机匹配题，但是 AC 自动机做法需要细算常数，这道题倒是将缓存行访问连续的重要性体现的相当清楚，可以参考几次提交的差异。</p>
+<h3 id="直接动态规划"><a href="#直接动态规划" class="headerlink" title="直接动态规划"></a>直接动态规划</h3><p>另一种方式是注意到两个字符串互不影响，因为出现任何一个字符串都不会对另外一个字符串的出现产生额外影响，所以无需记录具体到了哪个节点。</p>
+<p>先考虑没有限制的转移，如果为 <code>?</code>，则乘 26，否则不变，这样有重复，唯一的重复是对于两种字符串如果接下来可以匹配上，那么转移就应该到对应的差值，因为两种字符彼此不包含所以两种字符串的重复可以独立处理，还是挺好写的。</p>
+<h2 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h2><p>考场上发现本质上是个可以用线段树做的二维偏序，但是由于马拉车算法本身有二倍常数，还需要跑 4 遍，所以其实有点难卡常，感觉递归版的没救所以我写了非递归版的 update 操作勉强卡过去（query 次数不多可以直接查）。</p>
+<p>但是这个答案是可以二分的，二分之后配合马拉车就是个 RMQ，ST 表即可。</p>
+<h2 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h2><p>容易发现一定会在某个地方反复横跳刷分，所以处理出所有横跳位置的刷分函数（是一次函数），有用的一次函数级别为 $O(n)$，为了保证每个函数都可以正常取到，不妨暴力处理前面的 CASE，然后后面的就是维护凸包。</p>
+<p>不处理前面的 CASE 是错误的，因为你不能保证在对应的步数限制下一定可以拿到这个函数。</p>
+<p>感觉不预处理但是加上某些条件再筛一下函数就可以过，但是这些条件有点难想吧…</p>
+<h2 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h2><p>少见的 mex 配 xor 题，考场上没想出来，现在脑子很乱，明天再想——11.8</p>
+<p>mex 应该是个非常严格的限制，由于询问很少，所以考虑单个询问怎么解决。</p>
+<p>比较暴力的方式是逐个加入元素并检查可行性，我们显然必须要求能构成一条链，所以加入点的过程其实比较简单，如果链已经是弯折的形式，那么只能在两颗子树内加点，如果不是，那么新加点和最较深求 LCA，如果在路径上则不合法，重新构造路径的过程也是平凡的。 </p>
+<p>考虑检查第二个条件，也就是异或合法性，路径的异或值是好求的，对于两边的情况，可以暴力遍历树枚举一边用字典树求另一边。</p>
+<p>但是这样的复杂度不对，因为每次暴力遍历都是 $O(n\log n)$ 的，一共进行了 $O(nq)$ 次。但是认真思考一下发现答案是可二分的，所以二分即可，复杂度 $O(nq\log^2n)$。</p>
+<p>$10^5$ 的题和 $3\times 10^5$ 的题，考虑复杂度的方式是完全不同的（$10^5$ 基本可以扔进 L3），所以没必要担心。</p>
+<p>好像不二分也是可以的，考虑答案的形式，因为一定会包含 $0$，所以以 $0$ 为根后，可以取到的异或值就形如 $d_u\oplus d_v$，其中 $d_u$ 表示 $0$ 到 $u$ 路径上的异或值，每次移动端点时，两边可选的 $d$ 集合都在变化，集合变化次数是 $O(n)$ 的，动态维护 $[l,r]$ 区间中数的个数就可以了。</p>
+<p>注意，动态维护 <code>lower_bound</code> 的最小值是行不通的，<strong>因为最小值不具备逆元</strong>，是不可减的。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>幻影彭
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://huanyp.cn/2022/11/08/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1108%E6%80%BB%E7%BB%93/" title="1108总结">http://huanyp.cn/2022/11/08/考试总结/2022/1108总结/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN.yml" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/11/05/%E9%9A%8F%E8%AE%B0/If-we-never-met/" rel="prev" title="If we never met">
+      <i class="fa fa-chevron-left"></i> If we never met
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/11/10/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1110%E6%80%BB%E7%BB%93/" rel="next" title="1110总结">
+      1110总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E"><span class="nav-number">1.</span> <span class="nav-text">线程阻塞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T1"><span class="nav-number">2.</span> <span class="nav-text">T1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AC-%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">2.1.</span> <span class="nav-text">AC 自动机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">2.2.</span> <span class="nav-text">直接动态规划</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T2"><span class="nav-number">3.</span> <span class="nav-text">T2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T3"><span class="nav-number">4.</span> <span class="nav-text">T3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T4"><span class="nav-number">5.</span> <span class="nav-text">T4</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="幻影彭"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">幻影彭</p>
+  <div class="site-description" itemprop="description">幻影彭的个人博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN.yml" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+    <span class="author" itemprop="copyrightHolder" display=false></span>
+    <span class="author" itemprop="copyrightHolder" >huan_yp</span>
+</div>
+  <div class="powered-by">powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

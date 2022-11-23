@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="总结时隔接近一个月写的考试总结… 考试 T1没有什么价值的题，分析一下相位这些就可以做出来。 T2算区间最大值之和要枚举最大值位置算跨过的数量，所以考虑对这个东西动态规划，设 $dp[l][r]$ 表示只考虑 $l,r$ 区间的最优答案。 枚举最大值位置后，拆分成两个区间，其答案和最大值位置以及彼此无关，符合最优子结构性质，加上最大值的额外贡献，可以在每一个位置枚举取哪个值，有可能算出来答案比较劣">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1014总结">
+<meta property="og:url" content="http://huanyp.cn/2022/10/17/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1014%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="总结时隔接近一个月写的考试总结… 考试 T1没有什么价值的题，分析一下相位这些就可以做出来。 T2算区间最大值之和要枚举最大值位置算跨过的数量，所以考虑对这个东西动态规划，设 $dp[l][r]$ 表示只考虑 $l,r$ 区间的最优答案。 枚举最大值位置后，拆分成两个区间，其答案和最大值位置以及彼此无关，符合最优子结构性质，加上最大值的额外贡献，可以在每一个位置枚举取哪个值，有可能算出来答案比较劣">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-17T11:07:20.000Z">
+<meta property="article:modified_time" content="2022-11-07T01:54:51.691Z">
+<meta property="article:author" content="幻影彭">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://huanyp.cn/2022/10/17/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1014%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>1014总结 | 幻影彭的彩虹</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">幻影彭的彩虹</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-fw fa-link"></i>友链</a>
+
+  </li>
+        <li class="menu-item menu-item-novels">
+
+    <a href="/novels/" rel="section"><i class="fa fa-fw fa-fa-soild fa-book"></i>小说</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/17/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1014%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          1014总结
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-17 19:07:20" itemprop="dateCreated datePublished" datetime="2022-10-17T19:07:20+08:00">2022-10-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-07 09:54:51" itemprop="dateModified" datetime="2022-11-07T09:54:51+08:00">2022-11-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>时隔接近一个月写的考试总结…</p>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0133">考试</a></p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>没有什么价值的题，分析一下相位这些就可以做出来。</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>算区间最大值之和要枚举最大值位置算跨过的数量，所以考虑对这个东西动态规划，设 $dp[l][r]$ 表示只考虑 $l,r$ 区间的最优答案。</p>
+<p>枚举最大值位置后，拆分成两个区间，其答案和最大值位置以及彼此无关，符合最优子结构性质，加上最大值的额外贡献，可以在每一个位置枚举取哪个值，有可能算出来答案比较劣，但是仍然可以遍历解空间，所以这样 DP 没有问题。</p>
+<p>枚举取值的复杂度很高，发现每个位置的最优值和 dp 数组无关，考虑预处理每个位置的最优值，本质上是给定若干一次函数，再给定若干 $x$，求最值，很简单。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>考场上没有做出来的题，但是基本想出来了，ARC 那道期望题加深了对期望的理解。</p>
+<p>根据期望线性性，$E(dis_{u,v} ) = E(dis_u)+E(dis_v)-2\times E(dis_{lca(u,v)})$。</p>
+<p>前两者是好算的，考虑这样一个 $dp$，$dp_u$ 表示 $1$ 到 $u$ 的期望距离，转移比较简单。</p>
+<p>考虑后者怎么算，即 $u,v$ 两点 $lca$ 距离的期望，如果 $v$ 在下面，由于 $lca$ 一定在 $u$ 及之前，所以 $u,v$ 的 $lca$ 的期望等价于 $u,u+1$ 的 $lca$ 的期望，归纳即可证明。</p>
+<p>考虑计算 $u,u+1$ 的 $lca$ 的期望值，这个也是可以动态规划的了，枚举 $u+1$ 的祖先即可，上前缀和优化。</p>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><h4 id="我的想法"><a href="#我的想法" class="headerlink" title="我的想法"></a>我的想法</h4><p>考虑类似点分治一样去做，只不过是随机选点，期望层数应该是 $O(\log n)$，证明的话，考虑将 $\frac{n}{4}$ 个点变成一个点，分两种情况，该点存在大小超过 $\frac{n}{2}$ 的子树和不存在。后者已经证毕，每次问题规模有 $\frac{1}{4}$ 的概率变为原来的 $\frac{3}{4}$。前者考虑在该子树中选取包含根的 $\frac{n}{4}$ 个点重复以上过程，于是不存在大小超过 $\frac{n}{2}$ 的子树，同样证毕。</p>
+<p>基于点分治的原理（独立的子树不跨过分治中心），可以求出每棵子树包含的点集，但如果分治的叉过多，求叉的的过程需要反复尝试每一个叉，复杂度退化到 $n^2$。</p>
+<p>树形态随机的情况下（随机父亲），每个点的分叉期望是 $\ln n$ 级别的，复杂度为 $O(n\log^2 n)$。</p>
+<h4 id="Topsort"><a href="#Topsort" class="headerlink" title="Topsort"></a>Topsort</h4><p>需要问树的形态，考虑单独的一次询问能干什么，可以判断一个点是否为叶子，所以考虑从叶子一层一层往上确定。一种比较暴力的方式是先找出所有的叶子，然后删掉后找出二级叶子，找一个点当根，直接确定某个点的父亲是不好做的，考虑为某个点确定一个儿子，方式是二分，重复若干次即可。</p>
+<p>确定一层的均摊复杂度是 $O(leaf\log{(leaf)})$，外加找叶子的复杂度，总计 $O(n^2)$，考虑优化找叶子的复杂度，一种可行的方式是先弄出一个拓扑序排列，按照拓扑序去逐一确定。</p>
+<p>弄拓扑序可以考虑以插入的方式构造排列，一个拓扑序合法当且仅当 $ \forall\ i\ 满足\ \forall \ j\in[1,i), p_i\ 不是\ p_j\ 的祖先$。插入构造时询问一个前缀到根是否包含当前插入的点，如果包含，那么这个点应该放在更前面，得到拓扑序之后就可以逆序构造。</p>
+<h4 id="Subtree"><a href="#Subtree" class="headerlink" title="Subtree"></a>Subtree</h4><p>考虑递归的构造，确定父亲和子树内容，假设有一个函数 $f(x)$ 可以求出 $x$ 子树中所有点的父亲（除自身外），那么调用每个 $f(x)$ 一次后就可以保证求出树的结构。维护一个没调用过 $f(x)$ 的点集，在点集中找到一个是 $x$ 后代的点 $y$，调用 $f(y)$，于是求出了 $y$ 后代所有节点的父亲，维护一下没确定父亲点的点集，在没调用过 $f(x)$ 的点集中，若找不到 $x$ 的后代，那么就可以开始在没确定父亲的点集中找出 $x$ 的所有儿子了。</p>
+<p>分析复杂度为 $O(n\log n)$。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>幻影彭
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://huanyp.cn/2022/10/17/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1014%E6%80%BB%E7%BB%93/" title="1014总结">http://huanyp.cn/2022/10/17/考试总结/2022/1014总结/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN.yml" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/10/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%80%BB%E7%BB%93/CF1746/" rel="prev" title="CF1746">
+      <i class="fa fa-chevron-left"></i> CF1746
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/10/19/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20221018%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" rel="next" title="20221018考试总结">
+      20221018考试总结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1"><span class="nav-number">1.1.</span> <span class="nav-text">T1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2"><span class="nav-number">1.2.</span> <span class="nav-text">T2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3"><span class="nav-number">1.3.</span> <span class="nav-text">T3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T4"><span class="nav-number">1.4.</span> <span class="nav-text">T4</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E6%83%B3%E6%B3%95"><span class="nav-number">1.4.1.</span> <span class="nav-text">我的想法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Topsort"><span class="nav-number">1.4.2.</span> <span class="nav-text">Topsort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subtree"><span class="nav-number">1.4.3.</span> <span class="nav-text">Subtree</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="幻影彭"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">幻影彭</p>
+  <div class="site-description" itemprop="description">幻影彭的个人博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN.yml" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+    <span class="author" itemprop="copyrightHolder" display=false></span>
+    <span class="author" itemprop="copyrightHolder" >huan_yp</span>
+</div>
+  <div class="powered-by">powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
