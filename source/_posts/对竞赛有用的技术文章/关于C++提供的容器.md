@@ -92,7 +92,11 @@ for(auto it=st.begin();it!=st.end();it++)
 
 #### iterator
 
-这东西的迭代器本质上是个指针，但是不能和指针做强转，**所以 `iterator` 在被 `erase` 后会指向错误的数据，不同于 `set` 这一类基于 `RBT` 的容器** 
+这东西的迭代器本质上是个指针，但是不能和指针做强转，**所以 `iterator` 在被 `erase` 后会指向错误的数据，不同于 `set` 这一类基于 `RBT` 的容器**。
+
+#### 内存过程
+
+调用析构函数之前，`vector` 的内存不可能被释放，`push_back` 或者 `resize` 如果导致了内存改变，**会开辟一块新的内存并将原有数据全部拷贝过去，保证内存地址的连续，同时原有迭代器全部失效。**
 
 **vector 所有的 $O(n)$ 操作都很快**，如果题目性质决定了很可能 $O(n^2)$ 卡不满，那么 `vector` 可以得到很高的分数。
 
@@ -101,6 +105,8 @@ for(auto it=st.begin();it!=st.end();it++)
 一个 `C++` 拓展库，`STL` 升级版，`C++11` 特性。
 
 ### gp_hash_table
+
+#### Introduction
 
 如名称，哈希表，比 `unordered_map` 快 `3~4` 倍，用法完全一样，你值得拥有。
 
@@ -131,6 +137,57 @@ if(mp.find(2) != mp.end()){
 	printf("%d\n",mp.find(2)->second);
 }
 ```
+
+#### Tests:
+
+这里只放关键部分，其余实现见[代码](huanyp.cn/codes/Tests/hash_table/cmp.cpp)
+
+测试环境为 Windows10，CPU 型号为 Inter I7-9750H，内存 16GB， 2667Mhz
+
+命中率对速度影响：
+
+```c++
+gen_data(1e6,4e7,8,7);//hit rate:87.5%
+gp.clear();um.clear();
+Test_Speed(gp);//878ms
+Test_Speed(um);//3107ms
+gen_data(1e6,4e7,8);//hit rate:12.5%
+gp.clear();um.clear();
+Test_Speed(gp);//1351ms
+Test_Speed(um);//4168ms
+```
+
+插入和查询次数调整：
+
+```c++
+gen_data(2e6,4e7,4,1); //插入 2e6
+gp.clear();um.clear();
+Test_Speed(gp);//1475
+Test_Speed(um);//4728
+gen_data(5e6,4e7,4,1);
+gp.clear();um.clear();
+Test_Speed(gp);//1445
+Test_Speed(um);//5038
+gen_data(1e7,4e7,4,1);
+gp.clear();um.clear();
+Test_Speed(gp);//1877
+Test_Speed(um);//6128
+```
+
+插入很多，查询很少。
+
+```c++
+gen_data(2e7,4e6,50,1);
+gp.clear();um.clear();
+Test_Speed(gp);//1690
+Test_Speed(um);//8383
+```
+
+其实插入操作比较慢是正常的，内存占用大了之后自然就慢了。
+
+另外，手写哈希表探测法还有救，拉链法直接抬走（你写代码的时候考虑过 CPU cache 的感受吗？）。
+
+插入较少且全部在查询前面 `cc_hash_table` 的效率优于  `gp_hash_table`。
 
 ### Tree
 
