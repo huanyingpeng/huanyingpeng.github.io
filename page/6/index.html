@@ -211,6 +211,75 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/19/%E9%9A%8F%E8%AE%B0/20220919%E5%B0%8F%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/19/%E9%9A%8F%E8%AE%B0/20220919%E5%B0%8F%E8%AE%B0/" class="post-title-link" itemprop="url">20220919小记</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-19 20:49:12 / 修改时间：21:16:52" itemprop="dateCreated datePublished" datetime="2022-09-19T20:49:12+08:00">2022-09-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="某道-GCD-题"><a href="#某道-GCD-题" class="headerlink" title="某道 GCD 题"></a>某道 GCD 题</h2><p>给一个 $n\times m$ 矩阵，元素为 $1-n\times m$ 的排列，问你所有子矩阵的 GCD 之和。</p>
+<p>反正我想的是考虑一个右下角，移动左上角来统计答案，这样的话考虑到 gcd 的变化次数是$\log$ 的，说不定有救，但是需要完成区间取 GCD，这个不好做。</p>
+<p>想一下，这个做法没有利用到每个数只出现一次的性质，通常这种只出现一次的性质往往和倍数这些相联系，不妨换个思路考虑，考虑 $i$ 的倍数的子矩阵的数量，然后发现容斥一下就可以得到答案。统计 $i$ 的倍数的子矩阵数量不难。</p>
+<h2 id="NOI2021D1T1"><a href="#NOI2021D1T1" class="headerlink" title="NOI2021D1T1"></a>NOI2021D1T1</h2><p>我想了一下，链是会做的，<strong>树链剖分</strong>，就是把树变成 $\log$ 个链来做。</p>
+<p>然后其实每条重链按照链的方式来做，重链的交汇处需要特殊处理。</p>
+<p>不妨把边下放到点，发现如果一个点的父亲的修改时间晚于该点的修改时间，那么这个点所代表的链就没用，所以对每个点维护两个东西，一个是该点的修改时间，另一个是该点代表的边是否被修改成重边。</p>
+<p>查询的时候对链的交界处需要查修改时间判断是否有效。</p>
+<p>其实有个更简易的方式，就是把修改看成染色，一条边有贡献当且仅当其两个端点颜色相同，这个很容易用树剖维护。</p>
+<p>这两种方式其实体现出处理边的两种方式——下放到点考虑，考虑两个端点的状态。</p>
+<p>需要灵活运用这两种方式解题。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/05/%E9%9A%8F%E8%AE%B0/%E9%9A%8F%E8%AE%B020220904/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1069,105 +1138,6 @@ g(n)=\sum\limits_{d|n}f(d)\iff& f(n)=\sum\limits_{d|n}\mu(d)\times g(\frac{n}{d}
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/02/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/02/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Exchange-Argument小总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-02 23:04:58" itemprop="dateCreated datePublished" datetime="2022-08-02T23:04:58+08:00">2022-08-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-17 15:32:48" itemprop="dateModified" datetime="2022-08-17T15:32:48+08:00">2022-08-17</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Exchange-Argument"><a href="#Exchange-Argument" class="headerlink" title="Exchange-Argument"></a>Exchange-Argument</h2><ul>
-<li><p>参考资料：2022 集训队论文《浅谈一类基于交换的贪心在信息学竞赛中的应用》</p>
-</li>
-<li><p>本文主要介绍树上形式。</p>
-</li>
-</ul>
-<h3 id="一般形式"><a href="#一般形式" class="headerlink" title="一般形式"></a>一般形式</h3><p>你需要为 $n$ 个元素安排一个排名，得到一个序列 $a$，最小化某函数 $F(a)$。</p>
-<p>如果存在一个满足<strong>传递性和强完全性</strong>的关系 $\le$，满足 $a,b$ 均为元素， $ \forall a\le b,F(s_1+a+b+s_2)\le F(s_1+b+a+s_2)$，则按照 $\le$ 排序后的排名可以最小化 $F(a)$。</p>
-<p>典例为 NOIP2012 国王游戏。</p>
-<p>我们在这里略去证明，详见参考资料。</p>
-<ul>
-<li>强完全性指 $\forall  a,b, a\le b\bigvee b\le a$，显然满足强完全性一定满足自反性。</li>
-<li>条件中 $\{s_1+a+b+s_2\}$ 为全集。</li>
-</ul>
-<h3 id="树上问题"><a href="#树上问题" class="headerlink" title="树上问题"></a>树上问题</h3><h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p>给定一棵树，需要为树的每个节点安排排名 $p_u$，父节点的排名需要低于子节点。每个点有一个价值 $c_i$，需要最小化 $\sum c_u\times p_u$。</p>
-<h4 id="分析与结论"><a href="#分析与结论" class="headerlink" title="分析与结论"></a>分析与结论</h4><p>唯一的变化是，对于原问题元素的比较 $\le$，拓展到了对于子序列的比较，即 $a,b$ 为原来元素的一个序列。</p>
-<p><strong>以下是一个重要结论</strong></p>
-<p>考虑一个元素 $v$，我们希望说明如果它的父亲 $u$， $u&gt;v$，那么 $v$ 一定在 $u$ 之后<strong>立刻被选择</strong>，此时将 $v,u$ 合并，可以得到一个规模为 $n-1$ 的子问题。</p>
-<p>考虑证明 $u$ 被选择后一定会选择 $v$，对于一个满足树的限制的排列 $p$，如果 $u,v$ 不相邻，那么由于 $v&gt;u$，所以对于序列 $p_1,p_2\dots u,p_l,p_{l1} \dots p_r,v,\dots,p_n$，一定有 $u&gt;p_{l,r} \bigvee p_{l,r}&gt;v$，否则 $v&lt;u$，如果为前者，那么交换 $u$ 和 $p_{l,r}$，后者同理，所以 $v$ 一定紧接着 $u$ 被选择。</p>
-<p>我们可以用以下两种方式解决问题。</p>
-<h4 id="方式1"><a href="#方式1" class="headerlink" title="方式1"></a>方式1</h4><p>考虑最大的元素 $v$，显然可以合并它和它的父亲 $u$，变成一个新的规模更小的问题。</p>
-<p>合并的过程可以用并查集维护连通块，注意区分并查集父亲和实际父亲。</p>
-<p>使用 <code>priority_queue</code> 或者 <code>set</code> 可以实现加入删除和查询最小值，<code>priority_queue</code> 的方式是同时维护一个代表删除的 <code>priority_queue</code>，实际上 <code>priority_queue</code> 会比 <code>set</code> 快 $1$ 倍。</p>
-<p>注意实现的时候，如果找到了根，那么根其实有可能不在 <code>priority_queue</code> 里面，可删除的 <code>priority_queue</code> 如果删除了不存在的元素是会出问题的，所以一定要特判掉。</p>
-<p>复杂度 $O(n\log n)$</p>
-<h4 id="方式2"><a href="#方式2" class="headerlink" title="方式2"></a>方式2</h4><p>我们考虑对每个子树求其答案。</p>
-<p>利用分析中的结论，不妨将一棵子树划分成一些<strong>必须连续选择的序列</strong>，作为<strong>树对排列顺序的要求</strong>，将这些连续的序列视为一个元素后，我们可以对序列按照正常方式排序得到最优解。</p>
-<p>划分序列的过程是对于一棵子树 $u$，将它的所有儿子的序列拿来排序，尝试将 $u$ 与最小的序列合并得到新的序列，如果 $u$ 当前所在的序列较大，由于结论我们知道合并后一定能拿到最优解，否则停止合并，此时 $u$ 所在序列的权值最小，一定会被最先选择，其中 $u$ 又一定会被第一个选择。</p>
-<p>容易发现合并的过程一定不会改变子树内的选择顺序。</p>
-<p>合并时采用启发式合并，利用 <code>set</code> 或 <code>priority_queue</code>  维护当前子树序列，复杂度为 $O(n\log^2n)$，但优势在于可以求出所有子树的答案。</p>
-<p>当然可以使用可并堆达到 $O(n\log n)$</p>
-<p>注意到其实一遍 <code>dfs</code> 就可以解决问题，因为启发式合并复杂度保证的来源是合并一次的复杂度为 $O(\min(|u|,|v|))$，所以并不需要提前计算子树大小，直接合并即可，<code>set</code> 或 <code>priority_queue</code> 的 <code>swap</code> 操作是 $O(1)$ 的。</p>
-<h3 id="碎碎念"><a href="#碎碎念" class="headerlink" title="碎碎念"></a>碎碎念</h3><p>Exc-Arg 除了直接解决问题外，也可以用来简化问题，将选择元素并重排的问题变为<strong>排序后</strong>选择子序列的问题。</p>
-<p>对于树上的情况，我还没有见到过相关的问题。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1239,7 +1209,7 @@ g(n)=\sum\limits_{d|n}f(d)\iff& f(n)=\sum\limits_{d|n}\mu(d)\times g(\frac{n}{d}
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">87</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1252,7 +1222,7 @@ g(n)=\sum\limits_{d|n}f(d)\iff& f(n)=\sum\limits_{d|n}\mu(d)\times g(\frac{n}{d}
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
