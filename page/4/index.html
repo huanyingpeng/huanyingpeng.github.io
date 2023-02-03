@@ -211,6 +211,192 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/21/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20221020%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/21/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20221020%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221020考试总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-21 11:06:48 / 修改时间：14:07:55" itemprop="dateCreated datePublished" datetime="2022-10-21T11:06:48+08:00">2022-10-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0139">考试</a></p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>套路状压题，有一些关于分支的常数优化技巧</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>有趣的容斥原理题，但是不太适合出在考试。</p>
+<p>首先猜想答案比较多，所以考场上直接一个随机化过掉。</p>
+<p>考虑两人集合交的大小 $\sum|S_i\bigcap S_j|$ ，如果能算出这玩意，很容易用鸽巢原理算出答案个数的下界。</p>
+<p>考虑每个元素对它的贡献，是 $\binom{cnt_i}{2}$ 的，所以 $cnt$ 的分布需要尽可能平均，不妨让它就为 $cnt_i$。</p>
+<p>所以上面那个式子的下界是 $\dfrac{n^3}{4}$ 级别的。鸽巢原理，集合总个数为 $\dfrac{n\times(n+1)}{2}$，每一个集合先分配 $\lfloor\frac{n-1}{2}\rfloor$ 个，剩下的数级别是 $O(n^2)$ 的，因此答案个数是 $O(n)$ 的，期望随机 $n$ 次可以找到一组合法解。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>能看出很多问题的题。</p>
+<p>题目本身不难，但是坑点极多。</p>
+<p>考虑转化问题的时候一定要搞清楚转化的前提条件，以及对应的<strong>充要条件</strong>。</p>
+<p>第一次出错：认为选定合法的删除子序列后一定有解，实际上没有位置放 $1/0$</p>
+<p>第二次出错：认为必须留位置给 $1/0$，但实际上有可能根本不存在 $1/0$，留位置是没有意义的，需要特判。</p>
+<p>另外还有必要提的一点是，这种选择一个元素，移动到任意位置的题，往往可以考虑最终结果，也就是选择了哪些，或者是选择了哪些不动。</p>
+<p>和求改为最长不下降子序列最小代价的题目一样，可以考虑补集转化，最多的，能不动的元素个数，就是 LIS，LCS 的长度。</p>
+<p><strong>多次出错的原因也就是误以为只要选择合法，那么就一定可以构造合法的方案。</strong></p>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>有趣的贪心题。</p>
+<p>我们给矿工分级，并认为操作是放一组矿工，每个矿工只能挖一个，$k$ 级矿工能挖掉距离小于 $k$ 的点。</p>
+<p>考虑有一条线从下往上扫描，我们需要尽可能把矿工往上放，这样能够到更多的点。</p>
+<p>先考虑最深的必须放矿工的点，它一定满足，$k$ 级儿子有一个还没有被挖的宝藏，否则可以继续往上，这一定不劣，不妨从最简单的情况开始。</p>
+<p>假设在这个点放了矿工，那矿工必须挖掉 $k$ 级儿子，否则上面就处理不了了。如果矿工还能挖，那么需要让他把 $k-1$ 级儿子也尽可能挖，因为如果让父亲处理，需要付出一个 $k$ 级矿工的代价，但是这个点的矿工上到父亲的时候降级为 $k-1$ 级，矿工等级显然越高越好，对于等级低的儿子，在这里挖可以看成于先上去降级再挖。</p>
+<p>所以在第一个必须放矿工的点，矿工<strong>必须</strong>挖掉 $k$ 级儿子，<strong>尽可能</strong>挖 $k-1$ 级儿子，意思是如果还有 $k-1$ 级儿子没有挖完，那就没必要再放矿工，可以留给父亲处理。</p>
+<p>接下来的点就有不同等级的矿工了，对于 $i$ 级矿工，他会尽可能挖掉和它同级的儿子，如果还有剩余，会挖掉 $i-1$ 级儿子，<strong>这个过程一定要从等级小的矿工到等级大的矿工考虑</strong>，否则会变劣。</p>
+<p>剩余的矿工降级后上传，儿子升级后上传。  </p>
+<p> 按照这个策略贪心即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/19/%E5%B8%B8%E6%95%B0%E4%BC%98%E5%8C%96/%E5%85%B3%E4%BA%8E%E5%B8%B8%E6%95%B0%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/19/%E5%B8%B8%E6%95%B0%E4%BC%98%E5%8C%96/%E5%85%B3%E4%BA%8E%E5%B8%B8%E6%95%B0%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">关于常数优化</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-19 11:12:19" itemprop="dateCreated datePublished" datetime="2022-10-19T11:12:19+08:00">2022-10-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-10-20 19:05:01" itemprop="dateModified" datetime="2022-10-20T19:05:01+08:00">2022-10-20</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="代码层面"><a href="#代码层面" class="headerlink" title="代码层面"></a>代码层面</h2><p>由于现在考试都开 O2，所以只讨论有 O2 的情况。</p>
+<h3 id="循环展开"><a href="#循环展开" class="headerlink" title="循环展开"></a>循环展开</h3><p>由于 CPU 处理分支的能力很烂，所以循环展开加速的一部分原因在于减少了分支。</p>
+<p>测试标准为 $10^5$ 次随机区间求和，大小 $10^5$，以下代码用时 <code>572ms</code>，<code>for</code> 循环用时 <code>1192ms</code> </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> sum[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line">    <span class="keyword">for</span>(j=l[i];j+<span class="number">3</span>&lt;=r[i];j+=<span class="number">4</span>)&#123;</span><br><span class="line">        sum[<span class="number">0</span>]+=a[j+<span class="number">0</span>];</span><br><span class="line">        sum[<span class="number">1</span>]+=a[j+<span class="number">1</span>];</span><br><span class="line">        sum[<span class="number">2</span>]+=a[j+<span class="number">2</span>];</span><br><span class="line">        sum[<span class="number">3</span>]+=a[j+<span class="number">3</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(;j&lt;=r[i];j++)&#123;</span><br><span class="line">    	sum[<span class="number">0</span>]+=a[j];</span><br><span class="line">    &#125;</span><br><span class="line">    ans^=sum[<span class="number">0</span>]+sum[<span class="number">1</span>]+sum[<span class="number">2</span>]+sum[<span class="number">3</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将 <code>sum</code> 数组替换为多个局部变量，效果不变。</p>
+<p>测试了其它展开位数，开 <code>8</code> 位效果最佳，约 <code>520ms</code>。</p>
+<p><code>16</code> 位会出现寄存器溢出效率下降。</p>
+<p>如果用的求和变量较多，最好开 <code>4</code> 位。</p>
+<p>顺便一提，开 Ofast/O3 后会帮你展开。</p>
+<p>如果你写了假的循环展开，那么效率提升只有约 $50\%$，这是假的循环展开，但是开了 O3 就是真的了：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">calc</span><span class="params">(<span class="type">int</span>* begin, <span class="type">int</span>* end)</span> </span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> ((<span class="type">size_t</span>)begin &amp; <span class="number">4</span>) res = *begin++;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> sum[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">while</span> (begin + <span class="number">7</span> &lt;= end) &#123;</span><br><span class="line">        <span class="keyword">auto</span> addr = (<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>*)begin;</span><br><span class="line">        sum[<span class="number">0</span>] += addr[<span class="number">0</span>];</span><br><span class="line">        sum[<span class="number">1</span>] += addr[<span class="number">1</span>];</span><br><span class="line">        sum[<span class="number">2</span>] += addr[<span class="number">2</span>];</span><br><span class="line">        sum[<span class="number">3</span>] += addr[<span class="number">3</span>];</span><br><span class="line">        begin += <span class="number">8</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) res += (sum[i] &gt;&gt; <span class="number">32</span>) + <span class="built_in">unsigned</span>(sum[i]);</span><br><span class="line">    <span class="keyword">while</span> (begin &lt; end) res += *begin++;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> sum=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line">    <span class="keyword">for</span>(j=l[i];j+<span class="number">3</span>&lt;=r[i];j+=<span class="number">4</span>)&#123;</span><br><span class="line">        sum+=a[j+<span class="number">0</span>];</span><br><span class="line">        sum+=a[j+<span class="number">1</span>];</span><br><span class="line">        sum+=a[j+<span class="number">2</span>];</span><br><span class="line">        sum+=a[j+<span class="number">3</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(;j&lt;=r[i];j++)&#123;</span><br><span class="line">    	sum+=a[j];</span><br><span class="line">    &#125;</span><br><span class="line">    ans^=sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用时 <code>832ms</code>。</p>
+<h3 id="减少分支"><a href="#减少分支" class="headerlink" title="减少分支"></a>减少分支</h3><p>这个减少分支主要指减少内层循环的分支，尤其是<strong>理论预测成功率很低</strong>的分支。</p>
+<p>CPU 的分支预测，可以视为一种很智能的找规律，在几乎不执行，几乎执行的情况下，或者是否成功具有循环节之类的情况，具有极高的预测效率。</p>
+<p>当分支预测失败时，有较大可能会从内存中重新读取对应代码块，</p>
+<p>一般可以采用乘法等算术方式。</p>
+<p><strong>不建议写偏向条件赋值的代码，因为高版本编译器可能会弄成条件执行，它以认为它读懂了你的代码，但是它就是个蠢逼。</strong></p>
+<p>在一些比较极端的情况，甚至能带来 $5$ 倍的效率差异！</p>
+<p>这里的 $k=10$。</p>
+<p>例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> mask=<span class="number">0</span>;mask&lt;<span class="number">1</span>&lt;&lt;(k+<span class="number">1</span>);mask++)&#123;</span><br><span class="line">    <span class="type">int</span> <span class="keyword">final</span>=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;k;j++)<span class="keyword">if</span>(<span class="built_in">bool</span>((<span class="number">1</span>&lt;&lt;j)&amp;mask))</span><br><span class="line">        <span class="keyword">final</span>^=stat[mask&gt;&gt;k][j];</span><br><span class="line">    dp[(i+<span class="number">1</span>)&amp;<span class="number">1</span>][<span class="keyword">final</span>]+=dp[i&amp;<span class="number">1</span>][mask&amp;((<span class="number">1</span>&lt;&lt;k)<span class="number">-1</span>)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以换成：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> mask=<span class="number">0</span>;mask&lt;<span class="number">1</span>&lt;&lt;(k+<span class="number">1</span>);mask++)&#123;</span><br><span class="line">    <span class="type">int</span> <span class="keyword">final</span>=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;k;j++)<span class="keyword">final</span>^=<span class="built_in">bool</span>((<span class="number">1</span>&lt;&lt;j)&amp;mask)*stat[mask&gt;&gt;k][j];</span><br><span class="line">    dp[(i+<span class="number">1</span>)&amp;<span class="number">1</span>][<span class="keyword">final</span>]+=dp[i&amp;<span class="number">1</span>][mask&amp;((<span class="number">1</span>&lt;&lt;k)<span class="number">-1</span>)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或者更理想的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> mask=<span class="number">0</span>;mask&lt;<span class="number">1</span>&lt;&lt;(k+<span class="number">1</span>);mask++)&#123;</span><br><span class="line">    <span class="type">int</span> <span class="keyword">final</span>=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> w=mask;w;w-=w&amp;(-w))<span class="keyword">final</span>^=stat[mask&gt;&gt;k][__builtin_ctz(w)];</span><br><span class="line">    dp[(i+<span class="number">1</span>)&amp;<span class="number">1</span>][<span class="keyword">final</span>]+=dp[i&amp;<span class="number">1</span>][mask&amp;((<span class="number">1</span>&lt;&lt;k)<span class="number">-1</span>)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>__builtin_clz()</code> 返回一个数二进制下前导 <code>0</code> 的个数，<strong>对于负数，返回值是 <code>0</code></strong></p>
+<p><code>__builtin_ctz()</code> 返回二进制末尾连续 <code>0</code> 的个数。</p>
+<p>三份代码的运行时间分别为 <code>1200ms 213ms 150ms</code>。</p>
+<h3 id="高速缓存"><a href="#高速缓存" class="headerlink" title="高速缓存"></a>高速缓存</h3><h4 id="一般情况"><a href="#一般情况" class="headerlink" title="一般情况"></a>一般情况</h4><p> 用一句话来说，能滚动的数组要滚动。</p>
+<p>可以看看这两个提交，效率改进因子为 <code>1.6</code>。</p>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/submission/6350f85e1aaf020012fced9f">无滚动数组</a>，390ms。</p>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/submission/6350f5211aaf020012fced96">滚动数组</a>，150ms。</p>
+<h4 id="互踢缓存"><a href="#互踢缓存" class="headerlink" title="互踢缓存"></a>互踢缓存</h4><p>如果遍历数组的顺序和数组的大小都不太理想，很容易出现互踢缓存的特殊情况，在一些极端情况可能会带来 <code>10</code> 倍甚至 <code>20</code> 倍的常数差距。</p>
+<p>缓存存储的基本单位是 <code>cacheline</code>，大小为 <code>64Byte</code>，将一个数据物理地址的末六位抹掉，可以得到它的缓存行编号，缓存行编号视高速缓存大小和分组策略取末 $k$ 位，作为高速缓存使用区域编号。同一高速缓存使用区一般可以存储 <code>16</code> 个 <code>cacheline</code>，如果超出，则踢出最早进入的。</p>
+<p>举例来说，如果以 <code>256Byte</code> 作为步长遍历数组，那么由于抹掉 $6$ 位后末 $2$ 位是一样的，<strong>所以实际被利用的高速缓存仅有 $\frac{1}{4}$</strong>，会出现非常阴间的情况，需要避免。</p>
+<h3 id="访问连续"><a href="#访问连续" class="headerlink" title="访问连续"></a>访问连续</h3><p>访问连续有两个层面，缓存行连续访问，页的访问连续。</p>
+<p>一般强调前者。</p>
+<h2 id="算法层面"><a href="#算法层面" class="headerlink" title="算法层面"></a>算法层面</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/19/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20221018%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -916,192 +1102,6 @@ ans=\sum\limits_{n\ge 0}\sum\limits_{i=0}^{k} (-1)^{i}\binom{n+k-1-i\times(x+1)}
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/12/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20221011%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/12/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20221011%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221011考试总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-12 20:43:33" itemprop="dateCreated datePublished" datetime="2022-10-12T20:43:33+08:00">2022-10-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-14 15:08:04" itemprop="dateModified" datetime="2022-10-14T15:08:04+08:00">2022-10-14</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="20221011-考试总结"><a href="#20221011-考试总结" class="headerlink" title="20221011 考试总结"></a>20221011 考试总结</h2><h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>假的可持久化题，弄到树上做撤销就行。</p>
-<p>其实写可持久化 FHQ-Treap 更容易</p>
-<p>参考 <a href="">关于平衡树</a></p>
-<p>还可以用块状链表搞定。</p>
-<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>树套树模板题，但是有一些不同的思考方式。</p>
-<p>我采用了线段树套值域线段树，但是需要同时二分多个主席树，不够优雅。</p>
-<h4 id="值域树套位置树"><a href="#值域树套位置树" class="headerlink" title="值域树套位置树"></a>值域树套位置树</h4><p>一般来说，位置树套值域树更加常见，但如果有些涉及到二分的操作，也许把它们反过来会更加容易，因为反过来之后就可以在数据结构上二分，减少一个 $\log$。</p>
-<p>可以采用值域线段树套平衡树。</p>
-<p>这个时候 FHQ-Treap 的优势就体现出来了，很简单的可以查到 $[l,r]$ 区间内数的个数。</p>
-<h4 id="莫队和值域分块"><a href="#莫队和值域分块" class="headerlink" title="莫队和值域分块"></a>莫队和值域分块</h4><p>带修莫队可以处理单点改区间查的问题，修改一共 $O(n^{\frac{5}{3}})$ 次，查询 $O(n)$ 次，使用 $O(\sqrt n)-O(1)$ 的值域分块即可处理问题。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/10/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%84%9F%E6%82%9F/ARC150D-%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/10/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%84%9F%E6%82%9F/ARC150D-%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">ARC150D-一类期望问题的思考方式</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-10 21:08:17" itemprop="dateCreated datePublished" datetime="2022-10-10T21:08:17+08:00">2022-10-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-06 21:33:01" itemprop="dateModified" datetime="2022-11-06T21:33:01+08:00">2022-11-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><ul>
-<li><p>给你一棵有根树，定义一个点合法当且仅当它到根上的点全为黑色，否则不合法。</p>
-</li>
-<li><p>最开始所有点为白色，每次选一个不合法的点涂黑，每个点可以被涂黑多次。</p>
-</li>
-<li>问所有点被涂黑的期望次数</li>
-</ul>
-<h2 id="思考1"><a href="#思考1" class="headerlink" title="思考1"></a>思考1</h2><p>这次想题引爆了某人概率论基础不扎实的炸弹。</p>
-<p>考虑每个点被涂黑的顺序，是一个排列，取到每种排列的概率相同。</p>
-<p>考虑使用全期望公式计算，先考虑固定一个排列时的答案。</p>
-<p>先假设只有 $3$ 个点，且顺序为 $3,2,1$，也就是赠券收集问题。</p>
-<p>选第一个点的期望次数为 $1$，因为所有满足这个排列的样本点都是以 $3$ 开头，选第二个点，期望次数是多少，或者说，选出第一个点后，下一个被选择的点，在顺序为 $3,2,1$ 的前提下，是 $2$ 的概率是多少？</p>
-<h3 id="frac-1-2-的来历"><a href="#frac-1-2-的来历" class="headerlink" title="$\frac{1}{2}$ 的来历"></a>$\frac{1}{2}$ 的来历</h3><p>选第二个点时，可以选的点有 $3,2$，选择每个点的概率相同，所以概率为 $\frac{1}{2}$</p>
-<p><strong>虽然原本每个点概率时相同的，但是我们求的时条件概率，条件概率的样本空间已经被改变了，所以选择每个点的概率不再相同。</strong></p>
-<h3 id="frac-2-3-的来历"><a href="#frac-2-3-的来历" class="headerlink" title="$\frac{2}{3}$ 的来历"></a>$\frac{2}{3}$ 的来历</h3><p>考虑概率的定义，$P=\frac{事件大小}{样本空间大小}$，考虑该条件的集合和事件与条件的交集，因为此题样本空间无限大，所以考虑将一个无限长序列映射到我们的样本空间，容易发现这样的映射不会改变概率函数。</p>
-<p>设 $k$ 为已经选取的数的个数，$n$ 为数的总数。</p>
-<script type="math/tex; mode=display">
-\begin{align}
-
-P=&\lim\limits_{m\rightarrow \infty}\dfrac{n^{m-1}}{\sum\limits_{1\le i\le m} k^{i-1}\times n^{m-i}}\\
-=&\dfrac{n^{m-1}}{\frac{n^{m}}{n-k}}\\
-=&\frac{n-k}{n}
-\end{align}</script><p>这是在正确的样本空间算出的正确结果。</p>
-<p>从 Beyes 公式考虑：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-P(下一个值为目标|满足排列限制)=&\dfrac{P(下一个值为目标\wedge满足排列限制)}{P(满足排列限制)}\\
-=&\dfrac{\frac{1}{n}\times\frac{1}{(n-k-1)!}}{\frac{1}{(n-k)!}}\\
-=&\dfrac{n-k}{n}
-\end{align}</script><p>神奇吧？</p>
-<p><strong>贝叶斯公式连接了条件概率和原问题的样本空间。</strong></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>样本空间无限大的时候要小心，不能轻易认为两个元素等价，因为此时 $\infty \ne \infty$</strong>。</p>
-<p>用贝叶斯公式好好算算吧。</p>
-<p>草率的断言概率为 $\frac{1}{2}$，很大一部分原因都是认为两个正无穷时相等的。</p>
-<p>有了这个东西就可以愉快的推狮子 NTT 了。</p>
-<h2 id="思考2"><a href="#思考2" class="headerlink" title="思考2"></a>思考2</h2><p>其实这种题还有一种更加普遍的做法，期望线性性，考虑每个点被选的次数，相加可以得到最终答案。</p>
-<p>期望线性性来源于期望的定义，一个随机变量是一个函数，定义域为样本空间，值域为 $\R$，随机变量的期望为其密度函数积分的收敛值。</p>
-<p>因此，无论两个随机变量是否独立，它们的期望都是可加的。</p>
-<p>感性理解的话，两个随机变量之和的期望等于这样一个随机变量的期望：每个样本点的取值为两个随机变量在该样本点的取值之和，期望可以粗略理解为随机变量在样本空间每个点的平均值，因此随机变量的期望可加。</p>
-<p>所以可以考虑每个点被选的期望次数，如果选到了不在这个点到根路径上的点，那么我们忽略这一次选择，这样的忽略不会影响这个点被选的期望次数，然后问题变成了一条链上的最后一个点被选择的期望次数。</p>
-<p><strong>注意，我们只关心这个点被选择的期望次数。</strong></p>
-<p>考虑怎么求这玩意，因为整个过程在点到根路径上所有点被选择之后才会结束，所以像赠券收集问题一样倒序。假设有 $k$ 个点还没选，总共 $n$ 个点，其中 $w$ 个点可以选，那么转移答案是 $dp[k]=\frac{k}{w}dp[k+1]+\frac{w-k}{w}dp[k]+\frac{1}{w}$</p>
-<p>移项得到 $dp[k]=dp[k+1]+\frac{1}{k}$，实际上和 $w$ 无关，所以就很好算了。</p>
-<p>官方题解的说法是如果考虑可以选已经 <code>good</code> 的点，最终答案不变，我理解不了这个过程。</p>
-<p>upd：其实现在也可以理解了，因为如果选了已经 good 的点，那么再选一次就行了。</p>
-<p><strong>有几个比较重要的地方，一是忽略和答案绝对无关的操作，二是考虑计算过程。</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1173,7 +1173,7 @@ P(下一个值为目标|满足排列限制)=&\dfrac{P(下一个值为目标\wedg
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">92</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

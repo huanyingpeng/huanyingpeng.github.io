@@ -312,6 +312,218 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2023/02/01/0201%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/02/01/0201%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">0201测试</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-02-01 20:05:26" itemprop="dateCreated datePublished" datetime="2023-02-01T20:05:26+08:00">2023-02-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-02 07:43:04" itemprop="dateModified" datetime="2023-02-02T07:43:04+08:00">2023-02-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="0201-测试"><a href="#0201-测试" class="headerlink" title="0201 测试"></a>0201 测试</h2><h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>比较奇怪的题目。</p>
+<p>手玩出 $n=3$ 的情况，发现是当且仅当看到其他人帽子颜色相同时猜与其相反的颜色。</p>
+<p>然后我们发现对于一种能猜对的情况，一定可以构造出一种会猜错的情况——将猜了的那些翻转即可。</p>
+<p>然后为啥 $n=3$ 的时候能做到 $75\%$ 的正确率，是因为 <code>000 111</code> 这两种情况各自对应了 3 种猜错的情况。</p>
+<p>于是我们考虑建图，将 $2^n$ 个点每个点向二进制位恰好翻转一位的点连边。</p>
+<p>图是一个 Hypercube（超立方体），虽然这暂时并没有什么卵用。</p>
+<p><strong>逆向考虑一种策略在图上会是怎样的。</strong>对于猜对的点，至少有一个相邻的点是猜错的 Case，而一个猜错的点最多对应 $n$ 个猜对的点，这告诉我们正确率的上界是 $\dfrac{n}{n+1}$。而对于 $n=3$ 的构造方案显然取到了上界。</p>
+<p>发现这道题的 $n=2^k-1$，所以我们可能取到上界（Case 总数是分母的倍数）。取到上界，在图上就是存在一个大小为 $\dfrac{2^n}{n+1}$ 的支配集。</p>
+<p>换句话说，我们需要给一张图黑白染色，满足白色点最多，且每个白点必须连一个黑点，这个问题比较麻烦，不存在多项式做法，考虑图的特殊性质——Hypercube，这也许能够帮助我们构造出能够取到上界的情况。</p>
+<p>我们需要选 Hypercube 中的一些点，能够取到上界。在 Hypercube 中的黑点在各个维度上变换后都是白点，考虑用异或的性质去构造。令第 $i$ 个维度的权值为 $i$，维度权值异或和（如果该维坐标为 $1$ 则异或，否则不异或）为 $0$ 的点为黑点，其它为白点，这样的构造是满足条件的。</p>
+<p><em>无向图 $G(V,E)$ 的支配集是一个点集 $S$，记 $F(u)$ 表示与 $u$ 点有连边的点集，$S$ 满足 $\forall s_1,s_2(s_1\ne s_2)\in S,F(s_1)\bigcap F(s_2)=\empty$ 且 $\bigcup\limits_{s\in S} F(s)=V - S$。</em></p>
+<p>为什么要考虑建图并将点向二进制位差异为 $1$ 的点连边：这样建图之后确实能够让问题更加形象（也是受到手玩 $3$ 的启发）。<strong>建图则是因为同一种策略正确的情况和不正确的情况的对应关系。</strong></p>
+<p>为什么要考虑用异或的性质构造：<strong>连边的形式是每一维变换</strong>，需要满足变换后不同，又恰好是 $2^k-1$ 个维度，它们的异或和为 $0$。<strong>异或运算具有高度的对称性</strong></p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>中规中矩的组合题。</p>
+<p>发现如果横向或竖向有贯穿的一行或者一列，那么这些贯穿的行都是连在一起的，不妨考虑有若干列贯穿，枚举贯穿的区间 $[l,r]$。</p>
+<p>乘上贯穿的方案数 $(n+1)^{len}$ 后剩下的答案是两个类似问题乘起来，问题还是各个方向箭头把矩阵覆盖满，只不过只有上下左三个方向，<strong>且已知左边的某一个箭头把矩阵分成了两半</strong>。不妨枚举那个把矩阵分成两边的箭头的位置，剩下的只有两个方向了，是简单的组合问题。<strong>注意其中有分开的两半有一半左边不能贯穿，如果可以贯穿那么所有左边贯穿的箭头会被算重。</strong></p>
+<p>考虑没有贯穿的情况，记左边箭头最长为 $s_1$，右边最长为 $s_2$，上边下边 $s_3,s_4$。</p>
+<p>如果纵向贯穿，则有 $s_1+s_2&lt;m$，横向贯穿则是 $s_3+s_4&lt;n$。这两种情况的答案单独计算。</p>
+<p><strong>下面的讨论请记住 $s_1+s_2\ge m,s_3+s_4\ge n$。</strong></p>
+<p>考虑 $s_1+s_2&gt;m$ 的情况，且，则一定能找到一个分界点，上下分别取到 $s_1$ 和 $s_2$，此时必有 $s_3+s_4=n$。大概是这个图（不能同时满足 $s_1+s_2&gt;m$ 且 $s_3+s_4&gt;n$）：</p>
+<p><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202302012041959.png" alt="image-20230201204107871"></p>
+<p>这种情况可以枚举某一条红线头的位置，<strong>注意靠上那条红线可以从左边来也可以从右边来，所以要乘 2</strong>。暴力枚举另一条红线交到的位置。剩下的四个问题独立，都是两个方向填矩阵的情况，基本组合问题。复杂度 $O(n^3)$</p>
+<p>发现确定第一条红线的行之后移动列时，答案是一个固定值乘上一个前缀和的形式，可以做到均摊 $O(1)$。<strong>对于绿线也需要将矩阵转置一下计算。</strong></p>
+<p>最后剩下一种情况 $s_1+s_2=m$ 且 $s_3+s_4=n$。</p>
+<p>只能是这样的：</p>
+<p><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202302012049795.png" alt="image-20230201204943731"></p>
+<p>枚举左上角的位置计算即可，注意要算两遍，因为左上角位置既可以是横着过来的也可以是竖着过来的。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>有趣的数据结构题</p>
+<h4 id="一种暴力"><a href="#一种暴力" class="headerlink" title="一种暴力"></a>一种暴力</h4><p>维护每个数作为其中一个端点时的答案。</p>
+<p>一个修改会对两个区间的答案造成影响。考虑如果维护这个影响。</p>
+<p>赛时一直以为这是不可做的，实际上问题等价于维护 $n$ 个编号连续的集合，操作是对于一段编号连续的区间都加入一个数，查询是查询全局 <strong>集合权值 + 集合中最大值</strong> 的最大值。</p>
+<p>用线段树维护一段区间的集合，线段树上一个节点做集合操作时，这个节点代表的所有集合都具有同样的元素，因此直接取集合权值的最大值加上元素最大值即可。</p>
+<p><strong>解决问题的核心是将一个点的贡献/操作拆到了多个位置/多个部分，以便于对于不同的位置各自处理，这是一个非常重要的思想。</strong></p>
+<p>在本题中，将同一个点的贡献拆到了线段树上的多个部分，而一个线段树上的节点可以包括多个点，也便于对它们同时操作。</p>
+<p><strong>倍增并查集也是这个思路。</strong>倍增并查集拆分的是操作本身，将一个<strong>顺序无关</strong>操作分多步完成，多个操作的同一步可以一起做。</p>
+<h4 id="正解1"><a href="#正解1" class="headerlink" title="正解1"></a>正解1</h4><p>很神仙的一个想法是考虑按 $k$ 将序列分块，然后块内是好做的，直接线段树维护。块间最多跨一个块。所以要统计块间的答案。</p>
+<p>然后需要选 $y\le x+k$ 使得 $a_x+a_y$ 最大，然后令 $b_i=a_{i+k}$，变成 $b_y+a_x$ 最大且 $y\le x$。</p>
+<p>又变回了块内问题。<strong>这个问题如果在序列上是不好做的，因为额外有 $y\ge x-k$ 的限制。</strong>但是分块统计的方式去掉了这个限制。</p>
+<p>开一棵线段树来做这个问题，每个节点维护在这个这个节点 $a_i,b_i$ 各自的最大值和答案，修改 $a_i,b_i$ 时在各自的位置修改并上传答案即可。</p>
+<p><strong>一个问题如果能够简单的分治解决，套上线段树并记录分治过程之后就可以支持修改操作。</strong> </p>
+<h4 id="正解2"><a href="#正解2" class="headerlink" title="正解2"></a>正解2</h4><p><strong>考虑取到答案的点的性质</strong>，由于答案由两个点构成，我们枚举了任意一个点都能得到答案，所以只需要考虑较大的那个点的性质。它满足它是区间 $[i-k,i+k]$ 中的最大值，称满足这样性质的点是好点。</p>
+<p>我们只考虑好点的答案，于是做单点修改时只会修改常数个好点的答案，也只会有常数个好点变成不好的点或者不好的点变成好点。</p>
+<p>好点的答案容易用线段树查询，好点答案最大值容易用 set 维护，时间复杂度 $O((n+q)\log n)$。</p>
+<p>线段树需要写 <code>zkw</code> 以卡常。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2023/01/31/%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/01/31/%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/" class="post-title-link" itemprop="url">部分题解合集</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-01-31 20:10:31" itemprop="dateCreated datePublished" datetime="2023-01-31T20:10:31+08:00">2023-01-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-02 16:23:51" itemprop="dateModified" datetime="2023-02-02T16:23:51+08:00">2023-02-02</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="题解合集1"><a href="#题解合集1" class="headerlink" title="题解合集1"></a>题解合集1</h2><p>懒得分开写咕咕咕</p>
+<h3 id="ARC153D"><a href="#ARC153D" class="headerlink" title="ARC153D"></a>ARC153D</h3><p>考虑 A 比较小的时候应该怎么做，记 $dp[i][a]$ 表示考虑低 $i$ 位，填的数字是 $a$，低 $i$ 位的贡献。</p>
+<p>转移枚举下一位填什么，计算答案的方式是统计当前位上每个数字各有多少个。因为有进位所以这还比较麻烦</p>
+<p>如果从小到大枚举 $a$，那么进位的计算是容易的，维护一个 $cnt$ 数组即可，按低 $i$ 位排序后双指针即可。</p>
+<p>我们可以以 $O(A)$ 的复杂度计算答案。</p>
+<p>事实上我们发现我们并不需要记录所有的 $a$，对于进位状况相同的 $a$，我们只需要它的最小值，而进位状况是 $O(2\times10^5)$ 级别的，改变状态，记 $dp[i][j]$ 表示考虑低 $i$ 位，一共有 $j$ 个数进位，只考虑低 $i$ 位时答案的最小值。</p>
+<p>显然只会是低 $i$ 位最小的 $j$ 个数进位，答案计算式类似的。</p>
+<p><strong>这道题的优化本质上是分析了转移所需信息，利用问题的最优子结构性质，构造出了更加精简的状态。</strong></p>
+<h3 id="ARC154D"><a href="#ARC154D" class="headerlink" title="ARC154D"></a>ARC154D</h3><p>$1$ 是比较特殊的数，如果找到了 $1$，设它的位置为 $v$，我们就可以在 $O(n\log n)$ 的时间内对其它数排好序，具体的，考虑构造一个下标序列 $a$，使得 $p_{a_i}=i$，以插入的方式来构造。二分下一个元素 $x$ 插入的位置 $i$，询问 $(v,a_i,x)$，如果答案为 Yes，那么 $x$ 应该插入在 $a_i$ 左边，否则为右边。</p>
+<p>怎么找 $1$，对于 $1$，询问 自身+自身&gt;其它数 都是不成立的，有一个比较容易的 $n^2$ 方式。考虑到对于 $[1,n]$ 中的任意一个数，有一半的数在询问 自身+自身&gt;某个其它的数 的结果都是 Yes，因此可以排除一半的数，且留下来的数仍然是 $[k,n]$ 的形式，注意那个其它的数需要拿出来。做 $\log n$ 次拿出 $\log n$ 个数，以 $\log^2n$ 的复杂度检查剩下的数即可，总复杂度 $O(n\log n + n +\log^2 n)$</p>
+<h3 id="P5156"><a href="#P5156" class="headerlink" title="P5156"></a>P5156</h3><p>考虑一个逆序对，它会消失当且仅当某个端点被选择，所以排好序的必要条件是对于所有的逆序对，至少需要选择两个端点中的一个，这个条件也是充分的，因为只要存在逆序对就会被交换。</p>
+<p>一种思路是设 $dp[i][j]$ 表示考虑前 $i$ 个元素，没有被选择的最大的元素是 $j$，且前 $i$ 个元素均合法的最小子集大小。考虑转移，一个元素 $a_i$ 选当然没有问题，不选当且仅当 $a_i&gt;j$，否则存在一个两端都没被选的逆序对。</p>
+<p>然后把转移图画出来发现不选的元素就是个 LIS，实际上想的时候还想了线段树去优化原式的转移emmm。</p>
+<p><strong>从子集的补集逆向考虑，容易发现它们之间不存在逆序对，因此子集的补集是单调的。</strong></p>
+<p>因此问题变成了求第字典序 $K$ 大的 LIS，很简单了。</p>
+<h3 id="P4187"><a href="#P4187" class="headerlink" title="P4187"></a>P4187</h3><p>考虑一种结果能被构造的充要条件——存在一段长度为 $k$ 的颜色相同子段。</p>
+<p>必要性显然，充分性考虑用构造法证明，具体的，记 $a_i$ 表示 $i$ 的颜色，颜色相同的子段为 $[l,l+k)$。记 $P(c,l)$ 表示用 $c$ 颜色涂区间 $[l,l+k)$。依次进行如下操作： $P(a_1,1),P(a_2,2)\cdots P(l-1,a_{l-1}),P(n-k+1,a_n),P(n-k,a_{n-1})\cdots P(l+1,a_{l+k}),P(l,a_{l})$。</p>
+<p>枚举第一个长度为 $k$ 的区间的左端点 $i$，记 $[1,i]$ <strong>不出现连续长度为 $k$ 的子串，且最后一个位置不能和下一个位置相同的涂色方案数</strong>为 $g_i$</p>
+<p>则总方案数为 $\sum\limits_{i=k}^nm^{n-k+1}g_{i-1}$</p>
+<p>考虑 $g_i$ 的转移，不妨枚举最后一个位置的连续长度，得到 $g_i=(m-1)\sum\limits_{j=\max(0,i-k+1)}g_j$。</p>
+<p>简单前缀和。</p>
+<p><strong>为什么是 $m-1$：钦定了最后一个位置不能和下一个位置相同。</strong></p>
+<p>另一种思考方式是考虑统计不合法的方案总数，答案就是 $m^n-f_i$。其中 $f_i$ 表示长度为 $i$ 的段，不出现连续长度为 $k$ 的子串的方案数，对于 $i&lt;k,f_i=m^i$，否则转移和 $g$ 相同。</p>
+<h3 id="P7152"><a href="#P7152" class="headerlink" title="P7152"></a>P7152</h3><p>考虑对生成后的串 DP，设 $dp[i][c]$ 表示考虑到生成后的串的前 $i$ 个，在 $i$ 处和 $i+1$ 处被分开了，<strong>$i$ 所属的段开头(原串结尾)为 $c$ 的方案总数。</strong></p>
+<p><strong>以下的串无特别说明均指被生成的串，也就是输入的那个串</strong>。</p>
+<p> $dp[i]$ 的转移枚举起始位置 $j$ 以及对应的 $j$ 所属的段的开头字符 $c_1$，以及 $j+1,i$ 位置的取值 $c_2,c_3$，转移的要求是 $c_1=c_3$，$dp[i]$ 的第二维下标是 $c_2$，转移的额外系数也是容易计算的，不妨设它为 $w(j+1,i,c_2,c_3)$，一次转移就是 $dp[j][c_1]\times w(j+1,i,c_2,c_3)$，由于 $c_1,c_2,c_3$ 的取值都是常数种，我们干脆将它们视作一个参数 $c$，得到转移结果为 $b(j,i,c)$。</p>
+<p>因为 $\sum\limits_j b(j,i,c)$ 对 $i$ 有比较好的转移性质，所以考虑维护所有 $c$ 的 $B_c(i)=\sum\limits_{j} b(j,i,c)$</p>
+<p>不难发现 $b(j,i+1,c)=\sum\limits_{c_0} k_{c_0}b(j,i,c_0)$，将这个转移带进 $B_c(i)$ 里去，得到 $B_c(i+1)=\sum\limits_{c_0}k_{c_0}B_{c_0}(i)$。</p>
+<p>能够计算 $B_c(i)$ 了，那么 $dp[i]$ 的计算也就容易了，注意对于 $B_c(i+1)$ 需要补上 $dp[i]$ 的贡献。</p>
+<p>另一种思考方式是套路的考虑将<strong>下一个字符并入上一段或者新开一段</strong>，复杂度一样的，其实本质也是一样的。</p>
+<h3 id="P6142"><a href="#P6142" class="headerlink" title="P6142"></a>P6142</h3><p>最小值最大二分，然后一棵子树，传上去的长度自然越大越好，设 $dp_u$ 表示 $u$ 子树满足 $k$ 限制的前提下传上去的最大的数是多少，然后问题变成了对于若干个数，需要选一个或两个数配对，满足和不小于 $k$，且剩下的最大（不剩下就是 $0$）。</p>
+<p>讨论两种情况</p>
+<ul>
+<li>不剩下</li>
+<li>剩下一个</li>
+</ul>
+<p>显然剩下的这个数的大小有单调性可以二分，变成不剩下的情况，现在考虑怎么 check 不剩下的情况，偶数个直接最大最小，次大次小配对最优，奇数个必须先拿一个最小的不小于 $k$ 的，再如上配对。</p>
+<p>复杂度 $O(n\log^2n)$。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2023/01/31/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%80%BB%E7%BB%93/CF1787/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -934,181 +1146,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/22/1122%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/22/1122%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1122总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-22 20:18:33" itemprop="dateCreated datePublished" datetime="2022-11-22T20:18:33+08:00">2022-11-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-23 11:15:38" itemprop="dateModified" datetime="2022-11-23T11:15:38+08:00">2022-11-23</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1122总结"><a href="#1122总结" class="headerlink" title="1122总结"></a>1122总结</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0158">考试</a></p>
-<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>有趣的题。</p>
-<p>场上瞎撞结论显然是错误的。</p>
-<p>考虑 $01$ 矩阵乘法的组合意义，就是统计一张图从 $S$ 到 $T$ 某个长度的路径总条数。</p>
-<p>所以如果不存在长度为 $k$ 的路径，考虑将点按照最长路径长度分类，每一类需要尽可能均分。</p>
-<p>然后每一类内部不连边，和向外部路长度更短的所有点连单向边。</p>
-<p>考虑证明这样的边数最多，问题本质是有 $k$ 个变量 $a_1,a_2\cdots a_k$ 满足 $\sum\limits_{i\in[1,k]}a_i=n$，求 $\sum\limits_{i\in[1,k]} \binom{a_i}{2}$ 的最小值，列式计算：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-\sum\limits_{i\in[1,k]} \binom{a_i}{2}=&\dfrac{a_i\times(a_i-1)}{2}\\
-=&-\dfrac{n+\sum\limits_{i\in[1,k]}a_i^2}{2}
-\end{align}</script><p>考虑证明分布在 $v=\lfloor\frac{n}{k}\rfloor$ 和 $\lfloor\frac{n}{k}\rfloor+1$ 之间的 $a_i$ 是最优的，假设不为这两个值，那么找到两个值 $x<v$ 和$y>v+1$，将 $x$ 调整为 $x+1$，$y$ 调整为 $y-1$，那么从 $x^2+y^2$ 变成了 $x^2+2x+1+y^2-2y+1$，由于 $y&gt; x+1$，所以一定会变优，如果只能找到 $x$ 或者 $y$，就对应的选择 $v+1$ 和 $v$，同样会变优，调整到最后就分布在 $v,v+1$。</p>
-<p><strong>不直观的计数问题，考察其组合意义，变成直观的计数问题。</strong></p>
-<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>很容易想到二分，直接二分的复杂度是 $O(nq\log^2 n)$ 的。发现 $check$ 的代价和二分值有关，考虑调整二分策略，尝试以 $O(ans\log ans\log n)$ 的代价找出一次清空，发现倍增后二分即可。</p>
-<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>朴素的动态规划是 $O(n^5)$ 的，配合性质的暴力可以有 $50$。</p>
-<p>观察，发现答案不会很大，考虑改变动态规划状态，设 $dp[x][y][i][ans]$ 表示左端点为 $(x,y)$，横向延伸到 $i(i\ge x)$，纵向延申的最远位置，不难发现该状态有单调性，即 $dp[x+1][y][i][ans]\ge dp[x][y][i][ans]$，因此纵向转移是简单的，可以做到 $O(1)$，转移完之后其实就已经单调了，不用前缀 $\max$。</p>
-<p>考虑横向的转移，不难发现最优的转移点单调，且答案递减，维护这个最优转移点即可。</p>
-<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><h4 id="朴素做法"><a href="#朴素做法" class="headerlink" title="朴素做法"></a>朴素做法</h4><p>考虑设 $dp[i][j][k]$ 表示考虑到第 $i$ 个数，抹掉了 $k$ 位后再加上了若干位，最终的 $\log_2$ 值为 $j$ 的最小方案。</p>
-<p>视实现有 $40-75$，转移是一个前缀 $\min$ 加上一个带判断的转移。</p>
-<h4 id="不太需要动脑子的办法"><a href="#不太需要动脑子的办法" class="headerlink" title="不太需要动脑子的办法"></a>不太需要动脑子的办法</h4><p>转移可以通过类似双指针的方法做到均摊 $O(1)$，考虑优化状态数。</p>
-<p>有一个显然的可行解需要 $\sum\log_2{a_i}=sum$ 步。</p>
-<p>考虑每一个位置 $k$ 的上界，设 $T=\log m \approx18$，那么如果一个位置 $i$ 的 $j$ 的状态如果满足了 $(j-T)\times(n-i) \ge sum$，那么这个 $j$ 是没有意义的，这样限制下来 $j$ 这一维是 $Tn\ln n$ 大小的。</p>
-<p>已经可以比较险的通过了，其实还有一个限制，就是 $lim_i\le lim_{i-1}+1$，原因是显然的，加上这个限制之后又会变松很多。</p>
-<p>最后记一个 $mn$ 表示当前状态的最小可能值，条件变为 $(j-T)\times(n-i)+mn \ge sum$，就很容易通过了。</p>
-<p><strong>场上前缀最小值只取了上一个位置的，挂了。</strong></p>
-<h4 id="比较聪明的办法"><a href="#比较聪明的办法" class="headerlink" title="比较聪明的办法"></a>比较聪明的办法</h4><p>考虑如果 $a_i’$ 变到了 $\log_2\ge 17$ 之后会发生什么，它之后的位置的 $\log_2$ 值，都必须要大于 $17$，不妨先在这些数后面添 $0$ 补到 $17$，进行代价的预付，到一个位置的时候，我们已知它和上一个位置的 $\log2$ 已经相同了，只需要改变高位的一些值，这样的改变方式只有 $\log n$ 种，代价也是好算的，暴力枚举就是 $O(n\log^2n )$ 的，如果会导致后面的位置的 $\log_2$ 变大，就在这里预付代价。</p>
-<p><strong>本质上，这种方法通过分析 $j\ge 17$ 后最优解 $\log_2$ 值的变化，得到了一种新的代价计算方式，这种方式不依赖 $j$，减少了状态数量</strong></p>
-<p><strong>同一个最优化问题，可以采取不同的代价计算方式，得到不同的动态规划状态。预付代价是一种常用的方式。</strong></p>
-<p>典型例题是《任务安排》。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/22/1119%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/22/1119%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1119总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-11-22 20:18:28" itemprop="dateCreated datePublished" datetime="2022-11-22T20:18:28+08:00">2022-11-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-23 09:30:53" itemprop="dateModified" datetime="2022-11-23T09:30:53+08:00">2022-11-23</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1119"><a href="#1119" class="headerlink" title="1119"></a>1119</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0157">考试</a></p>
-<p>挂大分</p>
-<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><h4 id="蠢做法"><a href="#蠢做法" class="headerlink" title="蠢做法"></a>蠢做法</h4><p>对于每一行，检查有哪些位置对是合法的，如果序列已经有序，那么先扔到后面去。</p>
-<p>不难发现每一行合法位置对数是 $O(n)$ 的，set 处理集合求交即可。</p>
-<p><strong>由于处理的是无序对，但 set 是有序的，所以要把正反都插进去。</strong></p>
-<p><strong>局部数组不要越界</strong></p>
-<p><strong>n,m 不要写反</strong>。</p>
-<h4 id="优秀做法"><a href="#优秀做法" class="headerlink" title="优秀做法"></a>优秀做法</h4><p>考虑将某一行排序，看看有变化的位置。</p>
-<p>这样的位置有且仅有两个，检查一下每一行的变化位置是否会相同就可以了。</p>
-<p>优先处理有变化的行。</p>
-<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>首先发现 $B,C$ 等价，变成 01 串问题，每一个 $0$ 的前面是自由的，可以自由控制 $1$ 的个数，$0$ 不可减少，$0$ 的增加。如果 $T$ 的末尾为 $1$，那么 $S$ 的末尾需要对应有那么多的 $1$，将这些抵消，$T$ 的末尾就是 $0$。</p>
-<p>分类讨论，如果 $S$ 的末尾的 $1$ 模三不余 $0$，那么还需要添加两个 $0$，此时如果 $0$ 多了或者模 $2$ 不相同则无解，否则有解。</p>
-<p><strong>有边界情况，如果 $S$ 中本来没有 $0$ 并且 $1$ 也被抵消完了，那么不能额外的生成 $0$。</strong></p>
-<p>我实现的时候计算连续 $0$ 个数的时候没有考虑左边界，还挂了一下。</p>
-<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>题意轻重边，见 <a href="https://huanyp.cn/2022/09/21/%E6%A0%91%E4%B8%8A%E9%93%BE%E9%A2%86%E5%9F%9F%E4%BF%AE%E6%94%B9%E9%97%AE%E9%A2%98/">树上领域修改问题</a></p>
-<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><h4 id="n-2"><a href="#n-2" class="headerlink" title="n^2"></a>n^2</h4><p>如果 $O(n^2)$，那么考虑以插入的方式构造排列，已经是一个被积累起来的套路了，场上成功写出。</p>
-<h4 id="nlogn"><a href="#nlogn" class="headerlink" title="nlogn"></a>nlogn</h4>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1180,7 +1217,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">92</span>
+          <span class="site-state-item-count">94</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
