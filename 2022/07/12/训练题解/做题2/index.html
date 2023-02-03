@@ -18,7 +18,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"content.json"};
   </script>
 
   <meta name="description" content="20220305ABC242F(二项式反演的进一步理解)题意：给定一个 $n*m$ 的矩阵，需要放 $a$ 个白块 $b$ 个黑块，让它们互不侵犯，$n,m\leq 50$。 最开始看到这道题以为又要挑战 $\text{npc}$ 了，仔细一看互不侵犯的定义，是不能放在同一行或同一列。 思考：很有意思的容斥题，考虑枚举白色占了多大的地盘，设 $f[i][j]$ 表示允许白色占用了 $i$ 行 $j">
@@ -29,7 +29,7 @@
 <meta property="og:description" content="20220305ABC242F(二项式反演的进一步理解)题意：给定一个 $n*m$ 的矩阵，需要放 $a$ 个白块 $b$ 个黑块，让它们互不侵犯，$n,m\leq 50$。 最开始看到这道题以为又要挑战 $\text{npc}$ 了，仔细一看互不侵犯的定义，是不能放在同一行或同一列。 思考：很有意思的容斥题，考虑枚举白色占了多大的地盘，设 $f[i][j]$ 表示允许白色占用了 $i$ 行 $j">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-12T08:10:15.000Z">
-<meta property="article:modified_time" content="2022-07-12T08:12:19.444Z">
+<meta property="article:modified_time" content="2023-02-03T06:59:44.581Z">
 <meta property="article:author" content="幻影彭">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
@@ -238,10 +238,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-12 16:10:15 / 修改时间：16:12:19" itemprop="dateCreated datePublished" datetime="2022-07-12T16:10:15+08:00">2022-07-12</time>
+              <time title="创建时间：2022-07-12 16:10:15" itemprop="dateCreated datePublished" datetime="2022-07-12T16:10:15+08:00">2022-07-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-03 14:59:44" itemprop="dateModified" datetime="2023-02-03T14:59:44+08:00">2023-02-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -302,7 +308,7 @@ g(n,m) = \sum\limits_{i=0}^{n} \sum\limits_{j=0}^{m} (-1)^{n-i+m-j} \tbinom{n}{i
 <p>理解比较容易，考虑构造方案，任意一个非树边集合会唯一对应一种合法方案，选一条非树边则将它覆盖的树边状态反转（选变为不选，不选变为选），可以得到唯一合法方案。</p>
 <p>这个选非树边集合的方式给这道题目带来了启发。然而这种类似异或的方式并不便于统计 $|S|^2$ 这种东西。我们考虑它的组合意义。发现其组合意义为每对边在同一子图便贡献两次，一条边在某一子图贡献一次。</p>
 <p>一条边的情况是简单的，考虑两条边。</p>
-<p>两条非树边是可以任选的，这一部分答案为 $k<em>(k-1)</em>2^{k-2}$，因为已经钦定这两边要选，其它的任意选。</p>
+<p>两条非树边是可以任选的，这一部分答案为 $k <em> (k-1) </em> 2^{k-2}$，因为已经钦定这两边要选，其它的任意选。</p>
 <p>一条非树边和一条树边的贡献可以分两种情况，分别是树边是否受到非树边影响。不受影响答案为 $(k-cover[v]) * 2^{k-2}$，$cover[v]$ 影响这条树边的非树边条数，$k-2$ 因为钦定了选择的非树边要选，并且影响这条树边的边有一个的选择情况是不能任意，因为要让树边被选择。</p>
 <p>如果受到非树边影响，那么答案也为 $cover[v] * 2^{k-2}$，但如果 $cover[v] = 1$，那么答案为 $2^{k-1}$。理解方式类似。</p>
 <p>两条树边的情况，考虑影响这两条树边的边集，我们断言如果边集完全相同，那么答案为 $2^{k-1}$，否则答案为 $2^{k-2}$，边集完全相同的情况不难理解，如果不完全相同，我们在每条边特有的部分钦定一个来控制该边，所以答案为 $2^{k-2}$。如果是包含关系，先钦定里面的，再钦定外面的即可。</p>
