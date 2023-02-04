@@ -29,7 +29,7 @@
 <meta property="og:description" content="2022.2.7CF1634E题意：给定一些数组，长度都为偶数，需要将每个数组的元素划分到两个可重集合里，要求两个集合相同，问方案或输出无解，$n,m&#x3D;10^5$。 思考：考虑每个数组单独划分，不太行，所以不能一个数组一个数组的考虑，显然有解的必要条件是每个数字个数为偶数。所以一个数字一个数字的考虑，其实也不太行，因为这和刚刚那种方法是本质上一样的。 注意到也保证每个数组长度为偶数（这不是废话吗）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-12T08:08:51.000Z">
-<meta property="article:modified_time" content="2022-07-12T08:09:55.455Z">
+<meta property="article:modified_time" content="2023-02-03T12:55:50.137Z">
 <meta property="article:author" content="幻影彭">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
@@ -238,10 +238,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-07-12 16:08:51 / 修改时间：16:09:55" itemprop="dateCreated datePublished" datetime="2022-07-12T16:08:51+08:00">2022-07-12</time>
+              <time title="创建时间：2022-07-12 16:08:51" itemprop="dateCreated datePublished" datetime="2022-07-12T16:08:51+08:00">2022-07-12</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-03 20:55:50" itemprop="dateModified" datetime="2023-02-03T20:55:50+08:00">2023-02-03</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -297,13 +303,13 @@
 <h4 id="思考2："><a href="#思考2：" class="headerlink" title="思考2："></a>思考2：</h4><p>考虑使用后缀数组，回想后缀数组统计不同子串个数的方式，实际上就是排序后减掉相邻两个的 $lcp$，于是对原串后缀排序，然后离线询问莫队，拿个 <code>set</code> 维护当前所有串的排名集合，再来个 $ST$ 表计算 $lcp$，插入和删除都很好写，复杂度 $O(n\sqrt n \ log_n)$，难以通过本题。</p>
 <p>考虑优化，有一个技巧，这种需要查前驱后继的东西，实际上可以用链表搞，加入相对困难一些，因为我们不知道到底应该放在哪里，但删除就很容易了，双向链表上直接删就完事了，所以可以回滚莫队，非常无脑，时间复杂度 $O(n\sqrt n)$。</p>
 <p>稍加卡常即可通过，$ST$ 表查询常数相对较大，卡常应考虑尽量减少查询次数。</p>
-<h2 id="20220210"><a href="#20220210" class="headerlink" title="20220210"></a>20220210</h2><h3 id="20220208考试T3"><a href="#20220208考试T3" class="headerlink" title="20220208考试T3"></a>20220208考试T3</h3><h4 id="恶心的题意"><a href="#恶心的题意" class="headerlink" title="恶心的题意"></a><a target="_blank" rel="noopener" href="https://cwoi.com.cn/contest/C15/problem/C">恶心的题意</a></h4><h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><p>发现由于编号连续，所以最后经过的一定是一段连续区间。想到可以枚举右端点，二分左端点。</p>
+<h2 id="20220210"><a href="#20220210" class="headerlink" title="20220210"></a>20220210</h2><h3 id="20220208考试T3"><a href="#20220208考试T3" class="headerlink" title="20220208考试T3"></a>20220208考试T3</h3><h4 id="恶心的题意"><a href="#恶心的题意" class="headerlink" title="恶心的题意"></a><a target="_blank" rel="noopener" href="https://https://local.cwoi.com.cn:8443//contest/C15/problem/C">恶心的题意</a></h4><h4 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h4><p>发现由于编号连续，所以最后经过的一定是一段连续区间。想到可以枚举右端点，二分左端点。</p>
 <p>一个区域到另一个区域的路径可以分为区域到中转站和中转站到中转站两部分，区域到中转站的情况可以只计算到左右两边最近的中转站，所以容易计算。</p>
 <p>我们按照右端点顺序激活中转站，问题就是要最小化左端点。</p>
 <p>两个中转站只能通过同一条线连接，把最低点也看成中转站，所以可以认为从一个中转站到另一个的代价为两者所在区域编号的较小值。</p>
 <p>中转站到中转站的距离可以 <code>Floyd</code> 暴力，我们就已经计算出了每对中转站点相互抵达的代价，所以二分都不需要了，我们可以直接用这个代价计算出最终答案。</p>
 <h4 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h4><p><code>Floyd</code> 的时候，因为加入的中转站并不是按下标顺序，所以需要整个跑一遍。</p>
-<h2 id="20220211"><a href="#20220211" class="headerlink" title="20220211"></a>20220211</h2><h3 id="20220211-测试-T1"><a href="#20220211-测试-T1" class="headerlink" title="20220211 测试 T1"></a>20220211 测试 T1</h3><h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a><a target="_blank" rel="noopener" href="https://cwoi.com.cn/contest/C18/problem/A">题意</a></h4><h4 id="思考-1"><a href="#思考-1" class="headerlink" title="思考"></a>思考</h4><p>这道题算是考场上想出来的，考场上摸了一会儿鱼，发现有个地方假了的时候只剩 $5min$ 了，所以紧急修复成了$50pts$，实际上不管直接交有 $80pts$。</p>
+<h2 id="20220211"><a href="#20220211" class="headerlink" title="20220211"></a>20220211</h2><h3 id="20220211-测试-T1"><a href="#20220211-测试-T1" class="headerlink" title="20220211 测试 T1"></a>20220211 测试 T1</h3><h4 id="题意"><a href="#题意" class="headerlink" title="题意"></a><a target="_blank" rel="noopener" href="https://https://local.cwoi.com.cn:8443//contest/C18/problem/A">题意</a></h4><h4 id="思考-1"><a href="#思考-1" class="headerlink" title="思考"></a>思考</h4><p>这道题算是考场上想出来的，考场上摸了一会儿鱼，发现有个地方假了的时候只剩 $5min$ 了，所以紧急修复成了$50pts$，实际上不管直接交有 $80pts$。</p>
 <p>先把最上面那些没有的行删掉。</p>
 <p>考虑每一行的可能性，只有穿过和不穿过两种，穿过又可以分为去的时候穿过和回的时候穿过。</p>
 <p>来的时候穿过，回的时候一定不会穿过，因为一定不优，于是三进制枚举穿过状态，大的路径框架已经被构建出来了，现在要考虑经过那些没有穿过的点。</p>
@@ -314,7 +320,7 @@
 <p>所以把大的路径画出来后，记录每一个边缘位置是否到达过，还要自下而上 $dp$ 一遍求出经过所有未经过的点的最小代价。</p>
 <p>提供一种思路，设 $dp[i][j][k]$ 表示到第 $i$ 行，左右最前面的可以已经经过的点为 $j,k$ 的最小代价，转移的时候看 $j,k$ 是否大于 $i$ 或者 $i$ 的两端是否已经经过，如果可行，就选经过一行三种方案的最小值，如果不行，因为一定有一边已经经过，所以只考虑另一边是否补全和从经过的点走一遍再回来的情况，补全的方案有两种，从上面和从下面，直接转移即可。</p>
 <p>时间复杂度 $O(n^3 * 3^n)$，实际上剪枝后跑的飞快，$10ms$ 就跑完了。</p>
-<h2 id="20220212"><a href="#20220212" class="headerlink" title="20220212"></a>20220212</h2><h3 id="20220212测试T2"><a href="#20220212测试T2" class="headerlink" title="20220212测试T2"></a>20220212测试T2</h3><h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a><a target="_blank" rel="noopener" href="https://cwoi.com.cn/contest/C18/problem/B">题意</a></h4><h4 id="思考-2"><a href="#思考-2" class="headerlink" title="思考:"></a>思考:</h4><p>考虑直接 $dp$ 转移，设 $dp[i][j][k][0/1]$ 表示考虑前 $i$ 个数， 正色子已经用了 $j$ 个，反色子已经用了 $k$ 个，是否已经赢了的方案数，直接转移是 $O(n^4 * t)$ 的，可以拿到 $20pts$ 的好成绩。</p>
+<h2 id="20220212"><a href="#20220212" class="headerlink" title="20220212"></a>20220212</h2><h3 id="20220212测试T2"><a href="#20220212测试T2" class="headerlink" title="20220212测试T2"></a>20220212测试T2</h3><h4 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a><a target="_blank" rel="noopener" href="https://https://local.cwoi.com.cn:8443//contest/C18/problem/B">题意</a></h4><h4 id="思考-2"><a href="#思考-2" class="headerlink" title="思考:"></a>思考:</h4><p>考虑直接 $dp$ 转移，设 $dp[i][j][k][0/1]$ 表示考虑前 $i$ 个数， 正色子已经用了 $j$ 个，反色子已经用了 $k$ 个，是否已经赢了的方案数，直接转移是 $O(n^4 * t)$ 的，可以拿到 $20pts$ 的好成绩。</p>
 <p>考虑优化，转移式子是：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i1=<span class="number">0</span>;i1&lt;=n;i1++)</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i2=<span class="number">0</span>;i2&lt;=m;i2++)</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j1=<span class="number">0</span>;j1&lt;=i1;j1++)</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j2=<span class="number">0</span>;j2&lt;=i2;j2++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;=t&amp;&amp;i1-j1&gt;i2-j2)</span><br><span class="line">    <span class="built_in">Inc</span>(dp[i][i1][i2][<span class="number">1</span>],<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][j2][<span class="number">0</span>]*C[n-j1][i1-j1]%mod*C[m-j2][i2-j2]%mod);</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">    <span class="built_in">Inc</span>(dp[i][i1][i2][<span class="number">0</span>],<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][j2][<span class="number">0</span>]*C[n-j1][i1-j1]%mod*C[m-j2][i2-j2]%mod);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">Inc</span>(dp[i][i1][i2][<span class="number">1</span>],<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][j2][<span class="number">1</span>]*C[n-j1][i1-j1]%mod*C[m-j2][i2-j2]%mod);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>转移目标</p>
@@ -342,7 +348,7 @@
 <p>我们发现实际上复杂度的瓶颈在数组寻址和取模，考虑优化其中之一，被寻址的数组经过循环变量的调整已经相当连续了，我们考虑优化取模。</p>
 <p>用 <code>long long</code> 存 $dp$，每 $8$ 次加法取一次模，可以通过本题。</p>
 <p>一个很常见的，在取模运算较多时的优化技巧。</p>
-<h3 id="20220211-测试T3"><a href="#20220211-测试T3" class="headerlink" title="20220211 测试T3"></a>20220211 测试T3</h3><h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a><a target="_blank" rel="noopener" href="https://cwoi.com.cn/contest/C18/problem/C">题意</a></h4><h4 id="思考：-2"><a href="#思考：-2" class="headerlink" title="思考："></a>思考：</h4><p>这道题暴力思路无非就二进制枚举和容斥。正解的做法很神仙。</p>
+<h3 id="20220211-测试T3"><a href="#20220211-测试T3" class="headerlink" title="20220211 测试T3"></a>20220211 测试T3</h3><h4 id="题意-2"><a href="#题意-2" class="headerlink" title="题意"></a><a target="_blank" rel="noopener" href="https://https://local.cwoi.com.cn:8443//contest/C18/problem/C">题意</a></h4><h4 id="思考：-2"><a href="#思考：-2" class="headerlink" title="思考："></a>思考：</h4><p>这道题暴力思路无非就二进制枚举和容斥。正解的做法很神仙。</p>
 <p>在这种 $\text{NP}$ 问题中，我们完全可以考虑将枚举的部分减少，这道题的思路是对稀疏图删点变为森林，然后二进制枚举一些删掉的点的状况再进行树形 $dp$，着实是一个很有启发性的思路。</p>
 <h2 id="20220212-1"><a href="#20220212-1" class="headerlink" title="20220212"></a>20220212</h2><h3 id="CF1637F"><a href="#CF1637F" class="headerlink" title="CF1637F"></a>CF1637F</h3><h4 id="思考-3"><a href="#思考-3" class="headerlink" title="思考:"></a>思考:</h4><p>对于这种条件为最小值的覆盖问题，我们不妨考虑最大的那个点是如何被覆盖的，首先有一个结论是只会在叶子有基站，证明简单，略去。然后考虑最大的那个点是如何被覆盖的，把它看作根，一定来源于它不同儿子的两个叶子，所以我们考虑其它点的时候一定可以认为这个根上的值为 $\text{INF}$ ，理由不多说了。所以每个点 $u$ 的包含的叶子至少有一个最大值为 $h_u$，贪心即可，最后决策最大值的点应该放在哪里，同样的贪心。</p>
 <p>实现较为简单，没什么说的。</p>
@@ -500,7 +506,7 @@ f(k) = \sum_{i=k}^{n-1}C(i,k) \times g(i)</script><p>这个很好理解，枚举
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

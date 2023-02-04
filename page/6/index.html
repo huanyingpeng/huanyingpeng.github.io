@@ -211,6 +211,80 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20220927%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20220927%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20220927测试总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-27 19:21:05 / 修改时间：21:21:21" itemprop="dateCreated datePublished" datetime="2022-09-27T19:21:05+08:00">2022-09-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="0927考试总结"><a href="#0927考试总结" class="headerlink" title="0927考试总结"></a>0927考试总结</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0126">考试</a></p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>题意超级钢琴。</p>
+<p>真的是非常经典的题目了，可以说是开创了处理同一个问题 $1-k$ 优解的先河。</p>
+<p>将解空间拆分成二维，枚举其中一维，考虑第二维的选择并计算答案，用 <code>priority_queue</code> 选择最优答案，选择答案后将当前的第一维按第二维剩下的情况拆分。</p>
+<p>动态点分治也是一样的思路。</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>非常经典的题目，严格递增转不降是经典套路，最优解一定取到每个数值也是经典结论。</p>
+<p>本题保证数据随机，应该是需要利用随机序列单调上升子序列长度为 $O(\sqrt n)$ 的性质，但实际上可以 $O(n^2)$ 轻松通过。</p>
+<p>哦，应该是考虑补集转化，然后考虑哪些点固定，然后 $dp_i$ 表示第 $i$ 个点固定的最优代价，转移只能从能完成 <code>LIS</code> 转移的点转移过来，中间合法的条件是要么大于右边要么小于左边，根据经典结论一定可以调整成一段和左边相等，一段和右边相等，然后随机的情况下转移点个数 $O(1)$，长度 $O(\sqrt n)$，总复杂度 $O(n\log n+n\sqrt n)$。</p>
+<h4 id="简单证明经典结论"><a href="#简单证明经典结论" class="headerlink" title="简单证明经典结论"></a>简单证明经典结论</h4><p>假设有一种最优解包含了不是原有数的数。</p>
+<p>考虑第一个不是原有数的数，如果它被调大了，那么把它调小成上一个原有数一定更优。</p>
+<p>如果它被调小了，就把它调到第一个比调整后的数大的原有数的位置，如果因此导致后面若干个数小于它了，那么不难得知这些数现在都被夹在两个原有的数之间，而且都是从两个原有数区间的外面调整过来的。从左边第一个数开始，找和它相同的数，如果相同的数中，被调小的数较多，那么全部调到第一个和它不同的数，否则调回第一个原数，变成子问题。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>最大值最小显然二分。</p>
+<p>考虑一个划分合法的条件，发现只能在某些合法的位置断开，而且在这些位置是否断开不影响第一个条件的合法性。</p>
+<p>所以考虑对这些位置动态规划，直接转移是 $O(n^2)$ 的，然后考虑维护所有可能的转移，发现如果拿个单调栈记录 $a$，那么转移的改变可以描述为 $O(n)$ 次区间加，线段树维护即可。</p>
+<p><strong>一个数组，考虑每个前缀的后缀最大值，可以被描述为 $O(n)$ 次区间加。</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/26/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20220924%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -897,125 +971,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/30/%E5%AF%B9%E7%AB%9E%E8%B5%9B%E6%9C%89%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E5%85%B3%E4%BA%8EC++%E6%8F%90%E4%BE%9B%E7%9A%84%E5%AE%B9%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/30/%E5%AF%B9%E7%AB%9E%E8%B5%9B%E6%9C%89%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/%E5%85%B3%E4%BA%8EC++%E6%8F%90%E4%BE%9B%E7%9A%84%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">C++ 容器</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-08-30 09:19:43" itemprop="dateCreated datePublished" datetime="2022-08-30T09:19:43+08:00">2022-08-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-23 08:46:37" itemprop="dateModified" datetime="2022-11-23T08:46:37+08:00">2022-11-23</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="标准库"><a href="#标准库" class="headerlink" title="标准库"></a>标准库</h2><ul>
-<li>STL 内的所有基于比较的容器，都需要定义一个满足<strong>严格弱序</strong>的比较符号 <code>&lt;</code>，要求如下：<ul>
-<li>满足传递性：$a&lt;b,b&lt;c\rightarrow a&lt;c$</li>
-<li>不能同时满足 $a&lt;b$ 且 $b&lt;a$</li>
-<li>如果 <code>!(a&lt;b)&amp;&amp;!(b&lt;a)</code> 那么 <code>a=b</code></li>
-</ul>
-</li>
-<li>除开 <code>array</code> 之外的所有 <code>STL</code> 容器，定义时都会初始化，即初始化为空或者(全为 <code>0</code>，对于 <code>bitset</code>)。</li>
-<li>基于比较的容器，需要定义<strong>友元类型的大小比较符号</strong>，因为实现的时候使用了右值做比较。</li>
-</ul>
-<h3 id="priority-queue"><a href="#priority-queue" class="headerlink" title="priority_queue"></a>priority_queue</h3><p>默认是大根堆，跑得很快，1 秒 $3\times 10^6$</p>
-<p>如果需要实现可以删除的优先队列，<strong>必须保证每次删除时对应元素存在</strong>。 </p>
-<p>构造方式 <code>priority_queue&lt;type,container,cmp&gt;</code>，<code>container</code> 是实现 <code>priority_queue</code> 的容器，一般用 <code>vector</code>，<code>cmp</code> 是比较算子（因此它是一个类名）。</p>
-<p>通过 <code>greater&lt;typename&gt;</code> 可以用重载的 <code>&gt;</code> 构造出一个大于算子。</p>
-<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>本质上是 <code>set&lt;pair&lt;T1,T2&gt;&gt;</code>，见 <code>set</code>。</p>
-<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><h4 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h4><p>可以插入一段区间，支持数组，同类型的 <code>set vector</code> 容器。</p>
-<p>开 O2，$1$ 秒 $1.5\times 10^6$ 次操作。</p>
-<p>如果接下来的一段插入有序，开 O2，$1$ 秒 $4.5\times 10^6$ 次，所以尽量排序后再插入。</p>
-<h4 id="erase"><a href="#erase" class="headerlink" title="erase"></a>erase</h4><p>开 O2，$1$ 秒 $1.5\times 10^6$ 次操作。</p>
-<p>如果接下来的一段插入有序，开 O2，$1$ 秒 $4.5\times 10^6$ 次。</p>
-<h4 id="迭代器操作"><a href="#迭代器操作" class="headerlink" title="迭代器操作"></a>迭代器操作</h4><p>开 O2，$1$ 秒 $10^7$。</p>
-<h4 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> v:st)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> it=st.<span class="built_in">begin</span>();it!=st.<span class="built_in">end</span>();it++)</span><br></pre></td></tr></table></figure>
-<p>以上两种均为 $O(n\log n)$</p>
-<p>开 O2，$1$ 秒 $10^7$ 次操作。</p>
-<h3 id="unordered-set"><a href="#unordered-set" class="headerlink" title="unordered_set"></a>unordered_set</h3><p>基础操作相比 <code>set</code> 快 $2$ 倍。</p>
-<p>有序操作和 <code>set</code> 效率差不多。</p>
-<h3 id="unoedered-map"><a href="#unoedered-map" class="headerlink" title="unoedered_map"></a>unoedered_map</h3><p>本质上是 <code>unordered_set&lt;pair&lt;T1,T2&gt;&gt;</code>。</p>
-<h3 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h3><p>比较理想的一个容器。</p>
-<h4 id="push-back"><a href="#push-back" class="headerlink" title="push_back()"></a>push_back()</h4><p>一个 <code>vector</code> 做 <code>push_back</code> 需要 <code>log</code> 次 <code>new</code>，而 <code>new</code> 操作一般只能接受 $2\times 10^7$ 次，所以尽量避免用太多 <code>vector</code>，如果能事先确定容器的 <code>capacity</code>，最好用 <code>resize</code></p>
-<h4 id="iterator-insert-iterator-val"><a href="#iterator-insert-iterator-val" class="headerlink" title="iterator insert(iterator,val)"></a>iterator insert(iterator,val)</h4><p>将 <code>val</code> 插入 <code>iterator</code> 位置，原 <code>iterator</code> 位置往后移动。</p>
-<p>复杂度 $O(n)$，但是跑得飞快。</p>
-<h4 id="iterator-erase-iterator"><a href="#iterator-erase-iterator" class="headerlink" title="iterator erase(iterator)"></a>iterator erase(iterator)</h4><p>删除 <code>iterator</code> 位置的值，返回原容器(删除前)下一个位置的 <code>iterator</code>。 </p>
-<h4 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h4><p>这东西的迭代器本质上是个指针，但是不能和指针做强转，<strong>所以 <code>iterator</code> 在被 <code>erase</code> 后会指向错误的数据，不同于 <code>set</code> 这一类基于 <code>RBT</code> 的容器</strong>。</p>
-<h4 id="内存过程"><a href="#内存过程" class="headerlink" title="内存过程"></a>内存过程</h4><p>调用析构函数之前，<code>vector</code> 的内存不可能被释放，<code>push_back</code> 或者 <code>resize</code> 如果导致了内存改变，<strong>会开辟一块新的内存并将原有数据全部拷贝过去，保证内存地址的连续，同时原有迭代器全部失效。</strong></p>
-<p><strong>vector 所有的 $O(n)$ 操作都很快</strong>，如果题目性质决定了很可能 $O(n^2)$ 卡不满，那么 <code>vector</code> 可以得到很高的分数。</p>
-<h2 id="拓展库"><a href="#拓展库" class="headerlink" title="拓展库"></a>拓展库</h2><p>一个 <code>C++</code> 拓展库，<code>STL</code> 升级版，<code>C++11</code> 特性。</p>
-<h3 id="gp-hash-table"><a href="#gp-hash-table" class="headerlink" title="gp_hash_table"></a>gp_hash_table</h3><h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>如名称，哈希表，比 <code>unordered_map</code> 快 <code>3~4</code> 倍，用法完全一样，你值得拥有。</p>
-<p>效率 1S 能做 4e7 次基本操作</p>
-<p>在 <code>ext/pb_ds/assoc_container.hpp</code> 中。</p>
-<p>如果对非标准结构，例如类和 <code>pair</code> ，容器等，需要自己写哈希方法，哈希方式为一个类，重载了 <code>()</code> 运算，该重载必须被声明为常函数，且参数必须为常值引用。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ext/pb_ds/assoc_container.hpp&gt;</span></span></span><br><span class="line">__gnu_pbds:: gp_hash_table &lt;<span class="type">int</span>,<span class="type">int</span>,hash_fun&gt; mp;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">	<span class="type">int</span> a,b;</span><br><span class="line">	<span class="keyword">friend</span> <span class="type">bool</span> <span class="keyword">operator</span> ==(<span class="type">const</span> node &amp;x,<span class="type">const</span> node &amp;y)&#123;</span><br><span class="line">		<span class="keyword">return</span> x.a==y.a;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">hash_fun</span>&#123;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span><span class="params">(<span class="type">const</span> node &amp;a)</span> <span class="type">const</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> a.a;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">__gnu_pbds:: gp_hash_table&lt;node,<span class="type">int</span>,hash_fun&gt; mp;</span><br><span class="line">mp.<span class="built_in">insert</span>(<span class="built_in">make_pair</span>(<span class="number">1</span>,<span class="number">2</span>));</span><br><span class="line">mp[<span class="number">2</span>]=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">if</span>(mp.<span class="built_in">find</span>(<span class="number">2</span>) != mp.<span class="built_in">end</span>())&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,mp.<span class="built_in">find</span>(<span class="number">2</span>)-&gt;second);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Tests"><a href="#Tests" class="headerlink" title="Tests:"></a>Tests:</h4><p>这里只放关键部分，其余实现见<a href="huanyp.cn/codes/Tests/hash_table/cmp.cpp">代码</a></p>
-<p>测试环境为 Windows10，CPU 型号为 Inter I7-9750H，内存 16GB， 2667Mhz</p>
-<p>命中率对速度影响：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">gen_data</span>(<span class="number">1e6</span>,<span class="number">4e7</span>,<span class="number">8</span>,<span class="number">7</span>);<span class="comment">//hit rate:87.5%</span></span><br><span class="line">gp.<span class="built_in">clear</span>();um.<span class="built_in">clear</span>();</span><br><span class="line"><span class="built_in">Test_Speed</span>(gp);<span class="comment">//878ms</span></span><br><span class="line"><span class="built_in">Test_Speed</span>(um);<span class="comment">//3107ms</span></span><br><span class="line"><span class="built_in">gen_data</span>(<span class="number">1e6</span>,<span class="number">4e7</span>,<span class="number">8</span>);<span class="comment">//hit rate:12.5%</span></span><br><span class="line">gp.<span class="built_in">clear</span>();um.<span class="built_in">clear</span>();</span><br><span class="line"><span class="built_in">Test_Speed</span>(gp);<span class="comment">//1351ms</span></span><br><span class="line"><span class="built_in">Test_Speed</span>(um);<span class="comment">//4168ms</span></span><br></pre></td></tr></table></figure>
-<p>插入和查询次数调整：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">gen_data</span>(<span class="number">2e6</span>,<span class="number">4e7</span>,<span class="number">4</span>,<span class="number">1</span>); <span class="comment">//插入 2e6</span></span><br><span class="line">gp.<span class="built_in">clear</span>();um.<span class="built_in">clear</span>();</span><br><span class="line"><span class="built_in">Test_Speed</span>(gp);<span class="comment">//1475</span></span><br><span class="line"><span class="built_in">Test_Speed</span>(um);<span class="comment">//4728</span></span><br><span class="line"><span class="built_in">gen_data</span>(<span class="number">5e6</span>,<span class="number">4e7</span>,<span class="number">4</span>,<span class="number">1</span>);</span><br><span class="line">gp.<span class="built_in">clear</span>();um.<span class="built_in">clear</span>();</span><br><span class="line"><span class="built_in">Test_Speed</span>(gp);<span class="comment">//1445</span></span><br><span class="line"><span class="built_in">Test_Speed</span>(um);<span class="comment">//5038</span></span><br><span class="line"><span class="built_in">gen_data</span>(<span class="number">1e7</span>,<span class="number">4e7</span>,<span class="number">4</span>,<span class="number">1</span>);</span><br><span class="line">gp.<span class="built_in">clear</span>();um.<span class="built_in">clear</span>();</span><br><span class="line"><span class="built_in">Test_Speed</span>(gp);<span class="comment">//1877</span></span><br><span class="line"><span class="built_in">Test_Speed</span>(um);<span class="comment">//6128</span></span><br></pre></td></tr></table></figure>
-<p>插入很多，查询很少。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">gen_data</span>(<span class="number">2e7</span>,<span class="number">4e6</span>,<span class="number">50</span>,<span class="number">1</span>);</span><br><span class="line">gp.<span class="built_in">clear</span>();um.<span class="built_in">clear</span>();</span><br><span class="line"><span class="built_in">Test_Speed</span>(gp);<span class="comment">//1690</span></span><br><span class="line"><span class="built_in">Test_Speed</span>(um);<span class="comment">//8383</span></span><br></pre></td></tr></table></figure>
-<p>其实插入操作比较慢是正常的，内存占用大了之后自然就慢了。</p>
-<p>另外，手写哈希表探测法还有救，拉链法直接抬走（你写代码的时候考虑过 CPU cache 的感受吗？）。</p>
-<p>插入较少且全部在查询前面 <code>cc_hash_table</code> 的效率优于  <code>gp_hash_table</code>。</p>
-<h3 id="Tree"><a href="#Tree" class="headerlink" title="Tree"></a>Tree</h3><p>虽然有这个东西，但是还是应该学习如何写平衡树。</p>
-<p>效率还可以，开 O2 和以前手写差不多，估计现在手写的会快一些，不过问题不大。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1087,7 +1042,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">94</span>
+          <span class="site-state-item-count">95</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
