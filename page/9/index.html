@@ -1217,7 +1217,7 @@ f(k) = \sum_{i=k}^{n-1}C(i,k) \times g(i)</script><p>这个很好理解，枚举
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-07 09:25:36" itemprop="dateModified" datetime="2022-10-07T09:25:36+08:00">2022-10-07</time>
+                <time title="修改时间：2023-02-04 14:55:06" itemprop="dateModified" datetime="2023-02-04T14:55:06+08:00">2023-02-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1245,7 +1245,7 @@ f(k) = \sum_{i=k}^{n-1}C(i,k) \times g(i)</script><p>这个很好理解，枚举
 
       
           <h3 id="简单事实"><a href="#简单事实" class="headerlink" title="简单事实"></a>简单事实</h3><ol>
-<li>$\gcd(a,x_1)=1,\gcd(a,x_2)=1 \leftrightarrow \gcd(a,x_1x_2)$</li>
+<li>$\gcd(a,x_1)=1,\gcd(a,x_2)=1 \iff \gcd(a,x_1x_2)$</li>
 <li>若 $n\ |\ m$ 则 $\phi(n)\ |\ \phi(m)$</li>
 <li>若 $\gcd(a,p)=1$,则 $ax,x \in [1,p]$ 模 $p$ 意义下互不相同，反之亦然。</li>
 </ol>
@@ -1275,17 +1275,17 @@ f(k) = \sum_{i=k}^{n-1}C(i,k) \times g(i)</script><p>这个很好理解，枚举
 <p>递归证明构造式子，得到边界证明 $\exist \ x,y$ 使得 $\gcd(a,b)x + 0 \times y =\gcd(a,b)$</p>
 <p>令 $x=1,y=0$</p>
 <h3 id="欧拉函数是积性函数"><a href="#欧拉函数是积性函数" class="headerlink" title="欧拉函数是积性函数"></a>欧拉函数是积性函数</h3><p> 即证明若 $\gcd(n,m) =1,$ 则  $\phi(n<em>m) = \phi(n) </em>\phi(m)$</p>
-<p>考虑若干个同余方程组 </p>
+<h4 id="证明一"><a href="#证明一" class="headerlink" title="证明一"></a>证明一</h4><p>考虑若干个同余方程组 </p>
 <script type="math/tex; mode=display">
 x ≡ r_1 \pmod n\\
 x ≡ r_2 \pmod m\\</script><p>列出 $n,m,nm$ 意义下的最小缩系 $S_n,S_m,T$</p>
 <p>容易证明 $\forall\ r_1\in S_n, r_2 \in S_m$，存在唯一 $x \in [1,nm]$ 是上同余方程组的解，且 $x \in T$。</p>
-<p>存在唯一就是 $EXCRT$， $x\in T$ 由事实 1 显然。</p>
+<p>存在唯一就是 EXCRT， $x\in T$ 由事实 1 显然。</p>
 <p>故 $\phi(n<em>m) \ge \phi(n) </em>\phi(m)$</p>
 <p>再证明 $\forall\ x\in T$，可以对应一个以上同余方程组的解，假设不对应，那么它一定与 $n,m$ 中的一个不互质，由事实 1 推出矛盾。</p>
 <p>故 $\phi(n<em>m) \le \phi(n) </em>\phi(m)$</p>
 <p>证毕。</p>
-<h3 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h3><h4 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h4><script type="math/tex; mode=display">
+<h4 id="证明二"><a href="#证明二" class="headerlink" title="证明二"></a>证明二</h4><h3 id="欧拉定理"><a href="#欧拉定理" class="headerlink" title="欧拉定理"></a>欧拉定理</h3><h4 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h4><script type="math/tex; mode=display">
 \Large 若 \ \gcd(a,m)= 1 ,\ 则\  a^{\phi(m)}≡1\mod m</script><h4 id="证明-1"><a href="#证明-1" class="headerlink" title="证明"></a>证明</h4><p>考虑模 $m$ 意义下的最小缩系，即最小完全剩余系删去与 $m$ 不互质的元素后的剩余系，记为 $S$。</p>
 <p>构造 $T = \{ax,x \in S\}$</p>
 <p>可以证明 $T=S$， 若 $\exist\ x_1,x_2$ 使得 $x_1\neq x_2$ 且 $ax_1 ≡ ax_2 \pmod m$ ，因为 $\gcd(a,m)=1$</p>
@@ -1305,6 +1305,24 @@ x ≡ r_2 \pmod m\\</script><p>列出 $n,m,nm$ 意义下的最小缩系 $S_n,S_m
 <h3 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h3><p>咕咕咕</p>
 <h3 id="平面图欧拉定理"><a href="#平面图欧拉定理" class="headerlink" title="平面图欧拉定理"></a>平面图欧拉定理</h3><p>顶点数-边数-连通块数+区域数=1</p>
 <h3 id="几何体欧拉定理"><a href="#几何体欧拉定理" class="headerlink" title="几何体欧拉定理"></a>几何体欧拉定理</h3><p>顶点数-边数+面数=2</p>
+<h3 id="除法下取整相关："><a href="#除法下取整相关：" class="headerlink" title="除法下取整相关："></a>除法下取整相关：</h3><ol>
+<li><p>$\lfloor\frac{a}{b}\rfloor\ge x\iff b\le \lfloor\frac{a}{x}\rfloor$ </p>
+<ul>
+<li>含义：$b=\lfloor\frac{a}{x}\rfloor$ 是满足 $\lfloor\frac{a}{b}\rfloor\ge x$ 的最大的 $b$。</li>
+</ul>
+</li>
+<li><p>$\lfloor\frac{a}{b}\rfloor&lt; x \iff b&gt;\lfloor\frac{a}{x}\rfloor$</p>
+<ul>
+<li>上面那个反过来。</li>
+</ul>
+</li>
+</ol>
+<h3 id="余数相关"><a href="#余数相关" class="headerlink" title="余数相关"></a>余数相关</h3><ol>
+<li>若 $\gcd(x,y)=1,k\in[0,y)$，则 $kx\pmod y$ 互不相同。<ul>
+<li>证明反证法，移到同一边然后是倍数。</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
