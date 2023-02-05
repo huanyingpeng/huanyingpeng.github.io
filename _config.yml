@@ -117,10 +117,10 @@ markdown:
     - hexo-math
 
 search:
-  path: search.xml
-  field: post
+  path: content.json
+  field: all
   format: html
-  limit: 10000
+  limit: 1000000
   
 sitemap:
   path: sitemap.xml

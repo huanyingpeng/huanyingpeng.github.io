@@ -24,3 +24,40 @@ categories:
 
 但是如果你乱改 `sys.path`，然后在 `__init__.py` 里直接用 `import xxx` 引入，然后再在外面乱引入，就有可能被引入多次。
 
+### 关于 Request 这一类网络请求函数
+
+Python 的 Requests 包对请求做了一些包装，但是 NodeJS的 Request 没有这种包装。
+
+因此可能会引发一些 403 问题（比如 Python 的 Requests 可以正常用但 NodeJS 的 Request 不行），可以输出一下它们的 headers 看看最终发出的请求长什么样子。
+
+这是 Python。
+
+```yaml
+{
+	'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 
+	'Accept-Encoding': 'gzip, deflate', 
+	'Accept': '*/*', 
+	'Connection': 'keep-alive'
+}
+```
+
+这是 JS。
+
+```yaml
+{
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
+}
+```
+
+headers:
+
+```yaml
+headers = {
+	'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36',
+}
+```
+
+nodejs 的 request 由于太过常用，已经被一些服务器加入了黑名单，方式是通过建立 https 时的一些 ciphers 来判别是否属于爬虫，容易发生 403。
+
+[参考资料](https://pixeljets.com/blog/bypass-cloudflare/)
+

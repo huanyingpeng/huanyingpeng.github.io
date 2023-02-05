@@ -1,7 +1,6 @@
 ---
 title: If we never met
 mathjax: true
-top: true
 date: 2022-11-05 21:36:36
 tags:
 categories:
