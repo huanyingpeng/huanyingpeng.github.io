@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"content.json"};
+  </script>
+
+  <meta name="description" content="ChatGPT-通用人工智能?Introduction今年一月份，openai 公司的人工智能应用 ChatGPT 的用户量突破 $10^8$，引起公众对人工智能技术的热烈讨论。而ChatGPT 是一个 LLG(Large Language model)，通过读取上文来猜测生成相关的文本。 在不少人看来，ChatGPT 已经是一个相对完善的人工智能，ChatGPT 的改进版本 GPT4.0，有望实">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ChatGPT-通用人工智能?">
+<meta property="og:url" content="http://huanyp.cn/2023/02/14/ChatGPT-%E9%80%9A%E7%94%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="ChatGPT-通用人工智能?Introduction今年一月份，openai 公司的人工智能应用 ChatGPT 的用户量突破 $10^8$，引起公众对人工智能技术的热烈讨论。而ChatGPT 是一个 LLG(Large Language model)，通过读取上文来猜测生成相关的文本。 在不少人看来，ChatGPT 已经是一个相对完善的人工智能，ChatGPT 的改进版本 GPT4.0，有望实">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/huan-yp/image_space/master/202302140747932.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/huan-yp/image_space/master/202302140754056.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/huan-yp/image_space/master/202302140803995.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/huan-yp/image_space/master/202302140804505.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/huan-yp/image_space/master/202302140943312.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/huan-yp/image_space/master/202302140944142.png">
+<meta property="article:published_time" content="2023-02-13T23:23:20.000Z">
+<meta property="article:modified_time" content="2023-02-14T03:29:48.955Z">
+<meta property="article:author" content="幻影彭">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/huan-yp/image_space/master/202302140747932.png">
+
+<link rel="canonical" href="http://huanyp.cn/2023/02/14/ChatGPT-%E9%80%9A%E7%94%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ChatGPT-通用人工智能? | 幻影彭的彩虹</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">幻影彭的彩虹</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-fw fa-link"></i>友链</a>
+
+  </li>
+        <li class="menu-item menu-item-novels">
+
+    <a href="/novels/" rel="section"><i class="fa fa-fw fa-fa-soild fa-book"></i>小说</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2023/02/14/ChatGPT-%E9%80%9A%E7%94%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ChatGPT-通用人工智能?
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-02-14 07:23:20 / 修改时间：11:29:48" itemprop="dateCreated datePublished" datetime="2023-02-14T07:23:20+08:00">2023-02-14</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="ChatGPT-通用人工智能"><a href="#ChatGPT-通用人工智能" class="headerlink" title="ChatGPT-通用人工智能?"></a>ChatGPT-通用人工智能?</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>今年一月份，openai 公司的人工智能应用 ChatGPT 的用户量突破 $10^8$，引起公众对人工智能技术的热烈讨论。而ChatGPT 是一个 LLG(Large Language model)，通过读取上文来猜测生成相关的文本。</p>
+<p>在不少人看来，ChatGPT 已经是一个相对完善的人工智能，ChatGPT 的改进版本 GPT4.0，有望实现真正意义上的通用型人工智能。</p>
+<p>本文将简单探讨 ChatGPT 的原理并做一些测试，对一些未来的可能做出推测。 </p>
+<h3 id="Principle-Analysis"><a href="#Principle-Analysis" class="headerlink" title="Principle Analysis"></a>Principle Analysis</h3><p>ChatGPT 的全称是 Chat General Prompt Transformer，中文翻译为 “对话通用引导转换器”。它使用了基于神经网络算法的深度学习技术。</p>
+<h4 id="General-Pinciple"><a href="#General-Pinciple" class="headerlink" title="General Pinciple"></a>General Pinciple</h4><p>ChatGPT 的基本工作方式是通过给定的上文（Prompt），根据自身训练的数据，来推测出一个合理的下文。自然的，用它续写文章是非常合理的事情。</p>
+<p>下面我们举一个用它聊天的例子。</p>
+<blockquote>
+<p><em>这是一段幻影彭一个人工智能的聊天记录：</em></p>
+<p><em>幻影彭：</em>你是人工智能吗?</p>
+<p><em>AI</em>：<strong>是的</strong></p>
+</blockquote>
+<p>除了 “是的” 之外，其它都是作为 Prompt 输入给上文猜下文的程序，然后 “AI:” 后面生成 “是的” 这个肯定回答是很合理的。而<strong>如果将斜体部分设置为用户不可见，那么给用户的感受就是一个聊天机器人。</strong></p>
+<p>总而言之，通过合理的场景设计，ChatGPT 能用一个基本的 “给上文猜下文” 的功能，实现我们想要的几乎所有功能。</p>
+<h4 id="Neural-Network"><a href="#Neural-Network" class="headerlink" title="Neural Network"></a>Neural Network</h4><p>上面提到了 ChatGPT 所有的人工智能功能都是通过”给定上文预测下文”的方式实现的，那么神经网络算法又是如何实现 “预测下文” 的呢？</p>
+<p>神经网络算法大约于 1940 年被提出，是模仿人类大脑得到的一项成果。单层的神经网络可以完成线性分类任务，多层神经网络通过隐藏层对输入向量的坐标空间进行变换，<strong>能够拟合任意连续函数</strong>。这里的函数定义域不局限于 一维的 $x$ 坐标，而可以是任意维的向量，值域同理。</p>
+<p><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202302140747932.png" alt="image-20230214074656806" style="zoom:50%;" /></p>
+<p>这是单个神经元的结构，其中 $w_1,w_2,w_3$ 是”树突”部分，$\sum$ 是”细胞核”，$b$ 可以视为”细胞核”的一部分，$f(x)$ 是”轴突”部分。神经元根据树突部分的输入，计算 $f(a_1w_1+a_2w_2+a_3w_3+b)$ 并输出。$f$ 函数一般取 Sigmoid 函数 $f(x)=\frac{1}{1+e^{-x}}$（这个函数就是高中生物里那个 “S” 型曲线的图像），或者 ReLU 函数 $f(x)=\max(0,x)$。前者是早期使用的一个非线性函数，后者(ReLU函数)是研究生物大脑神经元激励机制后提出的一个函数，大部分场景的效果要好于前者，这也体现了神经网络算法和生物大脑神经元结构的强相关性。</p>
+<p>整个神经网络的结构如下图：</p>
+<p><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202302140754056.png" alt="image-20230214075451013" style="zoom:33%;" /></p>
+<p>Hidden 和 Output 层的每一个神经元都如上图所示，Input 会向整个网络输入最初时的值。</p>
+<p>通过设置适当的 $w,b$ 参数，以及适当的神经元结构，这个系统能够<strong>很精确的预测一个函数的结果</strong>。那么通过预测函数结果怎么实现人工智能呢？</p>
+<p>举个简单的例子，我们希望有一个人工智能能够识别一个手写的数字，那么先把数字转化为 $24*24$ 大小的黑白图像。然后设计这样一个函数，它的参数一共有 $576$ 个，每一个参数是 $0$ 或 $1$，代表这个像素点是黑还是白，函数值是这个数字。如果神经网络能够精确的预测出这个函数的结果，那么它自然就实现了识别手写数字的功能。</p>
+<p>一个真正能够应用的神经网络可能会有上万的这样的神经元，每一层的神经元之间都是两两有连边，需要设计的 $w,b$ 参数太多了，不可能通过人类完成。<strong>神经网络算法的精髓就是通过数据的输入</strong>让程序自己去设定 $w,b$ 参数，这个过程就是所谓的”训练”。</p>
+<h3 id="Intelligence"><a href="#Intelligence" class="headerlink" title="Intelligence?"></a>Intelligence?</h3><p>在笔者看来，ChatGPT 不是真正意义上的通用人工智能，根据上面神经网络工作的原理，很容易设计出 ChatGPT 无法正确处理的问题。</p>
+<h4 id="Is-it-prime"><a href="#Is-it-prime" class="headerlink" title="Is it prime?"></a>Is it prime?</h4><p>神经网络的本质是通过复杂的线性坐标空间变换来拟合函数，我们只需要设计一个不容易拟合的函数就可以让神经网络罢工，比如判断一个数是否是质数。</p>
+<p><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202302140803995.png" alt="image-20230214080350954" style="zoom:50%;" /></p>
+<p><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202302140804505.png" alt="image-20230214080439466" style="zoom:50%;" /></p>
+<h4 id="Plus-And-Multiplication"><a href="#Plus-And-Multiplication" class="headerlink" title="Plus And Multiplication"></a>Plus And Multiplication</h4><p>ChatGPT 能很好的回答加法问题，但是无法处理乘法问题。</p>
+<p>笔者各自随机生成了 $5$ 个结果在 $[10^4,4\times 10^4]$ 以内的加法和乘法运算问题。ChatGPT 正确回答了全部的加法问题但错误回答了所有的乘法问题，错误的方式是再某一位错误，例如 <code>143 * 116 = 16588</code>，ChatGPT 的回答是 <code>16568</code>。</p>
+<p>我们从数学角度简单分析一下原因。以下是加法和乘法的函数图像：</p>
+<p><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202302140943312.png" alt="image-20230214094314285" style="zoom:50%;" /><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202302140944142.png" alt="image-20230214094425105" style="zoom: 50%;" /></p>
+<p>对于神经网络来说，越线性的图像，越容易被拟合，二元加法或者说是三元一次方程组 <code>a+b=c</code> 是完全的线性函数。而二元乘法通过线性拟合很难做到精确。</p>
+<p>至于上例中是否是质数的函数图像，它几乎不可能被神经网络拟合——它根本无法求导。</p>
+<h4 id="A-Child"><a href="#A-Child" class="headerlink" title="A Child"></a>A Child</h4><p>我们在讨论一个事物的”智能”时，到底什么才是我们的评判标准？我们真的关心它的本质是什么吗？</p>
+<p>实际上，<strong>我们只关心它是否能对我们的交互产生合理的回应</strong>。这也是 ChatGPT 如此 amazing 的原因。在很多问题上，ChatGPT 确实能做出很正确的回应，就像一个真正的人那样。</p>
+<p>假设 openai 只是雇佣了一大批员工来对我们的问题做出正确回应，在我们不知道这一点的情况下，仍然会对 openai 的先进”人工”智能技术感到不可思议。</p>
+<p>同样的，假设身边的某个同学的大脑实际上是一个机器，在不能切开他的脑袋看看的前提下，我们仍然认为这位同学是一个真正的”人”。</p>
+<p>笔者看来，通过对网络中海量数据的分类和学习，ChatGPT 表现出的逻辑能力可能与 6 到 7 岁的儿童相当。</p>
+<p>openai 宣布 ChatGPT 的下一代 GPT4.0 将会使用高达 $10^{14}$ 条数据进行训练。$600$ 倍于 ChatGPT 的训练数据能带来多大提升呢？笔者持悲观的态度——不会有本质性的飞跃。神经网络框架的人工智能数据量需求关于智能程度的函数增长很可能是超越指数函数的。</p>
+<h3 id="What’s-the-future"><a href="#What’s-the-future" class="headerlink" title="What’s the future?"></a>What’s the future?</h3><p>基于神经网络的人工智能确实存在着无法逾越的限制，笔者不看好神经网络在通用人工智能上的表现，但它们仍然可以在特定领域发挥重要作用，并与其他方法相结合，创造更先进、更强大的人工智能系统。</p>
+<p>举例来说，在判断质数的问题上，ChatGPT 明显能认识到问题是什么，只要有人为它提供一个调用外部代码的功能，它就可以正确的做出回应。</p>
+<p>因此这种人工智能<strong>很大程度上无法做到脱离人类。必须要有人为它写成一个判断质数的代码，它才有可能去处理自然语言的询问并调用对应代码</strong>。</p>
+<p>距离 ChatGPT 发布还只过去了 3 个多月，它的设计者可能还没有准备好 “判断质数的函数”，当这个 “判断质数的函数” 被写好时，ChatGPT 可能可以通过外部调用这个函数来完成 “判断质数”。我们也会看到一个更加强大的人工智能。但这并不代表它具备了通用人工智能的能力。</p>
+<p>但是，我们需要的不是被定义的 “通用人工智能”，而是一个能够解决实际需求的工具，ChatGPT 对自然语言优秀的处理能力会带来一个契机，一个像互联网一样改变我们生活方式的契机。</p>
+<h3 id="Bonds"><a href="#Bonds" class="headerlink" title="Bonds"></a>Bonds</h3><ul>
+<li>本文约 20% 的内容使用 ChatGPT 生成。</li>
+<li>ChatGPT 的网址是 <code>chat.openai.com</code>，访问需要科学上网。</li>
+<li>本文有电子版本，电子版本有更多受限于纸张无法展示的内容 <code>huanyp.cn/chatgpt</code>。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>幻影彭
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://huanyp.cn/2023/02/14/ChatGPT-%E9%80%9A%E7%94%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" title="ChatGPT-通用人工智能?">http://huanyp.cn/2023/02/14/ChatGPT-通用人工智能/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN.yml" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/02/13/ctf%E5%AD%A6%E4%B9%A0/" rel="prev" title="ctf学习">
+      <i class="fa fa-chevron-left"></i> ctf学习
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ChatGPT-%E9%80%9A%E7%94%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">ChatGPT-通用人工智能?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Principle-Analysis"><span class="nav-number">1.2.</span> <span class="nav-text">Principle Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#General-Pinciple"><span class="nav-number">1.2.1.</span> <span class="nav-text">General Pinciple</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Neural-Network"><span class="nav-number">1.2.2.</span> <span class="nav-text">Neural Network</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intelligence"><span class="nav-number">1.3.</span> <span class="nav-text">Intelligence?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Is-it-prime"><span class="nav-number">1.3.1.</span> <span class="nav-text">Is it prime?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Plus-And-Multiplication"><span class="nav-number">1.3.2.</span> <span class="nav-text">Plus And Multiplication</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#A-Child"><span class="nav-number">1.3.3.</span> <span class="nav-text">A Child</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What%E2%80%99s-the-future"><span class="nav-number">1.4.</span> <span class="nav-text">What’s the future?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bonds"><span class="nav-number">1.5.</span> <span class="nav-text">Bonds</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="幻影彭"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">幻影彭</p>
+  <div class="site-description" itemprop="description">幻影彭的个人博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN.yml" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+    <span class="author" itemprop="copyrightHolder" display=false></span>
+    <span class="author" itemprop="copyrightHolder" >huan_yp</span>
+</div>
+  <div class="powered-by">powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
