@@ -211,67 +211,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/05/%E6%9D%82%E9%A1%B9/%E5%B7%A5%E5%85%B7%E4%BB%A3%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/08/05/%E6%9D%82%E9%A1%B9/%E5%B7%A5%E5%85%B7%E4%BB%A3%E7%A0%81/" class="post-title-link" itemprop="url">工具代码</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-08-05 11:26:13 / 修改时间：11:32:00" itemprop="dateCreated datePublished" datetime="2022-08-05T11:26:13+08:00">2022-08-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="计时相关"><a href="#计时相关" class="headerlink" title="计时相关"></a>计时相关</h3><h4 id="纳秒级别时间戳"><a href="#纳秒级别时间戳" class="headerlink" title="纳秒级别时间戳"></a>纳秒级别时间戳</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">get_time</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">timespec</span> ts;</span><br><span class="line">    <span class="built_in">clock_gettime</span>(CLOCK_REALTIME,&amp;ts);</span><br><span class="line">	<span class="keyword">return</span> (ts.tv_sec*<span class="number">1000000000</span>+ts.tv_nsec);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="一些编译参数"><a href="#一些编译参数" class="headerlink" title="一些编译参数"></a>一些编译参数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(2)</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/05/%E5%B8%B8%E6%95%B0%E4%BC%98%E5%8C%96/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%BA%8C%E5%BC%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1155,7 +1094,7 @@ F(n)&=\sum_{i=1}^nf(i)\\
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/%E8%AF%84%E8%AE%B2/">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/%E8%AF%84%E8%AE%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -1169,7 +1108,7 @@ F(n)&=\sum_{i=1}^nf(i)\\
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/07/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/%E8%AF%84%E8%AE%B2/" class="post-title-link" itemprop="url">评讲</a>
+            <a href="/2022/07/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/%E8%AF%84%E8%AE%B2/" class="post-title-link" itemprop="url">评讲</a>
         </h2>
 
         <div class="post-meta">
@@ -1302,6 +1241,86 @@ F(n)&=\sum_{i=1}^nf(i)\\
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/25/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E6%A0%91%E5%BD%A2%E8%83%8C%E5%8C%85%E7%9A%84%E8%BE%83%E4%B8%A5%E8%B0%A8%E5%A4%8D%E6%9D%82%E5%BA%A6%E8%AF%81%E6%98%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/25/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E6%A0%91%E5%BD%A2%E8%83%8C%E5%8C%85%E7%9A%84%E8%BE%83%E4%B8%A5%E8%B0%A8%E5%A4%8D%E6%9D%82%E5%BA%A6%E8%AF%81%E6%98%8E/" class="post-title-link" itemprop="url">树形背包的较严谨复杂度证明</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-25 19:26:12 / 修改时间：19:26:39" itemprop="dateCreated datePublished" datetime="2022-07-25T19:26:12+08:00">2022-07-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="树形背包的比较严谨的复杂度证明"><a href="#树形背包的比较严谨的复杂度证明" class="headerlink" title="树形背包的比较严谨的复杂度证明"></a>树形背包的比较严谨的复杂度证明</h2><h3 id="转移方式"><a href="#转移方式" class="headerlink" title="转移方式"></a>转移方式</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> fa=<span class="number">0</span>)</span></span>&#123;</span><br><span class="line">	sz[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> v:e[u])&#123;</span><br><span class="line">		<span class="keyword">if</span>(v==fa)<span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">dfs</span>(v,u);sz[u]+=sz[v];</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="built_in">min</span>(k,sz[u]);i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">			<span class="keyword">for</span>(j=<span class="built_in">max</span>(<span class="number">0</span>,i-(sz[u]-sz[v]));j&lt;=i&amp;&amp;j&lt;=sz[v];j++)&#123;</span><br><span class="line">                <span class="comment">//O(trans) do something</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="证明，总复杂度为-O-n-2"><a href="#证明，总复杂度为-O-n-2" class="headerlink" title="证明，总复杂度为 $O(n^2)$"></a>证明，总复杂度为 $O(n^2)$</h3><p>证明 $n^2$ 直接忽略 $i$ 的循环和 $k$ 取 $\min$ 的操作。</p>
+<p>考虑在某个点合并子树的过程，本质上，如果把 $sz_u$ 看成当前子树内所有的点，我们的第一个循环是限制了<strong>合并后的总大小</strong>，第二个循环限制了已经合并的子树的大小，以及待合并的子树的大小。</p>
+<p>所以在一个点 $u$ 处，只有每一对以它为 LCA 的点对会贡献一次，其它点对均不贡献。</p>
+<p>所以总复杂度为点对数量 $O(n^2)$</p>
+<h3 id="证明，总复杂度为-O-trans-times-min-n-2-nk"><a href="#证明，总复杂度为-O-trans-times-min-n-2-nk" class="headerlink" title="证明，总复杂度为 $O(trans\times min(n^2,nk))$"></a>证明，总复杂度为 $O(trans\times min(n^2,nk))$</h3><p>$O(n^2)$ 的证明是老生常谈的事情了，考虑 $k\leq n$ 的情况，试证明总复杂度为 $O(nk)$</p>
+<p>考虑一对点在 LCA 处的贡献，</p>
+<p>考虑合并子树时的三种 case，小于 $k$ 向大于 $k$ 合并，大于 $k$ 向大于 $k$ 合并，小于 $k$ 向小于 $k$ 合并。</p>
+<p>我们分别说明三种情况的时间复杂度都是 $O(nk)$ 的。</p>
+<h4 id="Case1"><a href="#Case1" class="headerlink" title="Case1"></a>Case1</h4><p>小于合并到大于。</p>
+<p><strong>准确的说，是小于 $k$ 的子树合并之后，大小大于 $k$</strong></p>
+<p>考虑每一个点对这种情况的贡献，每个点显然只会参与一次过程，因为参与之后它所在的块的大小就大于 $k$ 了。</p>
+<p>总复杂度 $O(nk)$</p>
+<h4 id="Case2"><a href="#Case2" class="headerlink" title="Case2"></a>Case2</h4><p>大于合并到大于。</p>
+<p>考虑每一次合并，复杂度 $O(k^2)$，会永远失去一个大于 $k$ 的块。而我们最多会生成 $\frac{n}{k}$ 个大小大于 $k$ 的块，因为一个点至多参与一次生成新块的过程。</p>
+<p>总复杂度 $O(nk)$。</p>
+<h4 id="Case3"><a href="#Case3" class="headerlink" title="Case3"></a>Case3</h4><p>小于合并到小于，那么这种情况就只会发生于大小小于 $k$ 的子树内以及其父亲的子树间。<strong>如果一个点的父亲的大小也不超过 $k$，我们忽略它本身，直接在它的父亲处计算所有复杂度贡献</strong>。这样所有的复杂度分成两个部分，小于 $k$ 的子树内，以及其兄弟间（也就是在一棵很大的子树中，有几个比较小的儿子先合并了）。</p>
+<p>第一部分的复杂度显然是 $\leq nk$ 的（本质上是选了几个自身不超过 $k$，和不超过 $n$ 的变量求平方和，参考 $n^2$ 的证明）</p>
+<p>第二部分，每个点只会参与一次这个过程，因为参与一次之后它所在的块大小就大于 $k$ 了，所以这一部分的总复杂度也是 $O(nk)$ 的</p>
+<p>综上所述，树形背包的复杂度为 $O(nk)$。</p>
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>在上面的代码的边界做一些改动，哪些改动会让复杂度假掉。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1373,7 +1392,7 @@ F(n)&=\sum_{i=1}^nf(i)\\
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

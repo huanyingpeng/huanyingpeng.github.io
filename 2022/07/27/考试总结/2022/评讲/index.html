@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"huanyp.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"content.json"};
+  </script>
+
+  <meta name="description" content="T1签到题。 简单观察，发现最后的数为 $\sum_{i&#x3D;1}^{n}a_i\times\tbinom{n-1}{i-1} \pmod m$ 题目需要求出无关量，本质上是求系数为 $0$ 的项，即求 $\tbinom{n-i}{i-1} \equiv 0\pmod m$ 的 $i$。 因为 $m$ 不为质数，所以没法直接处理阶乘，但很容易给出一个递推的 $O(n^2)$ 做法。 注意到我们只关心">
+<meta property="og:type" content="article">
+<meta property="og:title" content="评讲">
+<meta property="og:url" content="http://huanyp.cn/2022/07/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/%E8%AF%84%E8%AE%B2/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="T1签到题。 简单观察，发现最后的数为 $\sum_{i&#x3D;1}^{n}a_i\times\tbinom{n-1}{i-1} \pmod m$ 题目需要求出无关量，本质上是求系数为 $0$ 的项，即求 $\tbinom{n-i}{i-1} \equiv 0\pmod m$ 的 $i$。 因为 $m$ 不为质数，所以没法直接处理阶乘，但很容易给出一个递推的 $O(n^2)$ 做法。 注意到我们只关心">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-27T13:29:18.000Z">
+<meta property="article:modified_time" content="2022-07-28T10:17:52.410Z">
+<meta property="article:author" content="幻影彭">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://huanyp.cn/2022/07/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/%E8%AF%84%E8%AE%B2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>评讲 | 幻影彭的彩虹</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'google-site-verification=6NUV0jHQ2o8rHJXT1WA33Hpfq4zF-dbkA1aJqBlSh5o');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">幻影彭的彩虹</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-links">
+
+    <a href="/links/" rel="section"><i class="fa fa-fw fa-link"></i>友链</a>
+
+  </li>
+        <li class="menu-item menu-item-novels">
+
+    <a href="/novels/" rel="section"><i class="fa fa-fw fa-fa-soild fa-book"></i>小说</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/%E8%AF%84%E8%AE%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          评讲
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-27 21:29:18" itemprop="dateCreated datePublished" datetime="2022-07-27T21:29:18+08:00">2022-07-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-28 18:17:52" itemprop="dateModified" datetime="2022-07-28T18:17:52+08:00">2022-07-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h2><p>签到题。</p>
+<p>简单观察，发现最后的数为 $\sum_{i=1}^{n}a_i\times\tbinom{n-1}{i-1} \pmod m$</p>
+<p>题目需要求出无关量，本质上是求系数为 $0$ 的项，即求 $\tbinom{n-i}{i-1} \equiv 0\pmod m$ 的 $i$。</p>
+<p>因为 $m$ 不为质数，所以没法直接处理阶乘，但很容易给出一个递推的 $O(n^2)$ 做法。</p>
+<p>注意到我们只关心 $\tbinom{n-i}{i-1}$ 是否为 $m$ 的倍数，$m$ 的质因子也比较少 $\leq 10$，所以我们可以直接记录每一个质因子的质数即可，这样就可以直接阶乘。</p>
+<h2 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h2><p>简单题。</p>
+<p>有个很重要的限制，一条边只能经过两次，说白了就是进入一棵子树之后，必须先确定叶节点有没有他的女朋友之后才能出去。</p>
+<p>所以就能设计出树形 DP，$dp[u][0/1]$，表示 $u$ 的子树是否有渡边女朋友，走完子树 $u$ 的期望。</p>
+<p>最终答案为 $dp[u][1]$。</p>
+<p>考虑转移，首先，有小弟把守的节点，$dp[u][0]=0$，因为渡边家兴只需要询问小弟就可以走完这棵子树。</p>
+<p>计算 $dp[u][0]$，就是 $\sum\limits_{v\in E(u)}dp[v][0]+2$，就是搜索完所有的儿子节点加上进入每个儿子节点的消耗。</p>
+<p>计算 $dp[u][1]$，本质上我们是要确定一个搜索子树的顺序，让期望搜索时间最小，考虑对于一个顺序 $p$，期望时间是多少，记 $v$ 子树中叶子个数为 $sz_v$，显然是</p>
+<script type="math/tex; mode=display">
+\Large\sum\limits_{i=1}^{k} dp[p_i][1]\times \frac{sz_{p_i}}{sz_u} + (dp[p_i][0]+2)\times\frac{\sum\limits_{j=i+1}^{k}sz_{p_j}}{sz_v}</script><p>即枚举所在子树，加上额外的搜索空子树的时间。</p>
+<p>我们可以证明，按照 $\frac{dp[v][0]+2}{sz_v}$ 升序排序后的顺序是最优的，具体证明参考国王游戏。</p>
+<h2 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h2><p>有些毒瘤的题。</p>
+<p>简单观察发现每个字符都和其上下的位置高度相关，将 <code>NOI</code> 划分为 9 个部分，三个字母均分为中间和两边三个部分，再加上两个空白部分共 <code>11</code> 部分，考虑 DP，设 $dp[i][s][l][r]$ 表示第 $i$ 列，状态为 $s$ ，上下为 $l,r$ 的最大值。</p>
+<p>其它的转移是简单的，我们着重强调 <code>N</code> 中间部分的转移。它转枚举了上一个上下端点 $l’,r’$，向 $l,r$ 转移，条件为 $l\le r’+1$，枚举当前的上端点 $l$，我们可以动态维护一个数组 $dp_max[i]$ 表示考虑所有 $r=i,l’\le l$。转移使用<strong>当前的 $l$ 对应的 $dp_max$ 数组</strong>的 $[1,r]$ 的  $\max$ 即可。</p>
+<p>这道题的思维难度甚至没有 T2 大。</p>
+<h2 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h2><p>思维题。</p>
+<p>找规律和暴力各有 10pts。</p>
+<h3 id="Solution1"><a href="#Solution1" class="headerlink" title="Solution1"></a>Solution1</h3><p>先把 BFS 序转化为 $1,2,\dots n$，然后再来考虑。</p>
+<p>因为要求平均高度，所以我们需要求出总高度和总个数，转化后一棵树的高度等于 $n$ 号节点的深度。</p>
+<p>现在考虑划分 $1-n$ 这个 BFS 序列。可以发现一个划分<strong>最多只能对应一棵树。</strong></p>
+<p>一个显然的必要条件是<strong>相同高度的元素在 DFS 序列中递增</strong>，另一个显然的必要条件是 DFS 序列中 $dep_{a_i}+1\ge dep_{a_{i+1}}$。</p>
+<p>事实上，这两个条件也是充分的。</p>
+<p>设 $dp[i][0/1]$ 表示考虑到 $i$，总数和总高度。转移检查哪些左端点可以转移即可，事实上，可以转移的左端点一定是一个区间，可以处理 $dp$ 数组的前缀和完成快速转移。</p>
+<p>判断转移区间和结论证明，留作思考，后文有 Details。</p>
+<p><strong>如果可能，尽量不要看 Details，自行思考</strong>。</p>
+<h3 id="Solution2"><a href="#Solution2" class="headerlink" title="Solution2"></a>Solution2</h3><p>考虑一个划分合法的必要条件，Solution1 中已经提到。</p>
+<p>考虑哪些位置可以划分，把一个间隔看成一个 01  变量，选择划分为 $1$，发现可以转化为一个这样的问题：</p>
+<p>你需要确定长度为 $n-1$ 的二进制串，有若干个限制。每个限制形如 </p>
+<ul>
+<li>$[l,r]$ 至多有一个 $1$。即：$dep_{a_i}+1\ge dep_{a_{i+1}}$ 转化而来的 $[a_i,a_{i+1})$</li>
+<li>$x$ 位置必须为 $1$ 。即：如果 $pos_i&gt;pos_{i+1}$，那么由于同高度在 $a$ 中的位置递增，则 $i$ 位置必须为 $1$。</li>
+</ul>
+<p>很容易设计出一个 $O(n^2)$ 的动态规划做法。</p>
+<p>观察第一个条件，如果 $a_{i+1}&gt;a_i$ 才会有第一个限制，如果 $a_i+1=a_{i+1}$，那么相当于这个限制不存在。</p>
+<p>否则，因为保证一定存在一棵合法的树，所以 $[a_i,a_{i+1}]$ 区间的 $pos$ 数组必须能够被划分为两个连续上升子序列。$a_i$ 又和 $a_{i+1}$ 紧紧挨在一起，那么得知必定会被划分，因为中间的某个数一定会冲突。我们很容易模拟得到被划分的位置，之后这个区间的所有数都不能再被划分。</p>
+<p>对于没有限制的位置，我们划分与不划分的方案数是相同的，因此对期望的贡献是 $0.5$。</p>
+<p>将所有位置的期望加起来就是答案。</p>
+<h3 id="Solution1-Details"><a href="#Solution1-Details" class="headerlink" title="Solution1 Details"></a>Solution1 Details</h3><h4 id="Transform"><a href="#Transform" class="headerlink" title="Transform"></a>Transform</h4><p>看看样例，发现从 $1-n$ 排列比较好想，所以考虑先把点做个变换，弄成 $1-n$，所以 $b$ 变成了 $1,2,3,\dots,n$。</p>
+<p>然后记 $u$ 的深度为 $dep_u$，发现 $\forall i\in[1,n),dep_i\le dep_{i+1}\le dep_i+1$。</p>
+<p>然后又发现，对于 BFS 序列为 $1,2,3,\dots n$ 的树，一个点遍历子节点的顺序一定是<strong>按编号从小到大遍历</strong>。</p>
+<p>所以，确定了每个点的深度和 DFS 序列。可以唯一确定一颗树。</p>
+<p>感性证明的话，确定深度之后把点画出来，画在一个二维平面上，深度相同的点在一层按编号从小到大排列，然后在 DFS 序列上走，如果下一个点深度更大，那肯定是往下连，如果深度不变或者更小，那一定是回去了一部分再往下走了一个，这样的逻辑可以唯一确定一棵树。</p>
+<p><strong>自上到下，自左到右遍历二维平面所有点的过程，就是 BFS 的过程</strong></p>
+<p><strong>请认真理解二维平面的含义。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/maxtir/solution-p1232">内含比较严格的证明</a></p>
+<p><strong>本质上，确定深度的过程就是划分 $b$ 序列的过程</strong></p>
+<h4 id="Native-DP-Algorithm"><a href="#Native-DP-Algorithm" class="headerlink" title="Native DP Algorithm"></a>Native DP Algorithm</h4><p>所以考虑对 BFS 序列的划分过程 DP，设 $dp[i][k]$ 表示考虑到第 $i$ 个点，深度为 $k$ 的合法划分方案总数。</p>
+<p>然后我们需要枚举一个左端点 $j$，考虑如何判断这个划分是否合法。</p>
+<p>首先有个必要条件：<strong>同一深度的点，在 DFS 序列上的位置必须递增</strong>，因为我们遍历一个点的儿子的顺序是从小到大。<strong>称该条件为条件一</strong></p>
+<p>其次，我们模拟一下在 DFS 序列上走的过程，发现<strong>一个点 $u$ 的下一个点 $x$ 一定有 $dep_u+1\ge dep_x$</strong>，原因是显然的。<strong>称该条件为条件二</strong></p>
+<p>满足了以上条件，我们可以说明一定可以构造出一棵唯一对应的树。具体的，对于一个点 $u$，下一个点是 $v$，找到它或者它的祖先 $u’$，  满足 $dep_v=dep_{u’}+1$，那么 $v$ 的父亲就是 $u’$。由于第一个条件，限制了处理的 $v$ 一定是该层<strong>第一个还没有安排父亲的点</strong>。所以每个点只会<strong>恰好被安排一次父亲</strong>，得到一个合法的树。</p>
+<p>这样的话，我们再记录一维划分起点，变成 $dp[i][j][k]$。</p>
+<p>转移枚举当前起点和上一个划分的起点，判断两个条件可以简单的 $O(n)$ 做。</p>
+<p>复杂度为 $O(n^4)$，因为对于 $n$ 个深度 $k$ ，一共只需要判断一次。</p>
+<h4 id="Observaion1-amp-amp-Optimization1"><a href="#Observaion1-amp-amp-Optimization1" class="headerlink" title="Observaion1&amp;&amp;Optimization1"></a>Observaion1&amp;&amp;Optimization1</h4><ul>
+<li>发现其实不用记录具体每个深度有几个元素，只需要记录<strong>深度之和与树的个数</strong>就可以计算答案。</li>
+<li>假设划分的区间为 $[l,r]$ ，深度为 $d$。条件二等价于，$a$ 中 $[1,l)$ 的后一个元素 $x$，一定满足 $x\le r$。因为每次加入一段区间的点之后，上一次的深度为 $d-1$ 的点的右端点，如果还没有确定深度，就会被确定为 $d$。所以加入后，存在右端点还没确定深度的点，其本身深度只能为 $d$ 了。所以可以直接<strong>判断交界处的深度关系</strong>，判断方式是 $\forall i\in[1,n),a_i&gt;j \or a_{i+1}\ge i$。</li>
+</ul>
+<p>40Pts 的代码运用了第二个观察，请阅读。</p>
+<p>运用第一个观察，DP 状态简化为 $dp[i][j][0/1]$</p>
+<p>再次运用第二个观察，其实已经无需记录 $j$，DP 状态进一步简化为 $dp[i][0/1]$。</p>
+<p>上述做法的复杂度是 $O(n^3)$ 的，考虑优化。</p>
+<p>参看 Codes 部分的 40Pts 做法。$sum$ 数组的含义是，$sum[i][j]$ 表示以 $i$ 结尾，深度为 $j$ 的方案总数。</p>
+<p><strong>40Pts 的部分没有对层数做简化</strong></p>
+<h4 id="Observaion2-amp-amp-Optimization2"><a href="#Observaion2-amp-amp-Optimization2" class="headerlink" title="Observaion2&amp;&amp;Optimization2"></a>Observaion2&amp;&amp;Optimization2</h4><ul>
+<li><p>其实 $dp$ 数组没有用，只需要记录一个 $sum$ 数组就可以了。</p>
+</li>
+<li><p>条件一，显然可行的 $j$ 是一个右端点为 $i$ 的区间，对于每个 $i$，可以处理出满足 $p$ 数组(参考题解开头的定义)区间递增的最小左端点，作为 $j$ 左端点的限制。</p>
+</li>
+<li><p>条件二，显然可行的 $j$ 是一个前缀，并且右端点随 $i$ 增大，这限制了 $j$ 的右端点。</p>
+</li>
+</ul>
+<p>由于条件一，二的限为区间转移限制，所以记录一下 $sum$ 的前缀和即可做到转移 $O(n)$</p>
+<p>利用尺取法的思想可以 $O(n^2)$ 的计算条件二的右端点。</p>
+<p>但进一步观察，发现对条件二进行了一些无用的 check，每次移动端点时，有用的 check 只有一个，就是值为右端点本身的位置。</p>
+<p>所以 check 变成了 $O(1)$，总复杂度 $O(n)$</p>
+<p>参考 100Pts 代码，注意，其中的 $dp$ 代表 40pts 写法中的 $sum$，$sum$ 代表其前缀和。</p>
+<h4 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h4><ul>
+<li><strong>DP 过程中最大值达到了 $2^{n}$，需要手写科学计数法，可以忽略指数差距过大的加减运算。</strong></li>
+</ul>
+<h4 id="Codes"><a href="#Codes" class="headerlink" title="Codes"></a>Codes</h4><h5 id="40pts-O-n-3"><a href="#40pts-O-n-3" class="headerlink" title="40pts $O(n^3)$"></a>40pts $O(n^3)$</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;<span class="type">const</span> <span class="type">int</span> N=<span class="number">205</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,tp1,tp2;</span><br><span class="line"><span class="type">int</span> a[N],p[N],b[N];</span><br><span class="line"><span class="type">double</span> dp[N][N][N],sum[N][N];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(a[i]);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(b[i]),p[b[i]]=i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=p[a[i]];</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)p[a[i]]=i;</span><br><span class="line">	dp[<span class="number">1</span>][<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;sum[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">2</span>;j&lt;=i;j++)&#123;</span><br><span class="line">            <span class="comment">//条件1</span></span><br><span class="line">			<span class="keyword">for</span>(k=j+<span class="number">1</span>;k&lt;=i;k++)</span><br><span class="line">			<span class="keyword">if</span>(p[k<span class="number">-1</span>]&gt;p[k])<span class="keyword">break</span>;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>(k!=i+<span class="number">1</span>)<span class="keyword">continue</span>;</span><br><span class="line">			</span><br><span class="line">            <span class="comment">//条件2</span></span><br><span class="line">            <span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;n;k++)</span><br><span class="line">			<span class="keyword">if</span>(a[k]&lt;j&amp;&amp;a[k+<span class="number">1</span>]&gt;i)<span class="keyword">break</span>;</span><br><span class="line">			<span class="comment">//如果交界处，一个深度小于 d,另一个大于 d，那么寄。					</span></span><br><span class="line">			<span class="keyword">if</span>(k!=n)<span class="keyword">continue</span>;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">			dp[i][j][k]+=sum[j<span class="number">-1</span>][k<span class="number">-1</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=i;j++)</span><br><span class="line">		<span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=n;k++)</span><br><span class="line">		sum[i][k]+=dp[i][j][k];</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">double</span> ans=<span class="number">0</span>,cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		cnt+=sum[n][i];</span><br><span class="line">		ans+=sum[n][i]*i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%0.3lf&quot;</span>,ans/cnt);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="100-pts-O-n"><a href="#100-pts-O-n" class="headerlink" title="100 pts $O(n)$"></a>100 pts $O(n)$</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">202005</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,tp1,tp2;</span><br><span class="line"><span class="type">int</span> a[N],p[N],b[N],lst[N],far[N];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Double</span>&#123;</span><br><span class="line">	<span class="type">double</span> val;</span><br><span class="line">	<span class="type">int</span> p;</span><br><span class="line">	<span class="function">Double <span class="title">cap</span><span class="params">(Double x)</span></span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(<span class="built_in">abs</span>(x.val)&gt;<span class="number">1e18</span>)&#123;</span><br><span class="line">			x.val/=<span class="number">2</span>;</span><br><span class="line">			x.p++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span>(<span class="built_in">abs</span>(x.val)&lt;<span class="number">1e-18</span>)&#123;</span><br><span class="line">			x.val*=<span class="number">2</span>;</span><br><span class="line">			x.p--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">void</span> <span class="keyword">operator</span> =(<span class="type">int</span> x)&#123;p=<span class="number">0</span>,val=x;&#125;</span><br><span class="line">	Double <span class="keyword">operator</span> +(<span class="type">const</span> Double &amp;x)&#123;</span><br><span class="line">		<span class="keyword">if</span>(x.p-p&gt;<span class="number">50</span>)<span class="keyword">return</span> x;</span><br><span class="line">		<span class="keyword">if</span>(p-x.p&gt;<span class="number">50</span>)<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">cap</span>(&#123;val+x.val*<span class="built_in">pow</span>(<span class="number">2</span>,x.p-p),p&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">void</span> <span class="keyword">operator</span> +=(<span class="type">const</span> Double &amp;x)&#123;*<span class="keyword">this</span>=*<span class="keyword">this</span>+x;<span class="built_in">cap</span>(x);&#125;</span><br><span class="line">	Double <span class="keyword">operator</span> -()&#123;<span class="keyword">return</span> Double&#123;-val,p&#125;;&#125;</span><br><span class="line">	Double <span class="keyword">operator</span> -(Double &amp;x)&#123;<span class="keyword">return</span> <span class="built_in">cap</span>((*<span class="keyword">this</span>)+(-x));&#125;</span><br><span class="line">	Double <span class="keyword">operator</span> /(<span class="type">const</span> Double &amp;x)&#123;<span class="keyword">return</span> <span class="built_in">cap</span>(&#123;val/x.val,p-x.p&#125;);&#125;</span><br><span class="line">	<span class="function"><span class="type">double</span> <span class="title">get</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> val*<span class="built_in">pow</span>(<span class="number">2.0</span>,p);&#125;</span><br><span class="line">&#125;;</span><br><span class="line">Double dp[N][<span class="number">2</span>],sum[N][<span class="number">2</span>];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">read</span>(n);lst[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(a[i]);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(b[i]),p[b[i]]=i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=p[a[i]];</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)p[a[i]]=i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(p[i]&gt;p[i<span class="number">-1</span>])lst[i]=lst[i<span class="number">-1</span>];</span><br><span class="line">		<span class="keyword">else</span> lst[i]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	dp[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>,dp[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	sum[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>,sum[<span class="number">1</span>][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	far[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=far[i<span class="number">-1</span>]+<span class="number">1</span>;j&lt;=i;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[p[j<span class="number">-1</span>]+<span class="number">1</span>]&lt;=i||p[j<span class="number">-1</span>]==n)<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">		&#125;	</span><br><span class="line">		far[i]=--j;</span><br><span class="line">		<span class="keyword">if</span>(far[i]&gt;=lst[i])&#123;</span><br><span class="line">			dp[i][<span class="number">0</span>]=sum[j<span class="number">-1</span>][<span class="number">0</span>]-sum[lst[i]<span class="number">-2</span>][<span class="number">0</span>];</span><br><span class="line">			dp[i][<span class="number">1</span>]=(sum[j<span class="number">-1</span>][<span class="number">1</span>]-sum[lst[i]<span class="number">-2</span>][<span class="number">1</span>])+(sum[j<span class="number">-1</span>][<span class="number">0</span>]-sum[lst[i]<span class="number">-2</span>][<span class="number">0</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		sum[i][<span class="number">0</span>]=dp[i][<span class="number">0</span>]+sum[i<span class="number">-1</span>][<span class="number">0</span>];</span><br><span class="line">		sum[i][<span class="number">1</span>]=dp[i][<span class="number">1</span>]+sum[i<span class="number">-1</span>][<span class="number">1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%0.3lf&quot;</span>,(dp[n][<span class="number">1</span>]/dp[n][<span class="number">0</span>]).<span class="built_in">get</span>());</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>幻影彭
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://huanyp.cn/2022/07/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/%E8%AF%84%E8%AE%B2/" title="评讲">http://huanyp.cn/2022/07/27/考试总结/2022/评讲/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN.yml" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag"># 题解</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/25/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E6%A0%91%E5%BD%A2%E8%83%8C%E5%8C%85%E7%9A%84%E8%BE%83%E4%B8%A5%E8%B0%A8%E5%A4%8D%E6%9D%82%E5%BA%A6%E8%AF%81%E6%98%8E/" rel="prev" title="树形背包的较严谨复杂度证明">
+      <i class="fa fa-chevron-left"></i> 树形背包的较严谨复杂度证明
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/07/28/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%AE%97%E6%B3%95/Tarjan%E7%AE%97%E6%B3%95%E5%92%8C%E5%9D%91/" rel="next" title="Tarjan算法和坑">
+      Tarjan算法和坑 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#T1"><span class="nav-number">1.</span> <span class="nav-text">T1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T2"><span class="nav-number">2.</span> <span class="nav-text">T2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T3"><span class="nav-number">3.</span> <span class="nav-text">T3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#T4"><span class="nav-number">4.</span> <span class="nav-text">T4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution1"><span class="nav-number">4.1.</span> <span class="nav-text">Solution1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution2"><span class="nav-number">4.2.</span> <span class="nav-text">Solution2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution1-Details"><span class="nav-number">4.3.</span> <span class="nav-text">Solution1 Details</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Transform"><span class="nav-number">4.3.1.</span> <span class="nav-text">Transform</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Native-DP-Algorithm"><span class="nav-number">4.3.2.</span> <span class="nav-text">Native DP Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Observaion1-amp-amp-Optimization1"><span class="nav-number">4.3.3.</span> <span class="nav-text">Observaion1&amp;&amp;Optimization1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Observaion2-amp-amp-Optimization2"><span class="nav-number">4.3.4.</span> <span class="nav-text">Observaion2&amp;&amp;Optimization2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Notes"><span class="nav-number">4.3.5.</span> <span class="nav-text">Notes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Codes"><span class="nav-number">4.3.6.</span> <span class="nav-text">Codes</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#40pts-O-n-3"><span class="nav-number">4.3.6.1.</span> <span class="nav-text">40pts $O(n^3)$</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#100-pts-O-n"><span class="nav-number">4.3.6.2.</span> <span class="nav-text">100 pts $O(n)$</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="幻影彭"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">幻影彭</p>
+  <div class="site-description" itemprop="description">幻影彭的个人博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN.yml" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+    <span class="author" itemprop="copyrightHolder" display=false></span>
+    <span class="author" itemprop="copyrightHolder" >huan_yp</span>
+</div>
+  <div class="powered-by">powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

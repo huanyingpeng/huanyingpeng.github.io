@@ -211,90 +211,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/24/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20220922%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/09/24/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20220922%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20220922考试总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-09-24 07:20:48" itemprop="dateCreated datePublished" datetime="2022-09-24T07:20:48+08:00">2022-09-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-30 16:46:45" itemprop="dateModified" datetime="2022-09-30T16:46:45+08:00">2022-09-30</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0124">考试</a></p>
-<h2 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h2><p>中规中矩的一道题，但是我的做法比较蠢。</p>
-<p>考虑最终那些序列可以成为答案的方式没有问题，但是我考虑的条件是对于 $a_i$，大于等于它的数必须多余 $n-i+1$ 个。这样需要记录的东西是 $2$ 维的，然后转移还不是优雅的前缀和形式。实际上可以考虑 $b_i\ge a_i$ 这个条件，也就是多想一想的事，这样的转移可以写成优雅的前缀和。</p>
-<p>像这种转化后考虑条件的题，一定要找一个简易的条件去做。</p>
-<h2 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h2><p>中规中矩的一道状压题。</p>
-<p>我考虑直接爆搜联通块，但是这样的做法不是很优雅。转移时其实仅和当前选了哪些点有关，所以其实可以动态规划，做到 $3^n$，这种联通块相关的题，一定要考虑联通块之间有没有关系，能不能用动态规划搞定。</p>
-<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>中规中矩的一道数据结构优化动态规划的题。</p>
-<p>一种比较经典的动态规划优化方式是拿数据结构维护可能的转移，这题本身有着比较优美的性质，可以将对转移代价的贡献拆成两个区间加。</p>
-<p>对于修改独立的情况，如果要快速求出答案需要预处理序列，不妨考虑二进制分组。</p>
-<h2 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h2><p>有意思的二分题。</p>
-<p>最大值最小还是可以考虑二分的。</p>
-<p>对于这种两者加起来不超过一个数的题，往往可以考虑每个数与 $\frac{s}{2}$ 的关系。</p>
-<p>这种题，显然最终的答案序列是很多个不超过 $\frac{s}{2}$ 的，中间夹着不超过一个大于 $\frac{s}{2}$ 的，所以容易证明不超过 $\frac{s}{2}$ 的数是必选的，如果不选，一定可以调整过去。</p>
-<p>然后二分之后需要 check 一下总个数。一个区间中存在合法的大于 $\frac{s}{2}$ 的数，当且仅当最小值合法。但是如果真的要检查区间最小值个数，那是非常困难的，因为我们需要先得知每个区间的位置，这个位置个数是 $O(n)$ 的。</p>
-<p>所以不妨从合法的数本身的性质考虑，容易发现，合法的数，与它左右两边第一个小于它的数的和一定是小于 $s$ 的，如果出现相等那么为了避免重复需要设一个第二关键字。</p>
-<p>这样就可以做到 $O(\log)$ check 了，对于两边的边界，可以特判掉。</p>
-<p>我们发现需要 check 的东西形如 $[l,r]$ 中 $\le x$ 的数的个数，这是整体二分擅长处理的东西，所以考虑整体二分，二分的时候将原来的有序组有序的分裂下去，就变成了一维偏序，而且不需要排序（已经有序了）。求左右区间端点也可以类似的做。</p>
-<p>对于边界，可以用 ST 表特判，时间复杂度 $O(n\log n)$。常数比较大。</p>
-<p>整体二分的卡常是有一些技巧的，比如巧妙处理归并，归并的同时分裂数组，通过下标分裂而不是 <code>vector</code> 等。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/21/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E6%A0%91%E4%B8%8A%E9%93%BE%E9%A2%86%E5%9F%9F%E4%BF%AE%E6%94%B9%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1047,6 +963,67 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/05/%E6%9D%82%E9%A1%B9/%E5%B7%A5%E5%85%B7%E4%BB%A3%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/05/%E6%9D%82%E9%A1%B9/%E5%B7%A5%E5%85%B7%E4%BB%A3%E7%A0%81/" class="post-title-link" itemprop="url">工具代码</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-08-05 11:26:13 / 修改时间：11:32:00" itemprop="dateCreated datePublished" datetime="2022-08-05T11:26:13+08:00">2022-08-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="计时相关"><a href="#计时相关" class="headerlink" title="计时相关"></a>计时相关</h3><h4 id="纳秒级别时间戳"><a href="#纳秒级别时间戳" class="headerlink" title="纳秒级别时间戳"></a>纳秒级别时间戳</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">get_time</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">timespec</span> ts;</span><br><span class="line">    <span class="built_in">clock_gettime</span>(CLOCK_REALTIME,&amp;ts);</span><br><span class="line">	<span class="keyword">return</span> (ts.tv_sec*<span class="number">1000000000</span>+ts.tv_nsec);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="一些编译参数"><a href="#一些编译参数" class="headerlink" title="一些编译参数"></a>一些编译参数</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> GCC optimize(2)</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1118,7 +1095,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
