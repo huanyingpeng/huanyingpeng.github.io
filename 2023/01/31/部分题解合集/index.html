@@ -29,7 +29,7 @@
 <meta property="og:description" content="题解合集1懒得分开写咕咕咕 ARC153D考虑 A 比较小的时候应该怎么做，记 $dp[i][a]$ 表示考虑低 $i$ 位，填的数字是 $a$，低 $i$ 位的贡献。 转移枚举下一位填什么，计算答案的方式是统计当前位上每个数字各有多少个。因为有进位所以这还比较麻烦 如果从小到大枚举 $a$，那么进位的计算是容易的，维护一个 $cnt$ 数组即可，按低 $i$ 位排序后双指针即可。 我们可以以 $">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-01-31T12:10:31.000Z">
-<meta property="article:modified_time" content="2023-02-02T08:23:51.504Z">
+<meta property="article:modified_time" content="2023-02-27T01:36:58.369Z">
 <meta property="article:author" content="幻影彭">
 <meta name="twitter:card" content="summary">
 
@@ -245,7 +245,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-02 16:23:51" itemprop="dateModified" datetime="2023-02-02T16:23:51+08:00">2023-02-02</time>
+                <time title="修改时间：2023-02-27 09:36:58" itemprop="dateModified" datetime="2023-02-27T09:36:58+08:00">2023-02-27</time>
               </span>
 
           
@@ -297,6 +297,39 @@
 </ul>
 <p>显然剩下的这个数的大小有单调性可以二分，变成不剩下的情况，现在考虑怎么 check 不剩下的情况，偶数个直接最大最小，次大次小配对最优，奇数个必须先拿一个最小的不小于 $k$ 的，再如上配对。</p>
 <p>复杂度 $O(n\log^2n)$。</p>
+<h3 id="P8194"><a href="#P8194" class="headerlink" title="P8194"></a>P8194</h3><p>发现没有 $5$ 的情况是好做的，设 $dp[i]$ 表示考虑前 $i$ 个数字的答案，当某两个可以一起按时 $dp[i]=dp[i-1]+dp[i-2]$，否则 $dp[i]=dp[i-1]$。</p>
+<p>对于可以一起按的情况，分按和不按两种情况，不按的方案数是 $dp[i-1]$，按的方案数是 $dp[i-2]*2$，但是由于如果是顺序的，按的情况和不按的情况恰好有 $dp[i-2]$ 中是冲突的（按也能取到这种方案，不按也可以）。减掉即可。</p>
+<p>考虑存在同时按四个的情况，这是一件很麻烦的事情，要容斥掉按四个和不按的冲突非常的困难。</p>
+<p>不会了，换个角度思考。</p>
+<p>考虑判定问题，即给定 $T$ 判断是否能生成 $S$，记 $ok[i]$ 表示只考虑前 $i$ 位能否生成，转移可以从 $i-1,i-2,i-4$ 转移过来。</p>
+<p><strong>考虑对判定过程 dp</strong>，记录前 $3$ 个位置的具体值，枚举下一个位置的具体值尝试转移，发现还需要记录前 $4$ 个位置判定 dp 的值，<strong>发现这样的 dp 恰好是不重不漏的</strong>，因为状态中三个具体值不同的显然本质不同，而 dp 值不同的显然也本质不同，所以<strong>同一阶段不同状态不重不漏</strong>，因此整个 dp 不重不漏。</p>
+<p>总复杂度是 $O(n\times9^4\times2^4)$，跑不动，考虑常数优化。</p>
+<p>记录三个位置的具体值很浪费，实际上大部分组合都用不到。</p>
+<p>如果四个位置 dp 值全是 $0$ 这个状态直接扔掉。如果当最靠前的一个位置的 dp 值为 $0$，那么最后一个数是没有用的，可以压进一个状态里。如果记录的最后三个数不是接下来四个数排列，那么可以认为最后一个位置的 dp 值为 $0$，所以按最后一个位置 dp 值分类，我们的状态数变为了 $8\times 24+8\times 99$。同理对倒数第二个位置的 dp 值再分类讨论可以进一步压缩状态，状态数应该是可以压缩进 $200$ 以内的。</p>
+<h4 id="Tricks"><a href="#Tricks" class="headerlink" title="Tricks"></a>Tricks</h4><ul>
+<li>对于部分序列计数问题，<strong>可以考虑对判定过程动态规划</strong>，由于转移所需的序列值不同或者判定的动态规划值不同的状态时本质不同的，所以这样的动态规划是不重不漏的。</li>
+<li>上述动态规划的优化可以通过减小状态空间完成，主要方式是分析判定问题本身的性质以排除不可能对答案产生贡献的状态。</li>
+</ul>
+<h3 id="P4649"><a href="#P4649" class="headerlink" title="P4649"></a>P4649</h3><p>首先有一个很重要的观察，覆盖奇数条树边的非树边一定要选。</p>
+<p>对于覆盖偶数条树边的，如果任意两条非树边覆盖的边集有交，那么一定可以构造出一种合法的路径（参考欧拉子图计数问题）。</p>
+<p>因此问题变成选树上若干条无交的路径使得权值和最大。考虑动态规划。</p>
+<p>设 $dp[u]$ 表示只考虑 $u$ 的子树里的路径，$u$ 子树内能选出的权值最大值，发现转移是不好做的，于是多记一维 $dp[u][k]$ 表示考虑 $u$ 子树，$u$ 连出了编号为 $k$ 的路径的权值最大值，<strong>先不计算 $k$ 的贡献</strong>，并要求 $k$ 的一个端点一定在 $u$ 子树内。</p>
+<p>转移的时候就是儿子间两两配对，如果知道了儿子配对的方式，那么我们只需要贪心的让每一个配对取最大值转移，当然儿子也可以不配对或者和父亲配对，我们将不配归类到和父亲配对。</p>
+<p>发现儿子配对的方式可以直接枚举，计算答案时需要一个 $mp[v_1][v_2]$ 表示 $v_1,v_2$ 儿子配对的最大值，可以枚举 lca 挂在这个点上的每条边统计。</p>
+<p>实际上 dfs 枚举配对方式不是必要的，可以状压 dp，更好写。</p>
+<h4 id="教训"><a href="#教训" class="headerlink" title="教训"></a>教训</h4><ul>
+<li>vector 用 lower_bound 删点的时候<strong>要先排好序</strong>。</li>
+<li>dfs 枚举配对的循环里<strong>不要忘记判掉已经配好对的</strong>。</li>
+</ul>
+<h3 id="P8290"><a href="#P8290" class="headerlink" title="P8290"></a>P8290</h3><p>极差问题考虑枚举一下最大值位置，然后发现答案是关于最大值 $x$ 的一个 $n$ 次多项式。但是需要去重，很麻烦。</p>
+<p>对于这种需要满足至少一个取到边界的问题，或者说与最值有关的计数问题，可以考虑容斥，<strong>用不限制取到闭区间的方案数，减去一定不满足的方案数——取到开区间的方案数</strong>，得到一定取到闭区间的方案数。</p>
+<p>或者说正难则反，考虑总方案减去不合法方案数。</p>
+<h3 id="P4233"><a href="#P4233" class="headerlink" title="P4233"></a>P4233</h3><p>竞赛图有一个重要结论：缩点后一定是一条链状的 DAG，每个点向后面所有点有连边。</p>
+<p>考虑到求总的哈密顿回路是容易的：枚举一条回路，其它边任意定向。我们考虑求出存在哈密顿回路的竞赛图个数。</p>
+<h3 id="CF798D"><a href="#CF798D" class="headerlink" title="CF798D"></a>CF798D</h3><p>先考虑了每个数和中位数、平均数的大小关系来决定是否选择。然后想能不能构造 $c=a+b$ 在 $c$ 上先贪心选择然后再调整让不满足条件的那个数组满足条件。都失败了。</p>
+<p><strong>两个数组都是无序的不好考虑</strong>，将 $a$ 降序排列。考虑钦定 $b$ 满足条件并尽可能使 $a$ 满足条件。如果 $n$ 为奇数，我们可以选择 $a_1$，然后将后面的两两分组。每一组选择 $b$ 较大的那一个，这样 $b$ 一定满足条件。然后又因为我们选了 $a_1$，$a_1$ 和第一组配对，第一组的 $a$ 和第二组的 $a$ 配对，然后 $a$ 也满足条件。</p>
+<p>偶数同理。</p>
+<p>构造完了，这种贪心<strong>按对决策</strong>的思路很有学习价值，题目中的选一半也提示了这种方式。</p>
 
     </div>
 
@@ -394,7 +427,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%861"><span class="nav-number">1.</span> <span class="nav-text">题解合集1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC153D"><span class="nav-number">1.1.</span> <span class="nav-text">ARC153D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC154D"><span class="nav-number">1.2.</span> <span class="nav-text">ARC154D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5156"><span class="nav-number">1.3.</span> <span class="nav-text">P5156</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P4187"><span class="nav-number">1.4.</span> <span class="nav-text">P4187</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P7152"><span class="nav-number">1.5.</span> <span class="nav-text">P7152</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P6142"><span class="nav-number">1.6.</span> <span class="nav-text">P6142</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%861"><span class="nav-number">1.</span> <span class="nav-text">题解合集1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC153D"><span class="nav-number">1.1.</span> <span class="nav-text">ARC153D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARC154D"><span class="nav-number">1.2.</span> <span class="nav-text">ARC154D</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5156"><span class="nav-number">1.3.</span> <span class="nav-text">P5156</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P4187"><span class="nav-number">1.4.</span> <span class="nav-text">P4187</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P7152"><span class="nav-number">1.5.</span> <span class="nav-text">P7152</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P6142"><span class="nav-number">1.6.</span> <span class="nav-text">P6142</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P8194"><span class="nav-number">1.7.</span> <span class="nav-text">P8194</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tricks"><span class="nav-number">1.7.1.</span> <span class="nav-text">Tricks</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P4649"><span class="nav-number">1.8.</span> <span class="nav-text">P4649</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%99%E8%AE%AD"><span class="nav-number">1.8.1.</span> <span class="nav-text">教训</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P8290"><span class="nav-number">1.9.</span> <span class="nav-text">P8290</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P4233"><span class="nav-number">1.10.</span> <span class="nav-text">P4233</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF798D"><span class="nav-number">1.11.</span> <span class="nav-text">CF798D</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -410,7 +443,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

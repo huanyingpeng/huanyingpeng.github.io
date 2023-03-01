@@ -211,6 +211,496 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/22/1117%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/22/1117%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1117总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-11-22 20:18:20 / 修改时间：21:25:58" itemprop="dateCreated datePublished" datetime="2022-11-22T20:18:20+08:00">2022-11-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1117总结"><a href="#1117总结" class="headerlink" title="1117总结"></a>1117总结</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0155/">考试</a></p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>问的是对于每个跳棋能走到多少个格子，不重不漏那种。</p>
+<p>发现对于一个棋子，由于它跳的时候其它的不能动，所以本质上如果弄成图处理不会出问题，问题变成了无向图中一个点可以到多少个点，就是联通块问题，不妨先把所有可能可达的点弄出来建一个图，点数 $O(n)$，然后问一个棋子，要对图做一下改变，具体的是加一些边连向一个新点，问新点所在连通块大小。</p>
+<p>可以可撤销并查集，当然也可以直接枚举做，相邻的情况是平凡的，特判掉。</p>
+<p>场上写挂是因为数组开小了，点的数量是 $7n$ 而不是 $6n$。</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>首先判掉没有 $GT$ 的情况，直接选最后一个。</p>
+<p>然后如果有 $GT$ ，那么一左端点一定是第一个 $G$ 或者 $T$，然后左端点固定，需要比较 $O(n)$ 个字符串，每个字符串可以描述为两个字符串的子串拼起来，然后用二分哈希比较就可以了。</p>
+<p>场上拼串的时候多弄了一个字符， $90$。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>暂时还不会</p>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>考虑建图，图本身很类似一棵树，因为合法括号序列本身就是树的结构，将一对括号视作树上的一个节点，这个节点中含有两个子节点，那么连边就是一个节点中的两个子节点连边以及儿子的左右两个子节点之间连边，以及最左最右的儿子向对应的父亲子节点连边。</p>
+<p>然后任何路径必须在 LCA 处交汇，变成树上路径问题，可以倍增。</p>
+<p>注意因为我们实现的时候建了一个虚拟节点，实际上不能走它，需要特判。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/16/%E9%9A%8F%E8%AE%B0/%E5%BF%83%E7%81%B5%E7%8E%B0%E5%AE%9E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/16/%E9%9A%8F%E8%AE%B0/%E5%BF%83%E7%81%B5%E7%8E%B0%E5%AE%9E/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-16 14:31:01" itemprop="dateCreated datePublished" datetime="2022-11-16T14:31:01+08:00">2022-11-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-13 12:43:02" itemprop="dateModified" datetime="2022-11-13T12:43:02+08:00">2022-11-13</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="心灵现实"><a href="#心灵现实" class="headerlink" title="心灵现实"></a>心灵现实</h2><p><strong>注意，以下内容为纯属虚构</strong></p>
+<h3 id="思维速度"><a href="#思维速度" class="headerlink" title="思维速度"></a>思维速度</h3><h4 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h4><p>如果一个机器 A，可以模拟机器 B，并且机器 B，可以模拟机器 A，则称 A，B 在解决问题上的能力等价。</p>
+<p>如果机器 A，可以模拟机器 B，但机器 B，不能模拟机器 A，则称 A 比 B 在解决问题上更强大。</p>
+<p>人脑可以模拟图灵机，但图灵机<strong>暂时</strong>无法模拟人脑，所以人脑解决问题的能力比图灵机更强大。</p>
+<h4 id="质因数分解"><a href="#质因数分解" class="headerlink" title="质因数分解"></a>质因数分解</h4><p>对于大数的质因数分解，计算机科学界暂时还没有找到关于位数的多项式算法，尽管一些指数级算法非常优秀，在个人计算机上都可以在一秒内完成 $2^{80}$ 以内的质因数分解，但它终归不是一个关于问题规模多项式算法。</p>
+<p>大数质因数分解问题本身的困难性，催生了大批基于这个问题的加密算法，例如 RSA 加密，只需要选取 2048 位的 N，就可以保证人类现有的算力在宇宙末日时都无法破解出私钥。</p>
+<p>根据国家计生委未公开的大数据统计，平均每 66666666 位少年少女中就有一位这样的天才，心算能力极为恐怖，可以在线性复杂度内分解任意长度的大整数，因为时间瓶颈主要在于把结果用笔写出来。中国科学技术大学少年班学院成立的主要目的，其实就是为了网罗这样的神童。</p>
+<h4 id="没有元素周期表的化学"><a href="#没有元素周期表的化学" class="headerlink" title="没有元素周期表的化学"></a>没有元素周期表的化学</h4><blockquote>
+<p>现在的脑科学，是在黑暗中摸索，如同没有发现元素周期表之前的化学。我不知道现在的脑科学探索是什么样子，但我很清楚没有发现元素周期表之前的化学是什么样子。</p>
+<p>​                                                                                                                ——black_white_tony        </p>
+</blockquote>
+<p>神经网络算法是图灵机语言对人脑的一个粗略模拟，在一些领域上取得了重要成果，但基于神经网络算法的人工智能，表现则令人相当失望——它们在有引导的情况下，可以尝试并解决一些有相当难度的题目，但一旦失去引导，又会变为一个“全知的愚者”。</p>
+<p>我可以断言——在脑科学没有重大突破前，人工智能不会有决定性的突破。</p>
+<h4 id="拉普拉斯妖"><a href="#拉普拉斯妖" class="headerlink" title="拉普拉斯妖"></a>拉普拉斯妖</h4><p>流体力学的研究对象是混沌系统，很大一部分问题根本没有解析解，只能靠猜测解决。</p>
+<p>但法国数学家拉普拉斯妄图通过一个理论上的怪兽来计算宇宙的状态，很核心的一个问题就是它计算过程本身也需要被纳入考虑，考虑计算过程本身的过程是一个无限的递归，它是否收敛，还没有一个定论，也许它是一个这样的过程：</p>
+<script type="math/tex; mode=display">
+1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\cdots=2</script><p>也有可能在达到宇宙的某一个极限后（例如普朗克长度），变为这样的式子：</p>
+<script type="math/tex; mode=display">
+1+\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\cdots+\frac{1}{2^n}+\frac{1}{2^n}+\frac{1}{2^n}+\cdots</script><p>后来，有人提出拉普拉斯妖处理的最大信息量为 $10^{120}$ bit，这终结了这位伟大数学家的妄想。</p>
+<h4 id="计算能力"><a href="#计算能力" class="headerlink" title="计算能力"></a>计算能力</h4><p>人类的大脑拥有约 $8.6\times10^{10}$ 个神经细胞，假设存在一种方式，拥有关于计算单元指数级的计算能力，那这个方式搭配上对应的计算单元，很有可能超越拉普拉斯妖，能够模拟一个逻辑自洽的完整世界。</p>
+<p>对这个世界自身的模拟也许不太现实，上面的复杂度函数是否收敛还是一个待解决的问题，但一个独立于这个世界的虚拟世界，显然是可以做到的。</p>
+<p>某些时候人脑可能以某种形式满足了上面的一切条件，构建出了一个这样的虚拟世界。</p>
+<p>我将这个由人脑构建的世界，称为心灵现实。</p>
+<h3 id="天目路"><a href="#天目路" class="headerlink" title="天目路"></a>天目路</h3><p>我拉上绿色冲锋衣校服的拉链，提了提羽绒服的领口，11 月，天气已经开始转凉。背着双肩包，这是我最最标准的出行装备，包内是一台笔记本电脑加上一个充电宝，以及一些其余的数据线，这套装备可以连接几乎所有能够连接的电子设备，充电宝加电脑的续航总时间为 4.5h，足以应对大部分情况。</p>
+<p>我低头看了下时间，20：00，突然感觉有什么不对，街道冷寂的有些可怕，我重新抬头，城市应有的嘈杂重新冲入双耳，车流继续冲过不太对称的十字路口，一位大叔忽视了红绿灯，灵活的在车流中穿梭，一边接着电话，很快没入马路的另一头。</p>
+<p>我始终有一种不真实感，似乎我是独立于这个世界之外的存在，但来回的行人依然会避让站在盲道上的我。</p>
+<p>我去一旁的民乐超市买了一瓶农夫山泉维他命水，结账的还是那个小伙，他一边看着视频，一边熟练的输入数字，我扫码付款。也许是看我背着背包，他并没有问我需不需要塑料袋。</p>
+<p>我靠在地铁 A 口，不知道该干什么，只能看着影子，区分影子的不同部分，估测着它们的长度，再认真观察了一下路灯的结构和位置，根据瓷砖计算出我和路灯的距离，并依此尝试推算路灯的高度。</p>
+<h4 id="小迈"><a href="#小迈" class="headerlink" title="小迈"></a>小迈</h4><p>我想的很认真，将书包取下，去拿第二层的草稿纸和电脑时，熟悉的声音叫住了我。</p>
+<p>“幻影彭？”</p>
+<p>我抬头，是小迈。</p>
+<p>“真巧。” 我漫不经心的回应他，没有停下手中的动作。</p>
+<p>“你干啥？在这里做题？”</p>
+<p>我如实告诉他我的目的，他也蹲下来，我看他并没有带书包，就把草稿纸和笔递给了他，我开始用 MsPaint 画草图，他看着电脑屏幕在纸上标数据，我的身高是 1.75m，通过估测不同影子部分的投影方向和长度，可以在平面上算出以我为顶点的三角形的顶角弧度。</p>
+<p>手动算三角函数是不太可能的，至少我和小迈都不想爆算泰勒展开，不过我有 Python。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> *</span><br><span class="line">a = pi / <span class="number">180</span> * <span class="number">74</span></span><br><span class="line">sin_a=sin(a)</span><br><span class="line">cos_a=cos(a)</span><br></pre></td></tr></table></figure>
+<p>反正挺方便的，根据瓷砖估测的距离成功计算出三边长，然后再目测检验了一下，没什么问题，换下坐标平面，很轻松的解出了路灯的高度——11.8m，比考试时计算都轻松很多，毕竟标准答案是我俩说了算。</p>
+<p>我上网查了下，高度是 12.5m，误差不是很大，毕竟目测的距离和影子长度还是差距（事实上测影子长度是小迈用手大拇指和食指张开的距离测的，虽然我们俩都会背自己身体部分的一些数据，例如我臂展是 1.71m，手一乍的长度是 18cm，以及我的常用笔是 12cm，但是还是不太准，直尺并不是我的标准出行装备之一）。</p>
+<h4 id="观察与细节"><a href="#观察与细节" class="headerlink" title="观察与细节"></a>观察与细节</h4><p>收好电脑和草稿，我把笔别入衣袖下方，这样的话往往可以很方便的取出笔然后用笔去做一些手够不到的事，而且笔不会掉。但由于小迈比我高 15cm，所以这个时候其实只需要让他来就好，除非是捡落在某个狭小缝隙里的小物件，这个时候我相对修长的手指配上一支顺手的签字笔就很实用。</p>
+<p>突然发现居然没有人围上来看我俩算，我想在街上拿出草稿纸和电脑算东西并不是什么太正常的表现，之前在奶茶店楼上用相对平凡的 Dev-C++ 写竞赛题目的代码都有人好奇的围上来。</p>
+<p>抬头还是人来人往，旁边的核酸检测点排起了长队。</p>
+<p>我尝试观察行人，捕捉着一些细节，发现一件很有趣的事实，随着我观察的时间变长，一个人的细节也越来越丰富，粗略扫过去，只能分辨出一个人的大致特征，随着视线聚集时间变长，我可以逐渐观察并区分出外貌细节，“细节”这个词很抽象，但确实就这样。在聚焦某个人时，其它信息会被弱化，大概就是 “旁边有其他人和车路过” 这样的弱化信息。</p>
+<p>目光从一个人移开，被弱化的信息复原，变为了有多少个人经过，男女占比多少，年龄大概是多少等等…</p>
+<h4 id="掉下床的老鼠"><a href="#掉下床的老鼠" class="headerlink" title="掉下床的老鼠"></a>掉下床的老鼠</h4><p>逐渐强化的信息让我想起以前在寝室和同学玩的一个思维游戏。</p>
+<blockquote>
+<p>假定你是一只老鼠，你从睡觉的床上爬了下去，你需要以一个老鼠的视角去行动，你需要想象你的视觉听觉触觉</p>
+</blockquote>
+<p>我能以老鼠的视角，相对合理的行动约 2min，这 2min 内，我能够想象出我以一个 2cm 的视觉高度在宿舍楼活动，最远的一次我成功下了楼，从铁门之间的缝隙穿了出去，跑到了食堂的后门，然后失败了。</p>
+<p>这个游戏对人的记忆力和想象能力乃至意志力都是一个极大的考验，初次尝试很难<strong>连续的过上15s</strong>，当出现位置瞬间改变，视角恢复，画面不稳定，变成第三人称，甚至消失等现象时，就说明你失败了。</p>
+<p>有一次我在想象中没有站稳，从 1.8m 高的床的缝隙中掉了出去，体验了 3s 的自由落体运动，经历了那样的失重感，但我落地后还能正常行动，视角这些也正常，不过我知道自己失败了，因为即使考虑空气阻力，一只老鼠掉下去也最多经历 0.8S 左右，但是我经历的时间甚至长度上可感。</p>
+<p>每天晚上能这样玩个差不多 3min，再来就真的不行了，太累了，那一种来自神经深处的疲惫感，比做数学一试题还累（因为我做不动二试的题），助眠效果应该不错，每次玩完后很快就能睡着，但全力动脑是很累的，很容易没到疲惫的极限就“断线了”，全力思考 5S 带来的疲倦感，对我来说和全力冲刺 100M （约14S完成）类似。</p>
+<h4 id="同一个人"><a href="#同一个人" class="headerlink" title="同一个人"></a>同一个人</h4><p>靠着护栏，我开始了这个一般在睡前玩的游戏，闭上眼防止真正的视觉信息干扰，先是第三人称视角，我看见想象中的灵魂离开我的身体，形成了一只虚构的老鼠，落在地上，四肢传来粗糙的触感，我的视角变为 2CM 高度。</p>
+<p>小迈是知道这个思维游戏的，他没有打断我。</p>
+<p>我尝试移动，却发现动作很呆滞，用抽象一点的词汇来说，就是时间的粘度变高了，我小心的穿过人流，皮鞋，运动鞋，放下，抬起，速度很慢，我避开了这些足有 4M 高的庞然大物（记住，此时我的视觉高度是 2CM，身长 10CM），靠着残疾人通道的边缘走下斜坡，跳到花台，脚下变成了黑色纹理的大理石，我飞速跑过（这样可以减少思维量，让大脑放松一下）。在花台边缘我停下了，开始观察一个路人，他穿着蓝色卫衣，兜帽的吊带垂在两侧，平头短发….</p>
+<p>视线出现抖动，然后变成第三人称，我知道我失败了，我睁开眼，画面很是模糊，控制着睫状肌散焦再聚焦，向地铁口望去，那边的有一条小路，联通了花台所在的广场。</p>
+<p>我看到一个穿着蓝色带兜帽卫衣的小伙子走过来，外貌细节和思维游戏中的一模一样——他们是同一个人。</p>
+<p>重新回想一下游戏里那个人的外貌特征，再比对，直到他消失在地铁站的楼梯口，我深吸一口气。</p>
+<h4 id="移动扑克牌"><a href="#移动扑克牌" class="headerlink" title="移动扑克牌"></a>移动扑克牌</h4><p>“怎么了？” 熟悉的声音把我从想象中拉回来。</p>
+<p>“假设你有一叠扑克牌，一共 54 张，按照大小为第一关键字，花色为第二关键字排序”，我想到一个问题，它出自《天书》。“那么，如果你一次操作可以选定其中的一些牌，将它们按照原顺序放到最开头，那么将这副扑克牌顺序翻转的最小操作次数是多少？”</p>
+<p>“举个例子，假设原来是 1，2，3，4，你可以先选 2，4 变为 2,4,1,3，然后再选 4,3，变为 4,3,2,1。“ 我补充解释道。</p>
+<p>“答案是 $\lceil\log_2{54}\rceil=7$，考虑构造序列的母矩阵…”，他没怎么思考，就给出了一种解法，但不是天书中的解法。这个方法，是我在一篇题解中看到过的方法……</p>
+<h3 id="完美算法"><a href="#完美算法" class="headerlink" title="完美算法"></a>完美算法</h3><p>”不对吗？“</p>
+<p>”证明没有问题，所以你怎么想到这个方式的？“</p>
+<p>”观察。“ 小迈给了一个非常模糊的回答，”我还有事，先走了。“</p>
+<p>”等一下。“ 我的声音有点发颤。</p>
+<p>小迈回头，“怎么？”</p>
+<p>“你有什么事？” 我有点不礼貌的追问，进入思维游戏，我全力排除真实视听的干扰，老鼠向地铁口跑去，抬起 2CM 的视线看地铁口的广告，这次只坚持了不到半分钟，视线就开始抖动，我睁开眼。</p>
+<p>“去买零食。” 小迈回答，延迟有 30S，甚至大于我的对话机器人 鹿灵AI。</p>
+<h4 id="构建细节"><a href="#构建细节" class="headerlink" title="构建细节"></a>构建细节</h4><p>答案明晰了。</p>
+<p>我回想起 L4D2 的建模，如果不考虑空气墙，那么看起来主角确实在一个城市，但如果开启作弊模式，很容易发现并没有构建一个完整的城市，而只是一些关键部分。欺骗玩家，只需要构建关键部分的城市。</p>
+<p>同样，要欺骗人的大脑，也不需要构建一个完整的世界，只需要实时构建一些细节，如果计算资源被用于构建大量需要。</p>
+<p>消耗计算资源最有效的方式，是构建虚拟机，在刚刚尝试思维游戏的时候，这里已经出现了破绽…</p>
+<p>我将猜测告诉了“小迈”。</p>
+<h4 id="是否真实"><a href="#是否真实" class="headerlink" title="是否真实"></a>是否真实</h4><h4 id="Hack-The-World"><a href="#Hack-The-World" class="headerlink" title="Hack The World"></a>Hack The World</h4>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/15/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1115%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/15/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1115%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1115总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-15 15:38:42" itemprop="dateCreated datePublished" datetime="2022-11-15T15:38:42+08:00">2022-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-16 19:25:40" itemprop="dateModified" datetime="2022-11-16T19:25:40+08:00">2022-11-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0154">考试</a></p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>简单题写蠢做法。</p>
+<p>我用了 $set$ 来维护同一行同一列的信息然后还要查询什么的，实际上 <code>vector</code> 就可以了，记录一下该点的行下标和列下标。</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>简单题写挂。</p>
+<p>首先转对照局面。</p>
+<p>想到可以先二分个左时间出来，然后仿超级钢琴。</p>
+<p>实际上可以二分个左时间和右时间暴力排序，码量更小了。</p>
+<p>写挂是排序的各种问题。</p>
+<p>排序，<strong>尤其是对编号排序</strong>，一定要搞清楚排的到底是什么的序。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>做不来的趣味题。</p>
+<p>考场上想到可以 $O(n^3)$ 的动态规划，方法是设 $dp[i][j][k]$ 表示考虑到 $i$，漏了 $j$ 个 $B$，当前有 $k$ 个 $A$，转移可以做到 $O(1)$。</p>
+<p>左看右看都觉得有一维是多余的，但是就是去不掉。</p>
+<p>考虑最终答案的分界线，然后动态规划，就可以去掉一维，但是动态规划变成反向了。</p>
+<p>容易发现转移的重复性很高，相当于是一个行向量乘上若干矩阵再乘一个列向量，可以反过来写。</p>
+<p><strong>考场上没想到反过来写，是因为反过来之后动态规划就没有明晰的组合意义了，所以陷入了正向的窠臼，不容易思考。</strong></p>
+<p>参考<a href="https://huanyp.cn/2022/11/02/1101%E6%80%BB%E7%BB%93/">某道题(T2)</a>。</p>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/15/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1112%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/15/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1112%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1112总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-15 15:38:35" itemprop="dateCreated datePublished" datetime="2022-11-15T15:38:35+08:00">2022-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-16 09:19:46" itemprop="dateModified" datetime="2022-11-16T09:19:46+08:00">2022-11-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0153">考试</a></p>
+<p>周末做题脑袋一团浆糊</p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>参考 11.10 T4 的思路，按照 height 从小到大考虑，<strong>这样同时也方便了安排 $a_i$</strong>，然后发现当前叶子只能有被占用或者继续拓展，如果当前的 height 为 $i$，那么拓展到 $i+1$ 还需要考虑右儿子，所以只记一维是不行的。</p>
+<p>于是记 $dp[x][y]$ 表示当前 height 有 $x$ 个，height-1 有 $y$ 个，其实可以不用记高度，因为只需要算答案， $height$ 增加的时候答案整体增加就可以了。</p>
+<p>转移的话还需要套上一层已经安排到的位置，设 $dp[i][x][y]$ 表示前 $i$ 个已经被安排，当前 height 有 $x$ 个，height-1 有 $y$ 个，由于 height-1 已经被强制选过了，延申过左儿子了，所以不能作为叶子，作为叶子转移的只有 height，这样的话阶段是 $i$，然后再是 $x$，最后是 $y$。保证了无环性。</p>
+<p>同阶段转移，顺序先枚举 $x$，再枚举 $y$，转移到 $dp[i][x+y][x]$，容易发现除了 $0\ 0$ 都是无环的且符合拓扑序的。</p>
+<p>不同阶段转移很简单。</p>
+<p>小猪猪经常把 height 写成 heigh，我不说是谁。</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>非常非常妙的一道题。</p>
+<p>暴力无非就是并查集，但是如果加边比较多，暴力并查集就寄了。</p>
+<p><strong>并查集有交换律</strong>，考虑改变并查集运算的顺序，达到加速的目的。</p>
+<p>可以用倍增的思路设计一种广义并查集，然后操作就被暂时拆了，$fa[x][i]$ 表示 $x$ 为起点的 $2^i$ 个数的并查集父亲，意义是 $x,x+1,x+2\cdots$ 的并查集父亲分别为 $fa[x][i],fa[x][i]+1,fa[x][i]+2\cdots$。</p>
+<p>注意这里的<strong>操作是具有整体性的</strong>，必须对于 $2^i$ 个点都满足，才能改广义并查集的父亲。</p>
+<p>考虑下放操作，这是简单的，只需要将 $(fa[x][i],i-1)$ 和 $(x,i-1)$ ，$(fa[x][i]+(1&lt;&lt;i-1),i-1)$ 和 $(x+(1&lt;&lt;i-1),i-1)$ 连边就行。</p>
+<p>很难从一道题中总结出有用的东西，但是不妨作为一个启发性的思路。</p>
+<p>这个思路也可以被认为是 <code>lazy_tag</code>，具体怎么思考会得到不同的启发。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>感觉每次考贪心都不会。</p>
+<p>考虑先排除掉包含其它线段的线段，变成左右双单调。</p>
+<p>然后容易发现选的线段是一段区间，一旦选线段变成选区间，就好做了，朴素的方式是动态规划，可以做到 $O(n^2)$，看上去已经不容易优化了。</p>
+<p>发现答案的计算方式是比较简单的，考虑最终情况，假设选了 $i$ 作为终点，那么实际上每个 $i$ 的贡献是独立的，为 $-L_i+R_{i+1}$（注意这里忽略了无交的情况，无交的情况下面再讨论），这里的 $i$ 不能为 $n$，因为 $n$ 本来就是终点，排序取前 $k-1$ 大即可。</p>
+<p>加上那些被排除的线段，被排除的线段，要么原封不动放回去，不对答案贡献，要么就自成一段，枚举前面选了几个区间就行，取最大值。</p>
+<p>注意到，我们对无交的情况，答案计算方式是有问题的，需要和无交情况的最大值再比较一下，无交情况的最大值就是选最长的 $k-1$ 个。</p>
+<p>总的来说，这是一道分类讨论题，先讨论包含的情况变成双单调，再排除无交的情况变为排序贪心。</p>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>Boruvka 题。</p>
+<p>Boruvka 本质上是把 Prim 和 Kruscal 结合了起来，然后需要求一个 $mn[i]$ 表示连通块 $i$ 连出去的所有边的最小值，然后尝试连边。</p>
+<p>Boruvka 的过程会进行 $\log n$ 次，可以这么说，Boruvka 以一个 log 的代价，换来了通过预处理同一连通块求 多个 Prim 中的最小值的机会。</p>
+<p>Boruvka 是来自异世界的神秘算法，请和我念：“$\text{B—oru—vka}$”</p>
+<p>Boruvka 的核心是要求 $mn[i]$，但是一般来说也可以用分析连边性质（一般是三元环或者四元环）来减小边数，比如边权为异或的题目，分析 $Kruscal$ 的过程可以做到 $n\log^2n$，而不必拘泥于 Boruvka。</p>
+<h4 id="Boruvka"><a href="#Boruvka" class="headerlink" title="Boruvka"></a>Boruvka</h4><p>考虑对于连通块怎么求 $mn[i]$，一件非常阴间的事情是需要排除掉同一联通块的元素。</p>
+<p>如果看成染色，那么就是元素有颜色，就是求全局不同于某个颜色的最小值，区间修改。</p>
+<p>还是可以线段树，维护一个最小值和颜色，<strong>不同于最小值颜色的次小值</strong>，然后就可以做了。</p>
+<p>一个矩阵加需要映射成两个。</p>
+<h4 id="仿-Kruscal"><a href="#仿-Kruscal" class="headerlink" title="仿 Kruscal"></a>仿 Kruscal</h4><p>好困难，不会。</p>
+<p>用主席树维护求出整个邻接矩阵，考虑哪些边是有用的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/10/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1110%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/11/10/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1110%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1110总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-11-10 21:23:57" itemprop="dateCreated datePublished" datetime="2022-11-10T21:23:57+08:00">2022-11-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-02-03 15:05:53" itemprop="dateModified" datetime="2023-02-03T15:05:53+08:00">2023-02-03</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1110总结"><a href="#1110总结" class="headerlink" title="1110总结"></a>1110总结</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0152">考试</a></p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>莫名奇妙写挂的题。</p>
+<p>题本身意义不大，但是我写了很蠢的做法。</p>
+<p>分析问题本质上是需要动态查 $i\ge l,a_i\in x_i$，$a_i$ 不是很大，可以直接预处理每一个元素的 $next$，就很方便了，但是考场上写了扫描做法，还写挂了，非常蠢。</p>
+<p><strong>拿到题不要直接开冲，可以多想一下有没有更好写的做法/更方便，前面的题没那么难。</strong></p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>观察发现答案不超过 $1$ 的充要条件是存在一条长度为奇数的路径，答案不超过 $2$ 的充要条件是存在一条路径。</p>
+<p>先假定图联通，所以问题变成了计算无向图 $s,t$ 之间是否存在长度为奇数的路径，有以下三种方式</p>
+<h4 id="直接最短路"><a href="#直接最短路" class="headerlink" title="直接最短路"></a>直接最短路</h4><p>思想是分层图跑最短路，但实现上没那么麻烦，考场写的这个做法。</p>
+<h4 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h4><p>如果有奇环，那在奇环上绕一圈任意可达了，所以考虑先 DFS 求个深度，如果有奇环答案全部为 $1$，否则路径唯一求出来就行</p>
+<h4 id="二分图"><a href="#二分图" class="headerlink" title="二分图"></a>二分图</h4><p>还是奇环的思想，实现上使用黑白染色。</p>
+<h4 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h4><p>这是常数最小的写法，还是考虑分层图，有一条边则合并不同层的两个点，查奇数路径就是不同层是否联通，偶数路径就是相同层是否联通。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>不算太难的题，但是确实没有想出来。</p>
+<p>首先有个经典结论，先手必败的充要条件为所有可选元素为偶数，证明归纳，显然。</p>
+<p>算先手必败显然比先手必胜好算，所以算必败。</p>
+<p>先把元素做前缀和，再对 $2$ 取模。问题就是需要选一个子矩阵，满足首尾两列元素值相同。</p>
+<p>考场上想到了可以哈希，由于常数，虽然是 $n^2m$ 的，但只有 $52pts$。</p>
+<h4 id="非哈希做法"><a href="#非哈希做法" class="headerlink" title="非哈希做法"></a>非哈希做法</h4><p>考虑固定下边界，移动上边界的过程，发现相同元素的集合在不断变小，而有了这个集合就可以算答案，这个东西是可以每次 $O(m)$ 计算的，这样的常数较小，可以得到 $76pts$。</p>
+<h4 id="正解1"><a href="#正解1" class="headerlink" title="正解1"></a>正解1</h4><p>先得想到它已经是个字符串题了，考虑上边界不断变化的过程，发现不合法的矩阵个数等于当前 $m$ 个字符串两两之间 $LCP$ 的和，然后考虑字符串排序的方式求 LCP，类似后缀排序的 $height$ 数组，发现后缀排序是很好做的，因为每次上移一行，就是归并排序的过程，$height$ 和 $rk$ 都可以线性维护，得到了 $height$ 之后就单调栈搞定。</p>
+<h4 id="Another-Approach"><a href="#Another-Approach" class="headerlink" title="Another Approach"></a>Another Approach</h4><p>考虑非哈希做法的等价类思想，发现虽然维护过程是 $O(nm)$ 的，但实际上等价类的个数是 $O(m)$ 的，考虑以移动下边界的方式考察当前下边界所有上边界的等价类，自顶向下的更新等价类，该拆分的拆分，实际上和正解1本质相同。</p>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>条件比较特殊，需要先观察。</p>
+<p>记 $T’$ 为 $T$ 的修剪。</p>
+<p>$T$ 的修剪和 $T$ 的右子树相同，那么考虑 $T$ 的右子树 $R(T)$，那么 $L(R(T))=L(T’)$，递归的，$R(R(T))$ 和 $R(T)$ 的修剪相同。</p>
+<p>归纳边界是 $L(T)=\emptyset$，此时右子树可以任意延申右儿子而不受限制，先假设当左儿子为空时右儿子也必须为空，这样就有了一个边界。</p>
+<p>因此，如果 $L(T)$ 确定了，就可以确定出有边界的树的唯一形态。</p>
+<p>考察 $L(T)$ 的各项数据对应到的 $T$ 的数据。</p>
+<p>容易发现：</p>
+<script type="math/tex; mode=display">
+leaf_T=size_{L(T)} + 1\\
+height_T=height_{L(T)}+1\\
+size_T=height_T+\sum\limits_{u\in L(T)} height_u</script><p>接下来的事情变成了设计一种合理的方式去枚举合法的 $L(T)$，并能够计算这些数据。</p>
+<h4 id="子树合并枚举二叉树"><a href="#子树合并枚举二叉树" class="headerlink" title="子树合并枚举二叉树"></a>子树合并枚举二叉树</h4><p>枚举二叉树，比较合理的一种方式是以子树大小为阶段来合并，需要记录的信息是 $dp[i][j][k]$ 表示子树大小为 $i$，高度为 $j$，$\sum height_u$ 为 $k$ 的总方案数，合并的时候需要枚举三维做卷积，复杂度为 $n^2k^2m^2$，难以通过本题。</p>
+<p>不难发现 $j$ 可以用前缀和优化，但是其它两维是卷积，动不了的，复杂度 $O(n^2km^2)$，实际上常数比较小，可以过掉。</p>
+<h4 id="深度顺序枚举二叉树"><a href="#深度顺序枚举二叉树" class="headerlink" title="深度顺序枚举二叉树"></a>深度顺序枚举二叉树</h4><p>刚刚的方式是子树合并的方式构造二叉树，现在考虑用深度顺序构造，设 $dp[i][j][k][s]$ 为构造深度为 $i$，树大小为 $j$，$\sum height$ 为 $k$，可用点数为 $s$ 的方案数，转移需要枚举向下构造的点数 $t$，得到 $t$ 后可以预处理转移系数，顺便计算出新的 $j,k,s$，复杂度为 $O(kmn^3)$，更加优秀，事实上 $j,s,t$ 远远取不到 $n$，是非常优秀的复杂度。</p>
+<p>但是这个方法是假的，因为深度和 $\sum height$ 没有必然联系，所以无法计算 $k$。</p>
+<h4 id="高度顺序枚举二叉树"><a href="#高度顺序枚举二叉树" class="headerlink" title="高度顺序枚举二叉树"></a>高度顺序枚举二叉树</h4><p>考虑以子树高度的顺序，降序构造二叉树，这和深度顺序又不一样。</p>
+<p>考虑设 $dp[i][j][k][s]$ 表示子树高度为 $i$，大小为 $j$，$\sum height$ 为 $k$ ，叶子个数为 $s$ 时的方案数，注意这里是按照高度顺序构造，即强制要求先选的部分的高度大于后选的。所以又额外的要求是枚举接下来的增量时需要将所有叶子至少叠加一层，枚举增量 $t$ 时预处理系数即可，复杂度和深度顺序类似。 </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/08/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1108%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -650,348 +1140,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/30/%E9%9A%8F%E8%AE%B0/CSP2022/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/30/%E9%9A%8F%E8%AE%B0/CSP2022/" class="post-title-link" itemprop="url">CSP2022</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-30 23:12:09 / 修改时间：23:50:43" itemprop="dateCreated datePublished" datetime="2022-10-30T23:12:09+08:00">2022-10-30</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="CSP2022"><a href="#CSP2022" class="headerlink" title="CSP2022"></a>CSP2022</h2><p>从 19 年初二第一次参加 CSP，到今年可能的最后一次，已经四年了。</p>
-<p>停课停了也快两年（其中被半停课耽误了半年），勉强到了省队水平。</p>
-<p>19 年的 CSP-S 很是开心，毕竟学 OI 8 个月的我和我的朋友，都顺利拿到 1=，只是可惜另一位没有过初赛。</p>
-<p>20 年的 CSP-S 有点揪心，CE T2T3 失去了取得历史最高全国排名的机会，（这一年是真的是超水平发挥，100+0+0+95）。但是咱还是顺利 AK 普及组，第一次上了学校的宣传。</p>
-<p>20 年发生了很多事，最初一起学 OI 的两位朋友（现在也是最好的朋友），因为各种各样的原因，离开了 OI，我以为我已经是独自一人，但我又结识了新朋友——佳馨和walk。</p>
-<p>21 年的 CSP-S 只能说是一般般，我没有做出 T3，T4 也没有写出暴力，遗憾的以 260 画上句号。这一年发生了太多事，NOIP 因为莫名奇妙的原因变成了 0 分，自然无缘省选，高一省队的理想破灭。</p>
-<p>22 年，我在 NOIP 碰壁后回归文化课调整心态，期末拿了一个还算行的成绩，我没想到我的文科成绩比理科还好，哈哈。这段时间我接触了软件工程，自己尝试着写工程，学会了 Python 和 JavaScript，22 年开学继续停课冲击省选，虽然我没有机会参考，但水平不能落下。省选自然是几家欢喜几家愁，高三的一位学长心态出了问题，甚至无缘 D 类，佳馨顺利进入省队， walk 以一名之差留在外面，我在 Day1Day2 的下午分别到原考场（我们学校是考点）做了题，心情很是糟糕。省选后学了 2 个月的文化，OI 的水平开始停滞。学完高一的文化课内容，去了外地集训，但是水平并没有太大提升，回学校后开始常态化考试，停滞的水平继续有了一些上涨，这个时候我还要兼顾两三个工程项目的开发，非常累，于是就把工程项目全部推了，发现好像又有点无所事事，最后还是捡回来了一个，CSP 前一周和佳馨研究 web 相关的东西，为盒武器的研发做准备，不小心把 vjudge 搞炸了，后面操作就很小心了，没再出事，事实上我周六早上还在一边写我 mirai-plugin 项目的 kotlin，一边和教练聊怎么学 Python。</p>
-<p>终于出发了，在校车坐在前排上一路唱着歌，但是后面的学弟们都没听，我甚至还没有意识到我已经是车上年级最大的人了，还是那副嘻嘻哈哈的脸。</p>
-<p>到考场，和转学的同学面基，还拍照留念，然后进考场的时候感叹人家是什么机房，我们是什么机房，有一说一， i7-12 的机子用起来那是一个舒服，可惜 windows 下没有高版本 g++，被迫用 c++11 语法，战斗力下跌 10%，发现有没有 Python，战斗力再下叠 5%。</p>
-<p>发题，顺序开，T1 想都没想一个 bfs 求全起点最短路先糊上去了，然后定义了 dp 准备 dp，发现好像不太好搞，想了一下，还是得枚举，枚举策略就那几种，试试就出来了，但发现有不少细节，于是停下来认真构思代码，用了一些面向对象的思想，很顺利的一遍写过，通过所有大样例。</p>
-<p>T2 看了一下，简单题，还是细节很多，继续停下构思代码结构，又使用了一些面向对象的方式，写出来很优美的代码，一遍过大样例。</p>
-<p>此时还剩 3h，我尝试开 T3，比较顺利的想出 60 暴力，发现不会正解，难道要重蹈覆辙？发现数据其实挺难造的，于是考虑乱搞，写了一个放 Tag 的做法，我尝试 Hack 这个做法，没有成功，但是我确实知道这样的复杂度是假的，我从来没怀疑过自己造数据的能力，我并不认为出题人造数据的水平能比我高到哪里去，所以大胆当正解写了，我对自己的常数也很放心，大致思考了一下最坏情况，如果目标为 $80pts$，操作数其实可能也就 $4\times 10^{10}$ 的样子，而且不可能卡满，但是没有高版本 g++，<code>unordered_set</code> 用起来还是有些提心吊胆的，如果有个 <code>gp_hash_table</code>，我会放心很多。大样例那么水，当然轻而易举跑过啦。</p>
-<p>这时我还有 1.5h，思考了一下，扣除了 0.2h 最终检查的时间，我放弃了 T4 正解，尽管我浏览题目时已经想出了它的正确解法，我把目标定为 68pts 的暴力，但是并不顺利，我没有通过最后一个大样例，而且无论如何都找不出问题，最后应该是 36~40 分。</p>
-<p>出来自测，不出所料，所有民间数据都卡不掉我的 T3，目前是 100+100+100+40</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1027%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/27/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1027%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1027总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-27 14:22:42 / 修改时间：14:24:24" itemprop="dateCreated datePublished" datetime="2022-10-27T14:22:42+08:00">2022-10-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><p>首先求什么东西的<strong>和</strong>，这类题，一看到就要想是不是该开 <code>long long</code>。</p>
-<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p><strong>多测题，特别是样例水的题，一定要认真检查清空，以及不要读入到一半 break 出去！！！</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/26/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%80%BB%E7%BB%93/ABC274/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/26/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%80%BB%E7%BB%93/ABC274/" class="post-title-link" itemprop="url">ABC274</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-26 15:32:41 / 修改时间：15:53:10" itemprop="dateCreated datePublished" datetime="2022-10-26T15:32:41+08:00">2022-10-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><p>不算难但有坑点的题。</p>
-<p>很容易想到可以抓鱼的时间是当且仅当某两条鱼距离为 $A$ 时。</p>
-<p>所以考虑左边那条鱼，分别计算右边的鱼是哪一条时可以抓到的最大重量。</p>
-<p>我实现的时候出现了负数时间，但是不能在负数时间抓，故我忽略了负数时间的最大值贡献。</p>
-<p>但是考虑到可能第一个正数时间的事件是某条鱼游出了范围，所以需要修正，要么弄个 $0$，要么在每个事件发生前取下最值。</p>
-<h2 id="G"><a href="#G" class="headerlink" title="G"></a>G</h2><p>有趣的题。你需要放最小数量的监视器到一个矩阵中，矩阵中有监视器<strong>不能越过</strong>的障碍，每个监视器往上下左右中一个方向看，可以看到自身位置。你需要保证所有非障碍点都被监视。</p>
-<p>最开始想的是假定先放横着的贪心放竖着的，但是不行。</p>
-<p>后面思考了横着和竖着的关系，发现如果将所有的横块看成一个点，竖块看成一个点，那么能构成一张二分图，二分图的每个边就是每个需要监视的点！</p>
-<p>本质上是最小点覆盖问题，可以用网络流解决。</p>
-<p><strong>二维网格图的行和列，和二分图有着紧密的联系，涉及对横边和竖边分别操作时，需要求最小或者最大值，一定要考虑到网络流，数据范围如果在 $100-500$，那么就更应该思考网络流的方式。</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/26/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1025%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/26/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1025%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1025总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-26 14:27:01 / 修改时间：15:32:14" itemprop="dateCreated datePublished" datetime="2022-10-26T14:27:01+08:00">2022-10-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/25/%E9%97%B2%E7%9A%84%E6%B2%A1%E4%BA%8B%E5%86%99%E7%9A%84%E7%A7%91%E6%99%AE/Text2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/25/%E9%97%B2%E7%9A%84%E6%B2%A1%E4%BA%8B%E5%86%99%E7%9A%84%E7%A7%91%E6%99%AE/Text2/" class="post-title-link" itemprop="url">Text2?</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-25 15:26:14" itemprop="dateCreated datePublished" datetime="2022-10-25T15:26:14+08:00">2022-10-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-03 15:03:06" itemprop="dateModified" datetime="2023-02-03T15:03:06+08:00">2023-02-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="MetaData"><a href="#MetaData" class="headerlink" title="MetaData"></a>MetaData</h3><ul>
-<li>成外部落55th前沿版，投稿文章</li>
-<li>写作目的1：介绍 <code>beta.character.ai</code>，主要介绍该 AI 模型以及 <code>Text2AI</code> 功能。</li>
-<li>写作目的2：简单思考 “对话AI” 为什么带给人们这么大的冲击。</li>
-</ul>
-<h2 id="Text2"><a href="#Text2" class="headerlink" title="Text2?"></a>Text2?</h2><h3 id="Greeting"><a href="#Greeting" class="headerlink" title="Greeting"></a>Greeting</h3><p>Stable diffusion，或者说 “AI 绘图”，近段时间火爆全网，我和一位网友对 Stable diffusion 展开了一些讨论：笔者的英文有些不过关，见谅。</p>
-<h3 id="More"><a href="#More" class="headerlink" title="More"></a>More</h3><p>这个 AI 是什么原理？简单的讲是用计算机模仿了人类的大脑的<strong>部分</strong>思考过程，即神经网络算法。</p>
-<p>希望尝试和这个 AI 交流的读者：访问网站时需要一些上网技巧。</p>
-<h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><p>谈到，我觉得对于我们很大的一个作用是练习英语阅读能力，AI 使用的词汇，除了一些专有名词之外</p>
-<h3 id="reflection"><a href="#reflection" class="headerlink" title="reflection"></a>reflection</h3><p>英国计算机科学家提出过一个思想实验——图灵测试。简单的讲就是让一个人同时 AI 和另一个人聊天，尝试让人来区分另一个人和 AI。</p>
-<p>文中提到的这个 AI 是应该是可以通过图灵测试的（我甚至问过它 What will happen when amperes and volts are hugged together，它告诉我 Then they become watt），但是这并不意味着这是一个真正会思考的 AI，我们离真正会思考的 AI 可能还有很长的路要走。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1059,7 +1211,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

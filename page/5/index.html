@@ -211,6 +211,421 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/19/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20221018%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/19/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20221018%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221018考试总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-19 08:56:48 / 修改时间：21:23:52" itemprop="dateCreated datePublished" datetime="2022-10-19T08:56:48+08:00">2022-10-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0137">考试</a></p>
+<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>简单题，合并两个之后一定不劣，用个栈维护还没合并的东西。</p>
+<h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><p>计数题，容易发现等价于做保证全为 $L,R$，此时每一行的贡献独立，考虑计算每一行单独的答案，乘上其它行的方案数，得到最后的解。</p>
+<p>计算一行的答案，考虑每一个的贡献，好像不太行，因为你需要枚举和它配对的是什么，然后就寄了，计算的时候，我们可以决定每一个选还是不选，最后取待选的个数为 $0$ 的所有方案，同时记录方案数和答案的和，即可完成转移。</p>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p>有趣的题。</p>
+<p>如果采用常规的数位DP方式，那么必须记录进位数和卡界数，只能做到 $O(nk^4)$。</p>
+<p>但是不妨从结果考虑，如果能计算出恰好取到 $n$ 的方案数，并求出 $f(n)$，那么答案就是 $\sum\limits_{n\ge 0} f(n)\times 取到\ n \ 的方案数$。考虑取到 $n$ 的方案数怎么算。</p>
+<p>这里定义 $\binom{a}{b}=0 \text{ when } a&lt;0$。</p>
+<p>利用容斥原理，计算强制 $k$ 个数大于 $x$ 的方案数。</p>
+<script type="math/tex; mode=display">
+ans=\sum\limits_{n\ge 0}\sum\limits_{i=0}^{k} (-1)^{i}\binom{n+k-1-i\times(x+1)}{k-1}f(n)</script><p>后面那个东西，$(k-1)!$ 是个常数。</p>
+<p>提出来后是一个关于下降幂乘上 $f(n)$。</p>
+<p>把下降幂展开成关于 $n$ 的多项式，问题变成求</p>
+<script type="math/tex; mode=display">
+\sum\limits_{n\ge0} f(n)n^x</script><p>这个可以数位DP，考虑往后面填什么，假设已经求了 $10^i$ 以内所有答案，往后填 $c$，对应的变换就是求 $\sum\limits_{0\le n&lt;10^i} f(10n+c)(10n+c)^x$，把 $c$ 扔到外面，后面哪一项用二项式定理展开，就可以用原来的值推新的值了，这东西是个卷积，但是枚举 $c$ 的部分可以扔到外面去，预处理后是 $O(nk^2)$ 的。</p>
+<p>但是这是有问题的，因为我们定义的组合数和下降幂算出来的组合数是不一样的，因此需要排除掉 $n&lt; i\times(x+1)$ 的部分，这个可以重新数位DP一次，过程是一样的。</p>
+<p>但是有更优雅的办法，枚举每个可能的数与 $i\times(x+1)$ 的 LCP，然后除掉当前位后面是没有限制的，后面没有限制的答案，我们已经算过了，就是前面那个值，前面的数，已经知道了，所以合并答案的过程和刚刚没有区别，由于<strong>合并答案的过程是 $O(k^2)$ 的</strong>，所以这样会比一般的数位DP写法更加优雅。</p>
+<p><strong>预处理一些东西的时候要小心，注意不要超过数组或者处理少了。</strong> </p>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p>数据结构题。</p>
+<p>我终归还是不会区间数颜色。</p>
+<h3 id="区间数颜色"><a href="#区间数颜色" class="headerlink" title="区间数颜色"></a>区间数颜色</h3><p>需要求的东西很丑，我们的数据结构，能维护的东西是满足一些偏序关系的元素的<strong>和</strong>，但是这个东西不是这样的比较优美的形式，所以考虑转化成我们的数据结构能维护的东西。</p>
+<p>区间数颜色，就是把不好维护的，通过一个于询问无关的 $pre$ 数组，转化成了利于维护的偏序关系。</p>
+<p>如果考虑区间内相同数的贡献情况，它形如 $100000$。</p>
+<p>这道题可能需要求一个形如 $\text{1 -1 0 0 0 0 0}$ 的东西。</p>
+<p>我们发现求 $1100000$ 也是容易的，只需要记录 <code>pre</code> 的 <code>pre</code> 就可以了。于是可以加减消元得到结果。</p>
+<p>然后树套树。</p>
+<p>码量极其[数据删除]。</p>
+<p>不过直接这么搞不太行，常数太大，所以可以把每个 $\le 10^3$ 的质因子搞出来拿个块状链表维护，再转化一下，将同一质因子视为若干线段其中 $1-3,2-4,3-5$ 这样连，可以直接得到答案，而不用做消元。</p>
+<p>这种把颜色连成线段的思路还是有一定的启发意义。</p>
+<p>我实在不想写这个，下面的假莫队做法好写好调还快些。</p>
+<h3 id="莫队"><a href="#莫队" class="headerlink" title="莫队"></a>莫队</h3><p>莫队思想其实是可以做强制在线题的，这基于我们能够快速从 $[l,r]$ 拓展到 $[l,r+1]$。如果我们能够记录当前若干个状态的值，比如 $O(n^{\frac{2}{3}})$ 个，相当于是让每个 $O(n^{\frac{2}{3}})$ 大小的块都能记下对应的值，然后拓展的代价就是 $O(n^\frac{2}{3})$ 的，有些题目可能会有空间问题，得就题目讨论。</p>
+<p>这道题一个状态需要的空间大约是 $80000\times 4 \div 1024\div1024\approx 0.3 MB$，可以记录约 $3000$ 个状态，这已经够用了， $\sqrt {3000} \approx 54$，我们能以 $O(\frac{nq}{54})$  的代价回答询问，对于修改，至多影响 $3000$ 个状态，也是可以接受的。</p>
+<p>当然，我们需要把小于 $1000$ 的质因子提出来单独先做一遍，以免代价过大。</p>
+<p>但是开 $54$ 个端点不是最优的，实践表明块长小一点，比如 $40$ ，会更加优秀，这种分块题还是需要看实际实现来调块长。</p>
+<p>不过 $10^5$ 的题，怎么玩都是基本不会出问题的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/17/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1014%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/17/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1014%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1014总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-10-17 19:07:20" itemprop="dateCreated datePublished" datetime="2022-10-17T19:07:20+08:00">2022-10-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-07 09:54:51" itemprop="dateModified" datetime="2022-11-07T09:54:51+08:00">2022-11-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>时隔接近一个月写的考试总结…</p>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0133">考试</a></p>
+<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>没有什么价值的题，分析一下相位这些就可以做出来。</p>
+<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>算区间最大值之和要枚举最大值位置算跨过的数量，所以考虑对这个东西动态规划，设 $dp[l][r]$ 表示只考虑 $l,r$ 区间的最优答案。</p>
+<p>枚举最大值位置后，拆分成两个区间，其答案和最大值位置以及彼此无关，符合最优子结构性质，加上最大值的额外贡献，可以在每一个位置枚举取哪个值，有可能算出来答案比较劣，但是仍然可以遍历解空间，所以这样 DP 没有问题。</p>
+<p>枚举取值的复杂度很高，发现每个位置的最优值和 dp 数组无关，考虑预处理每个位置的最优值，本质上是给定若干一次函数，再给定若干 $x$，求最值，很简单。</p>
+<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>考场上没有做出来的题，但是基本想出来了，ARC 那道期望题加深了对期望的理解。</p>
+<p>根据期望线性性，$E(dis_{u,v} ) = E(dis_u)+E(dis_v)-2\times E(dis_{lca(u,v)})$。</p>
+<p>前两者是好算的，考虑这样一个 $dp$，$dp_u$ 表示 $1$ 到 $u$ 的期望距离，转移比较简单。</p>
+<p>考虑后者怎么算，即 $u,v$ 两点 $lca$ 距离的期望，如果 $v$ 在下面，由于 $lca$ 一定在 $u$ 及之前，所以 $u,v$ 的 $lca$ 的期望等价于 $u,u+1$ 的 $lca$ 的期望，归纳即可证明。</p>
+<p>考虑计算 $u,u+1$ 的 $lca$ 的期望值，这个也是可以动态规划的了，枚举 $u+1$ 的祖先即可，上前缀和优化。</p>
+<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><h4 id="我的想法"><a href="#我的想法" class="headerlink" title="我的想法"></a>我的想法</h4><p>考虑类似点分治一样去做，只不过是随机选点，期望层数应该是 $O(\log n)$，证明的话，考虑将 $\frac{n}{4}$ 个点变成一个点，分两种情况，该点存在大小超过 $\frac{n}{2}$ 的子树和不存在。后者已经证毕，每次问题规模有 $\frac{1}{4}$ 的概率变为原来的 $\frac{3}{4}$。前者考虑在该子树中选取包含根的 $\frac{n}{4}$ 个点重复以上过程，于是不存在大小超过 $\frac{n}{2}$ 的子树，同样证毕。</p>
+<p>基于点分治的原理（独立的子树不跨过分治中心），可以求出每棵子树包含的点集，但如果分治的叉过多，求叉的的过程需要反复尝试每一个叉，复杂度退化到 $n^2$。</p>
+<p>树形态随机的情况下（随机父亲），每个点的分叉期望是 $\ln n$ 级别的，复杂度为 $O(n\log^2 n)$。</p>
+<h4 id="Topsort"><a href="#Topsort" class="headerlink" title="Topsort"></a>Topsort</h4><p>需要问树的形态，考虑单独的一次询问能干什么，可以判断一个点是否为叶子，所以考虑从叶子一层一层往上确定。一种比较暴力的方式是先找出所有的叶子，然后删掉后找出二级叶子，找一个点当根，直接确定某个点的父亲是不好做的，考虑为某个点确定一个儿子，方式是二分，重复若干次即可。</p>
+<p>确定一层的均摊复杂度是 $O(leaf\log{(leaf)})$，外加找叶子的复杂度，总计 $O(n^2)$，考虑优化找叶子的复杂度，一种可行的方式是先弄出一个拓扑序排列，按照拓扑序去逐一确定。</p>
+<p>弄拓扑序可以考虑以插入的方式构造排列，一个拓扑序合法当且仅当 $ \forall\ i\ 满足\ \forall \ j\in[1,i), p_i\ 不是\ p_j\ 的祖先$。插入构造时询问一个前缀到根是否包含当前插入的点，如果包含，那么这个点应该放在更前面，得到拓扑序之后就可以逆序构造。</p>
+<h4 id="Subtree"><a href="#Subtree" class="headerlink" title="Subtree"></a>Subtree</h4><p>考虑递归的构造，确定父亲和子树内容，假设有一个函数 $f(x)$ 可以求出 $x$ 子树中所有点的父亲（除自身外），那么调用每个 $f(x)$ 一次后就可以保证求出树的结构。维护一个没调用过 $f(x)$ 的点集，在点集中找到一个是 $x$ 后代的点 $y$，调用 $f(y)$，于是求出了 $y$ 后代所有节点的父亲，维护一下没确定父亲点的点集，在没调用过 $f(x)$ 的点集中，若找不到 $x$ 的后代，那么就可以开始在没确定父亲的点集中找出 $x$ 的所有儿子了。</p>
+<p>分析复杂度为 $O(n\log n)$。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%80%BB%E7%BB%93/CF1746/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%80%BB%E7%BB%93/CF1746/" class="post-title-link" itemprop="url">CF1746</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-17 09:11:23 / 修改时间：12:11:55" itemprop="dateCreated datePublished" datetime="2022-10-17T09:11:23+08:00">2022-10-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="ABC"><a href="#ABC" class="headerlink" title="ABC"></a>ABC</h2><p>没什么价值的题。</p>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p>首先每次选路径一定会选到根。</p>
+<p>要求儿子相差不超过 $1$。</p>
+<p>所以每个点被选的次数弄出来了，那么每个儿子只有两种选法，选 $\lceil\frac{cnt_u}{cson_u}\rceil,\lfloor\frac{cnt_u}{cson_u}\rfloor$。</p>
+<p>根据经典结论，如果直接动态规划，状态数为 $O(n)$。</p>
+<h2 id="E1"><a href="#E1" class="headerlink" title="E1"></a>E1</h2><p>趣味题</p>
+<p>考虑二分，发现不可二分，因为问 $S,\overline S$ 是等价的，所以随便糊弄你就行。</p>
+<p>所以考虑三分或者四分。</p>
+<p>考虑解决 $n=3$ 的基本情况。</p>
+<p>先确定问题再处理的方式看上去不太可取。</p>
+<p>所以我们多半是需要根据回答来决定下一个问题。</p>
+<p>这就是一颗决策树。</p>
+<p>问一个时，$Y$ 的限制较强。</p>
+<p>不妨先问 $1$，如果是 $N$，那么再问一遍 $1$ ，还是 $N$ 则排除 $1$，如果是 $Y$ 则回到最初的 $Case$，此时问 $2$，如果回答是 $Y$ 则排除 $3$，$N$ 则排除 $2$。</p>
+<p>那么用了 $3$ 步将问题规模变为 $\frac{2}{3}$。</p>
+<p>总步数为 $3\log_\frac{3}{2}(10^5) \approx 85$，取整之后问题不大。</p>
+<h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><p>让人眼前一亮的随机化思路。</p>
+<p>首先可以带修莫队 $O(n^{\frac{5}{3}})$。但是过不了。</p>
+<p>先考虑 $k$ 比较小的特殊情况，不妨就是 $k=2$。</p>
+<p>左想右想，都没有办法比较好的合并信息，因为它没有办法写成经典的偏序计数问题。</p>
+<p>没有办法这样合并，那就只能 $O(n^2)$。</p>
+<p>所以我不会。</p>
+<p>这是个判定问题，只需要回答 <code>YES NO</code>。</p>
+<p>考虑条件，必要条件是比较好找的，显然每个数出现次数为 $k$ 的倍数是必要条件，若干个必要条件加在一起就是充要条件。</p>
+<p>考虑同时判定若干个必要条件，即某些数的出现次数是否为 $k$ 的倍数，似乎不太可做，但是发现如果随机选取若干个数并判定，那么对于答案为 <code>NO</code>  的所有情况，通过判定的概率至多为$\frac{1}{2}$，所以随机对数个子集判定后对于通过的回答 <code>YES</code>，正确率足以接受。</p>
+<p><strong>对于一个判定问题，如果有某种检测算法，答案为 <code>YES</code> 一定可以通过，答案为 <code>NO</code> 概率通过，那么运行这个算法对数次后，可以以很高的正确率回答该判定问题。</strong></p>
+<p><strong>如果有一个判定问题，某随机算法能以超过 $50\%$ 的概率给出正确的答案，那运行这个算法对数次取众数即可解决问题</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%80%BB%E7%BB%93/ARC151/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%80%BB%E7%BB%93/ARC151/" class="post-title-link" itemprop="url">ARC151</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-17 09:00:18 / 修改时间：09:09:31" itemprop="dateCreated datePublished" datetime="2022-10-17T09:00:18+08:00">2022-10-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>胡乱想了一通，做出来了。</p>
+<p>形如要求 $f(x)=f(y)$ 的问题，可以考虑 $f(x)-f(y)=D$，这样就可以考察 $x,y$ 独立对 $D$ 的贡献了。</p>
+<p>字典序题，从前往后贪心。</p>
+<h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><p>字典序的题，一般的方式是考虑从前往后贪心，考虑前 $i$ 个相等的情况，并查集维护一下前面要求相等的组数，然后就是简单的组合题。</p>
+<p>另外一种特有的方式是考虑字典序小于，和字典序大于是等价的，总方案减掉字典序相等的方案除二即可。</p>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p>SG 函数打表，没什么技术含量。</p>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p>很有趣的题。</p>
+<p>二进制位相关的题目，刻画一下变换的过程，等价为在图上走。</p>
+<p>然后发现如果 $X_i$ 相等是好做的。</p>
+<p>我就没啥思路了。</p>
+<p>看一下题解。</p>
+<p>考虑交换两个 $X_i$ 不同的，发现最终答案不变，因为图上走的过程是等价的，继续选上之前选的边就行。</p>
+<p>然后就做完了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/15/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%80%BB%E7%BB%93/CF1736%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="幻影彭">
+      <meta itemprop="description" content="幻影彭的个人博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/15/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%80%BB%E7%BB%93/CF1736%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">CF1736总结</a>
+        </h2>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-15 15:29:58 / 修改时间：16:58:56" itemprop="dateCreated datePublished" datetime="2022-10-15T15:29:58+08:00">2022-10-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><p>这里的 C 指 C2。</p>
+<p>首先来一波 $\pm i$ 变成相对简单的判 $&gt; 0$ 问题。</p>
+<h3 id="Method1"><a href="#Method1" class="headerlink" title="Method1"></a>Method1</h3><p>考试的时候，比较自然的考虑计算跨过某个数的合法区间总数，发现可以把某个位置开头最远的区间给算出来。</p>
+<p>然后就是个二维偏序。</p>
+<p>然后对于新修改的元素，计算跨过它的合法区间个数，如果改小了，一定只会有一些数被这个东西限制，我选择做一个极度毒瘤的二维偏序。</p>
+<p>如果改大了，一定只会有一些数在此处的限制被放开，再处理每个数放开一次限制后的最大位置即可，对于同一位置，可以处理单点前缀和，然后在上面 <code>lower_bound</code>。</p>
+<p>显然两个都是可以在线做的，但是考试的时候没有发现被限制的数一定是一个区间，然后就出现了毒瘤。</p>
+<p>不知道自己写的什么狗屎离线做法，奇丑无比。</p>
+<h3 id="Method2"><a href="#Method2" class="headerlink" title="Method2"></a>Method2</h3><p>上面那个搞什么二维偏序是邪道。</p>
+<p>还是考虑求跨过每个数的合法区间个数，某个位置 $x$ 会限制另一个位置 $i$，当且仅当 $a_x+i\le 0$，所有一个位置限制的位置一定是一个前缀，这部分前缀的前缀会在这个位置之前被另外的位置限制，这是是可二分的。</p>
+<p>所以改小的影响就好算了，找到被改小的数限制的区间，这一部分求总长度然后减去 $cnt\times x$ 得到答案减小值。</p>
+<p>改大会比较麻烦，参考上面的处理方式。</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p><strong>多找点性质，又不妨碍做题。</strong></p>
+<p><strong>多学着点二分，别去搞什么垃圾数据结构二维偏序。</strong></p>
+<h2 id="D"><a href="#D" class="headerlink" title="D"></a>D</h2><p>比较清新的构造题，难度不大，但是场上没想出来。</p>
+<p>先假设没有操作，尝试求解该问题，发现它比较困难（似乎不存在多项式做法），所以应该考虑能不能构造出特殊情况。</p>
+<p>考场上我看成了 <code>reverse</code>，这也是可做的，只需要构造出形如 <code>0000011111</code> 的串就行，方法是选上末尾的，插在 <code>1</code> 之间的 <code>0</code>，然后和前面的 <code>1</code> 交换，设 <code>1</code> 的个数为 $cnt_1$，那么选择后面 $cnt_1$ 个位置中所有的 <code>0</code>，再选出前面所有的 <code>1</code>，交换即可。</p>
+<p>实际上是循环左移，同样考虑构造特殊情况，这次选择构造 <code>001100111100</code> 这种。</p>
+<p>如果不是，就选一个，找到下一个同样不满足的，然后移过来，最后一定有偶数个不满足的，用不同的数隔开就行。</p>
+<p><strong>本质上，这个操作相当于选了偶数个相邻数不同的数，把它们 flip。</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/14/%E6%9D%82%E9%A1%B9/%E7%AE%80%E6%98%93%E5%85%AC%E5%BC%80%E6%94%BE%E4%BB%A3%E7%A0%81%E7%9A%84%E7%BD%91%E7%9B%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -689,494 +1104,10 @@ P(下一个值为目标|满足排列限制)=&\dfrac{P(下一个值为目标\wedg
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/10/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/10/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/" class="post-title-link" itemprop="url">概率期望--三门问题及其变形</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-10 11:47:36 / 修改时间：20:48:11" itemprop="dateCreated datePublished" datetime="2022-10-10T11:47:36+08:00">2022-10-10</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="事件和条件"><a href="#事件和条件" class="headerlink" title="事件和条件"></a>事件和条件</h2><p>以下概率均为古典概率模型，暂时不讨论几何概型。</p>
-<p>这两个东西是我自己定义的，算概率之前，必须搞清楚事件和条件的区别，下面提两个搞不清楚事件和条件导致的问题。</p>
-<h3 id="三门问题"><a href="#三门问题" class="headerlink" title="三门问题"></a>三门问题</h3><ul>
-<li><p>有三个门，一个门后面有汽车，另外两个门后面是山羊。</p>
-</li>
-<li><p>你可以先选择一个门，之后主持人打开一个门，门后是山羊</p>
-</li>
-<li>问此时两个门后有汽车的概率是多少</li>
-</ul>
-<h4 id="思考方式一（错误）"><a href="#思考方式一（错误）" class="headerlink" title="思考方式一（错误）"></a>思考方式一（错误）</h4><p>每个门后有山羊的概率是相等的，打开一个门不会影响另外两个门的状态，故另外两个门后有山羊的概率是相等的，故答案为 $50\%$</p>
-<h4 id="思考方式二（不严谨）"><a href="#思考方式二（不严谨）" class="headerlink" title="思考方式二（不严谨）"></a>思考方式二（不严谨）</h4><p>另外两个门有山羊的概率是 $\frac{2}{3}$，排除一个选项，所以选择的门后有山羊的概率是 $\frac{1}{3}$，另一个门的概率为 $\frac{2}{3}$。</p>
-<h3 id="不知道叫什么名字的问题"><a href="#不知道叫什么名字的问题" class="headerlink" title="不知道叫什么名字的问题"></a>不知道叫什么名字的问题</h3><p>有个酒鬼，每天各有 $30\%$ 的概率去 $A,B,C$ 三个酒吧，还有 $10\%$ 的概率呆在家。</p>
-<p>一个警察要找他，警察已经找了 $A,B$ 酒吧，都没找到他，问在 $C$ 酒吧找到酒鬼的概率。</p>
-<h4 id="思考方式一（错误）-1"><a href="#思考方式一（错误）-1" class="headerlink" title="思考方式一（错误）"></a>思考方式一（错误）</h4><p>在酒吧的概率是 $90\%$，$A,B$ 都没找到，说明一定在 $C$，所以在 $C$ 找到酒鬼的概率是 $90\%$。</p>
-<p>这个思路和上一个问题思考方式二类似，但是是错误的，因此说它不严谨。</p>
-<h4 id="思考方式二（不严谨）-1"><a href="#思考方式二（不严谨）-1" class="headerlink" title="思考方式二（不严谨）"></a>思考方式二（不严谨）</h4><p>已知不在 $A,B$ 酒吧，那么在 $C$ 酒吧和在家的概率之比是 $3:1$，因此答案为 $75\%$。</p>
-<p>这种方式的问题在哪里不必多说了。</p>
-<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p>思考这个问题前应该回到概率定义的几个要素：样本空间，样本点，事件。</p>
-<p>一个事件的概率被定义为事件大小除以样本空间大小。</p>
-<h4 id="三门问题-1"><a href="#三门问题-1" class="headerlink" title="三门问题"></a>三门问题</h4><p>第一个问题中，样本空间的大小为 $3$，需要计算在某个不被选择的门后面是羊的情况下，选择的门后面是车的概率。</p>
-<p>事件的大小为 $1$，因此概率为 $\frac{1}{3}$，另一个不被选择的门后面有车，其事件大小为 $2$，因为最初样本空间中在两个门后的样本点都属于该事件（如果是这两个事件之一，那么没被打开的另一扇门后必定是车）。</p>
-<p>推广到 $n$ 门问题，主持人随机打开一个<strong>未被选择且没有车的门</strong>，那么样本空间大小为 $1$，不改变选择的事件大小为 $n-2$，改变选择的事件大小为 $n$。</p>
-<h4 id="酒吧问题"><a href="#酒吧问题" class="headerlink" title="酒吧问题"></a>酒吧问题</h4><h4 id="事件域"><a href="#事件域" class="headerlink" title="事件域"></a>事件域</h4><p>通常解决一个概率问题需要明确事件域，即我们关心的所有事件，如果事件域不合法，那么</p>
-<h4 id="某个样本空间不正确导致的悖论"><a href="#某个样本空间不正确导致的悖论" class="headerlink" title="某个样本空间不正确导致的悖论"></a>某个样本空间不正确导致的悖论</h4><p>假设选的门是 $1$ 号，已知 $2$ 号门没有车，那么 $3$ 号门有车的概率是 $$</p>
-<p>我们需要明确问题中这个概率定义是在哪个样本空间下的，问题中样本空间的大小很明显是 $3$，而在被开的门后是山羊的事件大小为 $2$</p>
-<h2 id="样本空间无限的问题"><a href="#样本空间无限的问题" class="headerlink" title="样本空间无限的问题"></a>样本空间无限的问题</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/07/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/07/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">最小生成树和动态规划</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-07 14:43:38 / 修改时间：17:26:00" itemprop="dateCreated datePublished" datetime="2022-10-07T14:43:38+08:00">2022-10-07</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="最小生成树-X-动态规划"><a href="#最小生成树-X-动态规划" class="headerlink" title="最小生成树 X 动态规划"></a>最小生成树 X 动态规划</h2><p>​                                    |</p>
-<p>​                                    |</p>
-<p>​                                    |</p>
-<p>​                            /                \</p>
-<p>​                        /                        \</p>
-<p><strong>F1:</strong>             <strong>xxxx</strong>                  <strong>oooo</strong></p>
-<p>…………</p>
-<h3 id="最小生成树-MST"><a href="#最小生成树-MST" class="headerlink" title="最小生成树(MST)"></a>最小生成树(MST)</h3><p>常用算法有 Kruscal 和 Prime，以下会谈一些 MST 的性质和两种算法的证明</p>
-<h4 id="Kruscal-证明（参考-OI-wiki）"><a href="#Kruscal-证明（参考-OI-wiki）" class="headerlink" title="Kruscal 证明（参考 OI-wiki）"></a>Kruscal 证明（参考 OI-wiki）</h4><p>核心思路是证明任意时刻边集均为一颗 MST 的子集。</p>
-<p>归纳的，令当前边集 $F$ 属于的 MST 为 $T$，考虑新加入的一条边 $e$，如果 $e\in T$，自然成立。</p>
-<p>如果 $e\notin T$，那么 $e+T$ 构成了一个环，考虑该环上所有边 $E_i$，一定满足 $w_{E_i} \le w_e$，否则 $e$ 应该在 $T$ 中，得到更优的 MST，所以 $E_i$ 已经在 $e$ 之前被加入，构成了一条完整的链。</p>
-<p>所以不会加入 $e$，进行下一步。</p>
-<h4 id="一些性质"><a href="#一些性质" class="headerlink" title="一些性质"></a>一些性质</h4><h4 id="Prime"><a href="#Prime" class="headerlink" title="Prime"></a>Prime</h4><h3 id="动态规划最小生成树"><a href="#动态规划最小生成树" class="headerlink" title="动态规划最小生成树"></a>动态规划最小生成树</h3><p>一般这种题都是指数级的题，有 <a href="">这道</a>，<a href="">这道</a>，和 <a href="">这道</a></p>
-<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><p>给你一张图，问任选 $i$ 条边，使得图联通的方案数有多少种。</p>
-<h4 id="Method1"><a href="#Method1" class="headerlink" title="Method1"></a>Method1</h4><p>记录联通性动态规划</p>
-<h4 id="Mehod2"><a href="#Mehod2" class="headerlink" title="Mehod2"></a>Mehod2</h4><p>考虑 $dp[mask][i]$ 表示子图 $mask$ 的答案，转移时发现重复了，因为两种不同的子图分配方案最后可能对应到同一种选边方式，所以我们需要一个顺序一类的东西来保证不重复。</p>
-<p>一种比较可行的方式是计算记录顺序的情况下的方案，这样可以钦定枚举的两个子图一定是最后连上的，最后除以一个阶乘。</p>
-<p>另一种方式是直接容斥，考虑计算选 $k$ 条边后不联通的答案，枚举得到的两个连通块就是断开的，还是有重复的问题，但是我们可以钦定每种图只会在与 $1$ 相连的连通块处被统计，这是经典的连通图计数方式。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/06/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20221006%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/06/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20221006%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221006考试总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-06 21:24:52" itemprop="dateCreated datePublished" datetime="2022-10-06T21:24:52+08:00">2022-10-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-07 20:48:11" itemprop="dateModified" datetime="2022-10-07T20:48:11+08:00">2022-10-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="考试总结"><a href="#考试总结" class="headerlink" title="考试总结"></a>考试总结</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0130">考试</a></p>
-<p>​                                                                            <strong>成功垫底</strong></p>
-<p>​                                            难                                                                        T     </p>
-<p>​                                            度                                                                        1</p>
-<p>​                                            倒                                                                       磕</p>
-<p>​                                            序                                                                       了</p>
-<p>​                                            自                                                                       一</p>
-<p>​                                            闭                                                                       万</p>
-<p>​                                            场                                                                       年</p>
-<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>我不会的题。</p>
-<p>求有向图可达点数量实际上不存在低于 $O(n^2)$ 的算法，所以得考虑给定图的性质。</p>
-<p>显然给定的图是个平面图。</p>
-<p>然后定义一个东边的点是有效的，当且仅当它能到一个西边的点，一遍 $BFS$ 可以把有效点找出来。</p>
-<p>然后对于所有点，它能到达的有效点集合一定是一段区间，考虑反证，对于某个点，如果被夹在中间的一个有效点到不了，那么如果其它点可以到就只能穿过一些边，这是不可能的。</p>
-<p>写拓扑排序是非常傻逼的行为，直接对每个有效点拓展，算出西边每个点到达有效点坐标的最值就行。</p>
-<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>会但是考场写不出来的题。</p>
-<h4 id="Method1"><a href="#Method1" class="headerlink" title="Method1"></a>Method1</h4><p>考虑枚举排列计算 <code>MST</code>，本质上需要求前 $i$ 个边能将图联通的排列一共有多少个。</p>
-<p>可以考虑计算出任选 $i$ 条边后图联通的选法有多少种，然后通过容斥计算出恰 $i$ 个边联通的排列个数。</p>
-<p>可以记录联通性动态规划搞定。</p>
-<p>复杂度 $O(bell(n)\times m^2)$</p>
-<h4 id="Method2"><a href="#Method2" class="headerlink" title="Method2"></a>Method2</h4><p>枚举联通往往可以弄成二进制枚举联通状态，逆序考虑联通块的构成方式，发现求任 $i$ 条边联通的方案数，转移的时候是不强调顺序的，所以枚举子集会导致重复，不妨直接考虑顺序，计算原问题的答案。</p>
-<p>设 $dp[mask][i]$ 表示只考虑 $mask$ 子图，答案为 $i$ 的排列个数，转移就可以枚举子集，从上一条边的状态转移，需要进行一些排列组合，复杂度 $3^n\times m^4$。</p>
-<h4 id="Method3"><a href="#Method3" class="headerlink" title="Method3"></a>Method3</h4><p>高达 $m^4$ 的多项式复杂度还是太逊了，考虑继续优化。</p>
-<p>其实我们很想直接任选 $k$ 条边，然后排除掉不合法的情况，这样能够求出答案至多为 $k$ 的个数，容斥之后就没有问题了。</p>
-<p>所以考虑如何排除不合法的情况，就是边选好了但是图没联通，这个时候我们就可以枚举一个小连通块，可以用若干边连接内部，若干外部边任选，就是一类不合法的情况，但是这样会算重，我们可以钦定枚举的联通块和 $1$ 联通。</p>
-<p>复杂度 $O(3^n\times m^2)$。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>这一类图论上的二进制枚举问题，往往可以先从枚举联通块入手，再考虑子图的答案，最后综合运用容斥等计数手段，得到复杂度优秀的做法。</p>
-<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>非常有意思的题</p>
-<h4 id="Method1-1"><a href="#Method1-1" class="headerlink" title="Method1"></a>Method1</h4><p>考场上的想法，主要受到<a href="还没写">某道题</a>的启发。</p>
-<p>只考虑最大值，$O(n)$ 可以扫一遍，单调栈维护当前每一段的最大值与和。</p>
-<p>很浪费，因为我们本质上对每个右端点都求了合法左端点区间的答案，考虑能不能复用右端点的答案。</p>
-<p>其中一种方式是分块，考虑一段右端点到每个左端点的答案的前缀和，然后查询就可以被拆分了。</p>
-<h4 id="Method2-1"><a href="#Method2-1" class="headerlink" title="Method2"></a>Method2</h4><p>为什么我们会分块，回到那道题，我们有办法通过一些预处理结果得到两个区间并的答案，但是无法快速合并两个预处理结果，所以我们分块，只需要预处理一次。</p>
-<p>但是利用随机数的性质我们发现其实可以快速合并预处理的结果。</p>
-<p>将问题转化为两种基本形式，相离和重合，这是容易的。</p>
-<p>先考虑相离怎么做</p>
-<p>考虑利用随机的性质，发现任意一段区间，其有效的贡献个数为 $\ln$ 个，即从区间首或位开始的最长连续上升序列，然后枚举两个 $\ln$ 的区间合并，搞定相离的情况，视实现是 $\ln^2$ 或者 $\ln$，后者常数较大可能并不优秀。</p>
-<p>然后是重合，能不能合并两个重合的区间得到新的区间，可以！转化为一个相离和两个更小的重合问题，因为数量是 $\ln$ 的，所以合并预处理信息是可能的。</p>
-<p>但是，为啥要用线段树，因为没有逆元！但是这道题是可以将一个大重合问题减去一个相离和一个小重合问题得到另一个小重合问题的，所以对大重合问题做前缀和即可。</p>
-<h4 id="Method3-1"><a href="#Method3-1" class="headerlink" title="Method3"></a>Method3</h4><p>对于二维统计问题，常常可以考虑固定预处理其中一维，尝试快速通过预处理结果查询第二维。</p>
-<p>这道题中，我们可以预处理每个点作为第二个区间中的点时，在第一个区间中每个点的答案。但实际上这个数据量是 $O(n)$ 的，没有办法快速搞定，那不妨考虑只处理其前缀和与后缀和，看看是否能够压缩信息。</p>
-<h5 id="一些不太正确的思考"><a href="#一些不太正确的思考" class="headerlink" title="一些不太正确的思考"></a>一些不太正确的思考</h5><p>考虑单个右端点对一段区间查询，考虑区间最大值，如果落在自身或者空区间，那么答案容易计算，如果落在左区间</p>
-<p>考虑它前面第一个比它大的位置，如果不存在或者在空区间，那么答案可以通过前缀和快速计算</p>
-<h5 id="正确的思考"><a href="#正确的思考" class="headerlink" title="正确的思考"></a>正确的思考</h5><p>考虑区间相离的基本情况。由于单点我们都没有办法做，所以不太能直接搞，但是容易发现区间重合时可以搞定的，考虑区间最大值的位置，跨过它的答案容易统计，不跨过它，我们处理了每个点为右端点和左端点时答案的前缀和，那么由于不跨过最大值时，在最大值另一侧的答案完全不受同侧的影响，所以前后缀和减去最大值所在位置的前后缀和就可以得到重合的答案。</p>
-<p>有了重合，我们可以解决区间相邻的答案，定义求两个区间答案的运算是 $\oplus$，那么对于两个相邻区间有$(a+b)\oplus(a+b)=a\oplus a+b\oplus b+a\oplus b$。</p>
-<p>我们能搞定的是 $a\oplus a$，对于相离的区间，转化为相邻区间做 $a\oplus c = (a+b+c)\oplus (a+b+c)-a\oplus a-b \oplus b-c\oplus c - a\oplus b -b\oplus c$。</p>
-<p>因而搞定了所有情况。</p>
-<h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><p>如果直接这么写，写出来很丑，实际上由更优雅的写法，考虑差分区间，如果左端点大于右端点那么没有问题，$[l_1,r_2]$ 全部统计，那么会有重复 $[l_1,l_2-1]$ 这一段区间就是被重复统计的，当然这个区间可以不存在，需要减去，然后再减去 $[r_1+1,r_2]$ 这段有可能不存在的区间的答案，最后加上可能被算重的 $[r_1+1,l_2-1]$ 区间。</p>
-<p>反正这个思想挺神的，看上去有问题但确实是对的，比直接写优雅很多。</p>
-<h4 id="Method4"><a href="#Method4" class="headerlink" title="Method4"></a>Method4</h4><h5 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h5><p>考虑每个数对答案的贡献，弄出左右两边第一个比它大的数，那么这些区间以内跨过它的，都在它的贡献范围内，左右端点可以弄成 $x,y$ 坐标，这是一个矩阵加。</p>
-<p>考虑查询，本质上也是在查询 $x,y$ 坐标各在一段区间内的答案。</p>
-<p>于是就是一个修改全部在查询前面的矩阵加矩阵查问题，可以用树状数组解决。</p>
-<h5 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h5><p>说着轻松，但其实还没写过这种东西，简单思考下怎么做。</p>
-<p>首先区间查被差分成 $\ge x,\ge y$ 的区域加一，区间查变成 $\le x,\le y$ 的区域查询，还是回到了二维偏序问题。</p>
-<p>点是 $(x_1,y_1),(x_2,y_2)$，条件是 $x_2\ge x_1\wedge y_2\ge y_1$，贡献是 $(x_2-x_1)\times(y_2-y_1)$，是不是很阴间？所以多维护点东西，一个 $cnt$ 树状数组搞定 $x_2\times y_2$，两个分别加 $x,y$ 来搞定 $x_2\times y_1,x_1\times y_2$ ，再来一个统计 $xy$ 搞定剩下那一项，其实还算好写。</p>
-<h3 id="T4"><a href="#T4" class="headerlink" title="T4"></a>T4</h3><p>考虑刻画出图的形态，它是一个基环内向树森林。</p>
-<p>容易发现只用将 $1$ 和其它点连边，然后有些点是必须连的，入度为 $0$ 的，编号非 $1$ 的点必须连。</p>
-<p>先不考虑环，这样连了之后，又有一些点是必连的，而且容易发现连这些点一定最优，所以继续连。</p>
-<p>连到不是环上的所有点都连上为止。</p>
-<p>现在还剩一些环，环上一些点是合法的，需要用长度为 $k-1$ 的线段取覆盖环，让所有点合法。</p>
-<p>容易发现确定某个起点之后就能贪心了，考虑连续的 $k+1$ 个不合法点，枚举每一个并确定最少数量，然后取 $\min$ 就行，因为这连续的 $k+1$ 个不合法点一定有一个是起点。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/05/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20221005%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/05/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/20221005%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221005考试总结</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-10-05 14:42:17 / 修改时间：21:53:13" itemprop="dateCreated datePublished" datetime="2022-10-05T14:42:17+08:00">2022-10-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0129">考试</a></p>
-<h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>挺套路的题，通过 <code>00 11</code> 得到 $1,0$ 的个数，容易发现 <code>10 01</code> 的总个数已经被确定且容易构造。</p>
-<p>但是有边界，考虑 <code>00 11</code> 个数为 $0$，此时可以取 $1$ 个也可以取 $0$ 个。然后 <code>100-&gt;55</code></p>
-<p>这种两个构成的计数问题，一定要考虑只有一个的边界情况，</p>
-<p>注意我们通过题目信息得到新信息的过程，要看看是否为一一映射。</p>
-<h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>有趣的题。</p>
-<p>我先思考了如果一个问题我限定一个时间 $T$，等 $T$ 秒过完，得到的收益，实际上我们可能有根据当前信息改变等待的这个时间，所以这样不行。</p>
-<p>接着考虑 $t$ 时刻到 Trie 上 $j$ 点的最优方案，发现其实不好转移。</p>
-<p>注意到我们能决定的只有回答还是等待，所以这样的话转移会带上一个概率，但是这个概率却是无法相加后取最值的。</p>
-<p><strong>正难则反</strong>，考虑到 $j$ 点时还剩时间 $t$，最优能得到什么，这样的话，转移就只和我们的决定有关，成功解决这道题。</p>
-<h3 id="T3"><a href="#T3" class="headerlink" title="T3"></a>T3</h3><p>等价于求最优解并构造方案。</p>
-<p>它的修改本质上是需要决定一个最值，付出对应的代价，然后如果某个数绝对值<strong>严格小于</strong>最值，那么这个数的正负性就可以被指定，然后指定最值后最优化代价就是要求出删去的数的最小个数。</p>
-<p>我们需要求出对于每个最值的删除数最小个数。</p>
-<p>由于不让 $0$ 出现，所以先判掉不修改只删除的方案，这个是简单的。</p>
-<p>有两种思考方式，对应了两种求答案的方式。</p>
-<p>一个数为负视为 <code>-1</code>，为正视为 <code>1</code>，可调整视为 <code>0</code></p>
-<h4 id="Method1"><a href="#Method1" class="headerlink" title="Method1"></a>Method1</h4><p>考虑一段极长连续相同子段，如果不为 <code>0</code>，那么必须删去然后只剩下一个。</p>
-<p>如果为 <code>0</code>，其左右两边的状态和自身长度决定了它应该被删去一个或者不做任何处理。</p>
-<p>如果能够维护机场连续相同子段，就可以得到答案。</p>
-<p>考虑最值从小到大变化的过程，每次会把一个非 <code>0</code> 数改为 <code>0</code>，经典的 <code>set</code> 维护线段问题。</p>
-<h4 id="Method2"><a href="#Method2" class="headerlink" title="Method2"></a>Method2</h4><p>考虑动态规划。</p>
-<p>设 $dp[i][0/1]$ 表示考虑到第 $i$ 个数，末尾为 $-1/1$ 的代价。</p>
-<script type="math/tex; mode=display">
-v_i=0:dp[i][o]=\min(dp[i-1][o\oplus 1],dp[i-1][o]+1)\\</script><script type="math/tex; mode=display">
-v_i\ne0:
-\begin{cases}
-dp[i][v_i]&=\min(dp[i-1][v_i\oplus 1],dp[i-1][v_i]+1)\\
-dp[i][v_i\oplus1]&=dp[i-1][v_i\oplus 1]+1\\
-\end{cases}</script><p>然后就是动态 DP，考虑能不能写成矩阵乘法的形式，发现是一个 $+\min$ 矩阵乘法。</p>
-<p>线段树维护即可。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/04/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%AE%97%E6%B3%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="幻影彭">
-      <meta itemprop="description" content="幻影彭的个人博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/04/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%AE%97%E6%B3%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">计算几何入门</a>
-        </h2>
-
-        <div class="post-meta">
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-10-04 20:34:24" itemprop="dateCreated datePublished" datetime="2022-10-04T20:34:24+08:00">2022-10-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-05 20:04:47" itemprop="dateModified" datetime="2022-10-05T20:04:47+08:00">2022-10-05</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="计算几何"><a href="#计算几何" class="headerlink" title="计算几何"></a>计算几何</h2><p>写一下学计算几何的感悟。</p>
-<h3 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h3><h4 id="点积"><a href="#点积" class="headerlink" title="点积"></a>点积</h4><p>$\mathbf{a} \cdot \mathbf{b} = |\mathbf{a}|\times|\mathbf{b}| \times \cos\theta = x_1x_2+y_1y_2$</p>
-<p>常用来计算向量夹角。</p>
-<h4 id="叉积"><a href="#叉积" class="headerlink" title="叉积"></a>叉积</h4><p>$\mathbf{a} \times \mathbf{b} = |\mathbf{a}|\times |\mathbf{b}|\times \sin\theta = x_1y_2-x_2y_1$</p>
-<p>几何意义是两个向量围成的平行四边形的面积。</p>
-<p>从 $\mathbf{a}$ 旋转到 $\mathbf{b}$，如果角度小于 $\pi$，那么为正，否则为负。</p>
-<p>证明的话，方向是直接定义的，先不管，尝试证明。</p>
-<script type="math/tex; mode=display">
-(x_1y_2-x_2y_1)^2=\sin^2\theta \mathbf{a}^2\mathbf{b}^2\\</script><p>我觉得这个不太适合用 <code>markdown</code> 写下来。</p>
-<p>为什么方向是对的，可以替换一下 $x,y$ 变成 $\sin,\cos$，然后很自然是对的。</p>
-<p>可以用来求线段交点。</p>
-<p>算一下 $BCD,ACD$ 的面积，用相似求 $AO$，就可以得到 $O$ 点坐标。</p>
-<p><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202210042107116.png" alt="image-20221004210732068"></p>
-<h4 id="向量旋转"><a href="#向量旋转" class="headerlink" title="向量旋转"></a>向量旋转</h4><p>有人不会用这个东西，我不说是谁。</p>
-<p>$\mathbf{a}$ 转 $\alpha$ 角：$(|\mathbf{a}|\cos(\theta+\alpha),|\mathbf{a}|\sin(\theta+\alpha))$。</p>
-<p>和差角公式记不住的话朱某要来找麻烦，所以有人还是能记住。</p>
-<h3 id="多边形"><a href="#多边形" class="headerlink" title="多边形"></a>多边形</h3><h4 id="三角剖分"><a href="#三角剖分" class="headerlink" title="三角剖分"></a>三角剖分</h4><p>$S=\dfrac{\sum\mathbf{a_i}\times \mathbf{a_{(i+1)\%n}}}{2}$</p>
-<p>盗一波图。</p>
-<p><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202210042117115.png" alt="image-20221004211714058"></p>
-<h4 id="凸包"><a href="#凸包" class="headerlink" title="凸包"></a>凸包</h4><p>按照逆时针方向看，多边形凸包永远往左拐。</p>
-<h3 id="直线"><a href="#直线" class="headerlink" title="直线"></a>直线</h3><p>可以用一个点 $P$ 加方向向量 $\mathbf{v}$ 存储，也可以顺便记一个 $P_2$。</p>
-<h4 id="点在直线的哪边"><a href="#点在直线的哪边" class="headerlink" title="点在直线的哪边"></a>点在直线的哪边</h4><p>求 $PQ\times \mathbf{v}$ 即可，为正在下方，为负在上方，$0$ 则在线上，前提条件是向量 $\mathbf{v}$ 的 $x$ 为正 。</p>
-<h4 id="快速排斥实验和跨立实验"><a href="#快速排斥实验和跨立实验" class="headerlink" title="快速排斥实验和跨立实验"></a>快速排斥实验和跨立实验</h4><p><img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202210051602392.png" alt="image-20221005160200348"></p>
-<p>两个矩阵不交，则通过快速排斥实验。</p>
-<p>比较简易的方式是对于两维独立判断线段是否有交，如果任何一维无交，则通过快速排斥实验。</p>
-<p>跨立实验则是判断一条线段的两端是否在另一条线段的两边，可以用向量叉乘做。</p>
-<p>相互做跨立实验，如果均能通过，则线段有交或共线，<strong>结合快速排斥实验可以判断线段是否有交</strong>。</p>
-<p><strong>两条线段共线但不交也能通过跨立实验。</strong></p>
-<h4 id="两直线交点"><a href="#两直线交点" class="headerlink" title="两直线交点"></a>两直线交点</h4><p>先判断平行和重合。</p>
-<p>然后对于两条直线 $(P_1,\mathbf{a_1}),(P_2,\mathbf{a_2})$，设 $Q=k\mathbf{a_1}+P_1$，则有 $(P_2-(k\mathbf{a_1}+P_1))\times \mathbf{a_2}=0$</p>
-<p>叉积有分配律，所以直接拆开解 $k$ 然后带回去。</p>
-<p>$k=\dfrac{(P_2-P_1)\times \mathbf{a_2}}{\mathbf{a_1}\times\mathbf{a_2}}$</p>
-<p>如果你敢约分，朱某就敢把你鲨了。</p>
-<h4 id="线和直线的垂足"><a href="#线和直线的垂足" class="headerlink" title="线和直线的垂足"></a>线和直线的垂足</h4><p>算出 $PQ$ 在 $\mathbf{v}$ 上投影的长度和方向（点积），$P$ 加上这个就行。</p>
-<h4 id="点到直线距离"><a href="#点到直线距离" class="headerlink" title="点到直线距离"></a>点到直线距离</h4><p>可以先算垂足，也可以用记下来的另一个点带面积公式算。</p>
-<h4 id="角平分线"><a href="#角平分线" class="headerlink" title="角平分线"></a>角平分线</h4><p>模长相同的方向向量相加，得到角平分线的方向向量，证明考虑构造菱形。</p>
-<h4 id="凸包-1"><a href="#凸包-1" class="headerlink" title="凸包"></a>凸包</h4><p>于是乎求凸包的时候多了一种判定方式：</p>
-<p>如果是上凸包，弹出点的充要条件是上个点在<strong>该点与上上个点的连线</strong>下方</p>
-<p>下凸包，弹出条件就是在上方，比斜率好一点，而且判共线很方便。</p>
-<h3 id="圆"><a href="#圆" class="headerlink" title="圆"></a>圆</h3><h4 id="线援交圆交"><a href="#线援交圆交" class="headerlink" title="线援交圆交"></a>线<del>援交</del>圆交</h4><p>求出点到直线距离和垂足，然后勾股定理算两个点。</p>
-<h4 id="圆圆交"><a href="#圆圆交" class="headerlink" title="圆圆交"></a>圆圆交</h4><p>半径相等可以求中点勾股定理偷懒，半径不等可以选一个三角形解三角形。</p>
-<p>具体的，可以算出一个角的 $\cos$ 然后旋转向量，最后乘半径再加上去。</p>
-<h4 id="切点"><a href="#切点" class="headerlink" title="切点"></a>切点</h4><p>勾股定理，旋转，解三角形。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1244,7 +1175,7 @@ dp[i][v_i\oplus1]&=dp[i-1][v_i\oplus 1]+1\\
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-count">102</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
