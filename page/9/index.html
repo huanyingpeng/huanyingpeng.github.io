@@ -690,7 +690,7 @@ class="math inline">\(\max\)</span>
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:47:13" itemprop="dateModified" datetime="2025-02-16T17:47:13+08:00">2025-02-16</time>
+      <time title="修改时间：2025-02-17 00:10:25" itemprop="dateModified" datetime="2025-02-17T00:10:25+08:00">2025-02-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -713,41 +713,69 @@ class="math inline">\(\max\)</span>
     
     <div class="post-body" itemprop="articleBody">
           <h3 id="pip-和包">pip 和包</h3>
+<h4 id="网络问题">网络问题</h4>
+<p>GFW 会墙掉默认的 pip 源, 所以请使用国内源.</p>
+<p><strong>不建议使用代理连接国外源.</strong></p>
+<p>使用国内源时一些注意事项:</p>
 <ul>
-<li>用 pip 安装包时，windows
-会出各种各样的问题，请关闭代理并使用国内源安装</li>
-<li>将所有包放在系统 python 中是一个坏习惯，python
-各种包的有复杂的版本依赖关系，请使用 anaconda 或者 virtualenv
-等包管理器。</li>
-<li>如果你没有 <code>install</code> 一个包，那么只能在包的父目录下直接
-<code>import</code> 它，其它位置不能引入，如果 <code>install</code>
-了，那么你在该环境中任何位置都可以用了，相当于加入了
-<code>sys.path</code>。</li>
+<li><strong>彻底关闭代理软件</strong>(退出软件, 关 System Proxy 没用),
+并检查系统代理设置, 确认没有设置代理端口. 由它引起的报错:
+<ul>
+<li>SSL 错误(报错大概长下面这样), 国内源不允许代理连接, 用的 TLS 方式,
+代理的 SSL 证书通不过验证. <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by &#x27;SSLError(SSLEOFError(8, &#x27;[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)&#x27;))&#x27;: /simple/proxyscrape/</span><br></pre></td></tr></table></figure></li>
+<li>Proxy 连接错误(报错大概长下面这样). 原因是命令行代理没有配置好, 但是
+pip 检测到了系统有代理尝试使用. <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by &#x27;ProxyError(&#x27;Cannot connect to proxy.&#x27;, timeout(&#x27;_ssl.c:1091: The handshake operation timed out&#x27;))&#x27;: /simple/pandas/</span><br></pre></td></tr></table></figure></li>
+</ul></li>
+<li>清华源同步很慢, 速度不稳定, 建议使用阿里云源, 命令行执行(永久设置):
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">pip config set global.trusted-host mirrors.aliyun.com</span><br></pre></td></tr></table></figure></li>
+<li>检查全局源设置: <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip config list</span><br></pre></td></tr></table></figure> 输出应该是: <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">global.index-url=&#x27;https://mirrors.aliyun.com/pypi/simple&#x27;</span><br><span class="line">install.trusted-host=&#x27;mirrors.aliyun.com&#x27;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="airtest">airtest</h3>
+<h4 id="虚拟环境">虚拟环境</h4>
+<p>Python 包各种包的有复杂的版本依赖关系, 把所有包装在一起不可取.</p>
+<p>建议安装个 anaconda 创建虚拟环境, 然后在虚拟环境里安装包.</p>
+<p>anaconda [安装教程].</p>
+<p><del>妈的, 网上教程一搜第一页全是错的, 等我来写一个.</del></p>
+<h4 id="局部环境">局部环境</h4>
 <h3 id="import">import</h3>
-<p>正常情况下，一个项目中，同一文件被引用两次，那么只会在第一次执行。</p>
-<p>但是如果你乱改 <code>sys.path</code>，然后在 <code>__init__.py</code>
-里直接用 <code>import xxx</code>
-引入，然后再在外面乱引入，就有可能被引入多次。</p>
+<h4 id="name"><strong>name</strong></h4>
+<p><code>__name__</code> 是 Python 的一个内置变量,
+用于判断当前文件是否被<strong>直接运行</strong>.</p>
+<p>用 <code>python xxx.py</code> 直接运行, <code>__name__</code> 为
+"<strong>main</strong>".</p>
+<p>用 <code>python -m xxx</code> 间接运行, <code>__name__</code>
+为<strong>模块名</strong>.</p>
+<h4 id="import-包时的执行逻辑">import 包时的执行逻辑</h4>
+<p>用 import 或者 from 导入模块时,
+对应模块代码会被原封不动的全部执行一遍, 执行时, 被 import 的代码中
+<code>__name__</code> 为 <strong>模块名</strong>.</p>
+<h4 id="import-寻找顺序">import 寻找顺序</h4>
+<p>有一个 <code>sys.path</code> 变量, 里面存着一些路径, 用于寻找模块.
+这玩意是个列表, 从前往后依次寻找, 找到就开始导入, 顺序大概这样: 1.
+在工作目录下寻找(绝对或相对导入). 2. 在 <code>site-packages</code>
+目录下寻找(仅绝对导入).</p>
+<h4 id="莫名其妙的-id-不一致问题">莫名其妙的 id 不一致问题</h4>
+<p>有时候, 你手动加了 <code>sys.path</code> 后, 导入时全局变量可能会出现
+id 不一致的问题, 讲下原因: - ma 模块假设在 <code>module/ma.py</code> 里.
+- <code>a.py</code> 代码用 <code>module.ma</code> 导入了 <code>ma</code>
+模块的一个全局变量 <code>g</code>. - 往 <code>sys.path</code> 里加了
+<code>module</code> 这个目录. - <code>module/b.py</code> 代码中用
+<code>ma</code> 导入了 <code>ma</code> 模块的全局变量 <code>g</code>. -
+<code>a.py</code> 和 <code>b.py</code> 里 <code>g</code> 的 id 不一致.
+所以别问为啥全局变量修改无效了.
+从不同目录下(<code>sys.path</code>值不同)导入同一个文件时,
+被导入的模块代码有不同的 id, 所以里面的东西也有两份. <strong>无特殊需求,
+只建议项目使用绝对导入.</strong></p>
+<h4 id="import-的代码到底执行了几遍">import 的代码到底执行了几遍</h4>
+<p>用同一个 <code>sys.path</code> 量导入的模块代码只会执行一遍,
+第一次执行后被加进 cache 里了, 第二次 import 时发现 cache 里有就直接用
+cache 里的了, 不执行第二次.</p>
+<h3 id="pypi">PYPI</h3>
+<p>PYPI 打包发布的时候, 如果文件夹没有 <code>__init__.py</code> 文件,
+那么这个文件夹会扔掉打包不进去.</p>
 <h3 id="关于-request-这一类网络请求函数">关于 Request
 这一类网络请求函数</h3>
-<p>Python 的 Requests 包对请求做了一些包装，但是 NodeJS的 Request
-没有这种包装。</p>
-<p>因此可能会引发一些 403 问题（比如 Python 的 Requests 可以正常用但
-NodeJS 的 Request 不行），可以输出一下它们的 headers
-看看最终发出的请求长什么样子。</p>
-<p>这是 Python。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">&#x27;User-Agent&#x27;:</span> <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36&#x27;</span>, </span><br><span class="line">	<span class="attr">&#x27;Accept-Encoding&#x27;:</span> <span class="string">&#x27;gzip, deflate&#x27;</span>, </span><br><span class="line">	<span class="attr">&#x27;Accept&#x27;:</span> <span class="string">&#x27;*/*&#x27;</span>, </span><br><span class="line">	<span class="attr">&#x27;Connection&#x27;:</span> <span class="string">&#x27;keep-alive&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这是 JS。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&#x27;User-Agent&#x27;:</span> <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>headers:</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">headers</span> <span class="string">=</span> &#123;</span><br><span class="line">	<span class="attr">&#x27;User-Agent&#x27;:</span> <span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36&#x27;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>nodejs 的 request
-由于太过常用，已经被一些服务器加入了黑名单，方式是通过建立 https
-时的一些 ciphers 来判别是否属于爬虫，容易发生 403。</p>
-<p><a
-target="_blank" rel="noopener" href="https://pixeljets.com/blog/bypass-cloudflare/">参考资料</a></p>
+<p>Request 爬虫的时代已经过去了, 现在用 selenium 吧.</p>
+<p>当然如果直接最简单的 Request 没出问题也不妨试试.</p>
 
       
     </div>
@@ -896,7 +924,7 @@ target="_blank" rel="noopener" href="https://pixeljets.com/blog/bypass-cloudflar
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 18:01:17" itemprop="dateModified" datetime="2025-02-16T18:01:17+08:00">2025-02-16</time>
+      <time title="修改时间：2025-02-16 23:06:07" itemprop="dateModified" datetime="2025-02-16T23:06:07+08:00">2025-02-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1021,7 +1049,8 @@ target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-ne
 </ul>
 <h3 id="网络相关">网络相关</h3>
 <h4 id="cname">CNAME</h4>
-<p>CNAME 文件部署时被覆盖</p>
+<p>hexo d 的时候因为是强制 push 的, github CNAME 文件时会被覆盖,
+导致域名解析错误.</p>
 <p><a
 target="_blank" rel="noopener" href="http://eronana.github.io/2014/11/07/Hexo%E9%83%A8%E7%BD%B2%E5%90%8ECNAME%E8%A2%AB%E8%A6%86%E7%9B%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">解决方式</a></p>
 <p>将 <code>CNAME</code> 放入 <code>./source</code>，即存在
