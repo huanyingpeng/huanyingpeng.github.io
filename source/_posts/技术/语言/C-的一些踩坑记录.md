@@ -3,7 +3,9 @@ title: C++的一些踩坑记录
 mathjax: true
 date: 2022-09-25 16:33:05
 tags:
+- C++
 categories:
+- 技术
 ---
 
 ## 声明和定义

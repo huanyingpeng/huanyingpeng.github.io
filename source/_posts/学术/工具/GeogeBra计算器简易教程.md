@@ -3,8 +3,10 @@ title: GeogeBra计算器简易使用教程
 mathjax: true
 date: 2022-08-17 11:56:36
 tags:
-- 杂项
+- 科普
+- 数学
 categories:
+- 技术
 
 ---
 

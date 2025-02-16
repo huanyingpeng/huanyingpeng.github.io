@@ -4,8 +4,8 @@ mathjax: true
 date: 2022-08-02 23:04:58
 tags:
 - 贪心
-- 启发式合并
 categories:
+- 算法竞赛
 ---
 
 ## Exchange-Argument

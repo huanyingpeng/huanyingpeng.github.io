@@ -1,13 +1,13 @@
 ---
-title: CF1706小总结
+title: Kruskal 重构树和 LCA
 mathjax: true
 date: 2022-07-19 20:10:16
 tags:
-- 比赛总结
-- LCA
+- 题解
+- CF
+- Kruskal
 categories:
-- 总结
-- 比赛总结
+- 算法竞赛
 ---
 
 ## CF1706 小总结

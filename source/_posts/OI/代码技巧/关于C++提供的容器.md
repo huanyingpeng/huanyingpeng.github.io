@@ -3,9 +3,11 @@ title: C++ 容器
 mathjax: true
 date: 2022-08-30 09:19:43
 tags:
+- C++
 - STL
-- pb_ds
+- 代码技巧
 categories:
+- 算法竞赛
 ---
 
 ## 标准库

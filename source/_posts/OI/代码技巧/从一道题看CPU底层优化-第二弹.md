@@ -3,8 +3,10 @@ title: 从一道题看CPU底层优化-第二弹
 mathjax: true
 date: 2022-08-05 10:30:33
 tags:
-- 常数优化
+- 代码技巧
+- 计算机系统
 categories:
+- 算法竞赛
 ---
 
 ### 题意

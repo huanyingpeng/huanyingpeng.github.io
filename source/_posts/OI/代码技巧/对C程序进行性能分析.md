@@ -3,9 +3,10 @@ title: 对C++程序进行性能分析
 mathjax: true
 date: 2022-07-17 16:33:08
 tags:
-- 技术
-- 常数优化
+- 性能分析
+- C++
 categories:
+- 算法竞赛
 ---
 
 ## 前情提要

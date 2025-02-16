@@ -3,11 +3,9 @@ title: python 踩坑记录
 mathjax: true
 date: 2022-07-12 16:28:24
 tags:
-- 踩坑记录
 - python
 categories:
 - 技术
-- 踩坑记录
 ---
 
 ### pip 和包

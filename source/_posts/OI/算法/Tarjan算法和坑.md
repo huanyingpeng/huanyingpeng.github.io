@@ -4,9 +4,9 @@ mathjax: true
 date: 2022-07-28 18:18:13
 tags:
 - tarjan
-categories:
-- 算法
 - 图论
+categories:
+- 算法竞赛
 ---
 
 ## Tarjan算法和坑

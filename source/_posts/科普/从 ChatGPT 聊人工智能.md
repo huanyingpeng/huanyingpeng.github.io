@@ -3,7 +3,10 @@ title: 从 ChatGPT 聊人工智能
 mathjax: true
 date: 2023-02-14 07:23:20
 tags:
+- 人工智能
+- 科普
 categories:
+- 技术
 ---
 
 <img src="https://raw.githubusercontent.com/huan-yp/image_space/master/202302271205030.png" alt="image-20230227120527804" style="zoom:50%;" />
