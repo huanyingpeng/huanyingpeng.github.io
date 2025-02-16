@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2025/02/15/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
+first post. Check <a href="https://hexo.io/docs/">documentation</a> for
+more info. If you get any problems when using Hexo, you can find the
+answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask me on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="math">Math</h3>
+<p>行内公式 <span class="math inline">\(E=mc^2\)</span>, <span
+class="math inline">\(\frac{\partial u}{\partial t} + \nabla \cdot
+\vec{F} = 0\)</span>.</p>
+<p><span class="math display">\[
+\begin{align}
+\dot{x} &amp; = \sigma(y-x) \\
+\dot{y} &amp; = \rho x - y - xz \\
+\dot{z} &amp; = -\beta z + xy
+\end{align}
+\]</span></p>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+</search>
