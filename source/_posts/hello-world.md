@@ -1,51 +1,39 @@
 ---
 title: Hello World
-mathjax: true
+date: 2022/7/12
+top: true
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
-## Quick Start
+~~在无数久的 🐦咕咕咕 后一个博客它建成了！~~
 
-### Math
+在无数久的 🐦咕咕咕 后这个博客它复活了！
 
-行内公式 $E=mc^2$, $\frac{\partial u}{\partial t} + \nabla \cdot \vec{F} = 0$.
+博客主要会收录这些东西：
 
-$$
-\begin{align}
-\dot{x} & = \sigma(y-x) \\
-\dot{y} & = \rho x - y - xz \\
-\dot{z} & = -\beta z + xy
-\end{align}
-$$
+- OI/ACM 相关
+  - 考试技巧
+  - 题解
+  - 算法理解
+- 学习笔记
+- 面向各种人群的科普
+- 我的开源项目
 
-### Create a new post
+- 生活中有趣的事
+- 一些奇思妙想
 
-``` bash
-$ hexo new "My New Post"
-```
+我是谁：
 
-More info: [Writing](https://hexo.io/docs/writing.html)
+- 如果你线下认识我，可以叫我 "毛Ker" 或者 "老毛"
+- 如果你线上认识我，可以叫我 "彭彭"。
+- 这些 ID 都是我：`huan-yp`，`幻影彭`，`huan_yp`，`huan_yp2002`。
 
-### Run server
+联系我：
 
-``` bash
-$ hexo server
-```
+- QQ：3051561876
 
-More info: [Server](https://hexo.io/docs/server.html)
 
-### Generate static files
 
-``` bash
-$ hexo generate
-```
 
-More info: [Generating](https://hexo.io/docs/generating.html)
 
-### Deploy to remote sites
 
-``` bash
-$ hexo deploy
-```
 
-More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
