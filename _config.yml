@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
+title: 幻影彭的彩虹
+subtitle: '记录青春的扇区'
 description: ''
-keywords:
-author: John Doe
-language: en
+keywords: '算法竞赛, 自动化测试, 工程技术, Python'
+author: huan-yp
+language: zh-CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://huanyp.cn
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -96,12 +96,12 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/username/username.github.io.git
+  repo: https://github.com/huanyingpeng/huanyingpeng.github.io.git
   branch: master
   # message: Site updated: {{ now('YYYY-MM-DD HH:mm:ss') }})

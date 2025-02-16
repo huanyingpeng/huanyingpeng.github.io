@@ -1,9 +1,22 @@
 ---
 title: Hello World
+mathjax: true
 ---
 Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
 ## Quick Start
+
+### Math
+
+行内公式 $E=mc^2$, $\frac{\partial u}{\partial t} + \nabla \cdot \vec{F} = 0$.
+
+$$
+\begin{align}
+\dot{x} & = \sigma(y-x) \\
+\dot{y} & = \rho x - y - xz \\
+\dot{z} & = -\beta z + xy
+\end{align}
+$$
 
 ### Create a new post
 
