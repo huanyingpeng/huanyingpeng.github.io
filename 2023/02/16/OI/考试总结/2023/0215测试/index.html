@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="0215测试 考试 T1 期望题的统计方式有很多，主要有以下几种：  枚举可能的最终状态，计算其概率和权值并加和。  对于每种基本情况概率相同的，可以直接总答案除以总情况。  考虑状态转移每一个过程的贡献和取到该过程的概率，用期望线性性加和。 正向动态规划，记录期望值和概率值。 反向动态规划，记录该状态到终末状态的期望。  其中方式 3 的本质和方式 2 相同，但一般情">
+<meta property="og:type" content="article">
+<meta property="og:title" content="0215测试">
+<meta property="og:url" content="http://huanyp.cn/2023/02/16/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2023/0215%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="0215测试 考试 T1 期望题的统计方式有很多，主要有以下几种：  枚举可能的最终状态，计算其概率和权值并加和。  对于每种基本情况概率相同的，可以直接总答案除以总情况。  考虑状态转移每一个过程的贡献和取到该过程的概率，用期望线性性加和。 正向动态规划，记录期望值和概率值。 反向动态规划，记录该状态到终末状态的期望。  其中方式 3 的本质和方式 2 相同，但一般情">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-02-16T13:27:35.000Z">
+<meta property="article:modified_time" content="2025-02-15T15:34:46.141Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="算法竞赛, 自动化测试, 工程技术, Python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2023/02/16/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2023/0215%E6%B5%8B%E8%AF%95/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2023/02/16/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2023/0215%E6%B5%8B%E8%AF%95/","path":"2023/02/16/OI/考试总结/2023/0215测试/","title":"0215测试"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>0215测试 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">0215测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#t1"><span class="nav-number">1.1.</span> <span class="nav-text">T1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F1"><span class="nav-number">1.1.1.</span> <span class="nav-text">方式1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F2"><span class="nav-number">1.1.2.</span> <span class="nav-text">方式2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F4"><span class="nav-number">1.1.3.</span> <span class="nav-text">方式4</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#t2"><span class="nav-number">1.2.</span> <span class="nav-text">T2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E8%A7%A3%E7%9A%84%E6%9E%84%E9%80%A0"><span class="nav-number">1.2.1.</span> <span class="nav-text">有解的构造</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A5%97%E8%B7%AF%E7%9A%84%E6%9E%84%E9%80%A0"><span class="nav-number">1.2.2.</span> <span class="nav-text">套路的构造</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A5%87%E5%A6%99%E7%9A%84%E6%9E%84%E9%80%A0"><span class="nav-number">1.2.3.</span> <span class="nav-text">奇妙的构造</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#t3"><span class="nav-number">1.3.</span> <span class="nav-text">T3</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2023/02/16/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2023/0215%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="0215测试 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          0215测试
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-02-16 21:27:35" itemprop="dateCreated datePublished" datetime="2023-02-16T21:27:35+08:00">2023-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-15 23:34:46" itemprop="dateModified" datetime="2025-02-15T23:34:46+08:00">2025-02-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="测试">0215测试</h2>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0188">考试</a></p>
+<h3 id="t1">T1</h3>
+<p>期望题的统计方式有很多，主要有以下几种：</p>
+<ol type="1">
+<li><p>枚举可能的最终状态，计算其概率和权值并加和。</p>
+<ul>
+<li>对于每种基本情况概率相同的，可以直接总答案除以总情况。</li>
+</ul></li>
+<li><p>考虑状态转移每一个过程的贡献和取到该过程的概率，用期望线性性加和。</p></li>
+<li><p>正向动态规划，记录期望值和概率值。</p></li>
+<li><p>反向动态规划，记录该状态到终末状态的期望。</p></li>
+</ol>
+<p>其中方式 3 的本质和方式 2
+相同，但一般情况更为麻烦，只是便于初学时理解，方式 2 相比于方式 3
+显然更加强大，因为不需要拘泥于转移的过程，只需要计算取到某个状态的概率值。</p>
+<p><strong>注意到这道题的基本情况概率不等，所以不能简单的算方案数来计算答案。</strong></p>
+<h4 id="方式1">方式1</h4>
+<p>设 <span class="math inline">\(dp[mask][k]\)</span> 表示第 <span
+class="math inline">\(k\)</span> 步杀了人，被杀状态为 <span
+class="math inline">\(mask\)</span> 的概率，发现转移比较困难，更改定义为
+<span class="math inline">\(dp[mask][k]\)</span>
+表示到达该状态的且只考虑 <span class="math inline">\(mask\)</span>
+这些人的位置的情况下的权值和，容易发现概率就是权值和乘以考虑剩下的人的方案数。</p>
+<p>转移就是一个前缀和的形式。</p>
+<p>也可以就定义状态为概率，转移考虑计算先验概率，确定先决条件之后，考虑将所有选的不是
+<span class="math inline">\(mask\)</span>
+的步骤拿出来，<strong>在合法的前提下，这些就是等概率选择。</strong>可以直接计算合法方案数，而样本空间的方案数则是
+<span class="math inline">\(cnt\times r^{k-j}\)</span>，其中 <span
+class="math inline">\(cnt\)</span> 代表合法走到上一步的方案数。</p>
+<h4 id="方式2">方式2</h4>
+<p>其核心仍然是计算取到一个状态的概率，本质和方式一相同。</p>
+<h4 id="方式4">方式4</h4>
+<p>需要计算从一个状态转移到另一个状态的概率，本质和方式一相同。</p>
+<h3 id="t2">T2</h3>
+<p>这个排序肯定要先排好一个前缀的序才能排下一个，所以考虑 <span
+class="math inline">\(W(n,k)\)</span> 表示前面有 <span
+class="math inline">\(n\)</span> 个数且已经有序，第 <span
+class="math inline">\(n+1\)</span> 个数在总共前 <span
+class="math inline">\(n+1\)</span> 个数的排名为 <span
+class="math inline">\(k\)</span>，将前 <span
+class="math inline">\(n+1\)</span> 个数排好需要的次数。</p>
+<p>容易发现第一次交换之后问题转化为了求第 <span
+class="math inline">\(k\)</span> 个数在第一个，排好序的次数，此时答案和
+<span class="math inline">\(n\)</span> 无关了，因为只有前 <span
+class="math inline">\(k\)</span> 个数涉及到逆序对，记此时的答案为 <span
+class="math inline">\(S(k)\)</span>。</p>
+<p>写出 <span class="math inline">\(S(k)\)</span> 的递推式： <span
+class="math display">\[
+S(k)=\sum_{i&lt;k}(S(i)+1)
+\]</span> 用前缀和捣鼓一下，再弄个生成函数算算通项公式，发现 <span
+class="math inline">\(S(k)=2^k-1\)</span>，自然 <span
+class="math inline">\(W(n,k)=2^k\)</span>。</p>
+<p>于是给一个排列算交换次数就好办了，考虑怎么构造。</p>
+<h4 id="有解的构造">有解的构造</h4>
+<p>首先一定有解，方法是先放一个很大的，然后由低到高考虑每个二进制位，如果存在就放到排列最后面，不存在就放到排列的最前面，这样能构造出一种合法的方案。</p>
+<h4 id="套路的构造">套路的构造</h4>
+<p>枚举下一个位置的最小值，考虑能不能行。</p>
+<p>前面已经确定了，所以剩下的数贡献的最小值也确定了。同样的道理把一个很大的放到当前的前面，接着由小到大考虑放。每一个数的可行范围下界是前面确定的比它小的数的个数，取到下界很容易，逆序放即可。我们证明上界可以无穷大。构造方式也是简单的，设确定的最大值为
+<span class="math inline">\(m\)</span>。如果这个数小于 <span
+class="math inline">\(m\)</span>，找到前面确定第一个大于它的数并替换掉。取值变大
+<span class="math inline">\(1\)</span>，如果此时不小于 <span
+class="math inline">\(m\)</span>，一定可以插入到一个不改变 <span
+class="math inline">\(k\)</span>
+值的位置使得它不贡献继续考虑下一个数。</p>
+<p>所以检查可以直接看当前 <span class="math inline">\(k\)</span>
+的每一位是否都能构造来。</p>
+<p>由于答案不会太长，所以 <span class="math inline">\(O(n^3)\)</span>
+没问题。</p>
+<h4 id="奇妙的构造">奇妙的构造</h4>
+<p>如果 <span class="math inline">\(1\)</span>
+填到了最前面，那么答案一定是偶数，然后如果能构造出一个答案为 <span
+class="math inline">\(\frac{s}{2}\)</span> 的，那么把答案为 <span
+class="math inline">\(\frac{s}{2}\)</span> 的排列所有元素加一并把 <span
+class="math inline">\(1\)</span> 再放到前面就是最小的字典序。</p>
+<p>如果 <span class="math inline">\(s\)</span> 此时是奇数，那么可以把
+<span class="math inline">\(2\)</span> 放到最前面，此时只要把 <span
+class="math inline">\(1\)</span>
+放到最后面，一定可以再按照那个有解的构造弄一个出来。</p>
+<p>然后已知 <span class="math inline">\(1\)</span> 在 <span
+class="math inline">\(2\)</span> 后面了，一定会贡献一个 <span
+class="math inline">\(1\)</span>，然后继续考虑 <span
+class="math inline">\(\frac{s}{2}\)</span>，此时如果末尾为 <span
+class="math inline">\(0\)</span> 了，可以把先前的 <span
+class="math inline">\(1\)</span>
+拿过来补上去会更小。注意这是递归的构造，先前的最小值可能有多个，<strong>一定要拿最大的拿一个补上去</strong>，否则后面更大的有一位是不对的。</p>
+<h3 id="t3">T3</h3>
+<p>考虑设 <span class="math inline">\(dp[i][x]\)</span> 表示还剩 <span
+class="math inline">\(i\)</span> 天不是假期，一共有 <span
+class="math inline">\(x\)</span>
+段的概率以及期望贡献，转移的时候发现信息不够，因为要考虑每一段的长度这些。</p>
+<p>于是采用第一题提到的第二种方式，考虑设计一些状态，计算这些状态转移到下一个状态的期望权值并计算取到这些状态的概率，用期望的线性性质加和。</p>
+<p>这里设 <span class="math inline">\(cnt[x][y]\)</span> 表示有 <span
+class="math inline">\(x\)</span> 天是某个继任者的生日，<span
+class="math inline">\(y\)</span>
+天由于相邻两天是假期被设成了假日的方案总数。由于每种基本情况概率相等，所以出现这种情况的概率显然是
+<span
+class="math inline">\(\frac{cnt[x][y]}{\binom{n}{x}}\)</span>，从这种状态转移到下种状态的期望也是好算的。</p>
+<p>现在的问题变成了求 <span
+class="math inline">\(cnt[x][y]\)</span>。考虑将一种合法视为 012 串，0
+不是假期，1 是继任者的生日，2 不是继任者的生日但是是假期。有一个简单的
+<span class="math inline">\(O(n^3)\)</span>
+动态规划可以做它，但是还不够。可以把一段连续的 12121
+视作一段，于是就变成了 01
+串，由于知道总长度，所以只需要将多余的长度划分给每个 1
+就能算出总方案数。</p>
+<p>问题变成了 01
+串，比较好做了。把链拼成环时可以假定第一天是第一任的生日，分第一天前面是否为
+2 讨论。</p>
+<p><strong>本质上，我们最初要求三维空间中一个平面的值，然后其实中间过程是没用的，只需要知道那个平面上每个点的值，通过一些性质我们把平面拿了出来单独算，于是就
+<span class="math inline">\(O(n^2)\)</span> 了。</strong></p>
+<p>对第一种动态规划可以运用相同的考察方式，可以注意到每个状态的基本情况概率相等。于是就可以分类讨论算下个状态的概率了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/02/14/%E7%A7%91%E6%99%AE/%E4%BB%8E%20ChatGPT%20%E8%81%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="prev" title="从 ChatGPT 聊人工智能">
+                  <i class="fa fa-angle-left"></i> 从 ChatGPT 聊人工智能
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/02/18/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2023/0217%E6%B5%8B%E8%AF%95/" rel="next" title="0217测试">
+                  0217测试 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

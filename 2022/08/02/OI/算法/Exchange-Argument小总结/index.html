@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Exchange-Argument  参考资料：2022 集训队论文《浅谈一类基于交换的贪心在信息学竞赛中的应用》 本文主要介绍树上形式。  一般形式 你需要为 \(n\) 个元素安排一个排名，得到一个序列 \(a\)，最小化某函数 \(F(a)\)。 如果存在一个满足传递性和强完全性的关系 \(\le\)，满足 \(a,b\) 均为元素， $ ab,F(s_1+a+b+s_2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exchange-Argument小总结">
+<meta property="og:url" content="http://huanyp.cn/2022/08/02/OI/%E7%AE%97%E6%B3%95/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="Exchange-Argument  参考资料：2022 集训队论文《浅谈一类基于交换的贪心在信息学竞赛中的应用》 本文主要介绍树上形式。  一般形式 你需要为 \(n\) 个元素安排一个排名，得到一个序列 \(a\)，最小化某函数 \(F(a)\)。 如果存在一个满足传递性和强完全性的关系 \(\le\)，满足 \(a,b\) 均为元素， $ ab,F(s_1+a+b+s_2">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-02T15:04:58.000Z">
+<meta property="article:modified_time" content="2025-02-16T09:56:45.740Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="贪心">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2022/08/02/OI/%E7%AE%97%E6%B3%95/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/08/02/OI/%E7%AE%97%E6%B3%95/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/","path":"2022/08/02/OI/算法/Exchange-Argument小总结/","title":"Exchange-Argument小总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Exchange-Argument小总结 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#exchange-argument"><span class="nav-number">1.</span> <span class="nav-text">Exchange-Argument</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">一般形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">树上问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.2.1.</span> <span class="nav-text">例题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E4%B8%8E%E7%BB%93%E8%AE%BA"><span class="nav-number">1.2.2.</span> <span class="nav-text">分析与结论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F1"><span class="nav-number">1.2.3.</span> <span class="nav-text">方式1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F2"><span class="nav-number">1.2.4.</span> <span class="nav-text">方式2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A2%8E%E7%A2%8E%E5%BF%B5"><span class="nav-number">1.3.</span> <span class="nav-text">碎碎念</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/02/OI/%E7%AE%97%E6%B3%95/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Exchange-Argument小总结 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Exchange-Argument小总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-02 23:04:58" itemprop="dateCreated datePublished" datetime="2022-08-02T23:04:58+08:00">2022-08-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:56:45" itemprop="dateModified" datetime="2025-02-16T17:56:45+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="exchange-argument">Exchange-Argument</h2>
+<ul>
+<li><p>参考资料：2022
+集训队论文《浅谈一类基于交换的贪心在信息学竞赛中的应用》</p></li>
+<li><p>本文主要介绍树上形式。</p></li>
+</ul>
+<h3 id="一般形式">一般形式</h3>
+<p>你需要为 <span class="math inline">\(n\)</span>
+个元素安排一个排名，得到一个序列 <span
+class="math inline">\(a\)</span>，最小化某函数 <span
+class="math inline">\(F(a)\)</span>。</p>
+<p>如果存在一个满足<strong>传递性和强完全性</strong>的关系 <span
+class="math inline">\(\le\)</span>，满足 <span
+class="math inline">\(a,b\)</span> 均为元素， $
+ab,F(s_1+a+b+s_2)F(s_1+b+a+s_2)$，则按照 <span
+class="math inline">\(\le\)</span> 排序后的排名可以最小化 <span
+class="math inline">\(F(a)\)</span>。</p>
+<p>典例为 NOIP2012 国王游戏。</p>
+<p>我们在这里略去证明，详见参考资料。</p>
+<ul>
+<li>强完全性指 <span class="math inline">\(\forall  a,b, a\le b\bigvee
+b\le a\)</span>，显然满足强完全性一定满足自反性。</li>
+<li>条件中 <span class="math inline">\(\{s_1+a+b+s_2\}\)</span>
+为全集。</li>
+</ul>
+<h3 id="树上问题">树上问题</h3>
+<h4 id="例题">例题</h4>
+<p>给定一棵树，需要为树的每个节点安排排名 <span
+class="math inline">\(p_u\)</span>，父节点的排名需要低于子节点。每个点有一个价值
+<span class="math inline">\(c_i\)</span>，需要最小化 <span
+class="math inline">\(\sum c_u\times p_u\)</span>。</p>
+<h4 id="分析与结论">分析与结论</h4>
+<p>唯一的变化是，对于原问题元素的比较 <span
+class="math inline">\(\le\)</span>，拓展到了对于子序列的比较，即 <span
+class="math inline">\(a,b\)</span> 为原来元素的一个序列。</p>
+<p><strong>以下是一个重要结论</strong></p>
+<p>考虑一个元素 <span
+class="math inline">\(v\)</span>，我们希望说明如果它的父亲 <span
+class="math inline">\(u\)</span>， <span
+class="math inline">\(u&gt;v\)</span>，那么 <span
+class="math inline">\(v\)</span> 一定在 <span
+class="math inline">\(u\)</span> 之后<strong>立刻被选择</strong>，此时将
+<span class="math inline">\(v,u\)</span> 合并，可以得到一个规模为 <span
+class="math inline">\(n-1\)</span> 的子问题。</p>
+<p>考虑证明 <span class="math inline">\(u\)</span> 被选择后一定会选择
+<span class="math inline">\(v\)</span>，对于一个满足树的限制的排列 <span
+class="math inline">\(p\)</span>，如果 <span
+class="math inline">\(u,v\)</span> 不相邻，那么由于 <span
+class="math inline">\(v&gt;u\)</span>，所以对于序列 <span
+class="math inline">\(p_1,p_2\dots u,p_l,p_{l1} \dots
+p_r,v,\dots,p_n\)</span>，一定有 <span
+class="math inline">\(u&gt;p_{l,r} \bigvee p_{l,r}&gt;v\)</span>，否则
+<span class="math inline">\(v&lt;u\)</span>，如果为前者，那么交换 <span
+class="math inline">\(u\)</span> 和 <span
+class="math inline">\(p_{l,r}\)</span>，后者同理，所以 <span
+class="math inline">\(v\)</span> 一定紧接着 <span
+class="math inline">\(u\)</span> 被选择。</p>
+<p>我们可以用以下两种方式解决问题。</p>
+<h4 id="方式1">方式1</h4>
+<p>考虑最大的元素 <span
+class="math inline">\(v\)</span>，显然可以合并它和它的父亲 <span
+class="math inline">\(u\)</span>，变成一个新的规模更小的问题。</p>
+<p>合并的过程可以用并查集维护连通块，注意区分并查集父亲和实际父亲。</p>
+<p>使用 <code>priority_queue</code> 或者 <code>set</code>
+可以实现加入删除和查询最小值，<code>priority_queue</code>
+的方式是同时维护一个代表删除的 <code>priority_queue</code>，实际上
+<code>priority_queue</code> 会比 <code>set</code> 快 <span
+class="math inline">\(1\)</span> 倍。</p>
+<p>注意实现的时候，如果找到了根，那么根其实有可能不在
+<code>priority_queue</code> 里面，可删除的 <code>priority_queue</code>
+如果删除了不存在的元素是会出问题的，所以一定要特判掉。</p>
+<p>复杂度 <span class="math inline">\(O(n\log n)\)</span></p>
+<h4 id="方式2">方式2</h4>
+<p>我们考虑对每个子树求其答案。</p>
+<p>利用分析中的结论，不妨将一棵子树划分成一些<strong>必须连续选择的序列</strong>，作为<strong>树对排列顺序的要求</strong>，将这些连续的序列视为一个元素后，我们可以对序列按照正常方式排序得到最优解。</p>
+<p>划分序列的过程是对于一棵子树 <span
+class="math inline">\(u\)</span>，将它的所有儿子的序列拿来排序，尝试将
+<span class="math inline">\(u\)</span>
+与最小的序列合并得到新的序列，如果 <span
+class="math inline">\(u\)</span>
+当前所在的序列较大，由于结论我们知道合并后一定能拿到最优解，否则停止合并，此时
+<span class="math inline">\(u\)</span>
+所在序列的权值最小，一定会被最先选择，其中 <span
+class="math inline">\(u\)</span> 又一定会被第一个选择。</p>
+<p>容易发现合并的过程一定不会改变子树内的选择顺序。</p>
+<p>合并时采用启发式合并，利用 <code>set</code> 或
+<code>priority_queue</code> 维护当前子树序列，复杂度为 <span
+class="math inline">\(O(n\log^2n)\)</span>，但优势在于可以求出所有子树的答案。</p>
+<p>当然可以使用可并堆达到 <span class="math inline">\(O(n\log
+n)\)</span></p>
+<p>注意到其实一遍 <code>dfs</code>
+就可以解决问题，因为启发式合并复杂度保证的来源是合并一次的复杂度为 <span
+class="math inline">\(O(\min(|u|,|v|))\)</span>，所以并不需要提前计算子树大小，直接合并即可，<code>set</code>
+或 <code>priority_queue</code> 的 <code>swap</code> 操作是 <span
+class="math inline">\(O(1)\)</span> 的。</p>
+<h3 id="碎碎念">碎碎念</h3>
+<p>Exc-Arg
+除了直接解决问题外，也可以用来简化问题，将选择元素并重排的问题变为<strong>排序后</strong>选择子序列的问题。</p>
+<p>对于树上的情况，我还没有见到过相关的问题。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"># 贪心</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/02/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/%E8%80%83%E8%AF%95%E6%8A%80%E5%B7%A7/%E8%80%83%E8%AF%95%E8%B8%A9%E5%9D%91/" rel="prev" title="坑">
+                  <i class="fa fa-angle-left"></i> 坑
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/08/03/OI/%E7%AE%97%E6%B3%95/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/" rel="next" title="简单数论函数和应用">
+                  简单数论函数和应用 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

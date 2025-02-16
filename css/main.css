@@ -1382,7 +1382,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ff8e9e;
+    background: #5cff26;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2913,7 +2913,7 @@ header.header {
   }
 }
 body {
-  background: url("/images/background-now.jpg");
+  background: url("https://cdn.luogu.com.cn/upload/image_hosting/4b319k73.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

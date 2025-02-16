@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="简单数论函数和应用 参考资料  OI-WIKI 莫比乌斯反演 OI-WIKI 迪利克雷卷积 从莫比乌斯到欧拉 莫比乌斯反演-从基础开始  部分定义和约定 符号  \(\operatorname{id}\) ：\(\operatorname{id}\) 数论函数，\(\operatorname{id}(x)&#x3D;x\) \(\epsilon\) : 单位函数 \(\epsil">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单数论函数和应用">
+<meta property="og:url" content="http://huanyp.cn/2022/08/03/OI/%E7%AE%97%E6%B3%95/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="简单数论函数和应用 参考资料  OI-WIKI 莫比乌斯反演 OI-WIKI 迪利克雷卷积 从莫比乌斯到欧拉 莫比乌斯反演-从基础开始  部分定义和约定 符号  \(\operatorname{id}\) ：\(\operatorname{id}\) 数论函数，\(\operatorname{id}(x)&#x3D;x\) \(\epsilon\) : 单位函数 \(\epsil">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-03T05:27:13.000Z">
+<meta property="article:modified_time" content="2025-02-16T09:55:29.587Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="数论">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2022/08/03/OI/%E7%AE%97%E6%B3%95/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/08/03/OI/%E7%AE%97%E6%B3%95/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/","path":"2022/08/03/OI/算法/简单数论函数和应用/","title":"简单数论函数和应用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>简单数论函数和应用 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">简单数论函数和应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">1.1.</span> <span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E5%AE%9A%E4%B9%89%E5%92%8C%E7%BA%A6%E5%AE%9A"><span class="nav-number">1.2.</span> <span class="nav-text">部分定义和约定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7"><span class="nav-number">1.2.1.</span> <span class="nav-text">符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">数论函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AA%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.2.3.</span> <span class="nav-text">迪利克雷卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.4.</span> <span class="nav-text">常见积性函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%BB%93%E8%AE%BA%E7%9A%84%E7%AE%80%E5%8D%95%E8%AF%81%E6%98%8E"><span class="nav-number">1.3.</span> <span class="nav-text">一些结论的简单证明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AA%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">1.3.1.</span> <span class="nav-text">迪利克雷卷积的性质</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%80%A7%E8%B4%A8"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">简单性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%86%E5%85%83%E5%AD%98%E5%9C%A8%E4%B8%94%E5%94%AF%E4%B8%80"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">逆元存在且唯一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E5%BE%8B"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">交换律</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E5%90%88%E5%BE%8B"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">结合律</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E9%85%8D%E5%BE%8B"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">分配律</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%AA%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF%E4%B8%BA%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.1.6.</span> <span class="nav-text">两个积性函数的迪利克雷卷积为积性函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%AA%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF%E9%99%A4%E6%B3%95%E4%B8%BA%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.1.7.</span> <span class="nav-text">两个积性函数的迪利克雷卷积除法为积性函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%8C%E5%85%A8%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9B%B8%E5%85%B3"><span class="nav-number">1.3.1.8.</span> <span class="nav-text">完全积性函数相关</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.2.</span> <span class="nav-text">常见的积性函数关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94"><span class="nav-number">1.4.</span> <span class="nav-text">莫比乌斯反演</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E8%AE%BA%E5%88%86%E5%9D%97"><span class="nav-number">1.4.1.</span> <span class="nav-text">数论分块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.2.</span> <span class="nav-text">莫比乌斯函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#muboldsymbol1epsilon"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">\(\mu*\boldsymbol{1}&#x3D;\epsilon\)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94-1"><span class="nav-number">1.4.3.</span> <span class="nav-text">莫比乌斯反演</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">一般形式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">常用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%8F%8D%E6%BC%94"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">欧拉反演</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.4.3.3.1.</span> <span class="nav-text">常用形式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%81%E6%98%8E"><span class="nav-number">1.4.3.3.2.</span> <span class="nav-text">证明</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%9B%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">筛法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%9C%E6%95%99%E7%AD%9B"><span class="nav-number">1.5.1.</span> <span class="nav-text">杜教筛</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pnpowerful-number-%E7%AD%9B"><span class="nav-number">1.5.2.</span> <span class="nav-text">PN(Powerful Number) 筛</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%9E%E9%98%81%E7%AD%9B"><span class="nav-number">1.5.3.</span> <span class="nav-text">州阁筛</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/03/OI/%E7%AE%97%E6%B3%95/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="简单数论函数和应用 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          简单数论函数和应用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-03 13:27:13" itemprop="dateCreated datePublished" datetime="2022-08-03T13:27:13+08:00">2022-08-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:55:29" itemprop="dateModified" datetime="2025-02-16T17:55:29+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="简单数论函数和应用">简单数论函数和应用</h1>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/mobius/">OI-WIKI
+莫比乌斯反演</a></li>
+<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/poly/dgf/#dirichlet">OI-WIKI
+迪利克雷卷积</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/An-Amazing-Blog/ji-miao-di-mu-bi-wu-si-fan-yan">从莫比乌斯到欧拉</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-从基础开始</a></li>
+</ul>
+<h2 id="部分定义和约定">部分定义和约定</h2>
+<h3 id="符号">符号</h3>
+<ul>
+<li><span class="math inline">\(\operatorname{id}\)</span> ：<span
+class="math inline">\(\operatorname{id}\)</span> 数论函数，<span
+class="math inline">\(\operatorname{id}(x)=x\)</span></li>
+<li><span class="math inline">\(\epsilon\)</span> : 单位函数 <span
+class="math inline">\(\epsilon(x)=[x=1]\)</span></li>
+<li><span class="math inline">\([]\)</span>
+：中扩号表达式，中扩号内条件成立则为 <span
+class="math inline">\(1\)</span>，否则为 <span
+class="math inline">\(0\)</span></li>
+<li><span class="math inline">\(\boldsymbol{1}\)</span>：<span
+class="math inline">\(\boldsymbol{1}\)</span> 函数，若 <span
+class="math inline">\(f(n)=\boldsymbol{1}\)</span>，则 <span
+class="math inline">\(\forall x \in N^+,f(x)=1\)</span></li>
+</ul>
+<h3 id="数论函数">数论函数</h3>
+<ul>
+<li><p>一个数论函数定义域为正整数，值域为复数。</p></li>
+<li><p>一个数论函数为积性函数，当且仅当 <span
+class="math inline">\(\forall (a,b),\gcd(a,b)=1\rightarrow f(a\times
+b)=f(a)\times f(b)\)</span></p></li>
+<li><p>一个数论函数为完全积性函数，当且仅当 <span
+class="math inline">\(\forall a,b,f(a\times b)=f(a)\times
+f(b)\)</span></p></li>
+</ul>
+<h3 id="迪利克雷卷积">迪利克雷卷积</h3>
+<p>迪利克雷卷积为数论函数的乘法操作，定义两个数论函数的迪利克雷卷积定义为
+<span class="math display">\[
+g=f*h,g(n)=\sum\limits_{d|n} f(d)\times h(\frac{n}{d})
+\]</span></p>
+<p>迪利克雷卷积的除法操作就是逆操作，一般只能构造得到。</p>
+<p>迪利克雷卷积的性质（证明见下一部分）：</p>
+<ul>
+<li>两个积性函数的迪利克雷卷积仍是积性函数。</li>
+<li>两个积性函数的迪利克雷卷积除法结果仍是积性函数。</li>
+</ul>
+<p><strong>为了方便，以下所有数论函数的乘法未经说明均为迪利克雷卷积。</strong></p>
+<h3 id="常见积性函数">常见积性函数</h3>
+<ul>
+<li>欧拉函数 <span class="math inline">\(\phi(n)\)</span></li>
+<li>莫比乌斯函数 <span class="math inline">\(\mu(n)\)</span></li>
+<li>约数个数函数 <span class="math inline">\(d(n)\)</span></li>
+</ul>
+<h2 id="一些结论的简单证明">一些结论的简单证明</h2>
+<h3 id="迪利克雷卷积的性质">迪利克雷卷积的性质</h3>
+<h4 id="简单性质">简单性质</h4>
+<ul>
+<li>积性函数 <span class="math inline">\(f\)</span>，满足 <span
+class="math inline">\(f(1)=1\)</span></li>
+</ul>
+<h4 id="逆元存在且唯一">逆元存在且唯一</h4>
+<p>所有数论函数存在逆元，即对于所有 <span
+class="math inline">\(f\)</span>，存在 <span
+class="math inline">\(g\)</span> 使得 <span
+class="math inline">\(f*g=\epsilon\)</span>，直接构造对应的 <span
+class="math inline">\(g(n)\)</span> 即可。 <span class="math display">\[
+g(n)=-\dfrac{\sum\limits_{d|n,d\neq n}{f(d)\times
+g(\frac{n}{d})}}{f(1)}\\
+g(1)=\frac{1}{f(1)}
+\]</span> 因此数论函数的逆元存在且唯一。</p>
+<h4 id="交换律">交换律</h4>
+<p><span class="math inline">\(f * g=g * f\)</span>，显然成立</p>
+<h4 id="结合律">结合律</h4>
+<p><span class="math inline">\(f * g * h=f * (g *
+h)\)</span>，成立，但不显然。</p>
+<p>令 <span class="math inline">\(f * g * h=f_1,f * (g * h)=f_2,f *
+g=a,g * h=h * g=b\)</span> <span class="math display">\[
+f_1(n)=\sum\limits_{d_1|n} a(d_1)\times
+h(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} f(d_2)\times
+g(\frac{d_1}{d_2})\times h(\frac{n}{d_1})
+\]</span></p>
+<p><span class="math display">\[
+f_2(n)=\sum\limits_{d_1|n} b(d_1)\times
+f(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} h(d_2)\times
+g(\frac{d_1}{d_2})\times f(\frac{n}{d_1})
+\]</span> 对于任意一组满足 <span
+class="math inline">\(d_1|n,d_2|d_1\)</span> 的 <span
+class="math inline">\(d_1,d_2\)</span>，构造 <span
+class="math inline">\(d_2&#39;=\frac{n}{d_1},d_1&#39;=\frac{n}{d_2}\)</span>
+，容易发现这样的构造是一一对应的，满足 <span
+class="math inline">\(f(d_2)\times g(\frac{d_1}{d_2})\times
+(\frac{n}{d_1})=f(\frac{n}{d_1&#39;}) \times
+g(\frac{d_1&#39;}{d_2&#39;}) \times h(d_2&#39;))\)</span> 。</p>
+<p>因此对于上式中的每一项，下式都有一项与之一一对应，因此上下式相等。</p>
+<h4 id="分配律">分配律</h4>
+<p><span class="math inline">\(f*(g+h)=f*g+f*h\)</span></p>
+<p>显然成立。</p>
+<h4
+id="两个积性函数的迪利克雷卷积为积性函数">两个积性函数的迪利克雷卷积为积性函数</h4>
+<p><span class="math inline">\(f,h\)</span> 为积性函数，则 <span
+class="math inline">\(f*g=h\)</span>，<span
+class="math inline">\(h\)</span> 为积性函数。</p>
+<p><span class="math inline">\(\forall a,b \ , \gcd(a,b)=1\ ,h(a\times
+b)=h(a)\times h(b)\)</span>，满足 <span class="math display">\[
+\begin{align}
+h(a\times b)=&amp;\sum\limits_{d_1|a}\sum\limits_{d_2|b}f(d_1\times
+\frac{b}{d_2})\times g(\frac{a}{d_1}\times d_2)\\
+=&amp;\sum\limits_{d_1|a}\sum\limits_{d_2|b}f(d_1)\times
+f(\frac{b}{d_2})\times g(\frac{a}{d_1})\times g( d_2)\\
+=&amp;\sum\limits_{d_1|a} f(d_1)\times
+g(\frac{a}{d_1})\sum\limits_{d_2|b} f(\frac{b}{d_2})\times g(d_2)\\
+=&amp;h(a)\times h(b)
+\end{align}
+\]</span></p>
+<h4
+id="两个积性函数的迪利克雷卷积除法为积性函数">两个积性函数的迪利克雷卷积除法为积性函数</h4>
+<p>证明 <span class="math inline">\(f,h\)</span> 为积性函数，且 <span
+class="math inline">\(h*g=f\)</span>，则 <span
+class="math inline">\(g\)</span> 为积性函数。</p>
+<p>令 <span class="math inline">\(h&#39;*h=\epsilon\)</span>，则 <span
+class="math inline">\(g=f*h&#39;\)</span></p>
+<p>即证明积性函数的逆元也为积性函数。</p>
+<p><a
+target="_blank" rel="noopener" href="https://oi-wiki.org/math/poly/dgf/#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%86%E5%85%83%E4%B9%9F%E6%98%AF%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0">证明</a></p>
+<p>使用了数学归纳法。</p>
+<h4 id="完全积性函数相关">完全积性函数相关</h4>
+<p>若 <span class="math inline">\(w\)</span> 是完全积性函数，则 <span
+class="math display">\[
+(g\cdot w) * (f \cdot w) = (g * f)\cdot w
+\]</span></p>
+<h3 id="常见的积性函数关系">常见的积性函数关系</h3>
+<ul>
+<li><span class="math inline">\(\mu*
+\boldsymbol{1}=\epsilon\)</span></li>
+<li><span class="math inline">\(\phi*
+\boldsymbol{1}=\operatorname{id}\)</span></li>
+<li><span class="math inline">\(\mu * \operatorname{id} =
+\phi\)</span></li>
+</ul>
+<h2 id="莫比乌斯反演">莫比乌斯反演</h2>
+<p><strong>莫比乌斯反演的常见做法是用其它易于交换求和符号的项替换掉不容易求和的相关项。</strong></p>
+<p>不容易交换求和的项一般有 <span class="math inline">\(d,\gcd\)</span>
+等。</p>
+<h3 id="数论分块">数论分块</h3>
+<p>莫比乌斯反演或者其它数数题中常用的优化方式。</p>
+<p>核心原理是对于 <span class="math inline">\([1,n]\)</span> 中所有数
+<span class="math inline">\(i\)</span>，<span
+class="math inline">\(\frac{n}{i}\)</span> 的结果只有 <span
+class="math inline">\(\sqrt{n}\)</span> 个。</p>
+<p>证明是容易的，对于 <span
+class="math inline">\([1,\sqrt{n}]\)</span>，一共有 <span
+class="math inline">\(\sqrt{n}\)</span> 个值，对于 <span
+class="math inline">\([\sqrt{n},n]\)</span>，一共也只有 <span
+class="math inline">\(\sqrt{n}\)</span> 个值。</p>
+<p>枚举的方式是先枚举一个 <span
+class="math inline">\(l\)</span>，然后计算出一个最大的 <span
+class="math inline">\(r\)</span>，满足 <span
+class="math inline">\(\frac{n}{r}=\frac{n}{l}\)</span>，容易证明 <span
+class="math inline">\(r=\big\lfloor\dfrac{n}{\lfloor\frac{n}{l}\rfloor}\big\rfloor\)</span>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">1</span>,r=<span class="number">1</span>;l&lt;=n;l=r<span class="number">+1</span>,r=n/(n/l))&#123;</span><br><span class="line">	<span class="built_in">do_something</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="莫比乌斯函数">莫比乌斯函数</h3>
+<h4 id="定义">定义</h4>
+<p><span class="math display">\[
+\mu(n)=
+\begin{cases}
+1&amp;n=1\\
+0&amp;n\text{ 含有平方因子}\\
+(-1)^k&amp;k\text{ 为 }n\text{ 的本质不同质因子个数}\\
+\end{cases}
+\]</span></p>
+<h4 id="muboldsymbol1epsilon"><span
+class="math inline">\(\mu*\boldsymbol{1}=\epsilon\)</span></h4>
+<p>这是核心结论了。</p>
+<p>考虑证明 <span class="math inline">\(\forall
+n&gt;1,\mu(n)=0\)</span>。</p>
+<p>考虑每个约数的贡献，显然每个质因子只需要考虑一次，如果质因子出现多次，那么根据定义贡献为
+<span class="math inline">\(0\)</span>。</p>
+<p>设有 <span class="math inline">\(k\)</span>
+个质因子，那么选出奇数个和选出偶数个的方案显然是相等的，所以和为 <span
+class="math inline">\(0\)</span>。</p>
+<h3 id="莫比乌斯反演-1">莫比乌斯反演</h3>
+<h4 id="一般形式">一般形式</h4>
+<p><span class="math display">\[
+\begin{align}
+f*\bold{1}=g\iff&amp; g*\mu=f \\
+g(n)=\sum\limits_{d|n}f(d)\iff&amp; f(n)=\sum\limits_{d|n}\mu(d)\times
+g(\frac{n}{d})
+\end{align}
+\]</span></p>
+<p>证明是显然的，因为 <span
+class="math inline">\(\boldsymbol{1}*\mu=\epsilon\)</span></p>
+<h4 id="常用">常用</h4>
+<p><span
+class="math inline">\([\gcd(i,j)=1]=\sum\limits_{d|\gcd(i,j)}\mu(d)\)</span></p>
+<p>枚举 <span class="math inline">\(d\)</span>，即可快速计算。</p>
+<h4 id="欧拉反演">欧拉反演</h4>
+<p>名字是<a target="_blank" rel="noopener" href="https://0x131cc05.github.io/">杰哥</a>取的。</p>
+<h5 id="常用形式">常用形式</h5>
+<p><span
+class="math inline">\(\gcd(i,j)=\sum\limits_{d|\gcd(i,j)}\phi(d)\)</span></p>
+<h5 id="证明">证明</h5>
+<p>即证明 <span
+class="math inline">\(\phi*\boldsymbol{1}=\operatorname{id}\)</span>
+。</p>
+<p>我们只需要证明 <span
+class="math inline">\(\phi*\boldsymbol{1}\)</span> 在 <span
+class="math inline">\(p^c\)</span> 处取值为 <span
+class="math inline">\(\operatorname{id}(p^c)\)</span>，由于 <span
+class="math inline">\(\phi,\boldsymbol{1},\operatorname{id}\)</span>
+均为积性函数，自然在所有位置成立。 <span class="math display">\[
+\begin{align}
+(\phi*\boldsymbol{1})(p^c)=&amp;1+\sum _{i=1}^{c} (p-1)\times p^{i-1}\\
+=&amp; 1+\frac{p^c-1}{p-1}\times(p-1)\\
+=&amp;p^c\\
+=&amp;\operatorname{id}(p^c)
+\end{align}
+\]</span></p>
+<h2 id="筛法">筛法</h2>
+<p>介绍四大筛法。</p>
+<p>四大筛法通常用于求一些<strong>积性函数</strong>的前缀和。</p>
+<p>假设要求 <span class="math inline">\(f\)</span> 的前缀和。</p>
+<p>记 <span class="math inline">\(F(n) = \sum\limits_{i=1}^n
+f(i),H(n)=\sum\limits_{i=1}^n h(i),G(n)=\sum\limits_{i=1}^n
+g(i)\)</span>。</p>
+<h3 id="杜教筛">杜教筛</h3>
+<p>杜教筛的核心是构造两个容易求前缀和的函数 <span
+class="math inline">\(g,h\)</span>，满足 <span class="math inline">\(h =
+f * g\)</span>。</p>
+<p>有 <span class="math display">\[
+\begin{align}
+H(n)&amp;=\sum\limits_{i=1}^n h(i)\\
+&amp;=\sum_{i=1}^n\sum_{d|i}g(d)f(\frac{i}{d})\\
+&amp;=\sum_{d=1}^ng(d)\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor} f(i)
+\end{align}
+\]</span> 将右边 <span class="math inline">\(d\ge 2\)</span>
+的项移到左边 <span class="math display">\[
+H(n)-\sum\limits_{d=2}^ng(d)F(\lfloor\frac{n}{d}\rfloor)=F(n)g(1)
+\]</span> <span class="math inline">\(H(n)\)</span> 是好求的，然后 <span
+class="math inline">\(g(1)=1\)</span>，后面的项对 <span
+class="math inline">\(n\)</span> 数论分块。</p>
+<p>然后有一个结论 <span
+class="math inline">\(\big\lfloor\dfrac{\lfloor\frac{n}{a}\rfloor}{b}\big\rfloor=\lfloor\dfrac{n}{ab}\rfloor\)</span>。因此要求的项只有
+<span class="math inline">\(\sqrt n\)</span> 项。</p>
+<p>线性筛前 <span class="math inline">\(n^\frac{2}{3}\)</span>
+项的前缀和，可以取到最优复杂度 <span
+class="math inline">\(n^\frac{2}{3}\)</span>。复杂度证明见 OI-WIKI，<a
+target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/du/#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%87%BD%E6%95%B0%E5%89%8D%E7%BC%80%E5%92%8C">证明</a>。</p>
+<h3 id="pnpowerful-number-筛">PN(Powerful Number) 筛</h3>
+<p>定义 Powerful Number 是每个质因数质数不小于 <span
+class="math inline">\(2\)</span> 的数。</p>
+<p>如果能构造一个<strong>容易求前缀和的积性函数 <span
+class="math inline">\(g(x)\)</span>，满足 <span
+class="math inline">\(g(p)=f(p)\)</span></strong>，那么我们就可以在
+<span class="math inline">\(O(\sqrt n)\)</span> 的时间复杂度内计算 <span
+class="math inline">\(F(n)\)</span>。</p>
+<p>具体的，考虑构造 <span class="math inline">\(h = f / g\)</span>，所以
+<span class="math inline">\(f(p) = h(1)g(p) + h(p)g(1)\)</span>，由于
+<span class="math inline">\(g(p) =f (p)\)</span>，所以有 <span
+class="math inline">\(h(p)\)</span> 处取值为 <span
+class="math inline">\(0\)</span>，由于 <span
+class="math inline">\(g,f,h\)</span> 都是积性函数，所以 <span
+class="math inline">\(h\)</span> 仅在 Powerful Number
+处有取值，其余处取值为 <span class="math inline">\(0\)</span>。</p>
+<p>考虑 <span class="math display">\[
+\begin{align}
+F(n)&amp;=\sum_{i=1}^nf(i)\\
+&amp;=\sum_{i=1}^n\sum_{d|i}h(d)g(\frac{i}{d})\\
+&amp;=\sum_{d=1}^nh(d)\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}g(i)
+\end{align}
+\]</span> 枚举所有 Powerful Number，计算 <span
+class="math inline">\(h(d)G(\lfloor\frac{n}{d}\rfloor)\)</span>
+即可，Powerful Number 的个数是 <span class="math inline">\(O(\sqrt
+n)\)</span> 的。</p>
+<p>构造 <span class="math inline">\(h\)</span> 的话，可以直接用 <span
+class="math inline">\(g * h =
+f\)</span>，并使用卷积的定义构造，当然，<span
+class="math inline">\(f(p^c)\)</span> 必须要容易求。</p>
+<h3 id="州阁筛">州阁筛</h3>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+              <a href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag"># 数论</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/02/OI/%E7%AE%97%E6%B3%95/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/" rel="prev" title="Exchange-Argument小总结">
+                  <i class="fa fa-angle-left"></i> Exchange-Argument小总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/08/04/OI/%E7%AE%97%E6%B3%95/%E4%BB%8EZKW%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9C%8B%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8/" rel="next" title="从ZKW线段树看线段树的性质">
+                  从ZKW线段树看线段树的性质 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

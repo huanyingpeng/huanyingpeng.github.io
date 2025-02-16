@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Tarjan算法和坑 某场多校，某道题，有负环，需要排除（负环）。 某人写了，又交了，吃罚时，需要排除（某人）。 队友写了，又交了，他过了，某人完了。 数据有了，调试了，调完了，Tarjan锅了。 本文提一下 Tarjan 算法里的坑。 算法流程和原理 通过对图进行 DFS 遍历，得到 DFS 树。 容易发现每个 SCC 是一个树上的联通块，这是由 DFS 的过程保证的，如果分开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tarjan算法和坑">
+<meta property="og:url" content="http://huanyp.cn/2022/07/28/OI/%E7%AE%97%E6%B3%95/Tarjan%E7%AE%97%E6%B3%95%E5%92%8C%E5%9D%91/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="Tarjan算法和坑 某场多校，某道题，有负环，需要排除（负环）。 某人写了，又交了，吃罚时，需要排除（某人）。 队友写了，又交了，他过了，某人完了。 数据有了，调试了，调完了，Tarjan锅了。 本文提一下 Tarjan 算法里的坑。 算法流程和原理 通过对图进行 DFS 遍历，得到 DFS 树。 容易发现每个 SCC 是一个树上的联通块，这是由 DFS 的过程保证的，如果分开">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-28T10:18:13.000Z">
+<meta property="article:modified_time" content="2025-02-16T09:58:00.945Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="tarjan">
+<meta property="article:tag" content="图论">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2022/07/28/OI/%E7%AE%97%E6%B3%95/Tarjan%E7%AE%97%E6%B3%95%E5%92%8C%E5%9D%91/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/07/28/OI/%E7%AE%97%E6%B3%95/Tarjan%E7%AE%97%E6%B3%95%E5%92%8C%E5%9D%91/","path":"2022/07/28/OI/算法/Tarjan算法和坑/","title":"Tarjan算法和坑"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Tarjan算法和坑 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tarjan%E7%AE%97%E6%B3%95%E5%92%8C%E5%9D%91"><span class="nav-number">1.</span> <span class="nav-text">Tarjan算法和坑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">算法流程和原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E5%86%99%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">不同的写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%A2%8E%E7%A2%8E%E5%BF%B5"><span class="nav-number">1.3.</span> <span class="nav-text">一些碎碎念</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/28/OI/%E7%AE%97%E6%B3%95/Tarjan%E7%AE%97%E6%B3%95%E5%92%8C%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Tarjan算法和坑 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Tarjan算法和坑
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-28 18:18:13" itemprop="dateCreated datePublished" datetime="2022-07-28T18:18:13+08:00">2022-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:58:00" itemprop="dateModified" datetime="2025-02-16T17:58:00+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="tarjan算法和坑">Tarjan算法和坑</h2>
+<p>某场多校，某道题，有负环，需要排除（负环）。</p>
+<p>某人写了，又交了，吃罚时，需要排除（某人）。</p>
+<p>队友写了，又交了，他过了，某人完了。</p>
+<p>数据有了，调试了，调完了，Tarjan锅了。</p>
+<p>本文提一下 Tarjan 算法里的坑。</p>
+<h3 id="算法流程和原理">算法流程和原理</h3>
+<p>通过对图进行 DFS 遍历，得到 DFS 树。</p>
+<p>容易发现每个 SCC 是一个树上的联通块，这是由 DFS
+的过程保证的，如果分开了，那么就不满足 DFS 的性质。</p>
+<p><strong>DFS 一个点，会访问到所有它能到的点。</strong>由于它们是
+SCC，所以 DFS 该 SCC 的任意节点的时候，一定会让 SCC
+中所有<strong>未访问</strong>的节点都在它的子树里，所以不会出现断开的情况。</p>
+<p>考虑树的每个节点是否为 SCC 的根。定义一个节点为 SCC
+的根，当且仅当这个节点是该 SCC 中最浅的节点。</p>
+<p>定义 <code>low[u]</code> 为 <span class="math inline">\(u\)</span>
+能通过<strong>自己或者自己的子树</strong>到达的点，时间戳的最小值。维护一个栈，表示当前还没有确定连通块的节点。</p>
+<p>如果一个点 <span class="math inline">\(u\)</span> 的
+<code>low[u]=dfn[u]</code>，那么该点无法到达时间戳更小的点，所以一定是
+SCC 的根，弹出所有栈中的值直到 <span
+class="math inline">\(u\)</span>，作为该 SCC 的所有点。</p>
+<p>如果访问了一个已经访问过的点 <span
+class="math inline">\(v\)</span>，分两种
+CASE，其一是它已经被弹栈了，这样的话该边一定是横插边，直接不管，因为
+<span class="math inline">\(v\)</span> 到不了 <span
+class="math inline">\(u\)</span>。如果还没有弹栈，说明该点的 SCC
+还没有确定，所以这个点是可以到 <span class="math inline">\(u\)</span>
+的父亲的，也能到 <span
+class="math inline">\(v\)</span>。所以这种点是有效的，<span
+class="math inline">\(u\)</span> 因此能到达更上面的点，不是 SCC
+的根。</p>
+<h3 id="不同的写法">不同的写法</h3>
+<p>省略全局变量。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//AC Code</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	dfn[u]=low[u]=++s;</span><br><span class="line">	st[++top]=u;in[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;e[<span class="number">2</span>][u].<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		<span class="type">int</span> v=e[<span class="number">2</span>][u][i].v,w=e[<span class="number">2</span>][u][i].e,f=e[<span class="number">2</span>][u][i].f;</span><br><span class="line">		<span class="keyword">if</span>(dfn[v])&#123;</span><br><span class="line">			<span class="keyword">if</span>(in[v])<span class="built_in">cmin</span>(low[u],dfn[v]);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">dfs</span>(v);<span class="built_in">cmin</span>(low[u],low[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dfn[u]==low[u])&#123;</span><br><span class="line">		cnt++;<span class="type">int</span> v;</span><br><span class="line">		<span class="keyword">do</span> rk[v=st[top--]]=cnt,in[v]=<span class="number">0</span>; <span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//AC code</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	dfn[u]=low[u]=++s;st[++top]=u;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;e[<span class="number">2</span>][u].<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		<span class="type">int</span> v=e[<span class="number">2</span>][u][i].v,w=e[<span class="number">2</span>][u][i].e,f=e[<span class="number">2</span>][u][i].f;</span><br><span class="line">		<span class="keyword">if</span>(dfn[v])&#123;</span><br><span class="line">			<span class="keyword">if</span>(!rk[v])<span class="built_in">cmin</span>(low[u],dfn[v]);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">dfs</span>(v);<span class="built_in">cmin</span>(low[u],low[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dfn[u]==low[u])&#123;</span><br><span class="line">		cnt++;<span class="type">int</span> v;</span><br><span class="line">		<span class="keyword">do</span> rk[v=st[top--]]=cnt; <span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//WA code</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	dfn[u]=low[u]=++s;st[++top]=u;in[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;e[<span class="number">2</span>][u].<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		<span class="type">int</span> v=e[<span class="number">2</span>][u][i].v,w=e[<span class="number">2</span>][u][i].e,f=e[<span class="number">2</span>][u][i].f;</span><br><span class="line">		<span class="keyword">if</span>(dfn[v])&#123;</span><br><span class="line">			<span class="keyword">if</span>(in[v])<span class="built_in">cmin</span>(low[u],dfn[v]);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">dfs</span>(v);<span class="built_in">cmin</span>(low[u],low[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dfn[u]==low[u])&#123;</span><br><span class="line">		cnt++;<span class="type">int</span> v;</span><br><span class="line">		<span class="keyword">do</span> rk[v=st[top--]]=cnt; <span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">	in[u]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意到前两种 Code 维护的都是栈中元素，因此没有问题。</p>
+<p>但第三种写法，维护的是所有的祖先，当当前节点 <span
+class="math inline">\(u\)</span> 连接到的点 <span
+class="math inline">\(v\)</span>，可以通过其返祖边回到更上面的父亲时，这种做法会漏掉
+<span class="math inline">\(v\)</span>。因此是错误的。</p>
+<p>举个例子。</p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/l17oe1cu.png" /></p>
+<p>访问 <span class="math inline">\(3\)</span> 时，<span
+class="math inline">\(4\)</span> 已经从 <span
+class="math inline">\(in\)</span> 中移除，但是我们仍然可以通过 <span
+class="math inline">\(4\)</span> 到达 <span
+class="math inline">\(3\)</span>，所以会出现错误。</p>
+<p><strong>洛谷的模板题，数据相当之水，第三种做法可以通过，但它是错误的。</strong></p>
+<h3 id="一些碎碎念">一些碎碎念</h3>
+<p>缩点的时候，也就是求强连通分量，<span
+class="math inline">\(low[u]\)</span> 和 <span
+class="math inline">\(low[v],dfn[v]\)</span> 取
+<code>min</code>，都是可以的，因为不影响判断某个点是否是 SCC 的根。</p>
+<p><strong>如果图是无向图，那么不会存在横插边的问题，所有边都是返祖边。</strong></p>
+<p>求边双连通分量，和 <code>low[v]</code> 取 <code>min</code>
+同样没有问题，因为不影响一个点是不是边双的根的判断。</p>
+<p>判断一个点是边双根的方式是，<strong>它无法通过自己或者儿子，到达更上面的点。</strong>这也意味着，该点与其父亲的连边是桥。</p>
+<p><strong>边双连通具有传递性</strong></p>
+<p>求点双连通分量，判断割点，如果和 <code>low[u]</code> 取
+min，是会出问题的。</p>
+<p>判断一个点是割点的方式是，<strong>它的任意一个儿子无法在没有它的情况下到达上面的点。</strong>特别注意，<strong>该点如果没有儿子，就不是割点。</strong></p>
+<p>点双，就是以割点为界的所有连通块。</p>
+<p>下图是一个取 <code>low[v]</code> 出问题的例子。</p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/8ptscypy.png" /></p>
+<p>先访问 <span class="math inline">\(3\)</span>，再访问 <span
+class="math inline">\(5\)</span>，会错误的认为 <span
+class="math inline">\(5\)</span> 能够到 <span
+class="math inline">\(1\)</span>，我们 <code>low</code>
+的定义是通过自身或自身的子树能到的最小时间戳，而如果和
+<code>low[v]</code> 取
+<code>min</code>，就势必会经过其它的点。在这里，<span
+class="math inline">\(5\)</span> 通过了 <span
+class="math inline">\(4\)</span> 到达 <span
+class="math inline">\(1\)</span>，因此如果删去 <span
+class="math inline">\(4\)</span>，<span class="math inline">\(5\)</span>
+就不能到 <span
+class="math inline">\(1\)</span>，这里需要保证定义的严谨性。</p>
+<p>前面的强连通分量，只需要能够到达，但不关心怎么到达，所以没问题。</p>
+<p>边双也只关心能否到达更前面点，所以没有问题。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/tarjan/" rel="tag"># tarjan</a>
+              <a href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"># 图论</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/27/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0727%E6%80%BB%E7%BB%93/" rel="prev" title="评讲">
+                  <i class="fa fa-angle-left"></i> 评讲
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/28/%E7%A7%91%E6%99%AE/%E6%B5%85%E8%B0%88%E4%B8%80%E7%AC%94%E7%94%BB%E9%97%AE%E9%A2%98/" rel="next" title="浅谈一笔画问题">
+                  浅谈一笔画问题 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

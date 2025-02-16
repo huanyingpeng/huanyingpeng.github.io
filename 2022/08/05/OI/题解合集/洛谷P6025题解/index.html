@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="洛谷P6025 题解 提供一个复杂度为的 \(O(\log n)\) 的，基于正常分析而非打表的做法，我认为这个做法比当前题解区的所有做法更加优美。 这道题相当不错，考察了线段树和位运算的理解。 题意  一颗常规方式构建的线段树，求大小为 \(1,2,3,\cdots n\) 的线段树分别占用的最大空间，即最大下标。 输出答案的异或和。 \(n\leq 10^{15}\)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="洛谷P6025题解">
+<meta property="og:url" content="http://huanyp.cn/2022/08/05/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E6%B4%9B%E8%B0%B7P6025%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="洛谷P6025 题解 提供一个复杂度为的 \(O(\log n)\) 的，基于正常分析而非打表的做法，我认为这个做法比当前题解区的所有做法更加优美。 这道题相当不错，考察了线段树和位运算的理解。 题意  一颗常规方式构建的线段树，求大小为 \(1,2,3,\cdots n\) 的线段树分别占用的最大空间，即最大下标。 输出答案的异或和。 \(n\leq 10^{15}\)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-05T03:56:36.000Z">
+<meta property="article:modified_time" content="2025-02-16T09:58:15.616Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="题解">
+<meta property="article:tag" content="线段树">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2022/08/05/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E6%B4%9B%E8%B0%B7P6025%E9%A2%98%E8%A7%A3/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/08/05/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E6%B4%9B%E8%B0%B7P6025%E9%A2%98%E8%A7%A3/","path":"2022/08/05/OI/题解合集/洛谷P6025题解/","title":"洛谷P6025题解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>洛谷P6025题解 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B4%9B%E8%B0%B7p6025-%E9%A2%98%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">洛谷P6025 题解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pts"><span class="nav-number">1.2.1.</span> <span class="nav-text">40PTS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pts-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">100PTS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.</span> <span class="nav-text">参考代码</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/05/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E6%B4%9B%E8%B0%B7P6025%E9%A2%98%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="洛谷P6025题解 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          洛谷P6025题解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-05 11:56:36" itemprop="dateCreated datePublished" datetime="2022-08-05T11:56:36+08:00">2022-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:58:15" itemprop="dateModified" datetime="2025-02-16T17:58:15+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="洛谷p6025-题解">洛谷P6025 题解</h2>
+<p>提供一个复杂度为的 <span class="math inline">\(O(\log n)\)</span>
+的，基于正常分析而非打表的做法，我认为这个做法比当前题解区的所有做法更加优美。</p>
+<p>这道题相当不错，考察了线段树和位运算的理解。</p>
+<h3 id="题意">题意</h3>
+<ul>
+<li><p>一颗常规方式构建的线段树，求大小为 <span
+class="math inline">\(1,2,3,\cdots n\)</span>
+的线段树分别占用的最大空间，即最大下标。</p></li>
+<li><p>输出答案的异或和。</p></li>
+<li><p><span class="math inline">\(n\leq 10^{15}\)</span></p></li>
+</ul>
+<p>构建代码为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> k,<span class="type">int</span> l,<span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==r)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//do something</span></span><br><span class="line">		<span class="comment">//e.g. tree[k]=a[l]</span></span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">build</span>(k&lt;&lt;<span class="number">1</span>,l,mid);</span><br><span class="line">	<span class="built_in">build</span>(k&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r);</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">	<span class="comment">//e.g. tree[k]=tree[k&lt;&lt;1]+tree[k&lt;&lt;1|1]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>原题意是求 <span
+class="math inline">\(f(l,r)\)</span>，但很容易转化为求 <span
+class="math inline">\(f(1,n)\)</span>，直接求 <span
+class="math inline">\(f(1,l-1)\bigoplus f(1,r)\)</span>
+即可。</strong></p>
+<h3 id="分析">分析</h3>
+<h4 id="pts">40PTS</h4>
+<p>首先，线段树建立的过程，就是<strong>从根往下走的过程</strong>，往左走，向当前编号的二进制表示后写一个
+<span class="math inline">\(0\)</span>，往右走，就写一个 <span
+class="math inline">\(1\)</span>。</p>
+<p>考虑线段树的最大下标在何处取到，由于右儿子下标相对较大，一个比较显然的想法是一直走右儿子，但是这样是错误的，显然的反例为
+<span class="math inline">\(n=3\)</span>，如下图所示。</p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/7aesc0yg.png" /></p>
+<p>这个例子中，<span class="math inline">\([1,3]\)</span>
+节点的左儿子比右儿子多一层，所以出现了走左儿子最优的情况。</p>
+<p><strong>但是，如果某个节点处左右儿子高度相同，那么很显然应该走右儿子，因为当前这一步决定的位数是最高位。</strong></p>
+<p>所以走左儿子，当且仅当左右儿子高度不同，下面分析线段树的高度和长度的关系。</p>
+<p>首先，子树构建情况<strong>只和长度有关</strong>，所以我们<strong>只关心长度而非左右端点</strong>，然后，长度为
+<span class="math inline">\(2^k\)</span>
+的节点，构建出的树为一颗完全二叉树，其高度为 <span
+class="math inline">\(k\)</span>。 此时，如果点数继续增大，那么高度为
+<span class="math inline">\(k\)</span>
+的树就无法容下这么多节点，高度会变为 <span
+class="math inline">\(k+1\)</span>，所以，长度为 <span
+class="math inline">\((2^k,2^{k+1}]\)</span> 的节点，构建出子树的高度为
+<span class="math inline">\({k+1}\)</span>。</p>
+<p>容易发现，常规构建方式构建出的子树，其<strong>左儿子的大小不小于右儿子，且差值至多为
+1</strong>，因此，如果出现了左右儿子高度不同，一定是左儿子比右儿子高，并且只能是一种情况，即长度的二进制表示为
+<span
+class="math inline">\(100001\)</span>。即除了最高位和最低位其余位均为
+<span
+class="math inline">\(0\)</span>，只有这样才会出现左右儿子落在不同区间的情况。</p>
+<p>所以我们对于一个 <span
+class="math inline">\(n\)</span>，很容易给出一个 <span
+class="math inline">\(O(\log n)\)</span> 的计算方式，即：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">ask</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> now=<span class="number">1</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x==<span class="number">1</span>)<span class="keyword">return</span> now;</span><br><span class="line">	<span class="keyword">if</span>(__builtin_popcount(x)==<span class="number">2</span>&amp;&amp;x&amp;<span class="number">1</span>)<span class="keyword">return</span> <span class="built_in">ask</span>(x<span class="number">+1</span>&gt;&gt;<span class="number">1</span>,now*<span class="number">2</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">ask</span>(x&gt;&gt;<span class="number">1</span>,now*<span class="number">2</span><span class="number">+1</span>);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>__builtin_popcount()</code> 为内置函数，参数为
+<code>unsigned</code>， <code>int</code> 也可以使用但不能为负数。</p>
+<p>如果希望对 <code>long long</code> 使用，应改为
+<code>_builtin_popcountll()</code>。</p>
+<p>对每个数暴力求解即可。</p>
+<h4 id="pts-1">100PTS</h4>
+<p>我们需要观察求解一个数的过程，不妨考虑二进制数 <span
+class="math inline">\(1001011\)</span> 的计算过程。</p>
+<p>手动模拟一下上述 <span
+class="math inline">\(\operatorname{ask()}\)</span>
+函数的调用过程，<span class="math inline">\(now\)</span> 变量和 <span
+class="math inline">\(x\)</span> 变量的值依次变为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">now=00000001 x=1001011</span><br><span class="line">now=00000011 x=0100101</span><br><span class="line">now=00000111 x=0010010</span><br><span class="line">now=00001111 x=0001001</span><br><span class="line">now=00011110 x=0000101</span><br><span class="line">now=00111100 x=0000011</span><br><span class="line">now=01111000 x=0000010</span><br><span class="line">now=11110001 x=0000001</span><br></pre></td></tr></table></figure>
+<p>容易发现，在出现 <span class="math inline">\(1001\)</span>
+这样的情况之前，我们将 <span class="math inline">\(now\)</span>
+左移一位并在后面写上了 <span class="math inline">\(1\)</span>，同时将
+<span class="math inline">\(x\)</span> 右移一位。</p>
+<p>在出现 <span class="math inline">\(1001\)</span> 之后，我们一直在往
+<span class="math inline">\(now\)</span> 后面写 <span
+class="math inline">\(0\)</span>，而 <span
+class="math inline">\(x\)</span> 的变化则是先右移一位并将最后一位改为
+<span class="math inline">\(1\)</span>。</p>
+<p>而最后 <span class="math inline">\(x\)</span> 从 <span
+class="math inline">\(10\)</span> 变为 <span
+class="math inline">\(1\)</span> 时，我们在 <span
+class="math inline">\(now\)</span> 末尾添加了一个 <span
+class="math inline">\(1\)</span>。</p>
+<p>不难发现，一个固定的 <span
+class="math inline">\(x\)</span>，我们最终得到的占用下标最大值，<strong>仅仅和它二进制表示下的最高位和第二高的为
+<span class="math inline">\(1\)</span>
+的位有关</strong>，因为在这之前我们一定会添加 <span
+class="math inline">\(1\)</span>，而在这之后一定会往后添加 <span
+class="math inline">\(0\)</span> 并在最后添加一个 <span
+class="math inline">\(1\)</span>。</p>
+<p><strong>注意如果为 <span class="math inline">\(2^k\)</span>
+这样不存在次高位的数，我们需要特判。</strong></p>
+<p>所以我们有了一个比较显然的想法，即枚举二进制下最高位和次高位的位置，统计能取到这两个位置的数的数量，并异或上对应的权值。</p>
+<p>这样的复杂度是 <span class="math inline">\(O(\log^2n)\)</span>
+的，我们考虑继续优化。</p>
+<p>对于二进制下位数小于 <span class="math inline">\(n\)</span>
+的二进制下位数的所有数，实际上会有贡献的只有两个值，分别是 <span
+class="math inline">\(2^k\)</span> 和 <span
+class="math inline">\(2^k+1\)</span>。因为<strong>如果次高位不为第一位，那么能取到该值的数的个数一定为偶数个（低于次高位的位置可以任意填）</strong>。剩下这两个值的贡献都是可以
+<span class="math inline">\(O(1)\)</span> 计算的。</p>
+<p>这样就只用考虑二进制下位数和 <span class="math inline">\(n\)</span>
+相同的数，同样的道理，如果次高位高于 <span
+class="math inline">\(1\)</span>，那么没有贡献，但需要注意的是，如果次高位取到了上界，例如
+<span class="math inline">\(10110\)</span> 中，次高位取到了第三位的
+<span class="math inline">\(1\)</span>，那么由于必须小于 <span
+class="math inline">\(n\)</span>，实际上只有奇数个值可以取到，这样会带来一定的贡献，所以我们需要计算这种情况的答案，复杂度为
+<span class="math inline">\(O(\log n)\)</span>。</p>
+<p>总复杂度<span class="math inline">\(O(\log n)\)</span>。</p>
+<p>可以参考我博客中的一些线段树的总结，会不定期更新。</p>
+<p><a
+href="https://huanyp.cn/2022/08/04/%E4%BB%8EZKW%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9C%8B%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8/">从ZKW线段树看线段树的性质</a></p>
+<h3 id="参考代码">参考代码</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> low(x) ((x)&amp;-(x))</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125; </span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,tp1,tp2;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x==<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(x==<span class="number">1</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//特判边界情况</span></span><br><span class="line">	<span class="type">int</span> res=<span class="number">1</span>,h=<span class="built_in">log2</span>(x);</span><br><span class="line">    <span class="comment">//最高位从 10 开始枚举,所以 res 初值应该设置为 1</span></span><br><span class="line">    <span class="comment">//h 为二进制下 x 的位数</span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;h;i++)&#123;</span><br><span class="line">		res^=(<span class="number">1ll</span>&lt;&lt;i<span class="number">+1</span>)<span class="number">-1</span>;</span><br><span class="line">		res^=(<span class="number">1ll</span>&lt;&lt;i<span class="number">+1</span>)<span class="number">+1</span>;</span><br><span class="line">        <span class="comment">//注意左移操作的 1 是 long long 级别的数</span></span><br><span class="line">        <span class="comment">//计算 2^k 和 2^k+1 的答案,其它位置没有贡献 </span></span><br><span class="line">	&#125;</span><br><span class="line">	res^=(<span class="number">1ll</span>&lt;&lt;h<span class="number">+1</span>)<span class="number">-1</span>;</span><br><span class="line">    <span class="comment">//计算 2^h 的答案</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">low</span>(x)==x)<span class="keyword">return</span> res;</span><br><span class="line">    <span class="comment">//如果 x=2^h,无需进行下面的步骤</span></span><br><span class="line">	res^=(<span class="number">1ll</span>&lt;&lt;h<span class="number">+1</span>)<span class="number">+1</span>;</span><br><span class="line">	<span class="keyword">if</span>(x<span class="number">-1</span>==<span class="number">1ll</span>&lt;&lt;h||x&amp;<span class="number">1</span>)<span class="keyword">return</span> res;</span><br><span class="line">    <span class="comment">//如果 x=2^h+1 或者末尾为 1,那么之后取到的值个数一定是偶数,无需计算。</span></span><br><span class="line">	<span class="type">int</span> now=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(__builtin_popcountll(x)&gt;<span class="number">2</span>||(x&amp;<span class="number">1</span>)==<span class="number">0</span>)&#123;</span><br><span class="line">		now=now&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">		x&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//模拟求解的第一步,找到对应的次高位,在这之前往后写 1</span></span><br><span class="line">	<span class="keyword">while</span>(x)&#123;</span><br><span class="line">		x&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">		now&lt;&lt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//模拟求解第二步,往后写 0</span></span><br><span class="line">	now|=<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//记得左右还需要异或 1</span></span><br><span class="line">	<span class="keyword">return</span> res^now;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">// 	freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//	freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line"><span class="comment">//	freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="type">int</span> l,r;</span><br><span class="line">	<span class="built_in">read</span>(l),<span class="built_in">read</span>(r);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,<span class="built_in">solve</span>(r)^<span class="built_in">solve</span>(l<span class="number">-1</span>));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag"># 题解</a>
+              <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag"># 线段树</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/05/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%BA%8C%E5%BC%B9/" rel="prev" title="从一道题看CPU底层优化-第二弹">
+                  <i class="fa fa-angle-left"></i> 从一道题看CPU底层优化-第二弹
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/08/17/%E5%AD%A6%E6%9C%AF/%E5%B7%A5%E5%85%B7/GeogeBra%E8%AE%A1%E7%AE%97%E5%99%A8%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/" rel="next" title="GeogeBra计算器简易使用教程">
+                  GeogeBra计算器简易使用教程 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

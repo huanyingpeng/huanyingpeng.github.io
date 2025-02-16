@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="关于某道题的优化 题意 给定一个长度为 \(n\) 的序列 \(a_i\)，求有多少个区间满足每个数出现次数均为偶数。 \(n\leq 3\times 10^4,a_i\leq 10^6\) 思路 双指针扫描每个区间，拿个桶，\(O(1)\) 更新状态，然后 \(O(n^2)\)，可以得到 \(40\) 的好成绩。 代码一 123456789101112131415161718">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从一道题看CPU底层优化-第一弹">
+<meta property="og:url" content="http://huanyp.cn/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%B8%80%E5%BC%B9/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="关于某道题的优化 题意 给定一个长度为 \(n\) 的序列 \(a_i\)，求有多少个区间满足每个数出现次数均为偶数。 \(n\leq 3\times 10^4,a_i\leq 10^6\) 思路 双指针扫描每个区间，拿个桶，\(O(1)\) 更新状态，然后 \(O(n^2)\)，可以得到 \(40\) 的好成绩。 代码一 123456789101112131415161718">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-12T07:31:52.000Z">
+<meta property="article:modified_time" content="2025-02-16T09:53:13.899Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="计算机系统">
+<meta property="article:tag" content="代码技巧">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%B8%80%E5%BC%B9/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%B8%80%E5%BC%B9/","path":"2022/07/12/OI/代码技巧/从一道题看CPU底层优化-第一弹/","title":"从一道题看CPU底层优化-第一弹"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>从一道题看CPU底层优化-第一弹 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%9F%90%E9%81%93%E9%A2%98%E7%9A%84%E4%BC%98%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">关于某道题的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E4%B8%80"><span class="nav-number">1.3.</span> <span class="nav-text">代码一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">1.4.</span> <span class="nav-text">优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E5%8E%9F%E7%90%86"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.高速缓存原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%BB%B6%E8%BF%9F%E9%9A%90%E8%97%8F"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.流水线模式和延迟隐藏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%92%8C%E4%BE%9D%E8%B5%96%E5%88%86%E6%9E%90"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.流水线和依赖分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%92%8C%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.流水线和分支预测</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%B8%80%E5%BC%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="从一道题看CPU底层优化-第一弹 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从一道题看CPU底层优化-第一弹
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 15:31:52" itemprop="dateCreated datePublished" datetime="2022-07-12T15:31:52+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:53:13" itemprop="dateModified" datetime="2025-02-16T17:53:13+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="关于某道题的优化">关于某道题的优化</h2>
+<h3 id="题意">题意</h3>
+<p>给定一个长度为 <span class="math inline">\(n\)</span> 的序列 <span
+class="math inline">\(a_i\)</span>，求有多少个区间满足每个数出现次数均为偶数。</p>
+<p><span class="math inline">\(n\leq 3\times 10^4,a_i\leq
+10^6\)</span></p>
+<h3 id="思路">思路</h3>
+<p>双指针扫描每个区间，拿个桶，<span class="math inline">\(O(1)\)</span>
+更新状态，然后 <span class="math inline">\(O(n^2)\)</span>，可以得到
+<span class="math inline">\(40\)</span> 的好成绩。</p>
+<h3 id="代码一">代码一</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">30005</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,ans;</span><br><span class="line"><span class="type">int</span> a[N],b[N];</span><br><span class="line"><span class="type">unsigned</span> cnt[<span class="number">1024</span>*<span class="number">1024</span>];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> 	<span class="built_in">freopen</span>(<span class="string">&quot;gf.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;gf.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">	<span class="comment">//freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(a[i]),b[i]=a[i];</span><br><span class="line">	<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">memset</span>(cnt,<span class="number">0</span>,<span class="built_in">sizeof</span>(cnt));</span><br><span class="line">		now=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(j=i;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cnt[a[j]])now+=(cnt[a[j]]&amp;<span class="number">1</span>)?<span class="number">1</span>:<span class="number">-1</span>;</span><br><span class="line">			cnt[a[j]]+=<span class="number">1</span>;</span><br><span class="line">			ans+=now==<span class="number">0</span>;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="优化">优化</h3>
+<h4 id="高速缓存原理">1.高速缓存原理</h4>
+<p>计算机有个东西叫高速缓存，可以优化内存访问延迟。</p>
+<p>一次独立的内存操作会读取一个 <span
+class="math inline">\(64Byte\)</span> 的 <span
+class="math inline">\(cacheline\)</span>，从指令发出到从内存收到数据需要约
+<span class="math inline">\(200\)</span> 个 <span
+class="math inline">\(CPU\)</span> 周期，而 <span
+class="math inline">\(CPU\)</span> 会将一些常用的数据塞进 <span
+class="math inline">\(cache\)</span>，也就是高速缓存中，加速读取，寄存器的访问速度是最快的，只需要不到
+<span class="math inline">\(1\)</span> 个时间周期，<span
+class="math inline">\(L1\)</span> 缓存需要约 <span
+class="math inline">\(3\)</span> 个时间周期，<span
+class="math inline">\(L2\)</span> 为 <span
+class="math inline">\(10\)</span> 个左右，<span
+class="math inline">\(L3\)</span> 为 <span
+class="math inline">\(20\)</span> 个周期。</p>
+<p>具体时间视计算机本身有差别，但基本的比例是这个。</p>
+<p>代码一中，我们只关注瓶颈。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">now+=<span class="number">-1</span>+((cnt[a[j]]&amp;<span class="number">1</span>)&lt;&lt;<span class="number">1</span>);</span><br><span class="line">now+=!cnt[a[j]];</span><br><span class="line">cnt[a[j]]+=<span class="number">1</span>;</span><br><span class="line">ans+=now==<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>其中，对于 <code>cnt</code> 的访问和对于 <code>a</code>
+的访问，由于高速缓存并不大，所以塞不下
+<code>cnt</code>，因此我们每个循环都需要等一个 <code>200</code>
+时间周期的延迟，这是相当致命的，实际上等待的延迟并没有 <code>200</code>
+时间周期，因为 <span class="math inline">\(CPU\)</span>
+将部分数据还是放进来 <code>cache</code>，但具体放哪些是由
+<code>CPU</code> 决定的。</p>
+<p>对于这个致命的延迟，我们可以将数据离散化，然后就可以得到一个
+<code>75pts</code> 的代码。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">30005</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,ans;</span><br><span class="line"><span class="type">int</span> a[N],b[N];</span><br><span class="line"><span class="type">unsigned</span> cnt[<span class="number">1024</span>*<span class="number">30</span>];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> 	<span class="built_in">freopen</span>(<span class="string">&quot;gf.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;gf.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">	<span class="comment">//freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(a[i]),b[i]=a[i];</span><br><span class="line">	<span class="built_in">sort</span>(b<span class="number">+1</span>,b+n<span class="number">+1</span>);m=<span class="built_in">unique</span>(b<span class="number">+1</span>,b+n<span class="number">+1</span>)-b<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=<span class="built_in">lower_bound</span>(b<span class="number">+1</span>,b+m<span class="number">+1</span>,a[i])-b;</span><br><span class="line">	<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">memset</span>(cnt,<span class="number">0</span>,<span class="built_in">sizeof</span>(cnt));</span><br><span class="line">		now=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(j=i;j&lt;=n;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(cnt[a[j]])now+=cnt[a[j]]&amp;<span class="number">1</span>?<span class="number">1</span>:<span class="number">-1</span>;</span><br><span class="line">			cnt[a[j]]+=<span class="number">1</span>;</span><br><span class="line">			ans+=now==<span class="number">0</span>;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="流水线模式和延迟隐藏">2.流水线模式和延迟隐藏</h4>
+<p>现代计算机各类硬件的设计都采用了流水线模式，将每条汇编指令的执行都划分为了不同的流水线。</p>
+<p>也就是说 <strong>CPU
+可以不间断的向内存发出访问指令，这些指令经过一定延迟后，内存会不间断的向CPU传数据，这个过程中，我们就只等待了一个内存延迟。</strong>打个比方，这玩意就像烧水，水壶很多，灌水和倒水的时间都很短，所以正确的方式是全部烧上等，而不是烧一个等一个。</p>
+<p>所以，如果我们能够连续的发出内存访问指令，那么内存延迟可以被有效隐藏，但注意到代码中，访问了内存后执行了一些计算，而内存访问是依赖于这些计算的，这产生了一个依赖，我们必须等待计算完成之后才能进行访问，所以无法有效的隐藏延迟。</p>
+<p><strong>向内存写入数据也是需要等待延迟的。</strong></p>
+<h4 id="流水线和依赖分析">3.流水线和依赖分析</h4>
+<p>上一部分简单介绍了流水线模式，在我们的 <span
+class="math inline">\(CPU\)</span> 中，也采用流水线的设计。</p>
+<p>一条汇编指令的执行在 <span class="math inline">\(CPU\)</span>
+上大致分为五个部分，分别是：取指，访(寄)存，计算，内存操作，写回。</p>
+<p><span class="math inline">\(CPU\)</span>
+在这五个部分的设计上也采用了流水线，一条指令开始访存时，另一条指令的取指就开始了。</p>
+<p>而如果下一条指令对前一条指令有<strong>数据依赖</strong>，那么 <span
+class="math inline">\(CPU\)</span>
+会通过转发操作消除这种依赖，但如果下一条指令的内容对上一条指令有依赖（比如说
+if），那么 <span class="math inline">\(CPU\)</span>
+就不得不停止流水线，向流水线中插入气泡以等待。</p>
+<p>这会极大降低 <span class="math inline">\(CPU\)</span>
+的利用率，因此，内循环中的 <span class="math inline">\(if\)</span>
+是相当不应该的。</p>
+<h4 id="流水线和分支预测">4.流水线和分支预测</h4>
+<p>事实上，硬件的设计者注意到了这种依赖，而 <span
+class="math inline">\(CPU\)</span>
+会对这种依赖做出预测，预测基于程序计数器的的原理和一些其它统计数据，正确率约在
+<span class="math inline">\(65\%\)</span>
+左右，如果分支预测出现错误，那么会花费两个时间周期去消除这个错误，所以我们需要通过算术方式避免分支。</p>
+<p>方式如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">30005</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,ans;</span><br><span class="line"><span class="type">int</span> a[N],b[N];</span><br><span class="line"><span class="type">unsigned</span> <span class="type">short</span> cnt[<span class="number">1024</span>*<span class="number">30</span>];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> 	<span class="built_in">freopen</span>(<span class="string">&quot;gf.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;gf.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">	<span class="comment">//freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(a[i]),b[i]=a[i];</span><br><span class="line">	<span class="built_in">sort</span>(b<span class="number">+1</span>,b+n<span class="number">+1</span>);m=<span class="built_in">unique</span>(b<span class="number">+1</span>,b+n<span class="number">+1</span>)-b<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=<span class="built_in">lower_bound</span>(b<span class="number">+1</span>,b+m<span class="number">+1</span>,a[i])-b;</span><br><span class="line">	<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">memset</span>(cnt,<span class="number">0</span>,<span class="built_in">sizeof</span>(cnt));</span><br><span class="line">		now=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(j=i;j&lt;=n;j++)&#123;</span><br><span class="line">			now+=<span class="number">-1</span>+((cnt[a[j]]&amp;<span class="number">1</span>)&lt;&lt;<span class="number">1</span>);</span><br><span class="line">			now+=!cnt[a[j]];</span><br><span class="line">			cnt[a[j]]+=<span class="number">1</span>;</span><br><span class="line">			ans+=now==<span class="number">0</span>;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>目前是最快代码。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="tag"># 计算机系统</a>
+              <a href="/tags/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/" rel="tag"># 代码技巧</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/12/%E5%AD%A6%E6%9C%AF/%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/AI%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/" rel="prev" title="AI相关学习资料汇总">
+                  <i class="fa fa-angle-left"></i> AI相关学习资料汇总
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" rel="next" title="一些有点容易忘的基础算法">
+                  一些有点容易忘的基础算法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

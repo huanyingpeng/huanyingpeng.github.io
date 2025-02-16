@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="网络流 内容主要为自己对网络流的一些理解和一些典例。 一些约定：  s 为源点，t 为汇点 对于集合 \(S,T,T\subseteq S\)，约定 \(S-T\) 为从 \(S\) 中删掉 \(T\) 中每个元素之后的集合 网络流图为 \(G&#x3D;(V,E)\)，边 \((u,v)\) 容量记为 \(c_{u,v}\)  最大流最小割定理和增广路定理 这两个定理是网络流问题的核心">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络流相关">
+<meta property="og:url" content="http://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="网络流 内容主要为自己对网络流的一些理解和一些典例。 一些约定：  s 为源点，t 为汇点 对于集合 \(S,T,T\subseteq S\)，约定 \(S-T\) 为从 \(S\) 中删掉 \(T\) 中每个元素之后的集合 网络流图为 \(G&#x3D;(V,E)\)，边 \((u,v)\) 容量记为 \(c_{u,v}\)  最大流最小割定理和增广路定理 这两个定理是网络流问题的核心">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-12T08:06:50.000Z">
+<meta property="article:modified_time" content="2025-02-16T09:56:02.368Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="网络流">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%9B%B8%E5%85%B3/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%9B%B8%E5%85%B3/","path":"2022/07/12/OI/算法/网络流相关/","title":"网络流相关"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>网络流相关 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%B5%81"><span class="nav-number">1.</span> <span class="nav-text">网络流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%BA%A6%E5%AE%9A"><span class="nav-number">1.1.</span> <span class="nav-text">一些约定：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E6%B5%81%E6%9C%80%E5%B0%8F%E5%89%B2%E5%AE%9A%E7%90%86%E5%92%8C%E5%A2%9E%E5%B9%BF%E8%B7%AF%E5%AE%9A%E7%90%86"><span class="nav-number">1.2.</span> <span class="nav-text">最大流最小割定理和增广路定理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">1.2.1.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%81%E6%98%8E"><span class="nav-number">1.2.2.</span> <span class="nav-text">证明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dinic"><span class="nav-number">1.3.1.</span> <span class="nav-text">Dinic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#isap"><span class="nav-number">1.3.2.</span> <span class="nav-text">ISAP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hlpp"><span class="nav-number">1.3.3.</span> <span class="nav-text">HLPP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%B9%E7%94%A8%E6%B5%81%E7%9B%B8%E5%85%B3"><span class="nav-number">1.4.</span> <span class="nav-text">费用流相关</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E5%89%B2"><span class="nav-number">2.</span> <span class="nav-text">最小割</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">2.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">适用条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E9%97%AD%E5%90%88%E6%9D%83%E5%AD%90%E5%9B%BE%E9%97%AE%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">1.最大闭合权子图问题</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="网络流相关 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络流相关
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 16:06:50" itemprop="dateCreated datePublished" datetime="2022-07-12T16:06:50+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:56:02" itemprop="dateModified" datetime="2025-02-16T17:56:02+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="网络流">网络流</h2>
+<p>内容主要为自己对网络流的一些理解和一些典例。</p>
+<h3 id="一些约定">一些约定：</h3>
+<ul>
+<li>s 为源点，t 为汇点</li>
+<li>对于集合 <span class="math inline">\(S,T,T\subseteq S\)</span>，约定
+<span class="math inline">\(S-T\)</span> 为从 <span
+class="math inline">\(S\)</span> 中删掉 <span
+class="math inline">\(T\)</span> 中每个元素之后的集合</li>
+<li>网络流图为 <span class="math inline">\(G=(V,E)\)</span>，边 <span
+class="math inline">\((u,v)\)</span> 容量记为 <span
+class="math inline">\(c_{u,v}\)</span></li>
+</ul>
+<h3 id="最大流最小割定理和增广路定理">最大流最小割定理和增广路定理</h3>
+<p>这两个定理是网络流问题的核心定理。</p>
+<h4 id="内容">内容</h4>
+<p>最大流 = 最小割。</p>
+<p>残量网络中不存在增广路是当前流为最大流的充要条件。</p>
+<h4 id="证明">证明</h4>
+<ol type="1">
+<li><p>若当前流为最大流，显然不存在增广路。</p></li>
+<li><p>若当前流等于某个割，显然当前流为最大流，且该割为最小割。</p></li>
+<li><p>若不存在增广路，我们证明当前流等于一个割。</p></li>
+</ol>
+<p>令 <span class="math inline">\(S=\{v,\exist\
+p_{s,v}\}\)</span>，<span class="math inline">\(S\)</span> 即 <span
+class="math inline">\(s\)</span> 在残量网络中能到达的点的集合。令 <span
+class="math inline">\(T=V-S\)</span>。显然 <span
+class="math inline">\((S,T)\)</span> 是一个割，对于当前残量网络 <span
+class="math inline">\(G&#39;=(V,E&#39;)\)</span>，一定有 <span
+class="math inline">\(\forall x \in S,\forall y\in T\)</span>，边 <span
+class="math inline">\((x,y)\)</span> 满流，否则 <span
+class="math inline">\(y\in S\)</span>。容易证明当前流恰好为 <span
+class="math inline">\(S\)</span> 到 <span
+class="math inline">\(T\)</span>
+的所有边的容量和，也就是割的大小。因为此时原图 <span
+class="math inline">\(S\)</span> 到 <span
+class="math inline">\(T\)</span> 所有的边流量为容量，<span
+class="math inline">\(T\)</span> 到 <span
+class="math inline">\(S\)</span> 的边流量为 <span
+class="math inline">\(0\)</span>，所以流量为 <span
+class="math inline">\(S\)</span> 到 <span
+class="math inline">\(T\)</span> 的边的流量之和，也就是割 <span
+class="math inline">\(S,T\)</span>。</p>
+<h3 id="算法">算法</h3>
+<h4 id="dinic">Dinic</h4>
+<p>考虑对残量网络 bfs 分层，强制流量只能流向下一层，再进行一次
+dfs，求限制下所有的增广路，搞定。</p>
+<p>复杂度 <span class="math inline">\(O(n^2m)\)</span></p>
+<p>每次增广复杂度为 <span class="math inline">\(O(nm)\)</span>，共计增广
+<span class="math inline">\(n\)</span> 次，因为每次增广都会让 <span
+class="math inline">\(dep[t]\)</span> 增加 1。</p>
+<p>每次增广的复杂度不是很好证，但加了当前弧优化其实就很松。</p>
+<p>代码记在脑子里了，不放了。</p>
+<h4 id="isap">ISAP</h4>
+<p>咕咕咕</p>
+<h4 id="hlpp">HLPP</h4>
+<p>咕咕咕</p>
+<h3 id="费用流相关">费用流相关</h3>
+<p>一般指最小费用最大流，暂时没啥感觉，不写。</p>
+<h2 id="最小割">最小割</h2>
+<p>非常常见的一个网络流模型应用。</p>
+<h3 id="核心思想">核心思想</h3>
+<p>通过构造一个图的割到决策方案的映射，其中决策必须可拆分计算，求出最小的代价，一般来说决策的限制如果比较奇怪就应该考虑最小割。</p>
+<p>常用于规划 <span class="math inline">\(0/1\)</span>
+独立贡献决策问题。</p>
+<h3 id="适用条件">适用条件</h3>
+<ul>
+<li>不能存在负容量边权，我不知道有没有人会，反正我是不会。</li>
+</ul>
+<h3 id="最大闭合权子图问题">1.最大闭合权子图问题</h3>
+<p>给定一张有向图，点带权（权可以为负），选一个子图出来，要求如果 <span
+class="math inline">\(u\)</span> 选了那如果存在 <span
+class="math inline">\((u,v)\)</span>，那 <span
+class="math inline">\(v\)</span> 也要选。求最大权值和。</p>
+<p>决策贡献独立，决策类型为 0/1。应该可以最小割。令割中与 <span
+class="math inline">\(s\)</span> 同集合的点为选择的点，与 <span
+class="math inline">\(t\)</span>
+同一个集合的点为未选择的点。那么每个点应该和 <span
+class="math inline">\(t\)</span>
+连一条流量为权值的相反数的边，代表选它的代价，再对于每条 <span
+class="math inline">\((u,v)\)</span> 从 <span
+class="math inline">\(u\)</span> 向 <span
+class="math inline">\(v\)</span> 连一条 inf 边,代表选了 <span
+class="math inline">\(u\)</span> 不选 <span
+class="math inline">\(v\)</span>
+的代价。考虑这张图的一个最小割，它必然不会包含 inf
+边，也就是说，我们选了 <span class="math inline">\(u\)</span> 在 <span
+class="math inline">\(s\)</span> 中一定会让 <span
+class="math inline">\(v\)</span> 在 <span
+class="math inline">\(s\)</span>
+中，所以一定合法。然后发现原问题的每一个答案都可以和图上的一个不含 inf
+边的割一一对应，故最小割就是原问题的答案的相反数。</p>
+<p>这张图有负数，不行，所以考虑先默认选所有正数。那么选负数的代价为相反数，不选正数的代价为本身。</p>
+<p>那么应该从 <span class="math inline">\(s\)</span>
+向正权点连边，从负权点向 <span class="math inline">\(t\)</span>
+连边，最后对于 <span class="math inline">\((u,v)\)</span> 从 <span
+class="math inline">\(u\)</span> 向 <span
+class="math inline">\(v\)</span> 连 inf 边即可。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/" rel="tag"># 网络流</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%B8%80%E4%BA%9B%E7%A7%91%E6%8A%80%E7%9A%84%E6%80%BB%E7%BB%93/" rel="prev" title="一些科技的总结">
+                  <i class="fa fa-angle-left"></i> 一些科技的总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%86%99%E6%B3%95%E4%BC%98%E7%BE%8E%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" rel="next" title="写法优美的常用函数">
+                  写法优美的常用函数 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="线程阻塞 考试 考试的时候还很清醒，考完脑子就乱了。 大脑从 i7-9th 退化成 i3-4th，四个字来说就是线程阻塞。 如果说整个社会是一个计算机系统，那一个人自己的大脑就是主板上的所有部件，而其他人，则是一块块只读 HDD 中的数据。当某一块 HDD 损坏，不能存储数据，但是又不想丢失它，就只能将数据保存于主存。主存的大小是有限的，它本不是用来保存数据，如果占用过多，会影响主板部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1108总结">
+<meta property="og:url" content="http://huanyp.cn/2022/11/08/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1108%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="线程阻塞 考试 考试的时候还很清醒，考完脑子就乱了。 大脑从 i7-9th 退化成 i3-4th，四个字来说就是线程阻塞。 如果说整个社会是一个计算机系统，那一个人自己的大脑就是主板上的所有部件，而其他人，则是一块块只读 HDD 中的数据。当某一块 HDD 损坏，不能存储数据，但是又不想丢失它，就只能将数据保存于主存。主存的大小是有限的，它本不是用来保存数据，如果占用过多，会影响主板部">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-08T12:58:55.000Z">
+<meta property="article:modified_time" content="2025-02-15T15:34:46.126Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="算法竞赛, 自动化测试, 工程技术, Python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2022/11/08/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1108%E6%80%BB%E7%BB%93/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/11/08/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1108%E6%80%BB%E7%BB%93/","path":"2022/11/08/OI/考试总结/2022/1108总结/","title":"1108总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>1108总结 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E9%98%BB%E5%A1%9E"><span class="nav-number">1.</span> <span class="nav-text">线程阻塞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#t1"><span class="nav-number">2.</span> <span class="nav-text">T1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ac-%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">2.1.</span> <span class="nav-text">AC 自动机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">2.2.</span> <span class="nav-text">直接动态规划</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#t2"><span class="nav-number">3.</span> <span class="nav-text">T2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#t3"><span class="nav-number">4.</span> <span class="nav-text">T3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#t4"><span class="nav-number">5.</span> <span class="nav-text">T4</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/08/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1108%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="1108总结 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          1108总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-08 20:58:55" itemprop="dateCreated datePublished" datetime="2022-11-08T20:58:55+08:00">2022-11-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-15 23:34:46" itemprop="dateModified" datetime="2025-02-15T23:34:46+08:00">2025-02-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="线程阻塞">线程阻塞</h2>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0151">考试</a>
+考试的时候还很清醒，考完脑子就乱了。</p>
+<p>大脑从 i7-9th 退化成 i3-4th，四个字来说就是线程阻塞。</p>
+<p>如果说整个社会是一个计算机系统，那一个人自己的大脑就是主板上的所有部件，而其他人，则是一块块只读
+HDD 中的数据。当某一块 HDD
+损坏，不能存储数据，但是又不想丢失它，就只能将数据保存于主存。主存的大小是有限的，它本不是用来保存数据，如果占用过多，会影响主板部分的正常运行，受到内存大小的限制，CPU
+的运算能力自然会退化。</p>
+<p>我不太想找心理医生，心理医生会帮我清除掉主存的数据，但是我不想清除。</p>
+<h2 id="t1">T1</h2>
+<h3 id="ac-自动机">AC 自动机</h3>
+<p>比较模板的 AC 自动机匹配题，但是 AC
+自动机做法需要细算常数，这道题倒是将缓存行访问连续的重要性体现的相当清楚，可以参考几次提交的差异。</p>
+<h3 id="直接动态规划">直接动态规划</h3>
+<p>另一种方式是注意到两个字符串互不影响，因为出现任何一个字符串都不会对另外一个字符串的出现产生额外影响，所以无需记录具体到了哪个节点。</p>
+<p>先考虑没有限制的转移，如果为 <code>?</code>，则乘
+26，否则不变，这样有重复，唯一的重复是对于两种字符串如果接下来可以匹配上，那么转移就应该到对应的差值，因为两种字符彼此不包含所以两种字符串的重复可以独立处理，还是挺好写的。</p>
+<h2 id="t2">T2</h2>
+<p>考场上发现本质上是个可以用线段树做的二维偏序，但是由于马拉车算法本身有二倍常数，还需要跑
+4 遍，所以其实有点难卡常，感觉递归版的没救所以我写了非递归版的 update
+操作勉强卡过去（query 次数不多可以直接查）。</p>
+<p>但是这个答案是可以二分的，二分之后配合马拉车就是个 RMQ，ST
+表即可。</p>
+<h2 id="t3">T3</h2>
+<p>容易发现一定会在某个地方反复横跳刷分，所以处理出所有横跳位置的刷分函数（是一次函数），有用的一次函数级别为
+<span
+class="math inline">\(O(n)\)</span>，为了保证每个函数都可以正常取到，不妨暴力处理前面的
+CASE，然后后面的就是维护凸包。</p>
+<p>不处理前面的 CASE
+是错误的，因为你不能保证在对应的步数限制下一定可以拿到这个函数。</p>
+<p>感觉不预处理但是加上某些条件再筛一下函数就可以过，但是这些条件有点难想吧...</p>
+<h2 id="t4">T4</h2>
+<p>少见的 mex 配 xor
+题，考场上没想出来，现在脑子很乱，明天再想——11.8</p>
+<p>mex
+应该是个非常严格的限制，由于询问很少，所以考虑单个询问怎么解决。</p>
+<p>比较暴力的方式是逐个加入元素并检查可行性，我们显然必须要求能构成一条链，所以加入点的过程其实比较简单，如果链已经是弯折的形式，那么只能在两颗子树内加点，如果不是，那么新加点和最较深求
+LCA，如果在路径上则不合法，重新构造路径的过程也是平凡的。</p>
+<p>考虑检查第二个条件，也就是异或合法性，路径的异或值是好求的，对于两边的情况，可以暴力遍历树枚举一边用字典树求另一边。</p>
+<p>但是这样的复杂度不对，因为每次暴力遍历都是 <span
+class="math inline">\(O(n\log n)\)</span> 的，一共进行了 <span
+class="math inline">\(O(nq)\)</span>
+次。但是认真思考一下发现答案是可二分的，所以二分即可，复杂度 <span
+class="math inline">\(O(nq\log^2n)\)</span>。</p>
+<p><span class="math inline">\(10^5\)</span> 的题和 <span
+class="math inline">\(3\times 10^5\)</span>
+的题，考虑复杂度的方式是完全不同的（<span
+class="math inline">\(10^5\)</span> 基本可以扔进
+L3），所以没必要担心。</p>
+<p>好像不二分也是可以的，考虑答案的形式，因为一定会包含 <span
+class="math inline">\(0\)</span>，所以以 <span
+class="math inline">\(0\)</span> 为根后，可以取到的异或值就形如 <span
+class="math inline">\(d_u\oplus d_v\)</span>，其中 <span
+class="math inline">\(d_u\)</span> 表示 <span
+class="math inline">\(0\)</span> 到 <span
+class="math inline">\(u\)</span>
+路径上的异或值，每次移动端点时，两边可选的 <span
+class="math inline">\(d\)</span> 集合都在变化，集合变化次数是 <span
+class="math inline">\(O(n)\)</span> 的，动态维护 <span
+class="math inline">\([l,r]\)</span> 区间中数的个数就可以了。</p>
+<p>注意，动态维护 <code>lower_bound</code>
+的最小值是行不通的，<strong>因为最小值不具备逆元</strong>，是不可减的。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/05/%E7%94%9F%E6%B4%BB/If-we-never-met/" rel="prev" title="If we never met">
+                  <i class="fa fa-angle-left"></i> If we never met
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/11/10/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1110%E6%80%BB%E7%BB%93/" rel="next" title="1110总结">
+                  1110总结 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

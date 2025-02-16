@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="QQ 群一笔画问题 Author:Huan_yp 一笔画问题，即给定一张无向图 \(G(V,E)\)，每个点的度数均为偶数或者仅有两个点度数为奇数，需要求出一条不重复经过边的路径，遍历所有的边。 由于在算法竞赛中，这个问题是简单的，这里只讨论在 QQ 群一笔画中，快速解决问题的方式。 归纳构造法证明 已知给定图为一笔画图，故一定满足每个点的度数均为偶数或者仅有两个点度数为奇数，并且图联">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈一笔画问题">
+<meta property="og:url" content="http://huanyp.cn/2022/07/28/%E7%A7%91%E6%99%AE/%E6%B5%85%E8%B0%88%E4%B8%80%E7%AC%94%E7%94%BB%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="QQ 群一笔画问题 Author:Huan_yp 一笔画问题，即给定一张无向图 \(G(V,E)\)，每个点的度数均为偶数或者仅有两个点度数为奇数，需要求出一条不重复经过边的路径，遍历所有的边。 由于在算法竞赛中，这个问题是简单的，这里只讨论在 QQ 群一笔画中，快速解决问题的方式。 归纳构造法证明 已知给定图为一笔画图，故一定满足每个点的度数均为偶数或者仅有两个点度数为奇数，并且图联">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-28T15:42:55.000Z">
+<meta property="article:modified_time" content="2025-02-16T09:48:25.509Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="科普">
+<meta property="article:tag" content="数学">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2022/07/28/%E7%A7%91%E6%99%AE/%E6%B5%85%E8%B0%88%E4%B8%80%E7%AC%94%E7%94%BB%E9%97%AE%E9%A2%98/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/07/28/%E7%A7%91%E6%99%AE/%E6%B5%85%E8%B0%88%E4%B8%80%E7%AC%94%E7%94%BB%E9%97%AE%E9%A2%98/","path":"2022/07/28/科普/浅谈一笔画问题/","title":"浅谈一笔画问题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>浅谈一笔画问题 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#qq-%E7%BE%A4%E4%B8%80%E7%AC%94%E7%94%BB%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">QQ 群一笔画问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%92%E7%BA%B3%E6%9E%84%E9%80%A0%E6%B3%95%E8%AF%81%E6%98%8E"><span class="nav-number">1.1.</span> <span class="nav-text">归纳构造法证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E7%9A%84%E6%93%8D%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">正确的操作方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E5%9D%87%E6%89%A7%E8%A1%8C%E6%AC%A1%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">平均执行次数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%A8%A1%E6%8B%9F"><span class="nav-number">1.3.1.</span> <span class="nav-text">蒙特卡洛模拟</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A5%E8%B0%A8%E6%95%B0%E5%AD%A6%E8%AF%81%E6%98%8E"><span class="nav-number">1.3.2.</span> <span class="nav-text">严谨数学证明</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/28/%E7%A7%91%E6%99%AE/%E6%B5%85%E8%B0%88%E4%B8%80%E7%AC%94%E7%94%BB%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="浅谈一笔画问题 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          浅谈一笔画问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-28 23:42:55" itemprop="dateCreated datePublished" datetime="2022-07-28T23:42:55+08:00">2022-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:48:25" itemprop="dateModified" datetime="2025-02-16T17:48:25+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">学术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="qq-群一笔画问题">QQ 群一笔画问题</h2>
+<p><strong>Author:Huan_yp</strong></p>
+<p>一笔画问题，即给定一张无向图 <span
+class="math inline">\(G(V,E)\)</span>，每个点的度数均为偶数或者<strong>仅有</strong>两个点度数为奇数，需要求出一条不重复经过边的路径，遍历所有的边。</p>
+<p>由于在算法竞赛中，这个问题是简单的，这里只讨论在 QQ
+群一笔画中，快速解决问题的方式。</p>
+<h3 id="归纳构造法证明">归纳构造法证明</h3>
+<p>已知给定图为一笔画图，故一定满足每个点的度数均为偶数或者<strong>仅有</strong>两个点度数为奇数，并且图联通，若存在两个点度数为奇数，则从其中一个点开始，否则可以从任意点开始。</p>
+<p>执行以下过程。</p>
+<ul>
+<li>在当前节点任意找一条边，如果可以找到，则重复此过程。</li>
+<li>如果无法找到：
+<ul>
+<li>图已经被遍历，结束，得到保存的路径。</li>
+<li>该点度数为 <span
+class="math inline">\(0\)</span>，所以一定回到了起点或者到了终点。记录并删除该路径中所有边，并回溯到上一个存在出度的点，<strong>可以证明一定存在这样的点，否则图不连通</strong>。该点的度数一定为偶数，对该点进行上述过程，得到一条<strong>首尾相接</strong>的路径，插入到原路径，得到完整的欧拉（回）路。</li>
+</ul></li>
+<li>容易发现，这样的过程将图遍历了一遍，所以最后得到的是完整的欧拉路径。</li>
+</ul>
+<p>代码实现比较简单，只需要使用栈在退出时记录当前节点，得到的，从栈顶到栈底，就是一条完整的欧拉路径。</p>
+<p>下面是一个例子：</p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/4oaujupz.png" /></p>
+<p>按 <span class="math inline">\(1-&gt;2-&gt;5\)</span> 走，<span
+class="math inline">\(5\)</span> 处无路可走，回到 <span
+class="math inline">\(2\)</span>，记录一条路径 <span
+class="math inline">\(2-&gt;5\)</span>，从 <span
+class="math inline">\(2\)</span> 继续走 <span
+class="math inline">\(2-&gt;3-&gt;4-&gt;2\)</span>，回到了，插入原路径变为
+<span
+class="math inline">\(1-&gt;2-&gt;3-&gt;4-&gt;2-&gt;5\)</span>。</p>
+<h3 id="正确的操作方式">正确的操作方式</h3>
+<p>由于找边的耗时比较长，我们需要尽可能少的找边。</p>
+<ul>
+<li>如果有 API
+可以读取边的情况，那么直接做一遍上述过程即可得到答案。</li>
+<li>如果不存在对应的
+API，我们直接进行上诉操作，可以拿一个程序记录已经走过的点和边并提示路径。</li>
+<li>如果图不为欧拉回路，则存在死路，判断方式比较简单，当前点是否为起始点，如果死路位于起始点，直接进行路径回溯操作，即步骤二。否则撤销所有操作，从当前节点开始逆向进行已经进行过的操作。</li>
+</ul>
+<p>这样单纯的找边的次数恰好为 m 次，即边数。</p>
+<p>回溯和走边的操作总和不会超过 2m。</p>
+<h3 id="平均执行次数">平均执行次数</h3>
+<p>考虑图为随机生成，期望的行走次数，感觉是 polylog
+级别，但是我不会证明。</p>
+<h4 id="蒙特卡洛模拟">蒙特卡洛模拟</h4>
+<p>咕咕咕，没时间写代码。</p>
+<p>采用蒙特卡洛模拟算法对该结论进行验证</p>
+<h4 id="严谨数学证明">严谨数学证明</h4>
+<p>咕咕咕。</p>
+<p>也许可以考虑每条边回溯次数期望 <span
+class="math inline">\(e_{u,v}\)</span>。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%A7%91%E6%99%AE/" rel="tag"># 科普</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/28/OI/%E7%AE%97%E6%B3%95/Tarjan%E7%AE%97%E6%B3%95%E5%92%8C%E5%9D%91/" rel="prev" title="Tarjan算法和坑">
+                  <i class="fa fa-angle-left"></i> Tarjan算法和坑
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/08/02/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/%E8%80%83%E8%AF%95%E6%8A%80%E5%B7%A7/%E8%80%83%E8%AF%95%E8%B8%A9%E5%9D%91/" rel="next" title="坑">
+                  坑 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

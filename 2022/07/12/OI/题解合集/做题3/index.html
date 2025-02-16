@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="CF1698F 思路 变过来变过去，还 TM 离谱的操作当然要找不变量，算是半个套路。 reverse 两端相等的区间，可以发现每两个相邻元素构成的无序对不变，然后第一个元素和最后一个元素不改变。 换句话说，\(\{(a_i,a_{i+1},i \in [1,n)\}\) 这个集合不随 \(a\) 中操作改变。或者说，如果从 \(a_i\) 到 \(a_{i+1}\) 连边，这张">
+<meta property="og:type" content="article">
+<meta property="og:title" content="做题3">
+<meta property="og:url" content="http://huanyp.cn/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%983/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="CF1698F 思路 变过来变过去，还 TM 离谱的操作当然要找不变量，算是半个套路。 reverse 两端相等的区间，可以发现每两个相邻元素构成的无序对不变，然后第一个元素和最后一个元素不改变。 换句话说，\(\{(a_i,a_{i+1},i \in [1,n)\}\) 这个集合不随 \(a\) 中操作改变。或者说，如果从 \(a_i\) 到 \(a_{i+1}\) 连边，这张">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-12T08:13:03.000Z">
+<meta property="article:modified_time" content="2025-02-16T09:58:21.468Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="题解">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%983/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%983/","path":"2022/07/12/OI/题解合集/做题3/","title":"做题3"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>做题3 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#cf1698f"><span class="nav-number">1.</span> <span class="nav-text">CF1698F</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9E%E9%A1%BE"><span class="nav-number">1.2.</span> <span class="nav-text">回顾</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#abc259g"><span class="nav-number">2.</span> <span class="nav-text">ABC259G</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%B8%80"><span class="nav-number">2.1.</span> <span class="nav-text">解法一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%BA%8C"><span class="nav-number">2.2.</span> <span class="nav-text">解法二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sum-up"><span class="nav-number">2.3.</span> <span class="nav-text">Sum up</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%983/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="做题3 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          做题3
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 16:13:03" itemprop="dateCreated datePublished" datetime="2022-07-12T16:13:03+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:58:21" itemprop="dateModified" datetime="2025-02-16T17:58:21+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="cf1698f">CF1698F</h3>
+<h4 id="思路">思路</h4>
+<p>变过来变过去，还 TM 离谱的操作当然要找不变量，算是半个套路。</p>
+<p><code>reverse</code>
+两端相等的区间，可以发现每两个相邻元素构成的无序对不变，然后第一个元素和最后一个元素不改变。</p>
+<p>换句话说，<span class="math inline">\(\{(a_i,a_{i+1},i \in
+[1,n)\}\)</span> 这个集合不随 <span class="math inline">\(a\)</span>
+中操作改变。或者说，如果从 <span class="math inline">\(a_i\)</span> 到
+<span class="math inline">\(a_{i+1}\)</span>
+连边，这张无向图是不变的，同时 <span
+class="math inline">\(a_1,a_n\)</span>
+不改变。这个条件和上个条件之间的转换是解题的关键点之一。</p>
+<p>套路又来了，看看样例，集合相同并且首尾相同这个条件貌似挺充分的，所以考虑证明。</p>
+<p><strong>对于构造问题，常用的证明方式是数学归纳法。</strong></p>
+<p>事实上，如果我们能证明如果第二个数可以成功调整为相同，那么整个数组也可以，因为满足条件的
+<span class="math inline">\(a,b\)</span>
+如果同时删掉第一个数，仍满足条件。</p>
+<p>考虑构造方案，由结论可以知道，如果 <span
+class="math inline">\(a\)</span> 中必定存在 <span
+class="math inline">\((b_1,b_2)\)</span> 无序对，因为 <span
+class="math inline">\(a_2\neq b_2\)</span>，不妨让这对无序对是 <span
+class="math inline">\((a_x,a_{x+1}),x\in[2,n)\)</span>，如果 <span
+class="math inline">\(a_x=b_2\)</span>，考虑直接将这一对中的 <span
+class="math inline">\(a_{x+1}\)</span> 和 <span
+class="math inline">\(a_1\)</span> 子数组 <code>reverse</code>
+，完事。如果 <span
+class="math inline">\(a_{x+1}=b_2\)</span>，事情有点麻烦。</p>
+<p><code>if only i could find a pair which...</code></p>
+<p>补上那句话，如果能找到一对可以被翻转的，左端点在 <span
+class="math inline">\([1,x]\)</span> ，右端点在 <span
+class="math inline">\((x,n]\)</span> 的，那么我们就翻转，改变了 <span
+class="math inline">\(a_x,a_{x+1}\)</span> 的顺序。</p>
+<p>尝试证明一定能找到，即 <span class="math inline">\(\{a_i ,i\in
+[1,x]\} \bigcap \{a_i.i\in(x,n]\} \neq \emptyset\)</span></p>
+<p>反证法，如果找不到，那么可知 $a_i,i$ 与 <span
+class="math inline">\(a_j,j\in (x,n]\)</span> 除开 <span
+class="math inline">\((a_i,a_i+1)\)</span> 这一次相邻外均不相邻，考虑
+<span class="math inline">\(b_2\)</span> 即 <span
+class="math inline">\(a_{x+1}\)</span> 的情况，它与 <span
+class="math inline">\(b_3\)</span> 相邻，可知 <span
+class="math inline">\(b_3 \in \{a_i.i\in(x,n]\}\)</span>，同理有 <span
+class="math inline">\(\forall j\ge
+2,b_j\in\{a_i.i\in(x,n]\}\)</span></p>
+<p>考虑 <span class="math inline">\(a_2\)</span>，它显然不存在于 <span
+class="math inline">\(b\)</span>，故矛盾。</p>
+<h4 id="回顾">回顾</h4>
+<p>这题比较难的有两个点，一是注意到这个不变量极大可能是充分条件，二是发现
+<span class="math inline">\(a_{x+1}=b_2\)</span> 的 case
+中一定存在可交换项，搞定了这两个，问题就迎刃而解。关键点在于第二个，找到
+<span class="math inline">\(a_{[1,x]},a_{[x+1,n]}\)</span>
+交集的关系，并尝试用反证法证明交集不为空是比较困难的。</p>
+<h3 id="abc259g">ABC259G</h3>
+<p>很有意思的网络流题。</p>
+<p>最开始想到二分图相关，因为 <span class="math inline">\(A_{i,j}
+&lt;0\)</span>
+的限制指向性比较明确，然后发现如果二分图的决策正数话会出现不同块之间相互影响，所以考虑决策负数，决策负数不同联通块互不影响，但是无法计算答案，因为最终还是需要确定到底哪些正数被选了。</p>
+<h4 id="解法一">解法一</h4>
+<p>题解给出了一个新思路，考虑先只把所有正数选了，然后再来看满足条件的代价。</p>
+<p>代价被分为了三类，第一类是顺带选择的负数的代价，如果选了一行或者一列，就会有这一行或列所有负数绝对值之和的代价。</p>
+<p>第二类是无法选择正数的代价，如果正数所在的行和列都没被选择，那么就会有这个正数的代价。</p>
+<p>第三类是重复选择负数的代价，如果一个负数被行和列同时选择（为了付出更少的第二类和其它第一类代价），那么这个代价是无穷大。</p>
+<p>我们需要最小化代价。</p>
+<p>0/1 决策问题，考虑套最小割上去，每一行每一列视为一个点。</p>
+<p>令与 <span class="math inline">\(s\)</span> 同集合的为选择，与 <span
+class="math inline">\(t\)</span>
+同集合的为不选，选一行或一列的代价为该行或列负数绝对值之和，从个点到
+<span class="math inline">\(t\)</span>
+连边就行，行列同时选择负数，代价为
+inf，woc，怎么连呢？从行连向列，意义为选了行不选列的代价，从列向行连，意义为选了列不选行的代价。所以我们前面的安排有些问题，需要做出调整。</p>
+<p><strong>对于行和列，我们让属于 s,t
+所在集合对它们有不同意义，下面让属于 s 的行为不选择，属于 t
+的列为不选择</strong>，我们让 <span class="math inline">\(s\)</span>
+向行连边，<strong>这条边</strong>表示选该行的代价，让列向 <span
+class="math inline">\(t\)</span>
+连边，表示选该列的代价。于是，对于一个点，行列都选的代价当且仅当 <span
+class="math inline">\(A_{i,j}&lt;0\)</span> 时为
+inf，此时从列向行连边，表示都选的代价，行列都不选的代价当且仅当 <span
+class="math inline">\(A_{i,j}\ge0\)</span> 时为 <span
+class="math inline">\(A_{i,j}\)</span>，此时从行向列连边。</p>
+<p>注意，我们的割中如果出现了行列都不选，那么对应的行和列与 <span
+class="math inline">\(s,t\)</span>
+的边一定没有断开，所以必须断开行到列的边。如果出现了行和列都选的不合法情况，我们发现，断掉的行能到
+<span class="math inline">\(t\)</span>，从 <span
+class="math inline">\(s\)</span>
+一定能到断掉的列。如果不满足，那么这个割就不是最小割，不会被我们考虑。所以我们需要从列到行连边，保证不会给负数打上两个标记。</p>
+<p>这种思路和某类 dp
+的思路很类似，相当值得学习，其实在原问题的求解中，并没有什么条件来保证不会给一个负数打上两个标记，但是我们在通过最小割求解时，限定了决策的范围和最优性，获得了额外的信息，也就能帮助我们排除掉难处理但是不可能的情况，本质上，这种排除还和我们先假定所有正数都选上的前提有关系，这种解法相当精妙。</p>
+<h4 id="解法二">解法二</h4>
+<p>从直觉上来看，应该不会选择和为负数的行或者列。考虑一个最终方案，它的答案会是
+<span class="math inline">\(\sum 选择的行+\sum 选择的列 -\sum
+行列交叉处的正数\)</span>。考虑从这里面剔除和为负数的列或行，发现最终值一定变大。</p>
+<p>所以删掉和为负数的行和列。</p>
+<p>考虑先把剩下的行和列全选了，然后解决冲突。</p>
+<p>解决冲突的方式有三种，一种时不选行，一种是不选列，另一种是硬吃同时选的代价。</p>
+<p>这样的建图就很简洁了，从 <span class="math inline">\(s\)</span>
+向行，列向 <span class="math inline">\(t\)</span>
+连边，对于交点，正数连其值的边，负数连 inf
+边。很容易发现一个合法解和一个割一一对应，over。</p>
+<h4 id="sum-up">Sum up</h4>
+<p><strong>最小割解决实际问题的核心，在于用一个割，或者可能成为最小割的割，来代表一个实际的决策方案，最小割的容量，代表代价，每个点在哪个割集分别代表什么含义并不重要，重要的是割掉每条边的意义，和决策方案与最小割的对应关系。</strong></p>
+<p>其实这道题还给我们一个启发，就是在考虑0/1决策问题时，可以先考虑钦定一个决策，再来调整使得它合理或者变优，这可能会使得问题变得简单，也许算是一个套路。</p>
+<p><strong>本质上，最小割表达了一种最优的解决决策冲突的方案，我们在 0/1
+决策问题钦定决策的过程中，制造了一些冲突，用一个图的割来表达解决着些冲突的方案。</strong></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A2%98%E8%A7%A3/" rel="tag"># 题解</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%982/" rel="prev" title="做题2">
+                  <i class="fa fa-angle-left"></i> 做题2
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/" rel="next" title="Hexo-NexT 安装踩坑记录">
+                  Hexo-NexT 安装踩坑记录 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

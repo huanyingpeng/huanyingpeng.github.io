@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="题意  给定一个序列 \(a\)，长度为 \(2^n\)，每次询问给定 \(mask\)，询问 \(b_i&#x3D;a_{i\bigoplus mask}\) 得到的 \(b\) 序列的最大字段和。 \(n\leq 18,q\leq 2\times 10^5\) 原题意参考题意，这里做了一些不影响做题的转化。  思考 我们发现可以类似于线段树一样的去维护最大子段和，即考虑对一层维护其所有可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从一道题看CPU底层优化-第二弹">
+<meta property="og:url" content="http://huanyp.cn/2022/08/05/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%BA%8C%E5%BC%B9/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="题意  给定一个序列 \(a\)，长度为 \(2^n\)，每次询问给定 \(mask\)，询问 \(b_i&#x3D;a_{i\bigoplus mask}\) 得到的 \(b\) 序列的最大字段和。 \(n\leq 18,q\leq 2\times 10^5\) 原题意参考题意，这里做了一些不影响做题的转化。  思考 我们发现可以类似于线段树一样的去维护最大子段和，即考虑对一层维护其所有可">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-05T02:30:33.000Z">
+<meta property="article:modified_time" content="2025-02-16T09:53:16.702Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="计算机系统">
+<meta property="article:tag" content="代码技巧">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2022/08/05/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%BA%8C%E5%BC%B9/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/08/05/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%BA%8C%E5%BC%B9/","path":"2022/08/05/OI/代码技巧/从一道题看CPU底层优化-第二弹/","title":"从一道题看CPU底层优化-第二弹"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>从一道题看CPU底层优化-第二弹 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B01"><span class="nav-number">3.</span> <span class="nav-text">实现1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E6%95%B0%E5%88%86%E6%9E%901"><span class="nav-number">4.</span> <span class="nav-text">常数分析1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B02"><span class="nav-number">5.</span> <span class="nav-text">实现2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E6%95%B0%E5%88%86%E6%9E%902"><span class="nav-number">6.</span> <span class="nav-text">常数分析2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#further-explore"><span class="nav-number">7.</span> <span class="nav-text">Further Explore</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#e1"><span class="nav-number">7.1.</span> <span class="nav-text">E1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#e2"><span class="nav-number">7.2.</span> <span class="nav-text">E2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#defin-int-long-long"><span class="nav-number">7.3.</span> <span class="nav-text">#defin int long long</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#conclusion"><span class="nav-number">8.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/05/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%BA%8C%E5%BC%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="从一道题看CPU底层优化-第二弹 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从一道题看CPU底层优化-第二弹
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-05 10:30:33" itemprop="dateCreated datePublished" datetime="2022-08-05T10:30:33+08:00">2022-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:53:16" itemprop="dateModified" datetime="2025-02-16T17:53:16+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="题意">题意</h3>
+<ul>
+<li><p>给定一个序列 <span class="math inline">\(a\)</span>，长度为 <span
+class="math inline">\(2^n\)</span>，每次询问给定 <span
+class="math inline">\(mask\)</span>，询问 <span
+class="math inline">\(b_i=a_{i\bigoplus mask}\)</span> 得到的 <span
+class="math inline">\(b\)</span> 序列的最大字段和。</p></li>
+<li><p><span class="math inline">\(n\leq 18,q\leq 2\times
+10^5\)</span></p></li>
+<li><p>原题意参考<a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1716/problem/E">题意</a>，这里做了一些不影响做题的转化。</p></li>
+</ul>
+<h3 id="思考">思考</h3>
+<p>我们发现可以类似于线段树一样的去维护最大子段和，即考虑对一层维护其所有可能的交换序列的信息，然后计算一个<strong>节点左右儿子构成的区间</strong>的最大子段和，这样是可以得到正确答案的。</p>
+<p>不难发现我们只需要知道一层的<strong>前缀和最大值和最小值</strong>就可以完成向上传递，这样的信息量是
+<span class="math inline">\(O(1)\)</span> 的，对于第 <span
+class="math inline">\(i\)</span>
+层，会影响它的值的只有它下面的状态，因为上面的状态如何不影响该层最大值和最小值的位置，因此不会影响其计算答案的结果。</p>
+<p>因此很容易设计出一个 <span class="math inline">\(O(2^n\times
+n)\)</span> 的做法，但是我觉得它有点难写。</p>
+<p>所以我们考虑只分两层，预处理第一层的前缀和和最大值位置，最小值位置，扫描第二层计算答案，这样的话，复杂度为
+<span class="math inline">\(O(2^{\frac{3n}{2}})\)</span> ，约为 <span
+class="math inline">\(1.25\times 10^8\)</span>，能卡在边界上。</p>
+<h3 id="实现1">实现1</h3>
+<p>这是我们的第一份代码，得到了 TLE19 的成绩。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">18</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,tp1,tp2;</span><br><span class="line"><span class="type">int</span> a[<span class="number">1</span>&lt;&lt;N],ans[<span class="number">1</span>&lt;&lt;N],mx[<span class="number">1</span>&lt;&lt;N],mi[<span class="number">1</span>&lt;&lt;N],sum[<span class="number">1</span>&lt;&lt;N];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i++)<span class="built_in">read</span>(a[i]);</span><br><span class="line">	<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> mask1=<span class="number">0</span>;mask1&lt;<span class="number">1</span>&lt;&lt;n/<span class="number">2</span>;mask1++)&#123;</span><br><span class="line">		<span class="type">int</span> gap=<span class="number">1</span>&lt;&lt;n/<span class="number">2</span>,max_val=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i+=gap)&#123;</span><br><span class="line">			mi[i]=mx[i]=i;sum[i]=a[i^mask1],<span class="built_in">cmax</span>(max_val,sum[i]);</span><br><span class="line">			<span class="keyword">for</span>(j=i<span class="number">+1</span>;j&lt;i+gap;j++)&#123;</span><br><span class="line">				sum[j]=sum[j<span class="number">-1</span>]+a[j^mask1];</span><br><span class="line">				<span class="keyword">if</span>(sum[j]&gt;sum[mx[i]])mx[i]=j;</span><br><span class="line">				<span class="keyword">if</span>(sum[j]&lt;sum[mi[i]])mi[i]=j;</span><br><span class="line">				<span class="built_in">cmax</span>(max_val,sum[j]-sum[mi[i]]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> mask2=<span class="number">0</span>;mask2&lt;<span class="number">1</span>&lt;&lt;n;mask2+=gap)&#123;</span><br><span class="line">			ans[mask2^mask1]=max_val;</span><br><span class="line">			<span class="type">int</span> min_val=<span class="number">0</span>,sm=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i+=gap)&#123;</span><br><span class="line">				<span class="built_in">cmax</span>(ans[mask2^mask1],sm+sum[mx[i^mask2]]-min_val);</span><br><span class="line">				<span class="built_in">cmin</span>(min_val,sm+sum[mi[i^mask2]]);</span><br><span class="line">				sm+=sum[(i+gap<span class="number">-1</span>)^mask2];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> q;<span class="built_in">read</span>(q);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=q;i++)&#123;</span><br><span class="line">		<span class="built_in">read</span>(tp1);s^=<span class="number">1</span>&lt;&lt;tp1;</span><br><span class="line">		cout&lt;&lt;ans[s]&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<h3 id="常数分析1">常数分析1</h3>
+<p>我们最开始对 <span class="math inline">\(a\)</span> 进行了 <span
+class="math inline">\(512\)</span> 次乱序扫描，但容易发现一共进行了
+<span class="math inline">\(512\times512\)</span>
+次每次扫描的区间大小均为 <span class="math inline">\(512\times4\)</span>
+Byte 的扫描，这种方式可以比较好的利用高速缓存，因为被一次 cacheline
+读取的 64Byte 数据都被放入了高速缓存并在时间上具有局部性。</p>
+<p>注意到第二部分对 <code>sum</code> 计算的前缀和，由于 L3
+高速缓存的约能存下 <span class="math inline">\(2^{18}\)</span> 个
+<code>long long</code> 数据，但是我们又存储了
+<code>sum</code>，并且在第三部分有对 <code>sum</code>
+一些固定位置的随机访问，因此，<code>a</code>
+数组就被踢出了高速缓存，再次访问的时候需要重复读取，造成了相当大的浪费。</p>
+<p>事实上，我们并不需要存储每一个
+<code>sum</code>，每一个块需要存储的数据量是 <span
+class="math inline">\(O(1)\)</span>
+的，对这个做一个优化，我们得到了一份新的代码。</p>
+<h3 id="实现2">实现2</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">18</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,tp1,tp2;</span><br><span class="line"><span class="type">int</span> a[<span class="number">1</span>&lt;&lt;N];</span><br><span class="line">LL mx[<span class="number">1</span>&lt;&lt;N/<span class="number">2</span>],mi[<span class="number">1</span>&lt;&lt;N/<span class="number">2</span>],sum[<span class="number">1</span>&lt;&lt;N/<span class="number">2</span>],ans[<span class="number">1</span>&lt;&lt;N];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">// 	freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//	freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line"><span class="comment">//	freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i++)<span class="built_in">read</span>(a[i]);</span><br><span class="line">	<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> mask1=<span class="number">0</span>;mask1&lt;<span class="number">1</span>&lt;&lt;n/<span class="number">2</span>;mask1++)&#123;</span><br><span class="line">		LL gap=<span class="number">1</span>&lt;&lt;n/<span class="number">2</span>,max_val=<span class="number">0</span>,m=n&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="built_in">memset</span>(mx,<span class="number">0</span>,<span class="built_in">sizeof</span>(mx)),<span class="built_in">memset</span>(mi,<span class="number">0</span>,<span class="built_in">sizeof</span>(mi));</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i+=gap)&#123;</span><br><span class="line">			LL sm=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(j=i;j&lt;i+gap;j++)&#123;</span><br><span class="line">				sm+=a[j^mask1];</span><br><span class="line">				<span class="keyword">if</span>(sm&gt;mx[i&gt;&gt;m])mx[i&gt;&gt;m]=sm;</span><br><span class="line">				<span class="keyword">if</span>(sm&lt;mi[i&gt;&gt;m])mi[i&gt;&gt;m]=sm;</span><br><span class="line">				<span class="built_in">cmax</span>(max_val,sm-mi[i&gt;&gt;m]);</span><br><span class="line">			&#125;</span><br><span class="line">			sum[i&gt;&gt;m]=sm;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> mask2=<span class="number">0</span>;mask2&lt;<span class="number">1</span>&lt;&lt;n;mask2+=gap)&#123;</span><br><span class="line">			ans[mask2^mask1]=max_val;</span><br><span class="line">			LL min_val=<span class="number">0</span>,sm=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i+=gap)&#123;</span><br><span class="line">				<span class="built_in">cmax</span>(ans[mask2^mask1],sm+mx[(i^mask2)&gt;&gt;m]-min_val);</span><br><span class="line">				<span class="built_in">cmin</span>(min_val,sm+mi[(i^mask2)&gt;&gt;m]);</span><br><span class="line">				sm+=sum[(i^mask2)&gt;&gt;m];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> q;<span class="built_in">read</span>(q);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=q;i++)&#123;</span><br><span class="line">		<span class="built_in">read</span>(tp1);</span><br><span class="line">		s^=<span class="number">1</span>&lt;&lt;tp1;</span><br><span class="line">		cout&lt;&lt;ans[s]&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<h3 id="常数分析2">常数分析2</h3>
+<p>我们将 <code>a</code> 从 <code>long long</code> 改为了
+<code>int</code>，提升了 cacheline 读取效率，并只额外存储了 <span
+class="math inline">\(512\times3\times8 \text{ Byte}\)</span>
+的块信息，这样在以后的计算中，对大数组的随机访问可以变为对小数组的访问，大大提升了高速缓存利用率。</p>
+<p>可以通过此题。</p>
+<h3 id="further-explore">Further Explore</h3>
+<p>继续对代码进行修改，观察其时间变化。</p>
+<p>最初代码用时为 <code>1450ms</code></p>
+<h4 id="e1">E1</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LL sm=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(j=i;j&lt;i+gap;j++)&#123;</span><br><span class="line">    sm+=a[j^mask1];</span><br><span class="line">    <span class="keyword">if</span>(sm&gt;mx[i&gt;&gt;m])mx[i&gt;&gt;m]=sm;</span><br><span class="line">    <span class="keyword">if</span>(sm&lt;mi[i&gt;&gt;m])mi[i&gt;&gt;m]=sm;</span><br><span class="line">    <span class="built_in">cmax</span>(max_val,sm-mi[i&gt;&gt;m]);</span><br><span class="line">&#125;</span><br><span class="line">sum[i&gt;&gt;m]=sm;</span><br></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sum[i&gt;&gt;m]=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(j=i;j&lt;i+gap;j++)&#123;</span><br><span class="line">    sum[i&gt;&gt;m]+=a[j^mask1];</span><br><span class="line">    <span class="keyword">if</span>(sum[i&gt;&gt;m]&gt;mx[i&gt;&gt;m])mx[i&gt;&gt;m]=sum[i&gt;&gt;m];</span><br><span class="line">    <span class="keyword">if</span>(sum[i&gt;&gt;m]&lt;mi[i&gt;&gt;m])mi[i&gt;&gt;m]=sum[i&gt;&gt;m];</span><br><span class="line">    <span class="built_in">cmax</span>(max_val,sum[i&gt;&gt;m]-mi[i&gt;&gt;m]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>预期效率降低，原因为全局变量不会放入寄存器。</p>
+<p>实际效率未降低，原因推测为 <span class="math inline">\(O2\)</span>
+优化自动使用了该优化。</p>
+<p>继续进行本机测试，共 <code>9</code> 次随机数据，运行时间分别为
+<code>16339ms 16339ms</code>，符合预期，不开启优化时，全局变量一定不会放入寄存器。</p>
+<h4 id="e2">E2</h4>
+<p><code>a</code> 数组改为 <code>long long</code> 类型。</p>
+<p>预期由于高速缓存溢出，效率下降，实际未发生效率下降，应该是不明高速缓存机制原因。</p>
+<h4 id="defin-int-long-long">#defin int long long</h4>
+<p>预期由于高速缓存溢出，效率下降，<code>64bit</code>
+编译器和机子，实际效率有提升，<code>9</code> 组时间分别为
+<code>16636ms 16167ms</code>。</p>
+<p>开启 <code>O2</code> 后无明显差异，分别为
+<code>5577ms 5561ms</code></p>
+<p><code>32bit</code> 编译器，<code>64bit</code> 机子，<code>O2</code>
+效率出现明显下降，分别为 <code>11839ms 14920ms</code></p>
+<h3 id="conclusion">Conclusion</h3>
+<ul>
+<li>O2
+优化后，编译器会自动完成很多代码层面上的优化，我们更需要关注的是算法常数本身</li>
+<li>高速缓存的利用情况很大程度决定了代码的效率，编写需要卡常的程序时应该尤为注意，滚动数组能有效提升高速缓存利用率，分块处理减少数组大小也是提升效率的一种可行方案。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="tag"># 计算机系统</a>
+              <a href="/tags/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/" rel="tag"># 代码技巧</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/04/OI/%E7%AE%97%E6%B3%95/%E4%BB%8EZKW%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9C%8B%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8/" rel="prev" title="从ZKW线段树看线段树的性质">
+                  <i class="fa fa-angle-left"></i> 从ZKW线段树看线段树的性质
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/08/05/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E6%B4%9B%E8%B0%B7P6025%E9%A2%98%E8%A7%A3/" rel="next" title="洛谷P6025题解">
+                  洛谷P6025题解 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="题意  给你一棵有根树，定义一个点合法当且仅当它到根上的点全为黑色，否则不合法。 最开始所有点为白色，每次选一个不合法的点涂黑，每个点可以被涂黑多次。 问所有点被涂黑的期望次数  思考1 这次想题引爆了某人概率论基础不扎实的炸弹。 考虑每个点被涂黑的顺序，是一个排列，取到每种排列的概率相同。 考虑使用全期望公式计算，先考虑固定一个排列时的答案。 先假设只有 \(3\) 个点，且">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARC150D-一类期望问题的思考方式">
+<meta property="og:url" content="http://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="题意  给你一棵有根树，定义一个点合法当且仅当它到根上的点全为黑色，否则不合法。 最开始所有点为白色，每次选一个不合法的点涂黑，每个点可以被涂黑多次。 问所有点被涂黑的期望次数  思考1 这次想题引爆了某人概率论基础不扎实的炸弹。 考虑每个点被涂黑的顺序，是一个排列，取到每种排列的概率相同。 考虑使用全期望公式计算，先考虑固定一个排列时的答案。 先假设只有 \(3\) 个点，且">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-10T13:08:17.000Z">
+<meta property="article:modified_time" content="2025-02-16T09:56:07.340Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="数学">
+<meta property="article:tag" content="概率期望">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/","path":"2022/10/10/OI/算法/一类期望问题的思考方式/","title":"ARC150D-一类期望问题的思考方式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ARC150D-一类期望问题的思考方式 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%80%831"><span class="nav-number">2.</span> <span class="nav-text">思考1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#frac12-%E7%9A%84%E6%9D%A5%E5%8E%86"><span class="nav-number">2.1.</span> <span class="nav-text">\(\frac{1}{2}\)
+的来历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#frac23-%E7%9A%84%E6%9D%A5%E5%8E%86"><span class="nav-number">2.2.</span> <span class="nav-text">\(\frac{2}{3}\)
+的来历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%80%832"><span class="nav-number">3.</span> <span class="nav-text">思考2</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ARC150D-一类期望问题的思考方式 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ARC150D-一类期望问题的思考方式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-10 21:08:17" itemprop="dateCreated datePublished" datetime="2022-10-10T21:08:17+08:00">2022-10-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:56:07" itemprop="dateModified" datetime="2025-02-16T17:56:07+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="题意">题意</h2>
+<ul>
+<li><p>给你一棵有根树，定义一个点合法当且仅当它到根上的点全为黑色，否则不合法。</p></li>
+<li><p>最开始所有点为白色，每次选一个不合法的点涂黑，每个点可以被涂黑多次。</p></li>
+<li><p>问所有点被涂黑的期望次数</p></li>
+</ul>
+<h2 id="思考1">思考1</h2>
+<p>这次想题引爆了某人概率论基础不扎实的炸弹。</p>
+<p>考虑每个点被涂黑的顺序，是一个排列，取到每种排列的概率相同。</p>
+<p>考虑使用全期望公式计算，先考虑固定一个排列时的答案。</p>
+<p>先假设只有 <span class="math inline">\(3\)</span> 个点，且顺序为
+<span class="math inline">\(3,2,1\)</span>，也就是赠券收集问题。</p>
+<p>选第一个点的期望次数为 <span
+class="math inline">\(1\)</span>，因为所有满足这个排列的样本点都是以
+<span class="math inline">\(3\)</span>
+开头，选第二个点，期望次数是多少，或者说，选出第一个点后，下一个被选择的点，在顺序为
+<span class="math inline">\(3,2,1\)</span> 的前提下，是 <span
+class="math inline">\(2\)</span> 的概率是多少？</p>
+<h3 id="frac12-的来历"><span class="math inline">\(\frac{1}{2}\)</span>
+的来历</h3>
+<p>选第二个点时，可以选的点有 <span
+class="math inline">\(3,2\)</span>，选择每个点的概率相同，所以概率为
+<span class="math inline">\(\frac{1}{2}\)</span></p>
+<p><strong>虽然原本每个点概率时相同的，但是我们求的时条件概率，条件概率的样本空间已经被改变了，所以选择每个点的概率不再相同。</strong></p>
+<h3 id="frac23-的来历"><span class="math inline">\(\frac{2}{3}\)</span>
+的来历</h3>
+<p>考虑概率的定义，<span
+class="math inline">\(P=\frac{事件大小}{样本空间大小}\)</span>，考虑该条件的集合和事件与条件的交集，因为此题样本空间无限大，所以考虑将一个无限长序列映射到我们的样本空间，容易发现这样的映射不会改变概率函数。</p>
+<p>设 <span class="math inline">\(k\)</span> 为已经选取的数的个数，<span
+class="math inline">\(n\)</span> 为数的总数。 $$ <span
+class="math display">\[\begin{align}
+
+P=&amp;\lim\limits_{m\rightarrow
+\infty}\dfrac{n^{m-1}}{\sum\limits_{1\le i\le m} k^{i-1}\times
+n^{m-i}}\\
+=&amp;\dfrac{n^{m-1}}{\frac{n^{m}}{n-k}}\\
+=&amp;\frac{n-k}{n}
+\end{align}\]</span> $$ 这是在正确的样本空间算出的正确结果。</p>
+<p>从 Beyes 公式考虑： <span class="math display">\[
+\begin{align}
+P(下一个值为目标|满足排列限制)=&amp;\dfrac{P(下一个值为目标\wedge满足排列限制)}{P(满足排列限制)}\\
+=&amp;\dfrac{\frac{1}{n}\times\frac{1}{(n-k-1)!}}{\frac{1}{(n-k)!}}\\
+=&amp;\dfrac{n-k}{n}
+\end{align}
+\]</span> 神奇吧？</p>
+<p><strong>贝叶斯公式连接了条件概率和原问题的样本空间。</strong></p>
+<h3 id="总结">总结</h3>
+<p><strong>样本空间无限大的时候要小心，不能轻易认为两个元素等价，因为此时
+<span class="math inline">\(\infty \ne \infty\)</span></strong>。</p>
+<p>用贝叶斯公式好好算算吧。</p>
+<p>草率的断言概率为 <span
+class="math inline">\(\frac{1}{2}\)</span>，很大一部分原因都是认为两个正无穷时相等的。</p>
+<p>有了这个东西就可以愉快的推狮子 NTT 了。</p>
+<h2 id="思考2">思考2</h2>
+<p>其实这种题还有一种更加普遍的做法，期望线性性，考虑每个点被选的次数，相加可以得到最终答案。</p>
+<p>期望线性性来源于期望的定义，一个随机变量是一个函数，定义域为样本空间，值域为
+<span
+class="math inline">\(\R\)</span>，随机变量的期望为其密度函数积分的收敛值。</p>
+<p>因此，无论两个随机变量是否独立，它们的期望都是可加的。</p>
+<p>感性理解的话，两个随机变量之和的期望等于这样一个随机变量的期望：每个样本点的取值为两个随机变量在该样本点的取值之和，期望可以粗略理解为随机变量在样本空间每个点的平均值，因此随机变量的期望可加。</p>
+<p>所以可以考虑每个点被选的期望次数，如果选到了不在这个点到根路径上的点，那么我们忽略这一次选择，这样的忽略不会影响这个点被选的期望次数，然后问题变成了一条链上的最后一个点被选择的期望次数。</p>
+<p><strong>注意，我们只关心这个点被选择的期望次数。</strong></p>
+<p>考虑怎么求这玩意，因为整个过程在点到根路径上所有点被选择之后才会结束，所以像赠券收集问题一样倒序。假设有
+<span class="math inline">\(k\)</span> 个点还没选，总共 <span
+class="math inline">\(n\)</span> 个点，其中 <span
+class="math inline">\(w\)</span> 个点可以选，那么转移答案是 <span
+class="math inline">\(dp[k]=\frac{k}{w}dp[k+1]+\frac{w-k}{w}dp[k]+\frac{1}{w}\)</span></p>
+<p>移项得到 <span
+class="math inline">\(dp[k]=dp[k+1]+\frac{1}{k}\)</span>，实际上和 <span
+class="math inline">\(w\)</span> 无关，所以就很好算了。</p>
+<p>官方题解的说法是如果考虑可以选已经 <code>good</code>
+的点，最终答案不变，我理解不了这个过程。</p>
+<p>upd：其实现在也可以理解了，因为如果选了已经 good
+的点，那么再选一次就行了。</p>
+<p><strong>有几个比较重要的地方，一是忽略和答案绝对无关的操作，二是考虑计算过程。</strong></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a>
+              <a href="/tags/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B/" rel="tag"># 概率期望</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/" rel="prev" title="概率期望--三门问题及其变形">
+                  <i class="fa fa-angle-left"></i> 概率期望--三门问题及其变形
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/10/12/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1011%E6%80%BB%E7%BB%93/" rel="next" title="20221011考试总结">
+                  20221011考试总结 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

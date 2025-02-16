@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="1110总结 考试 T1 莫名奇妙写挂的题。 题本身意义不大，但是我写了很蠢的做法。 分析问题本质上是需要动态查 \(i\ge l,a_i\in x_i\)，\(a_i\) 不是很大，可以直接预处理每一个元素的 \(next\)，就很方便了，但是考场上写了扫描做法，还写挂了，非常蠢。 拿到题不要直接开冲，可以多想一下有没有更好写的做法&#x2F;更方便，前面的题没那么难。 T2 观察发现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1110总结">
+<meta property="og:url" content="http://huanyp.cn/2022/11/10/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1110%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="1110总结 考试 T1 莫名奇妙写挂的题。 题本身意义不大，但是我写了很蠢的做法。 分析问题本质上是需要动态查 \(i\ge l,a_i\in x_i\)，\(a_i\) 不是很大，可以直接预处理每一个元素的 \(next\)，就很方便了，但是考场上写了扫描做法，还写挂了，非常蠢。 拿到题不要直接开冲，可以多想一下有没有更好写的做法&#x2F;更方便，前面的题没那么难。 T2 观察发现">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-10T13:23:57.000Z">
+<meta property="article:modified_time" content="2025-02-15T15:34:46.127Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="算法竞赛, 自动化测试, 工程技术, Python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2022/11/10/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1110%E6%80%BB%E7%BB%93/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/11/10/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1110%E6%80%BB%E7%BB%93/","path":"2022/11/10/OI/考试总结/2022/1110总结/","title":"1110总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>1110总结 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">1110总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#t1"><span class="nav-number">1.1.</span> <span class="nav-text">T1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#t2"><span class="nav-number">1.2.</span> <span class="nav-text">T2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E6%9C%80%E7%9F%AD%E8%B7%AF"><span class="nav-number">1.2.1.</span> <span class="nav-text">直接最短路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dfs"><span class="nav-number">1.2.2.</span> <span class="nav-text">DFS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E5%9B%BE"><span class="nav-number">1.2.3.</span> <span class="nav-text">二分图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B6%E6%9F%A5%E9%9B%86"><span class="nav-number">1.2.4.</span> <span class="nav-text">并查集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#t3"><span class="nav-number">1.3.</span> <span class="nav-text">T3</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E5%93%88%E5%B8%8C%E5%81%9A%E6%B3%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">非哈希做法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E8%A7%A31"><span class="nav-number">1.3.2.</span> <span class="nav-text">正解1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#another-approach"><span class="nav-number">1.3.3.</span> <span class="nav-text">Another Approach</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#t4"><span class="nav-number">1.4.</span> <span class="nav-text">T4</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E6%A0%91%E5%90%88%E5%B9%B6%E6%9E%9A%E4%B8%BE%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">1.4.1.</span> <span class="nav-text">子树合并枚举二叉树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E9%A1%BA%E5%BA%8F%E6%9E%9A%E4%B8%BE%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">1.4.2.</span> <span class="nav-text">深度顺序枚举二叉树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%AB%98%E5%BA%A6%E9%A1%BA%E5%BA%8F%E6%9E%9A%E4%B8%BE%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">1.4.3.</span> <span class="nav-text">高度顺序枚举二叉树</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">99</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/10/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1110%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="1110总结 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          1110总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-10 21:23:57" itemprop="dateCreated datePublished" datetime="2022-11-10T21:23:57+08:00">2022-11-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-15 23:34:46" itemprop="dateModified" datetime="2025-02-15T23:34:46+08:00">2025-02-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="总结">1110总结</h2>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0152">考试</a></p>
+<h3 id="t1">T1</h3>
+<p>莫名奇妙写挂的题。</p>
+<p>题本身意义不大，但是我写了很蠢的做法。</p>
+<p>分析问题本质上是需要动态查 <span class="math inline">\(i\ge l,a_i\in
+x_i\)</span>，<span class="math inline">\(a_i\)</span>
+不是很大，可以直接预处理每一个元素的 <span
+class="math inline">\(next\)</span>，就很方便了，但是考场上写了扫描做法，还写挂了，非常蠢。</p>
+<p><strong>拿到题不要直接开冲，可以多想一下有没有更好写的做法/更方便，前面的题没那么难。</strong></p>
+<h3 id="t2">T2</h3>
+<p>观察发现答案不超过 <span class="math inline">\(1\)</span>
+的充要条件是存在一条长度为奇数的路径，答案不超过 <span
+class="math inline">\(2\)</span> 的充要条件是存在一条路径。</p>
+<p>先假定图联通，所以问题变成了计算无向图 <span
+class="math inline">\(s,t\)</span>
+之间是否存在长度为奇数的路径，有以下三种方式</p>
+<h4 id="直接最短路">直接最短路</h4>
+<p>思想是分层图跑最短路，但实现上没那么麻烦，考场写的这个做法。</p>
+<h4 id="dfs">DFS</h4>
+<p>如果有奇环，那在奇环上绕一圈任意可达了，所以考虑先 DFS
+求个深度，如果有奇环答案全部为 <span
+class="math inline">\(1\)</span>，否则路径唯一求出来就行</p>
+<h4 id="二分图">二分图</h4>
+<p>还是奇环的思想，实现上使用黑白染色。</p>
+<h4 id="并查集">并查集</h4>
+<p>这是常数最小的写法，还是考虑分层图，有一条边则合并不同层的两个点，查奇数路径就是不同层是否联通，偶数路径就是相同层是否联通。</p>
+<h3 id="t3">T3</h3>
+<p>不算太难的题，但是确实没有想出来。</p>
+<p>首先有个经典结论，先手必败的充要条件为所有可选元素为偶数，证明归纳，显然。</p>
+<p>算先手必败显然比先手必胜好算，所以算必败。</p>
+<p>先把元素做前缀和，再对 <span class="math inline">\(2\)</span>
+取模。问题就是需要选一个子矩阵，满足首尾两列元素值相同。</p>
+<p>考场上想到了可以哈希，由于常数，虽然是 <span
+class="math inline">\(n^2m\)</span> 的，但只有 <span
+class="math inline">\(52pts\)</span>。</p>
+<h4 id="非哈希做法">非哈希做法</h4>
+<p>考虑固定下边界，移动上边界的过程，发现相同元素的集合在不断变小，而有了这个集合就可以算答案，这个东西是可以每次
+<span class="math inline">\(O(m)\)</span>
+计算的，这样的常数较小，可以得到 <span
+class="math inline">\(76pts\)</span>。</p>
+<h4 id="正解1">正解1</h4>
+<p>先得想到它已经是个字符串题了，考虑上边界不断变化的过程，发现不合法的矩阵个数等于当前
+<span class="math inline">\(m\)</span> 个字符串两两之间 <span
+class="math inline">\(LCP\)</span> 的和，然后考虑字符串排序的方式求
+LCP，类似后缀排序的 <span class="math inline">\(height\)</span>
+数组，发现后缀排序是很好做的，因为每次上移一行，就是归并排序的过程，<span
+class="math inline">\(height\)</span> 和 <span
+class="math inline">\(rk\)</span> 都可以线性维护，得到了 <span
+class="math inline">\(height\)</span> 之后就单调栈搞定。</p>
+<h4 id="another-approach">Another Approach</h4>
+<p>考虑非哈希做法的等价类思想，发现虽然维护过程是 <span
+class="math inline">\(O(nm)\)</span> 的，但实际上等价类的个数是 <span
+class="math inline">\(O(m)\)</span>
+的，考虑以移动下边界的方式考察当前下边界所有上边界的等价类，自顶向下的更新等价类，该拆分的拆分，实际上和正解1本质相同。</p>
+<h3 id="t4">T4</h3>
+<p>条件比较特殊，需要先观察。</p>
+<p>记 <span class="math inline">\(T&#39;\)</span> 为 <span
+class="math inline">\(T\)</span> 的修剪。</p>
+<p><span class="math inline">\(T\)</span> 的修剪和 <span
+class="math inline">\(T\)</span> 的右子树相同，那么考虑 <span
+class="math inline">\(T\)</span> 的右子树 <span
+class="math inline">\(R(T)\)</span>，那么 <span
+class="math inline">\(L(R(T))=L(T&#39;)\)</span>，递归的，<span
+class="math inline">\(R(R(T))\)</span> 和 <span
+class="math inline">\(R(T)\)</span> 的修剪相同。</p>
+<p>归纳边界是 <span
+class="math inline">\(L(T)=\emptyset\)</span>，此时右子树可以任意延申右儿子而不受限制，先假设当左儿子为空时右儿子也必须为空，这样就有了一个边界。</p>
+<p>因此，如果 <span class="math inline">\(L(T)\)</span>
+确定了，就可以确定出有边界的树的唯一形态。</p>
+<p>考察 <span class="math inline">\(L(T)\)</span> 的各项数据对应到的
+<span class="math inline">\(T\)</span> 的数据。</p>
+<p>容易发现： <span class="math display">\[
+leaf_T=size_{L(T)} + 1\\
+height_T=height_{L(T)}+1\\
+size_T=height_T+\sum\limits_{u\in L(T)} height_u
+\]</span> 接下来的事情变成了设计一种合理的方式去枚举合法的 <span
+class="math inline">\(L(T)\)</span>，并能够计算这些数据。</p>
+<h4 id="子树合并枚举二叉树">子树合并枚举二叉树</h4>
+<p>枚举二叉树，比较合理的一种方式是以子树大小为阶段来合并，需要记录的信息是
+<span class="math inline">\(dp[i][j][k]\)</span> 表示子树大小为 <span
+class="math inline">\(i\)</span>，高度为 <span
+class="math inline">\(j\)</span>，<span class="math inline">\(\sum
+height_u\)</span> 为 <span class="math inline">\(k\)</span>
+的总方案数，合并的时候需要枚举三维做卷积，复杂度为 <span
+class="math inline">\(n^2k^2m^2\)</span>，难以通过本题。</p>
+<p>不难发现 <span class="math inline">\(j\)</span>
+可以用前缀和优化，但是其它两维是卷积，动不了的，复杂度 <span
+class="math inline">\(O(n^2km^2)\)</span>，实际上常数比较小，可以过掉。</p>
+<h4 id="深度顺序枚举二叉树">深度顺序枚举二叉树</h4>
+<p>刚刚的方式是子树合并的方式构造二叉树，现在考虑用深度顺序构造，设
+<span class="math inline">\(dp[i][j][k][s]\)</span> 为构造深度为 <span
+class="math inline">\(i\)</span>，树大小为 <span
+class="math inline">\(j\)</span>，<span class="math inline">\(\sum
+height\)</span> 为 <span class="math inline">\(k\)</span>，可用点数为
+<span class="math inline">\(s\)</span>
+的方案数，转移需要枚举向下构造的点数 <span
+class="math inline">\(t\)</span>，得到 <span
+class="math inline">\(t\)</span> 后可以预处理转移系数，顺便计算出新的
+<span class="math inline">\(j,k,s\)</span>，复杂度为 <span
+class="math inline">\(O(kmn^3)\)</span>，更加优秀，事实上 <span
+class="math inline">\(j,s,t\)</span> 远远取不到 <span
+class="math inline">\(n\)</span>，是非常优秀的复杂度。</p>
+<p>但是这个方法是假的，因为深度和 <span class="math inline">\(\sum
+height\)</span> 没有必然联系，所以无法计算 <span
+class="math inline">\(k\)</span>。</p>
+<h4 id="高度顺序枚举二叉树">高度顺序枚举二叉树</h4>
+<p>考虑以子树高度的顺序，降序构造二叉树，这和深度顺序又不一样。</p>
+<p>考虑设 <span class="math inline">\(dp[i][j][k][s]\)</span>
+表示子树高度为 <span class="math inline">\(i\)</span>，大小为 <span
+class="math inline">\(j\)</span>，<span class="math inline">\(\sum
+height\)</span> 为 <span class="math inline">\(k\)</span> ，叶子个数为
+<span class="math inline">\(s\)</span>
+时的方案数，注意这里是按照高度顺序构造，即强制要求先选的部分的高度大于后选的。所以又额外的要求是枚举接下来的增量时需要将所有叶子至少叠加一层，枚举增量
+<span class="math inline">\(t\)</span>
+时预处理系数即可，复杂度和深度顺序类似。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/11/08/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1108%E6%80%BB%E7%BB%93/" rel="prev" title="1108总结">
+                  <i class="fa fa-angle-left"></i> 1108总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/11/15/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1112%E6%80%BB%E7%BB%93/" rel="next" title="1112总结">
+                  1112总结 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
