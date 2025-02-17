@@ -395,7 +395,7 @@ mathjax: true
 
 #### CNAME
 
-CNAME 文件部署时被覆盖
+hexo d 的时候因为是强制 push 的, github CNAME 文件时会被覆盖, 导致域名解析错误.
 
 [解决方式](http://eronana.github.io/2014/11/07/Hexo%E9%83%A8%E7%BD%B2%E5%90%8ECNAME%E8%A2%AB%E8%A6%86%E7%9B%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/)
 
