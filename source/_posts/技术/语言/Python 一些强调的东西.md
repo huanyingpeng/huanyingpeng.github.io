@@ -21,28 +21,33 @@ GFW 会墙掉默认的 pip 源, 所以请使用国内源.
 
 - **彻底关闭代理软件**(退出软件, 关 System Proxy 没用), 并检查系统代理设置, 确认没有设置代理端口.
 	由它引起的报错:
+	
 	- SSL 错误(报错大概长下面这样), 国内源不允许代理连接, 用的 TLS 方式, 代理的 SSL 证书通不过验证.
+	
 	```shell
 	WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)'))': /simple/proxyscrape/
 	```
 	- Proxy 连接错误(报错大概长下面这样). 原因是命令行代理没有配置好, 但是 pip 检测到了系统有代理尝试使用.
+	
 	```shell
 	WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', timeout('_ssl.c:1091: The handshake operation timed out'))': /simple/pandas/
 	```
 - 清华源同步很慢, 速度不稳定, 建议使用阿里云源, 命令行执行(永久设置):
+
     ```shell
     pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/
     pip config set global.trusted-host mirrors.aliyun.com
     ```
 - 检查全局源设置:
-    ```shell
+ 
+  ```shell
 	pip config list
-    ```
+  ```
   输出应该是:
-    ```shell
+  ```shell
 	global.index-url='https://mirrors.aliyun.com/pypi/simple'
 	install.trusted-host='mirrors.aliyun.com'
-	```
+  ```
 
 
 ### 虚拟环境
@@ -54,10 +59,15 @@ Python 包各种包的有复杂的版本依赖关系, 把所有包装在一起�
 anaconda [安装教程](https://zhuanlan.zhihu.com/p/75717350?utm_source=wechat_session&utm_medium=social&utm_oi=940926592332066816).
 
 额外提几个注意:
+
 - 安装 conda 前, 应该**彻底卸载**之前安装的 Python, 直接用卸载功能不会删除 pip 相关的包, 正确的卸载方式:
+  
   1. 找到并记住安装路径.
+  
   2. 用卸载程序(就是安装包)卸载.
+  
   3. 彻底删除安装路径.
+
 - 第一次安装 conda 完成后, 必须在终端执行 `conda init` 命令使 conda 生效. 
 
 ### 局部环境
@@ -99,13 +109,21 @@ Linux 下安装 Python 局部环境
 ### 莫名其妙的 id 不一致问题
 
 有时候, 你手动加了 `sys.path` 后, 导入时全局变量可能会出现 id 不一致的问题, 讲下原因:
+
 - ma 模块假设在 `module/ma.py` 里.
+
 - `a.py` 代码用 `module.ma` 导入了 `ma` 模块的一个全局变量 `g`.
+  
 - 往 `sys.path` 里加了 `module` 这个目录. 
+  
 - `module/b.py` 代码中用 `ma` 导入了 `ma` 模块的全局变量 `g`.
+  
 - `a.py` 和 `b.py` 里 `g` 的 id 不一致.
+  
 所以别问为啥全局变量修改无效了.
+
 从不同目录下(`sys.path`值不同)导入同一个文件时, 被导入的模块代码有不同的 id, 所以里面的东西也有两份.
+
 **无特殊需求, 只建议项目使用绝对导入.**
 
 ### import 的代码到底执行了几遍
