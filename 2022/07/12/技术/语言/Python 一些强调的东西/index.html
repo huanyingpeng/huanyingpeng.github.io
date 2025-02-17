@@ -22,26 +22,26 @@
 
     <meta name="description" content="pip 和包 网络问题 GFW 会墙掉默认的 pip 源, 所以请使用国内源. 不建议使用代理连接国外源. 使用国内源时一些注意事项:  彻底关闭代理软件(退出软件, 关 System Proxy 没用), 并检查系统代理设置, 确认没有设置代理端口. 由它引起的报错:  SSL 错误(报错大概长下面这样), 国内源不允许代理连接, 用的 TLS 方式, 代理的 SSL 证书通">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python 踩坑记录">
-<meta property="og:url" content="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/python-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="Python 一些强调的东西">
+<meta property="og:url" content="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/Python%20%E4%B8%80%E4%BA%9B%E5%BC%BA%E8%B0%83%E7%9A%84%E4%B8%9C%E8%A5%BF/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
 <meta property="og:description" content="pip 和包 网络问题 GFW 会墙掉默认的 pip 源, 所以请使用国内源. 不建议使用代理连接国外源. 使用国内源时一些注意事项:  彻底关闭代理软件(退出软件, 关 System Proxy 没用), 并检查系统代理设置, 确认没有设置代理端口. 由它引起的报错:  SSL 错误(报错大概长下面这样), 国内源不允许代理连接, 用的 TLS 方式, 代理的 SSL 证书通">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-12T08:28:24.000Z">
-<meta property="article:modified_time" content="2025-02-16T16:10:25.175Z">
+<meta property="article:modified_time" content="2025-02-17T02:39:38.236Z">
 <meta property="article:author" content="huan-yp">
 <meta property="article:tag" content="网络">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/python-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
+<link rel="canonical" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/Python%20%E4%B8%80%E4%BA%9B%E5%BC%BA%E8%B0%83%E7%9A%84%E4%B8%9C%E8%A5%BF/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/python-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/","path":"2022/07/12/技术/语言/python-踩坑记录/","title":"python 踩坑记录"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/Python%20%E4%B8%80%E4%BA%9B%E5%BC%BA%E8%B0%83%E7%9A%84%E4%B8%9C%E8%A5%BF/","path":"2022/07/12/技术/语言/Python 一些强调的东西/","title":"Python 一些强调的东西"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>python 踩坑记录 | 幻影彭的彩虹</title>
+<title>Python 一些强调的东西 | 幻影彭的彩虹</title>
   
 
 
@@ -141,7 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#pip-%E5%92%8C%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">pip 和包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">网络问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E7%8E%AF%E5%A2%83"><span class="nav-number">1.3.</span> <span class="nav-text">局部环境</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#import"><span class="nav-number">2.</span> <span class="nav-text">import</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#name"><span class="nav-number">2.1.</span> <span class="nav-text">name</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#import-%E5%8C%85%E6%97%B6%E7%9A%84%E6%89%A7%E8%A1%8C%E9%80%BB%E8%BE%91"><span class="nav-number">2.2.</span> <span class="nav-text">import 包时的执行逻辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#import-%E5%AF%BB%E6%89%BE%E9%A1%BA%E5%BA%8F"><span class="nav-number">2.3.</span> <span class="nav-text">import 寻找顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%AB%E5%90%8D%E5%85%B6%E5%A6%99%E7%9A%84-id-%E4%B8%8D%E4%B8%80%E8%87%B4%E9%97%AE%E9%A2%98"><span class="nav-number">2.4.</span> <span class="nav-text">莫名其妙的 id 不一致问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#import-%E7%9A%84%E4%BB%A3%E7%A0%81%E5%88%B0%E5%BA%95%E6%89%A7%E8%A1%8C%E4%BA%86%E5%87%A0%E9%81%8D"><span class="nav-number">2.5.</span> <span class="nav-text">import 的代码到底执行了几遍</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pypi"><span class="nav-number">3.</span> <span class="nav-text">PYPI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-request-%E8%BF%99%E4%B8%80%E7%B1%BB%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%87%BD%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">关于 Request
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pip-%E5%92%8C%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">pip 和包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">网络问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E7%8E%AF%E5%A2%83"><span class="nav-number">1.3.</span> <span class="nav-text">局部环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#import"><span class="nav-number">2.</span> <span class="nav-text">import</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#name"><span class="nav-number">2.1.</span> <span class="nav-text">name</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#import-%E5%8C%85%E6%97%B6%E7%9A%84%E6%89%A7%E8%A1%8C%E9%80%BB%E8%BE%91"><span class="nav-number">2.2.</span> <span class="nav-text">import 包时的执行逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#import-%E5%AF%BB%E6%89%BE%E9%A1%BA%E5%BA%8F"><span class="nav-number">2.3.</span> <span class="nav-text">import 寻找顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%AB%E5%90%8D%E5%85%B6%E5%A6%99%E7%9A%84-id-%E4%B8%8D%E4%B8%80%E8%87%B4%E9%97%AE%E9%A2%98"><span class="nav-number">2.4.</span> <span class="nav-text">莫名其妙的 id 不一致问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#import-%E7%9A%84%E4%BB%A3%E7%A0%81%E5%88%B0%E5%BA%95%E6%89%A7%E8%A1%8C%E4%BA%86%E5%87%A0%E9%81%8D"><span class="nav-number">2.5.</span> <span class="nav-text">import 的代码到底执行了几遍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pypi"><span class="nav-number">3.</span> <span class="nav-text">PYPI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-request-%E8%BF%99%E4%B8%80%E7%B1%BB%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%87%BD%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">关于 Request
 这一类网络请求函数</span></a></li></ol></div>
         </div>
         <!--/noindex-->
@@ -206,7 +206,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/python-%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/Python%20%E4%B8%80%E4%BA%9B%E5%BC%BA%E8%B0%83%E7%9A%84%E4%B8%9C%E8%A5%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
@@ -219,12 +219,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="python 踩坑记录 | 幻影彭的彩虹">
+      <meta itemprop="name" content="Python 一些强调的东西 | 幻影彭的彩虹">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          python 踩坑记录
+          Python 一些强调的东西
         </h1>
 
         <div class="post-meta-container">
@@ -242,7 +242,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-17 00:10:25" itemprop="dateModified" datetime="2025-02-17T00:10:25+08:00">2025-02-17</time>
+      <time title="修改时间：2025-02-17 10:39:38" itemprop="dateModified" datetime="2025-02-17T10:39:38+08:00">2025-02-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -263,8 +263,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="pip-和包">pip 和包</h3>
-<h4 id="网络问题">网络问题</h4>
+    <div class="post-body" itemprop="articleBody"><h2 id="pip-和包">pip 和包</h2>
+<h3 id="网络问题">网络问题</h3>
 <p>GFW 会墙掉默认的 pip 源, 所以请使用国内源.</p>
 <p><strong>不建议使用代理连接国外源.</strong></p>
 <p>使用国内源时一些注意事项:</p>
@@ -281,30 +281,48 @@ pip 检测到了系统有代理尝试使用. <figure class="highlight shell"><ta
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">pip config set global.trusted-host mirrors.aliyun.com</span><br></pre></td></tr></table></figure></li>
 <li>检查全局源设置: <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip config list</span><br></pre></td></tr></table></figure> 输出应该是: <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">global.index-url=&#x27;https://mirrors.aliyun.com/pypi/simple&#x27;</span><br><span class="line">install.trusted-host=&#x27;mirrors.aliyun.com&#x27;</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="虚拟环境">虚拟环境</h4>
+<h3 id="虚拟环境">虚拟环境</h3>
 <p>Python 包各种包的有复杂的版本依赖关系, 把所有包装在一起不可取.</p>
 <p>建议安装个 anaconda 创建虚拟环境, 然后在虚拟环境里安装包.</p>
-<p>anaconda [安装教程].</p>
-<p><del>妈的, 网上教程一搜第一页全是错的, 等我来写一个.</del></p>
-<h4 id="局部环境">局部环境</h4>
-<h3 id="import">import</h3>
-<h4 id="name"><strong>name</strong></h4>
+<p>anaconda <a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/75717350?utm_source=wechat_session&amp;utm_medium=social&amp;utm_oi=940926592332066816">安装教程</a>.</p>
+<p>额外提几个注意: - 安装 conda 前,
+应该<strong>彻底卸载</strong>之前安装的 Python, 直接用卸载功能不会删除
+pip 相关的包, 正确的卸载方式: 1. 找到并记住安装路径. 2.
+用卸载程序(就是安装包)卸载. 3. 彻底删除安装路径. - 第一次安装 conda
+完成后, 必须在终端执行 <code>conda init</code> 命令使 conda 生效.</p>
+<h3 id="局部环境">局部环境</h3>
+<p>虚拟环境本质上就是建立了若干个局部环境,
+并使用一个全局的管理工具来管理这些局部环境.</p>
+<p>所以也可以直接建立局部环境, Python 的标准库有个 venv,
+就是用局部环境来做虚拟环境的.</p>
+<p>局部环境也可以用安装包安装, <strong>不要勾选添加系统路径</strong>,
+然后自定义安装路径就能安装 Windows 的 Python 局部环境.</p>
+<p>Linux 下安装 Python 局部环境</p>
+<p>用局部环境的路径去运行 pip, Python 时,
+所有操作都会在这个局部环境里执行, 与全局环境无关.</p>
+<p>理论上这个东西在制作傻瓜式软件的时候有一定作用, 但根据我的经验,
+虽然可能全国有 1% 的人会 Python, 但全国只有 0.1% 的人能够正确安装小众的
+Python 第三方库, 所以还是很有用的.</p>
+<p><del>上周见到两个 conda 装了不 init 的胎神.</del></p>
+<h2 id="import">import</h2>
+<h3 id="name"><strong>name</strong></h3>
 <p><code>__name__</code> 是 Python 的一个内置变量,
 用于判断当前文件是否被<strong>直接运行</strong>.</p>
 <p>用 <code>python xxx.py</code> 直接运行, <code>__name__</code> 为
 "<strong>main</strong>".</p>
 <p>用 <code>python -m xxx</code> 间接运行, <code>__name__</code>
 为<strong>模块名</strong>.</p>
-<h4 id="import-包时的执行逻辑">import 包时的执行逻辑</h4>
+<h3 id="import-包时的执行逻辑">import 包时的执行逻辑</h3>
 <p>用 import 或者 from 导入模块时,
 对应模块代码会被原封不动的全部执行一遍, 执行时, 被 import 的代码中
 <code>__name__</code> 为 <strong>模块名</strong>.</p>
-<h4 id="import-寻找顺序">import 寻找顺序</h4>
+<h3 id="import-寻找顺序">import 寻找顺序</h3>
 <p>有一个 <code>sys.path</code> 变量, 里面存着一些路径, 用于寻找模块.
 这玩意是个列表, 从前往后依次寻找, 找到就开始导入, 顺序大概这样: 1.
 在工作目录下寻找(绝对或相对导入). 2. 在 <code>site-packages</code>
 目录下寻找(仅绝对导入).</p>
-<h4 id="莫名其妙的-id-不一致问题">莫名其妙的 id 不一致问题</h4>
+<h3 id="莫名其妙的-id-不一致问题">莫名其妙的 id 不一致问题</h3>
 <p>有时候, 你手动加了 <code>sys.path</code> 后, 导入时全局变量可能会出现
 id 不一致的问题, 讲下原因: - ma 模块假设在 <code>module/ma.py</code> 里.
 - <code>a.py</code> 代码用 <code>module.ma</code> 导入了 <code>ma</code>
@@ -316,15 +334,15 @@ id 不一致的问题, 讲下原因: - ma 模块假设在 <code>module/ma.py</co
 从不同目录下(<code>sys.path</code>值不同)导入同一个文件时,
 被导入的模块代码有不同的 id, 所以里面的东西也有两份. <strong>无特殊需求,
 只建议项目使用绝对导入.</strong></p>
-<h4 id="import-的代码到底执行了几遍">import 的代码到底执行了几遍</h4>
+<h3 id="import-的代码到底执行了几遍">import 的代码到底执行了几遍</h3>
 <p>用同一个 <code>sys.path</code> 量导入的模块代码只会执行一遍,
 第一次执行后被加进 cache 里了, 第二次 import 时发现 cache 里有就直接用
 cache 里的了, 不执行第二次.</p>
-<h3 id="pypi">PYPI</h3>
+<h2 id="pypi">PYPI</h2>
 <p>PYPI 打包发布的时候, 如果文件夹没有 <code>__init__.py</code> 文件,
 那么这个文件夹会扔掉打包不进去.</p>
-<h3 id="关于-request-这一类网络请求函数">关于 Request
-这一类网络请求函数</h3>
+<h2 id="关于-request-这一类网络请求函数">关于 Request
+这一类网络请求函数</h2>
 <p>Request 爬虫的时代已经过去了, 现在用 selenium 吧.</p>
 <p>当然如果直接最简单的 Request 没出问题也不妨试试.</p>
 
