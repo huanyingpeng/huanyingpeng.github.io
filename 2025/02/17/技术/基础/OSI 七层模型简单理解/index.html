@@ -23,21 +23,21 @@
     <meta name="description" content="这篇文章是以现代计算机网络硬件为基础编写的，主要介绍了现代硬件环境下应该了解的网络知识，能够为网络编程打下一个较好的基础。 第一次接触不一定能理解全部内容，但当你对网络编程有一定了解后，也可以回来再看看？ 物理层  这一层是电子信息系的事，不是计算机系的事。 这一层可以实现在两台设备间不稳定的传输数据。 这一层数据传输的基本单位是 bit。  数据链路层 这一层的主要设备是交换机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OSI 七层模型简单理解">
-<meta property="og:url" content="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/OSI%20%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:url" content="http://huanyp.cn/2025/02/17/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/OSI%20%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
 <meta property="og:description" content="这篇文章是以现代计算机网络硬件为基础编写的，主要介绍了现代硬件环境下应该了解的网络知识，能够为网络编程打下一个较好的基础。 第一次接触不一定能理解全部内容，但当你对网络编程有一定了解后，也可以回来再看看？ 物理层  这一层是电子信息系的事，不是计算机系的事。 这一层可以实现在两台设备间不稳定的传输数据。 这一层数据传输的基本单位是 bit。  数据链路层 这一层的主要设备是交换机">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-12T08:28:24.000Z">
-<meta property="article:modified_time" content="2025-02-17T15:48:55.651Z">
+<meta property="article:published_time" content="2025-02-17T15:40:24.000Z">
+<meta property="article:modified_time" content="2025-02-17T15:50:46.462Z">
 <meta property="article:author" content="huan-yp">
 <meta property="article:tag" content="网络">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/OSI%20%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/">
+<link rel="canonical" href="http://huanyp.cn/2025/02/17/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/OSI%20%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/OSI%20%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/","path":"2022/07/12/技术/基础/OSI 七层模型简单理解/","title":"OSI 七层模型简单理解"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2025/02/17/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/OSI%20%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/","path":"2025/02/17/技术/基础/OSI 七层模型简单理解/","title":"OSI 七层模型简单理解"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>OSI 七层模型简单理解 | 幻影彭的彩虹</title>
@@ -204,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/OSI%20%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2025/02/17/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/OSI%20%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
@@ -232,15 +232,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2022-07-12 16:28:24" itemprop="dateCreated datePublished" datetime="2022-07-12T16:28:24+08:00">2022-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-17 23:48:55" itemprop="dateModified" datetime="2025-02-17T23:48:55+08:00">2025-02-17</time>
+      <time title="创建时间：2025-02-17 23:40:24 / 修改时间：23:50:46" itemprop="dateCreated datePublished" datetime="2025-02-17T23:40:24+08:00">2025-02-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -847,14 +841,11 @@ Padding Oracle 机制，因此衍生出一种叫做 POODLE（降级加密密文�
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/07/12/%E6%8A%80%E6%9C%AF/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/" rel="prev" title="一些有用的命令">
-                  <i class="fa fa-angle-left"></i> 一些有用的命令
+                <a href="/2025/02/15/todo/" rel="prev" title="Todo">
+                  <i class="fa fa-angle-left"></i> Todo
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/07/12/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/Python%20%E4%B8%80%E4%BA%9B%E5%BC%BA%E8%B0%83%E7%9A%84%E4%B8%9C%E8%A5%BF/" rel="next" title="Python 一些强调的东西">
-                  Python 一些强调的东西 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
