@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,542 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%981/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%981/" class="post-title-link" itemprop="url">做题1</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 16:08:51" itemprop="dateCreated datePublished" datetime="2022-07-12T16:08:51+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:58:10" itemprop="dateModified" datetime="2025-02-16T17:58:10+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="section">2022.2.7</h2>
+<h3 id="cf1634e">CF1634E</h3>
+<h4 id="题意">题意：</h4>
+<p>给定一些数组，长度都为偶数，需要将每个数组的元素划分到两个可重集合里，要求两个集合相同，问方案或输出无解，<span
+class="math inline">\(n,m=10^5\)</span>。</p>
+<h4 id="思考">思考：</h4>
+<p>考虑每个数组单独划分，不太行，所以不能一个数组一个数组的考虑，显然有解的必要条件是每个数字个数为偶数。所以一个数字一个数字的考虑，其实也不太行，因为这和刚刚那种方法是本质上一样的。</p>
+<p>注意到也保证每个数组长度为偶数<del>（这不是废话吗）</del>，都是偶数，不由得让我们想到欧拉回路，所以尝试建图，每个不同的数和数组视为一个点，由数组向数连边，数组内存在一个数，就由数组向这个数连一条边，现在需要给图定向为一张欧拉图，我们将数组向数连的边是为将这个数分到第一个集合，反之则为第二个，构造欧拉图即可。</p>
+<h4 id="实现上的问题">实现上的问题：</h4>
+<p>存边用 <code>set</code> 存，不然 <code>TLE</code> 没商量。</p>
+<p>图不一定联通，所以一定要多起点。</p>
+<h2 id="section-1">20220209</h2>
+<h3 id="考试-t1">22020208考试 T1</h3>
+<h4 id="题意-1">题意：</h4>
+<p>定义矩阵 <span class="math inline">\(Mat_n\)</span></p>
+<ul>
+<li><span class="math inline">\(n = 0\)</span> 时，为一个 <span
+class="math inline">\(1\)</span></li>
+<li><span class="math inline">\(n &gt; 0\)</span> 时，左上角为 <span
+class="math inline">\(0\)</span> 矩阵，其余部分为三个 <span
+class="math inline">\(Mat_{n-1}\)</span>。</li>
+</ul>
+<p>在一个平面上画出两个 <span
+class="math inline">\(Mat_n\)</span>，左下角分别为 <span
+class="math inline">\((0,0),(x,y)\)</span>，求都为 <span
+class="math inline">\(1\)</span> 的位置有多少个。</p>
+<h4 id="思考-1">思考：</h4>
+<p>考虑旋转矩阵转化为位运算计数问题，转化为求整数对 <span
+class="math inline">\((i,j)\)</span> 满足
+<code>(i&amp;j) == 0 and ((i+x)&amp;(j-y)) == 0</code></p>
+<p>考场上看到要高精就润了，没有认真思考。</p>
+<p>实际上可以考虑类似 数位dp 的算法，也不难。</p>
+<h3 id="考试-t2后缀自动机复习">22020208考试 T2(后缀自动机复习)</h3>
+<h4 id="题意-2">题意：</h4>
+<p>给定一个字符串 <span class="math inline">\(s\)</span> ，<span
+class="math inline">\(q\)</span> 次询问 <span
+class="math inline">\(l,r\)</span>，表示所有 <span
+class="math inline">\([l,r]\)</span>
+开头的子串中本质不同的子串个数。</p>
+<p><span class="math inline">\(n,q = 2 \times 10^5\)</span></p>
+<h4 id="思考1">思考1：</h4>
+<p>考虑后缀自动机求本质不同子串个数的方式，发现它可以在线完成。</p>
+<p>所以反着建后缀自动机。</p>
+<p>对于 <span class="math inline">\(r=n\)</span>
+的部分分，显然先离线，可以建后缀自动机时统计下每一个结尾的答案，输出即可。</p>
+<p>如果 <span class="math inline">\(r \neq
+n\)</span>，那么不妨仍然考虑在后缀自动机上如何统计答案。</p>
+<p>后缀自动机本质上维护的是 <span class="math inline">\(endpos\)</span>
+集合，对于一个询问，如果一个 <span class="math inline">\(endpos\)</span>
+集合中包含一个位置 <span
+class="math inline">\(x\in[l,r]\)</span>，那么这个 <span
+class="math inline">\(endpos\)</span>
+集合所代表的子串应该被计入贡献。</p>
+<p>后缀自动机上每个子串仅在一个 <span
+class="math inline">\(endpos\)</span>
+集合中出现，所以可以求出至少有一个元素被包含的集合，并直接加和。</p>
+<p>考虑对于每个询问该如何统计答案，限制一共有两个 <span
+class="math inline">\(l,r\)</span>，并不好做，然而我们发现后缀自动机是在线构建的，所以如果将询问离线，那么限制就只剩下一个
+<span class="math inline">\(r\)</span>
+了。我们在构建后缀自动机的同时只需要记录每个 <span
+class="math inline">\(endpos\)</span> 集合最小的元素 <span
+class="math inline">\(val\)</span>，查询时查询所有满足 <span
+class="math inline">\(val \leq r\)</span>
+的集合的子串数量和即可。考虑维护一个数组 <span
+class="math inline">\(c\)</span>，<span
+class="math inline">\(c[i]\)</span> 表示 <span class="math inline">\(val
+= i\)</span> 的 <span class="math inline">\(endpos\)</span>
+集合子串个数和，用 <span class="math inline">\(BIT\)</span>
+查前缀和，现在只剩下修改了。</p>
+<p>考虑 <span class="math inline">\(endpos\)</span>
+树的性质，发现修改操作是把一段到根的路径赋值，同时还有修改父亲等操作，于是考虑动态树，我们不难发现一段实链上的集合，<span
+class="math inline">\(val\)</span> 都是相同的，所以在每个节点维护一下
+<span class="math inline">\(val,sum\)</span> 值即可，注意 <span
+class="math inline">\(push\_down\)</span> 操作时需要把赋值也 <span
+class="math inline">\(push\_down\)</span> 下去。</p>
+<p>这样做未免显得有些麻烦，我们考虑最终构建的后缀自动机，倒序激活 <span
+class="math inline">\(endpos\)</span> 中每一个点，这样就不需要 <span
+class="math inline">\(Link\)</span> 和 <span
+class="math inline">\(Cut\)</span> 操作，只需要写 <span
+class="math inline">\(access\)</span> 就行。</p>
+<p>实际上未必需要用后缀树来实现，通过激活点的方式，树已经时静态的了，这本质上还是一个区间染色问题，我们完全可以直接重链剖分，在每条重链上开个栈维护断点，记录下前缀和。</p>
+<p>复杂度都是 <span
+class="math inline">\(O(nlog_n^2)\)</span>，个人认为类似动态树的方法会好写一些。</p>
+<h4 id="思考2">思考2：</h4>
+<p>考虑使用后缀数组，回想后缀数组统计不同子串个数的方式，实际上就是排序后减掉相邻两个的
+<span
+class="math inline">\(lcp\)</span>，于是对原串后缀排序，然后离线询问莫队，拿个
+<code>set</code> 维护当前所有串的排名集合，再来个 <span
+class="math inline">\(ST\)</span> 表计算 <span
+class="math inline">\(lcp\)</span>，插入和删除都很好写，复杂度 <span
+class="math inline">\(O(n\sqrt n \ log_n)\)</span>，难以通过本题。</p>
+<p>考虑优化，有一个技巧，这种需要查前驱后继的东西，实际上可以用链表搞，加入相对困难一些，因为我们不知道到底应该放在哪里，但删除就很容易了，双向链表上直接删就完事了，所以可以回滚莫队，非常无脑，时间复杂度
+<span class="math inline">\(O(n\sqrt n)\)</span>。</p>
+<p>稍加卡常即可通过，<span class="math inline">\(ST\)</span>
+表查询常数相对较大，卡常应考虑尽量减少查询次数。</p>
+<h2 id="section-2">20220210</h2>
+<h3 id="考试t3">20220208考试T3</h3>
+<h4 id="恶心的题意"><a
+target="_blank" rel="noopener" href="https://https://local.cwoi.com.cn:8443//contest/C15/problem/C">恶心的题意</a></h4>
+<h4 id="思考-2">思考</h4>
+<p>发现由于编号连续，所以最后经过的一定是一段连续区间。想到可以枚举右端点，二分左端点。</p>
+<p>一个区域到另一个区域的路径可以分为区域到中转站和中转站到中转站两部分，区域到中转站的情况可以只计算到左右两边最近的中转站，所以容易计算。</p>
+<p>我们按照右端点顺序激活中转站，问题就是要最小化左端点。</p>
+<p>两个中转站只能通过同一条线连接，把最低点也看成中转站，所以可以认为从一个中转站到另一个的代价为两者所在区域编号的较小值。</p>
+<p>中转站到中转站的距离可以 <code>Floyd</code>
+暴力，我们就已经计算出了每对中转站点相互抵达的代价，所以二分都不需要了，我们可以直接用这个代价计算出最终答案。</p>
+<h4 id="实现细节">实现细节</h4>
+<p><code>Floyd</code>
+的时候，因为加入的中转站并不是按下标顺序，所以需要整个跑一遍。</p>
+<h2 id="section-3">20220211</h2>
+<h3 id="测试-t1">20220211 测试 T1</h3>
+<h4 id="题意-3"><a
+target="_blank" rel="noopener" href="https://https://local.cwoi.com.cn:8443//contest/C18/problem/A">题意</a></h4>
+<h4 id="思考-3">思考</h4>
+<p>这道题算是考场上想出来的，考场上摸了一会儿鱼，发现有个地方假了的时候只剩
+<span class="math inline">\(5min\)</span> 了，所以紧急修复成了<span
+class="math inline">\(50pts\)</span>，实际上不管直接交有 <span
+class="math inline">\(80pts\)</span>。</p>
+<p>先把最上面那些没有的行删掉。</p>
+<p>考虑每一行的可能性，只有穿过和不穿过两种，穿过又可以分为去的时候穿过和回的时候穿过。</p>
+<p>来的时候穿过，回的时候一定不会穿过，因为一定不优，于是三进制枚举穿过状态，大的路径框架已经被构建出来了，现在要考虑经过那些没有穿过的点。</p>
+<p>被穿过的行不用管，现在就剩没穿过的行，每一行可以从左到右，也可以从右到左，如果两边都有经过，还可以两面包夹，算出每一行的结果，然后加上去就行。</p>
+<p>这样可以拿到 <span
+class="math inline">\(80pts\)</span>，因为它处理不了这种情况。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3 7</span><br><span class="line">#.....#</span><br><span class="line">.#####.</span><br><span class="line">.#####.</span><br></pre></td></tr></table></figure>
+<p>它会穿过第一行和第二行，到第三行后穿过或者是走到底再回来，实际上在穿过第一行走到第二行的时候就应该上去拿掉右上角。</p>
+<p>所以把大的路径画出来后，记录每一个边缘位置是否到达过，还要自下而上
+<span class="math inline">\(dp\)</span>
+一遍求出经过所有未经过的点的最小代价。</p>
+<p>提供一种思路，设 <span class="math inline">\(dp[i][j][k]\)</span>
+表示到第 <span class="math inline">\(i\)</span>
+行，左右最前面的可以已经经过的点为 <span
+class="math inline">\(j,k\)</span> 的最小代价，转移的时候看 <span
+class="math inline">\(j,k\)</span> 是否大于 <span
+class="math inline">\(i\)</span> 或者 <span
+class="math inline">\(i\)</span>
+的两端是否已经经过，如果可行，就选经过一行三种方案的最小值，如果不行，因为一定有一边已经经过，所以只考虑另一边是否补全和从经过的点走一遍再回来的情况，补全的方案有两种，从上面和从下面，直接转移即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^3 *
+3^n)\)</span>，实际上剪枝后跑的飞快，<span
+class="math inline">\(10ms\)</span> 就跑完了。</p>
+<h2 id="section-4">20220212</h2>
+<h3 id="测试t2">20220212测试T2</h3>
+<h4 id="题意-4"><a
+target="_blank" rel="noopener" href="https://https://local.cwoi.com.cn:8443//contest/C18/problem/B">题意</a></h4>
+<h4 id="思考-4">思考:</h4>
+<p>考虑直接 <span class="math inline">\(dp\)</span> 转移，设 <span
+class="math inline">\(dp[i][j][k][0/1]\)</span> 表示考虑前 <span
+class="math inline">\(i\)</span> 个数， 正色子已经用了 <span
+class="math inline">\(j\)</span> 个，反色子已经用了 <span
+class="math inline">\(k\)</span> 个，是否已经赢了的方案数，直接转移是
+<span class="math inline">\(O(n^4 * t)\)</span> 的，可以拿到 <span
+class="math inline">\(20pts\)</span> 的好成绩。</p>
+<p>考虑优化，转移式子是：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i1=<span class="number">0</span>;i1&lt;=n;i1++)</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i2=<span class="number">0</span>;i2&lt;=m;i2++)</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j1=<span class="number">0</span>;j1&lt;=i1;j1++)</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j2=<span class="number">0</span>;j2&lt;=i2;j2++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;=t&amp;&amp;i1-j1&gt;i2-j2)</span><br><span class="line">    <span class="built_in">Inc</span>(dp[i][i1][i2][<span class="number">1</span>],<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][j2][<span class="number">0</span>]*C[n-j1][i1-j1]%mod*C[m-j2][i2-j2]%mod);</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">    <span class="built_in">Inc</span>(dp[i][i1][i2][<span class="number">0</span>],<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][j2][<span class="number">0</span>]*C[n-j1][i1-j1]%mod*C[m-j2][i2-j2]%mod);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">Inc</span>(dp[i][i1][i2][<span class="number">1</span>],<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][j2][<span class="number">1</span>]*C[n-j1][i1-j1]%mod*C[m-j2][i2-j2]%mod);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>转移目标</p>
+<p><code>dp[i][i1][i2][1]</code></p>
+<p>前面一部分</p>
+<p><code>1ll*dp[i-1][j1][j2][0]*C[n-j1][i1-j1]</code></p>
+<p>和后面一部分</p>
+<p><code>C[m-j2][i2-j2]</code></p>
+<p>只有前一部分依赖 <span
+class="math inline">\(j1\)</span>，考虑能不能预处理前一部分的转移，然后优化一个
+<span class="math inline">\(n\)</span></p>
+<p>显然是可以的，手推一下式子可以得到一个新的转移。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j1=<span class="number">0</span>;j1&lt;=n;j1++)</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i2=<span class="number">0</span>;i2&lt;=m;i2++)</span><br><span class="line">&#123;</span><br><span class="line">	sum[j1][i2]=<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][<span class="number">0</span>][<span class="number">1</span>]*C[m][i2]%mod;</span><br><span class="line">	sum2[j1][i2][<span class="number">0</span>]=<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][<span class="number">0</span>][<span class="number">0</span>]*C[m][i2]%mod;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j2=<span class="number">1</span>;j2&lt;=i2;j2++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(dp[i<span class="number">-1</span>][j1][j2][<span class="number">1</span>])</span><br><span class="line">        <span class="built_in">Inc</span>(sum[j1][i2],<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][j2][<span class="number">1</span>]*C[m-j2][i2-j2]%mod);</span><br><span class="line">		sum2[j1][i2][j2]=sum2[j1][i2][j2<span class="number">-1</span>];</span><br><span class="line">		<span class="keyword">if</span>(dp[i<span class="number">-1</span>][j1][j2][<span class="number">0</span>])</span><br><span class="line">        <span class="built_in">Inc</span>(sum2[j1][i2][j2],<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][j2][<span class="number">0</span>]*C[m-j2][i2-j2]%mod);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i1=<span class="number">0</span>;i1&lt;=n;i1++)</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i2=<span class="number">0</span>;i2&lt;=m;i2++)</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> j1=<span class="number">0</span>;j1&lt;=i1;j1++)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> val=C[n-j1][i1-j1];</span><br><span class="line">	<span class="built_in">Inc</span>(dp[i][i1][i2][<span class="number">1</span>],<span class="number">1ll</span>*val*sum[j1][i2]%mod);</span><br><span class="line">	<span class="keyword">if</span>(i&lt;=t)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> pos=i2+j1-i1,val1=pos&lt;<span class="number">0</span>?<span class="number">0</span>:sum2[j1][i2][pos],val2;</span><br><span class="line">		val2=sum2[j1][i2][i2];<span class="built_in">Dec</span>(val2,val1);</span><br><span class="line">		<span class="keyword">if</span>(i&lt;t)<span class="built_in">Inc</span>(dp[i][i1][i2][<span class="number">0</span>],<span class="number">1ll</span>*val*val1%mod);</span><br><span class="line">		<span class="built_in">Inc</span>(dp[i][i1][i2][<span class="number">1</span>],<span class="number">1ll</span>*val*val2%mod);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优化到了 <span class="math inline">\(O(n^3*t)\)</span>，记此时的常数
+<span class="math inline">\(k = 1\)</span>，它需要约 <span
+class="math inline">\(15s\)</span> 通过数据规模最大的测试点。</p>
+<p>这份代码可以拿到 <span class="math inline">\(50pts\)</span>
+的好成绩，感觉上已经不太能优化复杂度了，我们考虑卡常。</p>
+<p>第一步，发现 <span class="math inline">\(n=6\)</span>
+的时候只需要转移 <span class="math inline">\(dp[6][n][m][1]\)</span></p>
+<p>第二步，发现 <span class="math inline">\(n=1\)</span>
+的时候被转移的只有 <span
+class="math inline">\(dp[0][0][0][0]\)</span></p>
+<p>常数变为 <span class="math inline">\(k = \dfrac{2}{3}\)</span></p>
+<p>此时可以拿到 <span class="math inline">\(70pts\)</span>
+的好成绩。</p>
+<p>继续考虑卡常。</p>
+<p>发现其实在 <span class="math inline">\(i&gt;=t\)</span> 时转移 <span
+class="math inline">\(dp[i][i1][i2][0]\)</span>
+没有意义，直接剪掉。常数没有变化。</p>
+<p>发现 <span class="math inline">\(dp[i][i1][i2][1]\)</span>
+实际上可以由 <span class="math inline">\(dp[i][i1][i2][0]\)</span>
+直接得到，所以只转移 <span
+class="math inline">\(dp[i][i1][i2][0]\)</span> ，记作 <span
+class="math inline">\(dp[i][i1][i2]\)</span>，常数变为 <span
+class="math inline">\(k = \dfrac{1}{3}\)</span></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(i&lt;=t)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j1=<span class="number">0</span>;j1&lt;=n;j1++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i2=i==<span class="number">6</span>?m:<span class="number">0</span>;i2&lt;=m;i2++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum[j1][i2][<span class="number">0</span>]=<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][<span class="number">0</span>]*C[m][i2]%mod;</span><br><span class="line">            <span class="type">int</span> *p=&amp;sum[j1][i2][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j2=<span class="number">1</span>;j2&lt;=i2;j2++)</span><br><span class="line">            &#123;</span><br><span class="line">                *p=sum[j1][i2][j2<span class="number">-1</span>];</span><br><span class="line">                <span class="built_in">Inc</span>(*p++,<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][j2]*C[m-j2][i2-j2]%mod);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i1=i==<span class="number">6</span>?n:<span class="number">0</span>;i1&lt;=n;i1++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j1=<span class="number">0</span>;j1&lt;=i1;j1++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i2=i==<span class="number">6</span>?m:<span class="built_in">max</span>(<span class="number">0</span>,i1-j1);i2&lt;=m;i2++)</span><br><span class="line">                <span class="built_in">Inc</span>(dp[i][i1][i2],<span class="number">1ll</span>*C[n-j1][i1-j1]*sum[j1][i2][i2+j1-i1]%mod);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i2=i==<span class="number">6</span>?m:<span class="number">0</span>;i2&lt;=m;i2++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j1=<span class="number">0</span>;j1&lt;=n;j1++)</span><br><span class="line">            sum[j1][i2][<span class="number">0</span>]=<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][<span class="number">0</span>]*C[m][i2]%mod;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j2=<span class="number">1</span>;j2&lt;=i2;j2++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j1=<span class="number">0</span>;j1&lt;=n;j1++)</span><br><span class="line">                <span class="built_in">Inc</span>(sum[j1][i2][<span class="number">0</span>],<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][j2]*C[m-j2][i2-j2]%mod);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i1=i==<span class="number">6</span>?n:<span class="number">0</span>;i1&lt;=n;i1++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i2=i==<span class="number">6</span>?m:<span class="number">0</span>;i2&lt;=m;i2++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j1=<span class="number">0</span>;j1&lt;=i1;j1++)</span><br><span class="line">                <span class="built_in">Inc</span>(dp[i][i1][i2],<span class="number">1ll</span>*sum[j1][i2][<span class="number">0</span>]*C[n-j1][i1-j1]%mod);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时的成绩还是 <span
+class="math inline">\(70pts\)</span>，但我们可以观察一下代码，在 <span
+class="math inline">\(i&gt;t\)</span>
+后的转移实际上没有任何意义，可以直接计算，优化这一部分，可以拿到 <span
+class="math inline">\(90pts\)</span> 的好成绩。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=<span class="built_in">min</span>(t,<span class="number">5</span>);i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j1=<span class="number">0</span>;j1&lt;=n;j1++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i2=<span class="number">0</span>;i2&lt;=m;i2++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum[j1][i2][<span class="number">0</span>]=<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][<span class="number">0</span>]%mod*C[m][i2]%mod;</span><br><span class="line">            <span class="type">int</span> *p=&amp;sum[j1][i2][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j2=<span class="number">1</span>;j2&lt;=i2;j2++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(dp[i<span class="number">-1</span>][j1][j2]&gt;=mod)dp[i<span class="number">-1</span>][j1][j2]%=mod;</span><br><span class="line">                *p=sum[j1][i2][j2<span class="number">-1</span>];</span><br><span class="line">                <span class="built_in">Inc</span>(*p++,<span class="number">1ll</span>*dp[i<span class="number">-1</span>][j1][j2]*C[m-j2][i2-j2]%mod);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i1=<span class="number">0</span>;i1&lt;=n;i1++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j1=<span class="number">0</span>;j1&lt;=i1;j1++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> i2=<span class="built_in">max</span>(<span class="number">0</span>,i1-j1);i2&lt;=m;i2++)</span><br><span class="line">            &#123;</span><br><span class="line">                dp[i][i1][i2]+=<span class="number">1ll</span>*C[n-j1][i1-j1]*sum[j1][i2][i2+j1-i1];</span><br><span class="line">                <span class="keyword">if</span>(dp[i][i1][i2]&gt;=<span class="number">8e18</span>)dp[i][i1][i2]%=mod;</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(t==<span class="number">6</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=m;j++)</span><br><span class="line">            <span class="built_in">Inc</span>(dp[<span class="number">6</span>][n][m],(n-i&lt;=m-j)*dp[<span class="number">5</span>][i][j]%mod);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,((<span class="built_in">quick</span>(<span class="number">6</span>,n+m)-dp[<span class="number">6</span>][n][m]%mod)+mod)%mod);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> all=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=m;j++)</span><br><span class="line">            <span class="built_in">Inc</span>(all,<span class="number">1ll</span>*dp[t][i][j]%mod*<span class="built_in">quick</span>(<span class="number">6</span>-t,n+m-i-j)%mod);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,((<span class="built_in">quick</span>(<span class="number">6</span>,n+m)-all)+mod)%mod);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后的 <span class="math inline">\(10pts\)</span>
+可能需要一些卡常技巧。</p>
+<p>我们发现实际上复杂度的瓶颈在数组寻址和取模，考虑优化其中之一，被寻址的数组经过循环变量的调整已经相当连续了，我们考虑优化取模。</p>
+<p>用 <code>long long</code> 存 <span
+class="math inline">\(dp\)</span>，每 <span
+class="math inline">\(8\)</span> 次加法取一次模，可以通过本题。</p>
+<p>一个很常见的，在取模运算较多时的优化技巧。</p>
+<h3 id="测试t3">20220211 测试T3</h3>
+<h4 id="题意-5"><a
+target="_blank" rel="noopener" href="https://https://local.cwoi.com.cn:8443//contest/C18/problem/C">题意</a></h4>
+<h4 id="思考-5">思考：</h4>
+<p>这道题暴力思路无非就二进制枚举和容斥。正解的做法很神仙。</p>
+<p>在这种 <span class="math inline">\(\text{NP}\)</span>
+问题中，我们完全可以考虑将枚举的部分减少，这道题的思路是对稀疏图删点变为森林，然后二进制枚举一些删掉的点的状况再进行树形
+<span
+class="math inline">\(dp\)</span>，着实是一个很有启发性的思路。</p>
+<h2 id="section-5">20220212</h2>
+<h3 id="cf1637f">CF1637F</h3>
+<h4 id="思考-6">思考:</h4>
+<p>对于这种条件为最小值的覆盖问题，我们不妨考虑最大的那个点是如何被覆盖的，首先有一个结论是只会在叶子有基站，证明简单，略去。然后考虑最大的那个点是如何被覆盖的，把它看作根，一定来源于它不同儿子的两个叶子，所以我们考虑其它点的时候一定可以认为这个根上的值为
+<span class="math inline">\(\text{INF}\)</span>
+，理由不多说了。所以每个点 <span class="math inline">\(u\)</span>
+的包含的叶子至少有一个最大值为 <span
+class="math inline">\(h_u\)</span>，贪心即可，最后决策最大值的点应该放在哪里，同样的贪心。</p>
+<p>实现较为简单，没什么说的。</p>
+<h2 id="section-6">20220225</h2>
+<h3 id="haltoj116">haltoj116</h3>
+<h4 id="思考-7">思考：</h4>
+<p>考虑团和独立集的性质，我在考场上就想到了答案一定不多，极大概率无需取模这一特性，于是用类似分治的方式得到了
+<span
+class="math inline">\(60pts\)</span>，如果我们找出了一个合法解，那么其它合法解的构造也是简单的，考虑合法解的性质，不妨设团的大小为
+<span class="math inline">\(s\)</span>
+，那么因为独立集只能向团连边，所以独立集中的点最大度数为 <span
+class="math inline">\(s\)</span>，而这样又导致了团中的点最小度数增加，所以我们不难发现团中的点一定是度数最大的那一段前缀。</p>
+<p>对于度数相同的点，看似无法下手，但是我们知道边的构成是团内加上团和独立集之间，团内的边数我们是知道的，而如果记录一下团中点的总度数，我们可以很轻松的推出独立集间是否有边，我们设团内点的总度数为
+<span class="math inline">\(p\)</span>,团的大小为 <span
+class="math inline">\(i\)</span>，团内边数为 ，那么其他点之间的边数就为
+<span
+class="math inline">\((2*m-2*p+i*(i-1))/2\)</span>，所以我们考虑满足
+<span class="math inline">\(2m + i * (i-1) = 2p\)</span>
+这个条件的选择有什么性质，因为这是成立的必要条件，考虑证明这也是充分条件。如果团内边数不足
+<span class="math inline">\(i*(i-1)\)</span>，那么我们发现 <span
+class="math inline">\(p\)</span>
+这边会减小。考虑如果独立集内边数有边，那么 <span
+class="math inline">\(p\)</span>
+这边一样相对减少，所以这也是充分条件。</p>
+<p>这道题结束了。</p>
+<h3 id="haltoj117">haltoj117:</h3>
+<h4 id="思考-8">思考：</h4>
+<p>考虑在原序列中是前缀 <span class="math inline">\(max\)</span>
+的点，它们在新划分的序列中一定也是前缀 <span
+class="math inline">\(max\)</span>，如果新增了前缀 <span
+class="math inline">\(max\)</span>，那么我们可以很轻松的改变划分情况去除这个前缀
+<span class="math inline">\(max\)</span>，所以如果原序列中前缀 <span
+class="math inline">\(max\)</span>
+的数量为偶数，就一定可以。如果为奇数，我们不妨考虑只有一个序列有新增的前缀
+<span class="math inline">\(max\)</span>
+的情况。我们考虑从原序列中抽出一个新序列出来，设两个序列的权值之差为
+<span class="math inline">\(k\)</span>，如果抽了一个原先的前缀 <span
+class="math inline">\(max\)</span>，那么 <span
+class="math inline">\(k\)</span> 减少 <span
+class="math inline">\(2\)</span>，如果新增了一个前缀 <span
+class="math inline">\(max\)</span>，<span
+class="math inline">\(k\)</span> 减少量为 <span
+class="math inline">\(1\)</span>，所以我们将原先是前缀 <span
+class="math inline">\(max\)</span> 的数的权值视为 <span
+class="math inline">\(2\)</span>，其余的视为 <span
+class="math inline">\(1\)</span>，问题就是是要选一个上升子序列，使得权值和为前缀
+<span class="math inline">\(max\)</span>
+的个数，这个问题就相当简单了。</p>
+<h2 id="section-7">20220228</h2>
+<h3 id="abc215h子集容斥的另一种思路">ABC215H(子集容斥的另一种思路)</h3>
+<p>考虑霍尔定律，枚举不满足条件的子集 <span
+class="math inline">\(mask\)</span>，可以用 <span
+class="math inline">\(\text{FMT-DP}\)</span> 计算出必须由 <span
+class="math inline">\(mask\)</span>
+供给的白菜数量，考虑减少一个子集中的白菜使得不满足条件，就可以计算出最少需要吃多少个。问题变成了统计答案，我们发现对于一个
+<span class="math inline">\(mask\)</span>
+直接组合数计算然后相加会算重，又因为答案不是全集所以并不能简单容斥。而暴力计算强制每种白菜都选一个的复杂度是
+<span class="math inline">\(O(3^n)\)</span> 的，我们仍然考虑应用 <span
+class="math inline">\(\text{FMT-DP}\)</span>
+计算答案。事实上，这种组合数问题都可以考虑这种方式。</p>
+<p>设 <span class="math inline">\(f_{mask}\)</span> 表示所选白菜集合被
+<span class="math inline">\(mask\)</span> 包含的方案数，设 <span
+class="math inline">\(f&#39;_{mask}\)</span> 表示所选白菜种类集合恰好为
+<span class="math inline">\(mask\)</span> 的方案数，列有等式。 <span
+class="math display">\[
+f&#39;_{mask} = f_{mask} - \sum\limits_{x \sub mask} f&#39;_{mask}
+\]</span> 令 <span class="math inline">\(f[i][mask]\)</span>
+表示当前子集为 <span class="math inline">\(mask\)</span> ，低 <span
+class="math inline">\(i\)</span>
+位不一定存在，但高位都严格符合要求的方案总数，列有</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> mask=<span class="number">0</span>;mask&lt;<span class="number">1</span>&lt;&lt;n;mask++)&#123;</span><br><span class="line">        f[i][mask]=f[i<span class="number">+1</span>][mask];</span><br><span class="line">        <span class="keyword">if</span>(<span class="number">1</span>&lt;&lt;i&amp;mask)f[i][mask]-=f[i<span class="number">+1</span>][mask^(<span class="number">1</span>&lt;&lt;i)],f[i][mask]%=mod;	</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>从 <span class="math inline">\(i+1\)</span> 推到 <span
+class="math inline">\(i\)</span>
+的过程中，因为高位已经强制存在了，所以我们减去的就是 <span
+class="math inline">\(f[i][mask]\)</span> 中所有不存在第 <span
+class="math inline">\(i\)</span> 位，但高位符合要求的情况。</p>
+<p>最后计算出来的 <span class="math inline">\(f[0]\)</span> 就是上述的
+<span class="math inline">\(f\)</span>。</p>
+<p>然后这道题就好做了。</p>
+<h2 id="section-8">20220301</h2>
+<h3 id="考试-t1sam的进一步理解">考试 T1(SAM的进一步理解)</h3>
+<h4 id="题意-6">题意：</h4>
+<p>给定一颗字符在点上的 <span
+class="math inline">\(\text{Trie}\)</span>，求 <span
+class="math inline">\(\text{Trie}\)</span>
+代表的所有字符串本质不同子串个数，顺便询问钦定字符大小关系后第 <span
+class="math inline">\(k\)</span> 小的子串，保证 <span
+class="math inline">\(\text{Trie}\)</span> 上字符随机且答案长度和不超过
+<span class="math inline">\(800KB\)</span>。</p>
+<h4 id="思考-9">思考：</h4>
+<p>考场上想到可以类似 <span class="math inline">\(\text{SAM}\)</span>
+一样乱搞，然后就写了 <span class="math inline">\(\text{dfs}\)</span>
+构建 <span class="math inline">\(\text{SAM}\)</span>，<span
+class="math inline">\(lst\)</span> 指针被置为它父亲插入后的 <span
+class="math inline">\(p\)</span>，这个做法在数据随机的情况下是没有问题的，但是如果出现构造数据，它会没掉。</p>
+<p>首先是如果拉一条 <span class="math inline">\(a\)</span>
+链，链上每个点再挂一个 <span class="math inline">\(b\)</span>，然后
+<span class="math inline">\(dfs\)</span> 回跳的时候重置 <span
+class="math inline">\(q\)</span> 的来边到 <span
+class="math inline">\(np\)</span> 时时间复杂度是 <span
+class="math inline">\(O(n^2)\)</span> 的。</p>
+<p>我所理解的 <span class="math inline">\(\text{SAM}\)</span>
+时间复杂度正确性基于两个东西，一个是 <span
+class="math inline">\(p\)</span>
+的深度变化情况，这证明了第一次构建边的时候时间正确。在 <span
+class="math inline">\(dfs\)</span> 构建 <span
+class="math inline">\(SAM\)</span> 的时候，大量回溯操作会导致 <span
+class="math inline">\(p\)</span>
+深度的异常变化，这样就不对了。第二个是重置 <span
+class="math inline">\(q\)</span> 的来边的循环，这个可以分析 <span
+class="math inline">\(p\)</span> 的 <span
+class="math inline">\(fa\)</span> 所代表最短字符串长度来理解，每次重置
+<span class="math inline">\(q\)</span>
+的来边，我们都认为是找到了一个更短的 <span
+class="math inline">\(np\)</span>
+所代表的字符串，不妨看成一个指针在插入的字符串上移动，它只会向右。重置完
+<span class="math inline">\(p\)</span>
+的来边再插入下个点的过程中，我们至少会跳到 <span
+class="math inline">\(np\)</span> 处（只针对单个串），然后重设的 <span
+class="math inline">\(p&#39;\)</span> 的 <span
+class="math inline">\(fa\)</span> 的最短长度一定可以从 <span
+class="math inline">\(np\)</span> 那里继承过来，所以指针只会右移。<span
+class="math inline">\(dfs\)</span> 加入时同样导致了这个指针在 <span
+class="math inline">\(\text{Trie}\)</span>
+上乱跳，复杂度就没有了保证。</p>
+<p>然后是正确性相关的问题，这种 <span
+class="math inline">\(\text{SAM}\)</span>
+写法会导致无效的空节点建立，比如说插入的时候就碰到了满足 <span
+class="math inline">\(a[lst].ch[c]\)</span>
+存在的情况，这样新建出来的点实际上是无效的，在绝大部分题目中这个无效点是不影响答案的，但是少部分写法会导致爆炸。</p>
+<p>接下来讨论下 <span class="math inline">\(\text{BFS}\)</span>
+建树的正确性。由于是按深度加点，所以 <span
+class="math inline">\(a[lst].ch[c]\)</span>
+一定是不存在的，因此绝不会导致无效节点的建立，时间复杂度证明不会，省略。</p>
+<p>时间复杂度我并不会证明 emmmm.</p>
+<h3 id="abc241h">ABC241H</h3>
+<h4 id="思考-10">思考：</h4>
+<p>生成函数套路题。</p>
+<h2 id="section-9">20220302</h2>
+<h3 id="arc136e">ARC136E</h3>
+<h4 id="思考-11">思考：</h4>
+<p>显然偶数链是很好走的，所以考虑从偶数边怎么到另一个节点，显然偶数只能选一个，我们先考虑不选偶数的情况。</p>
+<p>定义 <span class="math inline">\(f[x]\)</span> 为 <span
+class="math inline">\(x\)</span> 的最小质因数，<span
+class="math inline">\(x\)</span> 能走到 <span
+class="math inline">\(y\)</span> 的充要条件是 <span
+class="math inline">\(y&gt;x,x+f[x]\leq y-f[y]\)</span>，如果 <span
+class="math inline">\((x,y) = 1\)</span>，那么显然，因为 <span
+class="math inline">\(x\)</span> 第一步至少走 <span
+class="math inline">\(f[x]\)</span>，到 <span
+class="math inline">\(y\)</span> 的最后一步至少走 <span
+class="math inline">\(f[y]\)</span>。如果 <span
+class="math inline">\((x,y) \neq 1\)</span>，设 <span
+class="math inline">\(x = p \times f[x]\)</span>，则 <span
+class="math inline">\(y\)</span> 至少为 <span
+class="math inline">\((p+2)\times f[x]\)</span>，故结论仍然成立。</p>
+<p>由此可以 <span class="math inline">\(x\)</span> 走不到 <span
+class="math inline">\(y(y&gt;x)\)</span> 的充要条件为 <span
+class="math inline">\(x+f[x]&gt;y-f[y]\)</span>，将每个点视为 <span
+class="math inline">\((x-f[x],x+f[x]])\)</span>
+，题目就是要求出一些区间的集合，使得所有区间有公共点，要求权值最大，不妨枚举公共点，然后差分计算即可。</p>
+<p>考虑下偶数，实际上做法类似。</p>
+<h2 id="section-10">20220303</h2>
+<h3 id="agc027ehaltoj119">AGC027E&amp;&amp;haltoj119</h3>
+<h4 id="思考-12">思考：</h4>
+<p>观察不变量是这种变换题的思考方向之一，我们设 <span
+class="math inline">\(a\)</span> 的权值为 <span
+class="math inline">\(1\)</span> ，<span
+class="math inline">\(b\)</span> 的权值为 <span
+class="math inline">\(2\)</span>，总能发现权值和对 <span
+class="math inline">\(3\)</span> 取模的结果不变。</p>
+<p>先考虑一个字符串在什么情况下可以变成另一个字符串，权值相同显然是必要条件，其次，源串
+<span class="math inline">\(s\)</span> 不能是交替串 <span
+class="math inline">\(abababa\)</span>
+这类，这有点困难，不妨先考虑变成一个字母的情况。</p>
+<p>充要条件为权值相同且不交替，证明考虑归纳法。</p>
+<p>现在考虑目标为一个字符串的情况。我们先贪心的匹配，用最少的字母构造出目标串，然后考虑调整剩下的部分使得它满足条件。如果特判掉交替串，我们发现只要权值相同且源串的一个前缀能和目标串贪心匹配上，那么一定可以变成目标串，于是考虑
+<span class="math inline">\(dp[i]\)</span> 表示考虑到前 <span
+class="math inline">\(i\)</span>
+的源串字母，能贪心的对应上多少不同串，显然这样的贪心对应是不重不漏的，转移分为匹配
+<span class="math inline">\(i+1\)</span> 和不匹配 <span
+class="math inline">\(i+1\)</span> 两种，预处理一个类似 <span
+class="math inline">\(nxt\)</span> 的东西可以做到线性。</p>
+<h2 id="section-11">20220304</h2>
+<h3
+id="cf917dhaltoj122初探二项式反演">CF917D&amp;&amp;haltoj122(初探二项式反演)</h3>
+<h4 id="思考-13">思考：</h4>
+<p>考场上已经观察出原题需要求一张完全图有多少棵最小生成树与给定树至少有
+<span class="math inline">\(n-k-1\)</span> 条边相同。<span
+class="math inline">\(prufer\)</span> 序列有一个结论，<span
+class="math inline">\(n\)</span> 个点 <span
+class="math inline">\(k\)</span>
+个连通块的图构成有标号无根树的方案总数为 <span class="math display">\[
+n^{k-2}\times\prod_{i=1}^{k} sz[i]
+\]</span> 显然我不会证明。场上看到 <span
+class="math inline">\(n\)</span> 仅为 <span
+class="math inline">\(50\)</span> 就想乱搞，误打误撞弄了一个容斥 <span
+class="math inline">\(dp\)</span>
+出来，实际上正解差不多就是这个。我们考虑钦定选了 <span
+class="math inline">\(k\)</span> 条边一定存在的方案总数 <span
+class="math inline">\(f(k)\)</span>，由二项式反演的套路可以得知恰好
+<span class="math inline">\(k\)</span> 条边存在的方案数 <span
+class="math inline">\(g(k)\)</span> 满足 <span class="math display">\[
+g(k) = \sum_{i=k}^{n-1}(-1)^{i-k}\times C(i,k) \times f(i)
+\]</span> 其中 <span class="math inline">\(C(i,j)\)</span>
+表示组合数。</p>
+<p>显然我仍然不会证明，但是可以感性理解下，首先 <span
+class="math inline">\(f(k)\)</span> 满足以下式子 <span
+class="math display">\[
+f(k) = \sum_{i=k}^{n-1}C(i,k) \times g(i)
+\]</span> 这个很好理解，枚举实际上选了多少条边，钦定 <span
+class="math inline">\(k\)</span>
+条边的方案数就是从实际选的边中钦定一些出来。注意这个钦定和至少有区别，不是简单的后缀和，因为实际选一条边的方案可以被多种钦定的情况包含。</p>
+<p>我不会证明二项式反演的式子，所以我们从容斥的角度来考虑 <span
+class="math inline">\(g(k)\)</span>，第一项为钦定 <span
+class="math inline">\(k\)</span> 条边，然后减去被多考虑了的存在 <span
+class="math inline">\(k+1\)</span>
+条边的情况，依此类推。组合数的存在则是因为 <span
+class="math inline">\(f(i)\)</span> 会被额外考虑 <span
+class="math inline">\(C(i,k)\)</span> 次。</p>
+<p><span class="math inline">\(f\)</span> 肯定比 <span
+class="math inline">\(g\)</span> 好算，我们现在需要计算的是选 <span
+class="math inline">\(k\)</span>
+条边，然后得到的联通块组成不同有标号无根生成树的方案数。注意到生成树计数公式中
+<span class="math inline">\(n^{k-2}\)</span>
+与怎么选边完全无关，所以只需要记录一下 <span class="math inline">\(\prod
+sz_i\)</span>，这个就可以 <span
+class="math inline">\(dp[i][j][k]\)</span> 表示考虑以 <span
+class="math inline">\(i\)</span> 为根的子树，选了 <span
+class="math inline">\(j\)</span> 条边，<span
+class="math inline">\(i\)</span> 所在连通块大小为 <span
+class="math inline">\(k\)</span> 的方案数。优化的话，可以考虑 <span
+class="math inline">\(\prod sz_i\)</span>
+的组合意义。于是就是需要在每个连通块内选一个代表元，于是状态第三维简化为是否选了代表元，复杂度
+<span class="math inline">\(O(n^2)\)</span>。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2394,100 +2930,8 @@ class="math inline">\(CPU\)</span>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E5%AD%A6%E6%9C%AF/%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/AI%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/12/%E5%AD%A6%E6%9C%AF/%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/AI%E7%9B%B8%E5%85%B3%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">AI相关学习资料汇总</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-12 15:26:03" itemprop="dateCreated datePublished" datetime="2022-07-12T15:26:03+08:00">2022-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:49:59" itemprop="dateModified" datetime="2025-02-16T17:49:59+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">学术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="一些-ai-相关的资料">一些 AI 相关的资料</h2>
-<h3 id="gpu-编程">GPU 编程</h3>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/shuzfan/article/details/76650947">GPU
-编程</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8c461c1e5e01">CPU,GPU
-内存缓存原理以及相关内容在 CUDA 上的应用</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

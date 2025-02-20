@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,137 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/04/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1103%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/04/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1103%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1103总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-04 08:58:02" itemprop="dateCreated datePublished" datetime="2022-11-04T08:58:02+08:00">2022-11-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:22:37" itemprop="dateModified" datetime="2025-02-16T20:22:37+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0149">考试</a></p>
+<h2 id="t1">T1</h2>
+<p>容易想到只会取到 <span class="math inline">\(O(n^2)\)</span>
+个值，大力动态规划，滑动窗口优化。</p>
+<p>滑动窗口的 COST 宏函数写挂了，所以我挂了。</p>
+<p>有一个更厉害的思路，容易发现 DP
+数组本质上是个分段函数，然后转移就是平移原函数添加一段平的然后再加上一个绝对值函数，根据经典结论，若干绝对值函数叠加是一个形如开口向上二次函数的东西，填一段平的一定会在最低点添，不影响性质。</p>
+<h2 id="t2">T2</h2>
+<p>写挂的题，不过很有意思。</p>
+<p>写挂有两个原因，一是图方便用引用，但是没发现被引用的数据其实还有用，然后修改了它，后面又要用它，就寄了。二是转成
+<span class="math inline">\(0-based\)</span>
+处理，边转了，但是记录数组先存的边，没有动记录数组。警钟敲烂。</p>
+<p>题目本身也是有趣的，首先它定向后必须是个 <span
+class="math inline">\(DAG\)</span>，所以只考虑所有的 <span
+class="math inline">\(DAG\)</span>，考虑以拓扑序的方式去遍历所有 <span
+class="math inline">\(DAG\)</span>，容易发现当拓扑序确定后，定向方式也就确定了，所以一个比较简单的想法是枚举拓扑序。</p>
+<p>枚举拓扑序想要转成指数可能不太能用常规方式转，因为的确需要知道每个点的距离,
+思考一下其实发现没中过定向方式被计算了多次，所以考虑给这个拓扑序附加一些<strong>不影响遍历解空间</strong>的性质，比如强制距离单调不降，这样枚举起来就可以大大方方的选一坨独立集，强制转移到它的距离加一，这样的强制加一<strong>同样不影响遍历解空间</strong>，所以它是对的。</p>
+<p>有个东西叫 dilworth 定理,
+描述的就是这个东西，最大反链中元素数目等于最小链划分数，我不是很懂这个定理和这道题的关系，但是用这个定理和以上方式思考得出的代码是一样的。</p>
+<p><strong>遍历 DAG 的有效方式是通过 TOP 序，尤其是需要定向的
+DAG</strong></p>
+<p>复杂度 <span class="math inline">\(O(3^n+n\times2^n)\)</span></p>
+<h2 id="t3">T3</h2>
+<p>考场上刚出来的题。</p>
+<p>指数题看数据范围说话，总感觉子串很麻烦，因为扰乱了信息，所以把子串判掉。</p>
+<p>然后觉得如果一个串绕了一圈，也很麻烦，再判掉。</p>
+<p>所以现在的环，从某一个子串开始，左端点递增，那右端点也就递增了，所以可以考虑顺序了。</p>
+<p>容易发现每个串会尽量往左靠，因为没有子串了，然后最后一个串和第一个串会尽量粘在一起，可以直接把粘在一起的部分减掉，就算减了倒数第二个串的，那其实也没有问题，因为确实可以减掉。</p>
+<p>然后阶乘转指数，记录最后一个串的编号和方向，枚举下一个串的编号和方向。</p>
+<p>考场上很蠢，每个点为起点算了一遍，其实钦定一个算就行了。</p>
+<p><strong>如果把一些 Native
+的情况特判掉，可能会得到更加优美的性质，这就是分类讨论题。</strong></p>
+<h2 id="t4">T4</h2>
+<p>字符串替换的题，思路主要有两种。</p>
+<p>考虑某个大写字符能替换成什么，发现经过 <span
+class="math inline">\(O(\sum)\)</span>
+次替换后一定会变成或者多出一个不可替换的字符，所以考虑大力动态规划，设
+<span class="math inline">\(F_{c,i}\)</span> 表示字符 <span
+class="math inline">\(c\)</span> 替换成长度为 <span
+class="math inline">\(i\)</span>
+的不可替换字符串的最小字典序，然后转移顺序不同层已经是固定的，同层转移顺序随意。这样做显然不对，因为有环，但是多做几次他就对了。</p>
+<p>考虑按不可替换字符长度为阶段做动态规划，同时处理若干个规则，转移之间如果有环，有两种情况，其一是其它的向它转移过来
+<span class="math inline">\(len\)</span>
+个，另一种是下一个大写字符替换为空串，后者可以钦定处理到的位置的顺序转移搞定，前者可以用优先队列类似
+DIJ 的思路。</p>
+<p>当然，这个思路也可以不考虑转移有环，直接多做几遍就对了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1157,157 +1288,8 @@ Subject，所以直接告诉我。</p>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/21/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1020%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/21/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1020%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221020考试总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-21 11:06:48" itemprop="dateCreated datePublished" datetime="2022-10-21T11:06:48+08:00">2022-10-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:22:25" itemprop="dateModified" datetime="2025-02-16T20:22:25+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0139">考试</a></p>
-<h3 id="t1">T1</h3>
-<p>套路状压题，有一些关于分支的常数优化技巧</p>
-<h3 id="t2">T2</h3>
-<p>有趣的容斥原理题，但是不太适合出在考试。</p>
-<p>首先猜想答案比较多，所以考场上直接一个随机化过掉。</p>
-<p>考虑两人集合交的大小 <span class="math inline">\(\sum|S_i\bigcap
-S_j|\)</span>
-，如果能算出这玩意，很容易用鸽巢原理算出答案个数的下界。</p>
-<p>考虑每个元素对它的贡献，是 <span
-class="math inline">\(\binom{cnt_i}{2}\)</span> 的，所以 <span
-class="math inline">\(cnt\)</span> 的分布需要尽可能平均，不妨让它就为
-<span class="math inline">\(cnt_i\)</span>。</p>
-<p>所以上面那个式子的下界是 <span
-class="math inline">\(\dfrac{n^3}{4}\)</span>
-级别的。鸽巢原理，集合总个数为 <span
-class="math inline">\(\dfrac{n\times(n+1)}{2}\)</span>，每一个集合先分配
-<span class="math inline">\(\lfloor\frac{n-1}{2}\rfloor\)</span>
-个，剩下的数级别是 <span class="math inline">\(O(n^2)\)</span>
-的，因此答案个数是 <span class="math inline">\(O(n)\)</span>
-的，期望随机 <span class="math inline">\(n\)</span>
-次可以找到一组合法解。</p>
-<h3 id="t3">T3</h3>
-<p>能看出很多问题的题。</p>
-<p>题目本身不难，但是坑点极多。</p>
-<p>考虑转化问题的时候一定要搞清楚转化的前提条件，以及对应的<strong>充要条件</strong>。</p>
-<p>第一次出错：认为选定合法的删除子序列后一定有解，实际上没有位置放
-<span class="math inline">\(1/0\)</span></p>
-<p>第二次出错：认为必须留位置给 <span
-class="math inline">\(1/0\)</span>，但实际上有可能根本不存在 <span
-class="math inline">\(1/0\)</span>，留位置是没有意义的，需要特判。</p>
-<p>另外还有必要提的一点是，这种选择一个元素，移动到任意位置的题，往往可以考虑最终结果，也就是选择了哪些，或者是选择了哪些不动。</p>
-<p>和求改为最长不下降子序列最小代价的题目一样，可以考虑补集转化，最多的，能不动的元素个数，就是
-LIS，LCS 的长度。</p>
-<p><strong>多次出错的原因也就是误以为只要选择合法，那么就一定可以构造合法的方案。</strong></p>
-<h3 id="t4">T4</h3>
-<p>有趣的贪心题。</p>
-<p>我们给矿工分级，并认为操作是放一组矿工，每个矿工只能挖一个，<span
-class="math inline">\(k\)</span> 级矿工能挖掉距离小于 <span
-class="math inline">\(k\)</span> 的点。</p>
-<p>考虑有一条线从下往上扫描，我们需要尽可能把矿工往上放，这样能够到更多的点。</p>
-<p>先考虑最深的必须放矿工的点，它一定满足，<span
-class="math inline">\(k\)</span>
-级儿子有一个还没有被挖的宝藏，否则可以继续往上，这一定不劣，不妨从最简单的情况开始。</p>
-<p>假设在这个点放了矿工，那矿工必须挖掉 <span
-class="math inline">\(k\)</span>
-级儿子，否则上面就处理不了了。如果矿工还能挖，那么需要让他把 <span
-class="math inline">\(k-1\)</span>
-级儿子也尽可能挖，因为如果让父亲处理，需要付出一个 <span
-class="math inline">\(k\)</span>
-级矿工的代价，但是这个点的矿工上到父亲的时候降级为 <span
-class="math inline">\(k-1\)</span>
-级，矿工等级显然越高越好，对于等级低的儿子，在这里挖可以看成于先上去降级再挖。</p>
-<p>所以在第一个必须放矿工的点，矿工<strong>必须</strong>挖掉 <span
-class="math inline">\(k\)</span> 级儿子，<strong>尽可能</strong>挖 <span
-class="math inline">\(k-1\)</span> 级儿子，意思是如果还有 <span
-class="math inline">\(k-1\)</span>
-级儿子没有挖完，那就没必要再放矿工，可以留给父亲处理。</p>
-<p>接下来的点就有不同等级的矿工了，对于 <span
-class="math inline">\(i\)</span>
-级矿工，他会尽可能挖掉和它同级的儿子，如果还有剩余，会挖掉 <span
-class="math inline">\(i-1\)</span>
-级儿子，<strong>这个过程一定要从等级小的矿工到等级大的矿工考虑</strong>，否则会变劣。</p>
-<p>剩余的矿工降级后上传，儿子升级后上传。</p>
-<p>按照这个策略贪心即可。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

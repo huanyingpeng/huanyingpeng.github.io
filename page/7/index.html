@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,113 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/25/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/C-%E7%9A%84%E4%B8%80%E4%BA%9B%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/25/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/C-%E7%9A%84%E4%B8%80%E4%BA%9B%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">C++的一些踩坑记录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-25 16:33:05" itemprop="dateCreated datePublished" datetime="2022-09-25T16:33:05+08:00">2022-09-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:47:07" itemprop="dateModified" datetime="2025-02-16T17:47:07+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="声明和定义">声明和定义</h2>
+<ul>
+<li>正常情况下，函数的声明和定义可以分开写，如果函数参数有默认参数，写在声明或定义处都没问题，如果函数为模板参数，那么<strong>默认参数只能写在声明处</strong></li>
+</ul>
+<h2 id="模板函数">模板函数</h2>
+<p>模板函数用于将同一个函数对不同类型生效，一般来说，最好不要用
+<code>auto</code> 来捕获，写模板函数才是正确的方式。</p>
+<p><strong>模板函数的声明和定义一般不能分开。</strong></p>
+<h3 id="隐式指定">隐式指定</h3>
+<p>如果你想偷懒，就是调用的时候不想写
+<code>&lt;T1,T2...&gt;</code>，那么你<strong>调用的时候</strong>必须能让编译器推断出每个模板类型参数是什么，而且同一种类型不能冲突。</p>
+<p>这里需要注意字面量的类型问题。</p>
+<p><strong>注意，如果你使用了默认参数，那么调用的时候可能就无法让编译器推断出类型从而出现
+CE</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1,<span class="keyword">typename</span> T2&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(T1 x,T1 y,T2 len=<span class="number">30</span>)</span></span>;</span><br><span class="line"><span class="built_in">add</span>(<span class="number">1</span>,<span class="number">1</span>);<span class="comment">//CE</span></span><br><span class="line"><span class="built_in">add</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">30</span>);<span class="comment">//OK</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1,<span class="keyword">typename</span> T2&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(T1 x,T2 y,T2 len=<span class="number">30</span>)</span></span>;</span><br><span class="line"><span class="built_in">add</span>(<span class="number">1</span>,<span class="number">1.5</span>);<span class="comment">//OK</span></span><br><span class="line"><span class="built_in">add</span>(<span class="number">1</span>,<span class="number">1.5</span>,<span class="number">30</span>);<span class="comment">//CE</span></span><br></pre></td></tr></table></figure>
+<p>类型参数捕获比较阴间的例子，可以发现它会先捕获"简单"的，不太想深究这个：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1,<span class="keyword">typename</span> T2&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(vector&lt;T1&gt; a,T1 b,T2 c)</span></span>;</span><br><span class="line"><span class="built_in">add</span>(&#123;<span class="number">1.5</span>,<span class="number">3</span>&#125;,<span class="number">1.5</span>,<span class="number">5</span>);<span class="comment">//ok</span></span><br><span class="line"><span class="built_in">add</span>(&#123;<span class="number">1.5</span>,<span class="number">3.5</span>&#125;,<span class="number">1</span>,<span class="number">5</span>);<span class="comment">//CE</span></span><br></pre></td></tr></table></figure>
+<h3 id="显式指定">显式指定</h3>
+<p>如果显示指定参数，那么会出现类型强制转换，和正常的函数调用完全相同。</p>
+<p>例子就不举了，和正常函数没差别。</p>
+<h2 id="指针">指针</h2>
+<h3 id="常量指针">常量指针</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span>* p = &amp;a; <span class="comment">//指向常量的指针</span></span><br><span class="line"><span class="type">int</span>* <span class="type">const</span> p = &amp;a; <span class="comment">//p 指向的位置不可变</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1408,200 +1515,8 @@ alt="E6" />
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/08/05/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E6%B4%9B%E8%B0%B7P6025%E9%A2%98%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/05/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E6%B4%9B%E8%B0%B7P6025%E9%A2%98%E8%A7%A3/" class="post-title-link" itemprop="url">洛谷P6025题解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-05 11:56:36" itemprop="dateCreated datePublished" datetime="2022-08-05T11:56:36+08:00">2022-08-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:58:15" itemprop="dateModified" datetime="2025-02-16T17:58:15+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="洛谷p6025-题解">洛谷P6025 题解</h2>
-<p>提供一个复杂度为的 <span class="math inline">\(O(\log n)\)</span>
-的，基于正常分析而非打表的做法，我认为这个做法比当前题解区的所有做法更加优美。</p>
-<p>这道题相当不错，考察了线段树和位运算的理解。</p>
-<h3 id="题意">题意</h3>
-<ul>
-<li><p>一颗常规方式构建的线段树，求大小为 <span
-class="math inline">\(1,2,3,\cdots n\)</span>
-的线段树分别占用的最大空间，即最大下标。</p></li>
-<li><p>输出答案的异或和。</p></li>
-<li><p><span class="math inline">\(n\leq 10^{15}\)</span></p></li>
-</ul>
-<p>构建代码为：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> k,<span class="type">int</span> l,<span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l==r)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//do something</span></span><br><span class="line">		<span class="comment">//e.g. tree[k]=a[l]</span></span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">build</span>(k&lt;&lt;<span class="number">1</span>,l,mid);</span><br><span class="line">	<span class="built_in">build</span>(k&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid<span class="number">+1</span>,r);</span><br><span class="line">	<span class="comment">//do something</span></span><br><span class="line">	<span class="comment">//e.g. tree[k]=tree[k&lt;&lt;1]+tree[k&lt;&lt;1|1]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>原题意是求 <span
-class="math inline">\(f(l,r)\)</span>，但很容易转化为求 <span
-class="math inline">\(f(1,n)\)</span>，直接求 <span
-class="math inline">\(f(1,l-1)\bigoplus f(1,r)\)</span>
-即可。</strong></p>
-<h3 id="分析">分析</h3>
-<h4 id="pts">40PTS</h4>
-<p>首先，线段树建立的过程，就是<strong>从根往下走的过程</strong>，往左走，向当前编号的二进制表示后写一个
-<span class="math inline">\(0\)</span>，往右走，就写一个 <span
-class="math inline">\(1\)</span>。</p>
-<p>考虑线段树的最大下标在何处取到，由于右儿子下标相对较大，一个比较显然的想法是一直走右儿子，但是这样是错误的，显然的反例为
-<span class="math inline">\(n=3\)</span>，如下图所示。</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/7aesc0yg.png" /></p>
-<p>这个例子中，<span class="math inline">\([1,3]\)</span>
-节点的左儿子比右儿子多一层，所以出现了走左儿子最优的情况。</p>
-<p><strong>但是，如果某个节点处左右儿子高度相同，那么很显然应该走右儿子，因为当前这一步决定的位数是最高位。</strong></p>
-<p>所以走左儿子，当且仅当左右儿子高度不同，下面分析线段树的高度和长度的关系。</p>
-<p>首先，子树构建情况<strong>只和长度有关</strong>，所以我们<strong>只关心长度而非左右端点</strong>，然后，长度为
-<span class="math inline">\(2^k\)</span>
-的节点，构建出的树为一颗完全二叉树，其高度为 <span
-class="math inline">\(k\)</span>。 此时，如果点数继续增大，那么高度为
-<span class="math inline">\(k\)</span>
-的树就无法容下这么多节点，高度会变为 <span
-class="math inline">\(k+1\)</span>，所以，长度为 <span
-class="math inline">\((2^k,2^{k+1}]\)</span> 的节点，构建出子树的高度为
-<span class="math inline">\({k+1}\)</span>。</p>
-<p>容易发现，常规构建方式构建出的子树，其<strong>左儿子的大小不小于右儿子，且差值至多为
-1</strong>，因此，如果出现了左右儿子高度不同，一定是左儿子比右儿子高，并且只能是一种情况，即长度的二进制表示为
-<span
-class="math inline">\(100001\)</span>。即除了最高位和最低位其余位均为
-<span
-class="math inline">\(0\)</span>，只有这样才会出现左右儿子落在不同区间的情况。</p>
-<p>所以我们对于一个 <span
-class="math inline">\(n\)</span>，很容易给出一个 <span
-class="math inline">\(O(\log n)\)</span> 的计算方式，即：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">ask</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> now=<span class="number">1</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x==<span class="number">1</span>)<span class="keyword">return</span> now;</span><br><span class="line">	<span class="keyword">if</span>(__builtin_popcount(x)==<span class="number">2</span>&amp;&amp;x&amp;<span class="number">1</span>)<span class="keyword">return</span> <span class="built_in">ask</span>(x<span class="number">+1</span>&gt;&gt;<span class="number">1</span>,now*<span class="number">2</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">ask</span>(x&gt;&gt;<span class="number">1</span>,now*<span class="number">2</span><span class="number">+1</span>);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中 <code>__builtin_popcount()</code> 为内置函数，参数为
-<code>unsigned</code>， <code>int</code> 也可以使用但不能为负数。</p>
-<p>如果希望对 <code>long long</code> 使用，应改为
-<code>_builtin_popcountll()</code>。</p>
-<p>对每个数暴力求解即可。</p>
-<h4 id="pts-1">100PTS</h4>
-<p>我们需要观察求解一个数的过程，不妨考虑二进制数 <span
-class="math inline">\(1001011\)</span> 的计算过程。</p>
-<p>手动模拟一下上述 <span
-class="math inline">\(\operatorname{ask()}\)</span>
-函数的调用过程，<span class="math inline">\(now\)</span> 变量和 <span
-class="math inline">\(x\)</span> 变量的值依次变为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">now=00000001 x=1001011</span><br><span class="line">now=00000011 x=0100101</span><br><span class="line">now=00000111 x=0010010</span><br><span class="line">now=00001111 x=0001001</span><br><span class="line">now=00011110 x=0000101</span><br><span class="line">now=00111100 x=0000011</span><br><span class="line">now=01111000 x=0000010</span><br><span class="line">now=11110001 x=0000001</span><br></pre></td></tr></table></figure>
-<p>容易发现，在出现 <span class="math inline">\(1001\)</span>
-这样的情况之前，我们将 <span class="math inline">\(now\)</span>
-左移一位并在后面写上了 <span class="math inline">\(1\)</span>，同时将
-<span class="math inline">\(x\)</span> 右移一位。</p>
-<p>在出现 <span class="math inline">\(1001\)</span> 之后，我们一直在往
-<span class="math inline">\(now\)</span> 后面写 <span
-class="math inline">\(0\)</span>，而 <span
-class="math inline">\(x\)</span> 的变化则是先右移一位并将最后一位改为
-<span class="math inline">\(1\)</span>。</p>
-<p>而最后 <span class="math inline">\(x\)</span> 从 <span
-class="math inline">\(10\)</span> 变为 <span
-class="math inline">\(1\)</span> 时，我们在 <span
-class="math inline">\(now\)</span> 末尾添加了一个 <span
-class="math inline">\(1\)</span>。</p>
-<p>不难发现，一个固定的 <span
-class="math inline">\(x\)</span>，我们最终得到的占用下标最大值，<strong>仅仅和它二进制表示下的最高位和第二高的为
-<span class="math inline">\(1\)</span>
-的位有关</strong>，因为在这之前我们一定会添加 <span
-class="math inline">\(1\)</span>，而在这之后一定会往后添加 <span
-class="math inline">\(0\)</span> 并在最后添加一个 <span
-class="math inline">\(1\)</span>。</p>
-<p><strong>注意如果为 <span class="math inline">\(2^k\)</span>
-这样不存在次高位的数，我们需要特判。</strong></p>
-<p>所以我们有了一个比较显然的想法，即枚举二进制下最高位和次高位的位置，统计能取到这两个位置的数的数量，并异或上对应的权值。</p>
-<p>这样的复杂度是 <span class="math inline">\(O(\log^2n)\)</span>
-的，我们考虑继续优化。</p>
-<p>对于二进制下位数小于 <span class="math inline">\(n\)</span>
-的二进制下位数的所有数，实际上会有贡献的只有两个值，分别是 <span
-class="math inline">\(2^k\)</span> 和 <span
-class="math inline">\(2^k+1\)</span>。因为<strong>如果次高位不为第一位，那么能取到该值的数的个数一定为偶数个（低于次高位的位置可以任意填）</strong>。剩下这两个值的贡献都是可以
-<span class="math inline">\(O(1)\)</span> 计算的。</p>
-<p>这样就只用考虑二进制下位数和 <span class="math inline">\(n\)</span>
-相同的数，同样的道理，如果次高位高于 <span
-class="math inline">\(1\)</span>，那么没有贡献，但需要注意的是，如果次高位取到了上界，例如
-<span class="math inline">\(10110\)</span> 中，次高位取到了第三位的
-<span class="math inline">\(1\)</span>，那么由于必须小于 <span
-class="math inline">\(n\)</span>，实际上只有奇数个值可以取到，这样会带来一定的贡献，所以我们需要计算这种情况的答案，复杂度为
-<span class="math inline">\(O(\log n)\)</span>。</p>
-<p>总复杂度<span class="math inline">\(O(\log n)\)</span>。</p>
-<p>可以参考我博客中的一些线段树的总结，会不定期更新。</p>
-<p><a
-href="https://huanyp.cn/2022/08/04/%E4%BB%8EZKW%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9C%8B%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8/">从ZKW线段树看线段树的性质</a></p>
-<h3 id="参考代码">参考代码</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> low(x) ((x)&amp;-(x))</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125; </span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,tp1,tp2;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">solve</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x==<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(x==<span class="number">1</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//特判边界情况</span></span><br><span class="line">	<span class="type">int</span> res=<span class="number">1</span>,h=<span class="built_in">log2</span>(x);</span><br><span class="line">    <span class="comment">//最高位从 10 开始枚举,所以 res 初值应该设置为 1</span></span><br><span class="line">    <span class="comment">//h 为二进制下 x 的位数</span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;h;i++)&#123;</span><br><span class="line">		res^=(<span class="number">1ll</span>&lt;&lt;i<span class="number">+1</span>)<span class="number">-1</span>;</span><br><span class="line">		res^=(<span class="number">1ll</span>&lt;&lt;i<span class="number">+1</span>)<span class="number">+1</span>;</span><br><span class="line">        <span class="comment">//注意左移操作的 1 是 long long 级别的数</span></span><br><span class="line">        <span class="comment">//计算 2^k 和 2^k+1 的答案,其它位置没有贡献 </span></span><br><span class="line">	&#125;</span><br><span class="line">	res^=(<span class="number">1ll</span>&lt;&lt;h<span class="number">+1</span>)<span class="number">-1</span>;</span><br><span class="line">    <span class="comment">//计算 2^h 的答案</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">low</span>(x)==x)<span class="keyword">return</span> res;</span><br><span class="line">    <span class="comment">//如果 x=2^h,无需进行下面的步骤</span></span><br><span class="line">	res^=(<span class="number">1ll</span>&lt;&lt;h<span class="number">+1</span>)<span class="number">+1</span>;</span><br><span class="line">	<span class="keyword">if</span>(x<span class="number">-1</span>==<span class="number">1ll</span>&lt;&lt;h||x&amp;<span class="number">1</span>)<span class="keyword">return</span> res;</span><br><span class="line">    <span class="comment">//如果 x=2^h+1 或者末尾为 1,那么之后取到的值个数一定是偶数,无需计算。</span></span><br><span class="line">	<span class="type">int</span> now=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(__builtin_popcountll(x)&gt;<span class="number">2</span>||(x&amp;<span class="number">1</span>)==<span class="number">0</span>)&#123;</span><br><span class="line">		now=now&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">		x&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//模拟求解的第一步,找到对应的次高位,在这之前往后写 1</span></span><br><span class="line">	<span class="keyword">while</span>(x)&#123;</span><br><span class="line">		x&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">		now&lt;&lt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//模拟求解第二步,往后写 0</span></span><br><span class="line">	now|=<span class="number">1</span>;</span><br><span class="line">    <span class="comment">//记得左右还需要异或 1</span></span><br><span class="line">	<span class="keyword">return</span> res^now;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">// 	freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//	freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line"><span class="comment">//	freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="type">int</span> l,r;</span><br><span class="line">	<span class="built_in">read</span>(l),<span class="built_in">read</span>(r);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,<span class="built_in">solve</span>(r)^<span class="built_in">solve</span>(l<span class="number">-1</span>));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

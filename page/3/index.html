@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,143 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/25/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/CSP2022/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/25/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/CSP2022/" class="post-title-link" itemprop="url">CSP2022</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-25 10:44:30" itemprop="dateCreated datePublished" datetime="2022-11-25T10:44:30+08:00">2022-11-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:58:36" itemprop="dateModified" datetime="2025-02-16T17:58:36+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="csp2022考试总结">CSP2022考试总结</h1>
+<h2 id="t1">T1</h2>
+<p>先想到动态规划，但是想了下不好处理不相同的要求，发现只有 <span
+class="math inline">\(4\)</span> 个点，考虑利用这个性质。</p>
+<p>枚举中间的两个点，然后判断是否合法，然后对于每个点预处理到 <span
+class="math inline">\(1\)</span> 可能的中间点，取值最大的 <span
+class="math inline">\(3\)</span>
+个，然后就可以直接合并两个点的信息得到一条路径。</p>
+<h2 id="t2">T2</h2>
+<p>容易发现只会在 <span class="math inline">\(A,B\)</span>
+每个区间中的四个数中选，即负最大最小，正最大最小。</p>
+<p>一共 <span class="math inline">\(16\)</span>
+种方案，直接拿个数据结构维护信息，暴力合并计算答案即可。</p>
+<h2 id="t3">T3</h2>
+<h3 id="考场暴力">考场暴力</h3>
+<p>不难发现充要条件是每个点有且仅有一条出边，这个条件相当严。</p>
+<p>考虑只在边数为 <span class="math inline">\(n\)</span>
+时进行检查，其余情况显然是 <code>NO</code>，边数为 <span
+class="math inline">\(n\)</span> 时，对所有被修改过的端点下放操作，此时
+<span class="math inline">\(2,4\)</span>
+操作可能会叠加，只处理最后一次即可。</p>
+<p>这样的暴力很难卡，实际上也可以通过。</p>
+<h3 id="正解1">正解1</h3>
+<p>充要条件是若干个类似的条件的叠加，考虑能不能一起检查。</p>
+<p><a
+href="https://huanyp.cn/2022/10/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%80%BB%E7%BB%93/CF1746/">CF某道题</a></p>
+<p>参考这道题的思路，可以随机一个集合检查这个在集合里的所有点的边数和是否等于集合大小。</p>
+<p>考虑不合法的 <code>Case</code> 通过判定的概率，显然不会超过 <span
+class="math inline">\(\frac{1}{2}\)</span>，证明可以<strong>考虑一个不合法的元素</strong>所有能够通过判定的集合，如果包含它，那么删去它后就不合法，如果不包含它，那么对应加上它后就不合法，构造出等量的不合法集合，因此通过判定的概率低于
+<span class="math inline">\(\frac{1}{2}\)</span>，所以做 <span
+class="math inline">\(2\log_2(q)\)</span>
+次就能保证正确，如果还错了，快用你生成的第一个随机数去买彩票！</p>
+<h3 id="正解2">正解2</h3>
+<p>问题的本质是维护集合，你需要维护 <span
+class="math inline">\(n\)</span> 个可重集，支持加入删除，填满和清空，问
+<span class="math inline">\(n\)</span>
+个可重集的并是否等于某个集合，可以考虑 <code>xor_hash</code>。</p>
+<p>随机点权的情况下，一个可重集的权值也是随机的，所以正确率为 <span
+class="math inline">\(1-\frac{1}{值域大小}\)</span>，注意仍然需要特判边数是否为
+<span class="math inline">\(n\)</span>，因为可以构造不同大小的对于
+<code>xor_hash</code> 来说权值相同的可重集——某一个元素出现 <span
+class="math inline">\(3\)</span> 次，其余元素次数相同。</p>
+<p><strong>只有错误出现在不同元素之间互补构造时，<code>xor_hash</code>
+的正确性才有保证</strong></p>
+<h2 id="t4">T4</h2>
+<h3 id="考场暴力-1">考场暴力</h3>
+<p>可以把链提出来动态规划，期望 <span
+class="math inline">\(68\)</span>，场上第一次写没考虑往一个点旁边走可以更优，只能过
+<span class="math inline">\(k\le 2\)</span>。</p>
+<p>修了这个锅之后由于第一次写的时候限制了步数，但是走旁边会消耗步数，导致最开始没有办法走旁边，然后娶不到最优解。</p>
+<h3 id="正解">正解</h3>
+<p>把暴力的动态规划改成倍增版即可。</p>
+<p>有点难写，暂时没写。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1675,139 +1812,8 @@ alt="image-20221105214147352" />
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/04/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1103%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/11/04/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1103%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1103总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-11-04 08:58:02" itemprop="dateCreated datePublished" datetime="2022-11-04T08:58:02+08:00">2022-11-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:22:37" itemprop="dateModified" datetime="2025-02-16T20:22:37+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0149">考试</a></p>
-<h2 id="t1">T1</h2>
-<p>容易想到只会取到 <span class="math inline">\(O(n^2)\)</span>
-个值，大力动态规划，滑动窗口优化。</p>
-<p>滑动窗口的 COST 宏函数写挂了，所以我挂了。</p>
-<p>有一个更厉害的思路，容易发现 DP
-数组本质上是个分段函数，然后转移就是平移原函数添加一段平的然后再加上一个绝对值函数，根据经典结论，若干绝对值函数叠加是一个形如开口向上二次函数的东西，填一段平的一定会在最低点添，不影响性质。</p>
-<h2 id="t2">T2</h2>
-<p>写挂的题，不过很有意思。</p>
-<p>写挂有两个原因，一是图方便用引用，但是没发现被引用的数据其实还有用，然后修改了它，后面又要用它，就寄了。二是转成
-<span class="math inline">\(0-based\)</span>
-处理，边转了，但是记录数组先存的边，没有动记录数组。警钟敲烂。</p>
-<p>题目本身也是有趣的，首先它定向后必须是个 <span
-class="math inline">\(DAG\)</span>，所以只考虑所有的 <span
-class="math inline">\(DAG\)</span>，考虑以拓扑序的方式去遍历所有 <span
-class="math inline">\(DAG\)</span>，容易发现当拓扑序确定后，定向方式也就确定了，所以一个比较简单的想法是枚举拓扑序。</p>
-<p>枚举拓扑序想要转成指数可能不太能用常规方式转，因为的确需要知道每个点的距离,
-思考一下其实发现没中过定向方式被计算了多次，所以考虑给这个拓扑序附加一些<strong>不影响遍历解空间</strong>的性质，比如强制距离单调不降，这样枚举起来就可以大大方方的选一坨独立集，强制转移到它的距离加一，这样的强制加一<strong>同样不影响遍历解空间</strong>，所以它是对的。</p>
-<p>有个东西叫 dilworth 定理,
-描述的就是这个东西，最大反链中元素数目等于最小链划分数，我不是很懂这个定理和这道题的关系，但是用这个定理和以上方式思考得出的代码是一样的。</p>
-<p><strong>遍历 DAG 的有效方式是通过 TOP 序，尤其是需要定向的
-DAG</strong></p>
-<p>复杂度 <span class="math inline">\(O(3^n+n\times2^n)\)</span></p>
-<h2 id="t3">T3</h2>
-<p>考场上刚出来的题。</p>
-<p>指数题看数据范围说话，总感觉子串很麻烦，因为扰乱了信息，所以把子串判掉。</p>
-<p>然后觉得如果一个串绕了一圈，也很麻烦，再判掉。</p>
-<p>所以现在的环，从某一个子串开始，左端点递增，那右端点也就递增了，所以可以考虑顺序了。</p>
-<p>容易发现每个串会尽量往左靠，因为没有子串了，然后最后一个串和第一个串会尽量粘在一起，可以直接把粘在一起的部分减掉，就算减了倒数第二个串的，那其实也没有问题，因为确实可以减掉。</p>
-<p>然后阶乘转指数，记录最后一个串的编号和方向，枚举下一个串的编号和方向。</p>
-<p>考场上很蠢，每个点为起点算了一遍，其实钦定一个算就行了。</p>
-<p><strong>如果把一些 Native
-的情况特判掉，可能会得到更加优美的性质，这就是分类讨论题。</strong></p>
-<h2 id="t4">T4</h2>
-<p>字符串替换的题，思路主要有两种。</p>
-<p>考虑某个大写字符能替换成什么，发现经过 <span
-class="math inline">\(O(\sum)\)</span>
-次替换后一定会变成或者多出一个不可替换的字符，所以考虑大力动态规划，设
-<span class="math inline">\(F_{c,i}\)</span> 表示字符 <span
-class="math inline">\(c\)</span> 替换成长度为 <span
-class="math inline">\(i\)</span>
-的不可替换字符串的最小字典序，然后转移顺序不同层已经是固定的，同层转移顺序随意。这样做显然不对，因为有环，但是多做几次他就对了。</p>
-<p>考虑按不可替换字符长度为阶段做动态规划，同时处理若干个规则，转移之间如果有环，有两种情况，其一是其它的向它转移过来
-<span class="math inline">\(len\)</span>
-个，另一种是下一个大写字符替换为空串，后者可以钦定处理到的位置的顺序转移搞定，前者可以用优先队列类似
-DIJ 的思路。</p>
-<p>当然，这个思路也可以不考虑转移有环，直接多做几遍就对了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

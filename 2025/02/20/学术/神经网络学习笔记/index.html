@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前置知识 导数 VS 微分 导数就是导函数。 \(f\) 的微分 \(df\) 可以看作一个函数，（一维的情况下）它将 \(dx\) 映射到 \(f&#39;(x)dx\)。 \(dx\) 怎么理解看个人，我没有把它当成函数，而是把它当成了一个单纯的记号。 梯度 VS 微分 梯度是高维意义下的导数。  梯度的定义： 梯度是一个向量，包含函数的所有偏导数。对于函数 \(f(x,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神经网络学习笔记">
+<meta property="og:url" content="http://huanyp.cn/2025/02/20/%E5%AD%A6%E6%9C%AF/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="前置知识 导数 VS 微分 导数就是导函数。 \(f\) 的微分 \(df\) 可以看作一个函数，（一维的情况下）它将 \(dx\) 映射到 \(f&#39;(x)dx\)。 \(dx\) 怎么理解看个人，我没有把它当成函数，而是把它当成了一个单纯的记号。 梯度 VS 微分 梯度是高维意义下的导数。  梯度的定义： 梯度是一个向量，包含函数的所有偏导数。对于函数 \(f(x,">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-20T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-20T12:44:18.367Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="人工智能">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://huanyp.cn/2025/02/20/%E5%AD%A6%E6%9C%AF/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2025/02/20/%E5%AD%A6%E6%9C%AF/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/","path":"2025/02/20/学术/神经网络学习笔记/","title":"神经网络学习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>神经网络学习笔记 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">前置知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E6%95%B0-vs-%E5%BE%AE%E5%88%86"><span class="nav-number">1.1.</span> <span class="nav-text">导数 VS 微分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6-vs-%E5%BE%AE%E5%88%86"><span class="nav-number">1.2.</span> <span class="nav-text">梯度 VS 微分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">2.</span> <span class="nav-text">神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%83%E9%87%8D%E7%9F%A9%E9%98%B5"><span class="nav-number">2.1.</span> <span class="nav-text">权重矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">激活函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%8F%E7%BD%AE%E9%A1%B9"><span class="nav-number">2.3.</span> <span class="nav-text">偏置项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">反向传播算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E5%AE%8C%E5%85%A8%E5%8F%AF%E5%BE%AE%E5%87%BD%E6%95%B0%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.4.1.</span> <span class="nav-text">不完全可微函数的处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%B9%E6%AC%A1%E8%AE%AD%E7%BB%83%E4%B8%8E%E6%A2%AF%E5%BA%A6%E7%B4%AF%E8%AE%A1"><span class="nav-number">2.5.</span> <span class="nav-text">批次训练与梯度累计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%8B%9F%E5%90%88%E4%B8%8E%E7%BC%93%E8%A7%A3%E6%96%B9%E5%BC%8F"><span class="nav-number">2.6.</span> <span class="nav-text">过拟合与缓解方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#early-stop"><span class="nav-number">2.6.1.</span> <span class="nav-text">Early Stop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#l1l2-standardization"><span class="nav-number">2.6.2.</span> <span class="nav-text">L1&#x2F;L2 Standardization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dropout"><span class="nav-number">2.6.3.</span> <span class="nav-text">Dropout</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E8%AE%AD%E7%BB%83%E6%8A%80%E5%B7%A7"><span class="nav-number">2.7.</span> <span class="nav-text">其它训练技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#batch-normalization"><span class="nav-number">2.7.1.</span> <span class="nav-text">Batch Normalization</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">3.</span> <span class="nav-text">卷积神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E5%B1%82"><span class="nav-number">3.1.</span> <span class="nav-text">卷积层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E6%A0%B8"><span class="nav-number">3.1.1.</span> <span class="nav-text">卷积核</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-number">3.1.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">3.1.3.</span> <span class="nav-text">作用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%A0%E5%8C%96%E5%B1%82"><span class="nav-number">3.2.</span> <span class="nav-text">池化层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E6%9E%84"><span class="nav-number">3.2.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E9%80%94"><span class="nav-number">3.2.2.</span> <span class="nav-text">用途</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82"><span class="nav-number">3.3.</span> <span class="nav-text">全连接层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8A%BF"><span class="nav-number">3.4.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">3.5.</span> <span class="nav-text">一般使用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E8%BF%9B"><span class="nav-number">3.6.</span> <span class="nav-text">改进</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#resnet"><span class="nav-number">3.6.1.</span> <span class="nav-text">ResNet</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">4.</span> <span class="nav-text">循环神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84-1"><span class="nav-number">4.1.</span> <span class="nav-text">结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%85%A5"><span class="nav-number">4.1.1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-number">4.1.2.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E5%85%AC%E5%BC%8F"><span class="nav-number">4.1.3.</span> <span class="nav-text">状态公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="nav-number">4.1.4.</span> <span class="nav-text">训练过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">4.2.</span> <span class="nav-text">优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8A%BF-1"><span class="nav-number">4.2.1.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">4.2.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%BF%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86%E7%BD%91%E7%BB%9Clstm"><span class="nav-number">5.</span> <span class="nav-text">长短期记忆网络（LSTM）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%84-2"><span class="nav-number">5.1.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bilstm"><span class="nav-number">5.2.</span> <span class="nav-text">BiLSTM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grm"><span class="nav-number">5.3.</span> <span class="nav-text">GRM</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="huan-yp"
+      src="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2025/02/20/%E5%AD%A6%E6%9C%AF/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="神经网络学习笔记 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          神经网络学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-02-20 16:00:00 / 修改时间：20:44:18" itemprop="dateCreated datePublished" datetime="2025-02-20T16:00:00+08:00">2025-02-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">学术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="前置知识">前置知识</h2>
+<h3 id="导数-vs-微分">导数 VS 微分</h3>
+<p><strong>导数就是导函数。</strong></p>
+<p><span class="math inline">\(f\)</span> 的微分 <span
+class="math inline">\(df\)</span> 可以看作一个函数，（一维的情况下）它将
+<span class="math inline">\(dx\)</span> 映射到 <span
+class="math inline">\(f&#39;(x)dx\)</span>。</p>
+<p><em><span class="math inline">\(dx\)</span>
+怎么理解看个人，我没有把它当成函数，而是把它当成了一个单纯的记号。</em></p>
+<h3 id="梯度-vs-微分">梯度 VS 微分</h3>
+<p><strong>梯度是高维意义下的导数。</strong></p>
+<ol type="1">
+<li><p><strong>梯度的定义</strong>：
+梯度是一个向量，包含函数的所有<strong>偏导数</strong>。对于函数 <span
+class="math inline">\(f(x,y)\)</span>，其梯度为： <span
+class="math display">\[
+\nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial
+f}{\partial y} \right)
+\]</span> 梯度指向函数值增加最快的方向。</p></li>
+<li><p><strong>微分的定义</strong>：
+微分描述了函数在<strong>自变量微小变化时的改变</strong>。对于函数 <span
+class="math inline">\(f(x,y)\)</span>，其微分 <span
+class="math inline">\(df\)</span> 为： <span class="math display">\[
+df = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy
+\]</span></p>
+<p>这表示函数在自变量 <span class="math inline">\(x\)</span> 和 <span
+class="math inline">\(y\)</span> 分别变化 <span
+class="math inline">\(dx\)</span> 和 <span
+class="math inline">\(dy\)</span> 时的总变化。</p></li>
+</ol>
+<h2 id="神经网络">神经网络</h2>
+<h3 id="权重矩阵">权重矩阵</h3>
+<p>权重矩阵用于在层之间做转移，是神经网络结构的主要组成部分。</p>
+<h3 id="激活函数">激活函数</h3>
+<p>激活函数用于调整函数结构，使神经网络能够学习复杂的非线性函数。</p>
+<h3 id="偏置项">偏置项</h3>
+<p>偏置项用于对激活范围进行调整，能够有效提升模型表达能力。</p>
+<p>没有偏置项时，激活函数的输出只取决于输入信号的加权和，这样拟合会让模型变得复杂，引入偏置项能够有效改善学习过程。</p>
+<h3 id="反向传播算法">反向传播算法</h3>
+<p>通过链式求导法则，计算每一项的梯度，以减少损失函数为目的按照梯度调整权重矩阵和偏置项的值。</p>
+<h4 id="不完全可微函数的处理">不完全可微函数的处理</h4>
+<p>激活函数有时候不是完全可微的，例如 ReLU
+函数，这个时候会采取某些方式来处理。</p>
+<ol type="1">
+<li><strong>归到某一边：</strong>反正概率挺小的，直接认为可导归到其中一边就行。</li>
+<li><strong>使用次梯度：</strong>如果它是个凸函数，可以用次梯度近似替代。</li>
+<li><strong>用可导函数近似：</strong>找个长得差不多的可导函数，不可微的点用这个函数的微分替代。</li>
+</ol>
+<h3 id="批次训练与梯度累计">批次训练与梯度累计</h3>
+<p>神经网络一般采用批次训练的方式，利用 GPU
+的并行计算能力，一个批次跑出多个数据的 loss
+和梯度。然后取平均后进行一次下降。</p>
+<p>一般来说 batch_size
+设置大一点可以让学习过程更加稳定，减少个别数据的极端偏移。</p>
+<p>有时候显存不够甚至可以多跑几次积累一下梯度，然后进行更新。</p>
+<p><em>注意这里是对<strong>梯度</strong>取平均，不是对 loss
+或者中间过程的值取平均。</em></p>
+<h3 id="过拟合与缓解方式">过拟合与缓解方式</h3>
+<h4 id="early-stop">Early Stop</h4>
+<p>训到训练集 Loss 连续一段时间不再下降时就停止。</p>
+<h4 id="l1l2-standardization">L1/L2 Standardization</h4>
+<p>给 Loss 加个正则化项：</p>
+<ul>
+<li>L1 正则化：<span
+class="math inline">\(\lambda\sum|w_i|\)</span></li>
+<li>L2 正则化：<span class="math inline">\(\lambda\sum
+w_i^2\)</span></li>
+</ul>
+<p>为啥有用：</p>
+<ul>
+<li>L1
+促进一些参数变零，可以实现<strong>特征选择</strong>，以去除不重要的特征。</li>
+<li>L2 鼓励减小参数大小，降低对训练数据的敏感性。</li>
+<li>总的来说都是<strong>限制了模型复杂度以减小过拟合的可能</strong>。</li>
+</ul>
+<h4 id="dropout">Dropout</h4>
+<p>实现方式：</p>
+<ul>
+<li><strong>每轮训练</strong>的时候以一个概率 <span
+class="math inline">\(p\in[0.2,0.5]\)</span> 让（特定的 Dropout
+层）激活函数变零。</li>
+<li>测试的时候启用全部神经元，同时乘上一个系数 <span
+class="math inline">\((1-p)\)</span> 补偿训练过程的丢弃。</li>
+</ul>
+<p>为啥有用：</p>
+<ul>
+<li>取平均作用：不同轮次的 Dropout
+可以视作不同的神经网络，产生不同的过拟合，能够相互抵消。</li>
+<li>减少共适性关系：不应该对某些特定的特征特别敏感，迫使神经网络学习到具有鲁棒性的特征。</li>
+</ul>
+<h3 id="其它训练技巧">其它训练技巧</h3>
+<h4 id="batch-normalization">Batch Normalization</h4>
+<p>实现方式：</p>
+<ul>
+<li>在神经网络的每一层输入层前加一个 BN 层，将输入归一化为均值为
+0，方差为 1 的输入。</li>
+<li>BN 层增加两个可学习参数 <span class="math inline">\(\gamma,
+\beta\)</span>，用于对归一化后的数据进行线性变换。</li>
+</ul>
+<p>生效原理：</p>
+<ul>
+<li>缓解内部协变量偏移问题：使各层输入分布稳定，加速网络收敛，对于深度神经网络作用更大。</li>
+<li>提升梯度传播效率：使输入保持在激活函数非饱和区内，有利于缓解梯度消失和梯度爆炸，同时也能避免参数初始化时使训练陷入困境。</li>
+<li>增强泛化能力*：由于 <span
+class="math inline">\(\gamma,\beta\)</span>
+是可学习的，因此训练过程会对数据进行一些小扰动，可能能增强泛化能力。</li>
+</ul>
+<h2 id="卷积神经网络">卷积神经网络</h2>
+<h3 id="卷积层">卷积层</h3>
+<h4 id="卷积核">卷积核</h4>
+<ul>
+<li><p>我不懂为啥要叫卷积，但是卷积核是对对应的小矩阵做<strong>点乘</strong>，然后得到一个数作为特征值。</p></li>
+<li><p>一个卷积层可能有多个卷积核，不同卷积核可以提取不同的特征，最后卷出来的结果是个张量。</p></li>
+</ul>
+<h4 id="参数">参数</h4>
+<ul>
+<li><p>大小：常见的有 3x3 和
+5x5，较小的卷积核能够捕捉精细特征，较大的可以捕获更广泛的上下文信息。</p></li>
+<li><p>步长：决定卷积核在数据上滑动的间隔，步长越大，特征图输出越小。</p></li>
+<li><p>填充：在图像边缘添加额外像素，控制输出特征图的大小。</p></li>
+<li><p>权重：卷积核每个位置的值叫做权重，这个是可以学习的。</p></li>
+<li><p>偏置：每个卷积核有一个偏置值，也是可以学习的。</p></li>
+</ul>
+<h4 id="作用">作用</h4>
+<p>有效提取各种局部特征。</p>
+<h3 id="池化层">池化层</h3>
+<h4 id="结构">结构</h4>
+<ul>
+<li>池化窗口：一般设置为 2x2 或者 3x3，决定每次考虑的局部区域大小</li>
+<li>池化方式：最大池化或者平均池化，前者取最大值并保留，后者取平均值并保留。</li>
+<li>池化步长：和卷积层的步长差不多，决定特征图大小用的。</li>
+</ul>
+<h4 id="用途">用途</h4>
+<p>降低特征图维度，减少计算量，同时保留重要的局部特征信息。</p>
+<h3 id="全连接层">全连接层</h3>
+<p>一般放在最后几层，用于整合前面提取的特征，输出最终的结果。</p>
+<h3 id="优势">优势</h3>
+<ul>
+<li>天然适用于处理图像，能够有效提取图像局部特征并完成图像相关任务。</li>
+</ul>
+<h3 id="一般使用方式">一般使用方式</h3>
+<ul>
+<li>通常会堆很多层，非常深，一层卷积带一层池化这样。</li>
+</ul>
+<h3 id="改进">改进</h3>
+<h4 id="resnet">ResNet</h4>
+<p>引入了残差块，解决了深层神经网络梯度消失的问题。<del>卧槽了这 TM
+也能管用。</del></p>
+<p>残差块是在两个卷积层的基础上直接拉了一个恒等偏置过来。假设一个残差块的输入是
+<span class="math inline">\(x\)</span>，输出 <span
+class="math inline">\(H(x)\)</span>，卷积层结构是 <span
+class="math inline">\(F(x, W_i)\)</span>，那么令： <span
+class="math display">\[
+H(x) = x + F(x, W_i)
+\]</span></p>
+<p>参与学习的参数只有 <span
+class="math inline">\(W_i\)</span>，这样反向传播链式求导的时候梯度能直接从
+<span class="math inline">\(x\)</span>
+这一项传到前面去，神秘的解决了梯度消失问题。</p>
+<h2 id="循环神经网络">循环神经网络</h2>
+<h3 id="结构-1">结构</h3>
+<h4 id="输入">输入</h4>
+<ol type="1">
+<li><strong>当前时刻的输入</strong> <span
+class="math inline">\(x_t\)</span>：表示当前时间步的输入数据，例如在自然语言处理中，*<span
+class="math inline">\(x_t\)</span> 可以是一个单词的嵌入向量。</li>
+<li><strong>上一时刻的隐藏状态</strong> <span
+class="math inline">\(h_{t-1}\)</span>：表示上一时间步的输出状态，用于传递之前的信息。</li>
+</ol>
+<h4 id="输出">输出</h4>
+<ol type="1">
+<li><strong>当前时刻的隐藏状态</strong> <span
+class="math inline">\(h_t\)</span>：用于传递给下一个时间步。</li>
+<li><strong>当前时刻的输出</strong> <span
+class="math inline">\(y_t\)</span>（可选）：在某些任务中，RNN
+的每个时间步都会产生一个输出，例如在字符级语言模型中，<span
+class="math inline">\(y_t\)</span> 可以表示下一个字符的概率分布。</li>
+</ol>
+<h4 id="状态公式">状态公式</h4>
+<p><span class="math display">\[
+h_t=\sigma(W_{hh}h_{t-1}+W_{xh}x_t+b_t)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(W_{hh}\)</span>：隐藏状态转移公式。</li>
+<li><span
+class="math inline">\(W_{xh}\)</span>：输入到隐藏贡献公式。</li>
+<li><span class="math inline">\(\sigma\)</span>：激活函数。</li>
+<li><span class="math inline">\(b_h\)</span>：偏置项。</li>
+</ul>
+<h4 id="训练过程">训练过程</h4>
+<p>一般用 BackPropagation Through
+Time（BPTT）算法进行权重更新，过程如下：</p>
+<ul>
+<li>前向传播：从 <span class="math inline">\(t=1\)</span>
+开始一次计算隐藏状态和输出。</li>
+<li>计算损失：计算所有输出的损失函数。</li>
+<li>反向传播：从 <span class="math inline">\(t=T\)</span>
+开始依次计算每个时间步的梯度，最后梯度加在一起更新。</li>
+</ul>
+<h3 id="优缺点">优缺点</h3>
+<h4 id="优势-1">优势</h4>
+<ul>
+<li>能处理变长的输入。</li>
+</ul>
+<h4 id="缺点">缺点</h4>
+<ul>
+<li>梯度消失：处理过长的序列时，容易发生梯度消失，导致无法捕捉长距离的依赖。</li>
+<li>梯度爆炸：处理过长的序列时，容易发生梯度爆炸，导致权重更新过大，训练过程不稳定。</li>
+</ul>
+<h2 id="长短期记忆网络lstm">长短期记忆网络（LSTM）</h2>
+<p>RNN 的问题很大，所以衍生出了 RNN 的变体：LSTM。</p>
+<h3 id="结构-2">结构</h3>
+<h3 id="bilstm">BiLSTM</h3>
+<h3 id="grm">GRM</h3>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag"># 人工智能</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/17/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/OSI%20%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/" rel="prev" title="OSI 七层模型简单理解">
+                  <i class="fa fa-angle-left"></i> OSI 七层模型简单理解
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

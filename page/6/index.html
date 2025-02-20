@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,165 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">ARC150D-一类期望问题的思考方式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-10 21:08:17" itemprop="dateCreated datePublished" datetime="2022-10-10T21:08:17+08:00">2022-10-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:56:07" itemprop="dateModified" datetime="2025-02-16T17:56:07+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="题意">题意</h2>
+<ul>
+<li><p>给你一棵有根树，定义一个点合法当且仅当它到根上的点全为黑色，否则不合法。</p></li>
+<li><p>最开始所有点为白色，每次选一个不合法的点涂黑，每个点可以被涂黑多次。</p></li>
+<li><p>问所有点被涂黑的期望次数</p></li>
+</ul>
+<h2 id="思考1">思考1</h2>
+<p>这次想题引爆了某人概率论基础不扎实的炸弹。</p>
+<p>考虑每个点被涂黑的顺序，是一个排列，取到每种排列的概率相同。</p>
+<p>考虑使用全期望公式计算，先考虑固定一个排列时的答案。</p>
+<p>先假设只有 <span class="math inline">\(3\)</span> 个点，且顺序为
+<span class="math inline">\(3,2,1\)</span>，也就是赠券收集问题。</p>
+<p>选第一个点的期望次数为 <span
+class="math inline">\(1\)</span>，因为所有满足这个排列的样本点都是以
+<span class="math inline">\(3\)</span>
+开头，选第二个点，期望次数是多少，或者说，选出第一个点后，下一个被选择的点，在顺序为
+<span class="math inline">\(3,2,1\)</span> 的前提下，是 <span
+class="math inline">\(2\)</span> 的概率是多少？</p>
+<h3 id="frac12-的来历"><span class="math inline">\(\frac{1}{2}\)</span>
+的来历</h3>
+<p>选第二个点时，可以选的点有 <span
+class="math inline">\(3,2\)</span>，选择每个点的概率相同，所以概率为
+<span class="math inline">\(\frac{1}{2}\)</span></p>
+<p><strong>虽然原本每个点概率时相同的，但是我们求的时条件概率，条件概率的样本空间已经被改变了，所以选择每个点的概率不再相同。</strong></p>
+<h3 id="frac23-的来历"><span class="math inline">\(\frac{2}{3}\)</span>
+的来历</h3>
+<p>考虑概率的定义，<span
+class="math inline">\(P=\frac{事件大小}{样本空间大小}\)</span>，考虑该条件的集合和事件与条件的交集，因为此题样本空间无限大，所以考虑将一个无限长序列映射到我们的样本空间，容易发现这样的映射不会改变概率函数。</p>
+<p>设 <span class="math inline">\(k\)</span> 为已经选取的数的个数，<span
+class="math inline">\(n\)</span> 为数的总数。 $$ <span
+class="math display">\[\begin{align}
+
+P=&amp;\lim\limits_{m\rightarrow
+\infty}\dfrac{n^{m-1}}{\sum\limits_{1\le i\le m} k^{i-1}\times
+n^{m-i}}\\
+=&amp;\dfrac{n^{m-1}}{\frac{n^{m}}{n-k}}\\
+=&amp;\frac{n-k}{n}
+\end{align}\]</span> $$ 这是在正确的样本空间算出的正确结果。</p>
+<p>从 Beyes 公式考虑： <span class="math display">\[
+\begin{align}
+P(下一个值为目标|满足排列限制)=&amp;\dfrac{P(下一个值为目标\wedge满足排列限制)}{P(满足排列限制)}\\
+=&amp;\dfrac{\frac{1}{n}\times\frac{1}{(n-k-1)!}}{\frac{1}{(n-k)!}}\\
+=&amp;\dfrac{n-k}{n}
+\end{align}
+\]</span> 神奇吧？</p>
+<p><strong>贝叶斯公式连接了条件概率和原问题的样本空间。</strong></p>
+<h3 id="总结">总结</h3>
+<p><strong>样本空间无限大的时候要小心，不能轻易认为两个元素等价，因为此时
+<span class="math inline">\(\infty \ne \infty\)</span></strong>。</p>
+<p>用贝叶斯公式好好算算吧。</p>
+<p>草率的断言概率为 <span
+class="math inline">\(\frac{1}{2}\)</span>，很大一部分原因都是认为两个正无穷时相等的。</p>
+<p>有了这个东西就可以愉快的推狮子 NTT 了。</p>
+<h2 id="思考2">思考2</h2>
+<p>其实这种题还有一种更加普遍的做法，期望线性性，考虑每个点被选的次数，相加可以得到最终答案。</p>
+<p>期望线性性来源于期望的定义，一个随机变量是一个函数，定义域为样本空间，值域为
+<span
+class="math inline">\(\R\)</span>，随机变量的期望为其密度函数积分的收敛值。</p>
+<p>因此，无论两个随机变量是否独立，它们的期望都是可加的。</p>
+<p>感性理解的话，两个随机变量之和的期望等于这样一个随机变量的期望：每个样本点的取值为两个随机变量在该样本点的取值之和，期望可以粗略理解为随机变量在样本空间每个点的平均值，因此随机变量的期望可加。</p>
+<p>所以可以考虑每个点被选的期望次数，如果选到了不在这个点到根路径上的点，那么我们忽略这一次选择，这样的忽略不会影响这个点被选的期望次数，然后问题变成了一条链上的最后一个点被选择的期望次数。</p>
+<p><strong>注意，我们只关心这个点被选择的期望次数。</strong></p>
+<p>考虑怎么求这玩意，因为整个过程在点到根路径上所有点被选择之后才会结束，所以像赠券收集问题一样倒序。假设有
+<span class="math inline">\(k\)</span> 个点还没选，总共 <span
+class="math inline">\(n\)</span> 个点，其中 <span
+class="math inline">\(w\)</span> 个点可以选，那么转移答案是 <span
+class="math inline">\(dp[k]=\frac{k}{w}dp[k+1]+\frac{w-k}{w}dp[k]+\frac{1}{w}\)</span></p>
+<p>移项得到 <span
+class="math inline">\(dp[k]=dp[k+1]+\frac{1}{k}\)</span>，实际上和 <span
+class="math inline">\(w\)</span> 无关，所以就很好算了。</p>
+<p>官方题解的说法是如果考虑可以选已经 <code>good</code>
+的点，最终答案不变，我理解不了这个过程。</p>
+<p>upd：其实现在也可以理解了，因为如果选了已经 good
+的点，那么再选一次就行了。</p>
+<p><strong>有几个比较重要的地方，一是忽略和答案绝对无关的操作，二是考虑计算过程。</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1498,115 +1657,8 @@ class="math inline">\(O(1)\)</span>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/25/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/C-%E7%9A%84%E4%B8%80%E4%BA%9B%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/25/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/C-%E7%9A%84%E4%B8%80%E4%BA%9B%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">C++的一些踩坑记录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-09-25 16:33:05" itemprop="dateCreated datePublished" datetime="2022-09-25T16:33:05+08:00">2022-09-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:47:07" itemprop="dateModified" datetime="2025-02-16T17:47:07+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="声明和定义">声明和定义</h2>
-<ul>
-<li>正常情况下，函数的声明和定义可以分开写，如果函数参数有默认参数，写在声明或定义处都没问题，如果函数为模板参数，那么<strong>默认参数只能写在声明处</strong></li>
-</ul>
-<h2 id="模板函数">模板函数</h2>
-<p>模板函数用于将同一个函数对不同类型生效，一般来说，最好不要用
-<code>auto</code> 来捕获，写模板函数才是正确的方式。</p>
-<p><strong>模板函数的声明和定义一般不能分开。</strong></p>
-<h3 id="隐式指定">隐式指定</h3>
-<p>如果你想偷懒，就是调用的时候不想写
-<code>&lt;T1,T2...&gt;</code>，那么你<strong>调用的时候</strong>必须能让编译器推断出每个模板类型参数是什么，而且同一种类型不能冲突。</p>
-<p>这里需要注意字面量的类型问题。</p>
-<p><strong>注意，如果你使用了默认参数，那么调用的时候可能就无法让编译器推断出类型从而出现
-CE</strong>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1,<span class="keyword">typename</span> T2&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(T1 x,T1 y,T2 len=<span class="number">30</span>)</span></span>;</span><br><span class="line"><span class="built_in">add</span>(<span class="number">1</span>,<span class="number">1</span>);<span class="comment">//CE</span></span><br><span class="line"><span class="built_in">add</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">30</span>);<span class="comment">//OK</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1,<span class="keyword">typename</span> T2&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(T1 x,T2 y,T2 len=<span class="number">30</span>)</span></span>;</span><br><span class="line"><span class="built_in">add</span>(<span class="number">1</span>,<span class="number">1.5</span>);<span class="comment">//OK</span></span><br><span class="line"><span class="built_in">add</span>(<span class="number">1</span>,<span class="number">1.5</span>,<span class="number">30</span>);<span class="comment">//CE</span></span><br></pre></td></tr></table></figure>
-<p>类型参数捕获比较阴间的例子，可以发现它会先捕获"简单"的，不太想深究这个：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1,<span class="keyword">typename</span> T2&gt;</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(vector&lt;T1&gt; a,T1 b,T2 c)</span></span>;</span><br><span class="line"><span class="built_in">add</span>(&#123;<span class="number">1.5</span>,<span class="number">3</span>&#125;,<span class="number">1.5</span>,<span class="number">5</span>);<span class="comment">//ok</span></span><br><span class="line"><span class="built_in">add</span>(&#123;<span class="number">1.5</span>,<span class="number">3.5</span>&#125;,<span class="number">1</span>,<span class="number">5</span>);<span class="comment">//CE</span></span><br></pre></td></tr></table></figure>
-<h3 id="显式指定">显式指定</h3>
-<p>如果显示指定参数，那么会出现类型强制转换，和正常的函数调用完全相同。</p>
-<p>例子就不举了，和正常函数没差别。</p>
-<h2 id="指针">指针</h2>
-<h3 id="常量指针">常量指针</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span>* p = &amp;a; <span class="comment">//指向常量的指针</span></span><br><span class="line"><span class="type">int</span>* <span class="type">const</span> p = &amp;a; <span class="comment">//p 指向的位置不可变</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

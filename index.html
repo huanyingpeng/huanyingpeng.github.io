@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">101</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -274,6 +274,298 @@
 <ul>
 <li>QQ：3051561876</li>
 </ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2025/02/20/%E5%AD%A6%E6%9C%AF/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/02/20/%E5%AD%A6%E6%9C%AF/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">神经网络学习笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-02-20 16:00:00 / 修改时间：20:44:18" itemprop="dateCreated datePublished" datetime="2025-02-20T16:00:00+08:00">2025-02-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">学术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="前置知识">前置知识</h2>
+<h3 id="导数-vs-微分">导数 VS 微分</h3>
+<p><strong>导数就是导函数。</strong></p>
+<p><span class="math inline">\(f\)</span> 的微分 <span
+class="math inline">\(df\)</span> 可以看作一个函数，（一维的情况下）它将
+<span class="math inline">\(dx\)</span> 映射到 <span
+class="math inline">\(f&#39;(x)dx\)</span>。</p>
+<p><em><span class="math inline">\(dx\)</span>
+怎么理解看个人，我没有把它当成函数，而是把它当成了一个单纯的记号。</em></p>
+<h3 id="梯度-vs-微分">梯度 VS 微分</h3>
+<p><strong>梯度是高维意义下的导数。</strong></p>
+<ol type="1">
+<li><p><strong>梯度的定义</strong>：
+梯度是一个向量，包含函数的所有<strong>偏导数</strong>。对于函数 <span
+class="math inline">\(f(x,y)\)</span>，其梯度为： <span
+class="math display">\[
+\nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial
+f}{\partial y} \right)
+\]</span> 梯度指向函数值增加最快的方向。</p></li>
+<li><p><strong>微分的定义</strong>：
+微分描述了函数在<strong>自变量微小变化时的改变</strong>。对于函数 <span
+class="math inline">\(f(x,y)\)</span>，其微分 <span
+class="math inline">\(df\)</span> 为： <span class="math display">\[
+df = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy
+\]</span></p>
+<p>这表示函数在自变量 <span class="math inline">\(x\)</span> 和 <span
+class="math inline">\(y\)</span> 分别变化 <span
+class="math inline">\(dx\)</span> 和 <span
+class="math inline">\(dy\)</span> 时的总变化。</p></li>
+</ol>
+<h2 id="神经网络">神经网络</h2>
+<h3 id="权重矩阵">权重矩阵</h3>
+<p>权重矩阵用于在层之间做转移，是神经网络结构的主要组成部分。</p>
+<h3 id="激活函数">激活函数</h3>
+<p>激活函数用于调整函数结构，使神经网络能够学习复杂的非线性函数。</p>
+<h3 id="偏置项">偏置项</h3>
+<p>偏置项用于对激活范围进行调整，能够有效提升模型表达能力。</p>
+<p>没有偏置项时，激活函数的输出只取决于输入信号的加权和，这样拟合会让模型变得复杂，引入偏置项能够有效改善学习过程。</p>
+<h3 id="反向传播算法">反向传播算法</h3>
+<p>通过链式求导法则，计算每一项的梯度，以减少损失函数为目的按照梯度调整权重矩阵和偏置项的值。</p>
+<h4 id="不完全可微函数的处理">不完全可微函数的处理</h4>
+<p>激活函数有时候不是完全可微的，例如 ReLU
+函数，这个时候会采取某些方式来处理。</p>
+<ol type="1">
+<li><strong>归到某一边：</strong>反正概率挺小的，直接认为可导归到其中一边就行。</li>
+<li><strong>使用次梯度：</strong>如果它是个凸函数，可以用次梯度近似替代。</li>
+<li><strong>用可导函数近似：</strong>找个长得差不多的可导函数，不可微的点用这个函数的微分替代。</li>
+</ol>
+<h3 id="批次训练与梯度累计">批次训练与梯度累计</h3>
+<p>神经网络一般采用批次训练的方式，利用 GPU
+的并行计算能力，一个批次跑出多个数据的 loss
+和梯度。然后取平均后进行一次下降。</p>
+<p>一般来说 batch_size
+设置大一点可以让学习过程更加稳定，减少个别数据的极端偏移。</p>
+<p>有时候显存不够甚至可以多跑几次积累一下梯度，然后进行更新。</p>
+<p><em>注意这里是对<strong>梯度</strong>取平均，不是对 loss
+或者中间过程的值取平均。</em></p>
+<h3 id="过拟合与缓解方式">过拟合与缓解方式</h3>
+<h4 id="early-stop">Early Stop</h4>
+<p>训到训练集 Loss 连续一段时间不再下降时就停止。</p>
+<h4 id="l1l2-standardization">L1/L2 Standardization</h4>
+<p>给 Loss 加个正则化项：</p>
+<ul>
+<li>L1 正则化：<span
+class="math inline">\(\lambda\sum|w_i|\)</span></li>
+<li>L2 正则化：<span class="math inline">\(\lambda\sum
+w_i^2\)</span></li>
+</ul>
+<p>为啥有用：</p>
+<ul>
+<li>L1
+促进一些参数变零，可以实现<strong>特征选择</strong>，以去除不重要的特征。</li>
+<li>L2 鼓励减小参数大小，降低对训练数据的敏感性。</li>
+<li>总的来说都是<strong>限制了模型复杂度以减小过拟合的可能</strong>。</li>
+</ul>
+<h4 id="dropout">Dropout</h4>
+<p>实现方式：</p>
+<ul>
+<li><strong>每轮训练</strong>的时候以一个概率 <span
+class="math inline">\(p\in[0.2,0.5]\)</span> 让（特定的 Dropout
+层）激活函数变零。</li>
+<li>测试的时候启用全部神经元，同时乘上一个系数 <span
+class="math inline">\((1-p)\)</span> 补偿训练过程的丢弃。</li>
+</ul>
+<p>为啥有用：</p>
+<ul>
+<li>取平均作用：不同轮次的 Dropout
+可以视作不同的神经网络，产生不同的过拟合，能够相互抵消。</li>
+<li>减少共适性关系：不应该对某些特定的特征特别敏感，迫使神经网络学习到具有鲁棒性的特征。</li>
+</ul>
+<h3 id="其它训练技巧">其它训练技巧</h3>
+<h4 id="batch-normalization">Batch Normalization</h4>
+<p>实现方式：</p>
+<ul>
+<li>在神经网络的每一层输入层前加一个 BN 层，将输入归一化为均值为
+0，方差为 1 的输入。</li>
+<li>BN 层增加两个可学习参数 <span class="math inline">\(\gamma,
+\beta\)</span>，用于对归一化后的数据进行线性变换。</li>
+</ul>
+<p>生效原理：</p>
+<ul>
+<li>缓解内部协变量偏移问题：使各层输入分布稳定，加速网络收敛，对于深度神经网络作用更大。</li>
+<li>提升梯度传播效率：使输入保持在激活函数非饱和区内，有利于缓解梯度消失和梯度爆炸，同时也能避免参数初始化时使训练陷入困境。</li>
+<li>增强泛化能力*：由于 <span
+class="math inline">\(\gamma,\beta\)</span>
+是可学习的，因此训练过程会对数据进行一些小扰动，可能能增强泛化能力。</li>
+</ul>
+<h2 id="卷积神经网络">卷积神经网络</h2>
+<h3 id="卷积层">卷积层</h3>
+<h4 id="卷积核">卷积核</h4>
+<ul>
+<li><p>我不懂为啥要叫卷积，但是卷积核是对对应的小矩阵做<strong>点乘</strong>，然后得到一个数作为特征值。</p></li>
+<li><p>一个卷积层可能有多个卷积核，不同卷积核可以提取不同的特征，最后卷出来的结果是个张量。</p></li>
+</ul>
+<h4 id="参数">参数</h4>
+<ul>
+<li><p>大小：常见的有 3x3 和
+5x5，较小的卷积核能够捕捉精细特征，较大的可以捕获更广泛的上下文信息。</p></li>
+<li><p>步长：决定卷积核在数据上滑动的间隔，步长越大，特征图输出越小。</p></li>
+<li><p>填充：在图像边缘添加额外像素，控制输出特征图的大小。</p></li>
+<li><p>权重：卷积核每个位置的值叫做权重，这个是可以学习的。</p></li>
+<li><p>偏置：每个卷积核有一个偏置值，也是可以学习的。</p></li>
+</ul>
+<h4 id="作用">作用</h4>
+<p>有效提取各种局部特征。</p>
+<h3 id="池化层">池化层</h3>
+<h4 id="结构">结构</h4>
+<ul>
+<li>池化窗口：一般设置为 2x2 或者 3x3，决定每次考虑的局部区域大小</li>
+<li>池化方式：最大池化或者平均池化，前者取最大值并保留，后者取平均值并保留。</li>
+<li>池化步长：和卷积层的步长差不多，决定特征图大小用的。</li>
+</ul>
+<h4 id="用途">用途</h4>
+<p>降低特征图维度，减少计算量，同时保留重要的局部特征信息。</p>
+<h3 id="全连接层">全连接层</h3>
+<p>一般放在最后几层，用于整合前面提取的特征，输出最终的结果。</p>
+<h3 id="优势">优势</h3>
+<ul>
+<li>天然适用于处理图像，能够有效提取图像局部特征并完成图像相关任务。</li>
+</ul>
+<h3 id="一般使用方式">一般使用方式</h3>
+<ul>
+<li>通常会堆很多层，非常深，一层卷积带一层池化这样。</li>
+</ul>
+<h3 id="改进">改进</h3>
+<h4 id="resnet">ResNet</h4>
+<p>引入了残差块，解决了深层神经网络梯度消失的问题。<del>卧槽了这 TM
+也能管用。</del></p>
+<p>残差块是在两个卷积层的基础上直接拉了一个恒等偏置过来。假设一个残差块的输入是
+<span class="math inline">\(x\)</span>，输出 <span
+class="math inline">\(H(x)\)</span>，卷积层结构是 <span
+class="math inline">\(F(x, W_i)\)</span>，那么令： <span
+class="math display">\[
+H(x) = x + F(x, W_i)
+\]</span></p>
+<p>参与学习的参数只有 <span
+class="math inline">\(W_i\)</span>，这样反向传播链式求导的时候梯度能直接从
+<span class="math inline">\(x\)</span>
+这一项传到前面去，神秘的解决了梯度消失问题。</p>
+<h2 id="循环神经网络">循环神经网络</h2>
+<h3 id="结构-1">结构</h3>
+<h4 id="输入">输入</h4>
+<ol type="1">
+<li><strong>当前时刻的输入</strong> <span
+class="math inline">\(x_t\)</span>：表示当前时间步的输入数据，例如在自然语言处理中，*<span
+class="math inline">\(x_t\)</span> 可以是一个单词的嵌入向量。</li>
+<li><strong>上一时刻的隐藏状态</strong> <span
+class="math inline">\(h_{t-1}\)</span>：表示上一时间步的输出状态，用于传递之前的信息。</li>
+</ol>
+<h4 id="输出">输出</h4>
+<ol type="1">
+<li><strong>当前时刻的隐藏状态</strong> <span
+class="math inline">\(h_t\)</span>：用于传递给下一个时间步。</li>
+<li><strong>当前时刻的输出</strong> <span
+class="math inline">\(y_t\)</span>（可选）：在某些任务中，RNN
+的每个时间步都会产生一个输出，例如在字符级语言模型中，<span
+class="math inline">\(y_t\)</span> 可以表示下一个字符的概率分布。</li>
+</ol>
+<h4 id="状态公式">状态公式</h4>
+<p><span class="math display">\[
+h_t=\sigma(W_{hh}h_{t-1}+W_{xh}x_t+b_t)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(W_{hh}\)</span>：隐藏状态转移公式。</li>
+<li><span
+class="math inline">\(W_{xh}\)</span>：输入到隐藏贡献公式。</li>
+<li><span class="math inline">\(\sigma\)</span>：激活函数。</li>
+<li><span class="math inline">\(b_h\)</span>：偏置项。</li>
+</ul>
+<h4 id="训练过程">训练过程</h4>
+<p>一般用 BackPropagation Through
+Time（BPTT）算法进行权重更新，过程如下：</p>
+<ul>
+<li>前向传播：从 <span class="math inline">\(t=1\)</span>
+开始一次计算隐藏状态和输出。</li>
+<li>计算损失：计算所有输出的损失函数。</li>
+<li>反向传播：从 <span class="math inline">\(t=T\)</span>
+开始依次计算每个时间步的梯度，最后梯度加在一起更新。</li>
+</ul>
+<h3 id="优缺点">优缺点</h3>
+<h4 id="优势-1">优势</h4>
+<ul>
+<li>能处理变长的输入。</li>
+</ul>
+<h4 id="缺点">缺点</h4>
+<ul>
+<li>梯度消失：处理过长的序列时，容易发生梯度消失，导致无法捕捉长距离的依赖。</li>
+<li>梯度爆炸：处理过长的序列时，容易发生梯度爆炸，导致权重更新过大，训练过程不稳定。</li>
+</ul>
+<h2 id="长短期记忆网络lstm">长短期记忆网络（LSTM）</h2>
+<p>RNN 的问题很大，所以衍生出了 RNN 的变体：LSTM。</p>
+<h3 id="结构-2">结构</h3>
+<h3 id="bilstm">BiLSTM</h3>
+<h3 id="grm">GRM</h3>
 
       
     </div>
@@ -2595,344 +2887,8 @@ Models》By A Lewkowycz，page 32.</em></p>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2023/02/04/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2023/0203%E6%B5%8B%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/02/04/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2023/0203%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">0203测试</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-02-04 10:18:34" itemprop="dateCreated datePublished" datetime="2023-02-04T10:18:34+08:00">2023-02-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:23:37" itemprop="dateModified" datetime="2025-02-16T20:23:37+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="测试">0203测试</h2>
-<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0183/">考试</a></p>
-<h3 id="t1">T1</h3>
-<p>参阅 <a
-href="https://huanyp.cn/2022/07/12/%E8%AE%AD%E7%BB%83%E9%A2%98%E8%A7%A3/%E5%81%9A%E9%A2%982/">该文章
-20220309 部分</a>。</p>
-<p>无向图上的题不好做，考虑放到生成树上去做，我们这里为了方便，直接选取其
-DFS 树。</p>
-<p>边可以分为树边和非树边，容易发现选取非树边的子集之后，树边的选取方案就已经确定了。具体的，当且仅当一条树边被奇数条非树边覆盖的时候选取它，否则不选取。</p>
-<p>考虑要求的东西 <span
-class="math inline">\(|S|^2\)</span>，我们对于一个集合求子集权值和时，往往会考虑每个元素的贡献，这个也是一个道理，我们考虑一个有序对的贡献。</p>
-<p>设非树边有 <span class="math inline">\(m\)</span>
-条分三种情况讨论：</p>
-<ul>
-<li><p>非树边和非树边：方案数为 <span
-class="math inline">\(m(m-1)2^{m-2}+m2^{m-1}=m(m+1)2^{m-2}\)</span>。</p></li>
-<li><p>非树边和树边：首先树边必须至少被一条非树边覆盖，否则贡献为 <span
-class="math inline">\(0\)</span>。<strong>在此基础上，限制是覆盖了树边的非树边集合必须选取奇数个元素</strong>，我们分两种情况讨论：</p>
-<ul>
-<li>非树边没有覆盖树边：方案数为 <span
-class="math inline">\(2^{m-2}\)</span>，所有的子集中，有一半的集合没有选取非树边，在剩下的一半中，又有一半的集合不满足限制。</li>
-<li>非树边覆盖了树边：再分两种情况讨论：
-<ul>
-<li>没有其它非树边覆盖了树边：方案数为 <span
-class="math inline">\(2^{m-1}\)</span>，树边和非树边状态相同，只要非树边选了就一定合法。</li>
-<li>有其它非树边覆盖了树边：方案数为 <span
-class="math inline">\(2^{m-2}\)</span>，所有的子集中，有一半的集合没有选取非树边，在剩下的一半中，又有一半的集合不满足限制。</li>
-</ul></li>
-</ul></li>
-<li><p>树边和树边：首先两条树边都至少被一条非树边覆盖。树边标号为 <span
-class="math inline">\(1,2\)</span>，记只覆盖了 <span
-class="math inline">\(1,2\)</span> 的非树边集合分别为 <span
-class="math inline">\(A,B\)</span>，同时覆盖了 <span
-class="math inline">\(1,2\)</span> 的集合为 <span
-class="math inline">\(C\)</span>，其余集合为 <span
-class="math inline">\(D\)</span>。因为每条树边都被覆盖，所以 <span
-class="math inline">\(|A|+|C|&gt;0\)</span> 并且 <span
-class="math inline">\(|B|+|C|&gt;0\)</span>。剩下的情况分三种讨论：</p>
-<ul>
-<li><span class="math inline">\(|A|+|B|=0\)</span>，此时 <span
-class="math inline">\(|C|&gt;0\)</span>，<span
-class="math inline">\(1,2\)</span>
-边的<strong>选取状态一定相同</strong>，对于 <span
-class="math inline">\(C\)</span>
-集合，选取的元素个数必须为奇数，因此有一半的子集不满足条件，答案 <span
-class="math inline">\(2^{m-1}\)</span></li>
-<li><span
-class="math inline">\(|A|=0,|B|&gt;0\)</span>：有一半的子集，不满足覆盖
-<span class="math inline">\(1\)</span>
-的非树边个数为奇数。在剩下的一半中，又有一半的子集不满足覆盖 <span
-class="math inline">\(2\)</span> 的边数为奇数。</li>
-<li><span
-class="math inline">\(|A||B|&gt;0\)</span>：有一半的子集，不满足覆盖
-<span class="math inline">\(1\)</span>
-的非树边个数为奇数。在剩下的一半中，又有一半的子集不满足覆盖 <span
-class="math inline">\(2\)</span> 的边数为奇数。</li>
-</ul>
-<p>对于后两种情况的理解，我们可以视为是解一个 01
-异或方程组，求自由元的个数，后两者线性基的大小都为 <span
-class="math inline">\(2\)</span>，而 <span
-class="math inline">\(|A|+|B|=0\)</span> 的线性基大小为 <span
-class="math inline">\(1\)</span>。</p>
-<p>用更像人话的方式表达，对于 <span
-class="math inline">\(|A||B|&gt;0\)</span> 的情况，从 <span
-class="math inline">\(A,B\)</span>
-中各拿出一个元素来，其它元素任选，方案数 <span
-class="math inline">\(2^{m-2}\)</span>，选定了这些元素之后，剩下的两个元素的选择方案就固定了。<strong>注意具体拿
-<span class="math inline">\(A,B\)</span>
-中的哪个元素并不影响结果。因为这样生成的方案和合法方案是一一对应的。</strong></p>
-<p><span class="math inline">\(|A|=0,|B|&gt;0\)</span>
-的情况同理，只不过是从 <span class="math inline">\(B,C\)</span>
-中各自拿出一个元素，<strong>先决策 <span
-class="math inline">\(C\)</span> 中的元素，再决策 <span
-class="math inline">\(B\)</span> 中的元素。</strong></p></li>
-</ul>
-<p>上面讨论中，第一部分是容易的，第二部分我们只需要求出每条树边由多少条非树边覆盖也可以轻松统计答案，可以用树上差分来完成。</p>
-<p>第三部分相对困难，我们发现 <span
-class="math inline">\(|A|+|B|=0\)</span>
-当且仅当覆盖两条树边的非树边集合相同，于是就是对于若干个集合，计算有多少个两两相同。</p>
-<p>集合的判重可以采用异或哈希的方式，给每一条非树边一个随机的 <span
-class="math inline">\([0,2^{64})\)</span>
-的权值，并将其覆盖的路径上的树边都异或上这个权值，如果两条树边的权值相同，那么我们可以认为两条树边对应的非树边集合相同，树上路径异或还是可以差分实现。</p>
-<p>一次判断的错误率为 <span
-class="math inline">\(2^{-64}\)</span>，由于我们是统计的集合相同的对数，<strong>因此等价于进行了
-<span class="math inline">\(n^2\)</span>
-次判断</strong>，但错误率还是在可以接受的范围——约 <span
-class="math inline">\(10^{-8}\)</span>。</p>
-<h3 id="t2">T2</h3>
-<p>参阅 <a
-href="https://huanyp.cn/2022/07/12/%E8%AE%AD%E7%BB%83%E9%A2%98%E8%A7%A3/%E5%81%9A%E9%A2%982/">该文章
-20220329 部分</a>。</p>
-<p>参阅 <a
-href="https://huanyp.cn/2022/08/03/%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%E7%90%86%E8%A7%A3/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/">简单数论函数和应用</a>。</p>
-<p><span class="math inline">\(p\)</span> 代表一个质数。</p>
-<p>不难证明 <span class="math inline">\(f(n)=\gcd(n,n&#39;)\)</span>
-是积性函数，<strong>令 <span class="math inline">\(f(1)=1\)</span>，由于
-<span class="math inline">\(f(p)=1\)</span>，可以考虑 PN
-筛</strong>。</p>
-<p>构造 <span
-class="math inline">\(g(n)=\boldsymbol{1},h=f/g\)</span>。</p>
-<p>考虑 <span class="math inline">\(h\)</span> 在 <span
-class="math inline">\(p\)</span> 处的取值，有 <span
-class="math inline">\(f(p)=h(1)g(p)+h(p)g(1)\)</span>，代换得 <span
-class="math inline">\(h(p)=1\)</span>，由于 <span
-class="math inline">\(h\)</span> 为积性函数，所以仅在 PN 处有取值。</p>
-<p>推一下公式： <span class="math display">\[
-\begin{align}
-\sum\limits_{i=1}^nf(i)&amp;=\sum_{i=1}^n\sum_{d|i}h(d)g(\frac{i}{d})\\
-&amp;=\sum_{d=1}^nh(d)\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}g(i)\\
-&amp;=\sum_{d=1}^nh(d)\lfloor\frac{n}{d}\rfloor\\
-&amp;=\sum_{d\in \operatorname{PN}}^nh(d)\lfloor\frac{n}{d}\rfloor\\
-\end{align}
-\]</span> 如何求 <span class="math inline">\(h\)</span> ？</p>
-<p>简单做一下代换： <span class="math display">\[
-h=f/\operatorname{\boldsymbol{1}}=f * \mu
-\]</span> 考虑 <span class="math inline">\(h(p^c)\)</span> 的取值，有
-<span
-class="math inline">\(h(p^c)=\sum\limits_{i=0}^cf(p^i)\mu(p^{c-i})=f(p^c)-f(p^{c-1})\)</span>，构造完成。</p>
-<h3 id="t3">T3</h3>
-<p>参阅 <a
-href="https://huanyp.cn/2022/07/19/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%80%BB%E7%BB%93/CF1706%E5%B0%8F%E6%80%BB%E7%BB%93/">该文章
-LCA 性质部分</a>。</p>
-<p>非常奇妙的贪心题。</p>
-<p>用人话说一遍题意：有一棵边带权的树，<span
-class="math inline">\(q\)</span> 次强制在线询问，每次给定 <span
-class="math inline">\(u,k\)</span>。你需要选择 <span
-class="math inline">\(k\)</span> 条路径，使得它们至少有一条过 <span
-class="math inline">\(u\)</span>，并且路径经过边集的并的权值最大，一个边集的权值等于所有边的权值和。</p>
-<p>选路径是很麻烦的事情，但是可以转化为选点，感觉上选叶子是比较好的。</p>
-<p><span class="math inline">\(\text{Lemma 1.}\)</span></p>
-<p>对于一个定点 <span
-class="math inline">\(u\)</span>，最优方案的路径的端点都在叶子上。</p>
-<p><span class="math inline">\(\text{Proof 1.}\)</span></p>
-<p>如果某条路径的某个端点不在叶子上，我们让它往<strong>使得这条路径变长</strong>的方向移动，就可以将所有端点移动到叶子上。</p>
-<p><span class="math inline">\(\text{Lemma 2.}\)</span></p>
-<p>以任何一个点为根，不考虑经过 <span class="math inline">\(u\)</span>
-的限制。对于一个叶子的可重集 <span
-class="math inline">\(S\)</span>，存在一种选择 <span
-class="math inline">\(\lceil\frac{|S|}{2}\rceil\)</span>
-条路径的方案，经过 <span class="math inline">\(S\)</span>
-虚树上的所有边，并且是所有端点可重集为 <span
-class="math inline">\(S\)</span> 的路径选择方案中权值最大的方案。</p>
-<p><span class="math inline">\(\text{Proof 2.}\)</span></p>
-<p>证明分两步——"最大"和"值"，这里会用到一些开头参考资料中的定理。</p>
-<p>最大：不在虚树上的边无法经过。</p>
-<p>值：设点集为 <span class="math inline">\(S\)</span>，<span
-class="math inline">\(k=1\)</span> 时结论成立，令 <span
-class="math inline">\(u=\operatorname{lca}(S)\)</span>。归纳的，设结论在
-<span class="math inline">\(k&lt;n\)</span> 时成立，对于 <span
-class="math inline">\(k=n\)</span>，分两种情况讨论：</p>
-<ul>
-<li><p>存在一个点有超过 <span class="math inline">\(k\)</span>
-个叶子：记这个子树叶子集合为 <span
-class="math inline">\(S&#39;\)</span>，令 <span
-class="math inline">\(u&#39;=\operatorname{lca}(S&#39;)\)</span>，选择
-<span class="math inline">\(S&#39;\)</span> 若干个 dfs
-序不是最大也不是最小的点，记为 <span
-class="math inline">\(T\)</span>，使得 <span
-class="math inline">\(|S&#39;-T|\)</span> 是 <span
-class="math inline">\(2\)</span> 的倍数，且 <span
-class="math inline">\(T\)</span> 的大小和 <span
-class="math inline">\(u\)</span> 次大的的子树相同或者仅多 <span
-class="math inline">\(1\)</span>。读者可以尝试证明这样的 <span
-class="math inline">\(T\)</span> 一定存在，此处略去证明。</p>
-<p>对于 <span class="math inline">\(S-S&#39;+T\)</span>
-中的点来说，它们存在一种覆它们存在一种覆盖对应虚树的方案，所以 <span
-class="math inline">\(u&#39;\)</span> 到 <span
-class="math inline">\(u\)</span> 的路径一定已经被覆盖了。对于 <span
-class="math inline">\(S&#39;-T\)</span>
-中的点来说，也存在一种覆盖虚树的方案。由 lca 性质，<span
-class="math inline">\(\operatorname{lca}(S&#39;-T)=u&#39;\)</span>，所以两个点集并起来后的虚树也都被覆盖了。</p></li>
-<li><p>不存在一个子树有超过 <span class="math inline">\(k\)</span>
-个叶子：这种情况让不在同一子树的叶子配对最优，因为每个叶子都到了 <span
-class="math inline">\(u\)</span> 点，一定覆盖了虚树。</p></li>
-</ul>
-<hr />
-<p>由 Lemma 2，如果确定了最优方案端点的可重集 <span
-class="math inline">\(S\)</span>，那么就可以确定最优方案的权值，所以问题变成了选叶子。</p>
-<p>即选一个大小为 <span class="math inline">\(2k\)</span>
-的叶子集合，集合权值为其虚树上的边的权值和，要求 <span
-class="math inline">\(u\)</span> 在其虚树上，最大化集合权值。</p>
-<p><span class="math inline">\(\text{Theorem 3.}\)</span></p>
-<p>以 <span class="math inline">\(u\)</span>
-为根，<strong>如果最后选取的最优虚树经过 <span
-class="math inline">\(u\)</span></strong>，那么每次贪心的选取能使得答案增加量最多的叶子，能取到最优值。</p>
-<p><span class="math inline">\(\text{Proof 3.}\)</span></p>
-<p>考虑最优的叶子选择顺序 <span class="math inline">\(a_1,a_2,a_3\cdots
-a_n\)</span>。</p>
-<p>假设最优选取方案前 <span class="math inline">\(k\)</span>
-个和贪心的顺序相同，第 <span class="math inline">\(k+1\)</span>
-个不同，设应该被贪心选取的点为 <span
-class="math inline">\(u\)</span>，往上跳 <span
-class="math inline">\(u\)</span> 的父亲直到和 <span
-class="math inline">\(\{a_i,i&gt;k\}\)</span>
-构成的虚树相交，分情况讨论：</p>
-<ul>
-<li>如果找不到交点，替换后面的任意一个选择都会更优。考虑选完所有点后移除
-<span
-class="math inline">\(a_x,x&gt;k\)</span>，带来的的权值减少量。它不会多于在选完
-<span class="math inline">\(a_k\)</span> 后选择 <span
-class="math inline">\(a_x\)</span> 的权值增加量，所以也不多于选完 <span
-class="math inline">\(a_k\)</span> 后选择 <span
-class="math inline">\(u\)</span>
-的权值增量，因此更优，注意到这种情况下选完所有点后选择 <span
-class="math inline">\(u\)</span> 的权值增量等于选完 <span
-class="math inline">\(a_k\)</span> 后选择 <span
-class="math inline">\(u\)</span> 的权值增量。</li>
-<li>如果能找到交点，在这个交点的子树内选一个点移除，同样选 <span
-class="math inline">\(u\)</span> 的增量大于移除那个点的减少量。</li>
-</ul>
-<hr />
-<p>在 Theorem 3. 中我们假定了最后一定经过 <span
-class="math inline">\(u\)</span>，以便于计算单选一个叶子时的答案，<strong>如果以上贪心策略不经过
-<span class="math inline">\(u\)</span>，那么只需要将最后一次的选择替换为
-<span class="math inline">\(u\)</span>
-不同儿子的最深叶子即可</strong>。</p>
-<p>因此我们对于一个点的情况得到了一种贪心做法，这个贪心做法直接实现需要维护每次选择后每个叶子的权值，但是并不好维护这个东西。正难则反，考虑选取每个叶子时它的权值，它一定是一条从自身到根的路径的下半部分。容易发现上端点是<strong>第一个最深叶子不是它的祖先。</strong>记点
-<span class="math inline">\(u\)</span> 子树下最深的叶子为 <span
-class="math inline">\(down[u]\)</span>，那么一个叶子 <span
-class="math inline">\(x\)</span> 的权值是它到第一个 <span
-class="math inline">\(down[u]\ne x\)</span> 的 <span
-class="math inline">\(u\)</span> 路径的长度，<span
-class="math inline">\(down[1]=x\)</span> 是例外。</p>
-<p>因此，我们可以<strong>提前计算出选每个叶子时贡献</strong>，这个贡献是最优方案下的贡献，如果一个选取方案不是最优方案，那么这个贡献是不对的，我们利用了方案一定最优这个性质去简化了求权值的过程。</p>
-<p>计算答案即取前 <span class="math inline">\(2k\)</span>
-大，<strong>如果前 <span class="math inline">\(2k\)</span>
-大在根的同一子树，那么取消最后一次的选择换成一个不同子树的。</strong></p>
-<p>先考虑不强制在线的做法。</p>
-<p>考虑换根的过程，哪些叶子的权值会变化，不妨设从 <span
-class="math inline">\(u\)</span> 到 <span
-class="math inline">\(v\)</span>，边权为 <span
-class="math inline">\(val\)</span>，首先 <span
-class="math inline">\(down[v]\)</span> 的权值会减少 <span
-class="math inline">\(val\)</span>，其次时到 <span
-class="math inline">\(u\)</span> 最远的叶子的权值会增加 <span
-class="math inline">\(val\)</span>，考虑到 <span
-class="math inline">\(u\)</span> 最远的叶子时需要排除 <span
-class="math inline">\(v\)</span> 方向的。</p>
-<p>然后变化量是常数级别的，线段树即可。</p>
-<p>对于强制在线的情况，如果我们能快速得到每个点的线段树事情就好办了，不强制在线的时候我们确实可以求出在每个点处的线段树——可持久化。</p>
-<hr />
-<p>简单总结一下比较妙的点：</p>
-<ul>
-<li><p><strong>利用方案是最优方案的性质</strong>，我们将选路径问题转化为了选点问题（Lemma
-2）。</p></li>
-<li><p>贪心过程中，我们需要维护每个点的贡献，并选取贡献最大的点。选取贡献最大的点后其它点的贡献会变化，变化量不容易维护，于是考虑每个点被选取时的贡献。<strong>将方案最优作为一个已知条件，借此条件我们能够计算出每个点被选取时的贡献。</strong></p></li>
-<li><p>将此题强制在线后，我们不太好利用根移动一个位置后贡献变化量为常数的性质，因为总的移动量是
-<span
-class="math inline">\(O(n^2)\)</span>，但是树的形态不会改变，因此我们在每个位置查询的线段树都不会改变，我们能通过
-dfs
-求出每个位置查询的线段树的形态，将它可持久化即可在任意时刻查询。</p></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
