@@ -7,6 +7,7 @@ tags:
 - 开源
 categories:
 - 技术
+description: NcatBot 是一个用于 QQ-Bot 开发的 Python SDK.
 ---
 
 [NcatBot](https://github.com/liyihao1110/ncatbot) 是一个用于 QQ-Bot 开发的 Python SDK.

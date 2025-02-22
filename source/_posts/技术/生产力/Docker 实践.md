@@ -5,6 +5,7 @@ tags:
 - Docker
 categories:
 - 技术
+description: 本文介绍了 Docker 的基本操作方法, 强调了一些易错点.
 ---
 
 ## 查看镜像和容器
