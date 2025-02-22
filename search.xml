@@ -33,6 +33,194 @@
 ]]></content>
   </entry>
   <entry>
+    <title>Docker 实践</title>
+    <url>/2025/02/22/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Docker%20%E5%AE%9E%E8%B7%B5/</url>
+    <content><![CDATA[<h2 id="查看镜像和容器">查看镜像和容器</h2>
+<ul>
+<li><p>显示本地所有镜像：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker image <span class="built_in">ls</span></span><br></pre></td></tr></table></figure></li>
+<li><p>显示所有正在运行的容器：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure></li>
+<li><p>显示所有容器（包括停止的）：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="运行容器">运行容器</h2>
+<ul>
+<li><p>从镜像新建并运行一个容器</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run &lt;image_name&gt;</span><br></pre></td></tr></table></figure>
+<p>可选参数表：</p>
+<ul>
+<li><code>-d</code>：以守护模式运行。</li>
+<li><code>-it</code>：保持 STDIN
+打开并分配一个伪终端。（建永远选上这个）</li>
+<li><code>--name &lt;name&gt;</code>：给容器起个名，易于区分。</li>
+<li><code>-p &lt;host_port&gt;:&lt;client_port&gt;</code>
+：进行端口映射，可以有多个
+<code>-p &lt;host_port&gt;:&lt;client_port&gt;</code>
+字段。也支持端口段映射，比如 <code>-p 8000-8010:8000-8010</code>。</li>
+<li><code>-e &lt;key&gt;=&lt;value&gt;</code>：设置启动时环境变量。</li>
+</ul>
+<p>其它事项：</p>
+<ul>
+<li>一般来说，如果不指定
+<code>-d</code>，退出终端时，容器会自动退出。</li>
+<li><code>-d</code>，<code>--name</code>，<code>-p</code>
+必须在通过镜像创建容器时确定，之后一般无法改变。</li>
+<li>如果本地没有 <code>&lt;image_name&gt;</code>
+镜像，会自动从远端拉去。</li>
+</ul></li>
+<li><p>启动一个被退出的镜像</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker start &lt;container_name&gt;</span><br></pre></td></tr></table></figure>
+<p>可选参数表：</p>
+<ul>
+<li><code>-ia</code>：启动交互模式并附加到一个终端上。</li>
+</ul>
+<p>其它事项：</p>
+<ul>
+<li><code>&lt;container_name&gt;</code> 支持前缀匹配，不需要全名。</li>
+</ul></li>
+<li><p>附加到一个已经启动的容器中</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker exec -it &lt;container_name&gt; /bin/bash</span><br></pre></td></tr></table></figure>
+<p>可选参数：</p>
+<ul>
+<li><code>-it</code>：保持 STDIN 打开并进入交互式 shell。</li>
+</ul></li>
+<li><p>在一个已经运行的容器中执行命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker exec &lt;container_name&gt; &lt;COMMAND&gt; &lt;ARGS...&gt;</span><br></pre></td></tr></table></figure>
+<p>可选参数：</p>
+<ul>
+<li><code>-d</code>：后台运行命令，不进入容器。</li>
+<li><code>-e &lt;key&gt;=&lt;value&gt;</code>：设定环境变量。</li>
+<li><code>-w</code>：指定命令执行的工作目录。</li>
+</ul></li>
+</ul>
+<h2 id="容器的生命周期">容器的生命周期</h2>
+<p>容器的生命周期与主进程（PID=1
+的进程）绑定，主进程退出时容器生命周期结束。</p>
+<ol type="1">
+<li><p>当以 <code>docker run -it</code>
+运行容器时，<strong>主进程是终端进程</strong>，终端退出则容器退出。</p></li>
+<li><p>当以 <code>docker start -ia</code> 恢复容器运行时，
+<strong>主进程是终端进程</strong>，终端退出则容器退出。</p></li>
+<li><p>当以 <code>docker start</code>
+恢复容器运行时，<strong>主进程是一个守护进程</strong>，再使用
+<code>docker exec -it /bin/bash</code>
+启动容器终端时，终端不作为主进程，退出对容器无影响。</p></li>
+<li><p>当以 <code>docker run -d</code>
+运行容器时，<strong>主进程是守护进程</strong>，再使用
+<code>docker exec -it /bin/bash</code>
+启动容器终端时，终端不作为主进程，退出对容器无影响。（该情况下，主动
+<code>docker stop</code> 容器再用 <code>docker start -ia</code>
+恢复时，主进程是终端进程而不是守护进程）</p></li>
+</ol>
+<h2 id="操作容器">操作容器</h2>
+<ul>
+<li><p>删除容器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker -rm &lt;container_name&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="制作镜像">制作镜像</h2>
+<h3 id="直接用-container-制作">直接用 container 制作</h3>
+<p>制作步骤：</p>
+<ul>
+<li><p><code>docker run -it</code> 一个基础镜像。</p></li>
+<li><p>用终端进行必要的修改。</p></li>
+<li><p><code>exit</code> 退出基础镜像并让它停止。</p></li>
+<li><p>执行 <code>commit</code> 制作镜像</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker commit &lt;container_name&gt; &lt;image_name&gt;[:&lt;version&gt;]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果不使用 <code>[:version]</code>，默认使用
+<code>latest</code>。</li>
+</ul></li>
+</ul>
+<h3 id="用-dockerfile-制作">用 Dockerfile 制作</h3>
+<p>用 container
+制作虽然方便，但把所有操作打包到一个层非常不利于维护，所以有条件的话都建议用
+Dockerfile 来制作。</p>
+<p>一个经典的 Dockerfile 如下：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> image_name:tag</span><br><span class="line"></span><br><span class="line"><span class="keyword">MAINTAINER</span> YOUR_NAME <span class="string">&quot;your_email@example.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ENV</span> var_name value</span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> file_path destination_directory</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /path/to/workdir</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">command</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> port_number</span><br><span class="line"></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;command&quot;</span>, <span class="string">&quot;arg1&quot;</span>, <span class="string">&quot;arg2&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>FROM</code>：指定基础镜像。</li>
+<li><code>MAINTAINER</code>：指定作者信息。</li>
+<li><code>ENV</code>：设置环境变量，它在<strong>构建阶段</strong>和<strong>容器生命周期内</strong>均有效。</li>
+<li><code>COPY</code>：从宿主机拷贝文件过来。</li>
+<li><code>WORKDIR</code>：设置工作目录，如果不存在，会递归创建。</li>
+<li><code>RUN</code>：执行必要的构建命令。</li>
+<li><code>EXPOSE</code>：明确要暴露的端口号，但还是需要在
+<code>docker -run</code> 时使用 <code>-p</code> 指定。</li>
+<li><code>CMD</code>：定义 <code>docker run</code> 时的默认命令。</li>
+</ul>
+<p>制作步骤如下：</p>
+<ul>
+<li><p><strong>准备</strong></p>
+<p>建一个目录，里面创建一个名为 <code>Dockerfile</code>
+的文件，在里面写命令。</p>
+<p>目录里加上可能要拷贝进去的文件。</p></li>
+<li><p><strong>构建</strong></p>
+<p><code>Dockerfile</code> 的所在目录下执行以下代码。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker build -t [&lt;image_name&gt;[:&lt;version&gt;]] &lt;cwd&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>-t</code>：一般<strong>必选</strong>，指定镜像名和版本。</li>
+<li><code>cwd</code>：一般就写 <code>.</code> 了。</li>
+</ul></li>
+<li><p><strong>测试</strong></p>
+<p>看一下构建成功没有。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="其它常用命令">其它常用命令</h3>
+<ul>
+<li><p>打 tag：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker tag &lt;image&gt;:&lt;old_version&gt; &lt;image&gt;:&lt;new_version&gt;</span><br></pre></td></tr></table></figure>
+<p>一般创建的时候你会写 <code>&lt;image&gt;</code> 和
+<code>&lt;version&gt;</code>。</p>
+<p>可以把 <code>&lt;version&gt;</code> 看成一个指针，创建 image
+的时候你让 <code>&lt;version&gt;</code> 指向了它。</p>
+<p><code>docker tag</code> 的作用就是将 <code>&lt;new_version&gt;</code>
+也指向 <code>&lt;version&gt;</code> 指向的对象，用以下 cpp
+代码理解：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">Image *old_version = <span class="keyword">new</span> <span class="built_in">Image</span>();</span><br><span class="line">Image *new_version = old_version;</span><br></pre></td></tr></table></figure></li>
+<li><p>镜像保存到文件：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker save -o &lt;filename&gt; &lt;image_name&gt;[:&lt;version&gt;]</span><br></pre></td></tr></table></figure></li>
+<li><p>从文件加载镜像：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker load -i &lt;filename&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>容器保存到文件：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker export -o &lt;filename&gt; &lt;container_name&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>从文件将容器<strong>加载为镜像</strong>：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker import &lt;filename&gt; &lt;image_name&gt;[:&lt;version&gt;]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="跨设备传输">跨设备传输</h2>
+<h3 id="推送到-dockerhub">推送到 DockerHub</h3>
+<p>有时候会把 image 推送到 DockerHub 上方便跨设备传输，步骤如下：</p>
+<ol type="1">
+<li><p>注册一个 <a href="https://hub.docker.com/">DockerHub</a>
+账号。</p></li>
+<li><p>终端登录 DockerHub：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker login</span><br></pre></td></tr></table></figure>
+<p>在提示下输入账号密码即可。</p></li>
+<li><p>tag 你的镜像：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker tag &lt;image_name&gt;:&lt;version&gt; &lt;username&gt;/&lt;image_name&gt;:&lt;version&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>push 它：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker push &lt;username&gt;/&lt;image_name&gt;:&lt;version&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>注意事项：</p>
+<ul>
+<li><p>如果你的 <code>latest</code> 版本同时也是 <code>1.0</code>
+版本，那么需要<strong>同时把两个标签推送上去</strong>才行：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker push &lt;username&gt;/&lt;image_name&gt;:&lt;latest&gt;</span><br><span class="line">docker push &lt;username&gt;/&lt;image_name&gt;:&lt;1.0&gt;</span><br></pre></td></tr></table></figure>
+<p>但是显然只会推一次数据，第二次只是推个标签而已。</p></li>
+</ul>
+<h3 id="用传输介质传输">用传输介质传输</h3>
+<p>参考上面的
+<code>docker save/load</code>，<code>docker export/import</code> 并使用
+U 盘或者网线等介质传输。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>神经网络学习笔记</title>
     <url>/2025/02/20/%E5%AD%A6%E6%9C%AF/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="前置知识">前置知识</h2>
@@ -963,6 +1151,100 @@ Padding Oracle 机制，因此衍生出一种叫做 POODLE（降级加密密文�
     <content><![CDATA[<h2 id="打算要写的东西">打算要写的东西</h2>
 <h2 id="打算要做的事">打算要做的事</h2>
 ]]></content>
+  </entry>
+  <entry>
+    <title>NcatBot 一个 SDK 的前世今生</title>
+    <url>/2025/02/12/%E6%8A%80%E6%9C%AF/%E5%BC%80%E6%BA%90/NcatBot%20%E4%B8%80%E4%B8%AA%20SDK%20%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/</url>
+    <content><![CDATA[<p><a href="https://github.com/liyihao1110/ncatbot">NcatBot</a>
+是一个用于 QQ-Bot 开发的 Python SDK.</p>
+<p>NcaBot 相比其它框架，拥有以下优势：</p>
+<ol type="1">
+<li>社区活跃，<strong>文档完善</strong>。</li>
+<li>轻量框架，开发简单。</li>
+<li>提供一键部署方案，快速分发。</li>
+</ol>
+<h3 id="关于开发者们">关于开发者们</h3>
+<ul>
+<li><code>彭彭</code>：我，不是全能猫娘，<a
+href="https://github.com/huan-yp">huan-yp</a>。</li>
+<li><code>周周</code>：USTC 少年班某大佬，<a
+href="https://github.com/Isaaczhr">Isaaczhr</a>。</li>
+<li><code>伊伊</code>：高中生，<a
+href="https://github.com/zxxhz">zxxhz</a>。</li>
+<li><code>鱼鱼</code>：在校大学生，<a
+href="https://github.com/Fish-LP">Fish-LP</a>。</li>
+<li><code>蝶蝶</code>：神秘大佬，没找到链接。</li>
+<li><code>饭饭</code>：咕咕咕，<a
+href="https://github.com/Qi-Cao">Qi-Cao</a></li>
+<li><code>木子</code>：群主，项目发起者，华侨大学机械专业研究生，<a
+href="https://github.com/liyihao1110">liyihao1110</a>。</li>
+</ul>
+<h3 id="前情提要">前情提要</h3>
+<p>AI 大作业做了个 AI Agent 叫小妍，后面 KWS
+授权过期了就用不了了，打算移植到 QQ 上。</p>
+<p>Mirai 在 24 年的时候尸体已经凉透了，之前费了老大功夫写的 Qbot 插件
+Luling-AI 也用不了了，打算换个新的，继承 Luling 的名字。</p>
+<p>了解到 napcat。</p>
+<p>TS/JS 这块不熟，找 SDK，恰好有个 Python SDK 叫
+NcatBot，就用它了。</p>
+<p>然后发现这个 SDK 是个新手做的，后面交了两个 PR，进群被作者 PUA
+然后套牢了。</p>
+<p>我经验比较丰富，莫名其妙就给我接手了 V1.0.1 版本。</p>
+<h3 id="初步规范化">初步规范化</h3>
+<p>首先是代码格式统一，<code>pre-commit</code> 全家桶走起。</p>
+<p>然后我发现 NcatBot 的开发团队非常活跃，一个 36stars 的项目有 5
+个活跃开发者，然后 <code>pre-commit</code>
+的时候遇到了一些问题（我是直接抄的原来项目的文件），然后几个人商量着解决了。</p>
+<p>SDK 嘛，得走标准化发布，于是考虑配置了 PYPI
+发布流程，很搞的一件事就是木子把 secret
+变量名字搞错了，然后我在配置，他谈恋爱去了，折腾了一个小时，然后配完了
+PYPI 发布。</p>
+<p>接着是文档，TM 的 NcatBot
+更新太快了，文档写不了一点，然后消息构造留了一坨屎山，我们一致决定先把屎山搞定。</p>
+<h3 id="messagechain">MessageChain</h3>
+<p>MessageChain 是模仿 Mirai
+做的，这块是伊伊在负责，做挺好的，就是没考虑到发送 "本地图片"
+时，ncatbot 和 napcat 的路径不同问题。</p>
+<p>本地强转 base64 大法搞定的。</p>
+<p>然后为这件事我还去 napcat 上扔了 Issue，因为他们的 http
+发图片只支持单纯 .jpg, .png 这些，svg 这种支持不了。</p>
+<p>后面了解到是 Not Planed，给文档交了个 PR 说不支持，现在还没合。</p>
+<h3 id="异步">异步</h3>
+<p>本项目最大的梗，以下是 DeepSeek 的吐槽。</p>
+<blockquote>
+<p>卧槽哥们儿你们这代码写得跟tm便秘似的！口口声声说异步操作，结果每个函数都无脑await串行执行，协程全他妈串成糖葫芦了，这跟同步有鸡毛区别？还舔着脸说用了websockets才用异步，合着异步库当摆设用是吧？就这水平还搞并发呢，隔壁老太太拄拐杖散步都比这代码跑得快！知不知道啥叫事件循环啊？协程全堵在await上跟早高峰地铁似的，这破玩意儿上线怕不是要卡成PPT！赶紧把键盘上那个await键抠了吧，写尼玛的异步代码，直接上同步不香吗？白瞎了websockets这库！</p>
+</blockquote>
+<p>木子不是专业人员，代码基本 AI 写的，然后为了用
+websockets，所有函数都写成了异步，但是事件循环什么的根本没有，然后线程安全一团糟。</p>
+<p>我写着写着发现：woc，这 TM 啥异步啊，不是个同步吗？</p>
+<p>后面木子补了异步的东西，把这玩意改成了真异步。</p>
+<p>改成异步之后出了好些 <a
+href="https://github.com/liyihao1110/ncatbot/discussions/46">bug</a>。</p>
+<h3 id="插件">插件</h3>
+<h4 id="插里面还是插外面">插里面还是插外面</h4>
+<h3 id="一键部署">一键部署</h3>
+<h3 id="某些技术问题">某些技术问题</h3>
+<h4 id="cpp-程序乱码">cpp 程序乱码</h4>
+<p>代码都是 UTF-8 编码， Winows 是
+GBK，导致乱码问题，搜了一堆解决不了，最后发现只需要在 main
+函数最前面加上：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> _WIN32</span></span><br><span class="line"><span class="built_in">SetConsoleOutputCP</span>(<span class="number">65001</span>); <span class="comment">// 设置控制台输出编码为 UTF-8</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>就搞定了，如此简单。</p>
+<h4 id="github-webhook">github webhook</h4>
+<p>服务器端接收到的是乱码，类似：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">140.82.115.249 - - [13/Feb/2025 23:13:19] code 400, message Bad request version (&#x27;À\\x13À&#x27;)</span><br><span class="line">140.82.115.249 - - [13/Feb/2025 23:13:19] &quot;\x16\x03\x01\x05¨\x01\x00\x05¤\x03\x03\x140@-SI\x94µ±èÐÆµÜ¿ôÚ&#123;Å@\x8c·õü\x95\x87üá\x07f\x81ó ³7T¢9¨ê\x08\x01±Æ°]tb£#-0ª8I\x0bP\x94óÐ&#x27;öFc®\x00\x1aÀ+À/À,À0Ì©Ì¨À\x09À\x13À&quot; 400 -</span><br></pre></td></tr></table></figure>
+<p>检查 webhook 设置的 URL 是不是 https，如果服务器没有额外配置
+https，那得改成 http 协议。</p>
+<h3 id="未完待续...">未完待续...</h3>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>NcatBot</tag>
+        <tag>开源</tag>
+      </tags>
   </entry>
   <entry>
     <title>0301测试</title>

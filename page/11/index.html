@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">103</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,325 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">一些有点容易忘的基础算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 15:53:26" itemprop="dateCreated datePublished" datetime="2022-07-12T15:53:26+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:56:14" itemprop="dateModified" datetime="2025-02-16T17:56:14+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="树链剖分">树链剖分</h2>
+<p>常用的树链剖分有重链剖分，实链剖分和长链剖分。</p>
+<p>长链剖分主要用于部分和深度有关的树形 <span
+class="math inline">\(dp\)</span> 的优化，一般采用指针数组实现。</p>
+<p>我们说的树链剖分一般指重链剖分，即选择每个点子树最大的儿子。</p>
+<p>不难证明从任何一个点到根都只会经过 <span
+class="math inline">\(log_n\)</span> 条重链，这也是其复杂度的保证。</p>
+<p>可以将每条重链用一个数据结构维护起来，就能做树上操作了。</p>
+<h2 id="动态树">动态树</h2>
+<p>动态树是基于实链剖分的数据结构，非常强大，但编码复杂度相对较高。</p>
+<p>我使用的是基于 <span class="math inline">\(splay\)</span>
+的动态树。</p>
+<p>动态树维护的是若干实链，每个实链用一颗平衡树维护。</p>
+<p>动态树的核心操作是 <code>access</code>，意味将目标点 <span
+class="math inline">\(x\)</span>
+到根的路径全部打通，并且只包含这条路径。</p>
+<p>其它操作简要介绍一下实现：</p>
+<p><code>make_root</code> :先 <code>access</code>，然后把 <span
+class="math inline">\(x\)</span> <code>splay</code> 到根，然后翻转整颗
+<span class="math inline">\(splay\)</span> ，因为 <span
+class="math inline">\(splay\)</span> 外的形态没有改变，所以只要 <span
+class="math inline">\(splay\)</span>
+内部的形态正确，那么整棵树的形态就正确，如果对于一个 <span
+class="math inline">\(splay\)</span>
+所有的节点交换了左右儿子，那么就是倒序了这颗 <span
+class="math inline">\(splay\)</span> ，<span
+class="math inline">\(x\)</span>
+又是深度最大的点，所以这样是正确的。</p>
+<p><code>link</code> :很简单，直接将目标点 <span
+class="math inline">\(x\)</span> <code>splay</code>
+到当前根，当然，注意到原树之间的关系是 <span
+class="math inline">\(splay\)</span> 根节点的关系，<span
+class="math inline">\(splay\)</span> 根节点的父亲其实是 <span
+class="math inline">\(splay\)</span>
+中深度最小的点的父亲，然后改父亲改成 <span
+class="math inline">\(y\)</span> 就行。</p>
+<p><code>cut</code> :假设有一个虚根 <span
+class="math inline">\(0\)</span>，把 <span
+class="math inline">\(x\)</span> <code>make_root</code> ，把 <span
+class="math inline">\(y\)</span> <code>access</code> 然后
+<code>splay</code> <span
+class="math inline">\(y\)</span>,直接双向断开。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">push_up</span><span class="params">(<span class="type">int</span> rt)</span></span>&#123;&#125;</span><br><span class="line"><span class="comment">//该更新的要更新</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">push_down</span><span class="params">(<span class="type">int</span> rt)</span></span>&#123;&#125;</span><br><span class="line"><span class="comment">//旋转标记和其它标记的 push_down</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isroot</span><span class="params">(<span class="type">int</span> rt)</span></span>&#123;<span class="keyword">return</span> T[T[rt].fa].son[<span class="number">0</span>]!=rt&amp;&amp;T[T[rt].fa].son[<span class="number">1</span>]!=rt;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">rotate</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> y=T[x].fa,z=T[y].fa,o=T[y].son[<span class="number">1</span>]==x,b=T[x].son[o^<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">if</span>(!<span class="built_in">isroot</span>(y))T[z].son[T[z].son[<span class="number">1</span>]==y]=x;</span><br><span class="line">	T[y].fa=x;T[x].son[o^<span class="number">1</span>]=y;T[x].fa=z,T[y].son[o]=b,T[b].fa=y;</span><br><span class="line">	<span class="built_in">push_up</span>(y),<span class="built_in">push_up</span>(x);</span><br><span class="line">    <span class="comment">//已经很熟的 rotate 操作</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">splay</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> u=x;st[++top]=u;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isroot</span>(u))u=T[u].fa,st[++top]=u;</span><br><span class="line">	<span class="keyword">while</span>(top)<span class="built_in">push_down</span>(st[top--]);</span><br><span class="line">    <span class="comment">//记得先 push_down</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> y=T[x].fa;!<span class="built_in">isroot</span>(x);y=T[x].fa)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(!<span class="built_in">isroot</span>(y))<span class="built_in">rotate</span>((T[T[y].fa].son[<span class="number">1</span>]==y)==(T[y].son[<span class="number">1</span>]==x)?y:x);</span><br><span class="line">        <span class="comment">//双旋，其实一般单旋也不会卡。</span></span><br><span class="line">		<span class="built_in">rotate</span>(x);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//亲切的 splay 操作</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">access</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y=<span class="number">0</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//记得断开和儿子的连接</span></span><br><span class="line">    <span class="comment">//splay 之间是原树的关系连接，但 splay 内部维护的只是一条链，中序遍历 splay 才能得到原树</span></span><br><span class="line">	<span class="keyword">for</span>(;x;y=x,x=T[x].fa)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">splay</span>(x);T[x].son[<span class="number">1</span>]=y;</span><br><span class="line">		<span class="built_in">push_up</span>(x);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="虚树">虚树：</h2>
+<p>一般用来处理询问很多但规模不大的树上问题。</p>
+<h2 id="点分治">点分治</h2>
+<p>用来处理树上路径的计数问题，特别是路径长度相关</p>
+<h2 id="后缀排序">后缀排序</h2>
+<p>对一个字符串的所有后缀排序，约定 <span
+class="math inline">\(sa[i]\)</span> 表示排名为 <span
+class="math inline">\(i\)</span> 的后缀的起始位置，约定 <span
+class="math inline">\(rk[i]\)</span> 表示起始位置为 <span
+class="math inline">\(i\)</span> 的后缀的排名。<span
+class="math inline">\(height[i]\)</span> 为排名为 <span
+class="math inline">\(i,i-1\)</span> 的后缀的 <span
+class="math inline">\(lcp\)</span> 。</p>
+<p>先按第一个字母基数排序一遍，然后倍增法。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)sum[rk[i]=ch[i]]++;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=<span class="number">128</span>;i++)sum[i]+=sum[i<span class="number">-1</span>];</span><br><span class="line"><span class="comment">//统计 sum,sum[i] 表示关键字比 i 小的总个数，然后遍历的时候，用每个后缀当前排名访问 sum，</span></span><br><span class="line"><span class="comment">//得到 sum[rk[i]] 为以 i 为起始位置的后缀的排名。</span></span><br><span class="line"><span class="comment">//访问后 sum 需要自减。</span></span><br><span class="line"><span class="comment">//但并不记录这个排名，因为它不准确，相同的会认为是不同，记录排名为 sum[rk[i]] 的后缀的起始位置。</span></span><br><span class="line"><span class="keyword">for</span>(i=n;i&gt;=<span class="number">1</span>;i--)sa[sum[rk[i]]--]=i;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)tp[i]=rk[i];</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)rk[sa[i]]=(tp[sa[i]]==tp[sa[i<span class="number">-1</span>]])?m:++m;</span><br><span class="line"><span class="comment">//这里重新计算每个后缀的排名，我们可以简单由 sa 数组得到。</span></span><br><span class="line"><span class="keyword">for</span>(k=<span class="number">1</span>;;k&lt;&lt;=<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    m=s=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=n-k<span class="number">+1</span>;i&lt;=n;i++)tp[++s]=i;</span><br><span class="line">    <span class="comment">//这些第二关键字为 0 ，所以仍在最前面</span></span><br><span class="line">    <span class="comment">//tp[i] 在这里表示第二关键字排名为 i 的后缀的起始位置</span></span><br><span class="line">    <span class="comment">//这里在按第二关键字安排顺序，第一遍在外面排序的时候不关心第二关键字</span></span><br><span class="line">    <span class="comment">//在倍增里排序关心第二关键字，我们只需要按第二关键字的顺序访问 sum，就能得到正确顺序。</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;sum[i++]=<span class="number">0</span>)<span class="keyword">if</span>(sa[i]&gt;k)tp[++s]=sa[i]-k;</span><br><span class="line">    <span class="comment">//同样是处理第二关键字，按照上一轮排名顺序遍历即可。</span></span><br><span class="line">    <span class="comment">//位置减去 k,得到第二关键字的起始位置。</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)sum[rk[i]]++;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)sum[i]+=sum[i<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(i=n;i&gt;=<span class="number">1</span>;i--)sa[sum[rk[tp[i]]]--]=tp[i];</span><br><span class="line">    <span class="comment">//同样的道理，只不过是按第二关键字大小顺序遍历</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)tp[i]=rk[i];</span><br><span class="line">    <span class="comment">//这里的 tp 用来拷贝 rk,因为 rk 在计算时会改变</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)rk[sa[i]]=(tp[sa[i]]==tp[sa[i<span class="number">-1</span>]]&amp;&amp;tp[sa[i]+k]==tp[sa[i<span class="number">-1</span>]+k])?m:++m;</span><br><span class="line">    <span class="comment">//计算每个后缀当前排名</span></span><br><span class="line">    <span class="keyword">if</span>(m==n)<span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">//后缀排序结束后退出。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//计算 height 数组</span></span><br><span class="line"><span class="comment">//height 数组满足 height[sa[i]] &gt;= height[sa[i]-1] - 1</span></span><br><span class="line"><span class="comment">//如果 sa[i] = 1，那么 height 没定义，不管。</span></span><br><span class="line"><span class="comment">//原因很简单，以  排名在以 sa[i]-1 为起始点的后缀 x 前一个的后缀 y。</span></span><br><span class="line"><span class="comment">//由定义 lcp(x,y) = height[sa[i]-1]</span></span><br><span class="line"><span class="comment">//将 x 删掉最前一个字符得到以 sa[i] 为起始点的后缀 a， y 删掉最前一个字符得到 b</span></span><br><span class="line"><span class="comment">//那么 lcp(a,b) = lcp(x,y)</span></span><br><span class="line"><span class="comment">//显然 b 排在 a 前面</span></span><br><span class="line"><span class="comment">//显然排名在 a 前一位的那个后缀与 a 的 lcp 不可能少于 height[sa[i]-1]</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">&#123;</span><br><span class="line">    height[rk[i]]=<span class="built_in">max</span>(<span class="number">0</span>,height[rk[i<span class="number">-1</span>]]<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span>(rk[i]==<span class="number">1</span>)<span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">while</span>(ch[i+height[rk[i]]<span class="number">+1</span>]==ch[sa[rk[i]<span class="number">-1</span>]+height[rk[i]]<span class="number">+1</span>])height[rk[i]]++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="莫队">莫队</h2>
+<p>莫队是暴力数据结构，将询问离线后，以较低的复杂度移动左右端点，然后处理询问。</p>
+<p>设移动端点的复杂度为 <span class="math inline">\(O(x)\)</span>
+，那么莫队复杂度为 <span class="math inline">\(O(n \sqrt n\times
+x)\)</span>，无法将 <span class="math inline">\(x\)</span> 放在 <span
+class="math inline">\(\sqrt n\)</span> 下面。</p>
+<p>常见的卡常技巧有奇偶性排序等。</p>
+<p>如果只能支持插入和删除中的一种操作，那么可以使用回滚莫队，拿一个栈记录操作，基于操作的撤销实现插入或删除。</p>
+<p>树上莫队和普通莫队区别不大。</p>
+<p>(差一个二次离线要补)</p>
+<h3 id="拓展kmp">拓展KMP</h3>
+<p>咕咕咕</p>
+<h3 id="树哈希">树哈希</h3>
+<p>一般来讲，可以这么哈希，<strong>再加上树大小的判断</strong>，就不会出问题。
+<span class="math display">\[
+f_{now}=1+\sum f_{son(now,i)} \times prime(size_{son(now,i)})
+\]</span></p>
+<p>但这个哈希是有错的，可以对最小括号序列哈希。</p>
+<p>具体的，一颗无标号有根树按照遍历顺序可以得到一个括号序列，即将子树的括号序列拼起来再套一个括号。</p>
+<p>然后考虑对这个括号序列哈希，因为遍历顺序无关，所以要最小括号序列。</p>
+<p>实际上可以直接对子树哈希值排序之后，按这个顺序往后写，外面添一层括号，对括号序列（二进制串）哈希。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%B8%80%E5%BC%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%B8%80%E5%BC%B9/" class="post-title-link" itemprop="url">从一道题看CPU底层优化-第一弹</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 15:31:52" itemprop="dateCreated datePublished" datetime="2022-07-12T15:31:52+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:53:13" itemprop="dateModified" datetime="2025-02-16T17:53:13+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="关于某道题的优化">关于某道题的优化</h2>
+<h3 id="题意">题意</h3>
+<p>给定一个长度为 <span class="math inline">\(n\)</span> 的序列 <span
+class="math inline">\(a_i\)</span>，求有多少个区间满足每个数出现次数均为偶数。</p>
+<p><span class="math inline">\(n\leq 3\times 10^4,a_i\leq
+10^6\)</span></p>
+<h3 id="思路">思路</h3>
+<p>双指针扫描每个区间，拿个桶，<span class="math inline">\(O(1)\)</span>
+更新状态，然后 <span class="math inline">\(O(n^2)\)</span>，可以得到
+<span class="math inline">\(40\)</span> 的好成绩。</p>
+<h3 id="代码一">代码一</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">30005</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,ans;</span><br><span class="line"><span class="type">int</span> a[N],b[N];</span><br><span class="line"><span class="type">unsigned</span> cnt[<span class="number">1024</span>*<span class="number">1024</span>];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> 	<span class="built_in">freopen</span>(<span class="string">&quot;gf.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;gf.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">	<span class="comment">//freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(a[i]),b[i]=a[i];</span><br><span class="line">	<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">memset</span>(cnt,<span class="number">0</span>,<span class="built_in">sizeof</span>(cnt));</span><br><span class="line">		now=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(j=i;j&lt;=n;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cnt[a[j]])now+=(cnt[a[j]]&amp;<span class="number">1</span>)?<span class="number">1</span>:<span class="number">-1</span>;</span><br><span class="line">			cnt[a[j]]+=<span class="number">1</span>;</span><br><span class="line">			ans+=now==<span class="number">0</span>;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="优化">优化</h3>
+<h4 id="高速缓存原理">1.高速缓存原理</h4>
+<p>计算机有个东西叫高速缓存，可以优化内存访问延迟。</p>
+<p>一次独立的内存操作会读取一个 <span
+class="math inline">\(64Byte\)</span> 的 <span
+class="math inline">\(cacheline\)</span>，从指令发出到从内存收到数据需要约
+<span class="math inline">\(200\)</span> 个 <span
+class="math inline">\(CPU\)</span> 周期，而 <span
+class="math inline">\(CPU\)</span> 会将一些常用的数据塞进 <span
+class="math inline">\(cache\)</span>，也就是高速缓存中，加速读取，寄存器的访问速度是最快的，只需要不到
+<span class="math inline">\(1\)</span> 个时间周期，<span
+class="math inline">\(L1\)</span> 缓存需要约 <span
+class="math inline">\(3\)</span> 个时间周期，<span
+class="math inline">\(L2\)</span> 为 <span
+class="math inline">\(10\)</span> 个左右，<span
+class="math inline">\(L3\)</span> 为 <span
+class="math inline">\(20\)</span> 个周期。</p>
+<p>具体时间视计算机本身有差别，但基本的比例是这个。</p>
+<p>代码一中，我们只关注瓶颈。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">now+=<span class="number">-1</span>+((cnt[a[j]]&amp;<span class="number">1</span>)&lt;&lt;<span class="number">1</span>);</span><br><span class="line">now+=!cnt[a[j]];</span><br><span class="line">cnt[a[j]]+=<span class="number">1</span>;</span><br><span class="line">ans+=now==<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<p>其中，对于 <code>cnt</code> 的访问和对于 <code>a</code>
+的访问，由于高速缓存并不大，所以塞不下
+<code>cnt</code>，因此我们每个循环都需要等一个 <code>200</code>
+时间周期的延迟，这是相当致命的，实际上等待的延迟并没有 <code>200</code>
+时间周期，因为 <span class="math inline">\(CPU\)</span>
+将部分数据还是放进来 <code>cache</code>，但具体放哪些是由
+<code>CPU</code> 决定的。</p>
+<p>对于这个致命的延迟，我们可以将数据离散化，然后就可以得到一个
+<code>75pts</code> 的代码。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">30005</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,ans;</span><br><span class="line"><span class="type">int</span> a[N],b[N];</span><br><span class="line"><span class="type">unsigned</span> cnt[<span class="number">1024</span>*<span class="number">30</span>];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> 	<span class="built_in">freopen</span>(<span class="string">&quot;gf.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;gf.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">	<span class="comment">//freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(a[i]),b[i]=a[i];</span><br><span class="line">	<span class="built_in">sort</span>(b<span class="number">+1</span>,b+n<span class="number">+1</span>);m=<span class="built_in">unique</span>(b<span class="number">+1</span>,b+n<span class="number">+1</span>)-b<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=<span class="built_in">lower_bound</span>(b<span class="number">+1</span>,b+m<span class="number">+1</span>,a[i])-b;</span><br><span class="line">	<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">memset</span>(cnt,<span class="number">0</span>,<span class="built_in">sizeof</span>(cnt));</span><br><span class="line">		now=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(j=i;j&lt;=n;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(cnt[a[j]])now+=cnt[a[j]]&amp;<span class="number">1</span>?<span class="number">1</span>:<span class="number">-1</span>;</span><br><span class="line">			cnt[a[j]]+=<span class="number">1</span>;</span><br><span class="line">			ans+=now==<span class="number">0</span>;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="流水线模式和延迟隐藏">2.流水线模式和延迟隐藏</h4>
+<p>现代计算机各类硬件的设计都采用了流水线模式，将每条汇编指令的执行都划分为了不同的流水线。</p>
+<p>也就是说 <strong>CPU
+可以不间断的向内存发出访问指令，这些指令经过一定延迟后，内存会不间断的向CPU传数据，这个过程中，我们就只等待了一个内存延迟。</strong>打个比方，这玩意就像烧水，水壶很多，灌水和倒水的时间都很短，所以正确的方式是全部烧上等，而不是烧一个等一个。</p>
+<p>所以，如果我们能够连续的发出内存访问指令，那么内存延迟可以被有效隐藏，但注意到代码中，访问了内存后执行了一些计算，而内存访问是依赖于这些计算的，这产生了一个依赖，我们必须等待计算完成之后才能进行访问，所以无法有效的隐藏延迟。</p>
+<p><strong>向内存写入数据也是需要等待延迟的。</strong></p>
+<h4 id="流水线和依赖分析">3.流水线和依赖分析</h4>
+<p>上一部分简单介绍了流水线模式，在我们的 <span
+class="math inline">\(CPU\)</span> 中，也采用流水线的设计。</p>
+<p>一条汇编指令的执行在 <span class="math inline">\(CPU\)</span>
+上大致分为五个部分，分别是：取指，访(寄)存，计算，内存操作，写回。</p>
+<p><span class="math inline">\(CPU\)</span>
+在这五个部分的设计上也采用了流水线，一条指令开始访存时，另一条指令的取指就开始了。</p>
+<p>而如果下一条指令对前一条指令有<strong>数据依赖</strong>，那么 <span
+class="math inline">\(CPU\)</span>
+会通过转发操作消除这种依赖，但如果下一条指令的内容对上一条指令有依赖（比如说
+if），那么 <span class="math inline">\(CPU\)</span>
+就不得不停止流水线，向流水线中插入气泡以等待。</p>
+<p>这会极大降低 <span class="math inline">\(CPU\)</span>
+的利用率，因此，内循环中的 <span class="math inline">\(if\)</span>
+是相当不应该的。</p>
+<h4 id="流水线和分支预测">4.流水线和分支预测</h4>
+<p>事实上，硬件的设计者注意到了这种依赖，而 <span
+class="math inline">\(CPU\)</span>
+会对这种依赖做出预测，预测基于程序计数器的的原理和一些其它统计数据，正确率约在
+<span class="math inline">\(65\%\)</span>
+左右，如果分支预测出现错误，那么会花费两个时间周期去消除这个错误，所以我们需要通过算术方式避免分支。</p>
+<p>方式如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">30005</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,ans;</span><br><span class="line"><span class="type">int</span> a[N],b[N];</span><br><span class="line"><span class="type">unsigned</span> <span class="type">short</span> cnt[<span class="number">1024</span>*<span class="number">30</span>];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> 	<span class="built_in">freopen</span>(<span class="string">&quot;gf.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;gf.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">	<span class="comment">//freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">read</span>(a[i]),b[i]=a[i];</span><br><span class="line">	<span class="built_in">sort</span>(b<span class="number">+1</span>,b+n<span class="number">+1</span>);m=<span class="built_in">unique</span>(b<span class="number">+1</span>,b+n<span class="number">+1</span>)-b<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=<span class="built_in">lower_bound</span>(b<span class="number">+1</span>,b+m<span class="number">+1</span>,a[i])-b;</span><br><span class="line">	<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="built_in">memset</span>(cnt,<span class="number">0</span>,<span class="built_in">sizeof</span>(cnt));</span><br><span class="line">		now=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(j=i;j&lt;=n;j++)&#123;</span><br><span class="line">			now+=<span class="number">-1</span>+((cnt[a[j]]&amp;<span class="number">1</span>)&lt;&lt;<span class="number">1</span>);</span><br><span class="line">			now+=!cnt[a[j]];</span><br><span class="line">			cnt[a[j]]+=<span class="number">1</span>;</span><br><span class="line">			ans+=now==<span class="number">0</span>;</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>目前是最快代码。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -343,7 +662,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

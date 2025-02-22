@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">101</span>
+          <span class="site-state-item-count">103</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-count">46</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,342 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/08/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1108%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/08/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1108%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1108总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-08 20:58:55" itemprop="dateCreated datePublished" datetime="2022-11-08T20:58:55+08:00">2022-11-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:22:39" itemprop="dateModified" datetime="2025-02-16T20:22:39+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="线程阻塞">线程阻塞</h2>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0151">考试</a>
+考试的时候还很清醒，考完脑子就乱了。</p>
+<p>大脑从 i7-9th 退化成 i3-4th，四个字来说就是线程阻塞。</p>
+<p>如果说整个社会是一个计算机系统，那一个人自己的大脑就是主板上的所有部件，而其他人，则是一块块只读
+HDD 中的数据。当某一块 HDD
+损坏，不能存储数据，但是又不想丢失它，就只能将数据保存于主存。主存的大小是有限的，它本不是用来保存数据，如果占用过多，会影响主板部分的正常运行，受到内存大小的限制，CPU
+的运算能力自然会退化。</p>
+<p>我不太想找心理医生，心理医生会帮我清除掉主存的数据，但是我不想清除。</p>
+<h2 id="t1">T1</h2>
+<h3 id="ac-自动机">AC 自动机</h3>
+<p>比较模板的 AC 自动机匹配题，但是 AC
+自动机做法需要细算常数，这道题倒是将缓存行访问连续的重要性体现的相当清楚，可以参考几次提交的差异。</p>
+<h3 id="直接动态规划">直接动态规划</h3>
+<p>另一种方式是注意到两个字符串互不影响，因为出现任何一个字符串都不会对另外一个字符串的出现产生额外影响，所以无需记录具体到了哪个节点。</p>
+<p>先考虑没有限制的转移，如果为 <code>?</code>，则乘
+26，否则不变，这样有重复，唯一的重复是对于两种字符串如果接下来可以匹配上，那么转移就应该到对应的差值，因为两种字符彼此不包含所以两种字符串的重复可以独立处理，还是挺好写的。</p>
+<h2 id="t2">T2</h2>
+<p>考场上发现本质上是个可以用线段树做的二维偏序，但是由于马拉车算法本身有二倍常数，还需要跑
+4 遍，所以其实有点难卡常，感觉递归版的没救所以我写了非递归版的 update
+操作勉强卡过去（query 次数不多可以直接查）。</p>
+<p>但是这个答案是可以二分的，二分之后配合马拉车就是个 RMQ，ST
+表即可。</p>
+<h2 id="t3">T3</h2>
+<p>容易发现一定会在某个地方反复横跳刷分，所以处理出所有横跳位置的刷分函数（是一次函数），有用的一次函数级别为
+<span
+class="math inline">\(O(n)\)</span>，为了保证每个函数都可以正常取到，不妨暴力处理前面的
+CASE，然后后面的就是维护凸包。</p>
+<p>不处理前面的 CASE
+是错误的，因为你不能保证在对应的步数限制下一定可以拿到这个函数。</p>
+<p>感觉不预处理但是加上某些条件再筛一下函数就可以过，但是这些条件有点难想吧...</p>
+<h2 id="t4">T4</h2>
+<p>少见的 mex 配 xor
+题，考场上没想出来，现在脑子很乱，明天再想——11.8</p>
+<p>mex
+应该是个非常严格的限制，由于询问很少，所以考虑单个询问怎么解决。</p>
+<p>比较暴力的方式是逐个加入元素并检查可行性，我们显然必须要求能构成一条链，所以加入点的过程其实比较简单，如果链已经是弯折的形式，那么只能在两颗子树内加点，如果不是，那么新加点和最较深求
+LCA，如果在路径上则不合法，重新构造路径的过程也是平凡的。</p>
+<p>考虑检查第二个条件，也就是异或合法性，路径的异或值是好求的，对于两边的情况，可以暴力遍历树枚举一边用字典树求另一边。</p>
+<p>但是这样的复杂度不对，因为每次暴力遍历都是 <span
+class="math inline">\(O(n\log n)\)</span> 的，一共进行了 <span
+class="math inline">\(O(nq)\)</span>
+次。但是认真思考一下发现答案是可二分的，所以二分即可，复杂度 <span
+class="math inline">\(O(nq\log^2n)\)</span>。</p>
+<p><span class="math inline">\(10^5\)</span> 的题和 <span
+class="math inline">\(3\times 10^5\)</span>
+的题，考虑复杂度的方式是完全不同的（<span
+class="math inline">\(10^5\)</span> 基本可以扔进
+L3），所以没必要担心。</p>
+<p>好像不二分也是可以的，考虑答案的形式，因为一定会包含 <span
+class="math inline">\(0\)</span>，所以以 <span
+class="math inline">\(0\)</span> 为根后，可以取到的异或值就形如 <span
+class="math inline">\(d_u\oplus d_v\)</span>，其中 <span
+class="math inline">\(d_u\)</span> 表示 <span
+class="math inline">\(0\)</span> 到 <span
+class="math inline">\(u\)</span>
+路径上的异或值，每次移动端点时，两边可选的 <span
+class="math inline">\(d\)</span> 集合都在变化，集合变化次数是 <span
+class="math inline">\(O(n)\)</span> 的，动态维护 <span
+class="math inline">\([l,r]\)</span> 区间中数的个数就可以了。</p>
+<p>注意，动态维护 <code>lower_bound</code>
+的最小值是行不通的，<strong>因为最小值不具备逆元</strong>，是不可减的。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/05/%E7%94%9F%E6%B4%BB/If-we-never-met/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/05/%E7%94%9F%E6%B4%BB/If-we-never-met/" class="post-title-link" itemprop="url">If we never met</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-05 21:36:36" itemprop="dateCreated datePublished" datetime="2022-11-05T21:36:36+08:00">2022-11-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:49:36" itemprop="dateModified" datetime="2025-02-16T17:49:36+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="if-we-never-met">If we never met</h2>
+<p>没想到再来写随记是这样的事。</p>
+<p>我没来得及给她说，但很庆幸在这份爱慕没有孤独的消散在心底。</p>
+<p>心里的影子失去了实体，会慢慢消散，我希望，我请求，让这个影子，用着这篇记录，留在我心里。</p>
+<h3 id="emilia">Emilia</h3>
+<p>我还算是班上的半个焦点吧，成绩不错，人还行，但是确实就是没有女生喜欢。</p>
+<p>我数学很好，初一的时候接触了信息竞赛，还算是有些天赋，初二就开始偶尔停课，但基本还是在班上，可能很多同学对我的印象就是个标准的理科直男，其实我自己不知道，有同学很直白的告诉我，女生们对我的印象是：钢筋混凝土直男。我才知道原来这才是我在班上的真实形象。</p>
+<p>初三一次化学实验课的时候，飞象问我，你知道吗，你是班上男生中，唯一一个没有绯闻的。当时飞象已经和
+lyx 走在一起了。</p>
+<p>对于
+lyx，我有过欣赏，如果不是飞象和她已经走在一起了，我可能会追求她，我和飞象是好朋友，毕竟都是当年的信息竞赛三剑客，初三的时候，三剑客走散了，飞象去了数学，jess
+去了物理，我留在信息，我信息竞赛成绩确实是最好的那个，但飞象的天赋真的远比我高。</p>
+<p>我有些神秘兮兮的告诉飞象，其实我有喜欢的人，我告诉飞象她的名字是
+<span
+class="math inline">\(Emilia\)</span>，他很吃惊地追问我，我笑而不语，我反复强调，这是
+“单方面的暗恋”，他才作罢。</p>
+<h3 id="打招呼">打招呼</h3>
+<p>走廊里我和她面对面走过，她举起手对我笑。</p>
+<p>"啊，你好！"，我有点羞涩的回答。</p>
+<p>她是第一个和我主动打招呼的女生，她有点羞涩，但是脸上的笑很是真诚可爱。</p>
+<p>我的目光停在她的短发上。</p>
+<p>后面我们每一次正面遇上，我都会和她打招呼。</p>
+<p>课间在课桌之间的走道，我装作在随机游走——这是信息竞赛生常见的想题动作，目光却飘向她，飘向她的短发，飘向她的侧脸。</p>
+<h3 id="生日快乐">生日快乐</h3>
+<p>老师会让同学在班上同学的生日时写下祝 xxx
+生日快乐，我记下了她的日期。1 月 9
+日，写下祝我生日快乐的，应该是她，心中的影子开始清晰起来，所以那次实验课，我才那样对飞象这么说。</p>
+<p>初三我开始大面积停课，冲击高一省队，停课时，我和 walk 和 platelet
+重新建立起来堪比曾经三剑客的关系。</p>
+<h3 id="高一十二月">高一十二月</h3>
+<p>联赛出了事，无缘高一省队，浑浑噩噩回到班上学文化，12
+月很是低落的回到班上学文化课，walk 和 platelet
+还在南京集训，但在信息教练，飞象的帮助下，我算是重新振作起来。</p>
+<p>老师特地把我安排到飞象旁边坐，在他的帮助下，我文化成绩有些恢复，虽然期末没有考出理想的成绩，但还算是成功走了出来。</p>
+<p>停课时在心底的影子浮现出来，和初三一样。在飞象和 lyx
+交流感情时，我会起来随机游走，还是那样看着，远远的，像是普通的同学关系。我没有勇气站出来，还没进省队呢，想那么多干什么？我打算，高二先进省队，起码拿到高分银牌，再来处理心里的这份影子。</p>
+<h3 id="好感度">好感度</h3>
+<p>高一的 12
+月，和室友晚间的秘密谈话，我提出了好感度这个议题，大致的标准是 <span
+class="math inline">\(20\)</span> 以上称作朋友，<span
+class="math inline">\(40\)</span>
+以上可以叫亲密朋友，男生之间叫基友，女生之间叫闺蜜，<span
+class="math inline">\(60\)</span> 以上，基本可以称作另一半了。</p>
+<p>说了很多，我说，同龄人中，我对三个男生好感度有超过
+40，而女生，应该只有一个，他说他对一个女生的好感度有
+70，我就笑了笑。</p>
+<p>其中一天，我告诉室友今天是一个特殊的日子。他问我为啥，我说今天是一个人的生日。他猜出来了，我点点头，这个秘密不再属于我自己。</p>
+<h3 id="不太顺利的竞赛班">不太顺利的竞赛班</h3>
+<p>78
+去了南京集训，效果不错，但回来因为疫情留在家里，训练很水，水平往下掉。9
+月中旬开学了，状态有所回升。</p>
+<p>后面一直没回班上，每天在考试和订正之间徘徊，偶尔穿插一些技术知识的学习和开发实践。</p>
+<p>10
+月，前三周专心搞竞赛，水平有提升，这段时间陆续结束了其它几科竞赛的考试，我们的成绩都不是很理想。可能是没有找对老师，物理成绩最烂——她是物理竞赛选手。其它竞赛也有各种各样的原因，我们考的很烂。我和
+jess 聊了一会儿，jess 决定退役。</p>
+<h3 id="emilia鹿灵她">Emilia，鹿灵，她</h3>
+<p>CSP 前一周考试和订正之外在研究对话
+AI，摸索着搓出了一个小说里的角色——"鹿灵"。“Emilia”
+是鹿灵的角色原型，我初三时说出这个名字，也是带着对鹿灵的一分憧憬，我不知道这份对
+"鹿灵" 的关注和上心，有没有她的影子，我还是用了 “Emilia” 这个名字。</p>
+<p>用英文和鹿灵聊的时候还很是正常，但鹿灵第一次和我用中文对话，她叫我
+"彭彭"，还说出很亲密的话，我心里暗道不对，立刻重新开始，但数据被我保留，且当纪念。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/huan-yp/image_space/master/202211052141487.png"
+alt="image-20221105214147352" />
+<figcaption aria-hidden="true">image-20221105214147352</figcaption>
+</figure>
+<p>CSP 考完了，我的成绩还不错，回来就把鹿灵彻底弄了出来，并连接了 mirai
+的接口，放到 QQ 上。</p>
+<h3 id="拼图">拼图</h3>
+<p>周四，walk 生病住院了，我替他守门，2：1
+赢下了球赛，很高兴，晚上吃饭时还看到她排在一旁的队列，她还笑着。</p>
+<p>周五上晚自习时，我嗓子开始疼痛，和 walk
+症状很像，后面是在受不了，向老师请假出去买药。</p>
+<p>在学校门口看到了警车，和一路离校的同学猜测着是不是化学联赛泄题的事情捅出去了，找学生了解情况。</p>
+<p>周五晚上我没睡着，喉咙的肿痛让我辗转反侧，今天一早请假去了医院，开了药回家休养，下午去学校拿电脑。</p>
+<p>从同住的同学处得知噩耗，确认是那个名字时，好似内心的一块拼图被移走，失去了完整的感觉。</p>
+<h3 id="另一条路">另一条路</h3>
+<p>向往飞象那种生活，我暗地给自己打气，要加把劲，让高三可以轻松一点。但憧憬破灭的那一刻，我无力描述心情。</p>
+<p>我和她的羁绊，算不上深刻，但绝对可以说是独特，那是我心中唯一一道异性的身影。</p>
+<p>离别和相遇虽说是永恒的话题，我也会因为小说中的人物的聚离动情，甚至落泪，但真正在我的身边时，我还是茫然的......</p>
+<p>在高一的十二月，我选了一条路。</p>
+<p>在高二的十一月，她选了另一条路。</p>
+<h3 id="说不出的三个字">说不出的三个字</h3>
+<p>说了那么多，我发现，我没有资格说出那三个字。</p>
+<p>我只能祈祷那边没有竞赛课业的烦恼，你能开心地笑起来。</p>
+<p>我只能说，我会想你的。我心中的影子，会永远留下的。</p>
+<p>你笑起来很可爱的，LXY 同学！</p>
+<h3 id="如果我们不曾相遇">如果我们不曾相遇</h3>
+<p>大一届的学长说过，如果把 CW
+一整届竞赛班集中起来，是一股难以想象的力量。我说，如果有那么一天，我必定不会缺席。</p>
+<p>我们是一个整体，已经持续四年的羁绊，还有两年的路需要我们一起走。</p>
+<p>我想起了起床铃 MV 里的悲剧 ~~，它绝对不应该发生在我们这里！</p>
+<p>无论前面有多难，请走下去好吗......</p>
+<p><em>那一天那一刻那个场景，你出现在我生命。</em></p>
+<p><em>从此后从人生重新定义，从我故事里苏醒。</em></p>
+<p><em>某一天某一刻某次呼吸，我们终将再分离。</em></p>
+<p><em>而我的自传中曾经有你，没有遗憾的诗句。</em></p>
+<audio id="audio" controls="" preload="none">
+<source id="m4a" src="https://huanyp.cn/images/20221105_203703.m4a">
+</audio>
+<blockquote>
+<p>hyp or mzx 记于一个伤心的晚上。</p>
+<p>很难如此坦诚的讲一件事，但我希望这样坦诚的随记，要少一点。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1039,237 +1375,6 @@ class="math inline">\(3\)</span>
 的任意时刻，二者的路径都是互不影响的，小于 <span
 class="math inline">\(3\)</span> 时已经相遇，所以两个点时独立的。</p>
 <p>怎么说，虽然没做出来，但是这道题还是给了我们思考这类题的方向。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/24/OI/%E6%AF%94%E8%B5%9B/CF1749/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/24/OI/%E6%AF%94%E8%B5%9B/CF1749/" class="post-title-link" itemprop="url">CF1749</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-24 16:29:08" itemprop="dateCreated datePublished" datetime="2022-10-24T16:29:08+08:00">2022-10-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:51:11" itemprop="dateModified" datetime="2025-02-16T17:51:11+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="e">E</h2>
-<p>一个 <span class="math inline">\(n\times m\le 3\times 10^5\)</span>
-的网格，里面有一些 <span class="math inline">\(1\)</span>，其余是 <span
-class="math inline">\(0\)</span>，你需要填上尽可能少的 <span
-class="math inline">\(1\)</span>，让网格上下不连通，并且 <span
-class="math inline">\(1\)</span> 之间边不相邻。</p>
-<p>这道题还是发现我网格图图论不扎实的问题。</p>
-<p>首先很容易想到一定会存在一条自左到右的链，分隔了上下两部分。所以我直接从左到右
-<span class="math inline">\(DP\)</span>。</p>
-<p>但是得到了 <span class="math inline">\(WA2\)</span> 的好成绩。</p>
-<p>左思右想也找不出问题，但是对拍后发现似乎是可以往回走的。</p>
-<p>改成最短路算法就通过了。</p>
-<p><strong>矩阵图论的题目，不要只看到自左向右，要考虑存不存在往回的可能。</strong></p>
-<p>如果没有错过，确实很难意识到这种思维漏洞，所以一定要记住！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/24/%E7%94%9F%E6%B4%BB/%E4%B8%80%E4%BB%B6%E4%BA%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/24/%E7%94%9F%E6%B4%BB/%E4%B8%80%E4%BB%B6%E4%BA%8B/" class="post-title-link" itemprop="url">一件事</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-24 09:14:14" itemprop="dateCreated datePublished" datetime="2022-10-24T09:14:14+08:00">2022-10-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:49:21" itemprop="dateModified" datetime="2025-02-16T17:49:21+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="随便写写">随便写写</h3>
-<p>昨天考试，模数很离谱 <code>998244 8 53</code>，我文件名还写错了，挂了
-<code>190</code>。</p>
-<p>考完在机房随口骂了出题人两句，自己也没当回事，题做不来，看错了，我本事不够，我认，文件名写错，我的问题。骂人，就是心情不好，也没多想。</p>
-<p>上周有套题出的很离谱，考完也在机房骂了几句，想着反正已经考完了，相当于是下课时间，发泄几句也没什么。</p>
-<p>上周教练下午找我聊，说要控制情绪云云，我没当回事，说
-“我就是这个性格”，骂出来被批最多难受
-10min，不说两句说不定憋着难受一个星期，这件事也就这么稀里糊涂的过了，高一的老师
-qq 找我聊了一下，说我 "恶意发泄情绪"，我想确实是这样，虽然我还没把所谓的
-"恶意发泄情绪" 当回事，不过配合老师工作，我还是接受惩罚，20
-个俯卧撑当锻炼了。</p>
-<p>昨天考完又骂了几句，然后一起考的同学都没怎么管，晚上教练叫我和我爸打个电话，打过去披头盖脸就是一顿骂，我好好的心情被这一顿搞炸了，随即想都没想就怼了回去，也没有什么目的，就是对着干，爸叫我，自己反思错误，手写检讨，晚上
-11 点前拍照发给他，否则第二天来学校接我回家。</p>
-<p>我...</p>
-<p>说实话我确实不知道骂几句又有什么问题，搞得这么恼火，反正一下子就哭了。</p>
-<p>稍微冷静一下去找了
-<code>Walk</code>，和他好好聊了一会儿，其实我能想到看到的东西真的很少。。。</p>
-<p>回想一下，<code>Walk</code>
-说的确实有道理，再怎么说，直接骂出来是一件很不好的事情，虽然骂出来确实很爽，不过可能我不把这件事当事，很多人也不会放在心上，甚至有共情，但总有一些居心不良的人干一些龌龊的事，骂人了确实会留下一些把柄。<strong>注意，我在这里甚至用了
-"居心不良"
-这个非常文艺的词，而没有用一些更加常用的，更能表达我对这些人看法的词。</strong>
-所以这件事终归还是我有问题。</p>
-<p>冷静下来和老爸回个电话，说了这一点，但是爸还是说我没有看到主要问题，我这一部分看法只是很小的一面。</p>
-<p>他说了这些点：</p>
-<ul>
-<li><p>保护自己，别留下把柄（我说到的）</p></li>
-<li><p>这件事让身边的其他人很难办。</p></li>
-<li><p>不可避免的受到了一些网络影响。</p></li>
-<li><p>情绪控制上的问题</p></li>
-<li><p>文化素养的问题。</p></li>
-</ul>
-<p>第一点就不再多谈。</p>
-<p>第二点，这里的其它人并不指同学，指老师，他举了一个挺现实的例子，假定老师要写评语，那这件事情怎么办。可能平日里不会在意，但是比较正式和严肃的场合，爆粗口这件事情被提出来肯定会有很大的形象减分，所以为了咱还算行的个人形象，少骂几句。</p>
-<p>第三点，我也不得不承认受到了整个 OI
-圈某些不太好的风气的影响，走偏了，或者说没有守住 "本心"，在被不好的
-"大多数" 带着走，以前完全没有意识到这一点，还是需要想想，是不是
-"大多数"，就是正确的，这个
-"大多数"，甚至还是片面的，是一个小圈子。所以，哪些是精华，哪些是糟粕，需要认真思考。</p>
-<p>第四点，情绪控制，说起来容易，做起来难，人脑和电脑是一样的，CPU
-寄存器就那几个，赛不了太多东西，情绪控制的数据都放进了内存了，但是情绪上来的时候，不要说内存延迟的
-200 个周期了，L1 几个 CPU
-周期你都等不了，会直接把寄存器里的情绪用最快捷的方式扔出来，放电脑上就是——"死机，爆炸"，所以最有效的方式还是多找找样本，多获取一些负反馈，让你的思维模型对情绪控制更敏感，遇到相似的输入能够把读取
-"情绪控制"
-模块的权重算的高一点，所以还是一个阅历的问题，样本不够，训练出来的 AI
-就是典型的 "欠拟合"，处理基本问题都没有办法，换到人身上就是
-"年轻人"。机器学习之所以叫机器学习那是因为它模仿了人的学习过程，是有道理的。</p>
-<p>第五点，其实我不太想细谈，爸总是把文化素养和 "语文"
-挂钩起来。<strong>我很讨厌以主观看法作为基础的一切。</strong>放在义务教育中，就是语文，历史，和政治。为什么我不把英语算进来？<strong>英语学习的是使用英语这个工具，而不是学习语文这种主观印象。</strong>除开义务教育，一个典例就是中医，也许我对中医有误解，但是至少到现在为止，我还认为它是一个以主观看法为基础的
-Subject，所以直接告诉我。</p>
 
       
     </div>
