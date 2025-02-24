@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,206 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/10/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1110%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/10/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1110%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1110总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-10 21:23:57" itemprop="dateCreated datePublished" datetime="2022-11-10T21:23:57+08:00">2022-11-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:22:42" itemprop="dateModified" datetime="2025-02-16T20:22:42+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="总结">1110总结</h2>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0152">考试</a></p>
+<h3 id="t1">T1</h3>
+<p>莫名奇妙写挂的题。</p>
+<p>题本身意义不大，但是我写了很蠢的做法。</p>
+<p>分析问题本质上是需要动态查 <span class="math inline">\(i\ge l,a_i\in
+x_i\)</span>，<span class="math inline">\(a_i\)</span>
+不是很大，可以直接预处理每一个元素的 <span
+class="math inline">\(next\)</span>，就很方便了，但是考场上写了扫描做法，还写挂了，非常蠢。</p>
+<p><strong>拿到题不要直接开冲，可以多想一下有没有更好写的做法/更方便，前面的题没那么难。</strong></p>
+<h3 id="t2">T2</h3>
+<p>观察发现答案不超过 <span class="math inline">\(1\)</span>
+的充要条件是存在一条长度为奇数的路径，答案不超过 <span
+class="math inline">\(2\)</span> 的充要条件是存在一条路径。</p>
+<p>先假定图联通，所以问题变成了计算无向图 <span
+class="math inline">\(s,t\)</span>
+之间是否存在长度为奇数的路径，有以下三种方式</p>
+<h4 id="直接最短路">直接最短路</h4>
+<p>思想是分层图跑最短路，但实现上没那么麻烦，考场写的这个做法。</p>
+<h4 id="dfs">DFS</h4>
+<p>如果有奇环，那在奇环上绕一圈任意可达了，所以考虑先 DFS
+求个深度，如果有奇环答案全部为 <span
+class="math inline">\(1\)</span>，否则路径唯一求出来就行</p>
+<h4 id="二分图">二分图</h4>
+<p>还是奇环的思想，实现上使用黑白染色。</p>
+<h4 id="并查集">并查集</h4>
+<p>这是常数最小的写法，还是考虑分层图，有一条边则合并不同层的两个点，查奇数路径就是不同层是否联通，偶数路径就是相同层是否联通。</p>
+<h3 id="t3">T3</h3>
+<p>不算太难的题，但是确实没有想出来。</p>
+<p>首先有个经典结论，先手必败的充要条件为所有可选元素为偶数，证明归纳，显然。</p>
+<p>算先手必败显然比先手必胜好算，所以算必败。</p>
+<p>先把元素做前缀和，再对 <span class="math inline">\(2\)</span>
+取模。问题就是需要选一个子矩阵，满足首尾两列元素值相同。</p>
+<p>考场上想到了可以哈希，由于常数，虽然是 <span
+class="math inline">\(n^2m\)</span> 的，但只有 <span
+class="math inline">\(52pts\)</span>。</p>
+<h4 id="非哈希做法">非哈希做法</h4>
+<p>考虑固定下边界，移动上边界的过程，发现相同元素的集合在不断变小，而有了这个集合就可以算答案，这个东西是可以每次
+<span class="math inline">\(O(m)\)</span>
+计算的，这样的常数较小，可以得到 <span
+class="math inline">\(76pts\)</span>。</p>
+<h4 id="正解1">正解1</h4>
+<p>先得想到它已经是个字符串题了，考虑上边界不断变化的过程，发现不合法的矩阵个数等于当前
+<span class="math inline">\(m\)</span> 个字符串两两之间 <span
+class="math inline">\(LCP\)</span> 的和，然后考虑字符串排序的方式求
+LCP，类似后缀排序的 <span class="math inline">\(height\)</span>
+数组，发现后缀排序是很好做的，因为每次上移一行，就是归并排序的过程，<span
+class="math inline">\(height\)</span> 和 <span
+class="math inline">\(rk\)</span> 都可以线性维护，得到了 <span
+class="math inline">\(height\)</span> 之后就单调栈搞定。</p>
+<h4 id="another-approach">Another Approach</h4>
+<p>考虑非哈希做法的等价类思想，发现虽然维护过程是 <span
+class="math inline">\(O(nm)\)</span> 的，但实际上等价类的个数是 <span
+class="math inline">\(O(m)\)</span>
+的，考虑以移动下边界的方式考察当前下边界所有上边界的等价类，自顶向下的更新等价类，该拆分的拆分，实际上和正解1本质相同。</p>
+<h3 id="t4">T4</h3>
+<p>条件比较特殊，需要先观察。</p>
+<p>记 <span class="math inline">\(T&#39;\)</span> 为 <span
+class="math inline">\(T\)</span> 的修剪。</p>
+<p><span class="math inline">\(T\)</span> 的修剪和 <span
+class="math inline">\(T\)</span> 的右子树相同，那么考虑 <span
+class="math inline">\(T\)</span> 的右子树 <span
+class="math inline">\(R(T)\)</span>，那么 <span
+class="math inline">\(L(R(T))=L(T&#39;)\)</span>，递归的，<span
+class="math inline">\(R(R(T))\)</span> 和 <span
+class="math inline">\(R(T)\)</span> 的修剪相同。</p>
+<p>归纳边界是 <span
+class="math inline">\(L(T)=\emptyset\)</span>，此时右子树可以任意延申右儿子而不受限制，先假设当左儿子为空时右儿子也必须为空，这样就有了一个边界。</p>
+<p>因此，如果 <span class="math inline">\(L(T)\)</span>
+确定了，就可以确定出有边界的树的唯一形态。</p>
+<p>考察 <span class="math inline">\(L(T)\)</span> 的各项数据对应到的
+<span class="math inline">\(T\)</span> 的数据。</p>
+<p>容易发现： <span class="math display">\[
+leaf_T=size_{L(T)} + 1\\
+height_T=height_{L(T)}+1\\
+size_T=height_T+\sum\limits_{u\in L(T)} height_u
+\]</span> 接下来的事情变成了设计一种合理的方式去枚举合法的 <span
+class="math inline">\(L(T)\)</span>，并能够计算这些数据。</p>
+<h4 id="子树合并枚举二叉树">子树合并枚举二叉树</h4>
+<p>枚举二叉树，比较合理的一种方式是以子树大小为阶段来合并，需要记录的信息是
+<span class="math inline">\(dp[i][j][k]\)</span> 表示子树大小为 <span
+class="math inline">\(i\)</span>，高度为 <span
+class="math inline">\(j\)</span>，<span class="math inline">\(\sum
+height_u\)</span> 为 <span class="math inline">\(k\)</span>
+的总方案数，合并的时候需要枚举三维做卷积，复杂度为 <span
+class="math inline">\(n^2k^2m^2\)</span>，难以通过本题。</p>
+<p>不难发现 <span class="math inline">\(j\)</span>
+可以用前缀和优化，但是其它两维是卷积，动不了的，复杂度 <span
+class="math inline">\(O(n^2km^2)\)</span>，实际上常数比较小，可以过掉。</p>
+<h4 id="深度顺序枚举二叉树">深度顺序枚举二叉树</h4>
+<p>刚刚的方式是子树合并的方式构造二叉树，现在考虑用深度顺序构造，设
+<span class="math inline">\(dp[i][j][k][s]\)</span> 为构造深度为 <span
+class="math inline">\(i\)</span>，树大小为 <span
+class="math inline">\(j\)</span>，<span class="math inline">\(\sum
+height\)</span> 为 <span class="math inline">\(k\)</span>，可用点数为
+<span class="math inline">\(s\)</span>
+的方案数，转移需要枚举向下构造的点数 <span
+class="math inline">\(t\)</span>，得到 <span
+class="math inline">\(t\)</span> 后可以预处理转移系数，顺便计算出新的
+<span class="math inline">\(j,k,s\)</span>，复杂度为 <span
+class="math inline">\(O(kmn^3)\)</span>，更加优秀，事实上 <span
+class="math inline">\(j,s,t\)</span> 远远取不到 <span
+class="math inline">\(n\)</span>，是非常优秀的复杂度。</p>
+<p>但是这个方法是假的，因为深度和 <span class="math inline">\(\sum
+height\)</span> 没有必然联系，所以无法计算 <span
+class="math inline">\(k\)</span>。</p>
+<h4 id="高度顺序枚举二叉树">高度顺序枚举二叉树</h4>
+<p>考虑以子树高度的顺序，降序构造二叉树，这和深度顺序又不一样。</p>
+<p>考虑设 <span class="math inline">\(dp[i][j][k][s]\)</span>
+表示子树高度为 <span class="math inline">\(i\)</span>，大小为 <span
+class="math inline">\(j\)</span>，<span class="math inline">\(\sum
+height\)</span> 为 <span class="math inline">\(k\)</span> ，叶子个数为
+<span class="math inline">\(s\)</span>
+时的方案数，注意这里是按照高度顺序构造，即强制要求先选的部分的高度大于后选的。所以又额外的要求是枚举接下来的增量时需要将所有叶子至少叠加一层，枚举增量
+<span class="math inline">\(t\)</span>
+时预处理系数即可，复杂度和深度顺序类似。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1281,100 +1481,6 @@ class="math inline">\(100-500\)</span>，那么就更应该思考网络流的方
     
     <div class="post-body" itemprop="articleBody">
           
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/24/OI/%E6%AF%94%E8%B5%9B/CF1753/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/24/OI/%E6%AF%94%E8%B5%9B/CF1753/" class="post-title-link" itemprop="url">CF1753</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-24 19:12:49" itemprop="dateCreated datePublished" datetime="2022-10-24T19:12:49+08:00">2022-10-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:51:13" itemprop="dateModified" datetime="2025-02-16T17:51:13+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="d">D</h2>
-<p>很有意思的一道题，感觉有人一碰到这种二维平面上的图论题就只有瓜起。</p>
-<p>首先它是一个跳棋形式的题目，我们不要考虑去移动床，考虑移动空格，容易发现相邻的两个空格一定不会是同一个空格，所以可以枚举每两个相邻的位置，计算这里有空格的最小代价。</p>
-<p>怎么算，感觉两个东西是独立的，可以直接跑最短路。</p>
-<p>实际上也确实是这样的，由于最短路必定不会经过同一个点两次，所以考虑某个空格在一个点时的移动方式，如果它使用了某个床两次，那么一定在第二次使用这个床时回到了原点，必定不优。</p>
-<p>感性的考虑在两个点路径距离大于等于 <span
-class="math inline">\(3\)</span>
-的任意时刻，二者的路径都是互不影响的，小于 <span
-class="math inline">\(3\)</span> 时已经相遇，所以两个点时独立的。</p>
-<p>怎么说，虽然没做出来，但是这道题还是给了我们思考这类题的方向。</p>
 
       
     </div>

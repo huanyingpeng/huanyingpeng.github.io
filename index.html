@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -274,6 +274,235 @@
 <ul>
 <li>QQ：3051561876</li>
 </ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2025/02/24/%E5%AD%A6%E6%9C%AF/EM%20%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/02/24/%E5%AD%A6%E6%9C%AF/EM%20%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">EM 算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-02-24 14:00:00 / 修改时间：14:09:39" itemprop="dateCreated datePublished" datetime="2025-02-24T14:00:00+08:00">2025-02-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">学术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="先验概率-vs-后验概率">先验概率 VS 后验概率</h2>
+<h3 id="定义">定义</h3>
+<ul>
+<li><p>先验概率是<strong>根据主观经验，在没有任何实验的情况下</strong>对某件事情发生概率的预测。</p></li>
+<li><p>后验概率是<strong>根据某些已知证据</strong>，去估计的事情发生的概率。
+<span class="math display">\[
+P(H|E) = \dfrac{P(E|H)*P(H)}{P(E)}
+\]</span> 该式子中，每项含义如下：</p>
+<ul>
+<li><span class="math inline">\(P(H|E)\)</span>：在证据 <span
+class="math inline">\(E\)</span> 成立的前提下，假设 <span
+class="math inline">\(H\)</span> 成立的概率。</li>
+<li><span class="math inline">\(P(E|H)\)</span>：在假设 <span
+class="math inline">\(H\)</span> 成立的前提下，证据 <span
+class="math inline">\(E\)</span> 被观测的概率。</li>
+<li><span class="math inline">\(P(E)\)</span>：证据 <span
+class="math inline">\(E\)</span> 成立的先验概率。</li>
+<li><span class="math inline">\(P(H)\)</span>：假设 <span
+class="math inline">\(H\)</span> 成立的先验概率。</li>
+</ul></li>
+</ul>
+<h3 id="朱世衡之问">朱世衡之问</h3>
+<p>有关朱世衡提出的硬币之问，不妨设 <span
+class="math inline">\(E\)</span> 表示抛 <span
+class="math inline">\(100\)</span> 次硬币 <span
+class="math inline">\(50\)</span> 次正面朝上，<span
+class="math inline">\(H\)</span> 表示 <span
+class="math inline">\(p=0.9\)</span>，也就是正面朝上的概率为 <span
+class="math inline">\(90\%\)</span>。那么：</p>
+<ul>
+<li><p>可以计算出 <span class="math inline">\(P(E|H)\le
+\epsilon\)</span>，也就是<strong>如果 <span
+class="math inline">\(H\)</span> 成立，那么观测到 <span
+class="math inline">\(E\)</span> 的概率会很小</strong>。</p></li>
+<li><p>不能说：<strong>因为 <span class="math inline">\(P(E|H)\le
+\epsilon\)</span>，所以 <span class="math inline">\(P(H|E)\)</span>
+很小</strong>。</p></li>
+<li><p><span class="math inline">\(P(E)=\int^1_0{P(p=x)\cdot P(E|p=x)
+dx}\)</span>，显然 <span class="math inline">\(P(p=x)\)</span>
+是个先验概率，<strong>是确定不了的</strong>，所以 <span
+class="math inline">\(P(E)\)</span> 没法计算，同理 <span
+class="math inline">\(P(H)\)</span> 也没法计算，故 <span
+class="math inline">\(P(H|E)\)</span> 计算不了。</p></li>
+</ul>
+<h2 id="最大似然">最大似然</h2>
+<h3 id="一般求解方式">一般求解方式</h3>
+<ul>
+<li>考虑后验概率函数相对简单且为<strong>凸函数</strong>，对后验概率每个参数求偏导即可解出最大似然。</li>
+<li>对后验概率函数使用<strong>梯度下降</strong>，求解<strong>极大似然</strong>。</li>
+</ul>
+<h2 id="em-算法">EM 算法</h2>
+<h3 id="算法用途">算法用途</h3>
+<p>EM 算法主要用于<strong>近似求解</strong>一些最大似然问题。</p>
+<h3 id="算法流程">算法流程</h3>
+<ol type="1">
+<li>初始化<strong>模型参数</strong> <span
+class="math inline">\(\theta\)</span>。</li>
+<li>对 <span class="math inline">\(\theta\)</span> 进行迭代，优化 <span
+class="math inline">\(Q(\theta | \theta^{(t)}) =
+\mathbb{E}_{Z|Y,\theta^{(t)}} \left[ \log P(Y,Z|\theta)
+\right]\)</span>。
+<ul>
+<li>根据 <span class="math inline">\(\theta^{(t)}\)</span> 计算 <span
+class="math inline">\(Z\)</span> 不同取值的后验概率密度函数 <span
+class="math inline">\(F = P(Z=x|\theta^{(t)})\)</span>。</li>
+<li>根据 <span class="math inline">\(F, \theta^{(t)}\)</span>
+求解上式的最大似然。</li>
+</ul></li>
+</ol>
+<h3 id="算法举例">算法举例</h3>
+<p>有三个硬币 <span
+class="math inline">\(A,B,C\)</span>，正面朝上的概率为 <span
+class="math inline">\(\theta_A,\theta_B, \pi\)</span>，每次实验先抛硬币
+<span class="math inline">\(C\)</span>，如果 <span
+class="math inline">\(C\)</span> 正面朝上，则使用 <span
+class="math inline">\(A\)</span>，否则使用 <span
+class="math inline">\(B\)</span>，一次实验抛完 <span
+class="math inline">\(C\)</span> 后抛 <span
+class="math inline">\(A\)</span> 或 <span
+class="math inline">\(B\)</span> 五次，记录为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">实验一：2 正 3 反</span><br><span class="line"></span><br><span class="line">实验二：4 正 1 反</span><br><span class="line"></span><br><span class="line">实验三：1 正 4 反</span><br><span class="line"></span><br><span class="line">实验四：3 正 2 反</span><br><span class="line"></span><br><span class="line">实验五：4 正 1 反</span><br></pre></td></tr></table></figure>
+<p>根据实验结果给出一个最大似然参数估计 <span
+class="math inline">\(\theta = (\theta_A, \theta_B, \pi)\)</span>。</p>
+<h4 id="e-步骤">E 步骤</h4>
+<p>计算每个实验由 <span class="math inline">\(A\)</span> 或 <span
+class="math inline">\(B\)</span> 生成的后验概率：<br />
+<span class="math display">\[
+\gamma_j(A) = \frac{\pi \cdot \theta_A^{n_j}(1-\theta_A)^{m_j}}{\pi
+\cdot \theta_A^{n_j}(1-\theta_A)^{m_j} + (1-\pi) \cdot
+\theta_B^{n_j}(1-\theta_B)^{m_j}}
+\]</span></p>
+<h4 id="m-步骤">M 步骤</h4>
+<p>迭代更新： <span class="math display">\[
+\pi&#39; = \frac{\sum_{j=1}^5 \gamma_j(A)}{5}
+\]</span></p>
+<p><span class="math display">\[
+\theta_A&#39; = \frac{\sum_{j=1}^5 \gamma_j(A) \cdot n_j}{\sum_{j=1}^5
+\gamma_j(A) \cdot 5}, \quad \theta_B&#39; = \frac{\sum_{j=1}^5
+\gamma_j(B) \cdot n_j}{\sum_{j=1}^5 \gamma_j(B) \cdot 5}
+\]</span></p>
+<h4 id="迭代">迭代</h4>
+<p>设置一个收敛阈值，似然估计变化小于阈值时令其停止。</p>
+<h2 id="em-原理证明">EM 原理证明</h2>
+<p>首先对似然函数取对数，记： <span class="math display">\[
+L(\theta) =
+\log(P(Y|\theta))=\log{\sum\limits_{z}P(YZ|\theta)}=\log(\sum\limits_{z}P(Y|Z,\theta)P(Z|\theta))
+\]</span> 考虑： <span class="math display">\[
+\begin{align}
+L(\theta) - L(\theta^{(i)})&amp;=
+\log\big({\sum\limits_{z}P(Y|Z,\theta)P(Z|\theta)}\big) \\
+&amp;=\log\big({\sum\limits_{z}P(Z|Y,
+\theta^{(i)})\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y, \theta^{(i)})}}\big)
+- \log(P(Y|\theta^{(i)}))
+\end{align}
+\]</span> 由 <span class="math inline">\(\text{Jensen}\)</span>
+不等式，得 <span class="math display">\[
+\begin{align}
+\text{上式} &amp;\ge
+\sum\limits_{z}P(Z|Y,\theta^{(i)})\log{\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,
+\theta^{(i)})}} - \log(P|\theta^{(i)})\\
+&amp;=
+\sum\limits_{z}P(Z|Y,\theta^{(i)})\log{\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,
+\theta^{(i)})P(|\theta^{(i)})}})
+\end{align}
+\]</span> 令： <span class="math display">\[
+\begin{align}
+B(\theta, \theta^{(i)})&amp;= L(\theta)
++  P(Z|Y,\theta^{(i)})\log{\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,
+\theta^{(i)})P(Y|\theta^{(i)})}}\\
+&amp;=L(\theta)+P(Z|Y,\theta^{(i)})\log{\frac{P(YZ|\theta)}{P(YZ|\theta^{(i)})}}
+\end{align}
+\]</span> <em>第二行来自贝叶斯公式。</em></p>
+<p>则有 <span class="math inline">\(L(\theta)\ge B(\theta,
+\theta^{(i)})\)</span>，且 <span
+class="math inline">\(B(\theta,\theta)=L(\theta)\)</span>。</p>
+<p>所以令： <span class="math display">\[
+\theta^{(i+1)} = \mathbf{argmax}_\theta B(\theta, \theta^{(i)})
+\]</span> 则有： <span class="math display">\[
+L(\theta^{(i+1)}) \ge B(\theta^{(i+1)}, \theta^{(i)}) \ge
+B(\theta^{(i)},\theta^{(i)})=L(\theta^{(i)})
+\]</span> 即： <span class="math display">\[
+L(\theta^{(i+1)})\ge L(\theta^{(i)})
+\]</span></p>
+<h2 id="算法分析">算法分析</h2>
+<h3 id="对比">对比</h3>
+<p>上面的三硬币问题理论上也可以直接求解最大似然，但是列出来后是一个
+PDE，一般 PDE 目前是没有闭式解，所以也只能退而求其次找近似解。</p>
+<p>梯度下降也行，但是相比于
+EM，梯度下降的梯度计算比较复杂，而且无法保证满足概率约束，可解释性弱，收敛不可靠等等等。</p>
+<h3 id="m-步骤最大似然的求解">M 步骤最大似然的求解</h3>
+<p>三个变量是独立的，分别求偏导就能代出值来。</p>
 
       
     </div>
@@ -1232,218 +1461,6 @@ class="math inline">\(H(x)\)</span> 进行乘法得到 <span
 class="math inline">\(1\)</span>。</p>
 <p>对于 <span class="math inline">\(n=1\)</span> 我们显然有 <span
 class="math inline">\(H&#39;(x)=f_0^{-1}\)</span>，然后依次推出即可。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2023/02/18/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2023/0217%E6%B5%8B%E8%AF%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/02/18/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2023/0217%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">0217测试</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-02-18 10:04:59" itemprop="dateCreated datePublished" datetime="2023-02-18T10:04:59+08:00">2023-02-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:23:33" itemprop="dateModified" datetime="2025-02-16T20:23:33+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="测试">0217测试</h2>
-<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0189">考试</a></p>
-<h3 id="t1">T1</h3>
-<p>非公平组合游戏，先考虑简单的情况，不妨设 <span
-class="math inline">\(x_i\le a+b,a\le b\)</span>。</p>
-<p>那么一个 <span class="math inline">\(x_i\)</span>
-要么能被两个人各自拿一次，要么只能被 <span
-class="math inline">\(A\)</span> 拿。</p>
-<p>如果存在一个只能被 <span class="math inline">\(A\)</span> 拿的 <span
-class="math inline">\(x\)</span>，那么 <span
-class="math inline">\(A\)</span> 必胜，他只需要一直拿两人都能拿的 <span
-class="math inline">\(x_i\)</span>，让 <span
-class="math inline">\(B\)</span> 拿不了，由于 <span
-class="math inline">\(A\)</span> 最后多一个，所以必胜。</p>
-<p>如果不存在只能被 <span class="math inline">\(A\)</span> 拿的 <span
-class="math inline">\(x\)</span>，胜负就与 <span
-class="math inline">\(x\)</span>
-的奇偶性和谁先手有关。但是<strong>此时两个人并不是等价的。</strong>如果有一个
-<span class="math inline">\(x\)</span> 满足 <span
-class="math inline">\(\max(2a,b)\le x\)</span>，那么 <span
-class="math inline">\(A\)</span> 只要拿掉它就能创造一个只能被 <span
-class="math inline">\(A\)</span> 拿的，又变成必胜了，所以 <span
-class="math inline">\(B\)</span> 会优先拿掉它们，但是如果由两个，<span
-class="math inline">\(B\)</span> 就没办法。</p>
-<p>分谁先手后手讨论，容易给出四种情况的充要条件，这些充要条件也是便于直接构造计算的。</p>
-<p>考虑迁移到 <span class="math inline">\(x_i\)</span>
-无限制的情况，发现状态不会改变，如果先手必胜，那么先手按照模意义下的最优策略走，如果后手选择了能取模的，那么先手也选它取模，直到后手选择了一个不能取模的，此时可以平行对应到取模的情况，然后先手继续按照模意义下策略走。</p>
-<p>后手必胜同理。</p>
-<p>将整个转移图画出来，<strong>取模的情况就是完整转移图的低维投影。</strong>如果走了投影上没有的边，另一个人一定可以将点搬回投影上。</p>
-<h4 id="教训">教训</h4>
-<p>犯错的原因是考虑简单情况时理所当然的认为 <span
-class="math inline">\(b\le y_i\)</span> 时，该堆石子对 <span
-class="math inline">\(A,B\)</span> 等价，实际上这不是等价的。</p>
-<p>罗列证据时考虑要全面，或者干脆对拍一下。</p>
-<h3 id="t2">T2</h3>
-<p>又没读题，最开始当成正回文做，<strong>手玩下样例保证理解对题。</strong></p>
-<p>在确定前半段的过程中，后半段也随之确定，建目标串的反串，对应点表示前半段出现什么时可以到该状态。然后跑
-AC
-自动机上动态规划，合并的时候由于一个串一定是由正串的一个前缀和反串的一个前缀拼起来的，如果可以拼起来那么当前
-AC 自动机的节点一定满足它能代表其中较长那个前缀，直接暴力检查。</p>
-<h4 id="教训-1">教训</h4>
-<ul>
-<li>手玩样例保证读对题。</li>
-<li>AC 自动机的点权值要弄对（除了 fa 之外还有 fail 的权值）。</li>
-<li>要对拍。</li>
-</ul>
-<h3 id="t3">T3</h3>
-<p>最开始考虑直接对树进行动态规划，设 <span
-class="math inline">\(dp[j][i]\)</span> 表示有 <span
-class="math inline">\(i\)</span> 个叶子，最大左儿子深度为 <span
-class="math inline">\(j\)</span>
-的方案总数。答案是一个前缀和，转移枚举左右儿子大小，也是前缀和形式，看上去不好优化。于是直接对前缀和动态规划，然后推出一个连分数形式的生成函数，不会了。</p>
-<p>其实二叉树可以考虑转成序列做，由于一颗 <span
-class="math inline">\(n\)</span> 个叶节点的满二叉树唯一对应一个 <span
-class="math inline">\(n-1\)</span> 对括号的括号序列，要求等价于求 <span
-class="math inline">\(n-1\)</span> 对括号，最深不超过 <span
-class="math inline">\(m-2\)</span> 的括号序列个数。</p>
-<p>可以抽象到二维平面上做，需要走到 <span
-class="math inline">\((n-1,n-1)\)</span>，不能碰到 <span
-class="math inline">\(y=x+1\)</span> 和 <span
-class="math inline">\(y=x-m+1\)</span>。简记一条直线为它的截距，即 <span
-class="math inline">\(1\)</span> 和 <span
-class="math inline">\(-m+1\)</span>。</p>
-<h4 id="两种错误的方式">两种错误的方式</h4>
-<ul>
-<li>考虑先算碰到 <span class="math inline">\(1\)</span>
-的方案数，然后再算碰到了 <span class="math inline">\(-m + 1\)</span>
-但没碰到 <span class="math inline">\(1\)</span>
-的方案数。前者好算，后者对称后不能碰到 <span
-class="math inline">\(1\)</span> 且不能碰到 <span
-class="math inline">\(1\)</span> 关于 <span
-class="math inline">\(-m+1\)</span> 的对称直线 <span
-class="math inline">\(-2m+1\)</span>，递归解决该问题，边界为限制彻底放开。</li>
-<li>考虑算碰到了 <span class="math inline">\(1\)</span> 或者碰到 <span
-class="math inline">\(-m+1\)</span>
-的方案数，加上同时碰到的方案数，对于同时碰到的方案数，不容易一起算，考虑算先碰到
-<span class="math inline">\(1\)</span> 再碰到 <span
-class="math inline">\(-m+1\)</span> 的方案数，同样考虑对称，先关于 <span
-class="math inline">\(1\)</span> 再关于 <span
-class="math inline">\(-m+1\)</span> 对称。同时要求走到 <span
-class="math inline">\(1\)</span> 的过程中不能碰到 <span
-class="math inline">\(-2m+1\)</span>，即减掉先碰到 <span
-class="math inline">\(-2m+1\)</span> 关于 <span
-class="math inline">\(1\)</span> 再碰到 <span
-class="math inline">\(1\)</span> 的方案，递归解决。</li>
-</ul>
-<h4 id="容斥方式的本质">容斥方式的本质</h4>
-<p><strong>容斥本质上是通过对称构造了一个没有限制的问题，使得它和原问题不满足限制的情况一一对应。</strong></p>
-<p>这个对应的证明是基于对称问题中起点到终点一定穿过直线，因此<strong>将第一次碰到直线的前部分对称</strong>后一定可以对应到一种原问题的不合法情况，所以考虑原路径时，在对称路径第一次穿过直线后，原路径就不再是<strong>对称路径的对称路径了</strong>。所以第一种方式对直线
-<span class="math inline">\(-2m+1\)</span> 的限制是不合理的。</p>
-<p>方式二看上去修了锅，实际上只是展开了一层手动修了，后面还是有一样的问题。</p>
-<p>如果目标点在直线异侧，那么因为答案不是良定义的所以会错，需要特判为
-<span class="math inline">\(0\)</span>。</p>
-<p>关于容斥方式，如果将括号序列视作一个 +1 -1
-的序列，那么合法就是要求前缀和最小值不小于 <span
-class="math inline">\(0\)</span>，我们将第一个小于 <span
-class="math inline">\(0\)</span> 后的翻转，最后一定会到达 <span
-class="math inline">\(-2\)</span>，因此不合法方案数等于到 <span
-class="math inline">\(-2\)</span> 的无限制方案数。</p>
-<h4 id="一种正确的方式">一种正确的方式</h4>
-<p>全部方式减去要求碰到 <span class="math inline">\(1\)</span> 或者
-<span class="math inline">\(-m+1\)</span> 的方式，发现先碰到 <span
-class="math inline">\(1\)</span> 再碰到 <span
-class="math inline">\(-m+1\)</span> 的方式被算重了。</p>
-<p>然后要算先碰到 <span class="math inline">\(1\)</span> 再碰到 <span
-class="math inline">\(-m+1\)</span> 的方式，算这个的时候发现先到 <span
-class="math inline">\(-m+1\)</span> 再到 <span
-class="math inline">\(1\)</span> 再到 <span
-class="math inline">\(-m+1\)</span>
-的方式又被算重了，需要减去，如此递归下去做。</p>
-<h4 id="bonus">bonus</h4>
-<ul>
-<li><p>构造满二叉树的方式：</p>
-<ul>
-<li>单个叶子节点是空串</li>
-<li>有儿子的节点记左右儿子为 <span
-class="math inline">\(A,B\)</span>，令它为 <code>(A)B</code>。</li>
-<li>容易证明它们是一一对应的。</li>
-</ul></li>
-<li><p>构造二叉树的方式：</p>
-<ul>
-<li><p>空树是空串。</p></li>
-<li><p>单节点的树是 <code>()</code>。</p></li>
-<li><p>有儿子节点的树记左右儿子的构造分别为 <span
-class="math inline">\(A,B\)</span>，令它为 <code>(A)B</code>。</p></li>
-<li><p>容易证明方案是一一对应的。</p></li>
-</ul></li>
-</ul>
 
       
     </div>

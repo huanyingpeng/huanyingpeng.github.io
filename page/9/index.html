@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,172 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/28/OI/%E7%AE%97%E6%B3%95/Tarjan%E7%AE%97%E6%B3%95%E5%92%8C%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/28/OI/%E7%AE%97%E6%B3%95/Tarjan%E7%AE%97%E6%B3%95%E5%92%8C%E5%9D%91/" class="post-title-link" itemprop="url">Tarjan算法和坑</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-28 18:18:13" itemprop="dateCreated datePublished" datetime="2022-07-28T18:18:13+08:00">2022-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:58:00" itemprop="dateModified" datetime="2025-02-16T17:58:00+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="tarjan算法和坑">Tarjan算法和坑</h2>
+<p>某场多校，某道题，有负环，需要排除（负环）。</p>
+<p>某人写了，又交了，吃罚时，需要排除（某人）。</p>
+<p>队友写了，又交了，他过了，某人完了。</p>
+<p>数据有了，调试了，调完了，Tarjan锅了。</p>
+<p>本文提一下 Tarjan 算法里的坑。</p>
+<h3 id="算法流程和原理">算法流程和原理</h3>
+<p>通过对图进行 DFS 遍历，得到 DFS 树。</p>
+<p>容易发现每个 SCC 是一个树上的联通块，这是由 DFS
+的过程保证的，如果分开了，那么就不满足 DFS 的性质。</p>
+<p><strong>DFS 一个点，会访问到所有它能到的点。</strong>由于它们是
+SCC，所以 DFS 该 SCC 的任意节点的时候，一定会让 SCC
+中所有<strong>未访问</strong>的节点都在它的子树里，所以不会出现断开的情况。</p>
+<p>考虑树的每个节点是否为 SCC 的根。定义一个节点为 SCC
+的根，当且仅当这个节点是该 SCC 中最浅的节点。</p>
+<p>定义 <code>low[u]</code> 为 <span class="math inline">\(u\)</span>
+能通过<strong>自己或者自己的子树</strong>到达的点，时间戳的最小值。维护一个栈，表示当前还没有确定连通块的节点。</p>
+<p>如果一个点 <span class="math inline">\(u\)</span> 的
+<code>low[u]=dfn[u]</code>，那么该点无法到达时间戳更小的点，所以一定是
+SCC 的根，弹出所有栈中的值直到 <span
+class="math inline">\(u\)</span>，作为该 SCC 的所有点。</p>
+<p>如果访问了一个已经访问过的点 <span
+class="math inline">\(v\)</span>，分两种
+CASE，其一是它已经被弹栈了，这样的话该边一定是横插边，直接不管，因为
+<span class="math inline">\(v\)</span> 到不了 <span
+class="math inline">\(u\)</span>。如果还没有弹栈，说明该点的 SCC
+还没有确定，所以这个点是可以到 <span class="math inline">\(u\)</span>
+的父亲的，也能到 <span
+class="math inline">\(v\)</span>。所以这种点是有效的，<span
+class="math inline">\(u\)</span> 因此能到达更上面的点，不是 SCC
+的根。</p>
+<h3 id="不同的写法">不同的写法</h3>
+<p>省略全局变量。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//AC Code</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	dfn[u]=low[u]=++s;</span><br><span class="line">	st[++top]=u;in[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;e[<span class="number">2</span>][u].<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		<span class="type">int</span> v=e[<span class="number">2</span>][u][i].v,w=e[<span class="number">2</span>][u][i].e,f=e[<span class="number">2</span>][u][i].f;</span><br><span class="line">		<span class="keyword">if</span>(dfn[v])&#123;</span><br><span class="line">			<span class="keyword">if</span>(in[v])<span class="built_in">cmin</span>(low[u],dfn[v]);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">dfs</span>(v);<span class="built_in">cmin</span>(low[u],low[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dfn[u]==low[u])&#123;</span><br><span class="line">		cnt++;<span class="type">int</span> v;</span><br><span class="line">		<span class="keyword">do</span> rk[v=st[top--]]=cnt,in[v]=<span class="number">0</span>; <span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//AC code</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	dfn[u]=low[u]=++s;st[++top]=u;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;e[<span class="number">2</span>][u].<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		<span class="type">int</span> v=e[<span class="number">2</span>][u][i].v,w=e[<span class="number">2</span>][u][i].e,f=e[<span class="number">2</span>][u][i].f;</span><br><span class="line">		<span class="keyword">if</span>(dfn[v])&#123;</span><br><span class="line">			<span class="keyword">if</span>(!rk[v])<span class="built_in">cmin</span>(low[u],dfn[v]);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">dfs</span>(v);<span class="built_in">cmin</span>(low[u],low[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dfn[u]==low[u])&#123;</span><br><span class="line">		cnt++;<span class="type">int</span> v;</span><br><span class="line">		<span class="keyword">do</span> rk[v=st[top--]]=cnt; <span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//WA code</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	dfn[u]=low[u]=++s;st[++top]=u;in[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;e[<span class="number">2</span>][u].<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		<span class="type">int</span> v=e[<span class="number">2</span>][u][i].v,w=e[<span class="number">2</span>][u][i].e,f=e[<span class="number">2</span>][u][i].f;</span><br><span class="line">		<span class="keyword">if</span>(dfn[v])&#123;</span><br><span class="line">			<span class="keyword">if</span>(in[v])<span class="built_in">cmin</span>(low[u],dfn[v]);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">dfs</span>(v);<span class="built_in">cmin</span>(low[u],low[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dfn[u]==low[u])&#123;</span><br><span class="line">		cnt++;<span class="type">int</span> v;</span><br><span class="line">		<span class="keyword">do</span> rk[v=st[top--]]=cnt; <span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">	in[u]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意到前两种 Code 维护的都是栈中元素，因此没有问题。</p>
+<p>但第三种写法，维护的是所有的祖先，当当前节点 <span
+class="math inline">\(u\)</span> 连接到的点 <span
+class="math inline">\(v\)</span>，可以通过其返祖边回到更上面的父亲时，这种做法会漏掉
+<span class="math inline">\(v\)</span>。因此是错误的。</p>
+<p>举个例子。</p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/l17oe1cu.png" /></p>
+<p>访问 <span class="math inline">\(3\)</span> 时，<span
+class="math inline">\(4\)</span> 已经从 <span
+class="math inline">\(in\)</span> 中移除，但是我们仍然可以通过 <span
+class="math inline">\(4\)</span> 到达 <span
+class="math inline">\(3\)</span>，所以会出现错误。</p>
+<p><strong>洛谷的模板题，数据相当之水，第三种做法可以通过，但它是错误的。</strong></p>
+<h3 id="一些碎碎念">一些碎碎念</h3>
+<p>缩点的时候，也就是求强连通分量，<span
+class="math inline">\(low[u]\)</span> 和 <span
+class="math inline">\(low[v],dfn[v]\)</span> 取
+<code>min</code>，都是可以的，因为不影响判断某个点是否是 SCC 的根。</p>
+<p><strong>如果图是无向图，那么不会存在横插边的问题，所有边都是返祖边。</strong></p>
+<p>求边双连通分量，和 <code>low[v]</code> 取 <code>min</code>
+同样没有问题，因为不影响一个点是不是边双的根的判断。</p>
+<p>判断一个点是边双根的方式是，<strong>它无法通过自己或者儿子，到达更上面的点。</strong>这也意味着，该点与其父亲的连边是桥。</p>
+<p><strong>边双连通具有传递性</strong></p>
+<p>求点双连通分量，判断割点，如果和 <code>low[u]</code> 取
+min，是会出问题的。</p>
+<p>判断一个点是割点的方式是，<strong>它的任意一个儿子无法在没有它的情况下到达上面的点。</strong>特别注意，<strong>该点如果没有儿子，就不是割点。</strong></p>
+<p>点双，就是以割点为界的所有连通块。</p>
+<p>下图是一个取 <code>low[v]</code> 出问题的例子。</p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/8ptscypy.png" /></p>
+<p>先访问 <span class="math inline">\(3\)</span>，再访问 <span
+class="math inline">\(5\)</span>，会错误的认为 <span
+class="math inline">\(5\)</span> 能够到 <span
+class="math inline">\(1\)</span>，我们 <code>low</code>
+的定义是通过自身或自身的子树能到的最小时间戳，而如果和
+<code>low[v]</code> 取
+<code>min</code>，就势必会经过其它的点。在这里，<span
+class="math inline">\(5\)</span> 通过了 <span
+class="math inline">\(4\)</span> 到达 <span
+class="math inline">\(1\)</span>，因此如果删去 <span
+class="math inline">\(4\)</span>，<span class="math inline">\(5\)</span>
+就不能到 <span
+class="math inline">\(1\)</span>，这里需要保证定义的严谨性。</p>
+<p>前面的强连通分量，只需要能够到达，但不关心怎么到达，所以没问题。</p>
+<p>边双也只关心能否到达更前面点，所以没有问题。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1949,209 +2115,6 @@ cache 里的了, 不执行第二次.</p>
     <div class="post-body" itemprop="articleBody">
           <h4 id="设置-pip-默认下载源">设置 pip 默认下载源</h4>
 <p><code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">Hexo-NexT 安装踩坑记录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-12 16:22:10" itemprop="dateCreated datePublished" datetime="2022-07-12T16:22:10+08:00">2022-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-22 11:18:20" itemprop="dateModified" datetime="2025-02-22T11:18:20+08:00">2025-02-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="博客部署">博客部署</h2>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/618864711">参考</a></p>
-<h3 id="环境">环境</h3>
-<h4 id="基础">基础</h4>
-<ul>
-<li>git</li>
-<li>nodejs &amp;&amp; npm</li>
-</ul>
-<h4 id="开工作目录">开工作目录</h4>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<p><strong>工作目录</strong>是
-<code>blog</code>，记住，这很重要，文件名默认为相对工作目录的名字。</p>
-<h4 id="本地预览">本地预览</h4>
-<p>工作目录下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
-<p><code>localhost:4000</code> 上看。</p>
-<h4 id="开-github-pages-仓库">开 GitHub Pages 仓库</h4>
-<p>每个账号只能开一个，仓库名 <code>username.github.io</code>。</p>
-<h4 id="配源码分支">配源码分支</h4>
-<p>创仓库的时候把 main 弄下来，源码（不含
-public）放这里，免得被覆盖。</p>
-<h4 id="自动部署">自动部署</h4>
-<p>工作目录下安自动部署工具。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p><code>_config.yml</code> 末尾加上（记得照着用户名改动）：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line">  <span class="comment"># message: Site updated: &#123;&#123; now(&#x27;YYYY-MM-DD HH:mm:ss&#x27;) &#125;&#125;)</span></span><br></pre></td></tr></table></figure>
-<p>部署：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-<h3 id="metadata">metadata</h3>
-<p>搜 <code>_config.yml</code> 相关配置项：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">幻影彭的彩虹</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;记录青春的扇区&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">&#x27;算法竞赛, 自动化测试, 工程技术, Python&#x27;</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">huan-yp</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span> <span class="comment"># 必须改</span></span><br><span class="line"></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://huanyp.cn</span></span><br></pre></td></tr></table></figure>
-<h3 id="主题">主题</h3>
-<h4 id="安主题next">安主题（next）</h4>
-<p>工作目录下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<h4 id="写上要用这个主题">写上要用这个主题</h4>
-<p><code>_config.yml</code> 里，找到 <code>theme</code>，写上
-<code>next</code></p>
-<h3 id="next">next</h3>
-<p>我用 next 主题。</p>
-<h4 id="menu">menu</h4>
-<p>配置菜单。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="attr">about:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-archive</span></span><br><span class="line">  <span class="comment"># schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line">  <span class="attr">sitemap:</span> <span class="string">/sitemap.xml</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-sitemap</span></span><br><span class="line">  <span class="attr">commonweal:</span> <span class="string">/404/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-heartbeat</span></span><br></pre></td></tr></table></figure>
-<h4 id="scheme">scheme</h4>
-<p>在 <code>themes/next/_config.yml</code> 调 scheme，传统的应该选
-<code>Gemini</code>。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment"># scheme: Muse</span></span><br><span class="line"><span class="comment"># scheme: Mist</span></span><br><span class="line"><span class="comment"># scheme: Pisces</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Gemini</span></span><br></pre></td></tr></table></figure>
-<h4 id="dark">dark</h4>
-<p>应该没有人喜欢 light，所以调成 dark。</p>
-<p>在 <code>themes/next/_config.yml</code> 调 darkmode。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">darkmode: true</span><br></pre></td></tr></table></figure>
-<h3 id="背景">背景</h3>
-<p>一般要加个背景图片什么的</p>
-<h4 id="准备-source-图片">准备 source 图片</h4>
-<p>图片放到 <code>themes/next/source/image/background.jpg</code>
-里。</p>
-<h4 id="改-style">改 style</h4>
-<p>找到
-<code>themes\next\source\css\_schemes\Gemini\index.styl</code>，加上：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">/images/background-now.jpg</span>);</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-attachment</span>:fixed; //不重复</span><br><span class="line">    <span class="attribute">background-size</span>: cover;      //填充</span><br><span class="line">    <span class="attribute">background-position</span>:<span class="number">50%</span> <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 博客内容透明化</span><br><span class="line">// 文章内容的透明度设置</span><br><span class="line"><span class="selector-class">.content-wrap</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 侧边框的透明度设置</span><br><span class="line"><span class="selector-class">.sidebar</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 菜单栏的透明度设置</span><br><span class="line"><span class="selector-class">.header-inner</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.8</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 搜索框（local-search）的透明度设置</span><br><span class="line"><span class="selector-class">.popup</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//博客内容透明化</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attr">--content-bg-color</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.8</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>那个 [0, 1] 的参数是透明度，自己估摸着调。</p>
-<h3 id="友情链接">友情链接</h3>
-<h4 id="menu-加-link">menu 加 link</h4>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="string">友情链接:</span> <span class="string">/links/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-link</span></span><br></pre></td></tr></table></figure>
-<p>写中文就行。</p>
-<h4 id="内联-html">内联 html</h4>
-<p>新建 <code>source/links/index.md</code>，写入：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw %&#125;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;post-body&quot;</span>&gt;</span></span></span><br><span class="line">   <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;links&quot;</span>&gt;</span></span></span><br><span class="line"><span class="code">      &lt;style&gt;</span></span><br><span class="line"><span class="code">         .links-content&#123;</span></span><br><span class="line"><span class="code">         margin-top:1rem;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .link-navigation::after &#123;</span></span><br><span class="line"><span class="code">         content: &quot; &quot;;</span></span><br><span class="line"><span class="code">         display: block;</span></span><br><span class="line"><span class="code">         clear: both;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card &#123;</span></span><br><span class="line"><span class="code">         width: 45%;</span></span><br><span class="line"><span class="code">         font-size: 1rem;</span></span><br><span class="line"><span class="code">         padding: 10px 20px;</span></span><br><span class="line"><span class="code">         border-radius: 4px;</span></span><br><span class="line"><span class="code">         transition-duration: 0.15s;</span></span><br><span class="line"><span class="code">         margin-bottom: 1rem;</span></span><br><span class="line"><span class="code">         display:flex;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card:nth-child(odd) &#123;</span></span><br><span class="line"><span class="code">         float: left;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card:nth-child(even) &#123;</span></span><br><span class="line"><span class="code">         float: right;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card:hover &#123;</span></span><br><span class="line"><span class="code">         transform: scale(1.1);</span></span><br><span class="line"><span class="code">         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card a &#123;</span></span><br><span class="line"><span class="code">         border:none;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .ava &#123;</span></span><br><span class="line"><span class="code">         width: 3rem!important;</span></span><br><span class="line"><span class="code">         height: 3rem!important;</span></span><br><span class="line"><span class="code">         margin:0!important;</span></span><br><span class="line"><span class="code">         margin-right: 1em!important;</span></span><br><span class="line"><span class="code">         border-radius:4px;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header &#123;</span></span><br><span class="line"><span class="code">         font-style: italic;</span></span><br><span class="line"><span class="code">         overflow: hidden;</span></span><br><span class="line"><span class="code">         width: 100%;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header a &#123;</span></span><br><span class="line"><span class="code">         font-style: normal;</span></span><br><span class="line"><span class="code">         color: #2bbc8a;</span></span><br><span class="line"><span class="code">         font-weight: bold;</span></span><br><span class="line"><span class="code">         text-decoration: none;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header a:hover &#123;</span></span><br><span class="line"><span class="code">         color: #d480aa;</span></span><br><span class="line"><span class="code">         text-decoration: none;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header .info &#123;</span></span><br><span class="line"><span class="code">         font-style:normal;</span></span><br><span class="line"><span class="code">         color:#a3a3a3;</span></span><br><span class="line"><span class="code">         font-size:14px;</span></span><br><span class="line"><span class="code">         min-width: 0;</span></span><br><span class="line"><span class="code">         overflow: hidden;</span></span><br><span class="line"><span class="code">         white-space: nowrap;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">      &lt;/style&gt;</span></span><br><span class="line"><span class="code">      &lt;div class=&quot;links-content&quot;&gt;</span></span><br><span class="line"><span class="code">         &lt;div class=&quot;link-navigation&quot;&gt;</span></span><br><span class="line"><span class="code">            &lt;div class=&quot;card&quot;&gt;</span></span><br><span class="line"><span class="code">               &lt;img class=&quot;ava&quot; src=&quot;博客图标&quot; /&gt;</span></span><br><span class="line"><span class="code">               &lt;div class=&quot;card-header&quot;&gt;</span></span><br><span class="line"><span class="code">                  &lt;div&gt;</span></span><br><span class="line"><span class="code">                     &lt;a href=&quot;博客链接&quot;&gt;博客名字&lt;/a&gt;</span></span><br><span class="line"><span class="code">                  &lt;/div&gt;</span></span><br><span class="line"><span class="code">                  &lt;div class=&quot;info&quot;&gt;博客简介&lt;/div&gt;</span></span><br><span class="line"><span class="code">               &lt;/div&gt;</span></span><br><span class="line"><span class="code">            &lt;/div&gt;</span></span><br><span class="line"><span class="code">            &lt;div class=&quot;card&quot;&gt;</span></span><br><span class="line"><span class="code">               &lt;img class=&quot;ava&quot; src=&quot;博客图标&quot; /&gt;</span></span><br><span class="line"><span class="code">               &lt;div class=&quot;card-header&quot;&gt;</span></span><br><span class="line"><span class="code">                  &lt;div&gt;</span></span><br><span class="line"><span class="code">                     &lt;a href=&quot;博客链接&quot;&gt;博客名字&lt;/a&gt;</span></span><br><span class="line"><span class="code">                  &lt;/div&gt;</span></span><br><span class="line"><span class="code">                  &lt;div class=&quot;info&quot;&gt;博客简介&lt;/div&gt;</span></span><br><span class="line"><span class="code">               &lt;/div&gt;</span></span><br><span class="line"><span class="code">            &lt;/div&gt;</span></span><br><span class="line"><span class="code">         &lt;/div&gt;</span></span><br><span class="line"><span class="code">      &lt;/div&gt;</span></span><br><span class="line"><span class="code">   &lt;/div&gt;</span></span><br><span class="line"><span class="code">&lt;/div&gt;</span></span><br><span class="line"><span class="code">&#123;% endraw %&#125;</span></span><br></pre></td></tr></table></figure>
-<p>要加的时候在这复制 html 就行。</p>
-<h3 id="杂项">杂项</h3>
-<h4 id="置顶文章">置顶文章</h4>
-<p>工作目录下执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall --save hexo-generator-index</span><br><span class="line">npm install --save hexo-generator-index-pin-top</span><br></pre></td></tr></table></figure>
-<p>metadata 部分写：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Title</span><br><span class="line"><span class="section">top: true</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
-<p>即可置顶。</p>
-<h4 id="折叠">折叠</h4>
-<p>在 <code>metadata</code> 中加上:</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"><span class="section">description: 文件摘要</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
-<p>即可折叠.</p>
-<h3 id="插件">插件</h3>
-<h4 id="搜索插件">搜索插件</h4>
-<p>工作目录下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb</span><br></pre></td></tr></table></figure>
-<p>主题配置 <code>themes/next/_config.yml</code> 下：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">2</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<h4 id="数学插件">数学插件</h4>
-<p>一般用 Mathjax。</p>
-<p>先安装 <a
-target="_blank" rel="noopener" href="https://pandoc.org/installing.html">Pandoc</a>，这个要改系统路径，需要重启终端。</p>
-<p>工作目录下执行：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked</span><br><span class="line">npm install hexo-renderer-pandoc</span><br></pre></td></tr></table></figure>
-<p>改 <code>themes/next/_config.yml</code> 的 math 配置：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">math:</span></span><br><span class="line">  <span class="attr">mathjax:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Available values: none | ams | all</span></span><br><span class="line">    <span class="attr">tags:</span> <span class="string">all</span></span><br></pre></td></tr></table></figure>
-<p>每篇文档的 metadata 部分要写启用 Mathjax：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line"><span class="section">mathjax: true</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
-<p>参考资料：<a
-target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/MATH.md">Next
-官方有关文档</a>。</p>
-<h3 id="常用命令">常用命令</h3>
-<ul>
-<li><code>hexo g</code> : 生成</li>
-<li><code>hexo s</code> : 本地部署</li>
-<li><code>hexo d</code> : 远端部署</li>
-</ul>
-<h3 id="网络相关">网络相关</h3>
-<h4 id="cname">CNAME</h4>
-<p>hexo d 的时候因为是强制 push 的, github CNAME 文件时会被覆盖,
-导致域名解析错误.</p>
-<p><a
-target="_blank" rel="noopener" href="http://eronana.github.io/2014/11/07/Hexo%E9%83%A8%E7%BD%B2%E5%90%8ECNAME%E8%A2%AB%E8%A6%86%E7%9B%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">解决方式</a></p>
-<p>将 <code>CNAME</code> 放入 <code>./source</code>，即存在
-<code>./source/CNAME</code> 文件。</p>
-<h4 id="seo">SEO</h4>
-<p>在 <code>google search console</code>
-申请抓取的时候，一定要看清楚是不是 <code>https</code> 协议，如果部署在
-<code>github</code> 上，可能会强制
-<code>https</code>，导致抓取出现<strong>重定向错误。</strong>如果出现了这个错误，有可能是没用
-<code>https</code> 协议。</p>
 
       
     </div>

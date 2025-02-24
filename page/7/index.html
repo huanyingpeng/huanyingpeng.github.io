@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,110 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/29/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0928%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/29/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0928%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20220928考试总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-29 10:10:09" itemprop="dateCreated datePublished" datetime="2022-09-29T10:10:09+08:00">2022-09-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:21:32" itemprop="dateModified" datetime="2025-02-16T20:21:32+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="考试总结">考试总结</h2>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0127">考试</a></p>
+<h3 id="t1">T1</h3>
+<p>经典的 01 分数规划问题，二分小数，直接 <code>DP</code>
+，然后记录转移状态，倒推分数得到答案。</p>
+<p>注意这种答案可能为 0 的 01 分数规划一定要从 -1
+开始二分答案，不然可能会取不到 <code>0</code>。</p>
+<p>注意到其实它的分子分母都比较小，二分分数也是可行的一种方式 。</p>
+<p>考场上的错误其实挺离谱的，就不细说了。</p>
+<p>二分分数不用倒推，就很简单了。</p>
+<h3 id="t2">T2</h3>
+<p>套路题。</p>
+<p>观察发现如果每张牌个数都大于等于 <span
+class="math inline">\(2\)</span>，那么一定合法。否则一定会用一些顺子来凑，同一个位置最多被三个顺子用，所以如果一个位置超过
+<span class="math inline">\(5\)</span> 个，可以视为 <span
+class="math inline">\(5\)</span> 个，状压 <span
+class="math inline">\(DP\)</span>
+出合法的状态，对每种状态计算答案并求和。</p>
+<p>拿到状态后计算答案就是个组合数。</p>
+<h3 id="t3">T3</h3>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1256,140 +1360,6 @@ class="math inline">\(\pi\approx3.1415927,G\approx6.67\times
 <p>又重归沉寂，只有略冷的风打在脸上，我看了看最近都在 1.5km
 之外的高楼，并细细感受周遭的气温，思考着这股风的来历，但已经有些陌生的地理和物理知识不再能闪着光告诉我答案。</p>
 <p><code>shutdown -f</code>，我告诉大脑，但又用留在海马体里的数据恢复了这段文字，像是被设置了关机命令为休眠的计算机。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/03/OI/%E7%AE%97%E6%B3%95/%E4%BB%8E2D1D%E5%88%B01D1D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/03/OI/%E7%AE%97%E6%B3%95/%E4%BB%8E2D1D%E5%88%B01D1D/" class="post-title-link" itemprop="url">从2D1D到1D1D</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-09-03 09:18:50" itemprop="dateCreated datePublished" datetime="2022-09-03T09:18:50+08:00">2022-09-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:54:28" itemprop="dateModified" datetime="2025-02-16T17:54:28+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="从区间-dp-到线性-dp">从区间 DP 到线性 DP</h2>
-<h3 id="题目">题目</h3>
-<p>你有 <span class="math inline">\(n\)</span> 个区间，每个区间是 <span
-class="math inline">\(l,r,w\)</span>
-三个参数描述，表示左右端点和权值，如果区间有交（包括端点），那么就在有交的两个区间连边，形成一张无向图，有个参数
-<span
-class="math inline">\(k\)</span>，你需要删去一些区间，使得每个联通块大小不超过
-<span class="math inline">\(k\)</span>。</p>
-<ul>
-<li><p><span class="math inline">\(n\leq 500\)</span></p></li>
-<li><p><span class="math inline">\(n\leq 2500\)</span></p></li>
-</ul>
-<h3 id="思考">思考</h3>
-<p>首先这肯定不是一个图论问题，给一张图做这个问题是 <span
-class="math inline">\(NP\)</span> 的，所以要利用好区间的性质。</p>
-<p>先把区间离散化。</p>
-<p>发现可以考虑一段区间 <span
-class="math inline">\([l,r]\)</span>，只考虑在区间内的区间，计算其答案，有两种方式，第一种是将区间继续划分成两个子区间，<strong>划分区间的过程，体现出了全局最优的思想</strong>，即我们假定了当前区间内的所有线段全部联通，这样不一定能在此处取到最优解，但一定可以在向下动态规划的过程中得到最优解，另一种是直接在当前区间选最大的
-<span class="math inline">\(k\)</span> 个保留。</p>
-<p>划分区间的方式，就是选一个地方断开，删掉越过这个地方的所有区间，变成两个子问题。</p>
-<p>有了这样的思路，我们很容易设计出一个 <span
-class="math inline">\(O(n^3)\)</span> 的区间动态规划出来。</p>
-<h3 id="优化">优化</h3>
-<p><span class="math inline">\(O(n^3)\)</span> 可以通过 <span
-class="math inline">\(n\leq 500\)</span> 的数据点，但是无法通过 <span
-class="math inline">\(n\leq 2500\)</span>，所以需要优化为 <span
-class="math inline">\(O(n^2)\)</span>，其中预处理 <span
-class="math inline">\([l,r]\)</span> 的复杂度是 <span
-class="math inline">\(O(n^2\log n)\)</span>
-的，但是常数较小能够接受。</p>
-<p>于是可以考虑利用区间 <span class="math inline">\(dp\)</span>
-的一些常见优化手段，打个表，发现决策点并不单调，所以对于这类 <span
-class="math inline">\(2D1D\)</span>
-问题我们有点束手无策。但是感觉上记录区间有点浪费，于是考虑能不能线性的搞出来。发现如果设
-<span class="math inline">\(dp[i]\)</span> 表示考虑前 <span
-class="math inline">\(i\)</span> 个的答案，从 <span
-class="math inline">\(j&lt;i\)</span> 转移，<span
-class="math inline">\([j,i]\)</span> 采用直接减少到 <span
-class="math inline">\(k\)</span>
-的方式，也能得到和区间DP方式相同的转移考虑。</p>
-<p>所以被优化成了 <span
-class="math inline">\(O(n^2)\)</span>。越过每个点的区间总数，是可以动态维护的，均摊
-<span class="math inline">\(O(1)\)</span>。</p>
-<h3 id="从2d1d到1d1d">从2D1D到1D1D</h3>
-<p>其实这类问题，是伪区间DP问题，比较它和真区间DP问题，比如《石子合并》，《优雅的闪电》的差异。它本质上是
-1D1D
-问题，石子合并很明显就是需要体现区间合并的顺序，所以必须采用区间DP。优雅的闪电的转移，无法被
-1D1D 的转移考虑完全，所以仍然需要区间 DP。</p>
-<p>关于一些 2D1D 的问题，可以仔细考察它的转移，能否被 1D1D
-的形式描述，以便优化。</p>
 
       
     </div>

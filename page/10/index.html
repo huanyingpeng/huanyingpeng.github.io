@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,209 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">Hexo-NexT 安装踩坑记录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 16:22:10" itemprop="dateCreated datePublished" datetime="2022-07-12T16:22:10+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-22 11:18:20" itemprop="dateModified" datetime="2025-02-22T11:18:20+08:00">2025-02-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="博客部署">博客部署</h2>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/618864711">参考</a></p>
+<h3 id="环境">环境</h3>
+<h4 id="基础">基础</h4>
+<ul>
+<li>git</li>
+<li>nodejs &amp;&amp; npm</li>
+</ul>
+<h4 id="开工作目录">开工作目录</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p><strong>工作目录</strong>是
+<code>blog</code>，记住，这很重要，文件名默认为相对工作目录的名字。</p>
+<h4 id="本地预览">本地预览</h4>
+<p>工作目录下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+<p><code>localhost:4000</code> 上看。</p>
+<h4 id="开-github-pages-仓库">开 GitHub Pages 仓库</h4>
+<p>每个账号只能开一个，仓库名 <code>username.github.io</code>。</p>
+<h4 id="配源码分支">配源码分支</h4>
+<p>创仓库的时候把 main 弄下来，源码（不含
+public）放这里，免得被覆盖。</p>
+<h4 id="自动部署">自动部署</h4>
+<p>工作目录下安自动部署工具。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p><code>_config.yml</code> 末尾加上（记得照着用户名改动）：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line">  <span class="comment"># message: Site updated: &#123;&#123; now(&#x27;YYYY-MM-DD HH:mm:ss&#x27;) &#125;&#125;)</span></span><br></pre></td></tr></table></figure>
+<p>部署：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+<h3 id="metadata">metadata</h3>
+<p>搜 <code>_config.yml</code> 相关配置项：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">幻影彭的彩虹</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;记录青春的扇区&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">&#x27;算法竞赛, 自动化测试, 工程技术, Python&#x27;</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">huan-yp</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span> <span class="comment"># 必须改</span></span><br><span class="line"></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://huanyp.cn</span></span><br></pre></td></tr></table></figure>
+<h3 id="主题">主题</h3>
+<h4 id="安主题next">安主题（next）</h4>
+<p>工作目录下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<h4 id="写上要用这个主题">写上要用这个主题</h4>
+<p><code>_config.yml</code> 里，找到 <code>theme</code>，写上
+<code>next</code></p>
+<h3 id="next">next</h3>
+<p>我用 next 主题。</p>
+<h4 id="menu">menu</h4>
+<p>配置菜单。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="attr">about:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-archive</span></span><br><span class="line">  <span class="comment"># schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line">  <span class="attr">sitemap:</span> <span class="string">/sitemap.xml</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-sitemap</span></span><br><span class="line">  <span class="attr">commonweal:</span> <span class="string">/404/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-heartbeat</span></span><br></pre></td></tr></table></figure>
+<h4 id="scheme">scheme</h4>
+<p>在 <code>themes/next/_config.yml</code> 调 scheme，传统的应该选
+<code>Gemini</code>。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment"># scheme: Muse</span></span><br><span class="line"><span class="comment"># scheme: Mist</span></span><br><span class="line"><span class="comment"># scheme: Pisces</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Gemini</span></span><br></pre></td></tr></table></figure>
+<h4 id="dark">dark</h4>
+<p>应该没有人喜欢 light，所以调成 dark。</p>
+<p>在 <code>themes/next/_config.yml</code> 调 darkmode。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">darkmode: true</span><br></pre></td></tr></table></figure>
+<h3 id="背景">背景</h3>
+<p>一般要加个背景图片什么的</p>
+<h4 id="准备-source-图片">准备 source 图片</h4>
+<p>图片放到 <code>themes/next/source/image/background.jpg</code>
+里。</p>
+<h4 id="改-style">改 style</h4>
+<p>找到
+<code>themes\next\source\css\_schemes\Gemini\index.styl</code>，加上：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">/images/background-now.jpg</span>);</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-attachment</span>:fixed; //不重复</span><br><span class="line">    <span class="attribute">background-size</span>: cover;      //填充</span><br><span class="line">    <span class="attribute">background-position</span>:<span class="number">50%</span> <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 博客内容透明化</span><br><span class="line">// 文章内容的透明度设置</span><br><span class="line"><span class="selector-class">.content-wrap</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 侧边框的透明度设置</span><br><span class="line"><span class="selector-class">.sidebar</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 菜单栏的透明度设置</span><br><span class="line"><span class="selector-class">.header-inner</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.8</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 搜索框（local-search）的透明度设置</span><br><span class="line"><span class="selector-class">.popup</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//博客内容透明化</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attr">--content-bg-color</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.8</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>那个 [0, 1] 的参数是透明度，自己估摸着调。</p>
+<h3 id="友情链接">友情链接</h3>
+<h4 id="menu-加-link">menu 加 link</h4>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="string">友情链接:</span> <span class="string">/links/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-link</span></span><br></pre></td></tr></table></figure>
+<p>写中文就行。</p>
+<h4 id="内联-html">内联 html</h4>
+<p>新建 <code>source/links/index.md</code>，写入：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw %&#125;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;post-body&quot;</span>&gt;</span></span></span><br><span class="line">   <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;links&quot;</span>&gt;</span></span></span><br><span class="line"><span class="code">      &lt;style&gt;</span></span><br><span class="line"><span class="code">         .links-content&#123;</span></span><br><span class="line"><span class="code">         margin-top:1rem;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .link-navigation::after &#123;</span></span><br><span class="line"><span class="code">         content: &quot; &quot;;</span></span><br><span class="line"><span class="code">         display: block;</span></span><br><span class="line"><span class="code">         clear: both;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card &#123;</span></span><br><span class="line"><span class="code">         width: 45%;</span></span><br><span class="line"><span class="code">         font-size: 1rem;</span></span><br><span class="line"><span class="code">         padding: 10px 20px;</span></span><br><span class="line"><span class="code">         border-radius: 4px;</span></span><br><span class="line"><span class="code">         transition-duration: 0.15s;</span></span><br><span class="line"><span class="code">         margin-bottom: 1rem;</span></span><br><span class="line"><span class="code">         display:flex;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card:nth-child(odd) &#123;</span></span><br><span class="line"><span class="code">         float: left;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card:nth-child(even) &#123;</span></span><br><span class="line"><span class="code">         float: right;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card:hover &#123;</span></span><br><span class="line"><span class="code">         transform: scale(1.1);</span></span><br><span class="line"><span class="code">         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card a &#123;</span></span><br><span class="line"><span class="code">         border:none;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .ava &#123;</span></span><br><span class="line"><span class="code">         width: 3rem!important;</span></span><br><span class="line"><span class="code">         height: 3rem!important;</span></span><br><span class="line"><span class="code">         margin:0!important;</span></span><br><span class="line"><span class="code">         margin-right: 1em!important;</span></span><br><span class="line"><span class="code">         border-radius:4px;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header &#123;</span></span><br><span class="line"><span class="code">         font-style: italic;</span></span><br><span class="line"><span class="code">         overflow: hidden;</span></span><br><span class="line"><span class="code">         width: 100%;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header a &#123;</span></span><br><span class="line"><span class="code">         font-style: normal;</span></span><br><span class="line"><span class="code">         color: #2bbc8a;</span></span><br><span class="line"><span class="code">         font-weight: bold;</span></span><br><span class="line"><span class="code">         text-decoration: none;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header a:hover &#123;</span></span><br><span class="line"><span class="code">         color: #d480aa;</span></span><br><span class="line"><span class="code">         text-decoration: none;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header .info &#123;</span></span><br><span class="line"><span class="code">         font-style:normal;</span></span><br><span class="line"><span class="code">         color:#a3a3a3;</span></span><br><span class="line"><span class="code">         font-size:14px;</span></span><br><span class="line"><span class="code">         min-width: 0;</span></span><br><span class="line"><span class="code">         overflow: hidden;</span></span><br><span class="line"><span class="code">         white-space: nowrap;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">      &lt;/style&gt;</span></span><br><span class="line"><span class="code">      &lt;div class=&quot;links-content&quot;&gt;</span></span><br><span class="line"><span class="code">         &lt;div class=&quot;link-navigation&quot;&gt;</span></span><br><span class="line"><span class="code">            &lt;div class=&quot;card&quot;&gt;</span></span><br><span class="line"><span class="code">               &lt;img class=&quot;ava&quot; src=&quot;博客图标&quot; /&gt;</span></span><br><span class="line"><span class="code">               &lt;div class=&quot;card-header&quot;&gt;</span></span><br><span class="line"><span class="code">                  &lt;div&gt;</span></span><br><span class="line"><span class="code">                     &lt;a href=&quot;博客链接&quot;&gt;博客名字&lt;/a&gt;</span></span><br><span class="line"><span class="code">                  &lt;/div&gt;</span></span><br><span class="line"><span class="code">                  &lt;div class=&quot;info&quot;&gt;博客简介&lt;/div&gt;</span></span><br><span class="line"><span class="code">               &lt;/div&gt;</span></span><br><span class="line"><span class="code">            &lt;/div&gt;</span></span><br><span class="line"><span class="code">            &lt;div class=&quot;card&quot;&gt;</span></span><br><span class="line"><span class="code">               &lt;img class=&quot;ava&quot; src=&quot;博客图标&quot; /&gt;</span></span><br><span class="line"><span class="code">               &lt;div class=&quot;card-header&quot;&gt;</span></span><br><span class="line"><span class="code">                  &lt;div&gt;</span></span><br><span class="line"><span class="code">                     &lt;a href=&quot;博客链接&quot;&gt;博客名字&lt;/a&gt;</span></span><br><span class="line"><span class="code">                  &lt;/div&gt;</span></span><br><span class="line"><span class="code">                  &lt;div class=&quot;info&quot;&gt;博客简介&lt;/div&gt;</span></span><br><span class="line"><span class="code">               &lt;/div&gt;</span></span><br><span class="line"><span class="code">            &lt;/div&gt;</span></span><br><span class="line"><span class="code">         &lt;/div&gt;</span></span><br><span class="line"><span class="code">      &lt;/div&gt;</span></span><br><span class="line"><span class="code">   &lt;/div&gt;</span></span><br><span class="line"><span class="code">&lt;/div&gt;</span></span><br><span class="line"><span class="code">&#123;% endraw %&#125;</span></span><br></pre></td></tr></table></figure>
+<p>要加的时候在这复制 html 就行。</p>
+<h3 id="杂项">杂项</h3>
+<h4 id="置顶文章">置顶文章</h4>
+<p>工作目录下执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall --save hexo-generator-index</span><br><span class="line">npm install --save hexo-generator-index-pin-top</span><br></pre></td></tr></table></figure>
+<p>metadata 部分写：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Title</span><br><span class="line"><span class="section">top: true</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+<p>即可置顶。</p>
+<h4 id="折叠">折叠</h4>
+<p>在 <code>metadata</code> 中加上:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"><span class="section">description: 文件摘要</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+<p>即可折叠.</p>
+<h3 id="插件">插件</h3>
+<h4 id="搜索插件">搜索插件</h4>
+<p>工作目录下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb</span><br></pre></td></tr></table></figure>
+<p>主题配置 <code>themes/next/_config.yml</code> 下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">2</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h4 id="数学插件">数学插件</h4>
+<p>一般用 Mathjax。</p>
+<p>先安装 <a
+target="_blank" rel="noopener" href="https://pandoc.org/installing.html">Pandoc</a>，这个要改系统路径，需要重启终端。</p>
+<p>工作目录下执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked</span><br><span class="line">npm install hexo-renderer-pandoc</span><br></pre></td></tr></table></figure>
+<p>改 <code>themes/next/_config.yml</code> 的 math 配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">math:</span></span><br><span class="line">  <span class="attr">mathjax:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Available values: none | ams | all</span></span><br><span class="line">    <span class="attr">tags:</span> <span class="string">all</span></span><br></pre></td></tr></table></figure>
+<p>每篇文档的 metadata 部分要写启用 Mathjax：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line"><span class="section">mathjax: true</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+<p>参考资料：<a
+target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/MATH.md">Next
+官方有关文档</a>。</p>
+<h3 id="常用命令">常用命令</h3>
+<ul>
+<li><code>hexo g</code> : 生成</li>
+<li><code>hexo s</code> : 本地部署</li>
+<li><code>hexo d</code> : 远端部署</li>
+</ul>
+<h3 id="网络相关">网络相关</h3>
+<h4 id="cname">CNAME</h4>
+<p>hexo d 的时候因为是强制 push 的, github CNAME 文件时会被覆盖,
+导致域名解析错误.</p>
+<p><a
+target="_blank" rel="noopener" href="http://eronana.github.io/2014/11/07/Hexo%E9%83%A8%E7%BD%B2%E5%90%8ECNAME%E8%A2%AB%E8%A6%86%E7%9B%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">解决方式</a></p>
+<p>将 <code>CNAME</code> 放入 <code>./source</code>，即存在
+<code>./source/CNAME</code> 文件。</p>
+<h4 id="seo">SEO</h4>
+<p>在 <code>google search console</code>
+申请抓取的时候，一定要看清楚是不是 <code>https</code> 协议，如果部署在
+<code>github</code> 上，可能会强制
+<code>https</code>，导致抓取出现<strong>重定向错误。</strong>如果出现了这个错误，有可能是没用
+<code>https</code> 协议。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2681,750 +2884,6 @@ class="math inline">\(-2^x\)</span></li>
 <code>ebp</code> 的值使得 <code>ret</code>
 操作跳到我们希望的地方。</p></li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E6%B3%95%E7%B3%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E6%B3%95%E7%B3%96/" class="post-title-link" itemprop="url">语法，语法糖，标准库函数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-12 15:55:05" itemprop="dateCreated datePublished" datetime="2022-07-12T15:55:05+08:00">2022-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:53:37" itemprop="dateModified" datetime="2025-02-16T17:53:37+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="语法语法糖标准库函数">语法，语法糖，标准库函数</h1>
-<p>介绍一些有用常用但鲜为人知的 <code>C++</code> 语法，语法糖。</p>
-<h2 id="运算顺序">运算顺序</h2>
-<p>记好表，记不住打括号，<strong>最好打括号。</strong></p>
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 45%" />
-<col style="width: 9%" />
-</colgroup>
-<thead>
-<tr>
-<th style="text-align: left;">运算符说明</th>
-<th style="text-align: center;">运算符</th>
-<th style="text-align: left;">替代方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">第 1 组优先级，无关联性</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/scope-resolution-operator?view=msvc-170">范围解析</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/scope-resolution-operator?view=msvc-170"><code>::</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 2 组优先级，从左到右关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/member-access-operators-dot-and?view=msvc-170">成员选择（对象或指针）</a></td>
-<td style="text-align: center;">或 <code>-&gt;</code></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/subscript-operator?view=msvc-170">数组下标</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/subscript-operator?view=msvc-170"><code>[]</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/function-call-operator-parens?view=msvc-170">函数调用</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/function-call-operator-parens?view=msvc-170"><code>()</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/postfix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170">后缀递增</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/postfix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170"><code>++</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/postfix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170">后缀递减</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/postfix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170"><code>--</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/typeid-operator?view=msvc-170">类型名称</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/typeid-operator?view=msvc-170"><code>typeid</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/const-cast-operator?view=msvc-170">常量类型转换</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/const-cast-operator?view=msvc-170"><code>const_cast</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/dynamic-cast-operator?view=msvc-170">动态类型转换</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/dynamic-cast-operator?view=msvc-170"><code>dynamic_cast</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/reinterpret-cast-operator?view=msvc-170">重新解释的类型转换</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/reinterpret-cast-operator?view=msvc-170"><code>reinterpret_cast</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/static-cast-operator?view=msvc-170">静态类型转换</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/static-cast-operator?view=msvc-170"><code>static_cast</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 3 组优先级，从右到左关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/sizeof-operator?view=msvc-170">对象或类型的大小</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/sizeof-operator?view=msvc-170"><code>sizeof</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/prefix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170">前缀递增</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/prefix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170"><code>++</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/prefix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170">前缀递减</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/prefix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170"><code>--</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/one-s-complement-operator-tilde?view=msvc-170">二进制反码</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/one-s-complement-operator-tilde?view=msvc-170"><code>~</code></a></td>
-<td style="text-align: left;"><strong><code>compl</code></strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/logical-negation-operator-exclpt?view=msvc-170">逻辑“非”</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/logical-negation-operator-exclpt?view=msvc-170"><code>!</code></a></td>
-<td style="text-align: left;"><strong><code>not</code></strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/unary-plus-and-negation-operators-plus-and?view=msvc-170">一元求反</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/unary-plus-and-negation-operators-plus-and?view=msvc-170"><code>-</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/unary-plus-and-negation-operators-plus-and?view=msvc-170">一元加</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/unary-plus-and-negation-operators-plus-and?view=msvc-170"><code>+</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/address-of-operator-amp?view=msvc-170">Address-of</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/address-of-operator-amp?view=msvc-170"><code>&amp;</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/indirection-operator-star?view=msvc-170">间接寻址</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/indirection-operator-star?view=msvc-170"><code>*</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/new-operator-cpp?view=msvc-170">创建对象</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/new-operator-cpp?view=msvc-170"><code>new</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/delete-operator-cpp?view=msvc-170">销毁对象</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/delete-operator-cpp?view=msvc-170"><code>delete</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/cast-operator-parens?view=msvc-170">强制转换</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/cast-operator-parens?view=msvc-170"><code>()</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 4 组优先级，从左到右关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/pointer-to-member-operators-dot-star-and-star?view=msvc-170">指向成员的指针（对象或指针）</a></td>
-<td style="text-align: center;">或 <code>-&gt;*</code></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 5 组优先级，从左到右关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/multiplicative-operators-and-the-modulus-operator?view=msvc-170">乘法</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/multiplicative-operators-and-the-modulus-operator?view=msvc-170"><code>*</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/multiplicative-operators-and-the-modulus-operator?view=msvc-170">除法</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/multiplicative-operators-and-the-modulus-operator?view=msvc-170"><code>/</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/multiplicative-operators-and-the-modulus-operator?view=msvc-170">取模</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/multiplicative-operators-and-the-modulus-operator?view=msvc-170"><code>%</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 6 组优先级，从左到右关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/additive-operators-plus-and?view=msvc-170">加法</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/additive-operators-plus-and?view=msvc-170"><code>+</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/additive-operators-plus-and?view=msvc-170">减法</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/additive-operators-plus-and?view=msvc-170"><code>-</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 7 组优先级，从左到右关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/left-shift-and-right-shift-operators-input-and-output?view=msvc-170">左移</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/left-shift-and-right-shift-operators-input-and-output?view=msvc-170"><code>&lt;&lt;</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/left-shift-and-right-shift-operators-input-and-output?view=msvc-170">右移</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/left-shift-and-right-shift-operators-input-and-output?view=msvc-170"><code>&gt;&gt;</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 8 组优先级，从左到右关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/relational-operators-equal-and-equal?view=msvc-170">小于</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/relational-operators-equal-and-equal?view=msvc-170"><code>&lt;</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">大于</td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/relational-operators-equal-and-equal?view=msvc-170"><code>&gt;</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">小于或等于</td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/relational-operators-equal-and-equal?view=msvc-170"><code>&lt;=</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">大于或等于</td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/relational-operators-equal-and-equal?view=msvc-170"><code>&gt;=</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 9 组优先级，从左到右关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/equality-operators-equal-equal-and-exclpt-equal?view=msvc-170">等式</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/equality-operators-equal-equal-and-exclpt-equal?view=msvc-170"><code>==</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/equality-operators-equal-equal-and-exclpt-equal?view=msvc-170">不相等</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/equality-operators-equal-equal-and-exclpt-equal?view=msvc-170"><code>!=</code></a></td>
-<td style="text-align: left;"><strong><code>not_eq</code></strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 10 组优先级，从左到右关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/bitwise-and-operator-amp?view=msvc-170">位与</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/bitwise-and-operator-amp?view=msvc-170"><code>&amp;</code></a></td>
-<td style="text-align: left;"><strong><code>bitand</code></strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 11 组优先级，从左到右关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/bitwise-exclusive-or-operator-hat?view=msvc-170">位异或</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/bitwise-exclusive-or-operator-hat?view=msvc-170"><code>^</code></a></td>
-<td style="text-align: left;"><strong><code>xor</code></strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 12 组优先级，从左到右关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/bitwise-inclusive-or-operator-pipe?view=msvc-170">位或</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/bitwise-inclusive-or-operator-pipe?view=msvc-170"><code>|</code></a></td>
-<td style="text-align: left;"><strong><code>bitor</code></strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 13 组优先级，从左到右关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/logical-and-operator-amp-amp?view=msvc-170">逻辑与</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/logical-and-operator-amp-amp?view=msvc-170"><code>&amp;&amp;</code></a></td>
-<td style="text-align: left;"><strong><code>and</code></strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 14 组优先级，从左到右关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/logical-or-operator-pipe-pipe?view=msvc-170">逻辑或</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/logical-or-operator-pipe-pipe?view=msvc-170"><code>||</code></a></td>
-<td style="text-align: left;"><strong><code>or</code></strong></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 15 组优先级，从右到左关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/conditional-operator-q?view=msvc-170">条件逻辑</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/conditional-operator-q?view=msvc-170"><code>? :</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">转让</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>=</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">乘法赋值</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>*=</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">除法赋值</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>/=</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">取模赋值</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>%=</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">加法赋值</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>+=</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">减法赋值</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>-=</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">左移赋值</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>&lt;&lt;=</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">右移赋值</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>&gt;&gt;=</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">按位“与”赋值</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>&amp;=</code></a></td>
-<td style="text-align: left;"><strong><code>and_eq</code></strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">按位“与或”赋值</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>|=</code></a></td>
-<td style="text-align: left;"><strong><code>or_eq</code></strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">按位“异或”赋值</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>^=</code></a></td>
-<td style="text-align: left;"><strong><code>xor_eq</code></strong></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/try-throw-and-catch-statements-cpp?view=msvc-170">引发表达式</a></td>
-<td style="text-align: center;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/try-throw-and-catch-statements-cpp?view=msvc-170"><code>throw</code></a></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;">第 16 组优先级，从左到右关联</td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: left;"><a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/comma-operator?view=msvc-170">逗号</a></td>
-<td style="text-align: center;"></td>
-<td style="text-align: left;"></td>
-</tr>
-</tbody>
-</table>
-<h2 id="标准库">标准库</h2>
-<h3 id="函数">函数</h3>
-<h4 id="stdswap">std::swap</h4>
-<ul>
-<li><p>对于除了 <code>array</code> 容器之外的所有标准库容器，都可以
-<span class="math inline">\(O(1)\)</span> 交换</p></li>
-<li><p>交换数组的复杂度为 <span
-class="math inline">\(O(size)\)</span>，对二维数组的某一维使用，会将当前行视为一维数组进行交换。</p></li>
-</ul>
-<h4 id="memcpy">memcpy</h4>
-<p><code>memcpy(dst, src, size)</code></p>
-<p>dst:目标数组起始位置</p>
-<p>src:源数组起始位置</p>
-<p>size:需要复制的字节数</p>
-<h4 id="lower_boundupper_bound">lower_bound,upper_bound</h4>
-<p>看下实现吧：</p>
-<ul>
-<li><code>upper_bound</code>
-如果对类使用，那么<strong>类的比较函数需要定义为友元函数</strong>。</li>
-<li><code>lower_bound</code>
-返回第一个大于等于它的位置，<code>upper_bound</code>
-返回第一个大于它的位置，<code>comp</code> 为默认小于号。</li>
-<li>如果要对不增序列操作，那么 <code>comp</code>
-为大于号，<code>lower_bound</code>
-返回第一个小于等于它的位置，<code>upper_bound</code>
-返回第一个小于它的位置。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">lower_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value, Compare comp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ForwardIt it;</span><br><span class="line">    <span class="keyword">typename</span> std::iterator_traits&lt;ForwardIt&gt;::difference_type count, step;</span><br><span class="line">    count = std::<span class="built_in">distance</span>(first, last);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        it = first;</span><br><span class="line">        step = count / <span class="number">2</span>;</span><br><span class="line">        std::<span class="built_in">advance</span>(it, step);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">comp</span>(*it, value)) &#123;</span><br><span class="line">            first = ++it;</span><br><span class="line">            count -= step + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count = step;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">upper_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value, Compare comp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ForwardIt it;</span><br><span class="line">    <span class="keyword">typename</span> std::iterator_traits&lt;ForwardIt&gt;::difference_type count, step;</span><br><span class="line">    count = std::<span class="built_in">distance</span>(first,last);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        it = first; </span><br><span class="line">        step = count / <span class="number">2</span>;</span><br><span class="line">        std::<span class="built_in">advance</span>(it, step);</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">comp</span>(value, *it)) &#123;</span><br><span class="line">            first = ++it;</span><br><span class="line">            count -= step + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count = step;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="atan2">atan2</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">atan2</span><span class="params">(<span class="type">double</span> x,<span class="type">double</span> y)</span></span>&#123;</span><br><span class="line">    <span class="comment">//返回 [actan(y/x)],[-Pi,Pi)</span></span><br><span class="line">    <span class="comment">//计算几何的神，怎么神就不用说了吧。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="for_eachbeginendfun">for_each(begin,end,fun)</h4>
-<p>对 begin 到 end 区间的每一个元素 x，执行 fun(x)。</p>
-<p>如果需要传参，可以利用类的构造函数。</p>
-<p>即给类重载一个 <code>()</code> 运算，然后构造输出。</p>
-<h4 id="accumulatebeginendstart">accumulate(begin,end,start)</h4>
-<p>对 <code>begin end</code> 区间运用 <code>+</code> 操作，起始为
-<code>start</code>。</p>
-<p>效率不开 <span class="math inline">\(O2\)</span>
-时略高于循环，开了没差别。</p>
-<h4 id="countbeginendval">count(begin,end,val)</h4>
-<p>返回 <code>begin end</code> 中 <code>==val</code> 的数的个数。</p>
-<p>开了 <span class="math inline">\(O2\)</span> 效率和循环没差别。</p>
-<h2 id="结构体">结构体</h2>
-<p>一般来说 <code>class</code> 和 <code>struct</code>
-竞赛上差别不大，<code>struct</code> 是默认 <code>public</code> 的
-<code>class</code>。</p>
-<h3 id="重载括号">重载括号</h3>
-<p>重载小括号运算符可以让你把结构体当函数用，其实本质上少写了一个
-<code>.&#123;function name&#125;</code>。</p>
-<p>它和构造函数不冲突。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett1</span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> m,im;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		ULL z=(ULL)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;bt1;</span><br><span class="line"><span class="type">int</span> a=<span class="number">1</span>,b=<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> c=<span class="built_in">bt1</span>(a,b);</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett2</span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> m,im;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">foo</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		ULL z=(ULL)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;bt2;</span><br><span class="line">c=bt<span class="number">2.f</span>oo(a,b);</span><br></pre></td></tr></table></figure>
-<p>两者没有本质区别。</p>
-<p>中括号可以重载，一般来说，重载中括号返回的是一个引用，中扩号只接受一个参数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">array_2d</span>&#123;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">10005</span>],b[<span class="number">10005</span>];</span><br><span class="line">    <span class="type">int</span> n,m;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> nn,<span class="type">int</span> mm)</span></span>&#123;</span><br><span class="line">    	n=nn,m=mm;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="type">int</span>&amp; <span class="keyword">operator</span>[](<span class="type">int</span> x)&#123;</span><br><span class="line">		<span class="keyword">return</span> a[x];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;a;</span><br><span class="line">a.<span class="built_in">init</span>(<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line">a[<span class="number">3</span>]=<span class="number">1</span>;a.b[<span class="number">4</span>]=<span class="number">2</span>;</span><br><span class="line">a[<span class="number">4</span>]=<span class="number">4</span>;</span><br><span class="line">cout&lt;&lt;a[<span class="number">4</span>]&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;a[<span class="number">3</span>]&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
-<h3 id="构造">构造</h3>
-<p>结构体的构造函数可以返回一个结构体实例，也可以允许在声明结构体的时候同时构造。</p>
-<p>举个例子</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line"><span class="comment">// st t3; 这句会 CE</span></span><br></pre></td></tr></table></figure>
-<p>这两种写法都行，<strong>注意不能变量重名</strong>，不会
-<code>CE</code>，但是函数参数里会那个名字会覆盖掉全局的。</p>
-<p>注意写了构造函数，所有的构造都必须带参数。</p>
-<p>定义结构体的时候还可以给变量赋初值。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line"><span class="comment">// t1.str=&quot;str&quot;,t1.b=3</span></span><br><span class="line"><span class="comment">// t2.str=&quot;str&quot;,t2.b=3</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>但是如果构造函数里写了，就会被覆盖。声明的局部变量写了的初值会固定，没写的初值就随机。</p>
-<p>如果没写构造函数，那么会有一个默认的列表构造函数，按照结构体内声明变量的顺序将列表中的每一个值依次赋给对应变量。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=st&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="string">&#x27;huan_yp&#x27;</span>&#125;;</span><br><span class="line">st t2&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="string">&quot;huan_yp&quot;</span>&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>其实构造函数还有另一种写法</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb): <span class="built_in">a</span>(aa), <span class="built_in">b</span>(bb) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>和最开始的写法是等效的。</p>
-<p><strong>注意，如果写了构造函数，默认的列表构造函数会调用它，所以如果你想不同参数个数构造，需要填默认参数</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>() :<span class="built_in">a</span>(), <span class="built_in">b</span>(), <span class="built_in">str</span>()&#123;&#125;</span><br><span class="line">    <span class="comment">//如果没有这一行，下面的第一个构造会 CE</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">	<span class="built_in">st</span>(<span class="type">int</span> aa, <span class="type">int</span> bb,string cc) :<span class="built_in">a</span>(aa), <span class="built_in">b</span>(bb), <span class="built_in">str</span>(cc)&#123;&#125;</span><br><span class="line"><span class="comment">//    st() :a(), b(), str() &#123;&#125;</span></span><br><span class="line"><span class="comment">//    st(int aa,int bb): a(aa), b(bb) &#123;&#125;</span></span><br><span class="line">&#125;;</span><br><span class="line">st t1;</span><br><span class="line">t1=&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="string">&quot;str&quot;</span>&#125;;</span><br><span class="line">t1=&#123;<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">//最后一行会 CE</span></span><br></pre></td></tr></table></figure>
-<p>列表构造式还可以自推导。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=&#123;<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">t1=&#123;<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="comment">//t1(2,3)</span></span><br><span class="line"><span class="comment">//括号式式不能自推导的，这个的含义参考第一条。</span></span><br></pre></td></tr></table></figure>
-<h2 id="语法概念">语法概念</h2>
-<h3 id="运算优先级">运算优先级</h3>
-<p>容易出问题的是几个位运算。</p>
-<p>永远记住，位运算除了左右移位外，优先级<strong>低于比较操作。</strong></p>
-<p><strong>比较操作之间，等于和不等的优先级低于大于小于。</strong></p>
-<h3 id="引用">引用</h3>
-<p>引用可以认为是一个<strong>隐式指针</strong>，不需要 <code>*</code>
-的修饰便可以直接访问内容。它既然是一个指针，自然会占用一个
-<code>long</code> 的空间。</p>
-<h4 id="定义返回一个引用">定义，返回一个引用</h4>
-<p>可以在函数中返回一个引用，只需要在函数名前面后加一个
-<code>&amp;</code>，定义引用也在变量名加一个
-<code>&amp;</code>，和指针类似。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> &amp;<span class="title">setValues</span><span class="params">(<span class="type">int</span> i)</span> </span>&#123;  </span><br><span class="line">   <span class="type">double</span> &amp;ref = vals[i];    </span><br><span class="line">   <span class="keyword">return</span> ref;   <span class="comment">// 返回第 i 个元素的引用，ref 是一个引用变量，ref 引用 vals[i]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>定义引用的示例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n=<span class="number">0</span>,m=<span class="number">0</span>;</span><br><span class="line"><span class="type">int</span>&amp; nn=n,mm=m;</span><br><span class="line">n=<span class="number">10</span>,m=<span class="number">20</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;n,m:%d,%d\n&quot;</span>,n,m);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;nn,mm:%d,%d\n&quot;</span>,nn,mm); </span><br><span class="line"><span class="comment">//输出:</span></span><br><span class="line"><span class="comment">//10,20</span></span><br><span class="line"><span class="comment">//10,0</span></span><br></pre></td></tr></table></figure>
-<p>在重载结构体 <code>+=,=</code> 运算符号的时候比较常用。</p>
-<p>引用传参应该已经很熟悉了吧。</p>
-<h4 id="左值引用和右值引用">左值引用和右值引用</h4>
-<p><code>C++11</code> 新概念。<a
-target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/12/15/understanding-lvalues-and-rvalues-in-c-and-c">参考阅读</a></p>
-<p>一般的，使用引用传参时，如果接受的参数为右值，那么不能修改右值，参数必须声明为
-<code>const</code> 类型。</p>
-<p>算了，先咕咕咕了吧。</p>
-<h2 id="模板">模板</h2>
-<p>如果用的不好，容易出现找不到实现的问题。</p>
-<p>一个原则：所有东西的类型必须在使用前就得知。</p>
-<h3 id="类模板">类模板</h3>
-<p>继承的时候需要写明父类的类型参数，如果子类也是模板类，可以用子类的类型模板参数作为父类的类型模板参数。</p>
-<h3 id="函数模板">函数模板</h3>
-<p>函数模板是可以自动推导类型的，如果出现类型冲突，那么会报
-<code>CE</code>。</p>
-<p>常见例子是 <code>std::max(1,1ll)</code> 报错。</p>
-<p>注意字面量的类型。</p>
-<p>指定模板参数可以仅指定一段前缀，剩下的采用自动推导。</p>
-<h3 id="多文件的一些问题">多文件的一些问题</h3>
-<h4 id="按惯例编写的问题">按惯例编写的问题</h4>
-<p>通常情况下，你会在 .h
-文件中声明函数和类，而将它们的定义放置在一个单独的 .cpp
-文件中。但是在使用模板时，这种习惯性做法将变得不再有用，因为当实例化一个模板时，编译器必须看到模板确切的定义，而不仅仅是它的声明。</p>
-<h4 id="定义和声明一起写">定义和声明一起写</h4>
-<p>可以将模板的声明和定义都放置在同一个 .h 文件中。这就是为什么所有的
-STL 头文件都包含模板定义的原因。</p>
-<p>习惯来说，一般把这种包含定义的头文件后缀名写为
-<code>.hpp</code>。</p>
-<h4 id="使用-export">使用 export</h4>
-<p>咕咕咕</p>
-<h2 id="static-关键字">Static 关键字</h2>
-<p>声明一个静态的东西，可以用来避免命名冲突，也可以用来更好的实现一个类。</p>
-<p>Static
-关键字声明的东西生命周期是整个程序的生命周期，但作用域仅限定为声明处的作用域。</p>
-<p>举个例子，某个函数的执行过程和它被调用的次数有关，这个可以弄个全局变量记一个次数，但是我们也可以在它的内部写个
-static 变量记录，这样就不会与外部空间变量名冲突。</p>
-<p>所有静态变量的初始值为 0</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">static</span> <span class="type">int</span> cnt;</span><br><span class="line">	cout&lt;&lt;++cnt&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">fun</span>();cnt=<span class="number">10</span>;</span><br><span class="line">cout&lt;&lt;cnt&lt;&lt;endl;</span><br><span class="line"><span class="built_in">fun</span>();<span class="built_in">fun</span>();cnt++;<span class="built_in">fun</span>();</span><br></pre></td></tr></table></figure>
-<p>也可以用静态成员来维护一个类，比如写链表的时候，我们通常要先写个 node
-类，然后才能实现 list 类，但我们可以直接将 head
-指针作为一个静态变量放入结构体中，这样，这个静态变量就可以被所有结构体的实例访问修改。</p>
-<p><strong>注意，如果需要两个链表，那种这种方式是不可取的，因为静态变量
-head 对所有该结构体的实例来说都只有一个。</strong></p>
-<p>我们当然也可以声明静态成员函数。</p>
-<p>对于结构体的静态资源，我们可以用 {结构体名}.{成员名} 来访问。</p>
-<h2 id="函数匿名函数">函数，匿名函数</h2>
-<p>C++
-的函数名，本质上是一个指向某个函数的指针，函数在二进制层面和数据没有差异。</p>
-<p>functor (一般译为算子)，也可以调用，但它是一个对象。</p>
-<h4 id="函数类">函数类</h4>
-<p>C++
-的函数可以当作一个对象处理的，<strong>函数名是指向该对象的指针</strong>，比如说：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;x++;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">del</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;x--;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">doit</span><span class="params">(<span class="type">int</span> &amp;x,function&lt;<span class="type">void</span>(<span class="type">int</span>&amp;)&gt; f)</span></span>&#123;(x);&#125;</span><br><span class="line">n=<span class="number">10</span>;<span class="built_in">doit</span>(n,del);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,n);</span><br><span class="line">n=<span class="number">20</span>;<span class="built_in">doit</span>(n,add);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,n);</span><br></pre></td></tr></table></figure>
-<h4 id="匿名函数">匿名函数</h4>
-<p>格式：<code>["捕获列表"]("参数列表")-&gt;"返回类型"&#123;"函数体"&#125;</code></p>
-<p>捕获列表指的捕获局部变量，在函数中可以使用和修改。</p>
-<p>参数列表无参数时可以省略，返回值如果不指定则会自动推导。</p>
-<p>捕获列表不可省略，[] 为强制不捕获，[&amp;] 为引用捕获全部，[=]
-为取值捕获全部，也可以用变量名 [x,&amp;y] 取值捕获 x，引用捕获 y。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">end</span>(),[](<span class="type">const</span> <span class="type">int</span> &amp;x,<span class="type">const</span> <span class="type">int</span> &amp;y)&#123;<span class="keyword">return</span> x&gt;y;&#125;); <span class="comment">//降序排序</span></span><br></pre></td></tr></table></figure>
-<p>匿名函数也可以作为一个对象处理。</p>
-<h4 id="虚函数">虚函数</h4>
-<p>这个东西自己写的时候用的比较少，毕竟不太注重面向对象，</p>
-<p>这玩意和 <code>Python</code> 的 <code>abstract_method</code>
-类似，我也不知道怎么解释，反正会用就够了。</p>
-<p>竞赛中应用的话，可以用来重写 <code>pd_ds</code>
-里面的平衡树，但是真的用的很少。</p>
-<h2 id="语法糖">语法糖</h2>
-<h3 id="函数相关">函数相关</h3>
-<h4 id="返回值为-void-的函数">返回值为 void 的函数</h4>
-<p>你是否碰到过这样的情况，函数返回值为
-void，但是返回又是有条件，并且还需要执行一些简单的操作，用
-<code>&#123;&#125;</code> 括起来显得代码冗长，不妨试试：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">do_cool_thing</span><span class="params">(<span class="type">int</span> arg)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(some_condition) <span class="keyword">return</span> <span class="built_in">void</span>(a_simple_expression);</span><br><span class="line">    <span class="built_in">do_cool_thing</span>(arg);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">do_cool_thing</span><span class="params">(<span class="type">int</span> arg)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(some_condition) <span class="keyword">return</span> <span class="built_in">void</span>(ans++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="有返回值的函数">有返回值的函数</h4>
-<p><code>,</code> 可以用在 return
-语句，会返回最后一个值，当然也可以用在其它 <code>Case</code>。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_v</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">3</span>,<span class="number">5</span>;<span class="comment">// return value is 5</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">new_node</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a[++t]=node&#123;<span class="built_in">mt_rand</span>(), <span class="number">1</span>, x, <span class="number">0</span>, <span class="number">0</span>&#125;, t;</span><br><span class="line">    <span class="comment">//can you guess what it do and when we use it?</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="列表初始化器">列表初始化器</h3>
-<p>这东西说白了就是 <code>&#123;1,2,3,4,5&#125;</code>
-这种，注意区分类成员初始化器，后者可以多类型，前者只能单类型。</p>
-<h4 id="循环">循环</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> v:&#123;<span class="number">0</span>,<span class="number">1</span>&#125;)&#123;</span><br><span class="line">	<span class="built_in">do_cool_thing</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>分支更少，效率更高，代码更优美！</p>
 
       
     </div>

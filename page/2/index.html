@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,218 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2023/02/18/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2023/0217%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/18/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2023/0217%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">0217测试</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-02-18 10:04:59" itemprop="dateCreated datePublished" datetime="2023-02-18T10:04:59+08:00">2023-02-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:23:33" itemprop="dateModified" datetime="2025-02-16T20:23:33+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="测试">0217测试</h2>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0189">考试</a></p>
+<h3 id="t1">T1</h3>
+<p>非公平组合游戏，先考虑简单的情况，不妨设 <span
+class="math inline">\(x_i\le a+b,a\le b\)</span>。</p>
+<p>那么一个 <span class="math inline">\(x_i\)</span>
+要么能被两个人各自拿一次，要么只能被 <span
+class="math inline">\(A\)</span> 拿。</p>
+<p>如果存在一个只能被 <span class="math inline">\(A\)</span> 拿的 <span
+class="math inline">\(x\)</span>，那么 <span
+class="math inline">\(A\)</span> 必胜，他只需要一直拿两人都能拿的 <span
+class="math inline">\(x_i\)</span>，让 <span
+class="math inline">\(B\)</span> 拿不了，由于 <span
+class="math inline">\(A\)</span> 最后多一个，所以必胜。</p>
+<p>如果不存在只能被 <span class="math inline">\(A\)</span> 拿的 <span
+class="math inline">\(x\)</span>，胜负就与 <span
+class="math inline">\(x\)</span>
+的奇偶性和谁先手有关。但是<strong>此时两个人并不是等价的。</strong>如果有一个
+<span class="math inline">\(x\)</span> 满足 <span
+class="math inline">\(\max(2a,b)\le x\)</span>，那么 <span
+class="math inline">\(A\)</span> 只要拿掉它就能创造一个只能被 <span
+class="math inline">\(A\)</span> 拿的，又变成必胜了，所以 <span
+class="math inline">\(B\)</span> 会优先拿掉它们，但是如果由两个，<span
+class="math inline">\(B\)</span> 就没办法。</p>
+<p>分谁先手后手讨论，容易给出四种情况的充要条件，这些充要条件也是便于直接构造计算的。</p>
+<p>考虑迁移到 <span class="math inline">\(x_i\)</span>
+无限制的情况，发现状态不会改变，如果先手必胜，那么先手按照模意义下的最优策略走，如果后手选择了能取模的，那么先手也选它取模，直到后手选择了一个不能取模的，此时可以平行对应到取模的情况，然后先手继续按照模意义下策略走。</p>
+<p>后手必胜同理。</p>
+<p>将整个转移图画出来，<strong>取模的情况就是完整转移图的低维投影。</strong>如果走了投影上没有的边，另一个人一定可以将点搬回投影上。</p>
+<h4 id="教训">教训</h4>
+<p>犯错的原因是考虑简单情况时理所当然的认为 <span
+class="math inline">\(b\le y_i\)</span> 时，该堆石子对 <span
+class="math inline">\(A,B\)</span> 等价，实际上这不是等价的。</p>
+<p>罗列证据时考虑要全面，或者干脆对拍一下。</p>
+<h3 id="t2">T2</h3>
+<p>又没读题，最开始当成正回文做，<strong>手玩下样例保证理解对题。</strong></p>
+<p>在确定前半段的过程中，后半段也随之确定，建目标串的反串，对应点表示前半段出现什么时可以到该状态。然后跑
+AC
+自动机上动态规划，合并的时候由于一个串一定是由正串的一个前缀和反串的一个前缀拼起来的，如果可以拼起来那么当前
+AC 自动机的节点一定满足它能代表其中较长那个前缀，直接暴力检查。</p>
+<h4 id="教训-1">教训</h4>
+<ul>
+<li>手玩样例保证读对题。</li>
+<li>AC 自动机的点权值要弄对（除了 fa 之外还有 fail 的权值）。</li>
+<li>要对拍。</li>
+</ul>
+<h3 id="t3">T3</h3>
+<p>最开始考虑直接对树进行动态规划，设 <span
+class="math inline">\(dp[j][i]\)</span> 表示有 <span
+class="math inline">\(i\)</span> 个叶子，最大左儿子深度为 <span
+class="math inline">\(j\)</span>
+的方案总数。答案是一个前缀和，转移枚举左右儿子大小，也是前缀和形式，看上去不好优化。于是直接对前缀和动态规划，然后推出一个连分数形式的生成函数，不会了。</p>
+<p>其实二叉树可以考虑转成序列做，由于一颗 <span
+class="math inline">\(n\)</span> 个叶节点的满二叉树唯一对应一个 <span
+class="math inline">\(n-1\)</span> 对括号的括号序列，要求等价于求 <span
+class="math inline">\(n-1\)</span> 对括号，最深不超过 <span
+class="math inline">\(m-2\)</span> 的括号序列个数。</p>
+<p>可以抽象到二维平面上做，需要走到 <span
+class="math inline">\((n-1,n-1)\)</span>，不能碰到 <span
+class="math inline">\(y=x+1\)</span> 和 <span
+class="math inline">\(y=x-m+1\)</span>。简记一条直线为它的截距，即 <span
+class="math inline">\(1\)</span> 和 <span
+class="math inline">\(-m+1\)</span>。</p>
+<h4 id="两种错误的方式">两种错误的方式</h4>
+<ul>
+<li>考虑先算碰到 <span class="math inline">\(1\)</span>
+的方案数，然后再算碰到了 <span class="math inline">\(-m + 1\)</span>
+但没碰到 <span class="math inline">\(1\)</span>
+的方案数。前者好算，后者对称后不能碰到 <span
+class="math inline">\(1\)</span> 且不能碰到 <span
+class="math inline">\(1\)</span> 关于 <span
+class="math inline">\(-m+1\)</span> 的对称直线 <span
+class="math inline">\(-2m+1\)</span>，递归解决该问题，边界为限制彻底放开。</li>
+<li>考虑算碰到了 <span class="math inline">\(1\)</span> 或者碰到 <span
+class="math inline">\(-m+1\)</span>
+的方案数，加上同时碰到的方案数，对于同时碰到的方案数，不容易一起算，考虑算先碰到
+<span class="math inline">\(1\)</span> 再碰到 <span
+class="math inline">\(-m+1\)</span> 的方案数，同样考虑对称，先关于 <span
+class="math inline">\(1\)</span> 再关于 <span
+class="math inline">\(-m+1\)</span> 对称。同时要求走到 <span
+class="math inline">\(1\)</span> 的过程中不能碰到 <span
+class="math inline">\(-2m+1\)</span>，即减掉先碰到 <span
+class="math inline">\(-2m+1\)</span> 关于 <span
+class="math inline">\(1\)</span> 再碰到 <span
+class="math inline">\(1\)</span> 的方案，递归解决。</li>
+</ul>
+<h4 id="容斥方式的本质">容斥方式的本质</h4>
+<p><strong>容斥本质上是通过对称构造了一个没有限制的问题，使得它和原问题不满足限制的情况一一对应。</strong></p>
+<p>这个对应的证明是基于对称问题中起点到终点一定穿过直线，因此<strong>将第一次碰到直线的前部分对称</strong>后一定可以对应到一种原问题的不合法情况，所以考虑原路径时，在对称路径第一次穿过直线后，原路径就不再是<strong>对称路径的对称路径了</strong>。所以第一种方式对直线
+<span class="math inline">\(-2m+1\)</span> 的限制是不合理的。</p>
+<p>方式二看上去修了锅，实际上只是展开了一层手动修了，后面还是有一样的问题。</p>
+<p>如果目标点在直线异侧，那么因为答案不是良定义的所以会错，需要特判为
+<span class="math inline">\(0\)</span>。</p>
+<p>关于容斥方式，如果将括号序列视作一个 +1 -1
+的序列，那么合法就是要求前缀和最小值不小于 <span
+class="math inline">\(0\)</span>，我们将第一个小于 <span
+class="math inline">\(0\)</span> 后的翻转，最后一定会到达 <span
+class="math inline">\(-2\)</span>，因此不合法方案数等于到 <span
+class="math inline">\(-2\)</span> 的无限制方案数。</p>
+<h4 id="一种正确的方式">一种正确的方式</h4>
+<p>全部方式减去要求碰到 <span class="math inline">\(1\)</span> 或者
+<span class="math inline">\(-m+1\)</span> 的方式，发现先碰到 <span
+class="math inline">\(1\)</span> 再碰到 <span
+class="math inline">\(-m+1\)</span> 的方式被算重了。</p>
+<p>然后要算先碰到 <span class="math inline">\(1\)</span> 再碰到 <span
+class="math inline">\(-m+1\)</span> 的方式，算这个的时候发现先到 <span
+class="math inline">\(-m+1\)</span> 再到 <span
+class="math inline">\(1\)</span> 再到 <span
+class="math inline">\(-m+1\)</span>
+的方式又被算重了，需要减去，如此递归下去做。</p>
+<h4 id="bonus">bonus</h4>
+<ul>
+<li><p>构造满二叉树的方式：</p>
+<ul>
+<li>单个叶子节点是空串</li>
+<li>有儿子的节点记左右儿子为 <span
+class="math inline">\(A,B\)</span>，令它为 <code>(A)B</code>。</li>
+<li>容易证明它们是一一对应的。</li>
+</ul></li>
+<li><p>构造二叉树的方式：</p>
+<ul>
+<li><p>空树是空串。</p></li>
+<li><p>单节点的树是 <code>()</code>。</p></li>
+<li><p>有儿子节点的树记左右儿子的构造分别为 <span
+class="math inline">\(A,B\)</span>，令它为 <code>(A)B</code>。</p></li>
+<li><p>容易证明方案是一一对应的。</p></li>
+</ul></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2575,207 +2787,6 @@ class="math inline">\(f_{g,kd}\)</span>。</p>
 <p>复杂度考虑每个 <span class="math inline">\(d\)</span>，每个 <span
 class="math inline">\(d\)</span> 的复杂度为 <span
 class="math inline">\(\frac{M}{d}\ln{\frac{M}{d}}\)</span>。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/12/20/OI/%E5%A4%8D%E5%90%88%E5%9E%8B%E6%96%87%E7%AB%A0/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/12/20/OI/%E5%A4%8D%E5%90%88%E5%9E%8B%E6%96%87%E7%AB%A0/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/" class="post-title-link" itemprop="url">几道题目引发的思考</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-12-20 00:00:00" itemprop="dateCreated datePublished" datetime="2022-12-20T00:00:00+08:00">2022-12-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:54:07" itemprop="dateModified" datetime="2025-02-16T17:54:07+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="几道题目引发的思考">几道题目引发的思考</h2>
-<ul>
-<li>未完成，咕咕咕中。</li>
-</ul>
-<h3 id="noi2013书法家"><a
-target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1398">NOI2013书法家</a></h3>
-<p>这道题，我写了个 DP+枚举 的方法交了上去，第一发喜提 TLE，开 O2
-后成功通过，并且速度是不开 O2 的 10 倍，看题解后发现，相比于纯粹的 DP
-做法，自己的枚举做法其实很蠢很难想也很难写，于是对 DP
-和枚举的关系进行了一些思考。</p>
-<p>O2 优化的高达 10 的效率改进因子也着实让我觉得有些不可思议，于是便对
-O2 优化在份代码上到底干了什么做了一些探索.</p>
-<p>同时，将内联函数改为宏定义后，我的程序也得到了明显的效率改进，便有了宏定义与函数的比较。</p>
-<p>下文将从这些角度入手，进一步分析一些底层的程序效率问题。</p>
-<h3 id="cf1709f"><a
-target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1709F">CF1709F</a></h3>
-<p>考场上图方便 <code>#define int long long</code>，用
-<code>Codeforces</code> 的 <code>C++14</code> 提交喜提 TLE，改为
-<code>C++20(64bit)</code> 后成功通过，于是便有了对 64bit 机子和 32bit
-机子，<code>int</code> 与 <code>long long</code> 比较的想法。</p>
-<h2 id="浅谈-dp-枚举与一般枚举算法的差异与优劣">浅谈 DP
-枚举与一般枚举算法的差异与优劣</h2>
-<h3 id="dp-枚举也是枚举">DP 枚举也是枚举</h3>
-<p>回到题目本身，我们考虑处理字母 <code>O</code> 和 <code>I</code>
-时，枚举算法的本质。</p>
-<p>处理 <code>O</code>
-的时候，枚举算法枚举了上下两个行，和一个左端点，通过前缀和算出了类似这样的一个结构的权值</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/vo4uhkxr.png" /></p>
-<p>红色部分是负权值。</p>
-<p>然后我们又计算了一个这样的结构的后缀最大值。</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/9waojsv1.png" /></p>
-<p>如果把这两个结构拼在一起，就得到我们想要的答案。</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/s1qbflc5.png" /></p>
-<p>红色部分和黑色部分抵消掉了，得到了想要的答案。</p>
-<p>如果用 <span class="math inline">\(dp\)</span> 来处理，我们就设了
-<span class="math inline">\(dp[i][l][r]\)</span> 考虑到第 <span
-class="math inline">\(i\)</span> 行，顶部和底部分别是 <span
-class="math inline">\(l,r\)</span>
-的最大值，转移相当自然，从没有到一列，再到两格，从两格加上一列计算答案。</p>
-<p>其实这种 <span class="math inline">\(dp\)</span>
-和我们的枚举算法没有差异，都是确定了上下以及左右的一个端点，通过记录的辅助状态来完成转移。<strong>DP
-记录的辅助状态就是答案，而枚举记录的辅助状态是抽象的前缀和。</strong>因而后者比前者要更难理解。</p>
-<h3 id="dp-比枚举更加自然">DP 比枚举更加自然</h3>
-<p>从刚刚处理简单的 <code>O</code>
-还看不出来差异，我们现在来处理更为复杂的
-<code>I</code>，实际上，我们用枚举算法计算 <code>I</code>
-的时候，处理了三个辅助状态。</p>
-<p><del>MSPAINT已经满足不了绘图要求了，还是手最靠谱</del></p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/g3gkj0w9.png" /></p>
-<p>不难发现对 <code>O</code>
-来说，确定了左上右下就已经确定了整个图形的结构了，而对于 <code>I</code>
-来说，确定了左上右下，还需要额外确定两个参数才能确定权值，这样带来了
-<span class="math inline">\(O(n^2)\)</span> 种方案。</p>
-<p>直接枚举，我们思考的量就是 <span class="math inline">\(3^2\)</span>
-级别的，因为我们需要考虑这三种情况相互之间的影响。</p>
-<p>而如果考虑
-DP。我们就只需要设计三种不同状态，而每种状态保存的辅助数据又是直观的答案，相比于枚举算法的弯弯绕绕计算答案，DP，在计算答案时只需要简单的加和，转移的方式也只有
-<span class="math inline">\(2\)</span> 种，孰优孰劣不言而喻。</p>
-<p>在跨域三种状态转移的过程中，其实就已经完成了枚举算法对上图里所有情况的考虑，所以不会和枚举算法有任何本质差异，但是
-DP
-这种<strong>直接记录答案作为辅助数据</strong>的方式，无疑更加自然，思考也更加简单。</p>
-<h2 id="浅谈-o2-优化在公共子表达式与寻址中的实际作用">浅谈 O2
-优化在公共子表达式与寻址中的实际作用。</h2>
-<h3 id="对公共子表达式的优化">对公共子表达式的优化</h3>
-<p>提到了一个定义，公共子表达式。一般的，公共子表达式，指的是这种</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a=<span class="number">1</span>,b=<span class="number">2</span>,c=<span class="number">3</span>,d=<span class="number">4</span>;</span><br><span class="line">cout&lt;&lt;a+c*d;</span><br><span class="line">cout&lt;&lt;b+c*d;</span><br></pre></td></tr></table></figure>
-<p>其中，<code>c*d</code> 就是公共子表达式。</p>
-<p>看一个不同优化下两种代码的汇编</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/oznw58na.png" /></p>
-<p>无优化版本。</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/xsdaledv.png" /></p>
-<p>有优化版本。</p>
-<p>编译器帮我们把 <span class="math inline">\(c*d\)</span>
-算好了，扔进了寄存器以反复调用。</p>
-<p>相比于无优化的版本，开启优化后对寄存器的使用变得非常灵活，不再是死板的仅作为计算时的存储工具，内存操作减少了
-<span class="math inline">\(\frac{2}{3}\)</span> 。</p>
-<p>那为什么实际上汇编代码量 O2
-后成倍数减少，但运行时间没有成倍数减少呢。这就涉及内存延迟的概念。</p>
-<p>内存读取有一个延迟时间，相比于计算耗时，这个延时要大得多，但这个延迟只会在最开始被等待一次，因为读取过程中
-CPU
-可以在等待延迟的同时发出读取指令，同时读取。就像烧水一样，烧一壶的同时灌上另一壶，可以有效节省时间。被读取过一次的内存，会被放入高速缓存，读取变得更快。</p>
-<p>这是 O2 优化的第一个部分。</p>
-<h3 id="对寻址的优化">对寻址的优化</h3>
-<p>寻址主要指<strong>将数据从内存或者缓存加载的寄存器的过程</strong>。我们再这里忽略计算地址需要的时间。</p>
-<p>还是两张图说明。</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/wlcmiq0z.png" /></p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/it2y7adt.png" /></p>
-<p>可以看到，在做前缀和的过程中，开启优化后的代码，只有一次寻址和一次加操作，而我们没开优化的代码，操作的毒瘤程度就难以形容了。</p>
-<p>平常有些代码看起来很傻，实际上开了 O2
-之后效率更优秀，就是采用的对编译器更友好的写法，当然，我们也没必要去太注意这些。</p>
-<h2
-id="从汇编角度比较函数调用和宏定义">从汇编角度比较函数调用和宏定义</h2>
-<p>开了 O2 之后，这俩的区别不大，不开 O2，由于在 CPU 流水线中 ret
-指令会带来严重中断，所以<strong>小函数还是写宏定义比较好。</strong></p>
-<p><strong>注意，在 C++11 以后，inline 关键字已经被启用，开启 O2
-优化后会自动内联，减少函数调用带来的开支。</strong></p>
-<p>可以通过和 <code>g++</code> 同时安装的 <code>gprof</code>
-对程序进行性能分析确定复杂度瓶颈。</p>
-<p>引用一些宏定义的资料。</p>
-<p><a
-target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/macro-definition.html">宏定义的坑</a></p>
-<h2 id="long-long-与-int-的效率之争">long long 与 int 的效率之争</h2>
-<p>通常来说，在 64bit 下，long long 和 int
-的运算效率是没有差别的。但是由于高速缓存的问题，尤其是在某些数组大小为
-<span class="math inline">\(10^5\)</span> 左右的题目，如果
-<code>#define int long long</code>，就很容易造成高速缓存不够用然后被迫放进内存减慢读写的情况。又或者是发生出现寄存器溢出，两个
-int 类型可以共用一个寄存器但是一个 long long
-不行。<strong>编译器不敢假定你的 long long 类型存储的数据是 int
-范围的</strong></p>
 
       
     </div>

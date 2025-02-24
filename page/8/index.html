@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,140 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/03/OI/%E7%AE%97%E6%B3%95/%E4%BB%8E2D1D%E5%88%B01D1D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/03/OI/%E7%AE%97%E6%B3%95/%E4%BB%8E2D1D%E5%88%B01D1D/" class="post-title-link" itemprop="url">从2D1D到1D1D</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-03 09:18:50" itemprop="dateCreated datePublished" datetime="2022-09-03T09:18:50+08:00">2022-09-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:54:28" itemprop="dateModified" datetime="2025-02-16T17:54:28+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="从区间-dp-到线性-dp">从区间 DP 到线性 DP</h2>
+<h3 id="题目">题目</h3>
+<p>你有 <span class="math inline">\(n\)</span> 个区间，每个区间是 <span
+class="math inline">\(l,r,w\)</span>
+三个参数描述，表示左右端点和权值，如果区间有交（包括端点），那么就在有交的两个区间连边，形成一张无向图，有个参数
+<span
+class="math inline">\(k\)</span>，你需要删去一些区间，使得每个联通块大小不超过
+<span class="math inline">\(k\)</span>。</p>
+<ul>
+<li><p><span class="math inline">\(n\leq 500\)</span></p></li>
+<li><p><span class="math inline">\(n\leq 2500\)</span></p></li>
+</ul>
+<h3 id="思考">思考</h3>
+<p>首先这肯定不是一个图论问题，给一张图做这个问题是 <span
+class="math inline">\(NP\)</span> 的，所以要利用好区间的性质。</p>
+<p>先把区间离散化。</p>
+<p>发现可以考虑一段区间 <span
+class="math inline">\([l,r]\)</span>，只考虑在区间内的区间，计算其答案，有两种方式，第一种是将区间继续划分成两个子区间，<strong>划分区间的过程，体现出了全局最优的思想</strong>，即我们假定了当前区间内的所有线段全部联通，这样不一定能在此处取到最优解，但一定可以在向下动态规划的过程中得到最优解，另一种是直接在当前区间选最大的
+<span class="math inline">\(k\)</span> 个保留。</p>
+<p>划分区间的方式，就是选一个地方断开，删掉越过这个地方的所有区间，变成两个子问题。</p>
+<p>有了这样的思路，我们很容易设计出一个 <span
+class="math inline">\(O(n^3)\)</span> 的区间动态规划出来。</p>
+<h3 id="优化">优化</h3>
+<p><span class="math inline">\(O(n^3)\)</span> 可以通过 <span
+class="math inline">\(n\leq 500\)</span> 的数据点，但是无法通过 <span
+class="math inline">\(n\leq 2500\)</span>，所以需要优化为 <span
+class="math inline">\(O(n^2)\)</span>，其中预处理 <span
+class="math inline">\([l,r]\)</span> 的复杂度是 <span
+class="math inline">\(O(n^2\log n)\)</span>
+的，但是常数较小能够接受。</p>
+<p>于是可以考虑利用区间 <span class="math inline">\(dp\)</span>
+的一些常见优化手段，打个表，发现决策点并不单调，所以对于这类 <span
+class="math inline">\(2D1D\)</span>
+问题我们有点束手无策。但是感觉上记录区间有点浪费，于是考虑能不能线性的搞出来。发现如果设
+<span class="math inline">\(dp[i]\)</span> 表示考虑前 <span
+class="math inline">\(i\)</span> 个的答案，从 <span
+class="math inline">\(j&lt;i\)</span> 转移，<span
+class="math inline">\([j,i]\)</span> 采用直接减少到 <span
+class="math inline">\(k\)</span>
+的方式，也能得到和区间DP方式相同的转移考虑。</p>
+<p>所以被优化成了 <span
+class="math inline">\(O(n^2)\)</span>。越过每个点的区间总数，是可以动态维护的，均摊
+<span class="math inline">\(O(1)\)</span>。</p>
+<h3 id="从2d1d到1d1d">从2D1D到1D1D</h3>
+<p>其实这类问题，是伪区间DP问题，比较它和真区间DP问题，比如《石子合并》，《优雅的闪电》的差异。它本质上是
+1D1D
+问题，石子合并很明显就是需要体现区间合并的顺序，所以必须采用区间DP。优雅的闪电的转移，无法被
+1D1D 的转移考虑完全，所以仍然需要区间 DP。</p>
+<p>关于一些 2D1D 的问题，可以仔细考察它的转移，能否被 1D1D
+的形式描述，以便优化。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1861,172 +1995,6 @@ API，我们直接进行上诉操作，可以拿一个程序记录已经走过�
 <p>咕咕咕。</p>
 <p>也许可以考虑每条边回溯次数期望 <span
 class="math inline">\(e_{u,v}\)</span>。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/28/OI/%E7%AE%97%E6%B3%95/Tarjan%E7%AE%97%E6%B3%95%E5%92%8C%E5%9D%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/28/OI/%E7%AE%97%E6%B3%95/Tarjan%E7%AE%97%E6%B3%95%E5%92%8C%E5%9D%91/" class="post-title-link" itemprop="url">Tarjan算法和坑</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-28 18:18:13" itemprop="dateCreated datePublished" datetime="2022-07-28T18:18:13+08:00">2022-07-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:58:00" itemprop="dateModified" datetime="2025-02-16T17:58:00+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="tarjan算法和坑">Tarjan算法和坑</h2>
-<p>某场多校，某道题，有负环，需要排除（负环）。</p>
-<p>某人写了，又交了，吃罚时，需要排除（某人）。</p>
-<p>队友写了，又交了，他过了，某人完了。</p>
-<p>数据有了，调试了，调完了，Tarjan锅了。</p>
-<p>本文提一下 Tarjan 算法里的坑。</p>
-<h3 id="算法流程和原理">算法流程和原理</h3>
-<p>通过对图进行 DFS 遍历，得到 DFS 树。</p>
-<p>容易发现每个 SCC 是一个树上的联通块，这是由 DFS
-的过程保证的，如果分开了，那么就不满足 DFS 的性质。</p>
-<p><strong>DFS 一个点，会访问到所有它能到的点。</strong>由于它们是
-SCC，所以 DFS 该 SCC 的任意节点的时候，一定会让 SCC
-中所有<strong>未访问</strong>的节点都在它的子树里，所以不会出现断开的情况。</p>
-<p>考虑树的每个节点是否为 SCC 的根。定义一个节点为 SCC
-的根，当且仅当这个节点是该 SCC 中最浅的节点。</p>
-<p>定义 <code>low[u]</code> 为 <span class="math inline">\(u\)</span>
-能通过<strong>自己或者自己的子树</strong>到达的点，时间戳的最小值。维护一个栈，表示当前还没有确定连通块的节点。</p>
-<p>如果一个点 <span class="math inline">\(u\)</span> 的
-<code>low[u]=dfn[u]</code>，那么该点无法到达时间戳更小的点，所以一定是
-SCC 的根，弹出所有栈中的值直到 <span
-class="math inline">\(u\)</span>，作为该 SCC 的所有点。</p>
-<p>如果访问了一个已经访问过的点 <span
-class="math inline">\(v\)</span>，分两种
-CASE，其一是它已经被弹栈了，这样的话该边一定是横插边，直接不管，因为
-<span class="math inline">\(v\)</span> 到不了 <span
-class="math inline">\(u\)</span>。如果还没有弹栈，说明该点的 SCC
-还没有确定，所以这个点是可以到 <span class="math inline">\(u\)</span>
-的父亲的，也能到 <span
-class="math inline">\(v\)</span>。所以这种点是有效的，<span
-class="math inline">\(u\)</span> 因此能到达更上面的点，不是 SCC
-的根。</p>
-<h3 id="不同的写法">不同的写法</h3>
-<p>省略全局变量。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//AC Code</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	dfn[u]=low[u]=++s;</span><br><span class="line">	st[++top]=u;in[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;e[<span class="number">2</span>][u].<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		<span class="type">int</span> v=e[<span class="number">2</span>][u][i].v,w=e[<span class="number">2</span>][u][i].e,f=e[<span class="number">2</span>][u][i].f;</span><br><span class="line">		<span class="keyword">if</span>(dfn[v])&#123;</span><br><span class="line">			<span class="keyword">if</span>(in[v])<span class="built_in">cmin</span>(low[u],dfn[v]);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">dfs</span>(v);<span class="built_in">cmin</span>(low[u],low[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dfn[u]==low[u])&#123;</span><br><span class="line">		cnt++;<span class="type">int</span> v;</span><br><span class="line">		<span class="keyword">do</span> rk[v=st[top--]]=cnt,in[v]=<span class="number">0</span>; <span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//AC code</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	dfn[u]=low[u]=++s;st[++top]=u;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;e[<span class="number">2</span>][u].<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		<span class="type">int</span> v=e[<span class="number">2</span>][u][i].v,w=e[<span class="number">2</span>][u][i].e,f=e[<span class="number">2</span>][u][i].f;</span><br><span class="line">		<span class="keyword">if</span>(dfn[v])&#123;</span><br><span class="line">			<span class="keyword">if</span>(!rk[v])<span class="built_in">cmin</span>(low[u],dfn[v]);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">dfs</span>(v);<span class="built_in">cmin</span>(low[u],low[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dfn[u]==low[u])&#123;</span><br><span class="line">		cnt++;<span class="type">int</span> v;</span><br><span class="line">		<span class="keyword">do</span> rk[v=st[top--]]=cnt; <span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//WA code</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	dfn[u]=low[u]=++s;st[++top]=u;in[u]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;e[<span class="number">2</span>][u].<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">		<span class="type">int</span> v=e[<span class="number">2</span>][u][i].v,w=e[<span class="number">2</span>][u][i].e,f=e[<span class="number">2</span>][u][i].f;</span><br><span class="line">		<span class="keyword">if</span>(dfn[v])&#123;</span><br><span class="line">			<span class="keyword">if</span>(in[v])<span class="built_in">cmin</span>(low[u],dfn[v]);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">dfs</span>(v);<span class="built_in">cmin</span>(low[u],low[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dfn[u]==low[u])&#123;</span><br><span class="line">		cnt++;<span class="type">int</span> v;</span><br><span class="line">		<span class="keyword">do</span> rk[v=st[top--]]=cnt; <span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">	in[u]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意到前两种 Code 维护的都是栈中元素，因此没有问题。</p>
-<p>但第三种写法，维护的是所有的祖先，当当前节点 <span
-class="math inline">\(u\)</span> 连接到的点 <span
-class="math inline">\(v\)</span>，可以通过其返祖边回到更上面的父亲时，这种做法会漏掉
-<span class="math inline">\(v\)</span>。因此是错误的。</p>
-<p>举个例子。</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/l17oe1cu.png" /></p>
-<p>访问 <span class="math inline">\(3\)</span> 时，<span
-class="math inline">\(4\)</span> 已经从 <span
-class="math inline">\(in\)</span> 中移除，但是我们仍然可以通过 <span
-class="math inline">\(4\)</span> 到达 <span
-class="math inline">\(3\)</span>，所以会出现错误。</p>
-<p><strong>洛谷的模板题，数据相当之水，第三种做法可以通过，但它是错误的。</strong></p>
-<h3 id="一些碎碎念">一些碎碎念</h3>
-<p>缩点的时候，也就是求强连通分量，<span
-class="math inline">\(low[u]\)</span> 和 <span
-class="math inline">\(low[v],dfn[v]\)</span> 取
-<code>min</code>，都是可以的，因为不影响判断某个点是否是 SCC 的根。</p>
-<p><strong>如果图是无向图，那么不会存在横插边的问题，所有边都是返祖边。</strong></p>
-<p>求边双连通分量，和 <code>low[v]</code> 取 <code>min</code>
-同样没有问题，因为不影响一个点是不是边双的根的判断。</p>
-<p>判断一个点是边双根的方式是，<strong>它无法通过自己或者儿子，到达更上面的点。</strong>这也意味着，该点与其父亲的连边是桥。</p>
-<p><strong>边双连通具有传递性</strong></p>
-<p>求点双连通分量，判断割点，如果和 <code>low[u]</code> 取
-min，是会出问题的。</p>
-<p>判断一个点是割点的方式是，<strong>它的任意一个儿子无法在没有它的情况下到达上面的点。</strong>特别注意，<strong>该点如果没有儿子，就不是割点。</strong></p>
-<p>点双，就是以割点为界的所有连通块。</p>
-<p>下图是一个取 <code>low[v]</code> 出问题的例子。</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/8ptscypy.png" /></p>
-<p>先访问 <span class="math inline">\(3\)</span>，再访问 <span
-class="math inline">\(5\)</span>，会错误的认为 <span
-class="math inline">\(5\)</span> 能够到 <span
-class="math inline">\(1\)</span>，我们 <code>low</code>
-的定义是通过自身或自身的子树能到的最小时间戳，而如果和
-<code>low[v]</code> 取
-<code>min</code>，就势必会经过其它的点。在这里，<span
-class="math inline">\(5\)</span> 通过了 <span
-class="math inline">\(4\)</span> 到达 <span
-class="math inline">\(1\)</span>，因此如果删去 <span
-class="math inline">\(4\)</span>，<span class="math inline">\(5\)</span>
-就不能到 <span
-class="math inline">\(1\)</span>，这里需要保证定义的严谨性。</p>
-<p>前面的强连通分量，只需要能够到达，但不关心怎么到达，所以没问题。</p>
-<p>边双也只关心能否到达更前面点，所以没有问题。</p>
 
       
     </div>

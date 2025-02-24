@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,750 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E6%B3%95%E7%B3%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E8%AF%AD%E6%B3%95%E5%92%8C%E8%AF%AD%E6%B3%95%E7%B3%96/" class="post-title-link" itemprop="url">语法，语法糖，标准库函数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 15:55:05" itemprop="dateCreated datePublished" datetime="2022-07-12T15:55:05+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:53:37" itemprop="dateModified" datetime="2025-02-16T17:53:37+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="语法语法糖标准库函数">语法，语法糖，标准库函数</h1>
+<p>介绍一些有用常用但鲜为人知的 <code>C++</code> 语法，语法糖。</p>
+<h2 id="运算顺序">运算顺序</h2>
+<p>记好表，记不住打括号，<strong>最好打括号。</strong></p>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 45%" />
+<col style="width: 9%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">运算符说明</th>
+<th style="text-align: center;">运算符</th>
+<th style="text-align: left;">替代方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">第 1 组优先级，无关联性</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/scope-resolution-operator?view=msvc-170">范围解析</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/scope-resolution-operator?view=msvc-170"><code>::</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 2 组优先级，从左到右关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/member-access-operators-dot-and?view=msvc-170">成员选择（对象或指针）</a></td>
+<td style="text-align: center;">或 <code>-&gt;</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/subscript-operator?view=msvc-170">数组下标</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/subscript-operator?view=msvc-170"><code>[]</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/function-call-operator-parens?view=msvc-170">函数调用</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/function-call-operator-parens?view=msvc-170"><code>()</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/postfix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170">后缀递增</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/postfix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170"><code>++</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/postfix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170">后缀递减</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/postfix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170"><code>--</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/typeid-operator?view=msvc-170">类型名称</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/typeid-operator?view=msvc-170"><code>typeid</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/const-cast-operator?view=msvc-170">常量类型转换</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/const-cast-operator?view=msvc-170"><code>const_cast</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/dynamic-cast-operator?view=msvc-170">动态类型转换</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/dynamic-cast-operator?view=msvc-170"><code>dynamic_cast</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/reinterpret-cast-operator?view=msvc-170">重新解释的类型转换</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/reinterpret-cast-operator?view=msvc-170"><code>reinterpret_cast</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/static-cast-operator?view=msvc-170">静态类型转换</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/static-cast-operator?view=msvc-170"><code>static_cast</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 3 组优先级，从右到左关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/sizeof-operator?view=msvc-170">对象或类型的大小</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/sizeof-operator?view=msvc-170"><code>sizeof</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/prefix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170">前缀递增</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/prefix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170"><code>++</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/prefix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170">前缀递减</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/prefix-increment-and-decrement-operators-increment-and-decrement?view=msvc-170"><code>--</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/one-s-complement-operator-tilde?view=msvc-170">二进制反码</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/one-s-complement-operator-tilde?view=msvc-170"><code>~</code></a></td>
+<td style="text-align: left;"><strong><code>compl</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/logical-negation-operator-exclpt?view=msvc-170">逻辑“非”</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/logical-negation-operator-exclpt?view=msvc-170"><code>!</code></a></td>
+<td style="text-align: left;"><strong><code>not</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/unary-plus-and-negation-operators-plus-and?view=msvc-170">一元求反</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/unary-plus-and-negation-operators-plus-and?view=msvc-170"><code>-</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/unary-plus-and-negation-operators-plus-and?view=msvc-170">一元加</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/unary-plus-and-negation-operators-plus-and?view=msvc-170"><code>+</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/address-of-operator-amp?view=msvc-170">Address-of</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/address-of-operator-amp?view=msvc-170"><code>&amp;</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/indirection-operator-star?view=msvc-170">间接寻址</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/indirection-operator-star?view=msvc-170"><code>*</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/new-operator-cpp?view=msvc-170">创建对象</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/new-operator-cpp?view=msvc-170"><code>new</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/delete-operator-cpp?view=msvc-170">销毁对象</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/delete-operator-cpp?view=msvc-170"><code>delete</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/cast-operator-parens?view=msvc-170">强制转换</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/cast-operator-parens?view=msvc-170"><code>()</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 4 组优先级，从左到右关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/pointer-to-member-operators-dot-star-and-star?view=msvc-170">指向成员的指针（对象或指针）</a></td>
+<td style="text-align: center;">或 <code>-&gt;*</code></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 5 组优先级，从左到右关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/multiplicative-operators-and-the-modulus-operator?view=msvc-170">乘法</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/multiplicative-operators-and-the-modulus-operator?view=msvc-170"><code>*</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/multiplicative-operators-and-the-modulus-operator?view=msvc-170">除法</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/multiplicative-operators-and-the-modulus-operator?view=msvc-170"><code>/</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/multiplicative-operators-and-the-modulus-operator?view=msvc-170">取模</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/multiplicative-operators-and-the-modulus-operator?view=msvc-170"><code>%</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 6 组优先级，从左到右关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/additive-operators-plus-and?view=msvc-170">加法</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/additive-operators-plus-and?view=msvc-170"><code>+</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/additive-operators-plus-and?view=msvc-170">减法</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/additive-operators-plus-and?view=msvc-170"><code>-</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 7 组优先级，从左到右关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/left-shift-and-right-shift-operators-input-and-output?view=msvc-170">左移</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/left-shift-and-right-shift-operators-input-and-output?view=msvc-170"><code>&lt;&lt;</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/left-shift-and-right-shift-operators-input-and-output?view=msvc-170">右移</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/left-shift-and-right-shift-operators-input-and-output?view=msvc-170"><code>&gt;&gt;</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 8 组优先级，从左到右关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/relational-operators-equal-and-equal?view=msvc-170">小于</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/relational-operators-equal-and-equal?view=msvc-170"><code>&lt;</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">大于</td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/relational-operators-equal-and-equal?view=msvc-170"><code>&gt;</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">小于或等于</td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/relational-operators-equal-and-equal?view=msvc-170"><code>&lt;=</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">大于或等于</td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/relational-operators-equal-and-equal?view=msvc-170"><code>&gt;=</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 9 组优先级，从左到右关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/equality-operators-equal-equal-and-exclpt-equal?view=msvc-170">等式</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/equality-operators-equal-equal-and-exclpt-equal?view=msvc-170"><code>==</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/equality-operators-equal-equal-and-exclpt-equal?view=msvc-170">不相等</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/equality-operators-equal-equal-and-exclpt-equal?view=msvc-170"><code>!=</code></a></td>
+<td style="text-align: left;"><strong><code>not_eq</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 10 组优先级，从左到右关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/bitwise-and-operator-amp?view=msvc-170">位与</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/bitwise-and-operator-amp?view=msvc-170"><code>&amp;</code></a></td>
+<td style="text-align: left;"><strong><code>bitand</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 11 组优先级，从左到右关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/bitwise-exclusive-or-operator-hat?view=msvc-170">位异或</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/bitwise-exclusive-or-operator-hat?view=msvc-170"><code>^</code></a></td>
+<td style="text-align: left;"><strong><code>xor</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 12 组优先级，从左到右关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/bitwise-inclusive-or-operator-pipe?view=msvc-170">位或</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/bitwise-inclusive-or-operator-pipe?view=msvc-170"><code>|</code></a></td>
+<td style="text-align: left;"><strong><code>bitor</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 13 组优先级，从左到右关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/logical-and-operator-amp-amp?view=msvc-170">逻辑与</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/logical-and-operator-amp-amp?view=msvc-170"><code>&amp;&amp;</code></a></td>
+<td style="text-align: left;"><strong><code>and</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 14 组优先级，从左到右关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/logical-or-operator-pipe-pipe?view=msvc-170">逻辑或</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/logical-or-operator-pipe-pipe?view=msvc-170"><code>||</code></a></td>
+<td style="text-align: left;"><strong><code>or</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 15 组优先级，从右到左关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/conditional-operator-q?view=msvc-170">条件逻辑</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/conditional-operator-q?view=msvc-170"><code>? :</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">转让</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>=</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">乘法赋值</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>*=</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">除法赋值</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>/=</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">取模赋值</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>%=</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">加法赋值</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>+=</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">减法赋值</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>-=</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">左移赋值</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>&lt;&lt;=</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">右移赋值</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>&gt;&gt;=</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">按位“与”赋值</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>&amp;=</code></a></td>
+<td style="text-align: left;"><strong><code>and_eq</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">按位“与或”赋值</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>|=</code></a></td>
+<td style="text-align: left;"><strong><code>or_eq</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170">按位“异或”赋值</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/assignment-operators?view=msvc-170"><code>^=</code></a></td>
+<td style="text-align: left;"><strong><code>xor_eq</code></strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/try-throw-and-catch-statements-cpp?view=msvc-170">引发表达式</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/try-throw-and-catch-statements-cpp?view=msvc-170"><code>throw</code></a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">第 16 组优先级，从左到右关联</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/cpp/cpp/comma-operator?view=msvc-170">逗号</a></td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="标准库">标准库</h2>
+<h3 id="函数">函数</h3>
+<h4 id="stdswap">std::swap</h4>
+<ul>
+<li><p>对于除了 <code>array</code> 容器之外的所有标准库容器，都可以
+<span class="math inline">\(O(1)\)</span> 交换</p></li>
+<li><p>交换数组的复杂度为 <span
+class="math inline">\(O(size)\)</span>，对二维数组的某一维使用，会将当前行视为一维数组进行交换。</p></li>
+</ul>
+<h4 id="memcpy">memcpy</h4>
+<p><code>memcpy(dst, src, size)</code></p>
+<p>dst:目标数组起始位置</p>
+<p>src:源数组起始位置</p>
+<p>size:需要复制的字节数</p>
+<h4 id="lower_boundupper_bound">lower_bound,upper_bound</h4>
+<p>看下实现吧：</p>
+<ul>
+<li><code>upper_bound</code>
+如果对类使用，那么<strong>类的比较函数需要定义为友元函数</strong>。</li>
+<li><code>lower_bound</code>
+返回第一个大于等于它的位置，<code>upper_bound</code>
+返回第一个大于它的位置，<code>comp</code> 为默认小于号。</li>
+<li>如果要对不增序列操作，那么 <code>comp</code>
+为大于号，<code>lower_bound</code>
+返回第一个小于等于它的位置，<code>upper_bound</code>
+返回第一个小于它的位置。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">lower_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value, Compare comp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ForwardIt it;</span><br><span class="line">    <span class="keyword">typename</span> std::iterator_traits&lt;ForwardIt&gt;::difference_type count, step;</span><br><span class="line">    count = std::<span class="built_in">distance</span>(first, last);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        it = first;</span><br><span class="line">        step = count / <span class="number">2</span>;</span><br><span class="line">        std::<span class="built_in">advance</span>(it, step);</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">comp</span>(*it, value)) &#123;</span><br><span class="line">            first = ++it;</span><br><span class="line">            count -= step + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count = step;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ForwardIt, <span class="keyword">class</span> T, <span class="keyword">class</span> Compare&gt;</span></span><br><span class="line"><span class="function">ForwardIt <span class="title">upper_bound</span><span class="params">(ForwardIt first, ForwardIt last, <span class="type">const</span> T&amp; value, Compare comp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ForwardIt it;</span><br><span class="line">    <span class="keyword">typename</span> std::iterator_traits&lt;ForwardIt&gt;::difference_type count, step;</span><br><span class="line">    count = std::<span class="built_in">distance</span>(first,last);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        it = first; </span><br><span class="line">        step = count / <span class="number">2</span>;</span><br><span class="line">        std::<span class="built_in">advance</span>(it, step);</span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">comp</span>(value, *it)) &#123;</span><br><span class="line">            first = ++it;</span><br><span class="line">            count -= step + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            count = step;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> first;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="atan2">atan2</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">atan2</span><span class="params">(<span class="type">double</span> x,<span class="type">double</span> y)</span></span>&#123;</span><br><span class="line">    <span class="comment">//返回 [actan(y/x)],[-Pi,Pi)</span></span><br><span class="line">    <span class="comment">//计算几何的神，怎么神就不用说了吧。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="for_eachbeginendfun">for_each(begin,end,fun)</h4>
+<p>对 begin 到 end 区间的每一个元素 x，执行 fun(x)。</p>
+<p>如果需要传参，可以利用类的构造函数。</p>
+<p>即给类重载一个 <code>()</code> 运算，然后构造输出。</p>
+<h4 id="accumulatebeginendstart">accumulate(begin,end,start)</h4>
+<p>对 <code>begin end</code> 区间运用 <code>+</code> 操作，起始为
+<code>start</code>。</p>
+<p>效率不开 <span class="math inline">\(O2\)</span>
+时略高于循环，开了没差别。</p>
+<h4 id="countbeginendval">count(begin,end,val)</h4>
+<p>返回 <code>begin end</code> 中 <code>==val</code> 的数的个数。</p>
+<p>开了 <span class="math inline">\(O2\)</span> 效率和循环没差别。</p>
+<h2 id="结构体">结构体</h2>
+<p>一般来说 <code>class</code> 和 <code>struct</code>
+竞赛上差别不大，<code>struct</code> 是默认 <code>public</code> 的
+<code>class</code>。</p>
+<h3 id="重载括号">重载括号</h3>
+<p>重载小括号运算符可以让你把结构体当函数用，其实本质上少写了一个
+<code>.&#123;function name&#125;</code>。</p>
+<p>它和构造函数不冲突。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett1</span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> m,im;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">operator</span> <span class="params">()</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		ULL z=(ULL)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;bt1;</span><br><span class="line"><span class="type">int</span> a=<span class="number">1</span>,b=<span class="number">1</span>;</span><br><span class="line"><span class="type">int</span> c=<span class="built_in">bt1</span>(a,b);</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">barrett2</span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> m,im;</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">foo</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">		ULL z=(ULL)a*b;</span><br><span class="line">		<span class="type">int</span> v=z-((__int128)z*im&gt;&gt;<span class="number">64</span>)*m;</span><br><span class="line">		<span class="keyword">return</span> v&lt;<span class="number">0</span>?v+m:v;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;bt2;</span><br><span class="line">c=bt<span class="number">2.f</span>oo(a,b);</span><br></pre></td></tr></table></figure>
+<p>两者没有本质区别。</p>
+<p>中括号可以重载，一般来说，重载中括号返回的是一个引用，中扩号只接受一个参数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">array_2d</span>&#123;</span><br><span class="line">	<span class="type">int</span> a[<span class="number">10005</span>],b[<span class="number">10005</span>];</span><br><span class="line">    <span class="type">int</span> n,m;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> nn,<span class="type">int</span> mm)</span></span>&#123;</span><br><span class="line">    	n=nn,m=mm;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="type">int</span>&amp; <span class="keyword">operator</span>[](<span class="type">int</span> x)&#123;</span><br><span class="line">		<span class="keyword">return</span> a[x];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;a;</span><br><span class="line">a.<span class="built_in">init</span>(<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line">a[<span class="number">3</span>]=<span class="number">1</span>;a.b[<span class="number">4</span>]=<span class="number">2</span>;</span><br><span class="line">a[<span class="number">4</span>]=<span class="number">4</span>;</span><br><span class="line">cout&lt;&lt;a[<span class="number">4</span>]&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;a[<span class="number">3</span>]&lt;&lt;<span class="string">&#x27; &#x27;</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<h3 id="构造">构造</h3>
+<p>结构体的构造函数可以返回一个结构体实例，也可以允许在声明结构体的时候同时构造。</p>
+<p>举个例子</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line"><span class="comment">// st t3; 这句会 CE</span></span><br></pre></td></tr></table></figure>
+<p>这两种写法都行，<strong>注意不能变量重名</strong>，不会
+<code>CE</code>，但是函数参数里会那个名字会覆盖掉全局的。</p>
+<p>注意写了构造函数，所有的构造都必须带参数。</p>
+<p>定义结构体的时候还可以给变量赋初值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line"><span class="comment">// t1.str=&quot;str&quot;,t1.b=3</span></span><br><span class="line"><span class="comment">// t2.str=&quot;str&quot;,t2.b=3</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>但是如果构造函数里写了，就会被覆盖。声明的局部变量写了的初值会固定，没写的初值就随机。</p>
+<p>如果没写构造函数，那么会有一个默认的列表构造函数，按照结构体内声明变量的顺序将列表中的每一个值依次赋给对应变量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=st&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="string">&#x27;huan_yp&#x27;</span>&#125;;</span><br><span class="line">st t2&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="string">&quot;huan_yp&quot;</span>&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>其实构造函数还有另一种写法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb): <span class="built_in">a</span>(aa), <span class="built_in">b</span>(bb) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=<span class="built_in">st</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="function">st <span class="title">t2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>和最开始的写法是等效的。</p>
+<p><strong>注意，如果写了构造函数，默认的列表构造函数会调用它，所以如果你想不同参数个数构造，需要填默认参数</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b;string str;</span><br><span class="line">    <span class="built_in">st</span>() :<span class="built_in">a</span>(), <span class="built_in">b</span>(), <span class="built_in">str</span>()&#123;&#125;</span><br><span class="line">    <span class="comment">//如果没有这一行，下面的第一个构造会 CE</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">	<span class="built_in">st</span>(<span class="type">int</span> aa, <span class="type">int</span> bb,string cc) :<span class="built_in">a</span>(aa), <span class="built_in">b</span>(bb), <span class="built_in">str</span>(cc)&#123;&#125;</span><br><span class="line"><span class="comment">//    st() :a(), b(), str() &#123;&#125;</span></span><br><span class="line"><span class="comment">//    st(int aa,int bb): a(aa), b(bb) &#123;&#125;</span></span><br><span class="line">&#125;;</span><br><span class="line">st t1;</span><br><span class="line">t1=&#123;<span class="number">2</span>,<span class="number">3</span>,<span class="string">&quot;str&quot;</span>&#125;;</span><br><span class="line">t1=&#123;<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">//最后一行会 CE</span></span><br></pre></td></tr></table></figure>
+<p>列表构造式还可以自推导。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">st</span>&#123;</span><br><span class="line">    <span class="type">int</span> a,b=<span class="number">1</span>;string str=<span class="string">&quot;str&quot;</span>;</span><br><span class="line">    <span class="built_in">st</span>(<span class="type">int</span> aa,<span class="type">int</span> bb)&#123;</span><br><span class="line">        a=aa;</span><br><span class="line">        b=bb;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">st t1=&#123;<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">t1=&#123;<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line"><span class="comment">//t1(2,3)</span></span><br><span class="line"><span class="comment">//括号式式不能自推导的，这个的含义参考第一条。</span></span><br></pre></td></tr></table></figure>
+<h2 id="语法概念">语法概念</h2>
+<h3 id="运算优先级">运算优先级</h3>
+<p>容易出问题的是几个位运算。</p>
+<p>永远记住，位运算除了左右移位外，优先级<strong>低于比较操作。</strong></p>
+<p><strong>比较操作之间，等于和不等的优先级低于大于小于。</strong></p>
+<h3 id="引用">引用</h3>
+<p>引用可以认为是一个<strong>隐式指针</strong>，不需要 <code>*</code>
+的修饰便可以直接访问内容。它既然是一个指针，自然会占用一个
+<code>long</code> 的空间。</p>
+<h4 id="定义返回一个引用">定义，返回一个引用</h4>
+<p>可以在函数中返回一个引用，只需要在函数名前面后加一个
+<code>&amp;</code>，定义引用也在变量名加一个
+<code>&amp;</code>，和指针类似。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> &amp;<span class="title">setValues</span><span class="params">(<span class="type">int</span> i)</span> </span>&#123;  </span><br><span class="line">   <span class="type">double</span> &amp;ref = vals[i];    </span><br><span class="line">   <span class="keyword">return</span> ref;   <span class="comment">// 返回第 i 个元素的引用，ref 是一个引用变量，ref 引用 vals[i]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义引用的示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n=<span class="number">0</span>,m=<span class="number">0</span>;</span><br><span class="line"><span class="type">int</span>&amp; nn=n,mm=m;</span><br><span class="line">n=<span class="number">10</span>,m=<span class="number">20</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;n,m:%d,%d\n&quot;</span>,n,m);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;nn,mm:%d,%d\n&quot;</span>,nn,mm); </span><br><span class="line"><span class="comment">//输出:</span></span><br><span class="line"><span class="comment">//10,20</span></span><br><span class="line"><span class="comment">//10,0</span></span><br></pre></td></tr></table></figure>
+<p>在重载结构体 <code>+=,=</code> 运算符号的时候比较常用。</p>
+<p>引用传参应该已经很熟悉了吧。</p>
+<h4 id="左值引用和右值引用">左值引用和右值引用</h4>
+<p><code>C++11</code> 新概念。<a
+target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2011/12/15/understanding-lvalues-and-rvalues-in-c-and-c">参考阅读</a></p>
+<p>一般的，使用引用传参时，如果接受的参数为右值，那么不能修改右值，参数必须声明为
+<code>const</code> 类型。</p>
+<p>算了，先咕咕咕了吧。</p>
+<h2 id="模板">模板</h2>
+<p>如果用的不好，容易出现找不到实现的问题。</p>
+<p>一个原则：所有东西的类型必须在使用前就得知。</p>
+<h3 id="类模板">类模板</h3>
+<p>继承的时候需要写明父类的类型参数，如果子类也是模板类，可以用子类的类型模板参数作为父类的类型模板参数。</p>
+<h3 id="函数模板">函数模板</h3>
+<p>函数模板是可以自动推导类型的，如果出现类型冲突，那么会报
+<code>CE</code>。</p>
+<p>常见例子是 <code>std::max(1,1ll)</code> 报错。</p>
+<p>注意字面量的类型。</p>
+<p>指定模板参数可以仅指定一段前缀，剩下的采用自动推导。</p>
+<h3 id="多文件的一些问题">多文件的一些问题</h3>
+<h4 id="按惯例编写的问题">按惯例编写的问题</h4>
+<p>通常情况下，你会在 .h
+文件中声明函数和类，而将它们的定义放置在一个单独的 .cpp
+文件中。但是在使用模板时，这种习惯性做法将变得不再有用，因为当实例化一个模板时，编译器必须看到模板确切的定义，而不仅仅是它的声明。</p>
+<h4 id="定义和声明一起写">定义和声明一起写</h4>
+<p>可以将模板的声明和定义都放置在同一个 .h 文件中。这就是为什么所有的
+STL 头文件都包含模板定义的原因。</p>
+<p>习惯来说，一般把这种包含定义的头文件后缀名写为
+<code>.hpp</code>。</p>
+<h4 id="使用-export">使用 export</h4>
+<p>咕咕咕</p>
+<h2 id="static-关键字">Static 关键字</h2>
+<p>声明一个静态的东西，可以用来避免命名冲突，也可以用来更好的实现一个类。</p>
+<p>Static
+关键字声明的东西生命周期是整个程序的生命周期，但作用域仅限定为声明处的作用域。</p>
+<p>举个例子，某个函数的执行过程和它被调用的次数有关，这个可以弄个全局变量记一个次数，但是我们也可以在它的内部写个
+static 变量记录，这样就不会与外部空间变量名冲突。</p>
+<p>所有静态变量的初始值为 0</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> cnt=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">static</span> <span class="type">int</span> cnt;</span><br><span class="line">	cout&lt;&lt;++cnt&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">fun</span>();cnt=<span class="number">10</span>;</span><br><span class="line">cout&lt;&lt;cnt&lt;&lt;endl;</span><br><span class="line"><span class="built_in">fun</span>();<span class="built_in">fun</span>();cnt++;<span class="built_in">fun</span>();</span><br></pre></td></tr></table></figure>
+<p>也可以用静态成员来维护一个类，比如写链表的时候，我们通常要先写个 node
+类，然后才能实现 list 类，但我们可以直接将 head
+指针作为一个静态变量放入结构体中，这样，这个静态变量就可以被所有结构体的实例访问修改。</p>
+<p><strong>注意，如果需要两个链表，那种这种方式是不可取的，因为静态变量
+head 对所有该结构体的实例来说都只有一个。</strong></p>
+<p>我们当然也可以声明静态成员函数。</p>
+<p>对于结构体的静态资源，我们可以用 {结构体名}.{成员名} 来访问。</p>
+<h2 id="函数匿名函数">函数，匿名函数</h2>
+<p>C++
+的函数名，本质上是一个指向某个函数的指针，函数在二进制层面和数据没有差异。</p>
+<p>functor (一般译为算子)，也可以调用，但它是一个对象。</p>
+<h4 id="函数类">函数类</h4>
+<p>C++
+的函数可以当作一个对象处理的，<strong>函数名是指向该对象的指针</strong>，比如说：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;x++;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">del</span><span class="params">(<span class="type">int</span> &amp;x)</span></span>&#123;x--;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">doit</span><span class="params">(<span class="type">int</span> &amp;x,function&lt;<span class="type">void</span>(<span class="type">int</span>&amp;)&gt; f)</span></span>&#123;(x);&#125;</span><br><span class="line">n=<span class="number">10</span>;<span class="built_in">doit</span>(n,del);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,n);</span><br><span class="line">n=<span class="number">20</span>;<span class="built_in">doit</span>(n,add);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,n);</span><br></pre></td></tr></table></figure>
+<h4 id="匿名函数">匿名函数</h4>
+<p>格式：<code>["捕获列表"]("参数列表")-&gt;"返回类型"&#123;"函数体"&#125;</code></p>
+<p>捕获列表指的捕获局部变量，在函数中可以使用和修改。</p>
+<p>参数列表无参数时可以省略，返回值如果不指定则会自动推导。</p>
+<p>捕获列表不可省略，[] 为强制不捕获，[&amp;] 为引用捕获全部，[=]
+为取值捕获全部，也可以用变量名 [x,&amp;y] 取值捕获 x，引用捕获 y。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sort</span>(v.<span class="built_in">begin</span>(),v.<span class="built_in">end</span>(),[](<span class="type">const</span> <span class="type">int</span> &amp;x,<span class="type">const</span> <span class="type">int</span> &amp;y)&#123;<span class="keyword">return</span> x&gt;y;&#125;); <span class="comment">//降序排序</span></span><br></pre></td></tr></table></figure>
+<p>匿名函数也可以作为一个对象处理。</p>
+<h4 id="虚函数">虚函数</h4>
+<p>这个东西自己写的时候用的比较少，毕竟不太注重面向对象，</p>
+<p>这玩意和 <code>Python</code> 的 <code>abstract_method</code>
+类似，我也不知道怎么解释，反正会用就够了。</p>
+<p>竞赛中应用的话，可以用来重写 <code>pd_ds</code>
+里面的平衡树，但是真的用的很少。</p>
+<h2 id="语法糖">语法糖</h2>
+<h3 id="函数相关">函数相关</h3>
+<h4 id="返回值为-void-的函数">返回值为 void 的函数</h4>
+<p>你是否碰到过这样的情况，函数返回值为
+void，但是返回又是有条件，并且还需要执行一些简单的操作，用
+<code>&#123;&#125;</code> 括起来显得代码冗长，不妨试试：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">do_cool_thing</span><span class="params">(<span class="type">int</span> arg)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(some_condition) <span class="keyword">return</span> <span class="built_in">void</span>(a_simple_expression);</span><br><span class="line">    <span class="built_in">do_cool_thing</span>(arg);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">do_cool_thing</span><span class="params">(<span class="type">int</span> arg)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(some_condition) <span class="keyword">return</span> <span class="built_in">void</span>(ans++);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="有返回值的函数">有返回值的函数</h4>
+<p><code>,</code> 可以用在 return
+语句，会返回最后一个值，当然也可以用在其它 <code>Case</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">get_v</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">3</span>,<span class="number">5</span>;<span class="comment">// return value is 5</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">new_node</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a[++t]=node&#123;<span class="built_in">mt_rand</span>(), <span class="number">1</span>, x, <span class="number">0</span>, <span class="number">0</span>&#125;, t;</span><br><span class="line">    <span class="comment">//can you guess what it do and when we use it?</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="列表初始化器">列表初始化器</h3>
+<p>这东西说白了就是 <code>&#123;1,2,3,4,5&#125;</code>
+这种，注意区分类成员初始化器，后者可以多类型，前者只能单类型。</p>
+<h4 id="循环">循环</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> v:&#123;<span class="number">0</span>,<span class="number">1</span>&#125;)&#123;</span><br><span class="line">	<span class="built_in">do_cool_thing</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>分支更少，效率更高，代码更优美！</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
