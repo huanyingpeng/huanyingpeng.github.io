@@ -33,6 +33,43 @@
 ]]></content>
   </entry>
   <entry>
+    <title>折腾 vmware</title>
+    <url>/2025/03/01/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/%E6%8A%98%E8%85%BE%20vmware/</url>
+    <content><![CDATA[<p>折腾 vmware</p>
+<p>ubuntu24.04 环境。</p>
+<h3 id="config-apt-source">config apt source</h3>
+<p>打开 <code>/etc/apt/source.list.d/ubuntu.sources</code>，在
+<code>URIs</code> 一项中，<code>http://archive.ub....</code> 前面加上
+<code>.cn</code>，也就是 <code>https://cn.archive.ub....</code>。</p>
+<p>第二项那个 <code>security</code> 不用改。</p>
+<h3 id="vmware-tools">vmware tools</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo su</span><br><span class="line">apt-get update</span><br><span class="line">apt-get install open-vm-tools</span><br><span class="line">apt-get install open-vm-tools-desktop</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<h3 id="重安装的网络问题">重安装的网络问题</h3>
+<p>重新安装 vmware 时，可能会遇到以下问题：</p>
+<ul>
+<li>安装程序在 "配置网络驱动" 时卡死</li>
+<li>安装后客户机死活连不上网。</li>
+</ul>
+<p>这是由于卸载时没有删除注册表导致的，解决方案（<a
+href="https://blog.csdn.net/weixin_44188424/article/details/123402985">参考</a>）如下：</p>
+<ul>
+<li>在下载的软件中翻一翻，找到 "注册表"</li>
+<li>一键扫描然后修复。</li>
+<li>vmware 点 "编辑"，"虚拟网络编辑器"，还原默认设置。</li>
+</ul>
+<h3 id="输入法">输入法</h3>
+<p>百度输入法很靠谱，它甚至附带了安装说明。</p>
+<p><a
+href="https://srf.baidu.com/site/guanwang_linux/index.html">百度输入法</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>虚拟化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>EM 算法</title>
     <url>/2025/02/24/%E5%AD%A6%E6%9C%AF/EM%20%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h2 id="先验概率-vs-后验概率">先验概率 VS 后验概率</h2>

@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">104</span>
+          <span class="site-state-item-count">105</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-count">47</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,142 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/28/%E7%A7%91%E6%99%AE/%E6%B5%85%E8%B0%88%E4%B8%80%E7%AC%94%E7%94%BB%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/28/%E7%A7%91%E6%99%AE/%E6%B5%85%E8%B0%88%E4%B8%80%E7%AC%94%E7%94%BB%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">浅谈一笔画问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-28 23:42:55" itemprop="dateCreated datePublished" datetime="2022-07-28T23:42:55+08:00">2022-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:48:25" itemprop="dateModified" datetime="2025-02-16T17:48:25+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">学术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="qq-群一笔画问题">QQ 群一笔画问题</h2>
+<p><strong>Author:Huan_yp</strong></p>
+<p>一笔画问题，即给定一张无向图 <span
+class="math inline">\(G(V,E)\)</span>，每个点的度数均为偶数或者<strong>仅有</strong>两个点度数为奇数，需要求出一条不重复经过边的路径，遍历所有的边。</p>
+<p>由于在算法竞赛中，这个问题是简单的，这里只讨论在 QQ
+群一笔画中，快速解决问题的方式。</p>
+<h3 id="归纳构造法证明">归纳构造法证明</h3>
+<p>已知给定图为一笔画图，故一定满足每个点的度数均为偶数或者<strong>仅有</strong>两个点度数为奇数，并且图联通，若存在两个点度数为奇数，则从其中一个点开始，否则可以从任意点开始。</p>
+<p>执行以下过程。</p>
+<ul>
+<li>在当前节点任意找一条边，如果可以找到，则重复此过程。</li>
+<li>如果无法找到：
+<ul>
+<li>图已经被遍历，结束，得到保存的路径。</li>
+<li>该点度数为 <span
+class="math inline">\(0\)</span>，所以一定回到了起点或者到了终点。记录并删除该路径中所有边，并回溯到上一个存在出度的点，<strong>可以证明一定存在这样的点，否则图不连通</strong>。该点的度数一定为偶数，对该点进行上述过程，得到一条<strong>首尾相接</strong>的路径，插入到原路径，得到完整的欧拉（回）路。</li>
+</ul></li>
+<li>容易发现，这样的过程将图遍历了一遍，所以最后得到的是完整的欧拉路径。</li>
+</ul>
+<p>代码实现比较简单，只需要使用栈在退出时记录当前节点，得到的，从栈顶到栈底，就是一条完整的欧拉路径。</p>
+<p>下面是一个例子：</p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/4oaujupz.png" /></p>
+<p>按 <span class="math inline">\(1-&gt;2-&gt;5\)</span> 走，<span
+class="math inline">\(5\)</span> 处无路可走，回到 <span
+class="math inline">\(2\)</span>，记录一条路径 <span
+class="math inline">\(2-&gt;5\)</span>，从 <span
+class="math inline">\(2\)</span> 继续走 <span
+class="math inline">\(2-&gt;3-&gt;4-&gt;2\)</span>，回到了，插入原路径变为
+<span
+class="math inline">\(1-&gt;2-&gt;3-&gt;4-&gt;2-&gt;5\)</span>。</p>
+<h3 id="正确的操作方式">正确的操作方式</h3>
+<p>由于找边的耗时比较长，我们需要尽可能少的找边。</p>
+<ul>
+<li>如果有 API
+可以读取边的情况，那么直接做一遍上述过程即可得到答案。</li>
+<li>如果不存在对应的
+API，我们直接进行上诉操作，可以拿一个程序记录已经走过的点和边并提示路径。</li>
+<li>如果图不为欧拉回路，则存在死路，判断方式比较简单，当前点是否为起始点，如果死路位于起始点，直接进行路径回溯操作，即步骤二。否则撤销所有操作，从当前节点开始逆向进行已经进行过的操作。</li>
+</ul>
+<p>这样单纯的找边的次数恰好为 m 次，即边数。</p>
+<p>回溯和走边的操作总和不会超过 2m。</p>
+<h3 id="平均执行次数">平均执行次数</h3>
+<p>考虑图为随机生成，期望的行走次数，感觉是 polylog
+级别，但是我不会证明。</p>
+<h4 id="蒙特卡洛模拟">蒙特卡洛模拟</h4>
+<p>咕咕咕，没时间写代码。</p>
+<p>采用蒙特卡洛模拟算法对该结论进行验证</p>
+<h4 id="严谨数学证明">严谨数学证明</h4>
+<p>咕咕咕。</p>
+<p>也许可以考虑每条边回溯次数期望 <span
+class="math inline">\(e_{u,v}\)</span>。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2029,92 +2165,6 @@ cache 里的了, 不执行第二次.</p>
 这一类网络请求函数</h2>
 <p>Request 爬虫的时代已经过去了, 现在用 selenium 吧.</p>
 <p>当然如果直接最简单的 Request 没出问题也不妨试试.</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/12/%E6%8A%80%E6%9C%AF/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">一些有用的命令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-12 16:24:19" itemprop="dateCreated datePublished" datetime="2022-07-12T16:24:19+08:00">2022-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:47:52" itemprop="dateModified" datetime="2025-02-16T17:47:52+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="设置-pip-默认下载源">设置 pip 默认下载源</h4>
-<p><code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
 
       
     </div>

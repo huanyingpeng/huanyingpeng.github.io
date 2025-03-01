@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">104</span>
+          <span class="site-state-item-count">105</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-count">47</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,116 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/04/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0930%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/04/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0930%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20220930总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-04 20:09:27" itemprop="dateCreated datePublished" datetime="2022-10-04T20:09:27+08:00">2022-10-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:21:40" itemprop="dateModified" datetime="2025-02-16T20:21:40+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="某场考试总结oi-中的解析几何">某场考试总结&amp;&amp;OI
+中的解析几何</h2>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0128">考试</a></p>
+<p>有人几何学的很差，考场上还非要写。</p>
+<h3 id="t1">T1</h3>
+<p>exchange-argument，已经是咱非常了解的题目啦啦啦。</p>
+<p><a
+href="https://huanyp.cn/2022/08/02/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/">Ex-Ar</a></p>
+<h3 id="t2">T2</h3>
+<p>套路题，二分然后最短路</p>
+<h3 id="t3">T3</h3>
+<p>对这种题还是比较熟悉了，不好处理的区间问题分类讨论变偏序，二维偏序解决区间交，贡献独立的情况，李超树搞定贡献分离的情况。</p>
+<p>当然可以 CDQ 然后凸包上二分，但是我觉得我更擅长一般的数据结构。</p>
+<h3 id="t4">T4</h3>
+<p>我.... 不会解析几何。/ll /ll。</p>
+<p>办法其实非常蠢，一条可行的最短路一定经过圆弧交点，且只会在这些交点拐弯。</p>
+<p>所以求出所有交点，然后判断交点两两路径是否合法，连边跑最短路。</p>
+<p>可行的交点其实不多，得判掉在圆内的点，然后剩下点的个数感觉上是 <span
+class="math inline">\(O(n)\)</span> 的，实际也是 <span
+class="math inline">\(O(n)\)</span>
+的，证明我不会，等问数学竞赛的回来再补。</p>
+<p>然后判合法本质上是判一条路径是否被覆盖，需要写线圆交，然后前面要写圆圆交，这玩意不是一次函数，会非常裂开，我写的很丑。</p>
+<p>圆圆交直径相同，比较好办，用极坐标可以偷懒，线圆交相当折磨。</p>
+<p>见 <a
+href="https://huanyp.cn/2022/10/04/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/">计算几何入门</a>。</p>
+<p>用向量写会相当舒适。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1244,122 +1354,6 @@ class="math inline">\(\log\)</span> 个链来做。</p>
 <p>其实有个更简易的方式，就是把修改看成染色，一条边有贡献当且仅当其两个端点颜色相同，这个很容易用树剖维护。</p>
 <p>这两种方式其实体现出处理边的两种方式——下放到点考虑，考虑两个端点的状态。</p>
 <p>需要灵活运用这两种方式解题。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/09/05/%E7%94%9F%E6%B4%BB/%E9%9A%8F%E8%AE%B020220904/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/05/%E7%94%9F%E6%B4%BB/%E9%9A%8F%E8%AE%B020220904/" class="post-title-link" itemprop="url">随记20220904</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-09-05 00:22:54" itemprop="dateCreated datePublished" datetime="2022-09-05T00:22:54+08:00">2022-09-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:49:01" itemprop="dateModified" datetime="2025-02-16T17:49:01+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="随记20220904">随记20220904</h2>
-<p>双膝折叠，跪坐在算不上柔软的沙发上，两臂枕在凸起的窗沿。我有些懒散的将下巴靠在小臂，又竭力不让窗沿压迫小臂，以免有些脆弱敏感的手部神经受到刺激，<span
-class="math inline">\(P=\frac{F}{S}\)</span>，一个非常优美的公式。我开始估算手臂和窗沿的接触面积，我脑袋的半径，以便带入人体平均密度计算出手部受到的压强相当于几个大气压。</p>
-<p>不得不说，物理和数学公式都是优美的，只需要用上统一的几个名字，就能尽情将身边的一切等效。或者说，公式本身不够优美，但是人们设计的物理单位是那么的精巧，避免了那些繁杂的常量，一些无比熟悉的数字又飞入脑海，<span
-class="math inline">\(e\approx2.718\)</span>,<span
-class="math inline">\(\pi\approx3.1415927,G\approx6.67\times
-10^{-11}m^3kg^{-1}s^{-2}\cdots\)</span>。</p>
-<p>将越跑越远的联想收回来，生活不是科学，生活不需要那些能精确到小数点后几十几百位的数字。生活的美感，是一种无法用任何数学语言描述的美感。</p>
-<p>陶渊明的 “采菊东篱下，悠然见南山”，带来田园的悠然自得。</p>
-<p>王维的 “大漠孤烟直，长河落日圆”，给出荒凉的独特答案。</p>
-<p>马致远的
-“枯藤老树昏鸦，小桥流水人家，古道西风瘦马。”，留下秋日的那份伤感。</p>
-<p>但我只是一个平常的理科生，对感性的语文并不敏感，但窗外的宁静，也足以让我有感写下一些拙劣幼稚的文字。</p>
-<p>我不知道今年的干旱具体给天府之国带来了多大的影响，但是从居民区的停电和学校的被迫放假还是能够管中窥豹。刚回到学校没多久，COVID
-就横扫四川所有中学，没有一所逃过延迟开学的结局，即使是强硬如某校，也只不过多坚持了半天，就匆匆将神兽们赶了回去——就在高温假结束后的
-2 天。</p>
-<p>所以我就在这个时候，趴在了窗前，半夜的街道很冷清，只能听见百草路地铁口
-“握紧扶手，注意脚下” 的提醒。目光向上
-90度，我甚至能分辨出夜空中的云朵，它们和蓝色的天空还有一丝界限，但其实都很暗，它们一起向目光尽头的高楼收敛。如果你想具体的体会一下，你可以打开
-<code>mspaint</code>，天的颜色是 <code>0 60 85</code>，云的颜色是
-<code>212 212 212</code>，而它们收敛向 <code>69 24 34</code>。RGB
-空间还是很无力，区区 3Byte
-无法描绘出世界上的，甚至无法描绘出人肉眼可以分辨的所有颜色。</p>
-<p>黯淡的云朵没有动作，视野的右侧有一颗明亮的光点，它是星星。按照不知道从哪里得知的观星技巧，我快速的扫过窗口狭小的天空，又有数十的光点在视野中闪过，但我尝试正眼捕捉，它们又藏入了深色的天空，像是一个个纯黑背景下的白色像素点，于缩放后在显存中被彻底删除，我再也找不到它们。即使有着凹透镜的帮助，变形略显严重的晶状体也失去了精确的将波长仅有
-<span class="math inline">\(300-500nm\)</span>
-的可见光折射到每一个感光细胞的能力。</p>
-<p>一段时间的沉寂后，波浪状的云遮住了唯一那颗被轻易捕捉到的星星，视野渐渐下移，移过
-“立德树人”
-四个大字，是熟悉的水泥路。很突然，沥青从路面翻起，回到工人的铲子，回到工程车辆，回到工厂，最后在分馏器中重新变成原油，再顺着磕头机的管道流入地底。远处的高楼被荒芜的草地替换，眼前的工地，正热火朝天。。。</p>
-<p>又重归沉寂，只有略冷的风打在脸上，我看了看最近都在 1.5km
-之外的高楼，并细细感受周遭的气温，思考着这股风的来历，但已经有些陌生的地理和物理知识不再能闪着光告诉我答案。</p>
-<p><code>shutdown -f</code>，我告诉大脑，但又用留在海马体里的数据恢复了这段文字，像是被设置了关机命令为休眠的计算机。</p>
 
       
     </div>
