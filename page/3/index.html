@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-count">106</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">48</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,168 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2023/01/30/OI/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%88%97%E5%8F%98%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/01/30/OI/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%88%97%E5%8F%98%E6%8D%A2/" class="post-title-link" itemprop="url">排列变换</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-01-30 21:40:34" itemprop="dateCreated datePublished" datetime="2023-01-30T21:40:34+08:00">2023-01-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:55:38" itemprop="dateModified" datetime="2025-02-16T17:55:38+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="常见排列变换">常见排列变换</h2>
+<h3 id="循环">循环</h3>
+<p>我习惯将循环的顺序定义为正向，即循环 <span
+class="math inline">\(1,2,3,4\)</span> 对应的排列为 <span
+class="math inline">\(2,3,4,1\)</span>。更加数学化的表达，<span
+class="math inline">\(p\)</span> 的循环 <span
+class="math inline">\(a_1,a_2\cdots a_k\)</span> 表示 <span
+class="math inline">\(p_{a_1}=a_2,p_{a_2}=a_3\cdots
+p_{a_k}=a_1\)</span>。</p>
+<h3 id="求逆">求逆</h3>
+<p>定义一个排列 <span class="math inline">\(p\)</span> 的逆排列 <span
+class="math inline">\(q\)</span> 满足 <span
+class="math inline">\(p_{q_i}=i\)</span>，通俗的讲，<span
+class="math inline">\(q_i\)</span> 表示 <span
+class="math inline">\(p\)</span> 中元素 <span
+class="math inline">\(i\)</span> 的位置，<span
+class="math inline">\(q\)</span> 一般记作 <span
+class="math inline">\(p&#39;\)</span> 或 <span
+class="math inline">\(p^{-1}\)</span>。</p>
+<p>有性质 <span
+class="math inline">\(p&#39;&#39;=p\)</span>。证明是简单的，<span
+class="math inline">\(p_{p&#39;_i}=i,p&#39;_{p&#39;&#39;_i}=i\)</span>，所以
+<span
+class="math inline">\(p_{p&#39;_{p&#39;&#39;_i}}=p&#39;&#39;_i\)</span>，又有
+<span class="math inline">\(p&#39;_{p&#39;&#39;_i}=i\)</span>，所以
+<span class="math inline">\(p_i=p&#39;&#39;_i\)</span>。</p>
+<p>在排列循环中，求逆的等价于将边反向，以上性质也就不证自明了。</p>
+<h3 id="置换和乘法">置换和乘法</h3>
+<p>定义两个排列的乘法 <span class="math inline">\(c=a\cdot
+b,c_i=a_{b_i}\)</span>。</p>
+以置换的方式定义 $$
+<span class="math display">\[\begin{pmatrix}1,2\cdots n\\c_1,c_2\cdots
+c_n\end{pmatrix}\]</span>
+<p>=</p>
+<span class="math display">\[\begin{pmatrix}1,2\cdots n\\b_1,b_2\cdots
+b_n\end{pmatrix}\circ\]</span>
+<span class="math display">\[\begin{pmatrix}1,2\cdots n\\a_1,a_2\cdots
+a_n\end{pmatrix}\]</span>
+<p>$$ <span class="math inline">\(a\cdot b\)</span> 等于 <span
+class="math inline">\(a\)</span> 左乘上置换 <span
+class="math inline">\(b\)</span>。</p>
+<h4 id="自乘或次幂">自乘或次幂</h4>
+<p>如果是自乘，那么等价于循环的边移动若干次，<span
+class="math inline">\(b\)</span> 次幂就是将 <span
+class="math inline">\(a_i\)</span> 的边指向 <span
+class="math inline">\(a_{((i+b-1)\bmod k) + 1}\)</span></p>
+<h4 id="非自乘">非自乘</h4>
+<p>对于非自乘，我们研究它的运算律。</p>
+<ul>
+<li><p>没有交换律</p></li>
+<li><p>存在单位元 <span class="math inline">\(e\)</span> 满足 <span
+class="math inline">\(a\cdot e=e\cdot a=a\)</span>。</p></li>
+<li><p>存在结合律</p>
+<ul>
+<li><p>置换的乘法运算存在结合律，被定义为左乘的排列乘法自然具有结合律。</p></li>
+<li><p><span class="math inline">\(a\cdot b\cdot c=c\circ(b\circ
+a)=(c\circ b)\circ a=a\cdot (b\cdot c)\)</span></p></li>
+<li><p>置换乘法的结合律描述为 <span class="math inline">\(a\circ b\circ
+c=a\circ(b\circ c)\)</span>，证明是容易的，此处不再赘述。</p></li>
+</ul></li>
+<li><p>存在逆元</p>
+<ul>
+<li>一个置换 <span class="math inline">\(\begin{pmatrix}1,2\cdots
+n\\a_1,a_2\cdots a_n\end{pmatrix}\)</span> 的逆元显然为 <span
+class="math inline">\(\begin{pmatrix}a_1,a_2\cdots a_n\\1,2\cdots
+n\end{pmatrix}\)</span>，也可以写成 <span
+class="math inline">\(\begin{pmatrix}1,2\cdots
+n\\a&#39;_1,a&#39;_2\cdots a&#39;_n\end{pmatrix}\)</span></li>
+<li>对于 <span class="math inline">\(a\)</span> 置换的逆元 <span
+class="math inline">\(a&#39;\)</span>，容易发现 <span
+class="math inline">\(a&#39;&#39;=a\)</span>，因此 <span
+class="math inline">\(a&#39;\circ a&#39;&#39;=a&#39;\circ
+a=e\)</span></li>
+<li>因此 <span class="math inline">\(a\cdot b\cdot
+b^{-1}=a=b^{-1}\circ(b\circ a)=e\circ a=e\cdot a=a\)</span></li>
+</ul></li>
+</ul>
+<p>​</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1688,120 +1850,6 @@ class="math inline">\(\lceil\log_2{54}\rceil=7\)</span>，考虑构造序列的�
 <p>我将猜测告诉了“小迈”。</p>
 <h4 id="是否真实">是否真实</h4>
 <h4 id="hack-the-world">Hack The World</h4>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/11/15/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1115%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/11/15/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1115%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1115总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-11-15 15:38:42" itemprop="dateCreated datePublished" datetime="2022-11-15T15:38:42+08:00">2022-11-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:22:47" itemprop="dateModified" datetime="2025-02-16T20:22:47+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0154">考试</a></p>
-<h3 id="t1">T1</h3>
-<p>简单题写蠢做法。</p>
-<p>我用了 <span class="math inline">\(set\)</span>
-来维护同一行同一列的信息然后还要查询什么的，实际上 <code>vector</code>
-就可以了，记录一下该点的行下标和列下标。</p>
-<h3 id="t2">T2</h3>
-<p>简单题写挂。</p>
-<p>首先转对照局面。</p>
-<p>想到可以先二分个左时间出来，然后仿超级钢琴。</p>
-<p>实际上可以二分个左时间和右时间暴力排序，码量更小了。</p>
-<p>写挂是排序的各种问题。</p>
-<p>排序，<strong>尤其是对编号排序</strong>，一定要搞清楚排的到底是什么的序。</p>
-<h3 id="t3">T3</h3>
-<p>做不来的趣味题。</p>
-<p>考场上想到可以 <span class="math inline">\(O(n^3)\)</span>
-的动态规划，方法是设 <span class="math inline">\(dp[i][j][k]\)</span>
-表示考虑到 <span class="math inline">\(i\)</span>，漏了 <span
-class="math inline">\(j\)</span> 个 <span
-class="math inline">\(B\)</span>，当前有 <span
-class="math inline">\(k\)</span> 个 <span
-class="math inline">\(A\)</span>，转移可以做到 <span
-class="math inline">\(O(1)\)</span>。</p>
-<p>左看右看都觉得有一维是多余的，但是就是去不掉。</p>
-<p>考虑最终答案的分界线，然后动态规划，就可以去掉一维，但是动态规划变成反向了。</p>
-<p>容易发现转移的重复性很高，相当于是一个行向量乘上若干矩阵再乘一个列向量，可以反过来写。</p>
-<p><strong>考场上没想到反过来写，是因为反过来之后动态规划就没有明晰的组合意义了，所以陷入了正向的窠臼，不容易思考。</strong></p>
-<p>参考<a
-href="https://huanyp.cn/2022/11/02/1101%E6%80%BB%E7%BB%93/">某道题(T2)</a>。</p>
-<h3 id="t4">T4</h3>
 
       
     </div>

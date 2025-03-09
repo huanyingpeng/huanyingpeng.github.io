@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">105</span>
+          <span class="site-state-item-count">106</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">48</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,107 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/26/OI/%E6%AF%94%E8%B5%9B/ABC274/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/26/OI/%E6%AF%94%E8%B5%9B/ABC274/" class="post-title-link" itemprop="url">ABC274</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-26 15:32:41" itemprop="dateCreated datePublished" datetime="2022-10-26T15:32:41+08:00">2022-10-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:50:58" itemprop="dateModified" datetime="2025-02-16T17:50:58+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="f">F</h2>
+<p>不算难但有坑点的题。</p>
+<p>很容易想到可以抓鱼的时间是当且仅当某两条鱼距离为 <span
+class="math inline">\(A\)</span> 时。</p>
+<p>所以考虑左边那条鱼，分别计算右边的鱼是哪一条时可以抓到的最大重量。</p>
+<p>我实现的时候出现了负数时间，但是不能在负数时间抓，故我忽略了负数时间的最大值贡献。</p>
+<p>但是考虑到可能第一个正数时间的事件是某条鱼游出了范围，所以需要修正，要么弄个
+<span
+class="math inline">\(0\)</span>，要么在每个事件发生前取下最值。</p>
+<h2 id="g">G</h2>
+<p>有趣的题。你需要放最小数量的监视器到一个矩阵中，矩阵中有监视器<strong>不能越过</strong>的障碍，每个监视器往上下左右中一个方向看，可以看到自身位置。你需要保证所有非障碍点都被监视。</p>
+<p>最开始想的是假定先放横着的贪心放竖着的，但是不行。</p>
+<p>后面思考了横着和竖着的关系，发现如果将所有的横块看成一个点，竖块看成一个点，那么能构成一张二分图，二分图的每个边就是每个需要监视的点！</p>
+<p>本质上是最小点覆盖问题，可以用网络流解决。</p>
+<p><strong>二维网格图的行和列，和二分图有着紧密的联系，涉及对横边和竖边分别操作时，需要求最小或者最大值，一定要考虑到网络流，数据范围如果在
+<span
+class="math inline">\(100-500\)</span>，那么就更应该思考网络流的方式。</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1380,115 +1481,6 @@ class="math inline">\(\frac{1}{2}\)</span>，所以随机对数个子集判定�
 <p><strong>如果有一个判定问题，某随机算法能以超过 <span
 class="math inline">\(50\%\)</span>
 的概率给出正确的答案，那运行这个算法对数次取众数即可解决问题</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/17/OI/%E6%AF%94%E8%B5%9B/ARC151/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/17/OI/%E6%AF%94%E8%B5%9B/ARC151/" class="post-title-link" itemprop="url">ARC151</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-17 09:00:18" itemprop="dateCreated datePublished" datetime="2022-10-17T09:00:18+08:00">2022-10-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:50:55" itemprop="dateModified" datetime="2025-02-16T17:50:55+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="a">A</h2>
-<p>胡乱想了一通，做出来了。</p>
-<p>形如要求 <span class="math inline">\(f(x)=f(y)\)</span>
-的问题，可以考虑 <span
-class="math inline">\(f(x)-f(y)=D\)</span>，这样就可以考察 <span
-class="math inline">\(x,y\)</span> 独立对 <span
-class="math inline">\(D\)</span> 的贡献了。</p>
-<p>字典序题，从前往后贪心。</p>
-<h2 id="b">B</h2>
-<p>字典序的题，一般的方式是考虑从前往后贪心，考虑前 <span
-class="math inline">\(i\)</span>
-个相等的情况，并查集维护一下前面要求相等的组数，然后就是简单的组合题。</p>
-<p>另外一种特有的方式是考虑字典序小于，和字典序大于是等价的，总方案减掉字典序相等的方案除二即可。</p>
-<h2 id="c">C</h2>
-<p>SG 函数打表，没什么技术含量。</p>
-<h2 id="d">D</h2>
-<p>很有趣的题。</p>
-<p>二进制位相关的题目，刻画一下变换的过程，等价为在图上走。</p>
-<p>然后发现如果 <span class="math inline">\(X_i\)</span>
-相等是好做的。</p>
-<p>我就没啥思路了。</p>
-<p>看一下题解。</p>
-<p>考虑交换两个 <span class="math inline">\(X_i\)</span>
-不同的，发现最终答案不变，因为图上走的过程是等价的，继续选上之前选的边就行。</p>
-<p>然后就做完了。</p>
 
       
     </div>
