@@ -258,13 +258,13 @@ index % time    self  children    called     name
  were internal to the cycle, and the calls entry for each member shows,
  for that member, how many times it was called from other members of
  the cycle.
-
+
 Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 Copying and distribution of this file, with or without modification,
 are permitted in any medium without royalty provided the copyright
 notice and this notice are preserved.
-
+
 Index by function name
 
    [2] NTT(num*, int)          [6] num::num(int, int, int) [9] std::enable_if<std::__and_<std::__not_<std::__is_tuple_like<num> >, std::is_move_constructible<num>, std::is_move_assignable<num> >::value, void>::type std::swap<num>(num&, num&)
