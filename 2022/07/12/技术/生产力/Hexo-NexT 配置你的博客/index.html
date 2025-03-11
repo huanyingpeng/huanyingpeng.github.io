@@ -20,27 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="博客部署 参考 环境 基础  git nodejs &amp;&amp; npm  开工作目录 12345npm install hexo-cli -ghexo init blogcd blognpm installhexo server 工作目录是 blog，记住，这很重要，文件名默认为相对工作目录的名字。 本地预览 工作目录下： 1hexo g &amp;&amp;">
+    <meta name="description" content="参考 环境 基础  git nodejs &amp;&amp; npm  开工作目录 12345npm install hexo-cli -ghexo init blogcd blognpm installhexo server 工作目录是 blog，记住，这很重要，文件名默认为相对工作目录的名字。 本地预览 工作目录下： 1hexo g &amp;&amp; hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo-NexT 安装踩坑记录">
-<meta property="og:url" content="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:title" content="Hexo-NexT 博客部署">
+<meta property="og:url" content="https://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
-<meta property="og:description" content="博客部署 参考 环境 基础  git nodejs &amp;&amp; npm  开工作目录 12345npm install hexo-cli -ghexo init blogcd blognpm installhexo server 工作目录是 blog，记住，这很重要，文件名默认为相对工作目录的名字。 本地预览 工作目录下： 1hexo g &amp;&amp;">
+<meta property="og:description" content="参考 环境 基础  git nodejs &amp;&amp; npm  开工作目录 12345npm install hexo-cli -ghexo init blogcd blognpm installhexo server 工作目录是 blog，记住，这很重要，文件名默认为相对工作目录的名字。 本地预览 工作目录下： 1hexo g &amp;&amp; hexo">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-12T08:22:10.000Z">
-<meta property="article:modified_time" content="2025-03-10T12:55:29.628Z">
+<meta property="article:modified_time" content="2025-03-10T13:09:19.541Z">
 <meta property="article:author" content="huan-yp">
 <meta property="article:tag" content="算法竞赛, 自动化测试, 工程技术, Python">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+<link rel="canonical" href="https://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/","path":"2022/07/12/技术/生产力/Hexo-NexT 配置你的博客/","title":"Hexo-NexT 安装踩坑记录"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/","path":"2022/07/12/技术/生产力/Hexo-NexT 配置你的博客/","title":"Hexo-NexT 博客部署"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hexo-NexT 安装踩坑记录 | 幻影彭的彩虹</title>
+<title>Hexo-NexT 博客部署 | 幻影彭的彩虹</title>
   
 
 
@@ -140,7 +140,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2"><span class="nav-number">1.</span> <span class="nav-text">博客部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.</span> <span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">开工作目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88"><span class="nav-number">1.1.3.</span> <span class="nav-text">本地预览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80-github-pages-%E4%BB%93%E5%BA%93"><span class="nav-number">1.1.4.</span> <span class="nav-text">开 GitHub Pages 仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E6%BA%90%E7%A0%81%E5%88%86%E6%94%AF"><span class="nav-number">1.1.5.</span> <span class="nav-text">配源码分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2"><span class="nav-number">1.1.6.</span> <span class="nav-text">自动部署</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#metadata"><span class="nav-number">1.2.</span> <span class="nav-text">metadata</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">主题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E4%B8%BB%E9%A2%98next"><span class="nav-number">1.3.1.</span> <span class="nav-text">安主题（next）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E4%B8%8A%E8%A6%81%E7%94%A8%E8%BF%99%E4%B8%AA%E4%B8%BB%E9%A2%98"><span class="nav-number">1.3.2.</span> <span class="nav-text">写上要用这个主题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#next"><span class="nav-number">1.4.</span> <span class="nav-text">next</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#menu"><span class="nav-number">1.4.1.</span> <span class="nav-text">menu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#scheme"><span class="nav-number">1.4.2.</span> <span class="nav-text">scheme</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dark"><span class="nav-number">1.4.3.</span> <span class="nav-text">dark</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.5.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%86%E5%A4%87-source-%E5%9B%BE%E7%89%87"><span class="nav-number">1.5.1.</span> <span class="nav-text">准备 source 图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%B9-style"><span class="nav-number">1.5.2.</span> <span class="nav-text">改 style</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5"><span class="nav-number">1.6.</span> <span class="nav-text">友情链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#menu-%E5%8A%A0-link"><span class="nav-number">1.6.1.</span> <span class="nav-text">menu 加 link</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E8%81%94-html"><span class="nav-number">1.6.2.</span> <span class="nav-text">内联 html</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9"><span class="nav-number">1.7.</span> <span class="nav-text">杂项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%AE%E9%A1%B6%E6%96%87%E7%AB%A0"><span class="nav-number">1.7.1.</span> <span class="nav-text">置顶文章</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%98%E5%8F%A0"><span class="nav-number">1.7.2.</span> <span class="nav-text">折叠</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6"><span class="nav-number">1.8.</span> <span class="nav-text">插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E6%8F%92%E4%BB%B6"><span class="nav-number">1.8.1.</span> <span class="nav-text">搜索插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%8F%92%E4%BB%B6"><span class="nav-number">1.8.2.</span> <span class="nav-text">数学插件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.9.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3"><span class="nav-number">1.10.</span> <span class="nav-text">网络相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cname"><span class="nav-number">1.10.1.</span> <span class="nav-text">CNAME</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#seo"><span class="nav-number">1.10.2.</span> <span class="nav-text">SEO</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95"><span class="nav-number">1.2.</span> <span class="nav-text">开工作目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88"><span class="nav-number">1.3.</span> <span class="nav-text">本地预览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80-github-pages-%E4%BB%93%E5%BA%93"><span class="nav-number">1.4.</span> <span class="nav-text">开 GitHub Pages 仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E6%BA%90%E7%A0%81%E5%88%86%E6%94%AF"><span class="nav-number">1.5.</span> <span class="nav-text">配源码分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2"><span class="nav-number">1.6.</span> <span class="nav-text">自动部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#metadata"><span class="nav-number">2.</span> <span class="nav-text">metadata</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E4%B8%BB%E9%A2%98next"><span class="nav-number">3.1.</span> <span class="nav-text">安主题（next）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99%E4%B8%8A%E8%A6%81%E7%94%A8%E8%BF%99%E4%B8%AA%E4%B8%BB%E9%A2%98"><span class="nav-number">3.2.</span> <span class="nav-text">写上要用这个主题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next"><span class="nav-number">4.</span> <span class="nav-text">next</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#menu"><span class="nav-number">4.1.</span> <span class="nav-text">menu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scheme"><span class="nav-number">4.2.</span> <span class="nav-text">scheme</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dark"><span class="nav-number">4.3.</span> <span class="nav-text">dark</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">5.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87-source-%E5%9B%BE%E7%89%87"><span class="nav-number">5.1.</span> <span class="nav-text">准备 source 图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9-style"><span class="nav-number">5.2.</span> <span class="nav-text">改 style</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5"><span class="nav-number">6.</span> <span class="nav-text">友情链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#menu-%E5%8A%A0-link"><span class="nav-number">6.1.</span> <span class="nav-text">menu 加 link</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E8%81%94-html"><span class="nav-number">6.2.</span> <span class="nav-text">内联 html</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9"><span class="nav-number">7.</span> <span class="nav-text">杂项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%AE%E9%A1%B6%E6%96%87%E7%AB%A0"><span class="nav-number">7.1.</span> <span class="nav-text">置顶文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%98%E5%8F%A0"><span class="nav-number">7.2.</span> <span class="nav-text">折叠</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6"><span class="nav-number">8.</span> <span class="nav-text">插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E6%8F%92%E4%BB%B6"><span class="nav-number">8.1.</span> <span class="nav-text">搜索插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%8F%92%E4%BB%B6"><span class="nav-number">8.2.</span> <span class="nav-text">数学插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">9.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3"><span class="nav-number">10.</span> <span class="nav-text">网络相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cname"><span class="nav-number">10.1.</span> <span class="nav-text">CNAME</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#seo"><span class="nav-number">10.2.</span> <span class="nav-text">SEO</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -204,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
@@ -217,12 +217,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hexo-NexT 安装踩坑记录 | 幻影彭的彩虹">
+      <meta itemprop="name" content="Hexo-NexT 博客部署 | 幻影彭的彩虹">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hexo-NexT 安装踩坑记录
+          Hexo-NexT 博客部署
         </h1>
 
         <div class="post-meta-container">
@@ -240,7 +240,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-10 20:55:29" itemprop="dateModified" datetime="2025-03-10T20:55:29+08:00">2025-03-10</time>
+      <time title="修改时间：2025-03-10 21:09:19" itemprop="dateModified" datetime="2025-03-10T21:09:19+08:00">2025-03-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,88 +261,87 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="博客部署">博客部署</h2>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/618864711">参考</a></p>
-<h3 id="环境">环境</h3>
-<h4 id="基础">基础</h4>
+    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/618864711">参考</a></p>
+<h2 id="环境">环境</h2>
+<h3 id="基础">基础</h3>
 <ul>
 <li>git</li>
 <li>nodejs &amp;&amp; npm</li>
 </ul>
-<h4 id="开工作目录">开工作目录</h4>
+<h3 id="开工作目录">开工作目录</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
 <p><strong>工作目录</strong>是
 <code>blog</code>，记住，这很重要，文件名默认为相对工作目录的名字。</p>
-<h4 id="本地预览">本地预览</h4>
+<h3 id="本地预览">本地预览</h3>
 <p>工作目录下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
 <p><code>localhost:4000</code> 上看。</p>
-<h4 id="开-github-pages-仓库">开 GitHub Pages 仓库</h4>
+<h3 id="开-github-pages-仓库">开 GitHub Pages 仓库</h3>
 <p>每个账号只能开一个，仓库名 <code>username.github.io</code>。</p>
-<h4 id="配源码分支">配源码分支</h4>
+<h3 id="配源码分支">配源码分支</h3>
 <p>创仓库的时候把 main 弄下来，源码（不含
 public）放这里，免得被覆盖。</p>
-<h4 id="自动部署">自动部署</h4>
+<h3 id="自动部署">自动部署</h3>
 <p>工作目录下安自动部署工具。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <p><code>_config.yml</code> 末尾加上（记得照着用户名改动）：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line">  <span class="comment"># message: Site updated: &#123;&#123; now(&#x27;YYYY-MM-DD HH:mm:ss&#x27;) &#125;&#125;)</span></span><br></pre></td></tr></table></figure>
 <p>部署：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-<h3 id="metadata">metadata</h3>
+<h2 id="metadata">metadata</h2>
 <p>搜 <code>_config.yml</code> 相关配置项：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">幻影彭的彩虹</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;记录青春的扇区&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">&#x27;算法竞赛, 自动化测试, 工程技术, Python&#x27;</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">huan-yp</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span> <span class="comment"># 必须改</span></span><br><span class="line"></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://huanyp.cn</span></span><br></pre></td></tr></table></figure>
-<h3 id="主题">主题</h3>
-<h4 id="安主题next">安主题（next）</h4>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">幻影彭的彩虹</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;记录青春的扇区&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">&#x27;算法竞赛, 自动化测试, 工程技术, Python&#x27;</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">huan-yp</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span> <span class="comment"># 必须改</span></span><br><span class="line"></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://huanyp.cn</span></span><br></pre></td></tr></table></figure>
+<h2 id="主题">主题</h2>
+<h3 id="安主题next">安主题（next）</h3>
 <p>工作目录下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<h4 id="写上要用这个主题">写上要用这个主题</h4>
+<h3 id="写上要用这个主题">写上要用这个主题</h3>
 <p><code>_config.yml</code> 里，找到 <code>theme</code>，写上
 <code>next</code></p>
-<h3 id="next">next</h3>
+<h2 id="next">next</h2>
 <p>我用 next 主题。</p>
-<h4 id="menu">menu</h4>
+<h3 id="menu">menu</h3>
 <p>配置菜单。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="attr">about:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-archive</span></span><br><span class="line">  <span class="comment"># schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line">  <span class="attr">sitemap:</span> <span class="string">/sitemap.xml</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-sitemap</span></span><br><span class="line">  <span class="attr">commonweal:</span> <span class="string">/404/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-heartbeat</span></span><br></pre></td></tr></table></figure>
-<h4 id="scheme">scheme</h4>
+<h3 id="scheme">scheme</h3>
 <p>在 <code>themes/next/_config.yml</code> 调 scheme，传统的应该选
 <code>Gemini</code>。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment"># scheme: Muse</span></span><br><span class="line"><span class="comment"># scheme: Mist</span></span><br><span class="line"><span class="comment"># scheme: Pisces</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Gemini</span></span><br></pre></td></tr></table></figure>
-<h4 id="dark">dark</h4>
+<h3 id="dark">dark</h3>
 <p>应该没有人喜欢 light，所以调成 dark。</p>
 <p>在 <code>themes/next/_config.yml</code> 调 darkmode。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">darkmode: true</span><br></pre></td></tr></table></figure>
-<h3 id="背景">背景</h3>
+<h2 id="背景">背景</h2>
 <p>一般要加个背景图片什么的</p>
-<h4 id="准备-source-图片">准备 source 图片</h4>
+<h3 id="准备-source-图片">准备 source 图片</h3>
 <p>图片放到 <code>themes/next/source/image/background.jpg</code>
 里。</p>
-<h4 id="改-style">改 style</h4>
+<h3 id="改-style">改 style</h3>
 <p>找到
 <code>themes\next\source\css\_schemes\Gemini\index.styl</code>，加上：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">/images/background-now.jpg</span>);</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-attachment</span>:fixed; //不重复</span><br><span class="line">    <span class="attribute">background-size</span>: cover;      //填充</span><br><span class="line">    <span class="attribute">background-position</span>:<span class="number">50%</span> <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 博客内容透明化</span><br><span class="line">// 文章内容的透明度设置</span><br><span class="line"><span class="selector-class">.content-wrap</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 侧边框的透明度设置</span><br><span class="line"><span class="selector-class">.sidebar</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 菜单栏的透明度设置</span><br><span class="line"><span class="selector-class">.header-inner</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.8</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 搜索框（local-search）的透明度设置</span><br><span class="line"><span class="selector-class">.popup</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//博客内容透明化</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attr">--content-bg-color</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.8</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>那个 [0, 1] 的参数是透明度，自己估摸着调。</p>
-<h3 id="友情链接">友情链接</h3>
-<h4 id="menu-加-link">menu 加 link</h4>
+<h2 id="友情链接">友情链接</h2>
+<h3 id="menu-加-link">menu 加 link</h3>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="string">友情链接:</span> <span class="string">/links/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-link</span></span><br></pre></td></tr></table></figure>
 <p>写中文就行。</p>
-<h4 id="内联-html">内联 html</h4>
+<h3 id="内联-html">内联 html</h3>
 <p>新建 <code>source/links/index.md</code>，写入：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw %&#125;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;post-body&quot;</span>&gt;</span></span></span><br><span class="line">   <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;links&quot;</span>&gt;</span></span></span><br><span class="line"><span class="code">      &lt;style&gt;</span></span><br><span class="line"><span class="code">         .links-content&#123;</span></span><br><span class="line"><span class="code">         margin-top:1rem;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .link-navigation::after &#123;</span></span><br><span class="line"><span class="code">         content: &quot; &quot;;</span></span><br><span class="line"><span class="code">         display: block;</span></span><br><span class="line"><span class="code">         clear: both;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card &#123;</span></span><br><span class="line"><span class="code">         width: 45%;</span></span><br><span class="line"><span class="code">         font-size: 1rem;</span></span><br><span class="line"><span class="code">         padding: 10px 20px;</span></span><br><span class="line"><span class="code">         border-radius: 4px;</span></span><br><span class="line"><span class="code">         transition-duration: 0.15s;</span></span><br><span class="line"><span class="code">         margin-bottom: 1rem;</span></span><br><span class="line"><span class="code">         display:flex;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card:nth-child(odd) &#123;</span></span><br><span class="line"><span class="code">         float: left;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card:nth-child(even) &#123;</span></span><br><span class="line"><span class="code">         float: right;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card:hover &#123;</span></span><br><span class="line"><span class="code">         transform: scale(1.1);</span></span><br><span class="line"><span class="code">         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card a &#123;</span></span><br><span class="line"><span class="code">         border:none;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .ava &#123;</span></span><br><span class="line"><span class="code">         width: 3rem!important;</span></span><br><span class="line"><span class="code">         height: 3rem!important;</span></span><br><span class="line"><span class="code">         margin:0!important;</span></span><br><span class="line"><span class="code">         margin-right: 1em!important;</span></span><br><span class="line"><span class="code">         border-radius:4px;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header &#123;</span></span><br><span class="line"><span class="code">         font-style: italic;</span></span><br><span class="line"><span class="code">         overflow: hidden;</span></span><br><span class="line"><span class="code">         width: 100%;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header a &#123;</span></span><br><span class="line"><span class="code">         font-style: normal;</span></span><br><span class="line"><span class="code">         color: #2bbc8a;</span></span><br><span class="line"><span class="code">         font-weight: bold;</span></span><br><span class="line"><span class="code">         text-decoration: none;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header a:hover &#123;</span></span><br><span class="line"><span class="code">         color: #d480aa;</span></span><br><span class="line"><span class="code">         text-decoration: none;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header .info &#123;</span></span><br><span class="line"><span class="code">         font-style:normal;</span></span><br><span class="line"><span class="code">         color:#a3a3a3;</span></span><br><span class="line"><span class="code">         font-size:14px;</span></span><br><span class="line"><span class="code">         min-width: 0;</span></span><br><span class="line"><span class="code">         overflow: hidden;</span></span><br><span class="line"><span class="code">         white-space: nowrap;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">      &lt;/style&gt;</span></span><br><span class="line"><span class="code">      &lt;div class=&quot;links-content&quot;&gt;</span></span><br><span class="line"><span class="code">         &lt;div class=&quot;link-navigation&quot;&gt;</span></span><br><span class="line"><span class="code">            &lt;div class=&quot;card&quot;&gt;</span></span><br><span class="line"><span class="code">               &lt;img class=&quot;ava&quot; src=&quot;博客图标&quot; /&gt;</span></span><br><span class="line"><span class="code">               &lt;div class=&quot;card-header&quot;&gt;</span></span><br><span class="line"><span class="code">                  &lt;div&gt;</span></span><br><span class="line"><span class="code">                     &lt;a href=&quot;博客链接&quot;&gt;博客名字&lt;/a&gt;</span></span><br><span class="line"><span class="code">                  &lt;/div&gt;</span></span><br><span class="line"><span class="code">                  &lt;div class=&quot;info&quot;&gt;博客简介&lt;/div&gt;</span></span><br><span class="line"><span class="code">               &lt;/div&gt;</span></span><br><span class="line"><span class="code">            &lt;/div&gt;</span></span><br><span class="line"><span class="code">            &lt;div class=&quot;card&quot;&gt;</span></span><br><span class="line"><span class="code">               &lt;img class=&quot;ava&quot; src=&quot;博客图标&quot; /&gt;</span></span><br><span class="line"><span class="code">               &lt;div class=&quot;card-header&quot;&gt;</span></span><br><span class="line"><span class="code">                  &lt;div&gt;</span></span><br><span class="line"><span class="code">                     &lt;a href=&quot;博客链接&quot;&gt;博客名字&lt;/a&gt;</span></span><br><span class="line"><span class="code">                  &lt;/div&gt;</span></span><br><span class="line"><span class="code">                  &lt;div class=&quot;info&quot;&gt;博客简介&lt;/div&gt;</span></span><br><span class="line"><span class="code">               &lt;/div&gt;</span></span><br><span class="line"><span class="code">            &lt;/div&gt;</span></span><br><span class="line"><span class="code">         &lt;/div&gt;</span></span><br><span class="line"><span class="code">      &lt;/div&gt;</span></span><br><span class="line"><span class="code">   &lt;/div&gt;</span></span><br><span class="line"><span class="code">&lt;/div&gt;</span></span><br><span class="line"><span class="code">&#123;% endraw %&#125;</span></span><br></pre></td></tr></table></figure>
 <p>要加的时候在这复制 html 就行。</p>
-<h3 id="杂项">杂项</h3>
-<h4 id="置顶文章">置顶文章</h4>
+<h2 id="杂项">杂项</h2>
+<h3 id="置顶文章">置顶文章</h3>
 <p>工作目录下执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall --save hexo-generator-index</span><br><span class="line">npm install --save hexo-generator-index-pin-top</span><br></pre></td></tr></table></figure>
 <p>metadata 部分写：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Title</span><br><span class="line"><span class="section">top: true</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
 <p>即可置顶。</p>
-<h4 id="折叠">折叠</h4>
+<h3 id="折叠">折叠</h3>
 <p>在 <code>metadata</code> 中加上:</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"><span class="section">description: 文件摘要</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
 <p>即可折叠.</p>
-<h3 id="插件">插件</h3>
-<h4 id="搜索插件">搜索插件</h4>
+<h2 id="插件">插件</h2>
+<h3 id="搜索插件">搜索插件</h3>
 <p>工作目录下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb</span><br></pre></td></tr></table></figure>
 <p>主题配置 <code>themes/next/_config.yml</code> 下：</p>
@@ -351,7 +350,7 @@ public）放这里，免得被覆盖。</p>
 <code>search.xml</code> 中有不合法的字符导致 xml
 解析失败引起的</strong>。浏览器访问一下你的 xml
 文件，会有报错提示你在哪里。</p>
-<h4 id="数学插件">数学插件</h4>
+<h3 id="数学插件">数学插件</h3>
 <p>一般用 Mathjax。</p>
 <p>先安装 <a
 target="_blank" rel="noopener" href="https://pandoc.org/installing.html">Pandoc</a>，这个要改系统路径，需要重启终端。</p>
@@ -364,21 +363,21 @@ target="_blank" rel="noopener" href="https://pandoc.org/installing.html">Pandoc<
 <p>参考资料：<a
 target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/MATH.md">Next
 官方有关文档</a>。</p>
-<h3 id="常用命令">常用命令</h3>
+<h2 id="常用命令">常用命令</h2>
 <ul>
 <li><code>hexo g</code> : 生成</li>
 <li><code>hexo s</code> : 本地部署</li>
 <li><code>hexo d</code> : 远端部署</li>
 </ul>
-<h3 id="网络相关">网络相关</h3>
-<h4 id="cname">CNAME</h4>
+<h2 id="网络相关">网络相关</h2>
+<h3 id="cname">CNAME</h3>
 <p>hexo d 的时候因为是强制 push 的, github CNAME 文件时会被覆盖,
 导致域名解析错误.</p>
 <p><a
 target="_blank" rel="noopener" href="http://eronana.github.io/2014/11/07/Hexo%E9%83%A8%E7%BD%B2%E5%90%8ECNAME%E8%A2%AB%E8%A6%86%E7%9B%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">解决方式</a></p>
 <p>将 <code>CNAME</code> 放入 <code>./source</code>，即存在
 <code>./source/CNAME</code> 文件。</p>
-<h4 id="seo">SEO</h4>
+<h3 id="seo">SEO</h3>
 <p>在 <code>google search console</code>
 申请抓取的时候，一定要看清楚是不是 <code>https</code> 协议，如果部署在
 <code>github</code> 上，可能会强制

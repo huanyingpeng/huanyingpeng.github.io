@@ -22,7 +22,7 @@
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="幻影彭的彩虹">
-<meta property="og:url" content="http://huanyp.cn/page/10/index.html">
+<meta property="og:url" content="https://huanyp.cn/page/10/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="huan-yp">
@@ -30,7 +30,7 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://huanyp.cn/page/10/">
+<link rel="canonical" href="https://huanyp.cn/page/10/">
 
 
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"page/10/index.html","title":""}</script>
@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -198,7 +198,180 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/Python%20%E4%B8%80%E4%BA%9B%E5%BC%BA%E8%B0%83%E7%9A%84%E4%B8%9C%E8%A5%BF/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0705%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0705%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">2022.7.5考试总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 16:32:56" itemprop="dateCreated datePublished" datetime="2022-07-12T16:32:56+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:20:55" itemprop="dateModified" datetime="2025-02-16T20:20:55+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="t1">T1</h2>
+<p><a target="_blank" rel="noopener" href="https://haltoj.top/d/haoba/p/224">T1</a></p>
+<h3 id="某个不太正确的方式">某个不太正确的方式</h3>
+<p>想到了分块，暴力没操过去。</p>
+<p>考虑暴力计算出前 <span class="math inline">\(\sqrt P\)</span>
+个数的值，期望得到的最大值为 <span class="math inline">\(P-\sqrt
+P\)</span>，剩下来的数一定不多，我的想法是分块探测一下下一个块中是否存在比当前最大值更大的数，探测方式是用个
+<span class="math inline">\(\text{hash\_table}\)</span>
+记录下每块的每个数的方幂，然后把等式左边乘上逆元后再查找，但是这个做法只有
+<span class="math inline">\(60pts\)</span>，虽然我本机能跑过。</p>
+<p>后面想了一下还看了下代码，这个方式的复杂度是错的，因为探测总次数还是不对头。2022.10.7</p>
+<h3 id="正常的考虑方式">正常的考虑方式</h3>
+<p>发现我们对同一个数的探测次数有点多，考虑能不能对一个数只探测一次。本质上是需要求
+<span class="math inline">\(P-1,P-2,\cdots P - \sqrt P\)</span>
+这些数在数列中出现的第一个位置。我们的探测实际上是判断了一个幂函数的解是否存在于一个区间。所以直接考虑求解这个幂函数方程
+<span class="math inline">\(x^r = a\)</span>。</p>
+<p>考虑 <span class="math inline">\(BSGS\)</span>，但是需要解 <span
+class="math inline">\(T\times \sqrt{P}\)</span> 次，每次的复杂度为 <span
+class="math inline">\(O(\sqrt P)\)</span>，不如暴力。</p>
+<p>考虑平衡复杂度，设暴力处理的长度为 <span
+class="math inline">\(S\)</span>，<span
+class="math inline">\(BSGS\)</span> 预处理长度为 <span
+class="math inline">\(B\)</span>，那么复杂度为 $T(S+ + B) $</p>
+<p>后面那一坨最优应该是 <span class="math inline">\(3e6\)</span>
+，压力山大。</p>
+<p>发现质数是同一个质数，有没有什么办法可以优化一下。</p>
+<p>答案是，处理离散对数。</p>
+<p>离散对数有着和正常对数一样优美的换底公式，如果我们对 <span
+class="math inline">\(x,P-1,P-2\cdots P-\sqrt P\)</span>。向 <span
+class="math inline">\(P\)</span> 的原根 <span
+class="math inline">\(g\)</span>，取对数，那么可以利用换底公式很方便的求解
+<span class="math inline">\(x^r = a\)</span>，取对数的过程就是 <span
+class="math inline">\(BSGS\)</span>，注意到换底公式的除法变成了模 <span
+class="math inline">\(P-1\)</span> 意义下的除法，因为 <span
+class="math inline">\(g^{P-1} = 1\)</span>。</p>
+<p>所以 <span class="math inline">\(BSGS\)</span> 的总次数变为了 <span
+class="math inline">\(O(\frac{P}{S})\)</span>
+次，预处理只需要一次。这里可以放开玩。</p>
+<p>总复杂度变为了 <span class="math inline">\(O(T*(S+\frac{P}{S})+ B  +
+\frac{P}{S}\times\frac{P}{B})\)</span></p>
+<p>取 <span class="math inline">\(B = P^{\frac{3}{4}}\)</span>，<span
+class="math inline">\(S=\sqrt P\)</span> 可以取到最优。</p>
+<p>我实现的时候写的比较丑，算了每个东西的位置之后，还需要排个序，实际上从大到小倒着做就可以了。</p>
+<p>看看佳老师的代码，长进不少。</p>
+<h2 id="t2">T2</h2>
+<p><a target="_blank" rel="noopener" href="https://haltoj.top/d/haoba/p/224">T2</a></p>
+<p>定义字符串的 border 为一个它的前缀，这个前缀也是它的后缀。</p>
+<p>场上是只会 <span class="math inline">\(O(n^2)\)</span> 的，还 TM
+暴力打挂了只有 40。</p>
+<p>后面了解到可以用 FFT 处理带通配符的字符串匹配问题。</p>
+<p>具体的，定义距离函数 <span
+class="math inline">\(d_i=\sum\limits_{j=1}^{m}
+s_{i+j-1}t_i(s_{i+j-1}-t_j)^2\)</span></p>
+<p>显然，如果距离 <span class="math inline">\(d_i\)</span> 为 <span
+class="math inline">\(0\)</span>，那么 <span
+class="math inline">\(i\)</span> 开头的字符串就能匹配上。</p>
+<p>下标有点问题，所以把 <span class="math inline">\(t\)</span>
+反转一下，把式子拆了，就是三遍 FFT 求出来每一个 <span
+class="math inline">\(d_i\)</span>。</p>
+<p>我们就知道了哪些结束位置可能可以匹配上。</p>
+<p>不是所有能匹配上的位置一定可以对答案贡献，因为如果前面的匹配上了，通配符就没了，所以后面要匹配上，就要求重叠的部分必须是一个
+border。</p>
+<p>其实 border 在字符串随机的情况下是很少的。我们可以考虑记录下所有的
+border，然后 dp，设 dp[i] 表示强制 i
+结尾匹配上了，最多能匹配的个数，如果 <span class="math inline">\(j\leq
+i-m\)</span>，就是个前缀 max，如果 <span class="math inline">\(j&gt;
+i-m\)</span>，就只有 border 能转移。</p>
+<p>border 有个性质，就是它们的长度构成 <span class="math inline">\(\log
+n\)</span> 个等差数列，所以我们考虑对每个等差数列做转移。</p>
+<p>更具体的，如果 <span
+class="math inline">\(next[n]&gt;\frac{n}{2}\)</span>，那么模板串一定是一个循环，并且最小循环长度为
+<span class="math inline">\(n-next[n]\)</span>，它的长度大于等于 <span
+class="math inline">\(r=n\%(n-next[n])\)</span> 的 border
+一定构成一个公差为 <span class="math inline">\(d=n-next[n]\)</span>
+的等差数列。这样的话，<span class="math inline">\(n\)</span>
+每次至少减半，所以至多有 <span class="math inline">\(\log n\)</span>
+个等差数列。</p>
+<p>考虑证明。如果存在一个长度大于 <span class="math inline">\(r\)</span>
+的 border <span class="math inline">\(x\)</span> 长度不能写成 <span
+class="math inline">\(kd+r\)</span>，感性理解下，把原串划分为长度为
+<span class="math inline">\(d\)</span> 的小串，把 <span
+class="math inline">\(x\)</span>
+在末尾的部分平移到开头，显然它还有一个更小的循环。</p>
+<p>所以我们对于一个点，含 border 的转移就可以分为 <span
+class="math inline">\(\log n\)</span> 类，对每一类记一个前缀 <span
+class="math inline">\(\max\)</span>
+即可转移，注意每一类需要按照模公差分类。</p>
+<p>注意转移细节。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">2e5</span><span class="number">+10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">double</span> Pi=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">comple</span>&#123;</span><br><span class="line">	<span class="type">double</span> x,y;</span><br><span class="line">	comple <span class="keyword">operator</span> +(<span class="type">const</span> comple &amp;a)&#123;<span class="keyword">return</span> comple&#123;x+a.x,y+a.y&#125;;&#125;</span><br><span class="line">	comple <span class="keyword">operator</span> -(<span class="type">const</span> comple &amp;a)&#123;<span class="keyword">return</span> comple&#123;x-a.x,y-a.y&#125;;&#125;</span><br><span class="line">	comple <span class="keyword">operator</span> *(<span class="type">const</span> comple &amp;a)&#123;<span class="keyword">return</span> comple&#123;x*a.x-y*a.y,x*a.y+y*a.x&#125;;&#125;</span><br><span class="line">	<span class="type">void</span> <span class="keyword">operator</span> +=(<span class="type">const</span> comple &amp;a)&#123;x+=a.x,y+=a.y;&#125;</span><br><span class="line">	<span class="type">void</span> <span class="keyword">operator</span> -=(<span class="type">const</span> comple &amp;a)&#123;x-=a.x,y-=a.y;&#125;</span><br><span class="line">	<span class="type">void</span> <span class="keyword">operator</span> *=(<span class="type">const</span> comple &amp;a)&#123;<span class="type">double</span> tp=x;x=x*a.x-y*a.y,y=tp*a.y+y*a.x;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,lim,ans;</span><br><span class="line"><span class="type">int</span> res[N],vala[N],valb[N],sum[N],nxt[N];</span><br><span class="line"><span class="type">int</span> dp[N],border[N][<span class="number">2</span>],pre[<span class="number">32</span>][N][<span class="number">2</span>],from[N];</span><br><span class="line"><span class="type">char</span> ch[N],str[N];</span><br><span class="line"><span class="type">double</span> d[N];</span><br><span class="line">comple a[N],b[N],c[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">FFT</span><span class="params">(comple val[],<span class="type">int</span> type=<span class="number">1</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)<span class="keyword">if</span>(res[i]&gt;i)<span class="built_in">swap</span>(val[res[i]],val[i]);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=lim;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">1</span>&lt;&lt;lim;j+=<span class="number">1</span>&lt;&lt;i)&#123;</span><br><span class="line">			comple w=&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,wn=&#123;<span class="built_in">cos</span>(<span class="number">2</span>*Pi/(<span class="number">1</span>&lt;&lt;i)),type*<span class="built_in">sin</span>(<span class="number">2</span>*Pi/(<span class="number">1</span>&lt;&lt;i))&#125;;</span><br><span class="line">			<span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>;k++,w*=wn)&#123;</span><br><span class="line">				comple y=val[k+j+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]*w;</span><br><span class="line">				val[k+j+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]=val[k+j]-y,val[k+j]+=y;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(type==<span class="number">-1</span>)<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)c[i].x/=(<span class="number">1</span>&lt;&lt;lim);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">get_border</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x==<span class="number">0</span>)<span class="keyword">return</span> ;</span><br><span class="line">	border[++s][<span class="number">0</span>]=nxt[x],border[s][<span class="number">1</span>]=x-nxt[x];</span><br><span class="line">	<span class="keyword">if</span>(nxt[x]*<span class="number">2</span>&gt;x)<span class="built_in">get_border</span>(x%(x-nxt[x]));</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">get_border</span>(nxt[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">int</span> pos,<span class="type">int</span> lst)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(dp[pos]==<span class="number">0</span>)<span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>,j=pos-m<span class="number">+1</span>;i&lt;=m&amp;&amp;j&lt;lst;i++,j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(ch[j]!=<span class="string">&#x27;?&#x27;</span>&amp;&amp;ch[j]!=str[i])&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;Error&quot;</span>);</span><br><span class="line">			<span class="keyword">return</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(j&lt;<span class="number">1</span>)<span class="keyword">continue</span>;</span><br><span class="line">		ch[j]=str[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">print</span>(from[pos],pos-m<span class="number">+1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> 	<span class="built_in">freopen</span>(<span class="string">&quot;match.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;match.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">	<span class="comment">//freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%s%s&quot;</span>,ch<span class="number">+1</span>,str<span class="number">+1</span>);</span><br><span class="line">	n=<span class="built_in">strlen</span>(ch<span class="number">+1</span>),m=<span class="built_in">strlen</span>(str<span class="number">+1</span>);</span><br><span class="line">	nxt[<span class="number">0</span>]=j=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;str[j<span class="number">+1</span>]!=str[i])j=nxt[j];</span><br><span class="line">		nxt[i]=++j;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">get_border</span>(m);border[s][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>&lt;&lt;lim&lt;=n+m)lim++;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)res[i]=res[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>|(i&amp;<span class="number">1</span>)&lt;&lt;lim<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)vala[i]=ch[i]==<span class="string">&#x27;?&#x27;</span>?<span class="number">0</span>:ch[i]-<span class="string">&#x27;a&#x27;</span><span class="number">+1</span>,sum[i]=sum[i<span class="number">-1</span>]+vala[i]*vala[i]*vala[i];</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)valb[i]=str[i]-<span class="string">&#x27;a&#x27;</span><span class="number">+1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=&#123;<span class="built_in">pow</span>(vala[i],<span class="number">2</span>)&#125;;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)b[i]=&#123;<span class="number">-2</span>*valb[m-i<span class="number">+1</span>]&#125;;</span><br><span class="line">	<span class="built_in">FFT</span>(a),<span class="built_in">FFT</span>(b);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)c[i]+=a[i]*b[i];</span><br><span class="line">	<span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="built_in">sizeof</span>(a)),<span class="built_in">memset</span>(b,<span class="number">0</span>,<span class="built_in">sizeof</span>(b));</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=&#123;vala[i]&#125;;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)b[i]=&#123;<span class="built_in">pow</span>(valb[m-i<span class="number">+1</span>],<span class="number">2</span>)&#125;;</span><br><span class="line">	<span class="built_in">FFT</span>(a),<span class="built_in">FFT</span>(b);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)c[i]+=a[i]*b[i];</span><br><span class="line">	<span class="built_in">FFT</span>(c,<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=m;i&lt;=n;i++)</span><br><span class="line">	d[i]=sum[i]-sum[i-m]+c[i<span class="number">+1</span>].x;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=m;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=s;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(pre[j][i-m+border[j][<span class="number">0</span>]][<span class="number">0</span>]<span class="number">+1</span>&gt;dp[i])&#123;</span><br><span class="line">				dp[i]=pre[j][i-m+border[j][<span class="number">0</span>]][<span class="number">0</span>]<span class="number">+1</span>;</span><br><span class="line">				from[i]=pre[j][i-m+border[j][<span class="number">0</span>]][<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">abs</span>(d[i])&gt;<span class="number">0.1</span>)dp[i]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=s;j++)&#123;</span><br><span class="line">			pre[j][i][<span class="number">0</span>]=dp[i],pre[j][i][<span class="number">1</span>]=i;</span><br><span class="line">			<span class="keyword">if</span>(pre[j][i-border[j][<span class="number">1</span>]][<span class="number">0</span>]&gt;pre[j][i][<span class="number">0</span>])&#123;</span><br><span class="line"></span><br><span class="line">				pre[j][i][<span class="number">0</span>]=pre[j][i-border[j][<span class="number">1</span>]][<span class="number">0</span>];</span><br><span class="line">				pre[j][i][<span class="number">1</span>]=pre[j][i-border[j][<span class="number">1</span>]][<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(dp[i]&gt;dp[ans])ans=i;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;dp[ans]&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">print</span>(ans,ans<span class="number">+1</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(ch[i]==<span class="string">&#x27;?&#x27;</span>)ch[i]=<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">	cout&lt;&lt;ch<span class="number">+1</span>&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/Python%20%E4%B8%80%E4%BA%9B%E5%BC%BA%E8%B0%83%E7%9A%84%E4%B8%9C%E8%A5%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
@@ -234,7 +407,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-17 15:47:00" itemprop="dateModified" datetime="2025-02-17T15:47:00+08:00">2025-02-17</time>
+      <time title="修改时间：2025-03-11 15:49:22" itemprop="dateModified" datetime="2025-03-11T15:49:22+08:00">2025-03-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -356,6 +529,15 @@ cache 里的了, 不执行第二次.</p>
 那么这个文件夹会扔掉打包不进去.</p>
 <h2 id="关于-request-这一类网络请求函数">关于 Request
 这一类网络请求函数</h2>
+<h3 id="requests-库的-post-相关">Requests 库的 POST 相关</h3>
+<ul>
+<li>requests 的 post 方法有点坑，目前主流数据提交方式都是
+json，所以一般用 json 这个可选参数传参，data
+传参可能会因为格式问题导致请求失败。</li>
+<li>需要<strong>显式指定协议</strong>，直接写 <code>example.com</code>
+会报错。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">requests.post(<span class="string">&quot;http://example.com&quot;</span>, json=&#123;</span><br><span class="line">    <span class="string">&quot;token&quot;</span>: <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;yyy&quot;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>Request 爬虫的时代已经过去了, 现在用 selenium 吧.</p>
 <p>当然如果直接最简单的 Request 没出问题也不妨试试.</p>
 
@@ -384,7 +566,7 @@ cache 里的了, 不执行第二次.</p>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
@@ -470,7 +652,7 @@ cache 里的了, 不执行第二次.</p>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
@@ -488,7 +670,7 @@ cache 里的了, 不执行第二次.</p>
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">Hexo-NexT 安装踩坑记录</a>
+          <a href="/2022/07/12/%E6%8A%80%E6%9C%AF/%E7%94%9F%E4%BA%A7%E5%8A%9B/Hexo-NexT%20%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">Hexo-NexT 博客部署</a>
         </h2>
 
         <div class="post-meta-container">
@@ -506,7 +688,7 @@ cache 里的了, 不执行第二次.</p>
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-10 20:55:29" itemprop="dateModified" datetime="2025-03-10T20:55:29+08:00">2025-03-10</time>
+      <time title="修改时间：2025-03-10 21:09:19" itemprop="dateModified" datetime="2025-03-10T21:09:19+08:00">2025-03-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -528,88 +710,87 @@ cache 里的了, 不执行第二次.</p>
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="博客部署">博客部署</h2>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/618864711">参考</a></p>
-<h3 id="环境">环境</h3>
-<h4 id="基础">基础</h4>
+          <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/618864711">参考</a></p>
+<h2 id="环境">环境</h2>
+<h3 id="基础">基础</h3>
 <ul>
 <li>git</li>
 <li>nodejs &amp;&amp; npm</li>
 </ul>
-<h4 id="开工作目录">开工作目录</h4>
+<h3 id="开工作目录">开工作目录</h3>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
 <p><strong>工作目录</strong>是
 <code>blog</code>，记住，这很重要，文件名默认为相对工作目录的名字。</p>
-<h4 id="本地预览">本地预览</h4>
+<h3 id="本地预览">本地预览</h3>
 <p>工作目录下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
 <p><code>localhost:4000</code> 上看。</p>
-<h4 id="开-github-pages-仓库">开 GitHub Pages 仓库</h4>
+<h3 id="开-github-pages-仓库">开 GitHub Pages 仓库</h3>
 <p>每个账号只能开一个，仓库名 <code>username.github.io</code>。</p>
-<h4 id="配源码分支">配源码分支</h4>
+<h3 id="配源码分支">配源码分支</h3>
 <p>创仓库的时候把 main 弄下来，源码（不含
 public）放这里，免得被覆盖。</p>
-<h4 id="自动部署">自动部署</h4>
+<h3 id="自动部署">自动部署</h3>
 <p>工作目录下安自动部署工具。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <p><code>_config.yml</code> 末尾加上（记得照着用户名改动）：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/username/username.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br><span class="line">  <span class="comment"># message: Site updated: &#123;&#123; now(&#x27;YYYY-MM-DD HH:mm:ss&#x27;) &#125;&#125;)</span></span><br></pre></td></tr></table></figure>
 <p>部署：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-<h3 id="metadata">metadata</h3>
+<h2 id="metadata">metadata</h2>
 <p>搜 <code>_config.yml</code> 相关配置项：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">幻影彭的彩虹</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;记录青春的扇区&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">&#x27;算法竞赛, 自动化测试, 工程技术, Python&#x27;</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">huan-yp</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span> <span class="comment"># 必须改</span></span><br><span class="line"></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://huanyp.cn</span></span><br></pre></td></tr></table></figure>
-<h3 id="主题">主题</h3>
-<h4 id="安主题next">安主题（next）</h4>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">幻影彭的彩虹</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;记录青春的扇区&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">&#x27;算法竞赛, 自动化测试, 工程技术, Python&#x27;</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">huan-yp</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span> <span class="comment"># 必须改</span></span><br><span class="line"></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://huanyp.cn</span></span><br></pre></td></tr></table></figure>
+<h2 id="主题">主题</h2>
+<h3 id="安主题next">安主题（next）</h3>
 <p>工作目录下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<h4 id="写上要用这个主题">写上要用这个主题</h4>
+<h3 id="写上要用这个主题">写上要用这个主题</h3>
 <p><code>_config.yml</code> 里，找到 <code>theme</code>，写上
 <code>next</code></p>
-<h3 id="next">next</h3>
+<h2 id="next">next</h2>
 <p>我用 next 主题。</p>
-<h4 id="menu">menu</h4>
+<h3 id="menu">menu</h3>
 <p>配置菜单。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="attr">about:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-archive</span></span><br><span class="line">  <span class="comment"># schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line">  <span class="attr">sitemap:</span> <span class="string">/sitemap.xml</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-sitemap</span></span><br><span class="line">  <span class="attr">commonweal:</span> <span class="string">/404/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-heartbeat</span></span><br></pre></td></tr></table></figure>
-<h4 id="scheme">scheme</h4>
+<h3 id="scheme">scheme</h3>
 <p>在 <code>themes/next/_config.yml</code> 调 scheme，传统的应该选
 <code>Gemini</code>。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment"># scheme: Muse</span></span><br><span class="line"><span class="comment"># scheme: Mist</span></span><br><span class="line"><span class="comment"># scheme: Pisces</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Gemini</span></span><br></pre></td></tr></table></figure>
-<h4 id="dark">dark</h4>
+<h3 id="dark">dark</h3>
 <p>应该没有人喜欢 light，所以调成 dark。</p>
 <p>在 <code>themes/next/_config.yml</code> 调 darkmode。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">darkmode: true</span><br></pre></td></tr></table></figure>
-<h3 id="背景">背景</h3>
+<h2 id="背景">背景</h2>
 <p>一般要加个背景图片什么的</p>
-<h4 id="准备-source-图片">准备 source 图片</h4>
+<h3 id="准备-source-图片">准备 source 图片</h3>
 <p>图片放到 <code>themes/next/source/image/background.jpg</code>
 里。</p>
-<h4 id="改-style">改 style</h4>
+<h3 id="改-style">改 style</h3>
 <p>找到
 <code>themes\next\source\css\_schemes\Gemini\index.styl</code>，加上：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">/images/background-now.jpg</span>);</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-attachment</span>:fixed; //不重复</span><br><span class="line">    <span class="attribute">background-size</span>: cover;      //填充</span><br><span class="line">    <span class="attribute">background-position</span>:<span class="number">50%</span> <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 博客内容透明化</span><br><span class="line">// 文章内容的透明度设置</span><br><span class="line"><span class="selector-class">.content-wrap</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 侧边框的透明度设置</span><br><span class="line"><span class="selector-class">.sidebar</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 菜单栏的透明度设置</span><br><span class="line"><span class="selector-class">.header-inner</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.8</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 搜索框（local-search）的透明度设置</span><br><span class="line"><span class="selector-class">.popup</span> &#123;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.7</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//博客内容透明化</span><br><span class="line"></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attr">--content-bg-color</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.8</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>那个 [0, 1] 的参数是透明度，自己估摸着调。</p>
-<h3 id="友情链接">友情链接</h3>
-<h4 id="menu-加-link">menu 加 link</h4>
+<h2 id="友情链接">友情链接</h2>
+<h3 id="menu-加-link">menu 加 link</h3>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="string">友情链接:</span> <span class="string">/links/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-link</span></span><br></pre></td></tr></table></figure>
 <p>写中文就行。</p>
-<h4 id="内联-html">内联 html</h4>
+<h3 id="内联-html">内联 html</h3>
 <p>新建 <code>source/links/index.md</code>，写入：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">&#123;% raw %&#125;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;post-body&quot;</span>&gt;</span></span></span><br><span class="line">   <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;links&quot;</span>&gt;</span></span></span><br><span class="line"><span class="code">      &lt;style&gt;</span></span><br><span class="line"><span class="code">         .links-content&#123;</span></span><br><span class="line"><span class="code">         margin-top:1rem;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .link-navigation::after &#123;</span></span><br><span class="line"><span class="code">         content: &quot; &quot;;</span></span><br><span class="line"><span class="code">         display: block;</span></span><br><span class="line"><span class="code">         clear: both;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card &#123;</span></span><br><span class="line"><span class="code">         width: 45%;</span></span><br><span class="line"><span class="code">         font-size: 1rem;</span></span><br><span class="line"><span class="code">         padding: 10px 20px;</span></span><br><span class="line"><span class="code">         border-radius: 4px;</span></span><br><span class="line"><span class="code">         transition-duration: 0.15s;</span></span><br><span class="line"><span class="code">         margin-bottom: 1rem;</span></span><br><span class="line"><span class="code">         display:flex;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card:nth-child(odd) &#123;</span></span><br><span class="line"><span class="code">         float: left;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card:nth-child(even) &#123;</span></span><br><span class="line"><span class="code">         float: right;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card:hover &#123;</span></span><br><span class="line"><span class="code">         transform: scale(1.1);</span></span><br><span class="line"><span class="code">         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card a &#123;</span></span><br><span class="line"><span class="code">         border:none;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .ava &#123;</span></span><br><span class="line"><span class="code">         width: 3rem!important;</span></span><br><span class="line"><span class="code">         height: 3rem!important;</span></span><br><span class="line"><span class="code">         margin:0!important;</span></span><br><span class="line"><span class="code">         margin-right: 1em!important;</span></span><br><span class="line"><span class="code">         border-radius:4px;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header &#123;</span></span><br><span class="line"><span class="code">         font-style: italic;</span></span><br><span class="line"><span class="code">         overflow: hidden;</span></span><br><span class="line"><span class="code">         width: 100%;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header a &#123;</span></span><br><span class="line"><span class="code">         font-style: normal;</span></span><br><span class="line"><span class="code">         color: #2bbc8a;</span></span><br><span class="line"><span class="code">         font-weight: bold;</span></span><br><span class="line"><span class="code">         text-decoration: none;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header a:hover &#123;</span></span><br><span class="line"><span class="code">         color: #d480aa;</span></span><br><span class="line"><span class="code">         text-decoration: none;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">         .card .card-header .info &#123;</span></span><br><span class="line"><span class="code">         font-style:normal;</span></span><br><span class="line"><span class="code">         color:#a3a3a3;</span></span><br><span class="line"><span class="code">         font-size:14px;</span></span><br><span class="line"><span class="code">         min-width: 0;</span></span><br><span class="line"><span class="code">         overflow: hidden;</span></span><br><span class="line"><span class="code">         white-space: nowrap;</span></span><br><span class="line"><span class="code">         &#125;</span></span><br><span class="line"><span class="code">      &lt;/style&gt;</span></span><br><span class="line"><span class="code">      &lt;div class=&quot;links-content&quot;&gt;</span></span><br><span class="line"><span class="code">         &lt;div class=&quot;link-navigation&quot;&gt;</span></span><br><span class="line"><span class="code">            &lt;div class=&quot;card&quot;&gt;</span></span><br><span class="line"><span class="code">               &lt;img class=&quot;ava&quot; src=&quot;博客图标&quot; /&gt;</span></span><br><span class="line"><span class="code">               &lt;div class=&quot;card-header&quot;&gt;</span></span><br><span class="line"><span class="code">                  &lt;div&gt;</span></span><br><span class="line"><span class="code">                     &lt;a href=&quot;博客链接&quot;&gt;博客名字&lt;/a&gt;</span></span><br><span class="line"><span class="code">                  &lt;/div&gt;</span></span><br><span class="line"><span class="code">                  &lt;div class=&quot;info&quot;&gt;博客简介&lt;/div&gt;</span></span><br><span class="line"><span class="code">               &lt;/div&gt;</span></span><br><span class="line"><span class="code">            &lt;/div&gt;</span></span><br><span class="line"><span class="code">            &lt;div class=&quot;card&quot;&gt;</span></span><br><span class="line"><span class="code">               &lt;img class=&quot;ava&quot; src=&quot;博客图标&quot; /&gt;</span></span><br><span class="line"><span class="code">               &lt;div class=&quot;card-header&quot;&gt;</span></span><br><span class="line"><span class="code">                  &lt;div&gt;</span></span><br><span class="line"><span class="code">                     &lt;a href=&quot;博客链接&quot;&gt;博客名字&lt;/a&gt;</span></span><br><span class="line"><span class="code">                  &lt;/div&gt;</span></span><br><span class="line"><span class="code">                  &lt;div class=&quot;info&quot;&gt;博客简介&lt;/div&gt;</span></span><br><span class="line"><span class="code">               &lt;/div&gt;</span></span><br><span class="line"><span class="code">            &lt;/div&gt;</span></span><br><span class="line"><span class="code">         &lt;/div&gt;</span></span><br><span class="line"><span class="code">      &lt;/div&gt;</span></span><br><span class="line"><span class="code">   &lt;/div&gt;</span></span><br><span class="line"><span class="code">&lt;/div&gt;</span></span><br><span class="line"><span class="code">&#123;% endraw %&#125;</span></span><br></pre></td></tr></table></figure>
 <p>要加的时候在这复制 html 就行。</p>
-<h3 id="杂项">杂项</h3>
-<h4 id="置顶文章">置顶文章</h4>
+<h2 id="杂项">杂项</h2>
+<h3 id="置顶文章">置顶文章</h3>
 <p>工作目录下执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall --save hexo-generator-index</span><br><span class="line">npm install --save hexo-generator-index-pin-top</span><br></pre></td></tr></table></figure>
 <p>metadata 部分写：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Title</span><br><span class="line"><span class="section">top: true</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
 <p>即可置顶。</p>
-<h4 id="折叠">折叠</h4>
+<h3 id="折叠">折叠</h3>
 <p>在 <code>metadata</code> 中加上:</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"><span class="section">description: 文件摘要</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
 <p>即可折叠.</p>
-<h3 id="插件">插件</h3>
-<h4 id="搜索插件">搜索插件</h4>
+<h2 id="插件">插件</h2>
+<h3 id="搜索插件">搜索插件</h3>
 <p>工作目录下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-searchdb</span><br></pre></td></tr></table></figure>
 <p>主题配置 <code>themes/next/_config.yml</code> 下：</p>
@@ -618,7 +799,7 @@ public）放这里，免得被覆盖。</p>
 <code>search.xml</code> 中有不合法的字符导致 xml
 解析失败引起的</strong>。浏览器访问一下你的 xml
 文件，会有报错提示你在哪里。</p>
-<h4 id="数学插件">数学插件</h4>
+<h3 id="数学插件">数学插件</h3>
 <p>一般用 Mathjax。</p>
 <p>先安装 <a
 target="_blank" rel="noopener" href="https://pandoc.org/installing.html">Pandoc</a>，这个要改系统路径，需要重启终端。</p>
@@ -631,21 +812,21 @@ target="_blank" rel="noopener" href="https://pandoc.org/installing.html">Pandoc<
 <p>参考资料：<a
 target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/MATH.md">Next
 官方有关文档</a>。</p>
-<h3 id="常用命令">常用命令</h3>
+<h2 id="常用命令">常用命令</h2>
 <ul>
 <li><code>hexo g</code> : 生成</li>
 <li><code>hexo s</code> : 本地部署</li>
 <li><code>hexo d</code> : 远端部署</li>
 </ul>
-<h3 id="网络相关">网络相关</h3>
-<h4 id="cname">CNAME</h4>
+<h2 id="网络相关">网络相关</h2>
+<h3 id="cname">CNAME</h3>
 <p>hexo d 的时候因为是强制 push 的, github CNAME 文件时会被覆盖,
 导致域名解析错误.</p>
 <p><a
 target="_blank" rel="noopener" href="http://eronana.github.io/2014/11/07/Hexo%E9%83%A8%E7%BD%B2%E5%90%8ECNAME%E8%A2%AB%E8%A6%86%E7%9B%96%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">解决方式</a></p>
 <p>将 <code>CNAME</code> 放入 <code>./source</code>，即存在
 <code>./source/CNAME</code> 文件。</p>
-<h4 id="seo">SEO</h4>
+<h3 id="seo">SEO</h3>
 <p>在 <code>google search console</code>
 申请抓取的时候，一定要看清楚是不是 <code>https</code> 协议，如果部署在
 <code>github</code> 上，可能会强制
@@ -677,7 +858,7 @@ target="_blank" rel="noopener" href="http://eronana.github.io/2014/11/07/Hexo%E9
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%983/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%983/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
@@ -864,7 +1045,7 @@ class="math inline">\(s\)</span>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%982/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%982/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
@@ -1509,7 +1690,7 @@ target="_blank" rel="noopener" href="https://https://local.cwoi.com.cn:8443//con
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%981/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%981/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
@@ -2045,7 +2226,7 @@ class="math inline">\(\prod sz_i\)</span>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%86%99%E6%B3%95%E4%BC%98%E7%BE%8E%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%86%99%E6%B3%95%E4%BC%98%E7%BE%8E%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
@@ -2141,7 +2322,7 @@ class="math inline">\(\prod sz_i\)</span>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%9B%B8%E5%85%B3/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%9B%B8%E5%85%B3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
@@ -2324,7 +2505,7 @@ class="math inline">\(v\)</span> 连 inf 边即可。</p>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%B8%80%E4%BA%9B%E7%A7%91%E6%8A%80%E7%9A%84%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%B8%80%E4%BA%9B%E7%A7%91%E6%8A%80%E7%9A%84%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
@@ -2423,310 +2604,6 @@ class="math inline">\(2^{64}\)</span> 取模的结果，所以直接用就行。
 <p>如果 <span class="math inline">\(P\leq 10^{14}\)</span> 可以改成
 double</p>
 <p>判断一下是否减少了就行。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%BB%93%E8%AE%BA%E8%AF%81%E6%98%8E%E6%B1%87%E6%80%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%BB%93%E8%AE%BA%E8%AF%81%E6%98%8E%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">常用数学结论证明汇总</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-12 16:04:07" itemprop="dateCreated datePublished" datetime="2022-07-12T16:04:07+08:00">2022-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:54:22" itemprop="dateModified" datetime="2025-02-16T17:54:22+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="简单事实">简单事实</h3>
-<ol type="1">
-<li><span class="math inline">\(\gcd(a,x_1)=1,\gcd(a,x_2)=1 \iff
-\gcd(a,x_1x_2)\)</span></li>
-<li>若 <span class="math inline">\(n\ |\ m\)</span> 则 <span
-class="math inline">\(\phi(n)\ |\ \phi(m)\)</span></li>
-<li>若 <span class="math inline">\(\gcd(a,p)=1\)</span>,则 <span
-class="math inline">\(ax,x \in [1,p]\)</span> 模 <span
-class="math inline">\(p\)</span> 意义下互不相同，反之亦然。</li>
-</ol>
-<h3 id="模运算和满足的运算率">模运算和满足的运算率</h3>
-<p>注：符号均为模 <span class="math inline">\(p\)</span> 意义下。</p>
-<ul>
-<li>加法交换律</li>
-<li>加法结合律</li>
-<li>乘法交换律</li>
-<li>乘法结合率</li>
-<li>如果 <span class="math inline">\(p\)</span> 为质数 ，<span
-class="math inline">\(g\)</span> 为 <span
-class="math inline">\(p\)</span> 的一个原根，则 <span
-class="math inline">\(\log_x(y) = \frac{\log_g(y)}{\log_g(x)} \pmod
-{p-1}\)</span></li>
-</ul>
-<h3 id="复数运算满足的运算性质">复数运算满足的运算性质</h3>
-<ul>
-<li>加法交换律</li>
-<li>加法结合律</li>
-</ul>
-<h3 id="一些抽象代数内容">一些抽象代数内容</h3>
-<h4 id="事实1">事实1</h4>
-<p>令 <span class="math inline">\(g\)</span> 为 <span
-class="math inline">\(p\)</span> 的一个原根，记 <span
-class="math inline">\(\log_g(x) = y\)</span>，模 <span
-class="math inline">\(p\)</span> 意义下 <span
-class="math inline">\(x\)</span> 的阶数为 <span class="math display">\[
-\Large ord = \frac{\phi(p)}{\gcd(\phi(p),\log_g(x))}
-\]</span></p>
-<h4 id="证明1">证明1</h4>
-<p>显然 <span class="math inline">\(g\)</span> 的阶数为 <span
-class="math inline">\(\phi(p)\)</span>，又因为 <span
-class="math inline">\(g^y = x\)</span>。所以 <span
-class="math inline">\(x^{ord} = 1\)</span>。</p>
-<p>然后证明 <span class="math inline">\(x^i,i \in [1,ord]\)</span>
-互不相同。</p>
-<p>反证，如果相同，设为 <span class="math inline">\(i,j(i\ge
-j)\)</span>，那么 <span class="math inline">\(g^{yi} = g^{yj}\)</span>
-得到 <span class="math inline">\(\phi(x) |\ y(i-j)\)</span> 两边同时除以
-<span class="math inline">\(\gcd(\phi(p),y)\)</span>，得到 <span
-class="math inline">\(ord |\ y&#39;(i-j)\)</span>，其中 <span
-class="math inline">\(\gcd(y&#39;,ord) = 1\)</span> ，得出 <span
-class="math inline">\(i-j \ge ord\)</span> 矛盾。</p>
-<p>所以 <span class="math inline">\(x\)</span> 的阶数为 <span
-class="math inline">\(ord\)</span></p>
-<h3 id="裴蜀定理">裴蜀定理</h3>
-<h4 id="内容">内容</h4>
-<p><span class="math inline">\(\exist\  x,y \in \Z\)</span> 使得 <span
-class="math inline">\(ax+by=\gcd(x,y)\)</span></p>
-<h4 id="证明">证明</h4>
-<p>归纳构造。</p>
-<p>先证明 <span class="math inline">\(\exist\ x&#39;,y&#39;\in
-\Z\)</span> 使得 <span class="math inline">\(bx&#39;+(a\%b)y&#39; =
-\gcd(a,b)\)</span></p>
-<p>即 <span class="math inline">\(ay&#39; +
-b(x&#39;-\big\lfloor\dfrac{a}{b}\big\rfloor y&#39;) =
-\gcd(a,b)\)</span></p>
-<p>构造 <span class="math inline">\(x = y&#39;,y=x&#39;-
-\big\lfloor\dfrac{a}{b}\big\rfloor y&#39;\)</span> 即可满足条件。</p>
-<p>递归证明构造式子，得到边界证明 <span class="math inline">\(\exist \
-x,y\)</span> 使得 <span class="math inline">\(\gcd(a,b)x + 0 \times y
-=\gcd(a,b)\)</span></p>
-<p>令 <span class="math inline">\(x=1,y=0\)</span></p>
-<h3 id="欧拉函数是积性函数">欧拉函数是积性函数</h3>
-<p>即证明若 <span class="math inline">\(\gcd(n,m) =1,\)</span> 则 <span
-class="math inline">\(\phi(n*m) = \phi(n) *\phi(m)\)</span></p>
-<h4 id="证明一">证明一</h4>
-<p>考虑若干个同余方程组 <span class="math display">\[
-x ≡ r_1 \pmod n\\
-x ≡ r_2 \pmod m\\
-\]</span> 列出 <span class="math inline">\(n,m,nm\)</span>
-意义下的最小缩系 <span class="math inline">\(S_n,S_m,T\)</span></p>
-<p>容易证明 <span class="math inline">\(\forall\ r_1\in S_n, r_2 \in
-S_m\)</span>，存在唯一 <span class="math inline">\(x \in [1,nm]\)</span>
-是上同余方程组的解，且 <span class="math inline">\(x \in
-T\)</span>。</p>
-<p>存在唯一就是 EXCRT， <span class="math inline">\(x\in T\)</span>
-由事实 1 显然。</p>
-<p>故 <span class="math inline">\(\phi(n*m) \ge \phi(n)
-*\phi(m)\)</span></p>
-<p>再证明 <span class="math inline">\(\forall\ x\in
-T\)</span>，可以对应一个以上同余方程组的解，假设不对应，那么它一定与
-<span class="math inline">\(n,m\)</span> 中的一个不互质，由事实 1
-推出矛盾。</p>
-<p>故 <span class="math inline">\(\phi(n*m) \le \phi(n)
-*\phi(m)\)</span></p>
-<p>证毕。</p>
-<h4 id="证明二">证明二</h4>
-<h3 id="欧拉定理">欧拉定理</h3>
-<h4 id="内容-1">内容</h4>
-<p><span class="math display">\[
-\Large 若 \ \gcd(a,m)= 1 ,\ 则\  a^{\phi(m)}≡1\mod m
-\]</span></p>
-<h4 id="证明-1">证明</h4>
-<p>考虑模 <span class="math inline">\(m\)</span>
-意义下的最小缩系，即最小完全剩余系删去与 <span
-class="math inline">\(m\)</span> 不互质的元素后的剩余系，记为 <span
-class="math inline">\(S\)</span>。</p>
-<p>构造 <span class="math inline">\(T = \{ax,x \in S\}\)</span></p>
-<p>可以证明 <span class="math inline">\(T=S\)</span>， 若 <span
-class="math inline">\(\exist\ x_1,x_2\)</span> 使得 <span
-class="math inline">\(x_1\neq x_2\)</span> 且 <span
-class="math inline">\(ax_1 ≡ ax_2 \pmod m\)</span> ，因为 <span
-class="math inline">\(\gcd(a,m)=1\)</span></p>
-<p>所以 <span class="math inline">\(m\ |\ x_1 - x_2\)</span>，并推出
-<span class="math inline">\(x_1 \neq x_2\)</span>，故 <span
-class="math inline">\(T\)</span> 中元素两两不同且均与 <span
-class="math inline">\(m\)</span> 互质，即为 <span
-class="math inline">\(S\)</span>。</p>
-<p>考虑 <span class="math inline">\(T,S\)</span> 中所有元素的乘积，得到
-<span class="math inline">\(\prod\limits_{i=1}^{\phi(n)} ax_i ≡
-\prod\limits_{i=1}^{\phi(n)} x_i \pmod n\)</span>，又因为 <span
-class="math inline">\(\prod\limits_{i=1}^{\phi(n)} x_i\)</span> 与 <span
-class="math inline">\(m\)</span> 互质，所以 <span
-class="math inline">\(a^{\phi(n)} ≡ 1\pmod n\)</span></p>
-<h3 id="扩展欧拉定理">扩展欧拉定理</h3>
-<h4 id="内容-2">内容</h4>
-<p><span class="math display">\[
-\Large 若 \ b≥φ(m) ,\ 则\  a^b≡a^{b \mod φ(m) +φ(m)}\mod m
-\]</span></p>
-<h4 id="证明-2">证明</h4>
-<p>对 <span class="math inline">\(m\)</span> 考虑唯一分解定理。</p>
-<p>对于任意因子 <span class="math inline">\(p_i^{k_i}\)</span>，若与
-<span class="math inline">\(a\)</span> 互质，那就有 <span
-class="math inline">\(a^b≡a^{b \mod φ(m) +φ(m)}\mod
-p^{k_i}_i\)</span>。</p>
-<p>如果和 <span class="math inline">\(a\)</span> 不互质，因为 <span
-class="math inline">\(b\ge \phi(m)\)</span>，那么因为有 <span
-class="math inline">\(b\ge \phi(m)\ge k_i\)</span>，所以 <span
-class="math inline">\(a^b,a^{(b \mod φ(m)) +φ(m)}\)</span> 都是 <span
-class="math inline">\(p^{k_i}_i\)</span> 的倍数。</p>
-<p>得到 <span class="math inline">\(a^b - a^{(b \mod φ(m))
-+φ(m)}\)</span> 是 <span class="math inline">\(p_i^{k_i}\)</span>
-的倍数，故同余。</p>
-<h3 id="原根">原根：</h3>
-<h4 id="定义">定义：</h4>
-<p>如果 <span class="math inline">\(x^1,x^2,x^3 \cdots
-x^{\phi(n)}\)</span> 模 <span class="math inline">\(n\)</span>
-意义下互不相同，且 <span
-class="math inline">\(\gcd(x,n)=1\)</span>，则称 <span
-class="math inline">\(x\)</span> 为 <span
-class="math inline">\(n\)</span> 的原根。</p>
-<h4 id="性质">性质:</h4>
-<p>质数 <span class="math inline">\(p\)</span> 的原根的方幂能取遍 <span
-class="math inline">\([1,p-1]\)</span></p>
-<h4 id="求质数的原根">求质数的原根</h4>
-<p>数学大佬证明了一个数 <span class="math inline">\(n\)</span>
-的最小正原根不超过 <span
-class="math inline">\(n^{\frac{1}{4}+\epsilon}\)</span>，所以枚举每个数，检查所有
-<span class="math inline">\(n\)</span> 的约数是否是 <span
-class="math inline">\(a\)</span> 的阶，如果不是，那么 <span
-class="math inline">\(a\)</span> 为一个原根，复杂度 <span
-class="math inline">\(\sqrt n\)</span>，瓶颈在分解质因数。</p>
-<h4 id="应用">应用</h4>
-<p>开离散对数的时候上原根和换底公式有奇效。</p>
-<h4 id="原根存在定理">原根存在定理</h4>
-<p>一个数 <span class="math inline">\(x\)</span> 有原根当且仅当 <span
-class="math inline">\(x= 2,4,p^n,2\times p^n\)</span>，其中 <span
-class="math inline">\(p\)</span> 为奇素数。</p>
-<p>证明不会。</p>
-<h3 id="中国剩余定理">中国剩余定理</h3>
-<p>咕咕咕</p>
-<h3 id="平面图欧拉定理">平面图欧拉定理</h3>
-<p>顶点数-边数-连通块数+区域数=1</p>
-<h3 id="几何体欧拉定理">几何体欧拉定理</h3>
-<p>顶点数-边数+面数=2</p>
-<h3 id="除法下取整相关">除法下取整相关：</h3>
-<ol type="1">
-<li><span class="math inline">\(\lfloor\frac{a}{b}\rfloor\ge x\iff b\le
-\lfloor\frac{a}{x}\rfloor\)</span>
-<ul>
-<li>含义：<span
-class="math inline">\(b=\lfloor\frac{a}{x}\rfloor\)</span> 是满足 <span
-class="math inline">\(\lfloor\frac{a}{b}\rfloor\ge x\)</span> 的最大的
-<span class="math inline">\(b\)</span>。</li>
-</ul></li>
-<li><span class="math inline">\(\lfloor\frac{a}{b}\rfloor&lt; x \iff
-b&gt;\lfloor\frac{a}{x}\rfloor\)</span>
-<ul>
-<li>上面那个反过来。</li>
-</ul></li>
-<li><span
-class="math inline">\(\big\lfloor\dfrac{\lfloor\frac{n}{a}\rfloor}{b}\big\rfloor=\lfloor\dfrac{n}{ab}\rfloor\)</span>
-<ul>
-<li>设 <span class="math inline">\(n=kab+r,r&lt; ab\)</span>，则 <span
-class="math inline">\(\lfloor\frac{n}{a}\rfloor&lt;(k+1)b\)</span>，自然有
-<span
-class="math inline">\(\big\lfloor\dfrac{\lfloor\frac{n}{a}\rfloor}{b}\big\rfloor\le
-\lfloor\dfrac{n}{ab}\rfloor\)</span>。又因为 <span
-class="math inline">\(\lfloor\frac{n}{a}\rfloor\ge kb\)</span>，因此
-<span
-class="math inline">\(\big\lfloor\dfrac{\lfloor\frac{n}{a}\rfloor}{b}\big\rfloor\ge
-\lfloor\dfrac{n}{ab}\rfloor\)</span>，得证。</li>
-</ul></li>
-</ol>
-<h3 id="余数相关">余数相关</h3>
-<ol type="1">
-<li>若 <span class="math inline">\(\gcd(x,y)=1,k\in[0,y)\)</span>，则
-<span class="math inline">\(kx\pmod y\)</span> 互不相同。
-<ul>
-<li>证明反证法，移到同一边然后是倍数。</li>
-</ul></li>
-</ol>
-<h3 id="解析几何相关">解析几何相关</h3>
-<ol type="1">
-<li><span class="math inline">\((x_0,y_0)\)</span> 关于 <span
-class="math inline">\(y=x+m\)</span> 的对称点：<span
-class="math inline">\((y_0 - m,x_0 + m)\)</span>。</li>
-<li><span class="math inline">\((x_0,y_0)\)</span> 关于 <span
-class="math inline">\(y=-x+m\)</span> 的对称点：<span
-class="math inline">\((- y_0 + m,- x_0 + m)\)</span>。</li>
-</ol>
 
       
     </div>

@@ -23,7 +23,7 @@
     <meta name="description" content="几道题目引发的思考  未完成，咕咕咕中。  NOI2013书法家 这道题，我写了个 DP+枚举 的方法交了上去，第一发喜提 TLE，开 O2 后成功通过，并且速度是不开 O2 的 10 倍，看题解后发现，相比于纯粹的 DP 做法，自己的枚举做法其实很蠢很难想也很难写，于是对 DP 和枚举的关系进行了一些思考。 O2 优化的高达 10 的效率改进因子也着实让我觉得有些不可思议，于是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="几道题目引发的思考">
-<meta property="og:url" content="http://huanyp.cn/2022/12/20/OI/%E5%A4%8D%E5%90%88%E5%9E%8B%E6%96%87%E7%AB%A0/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/index.html">
+<meta property="og:url" content="https://huanyp.cn/2022/12/20/OI/%E5%A4%8D%E5%90%88%E5%9E%8B%E6%96%87%E7%AB%A0/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
 <meta property="og:description" content="几道题目引发的思考  未完成，咕咕咕中。  NOI2013书法家 这道题，我写了个 DP+枚举 的方法交了上去，第一发喜提 TLE，开 O2 后成功通过，并且速度是不开 O2 的 10 倍，看题解后发现，相比于纯粹的 DP 做法，自己的枚举做法其实很蠢很难想也很难写，于是对 DP 和枚举的关系进行了一些思考。 O2 优化的高达 10 的效率改进因子也着实让我觉得有些不可思议，于是">
 <meta property="og:locale" content="zh_CN">
@@ -34,10 +34,10 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://huanyp.cn/2022/12/20/OI/%E5%A4%8D%E5%90%88%E5%9E%8B%E6%96%87%E7%AB%A0/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/">
+<link rel="canonical" href="https://huanyp.cn/2022/12/20/OI/%E5%A4%8D%E5%90%88%E5%9E%8B%E6%96%87%E7%AB%A0/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/12/20/OI/%E5%A4%8D%E5%90%88%E5%9E%8B%E6%96%87%E7%AB%A0/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/","path":"2022/12/20/OI/复合型文章/几道题目引发的思考/几道题目引发的思考/","title":"几道题目引发的思考"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huanyp.cn/2022/12/20/OI/%E5%A4%8D%E5%90%88%E5%9E%8B%E6%96%87%E7%AB%A0/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/","path":"2022/12/20/OI/复合型文章/几道题目引发的思考/几道题目引发的思考/","title":"几道题目引发的思考"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>几道题目引发的思考 | 幻影彭的彩虹</title>
@@ -157,7 +157,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/12/20/OI/%E5%A4%8D%E5%90%88%E5%9E%8B%E6%96%87%E7%AB%A0/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/12/20/OI/%E5%A4%8D%E5%90%88%E5%9E%8B%E6%96%87%E7%AB%A0/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/%E5%87%A0%E9%81%93%E9%A2%98%E7%9B%AE%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">

@@ -23,7 +23,7 @@
     <meta name="description" content="题意  给你一棵有根树，定义一个点合法当且仅当它到根上的点全为黑色，否则不合法。 最开始所有点为白色，每次选一个不合法的点涂黑，每个点可以被涂黑多次。 问所有点被涂黑的期望次数  思考1 这次想题引爆了某人概率论基础不扎实的炸弹。 考虑每个点被涂黑的顺序，是一个排列，取到每种排列的概率相同。 考虑使用全期望公式计算，先考虑固定一个排列时的答案。 先假设只有 \(3\) 个点，且">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ARC150D-一类期望问题的思考方式">
-<meta property="og:url" content="http://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/index.html">
+<meta property="og:url" content="https://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
 <meta property="og:description" content="题意  给你一棵有根树，定义一个点合法当且仅当它到根上的点全为黑色，否则不合法。 最开始所有点为白色，每次选一个不合法的点涂黑，每个点可以被涂黑多次。 问所有点被涂黑的期望次数  思考1 这次想题引爆了某人概率论基础不扎实的炸弹。 考虑每个点被涂黑的顺序，是一个排列，取到每种排列的概率相同。 考虑使用全期望公式计算，先考虑固定一个排列时的答案。 先假设只有 \(3\) 个点，且">
 <meta property="og:locale" content="zh_CN">
@@ -35,10 +35,10 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/">
+<link rel="canonical" href="https://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/","path":"2022/10/10/OI/算法/一类期望问题的思考方式/","title":"ARC150D-一类期望问题的思考方式"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/","path":"2022/10/10/OI/算法/一类期望问题的思考方式/","title":"ARC150D-一类期望问题的思考方式"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>ARC150D-一类期望问题的思考方式 | 幻影彭的彩虹</title>
@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">

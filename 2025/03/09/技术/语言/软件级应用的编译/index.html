@@ -23,7 +23,7 @@
     <meta name="description" content="软件级是相对于程序级的概念，软件级应用往往包含多目录多文件的大量源代码，有复杂的第三方库依赖关系。 软件级应用的编译用时往往较长，并且过程相对繁琐。 我们这里介绍使用 MinGW 系列工具和 CMake 编译 cpp 软件级应用的过程和知识。 各种文件 CMakeLists.txt CMakeLists.txt 一般用于跨平台的大型软件级项目，用于指示 CMake 生成平台对应的编译">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件级应用的编译">
-<meta property="og:url" content="http://huanyp.cn/2025/03/09/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/%E8%BD%AF%E4%BB%B6%E7%BA%A7%E5%BA%94%E7%94%A8%E7%9A%84%E7%BC%96%E8%AF%91/index.html">
+<meta property="og:url" content="https://huanyp.cn/2025/03/09/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/%E8%BD%AF%E4%BB%B6%E7%BA%A7%E5%BA%94%E7%94%A8%E7%9A%84%E7%BC%96%E8%AF%91/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
 <meta property="og:description" content="软件级是相对于程序级的概念，软件级应用往往包含多目录多文件的大量源代码，有复杂的第三方库依赖关系。 软件级应用的编译用时往往较长，并且过程相对繁琐。 我们这里介绍使用 MinGW 系列工具和 CMake 编译 cpp 软件级应用的过程和知识。 各种文件 CMakeLists.txt CMakeLists.txt 一般用于跨平台的大型软件级项目，用于指示 CMake 生成平台对应的编译">
 <meta property="og:locale" content="zh_CN">
@@ -35,10 +35,10 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://huanyp.cn/2025/03/09/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/%E8%BD%AF%E4%BB%B6%E7%BA%A7%E5%BA%94%E7%94%A8%E7%9A%84%E7%BC%96%E8%AF%91/">
+<link rel="canonical" href="https://huanyp.cn/2025/03/09/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/%E8%BD%AF%E4%BB%B6%E7%BA%A7%E5%BA%94%E7%94%A8%E7%9A%84%E7%BC%96%E8%AF%91/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2025/03/09/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/%E8%BD%AF%E4%BB%B6%E7%BA%A7%E5%BA%94%E7%94%A8%E7%9A%84%E7%BC%96%E8%AF%91/","path":"2025/03/09/技术/语言/软件级应用的编译/","title":"软件级应用的编译"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huanyp.cn/2025/03/09/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/%E8%BD%AF%E4%BB%B6%E7%BA%A7%E5%BA%94%E7%94%A8%E7%9A%84%E7%BC%96%E8%AF%91/","path":"2025/03/09/技术/语言/软件级应用的编译/","title":"软件级应用的编译"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>软件级应用的编译 | 幻影彭的彩虹</title>
@@ -157,7 +157,7 @@ minizip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@ minizip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2025/03/09/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/%E8%BD%AF%E4%BB%B6%E7%BA%A7%E5%BA%94%E7%94%A8%E7%9A%84%E7%BC%96%E8%AF%91/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2025/03/09/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/%E8%BD%AF%E4%BB%B6%E7%BA%A7%E5%BA%94%E7%94%A8%E7%9A%84%E7%BC%96%E8%AF%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
@@ -759,6 +759,9 @@ prerequisites）。</p></li>
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2025/03/11/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/C-malloc%20%E7%AE%80%E4%BB%8B/" rel="next" title="C-malloc 简介">
+                  C-malloc 简介 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>

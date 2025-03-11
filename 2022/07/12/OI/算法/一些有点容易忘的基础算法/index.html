@@ -23,7 +23,7 @@
     <meta name="description" content="树链剖分 常用的树链剖分有重链剖分，实链剖分和长链剖分。 长链剖分主要用于部分和深度有关的树形 \(dp\) 的优化，一般采用指针数组实现。 我们说的树链剖分一般指重链剖分，即选择每个点子树最大的儿子。 不难证明从任何一个点到根都只会经过 \(log_n\) 条重链，这也是其复杂度的保证。 可以将每条重链用一个数据结构维护起来，就能做树上操作了。 动态树 动态树是基于实链剖分的数据结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一些有点容易忘的基础算法">
-<meta property="og:url" content="http://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:url" content="https://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
 <meta property="og:description" content="树链剖分 常用的树链剖分有重链剖分，实链剖分和长链剖分。 长链剖分主要用于部分和深度有关的树形 \(dp\) 的优化，一般采用指针数组实现。 我们说的树链剖分一般指重链剖分，即选择每个点子树最大的儿子。 不难证明从任何一个点到根都只会经过 \(log_n\) 条重链，这也是其复杂度的保证。 可以将每条重链用一个数据结构维护起来，就能做树上操作了。 动态树 动态树是基于实链剖分的数据结">
 <meta property="og:locale" content="zh_CN">
@@ -34,10 +34,10 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
+<link rel="canonical" href="https://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/","path":"2022/07/12/OI/算法/一些有点容易忘的基础算法/","title":"一些有点容易忘的基础算法"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/","path":"2022/07/12/OI/算法/一些有点容易忘的基础算法/","title":"一些有点容易忘的基础算法"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>一些有点容易忘的基础算法 | 幻影彭的彩虹</title>
@@ -155,7 +155,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -204,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">

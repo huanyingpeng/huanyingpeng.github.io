@@ -23,7 +23,7 @@
     <meta name="description" content="事件和条件 以下概率均为古典概率模型，暂时不讨论几何概型。 这两个东西是我自己定义的，算概率之前，必须搞清楚事件和条件的区别，下面提两个搞不清楚事件和条件导致的问题。 三门问题  有三个门，一个门后面有汽车，另外两个门后面是山羊。 你可以先选择一个门，之后主持人打开一个门，门后是山羊 问此时两个门后有汽车的概率是多少  思考方式一（错误） 每个门后有山羊的概率是相等的，打开一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="概率期望--三门问题及其变形">
-<meta property="og:url" content="http://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/index.html">
+<meta property="og:url" content="https://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
 <meta property="og:description" content="事件和条件 以下概率均为古典概率模型，暂时不讨论几何概型。 这两个东西是我自己定义的，算概率之前，必须搞清楚事件和条件的区别，下面提两个搞不清楚事件和条件导致的问题。 三门问题  有三个门，一个门后面有汽车，另外两个门后面是山羊。 你可以先选择一个门，之后主持人打开一个门，门后是山羊 问此时两个门后有汽车的概率是多少  思考方式一（错误） 每个门后有山羊的概率是相等的，打开一个">
 <meta property="og:locale" content="zh_CN">
@@ -35,10 +35,10 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/">
+<link rel="canonical" href="https://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/","path":"2022/10/10/OI/算法/概率期望-三门问题及其变形/","title":"概率期望--三门问题及其变形"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/","path":"2022/10/10/OI/算法/概率期望-三门问题及其变形/","title":"概率期望--三门问题及其变形"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>概率期望--三门问题及其变形 | 幻影彭的彩虹</title>
@@ -156,7 +156,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -205,7 +205,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B-%E4%B8%89%E9%97%A8%E9%97%AE%E9%A2%98%E5%8F%8A%E5%85%B6%E5%8F%98%E5%BD%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">

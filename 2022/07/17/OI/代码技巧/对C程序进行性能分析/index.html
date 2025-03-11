@@ -23,7 +23,7 @@
     <meta name="description" content="前情提要 某道题，某人写了，然后交了，然后过了，但跑的很慢。 某人卡了好几次常，都不行。 看了下跑得比较快的代码，其实没啥差别。 输出运行时间，发现没什么差异，所以某人要对程序做个性能分析。 性能分析本质上是运行了一遍程序，然后把占用大量时间的函数抓出来，对这个函数进行优化。 在 Windows 下使用 gprof 对程序进行性能分析 gprof 是 g++ 自带的性能分析工具，简">
 <meta property="og:type" content="article">
 <meta property="og:title" content="对C++程序进行性能分析">
-<meta property="og:url" content="http://huanyp.cn/2022/07/17/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%AF%B9C%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/index.html">
+<meta property="og:url" content="https://huanyp.cn/2022/07/17/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%AF%B9C%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="幻影彭的彩虹">
 <meta property="og:description" content="前情提要 某道题，某人写了，然后交了，然后过了，但跑的很慢。 某人卡了好几次常，都不行。 看了下跑得比较快的代码，其实没啥差别。 输出运行时间，发现没什么差异，所以某人要对程序做个性能分析。 性能分析本质上是运行了一遍程序，然后把占用大量时间的函数抓出来，对这个函数进行优化。 在 Windows 下使用 gprof 对程序进行性能分析 gprof 是 g++ 自带的性能分析工具，简">
 <meta property="og:locale" content="zh_CN">
@@ -35,10 +35,10 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://huanyp.cn/2022/07/17/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%AF%B9C%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/">
+<link rel="canonical" href="https://huanyp.cn/2022/07/17/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%AF%B9C%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://huanyp.cn/2022/07/17/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%AF%B9C%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/","path":"2022/07/17/OI/代码技巧/对C程序进行性能分析/","title":"对C++程序进行性能分析"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huanyp.cn/2022/07/17/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%AF%B9C%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/","path":"2022/07/17/OI/代码技巧/对C程序进行性能分析/","title":"对C++程序进行性能分析"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>对C++程序进行性能分析 | 幻影彭的彩虹</title>
@@ -157,7 +157,7 @@ gprof 对程序进行性能分析</span></a></li><li class="nav-item nav-level-2
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">106</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -206,7 +206,7 @@ gprof 对程序进行性能分析</span></a></li><li class="nav-item nav-level-2
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://huanyp.cn/2022/07/17/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%AF%B9C%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/17/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%AF%B9C%E7%A8%8B%E5%BA%8F%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
