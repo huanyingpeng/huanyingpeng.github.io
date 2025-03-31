@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">107</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,178 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2023/01/31/OI/%E6%AF%94%E8%B5%9B/CF1787/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/01/31/OI/%E6%AF%94%E8%B5%9B/CF1787/" class="post-title-link" itemprop="url">CF1787</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-01-31 08:13:55" itemprop="dateCreated datePublished" datetime="2023-01-31T08:13:55+08:00">2023-01-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:51:15" itemprop="dateModified" datetime="2025-02-16T17:51:15+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="a">A</h2>
+<p>简单，不过我蠢</p>
+<p>偶数构造显然。</p>
+<p>奇数不存在合法方案，不用枚举。</p>
+<h2 id="b">B</h2>
+<p>简单贪心。</p>
+<h2 id="c">C</h2>
+<p>每个 <span class="math inline">\(x_i\)</span>
+的取值最多有两个，因为如果不取到边界，那么向左或者向右调整一定会变得更优。</p>
+<p>直接做一遍动态规划即可。</p>
+<h2 id="d">D</h2>
+<p>简单图论</p>
+<h2 id="e">E</h2>
+<p>考虑能构造的一个必要条件，异或值本身需要满足且最高位的个数足够。</p>
+<p>注意到对于连续的一段 <span
+class="math inline">\([1,n]\)</span>，高一位的 <span
+class="math inline">\(1\)</span> 的个数不会多于低一位的 <span
+class="math inline">\(1\)</span> 的个数，证明考虑最高位 (<span
+class="math inline">\(n\)</span>) 和次高位 (<span
+class="math inline">\(n-1\)</span>)，次高位在最高位出现之前就取到了
+<span class="math inline">\(2^{n-1}\)</span>，最高位为 <span
+class="math inline">\(1\)</span> 时，最多有 <span
+class="math inline">\(2^{n-1}\)</span> 个数取不到次高位。</p>
+<p>对于最高位个数足够的情况，取拥有最高位的 <span
+class="math inline">\(k\)</span> 个数，以及 <span
+class="math inline">\(a_i\oplus
+x\)</span>，由于异或的性质，被取到的剩下的数一定互不相同，且这样构造取到了理论最大值，将剩下的数随便塞进一组里，由于异或值本身需要满足的必要条件，一定不影响异或结果。</p>
+<p>注意特判 <span class="math inline">\(x\oplus0\)</span> 的情况。</p>
+<h2 id="f">F</h2>
+<p>定义排列乘法为 <span class="math inline">\(a=b\cdot
+c,a_i=b_{c_i}\)</span>。</p>
+<p>给定一个排列 <span class="math inline">\(p\)</span>
+，问是否存在一个排列 <span class="math inline">\(q\)</span> 满足 <span
+class="math inline">\(q^{2^k}=p\)</span>，如果存在，构造一种循环个数最小的
+<span class="math inline">\(q\)</span>，否则报告无解。</p>
+<p>对于 <span class="math inline">\(q\)</span>
+的每个循环我们考虑乘方之后会怎样。</p>
+<p>将一个循环 <span class="math inline">\(w\)</span> 写出，例如 <span
+class="math inline">\(1,2,3,4\)</span>，自乘一遍之后变成 <span
+class="math inline">\(1,3;2,4\)</span>，再自乘一遍（乘最开始的排列）变为
+<span class="math inline">\(1,4,3,2\)</span>。如果以图的形式表现，<span
+class="math inline">\(w^p\)</span> 表现为将第 <span
+class="math inline">\(i\)</span> 个点的边连到第 <span
+class="math inline">\(i+p\)</span> 个点，注意到如果 <span
+class="math inline">\(\gcd(p,len)\ne
+1\)</span>，那么循环个数就会减小。</p>
+<p>考虑变换后的排列 <span
+class="math inline">\(p\)</span>，求出其所有循环，对于奇数长度的循环，可以将它们以
+<span class="math inline">\(2^i\)</span>
+的形式合并起来，这样得到的循环个数是最小的，注意 <span
+class="math inline">\(i&gt;k\)</span> 的情况。</p>
+<p>对于偶数长度的循环，如果个数不足 <span
+class="math inline">\(2^k\)</span>，那么它们就无法被拼接起来，否则也只能以
+<span class="math inline">\(2^k\)</span> 为单位拼接起来。</p>
+<p>考虑将若干个长度相同的循环还原为 <span
+class="math inline">\(q\)</span> 中的循环，我们知道的是，对于 <span
+class="math inline">\(q\)</span> 中的原循环，将边连向 <span
+class="math inline">\(2^k\bmod len\)</span>
+之后的点得到了若干个长度相同的循环，那么对于这些长度相同的循环，我们在每个循环中先取一个，然后接下来才需要取同一循环的元素。</p>
+<p>设 <span class="math inline">\(p\)</span> 中一个循环的长度为 <span
+class="math inline">\(m\)</span>，总共 <span
+class="math inline">\(n\)</span> 个循环，一种简单的构造方式令 <span
+class="math inline">\(p\)</span> 中第 <span
+class="math inline">\(i\)</span> 个循环的第 <span
+class="math inline">\(j\)</span> 个元素，占用第 <span
+class="math inline">\(((\frac{jk}{n})\bmod m)*n+i\)</span>
+个位置，那么显然在原来 <span class="math inline">\(q\)</span>
+的循环中，<span class="math inline">\(p\)</span>
+中每一个循环的元素到下一个元素的距离为 <span
+class="math inline">\(k\)</span>。</p>
+<h3 id="g">G</h3>
+<p>考虑暴力怎么做，拿一个可重集维护所有颜色的答案，修改一个点时，暴力修改和这个点连接的所有颜色的，将它们从集合中删除或者加入。</p>
+<p>这样做一次操作复杂度和度数有关，无法通过本题。</p>
+<p>将问题进一步抽象后发现它并不是一个好做的问题——和 CSP-S2022T3
+有点类似，这种一对多的指定整体修改问题并不好做。考虑利用问题抽象前的性质——树上问题。</p>
+<p>修改一个点时受到影响的颜色可以分为路径 lca
+是它和不是它，后者只有一种，可以暴力修改，对于前者可以对每一个点用
+priority_queue 维护路径 lca 为它的最大权值，这样就能做到 <span
+class="math inline">\(O(n\log n)\)</span>。</p>
+<p>细节有点多：</p>
+<ul>
+<li>从树中提出链的时候，判断度数的条件应该是
+<code>(fa==0)+cnt&gt;2</code> 则不为链，<code>(fa==0)+cnt==1</code>
+则为端点</li>
+<li>不合法的颜色不应该被统计进它 lca 的 priority_queue 中。</li>
+<li>如果一个 lca 不合法，那么它的权值不在总的 priority_queue
+中，对它某一个儿子修改时自然不应该修改总的优先队列。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1653,117 +1825,6 @@ href="https://huanyp.cn/2022/09/21/%E6%A0%91%E4%B8%8A%E9%93%BE%E9%A2%86%E5%9F%9F
 <p>如果 <span
 class="math inline">\(O(n^2)\)</span>，那么考虑以插入的方式构造排列，已经是一个被积累起来的套路了，场上成功写出。</p>
 <h4 id="nlogn">nlogn</h4>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/11/22/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1117%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/11/22/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1117%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1117总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-11-22 20:18:20" itemprop="dateCreated datePublished" datetime="2022-11-22T20:18:20+08:00">2022-11-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:22:50" itemprop="dateModified" datetime="2025-02-16T20:22:50+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="总结">1117总结</h2>
-<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0155/">考试</a></p>
-<h3 id="t1">T1</h3>
-<p>问的是对于每个跳棋能走到多少个格子，不重不漏那种。</p>
-<p>发现对于一个棋子，由于它跳的时候其它的不能动，所以本质上如果弄成图处理不会出问题，问题变成了无向图中一个点可以到多少个点，就是联通块问题，不妨先把所有可能可达的点弄出来建一个图，点数
-<span
-class="math inline">\(O(n)\)</span>，然后问一个棋子，要对图做一下改变，具体的是加一些边连向一个新点，问新点所在连通块大小。</p>
-<p>可以可撤销并查集，当然也可以直接枚举做，相邻的情况是平凡的，特判掉。</p>
-<p>场上写挂是因为数组开小了，点的数量是 <span
-class="math inline">\(7n\)</span> 而不是 <span
-class="math inline">\(6n\)</span>。</p>
-<h3 id="t2">T2</h3>
-<p>首先判掉没有 <span class="math inline">\(GT\)</span>
-的情况，直接选最后一个。</p>
-<p>然后如果有 <span class="math inline">\(GT\)</span>
-，那么一左端点一定是第一个 <span class="math inline">\(G\)</span> 或者
-<span class="math inline">\(T\)</span>，然后左端点固定，需要比较 <span
-class="math inline">\(O(n)\)</span>
-个字符串，每个字符串可以描述为两个字符串的子串拼起来，然后用二分哈希比较就可以了。</p>
-<p>场上拼串的时候多弄了一个字符， <span
-class="math inline">\(90\)</span>。</p>
-<h3 id="t3">T3</h3>
-<p>暂时还不会</p>
-<h3 id="t4">T4</h3>
-<p>考虑建图，图本身很类似一棵树，因为合法括号序列本身就是树的结构，将一对括号视作树上的一个节点，这个节点中含有两个子节点，那么连边就是一个节点中的两个子节点连边以及儿子的左右两个子节点之间连边，以及最左最右的儿子向对应的父亲子节点连边。</p>
-<p>然后任何路径必须在 LCA 处交汇，变成树上路径问题，可以倍增。</p>
-<p>注意因为我们实现的时候建了一个虚拟节点，实际上不能走它，需要特判。</p>
 
       
     </div>

@@ -33,6 +33,126 @@
 ]]></content>
   </entry>
   <entry>
+    <title>左偏树的指针实现——C++移动语义的实例</title>
+    <url>/2025/03/31/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/C++%E7%A7%BB%E5%8A%A8%E8%AF%AD%E4%B9%89%E7%9A%84%E5%AE%9E%E4%BE%8B-%E6%8C%87%E9%92%88%E5%AE%9E%E7%8E%B0%E5%B7%A6%E5%81%8F%E6%A0%91/</url>
+    <content><![CDATA[<h3 id="简介">简介</h3>
+<p>左偏树是一种<strong>可并堆</strong>，核心操作是 <span
+class="math inline">\(O(\log{n} + \log{m})\)</span> 的 merge 操作。</p>
+<p>通过 merge 操作来实现 push 和 pop 操作。</p>
+<h3 id="基本信息">基本信息</h3>
+<ul>
+<li>左偏树的结构是<strong>二叉树</strong>。</li>
+<li>每个节点具有一个额外属性
+dist。定义一个节点是<strong>边缘节点</strong>，当且仅当它的<strong>儿子个数不为
+2</strong>。dist
+表示<strong>该节点往儿子方向走，走到边缘节点需要经过的最小边数</strong>，空节点
+dist 定义为 -1。</li>
+<li>左偏树每个节点的左子树的 dist <strong>不小于</strong>右子树的
+dist，所以显然有 <code>dist = right_son-&gt;dist + 1</code>。</li>
+</ul>
+<h3 id="算法流程">算法流程</h3>
+<h4 id="push">push</h4>
+<p>创建一个新的堆，只分配一个节点，将新堆合并进原有堆。</p>
+<h4 id="pop">pop</h4>
+<p>原有根节点删去，左右变成堆，合并后得到新的根节点。</p>
+<h4 id="merge">merge</h4>
+<ol type="1">
+<li>找到根节点 val
+较小的那个堆，将它的根节点作为新堆的根节点，它的左儿子作为新堆的左儿子，它的右儿子和另一个堆合并，作为新堆的右儿子。</li>
+<li>合并时遇到一个堆为空时，非空堆即合并结果，可以直接返回。</li>
+<li>如果合并后右儿子的 dist 大于左儿子的 dist，交换两个儿子。</li>
+</ol>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p>结论：</p>
+<ul>
+<li>push：<span class="math inline">\(O(\log{n})\)</span></li>
+<li>pop：<span class="math inline">\(O(\log{n})\)</span></li>
+<li>merge：<span class="math inline">\(O(\log{n} +
+\log{m})\)</span></li>
+</ul>
+<p>证明：</p>
+<ol type="1">
+<li>若一个节点的 dist 为 <span
+class="math inline">\(x\)</span>，则它及其子树至少有 <span
+class="math inline">\(2^x\)</span> 个节点。故 dist 的值是 <span
+class="math inline">\(O(\log{n})\)</span> 级别的。</li>
+<li>进行合并时，每递归一层，参与合并的<strong>两个堆的 dist 之和减少
+1</strong>，故递归层数为 <span class="math inline">\(O(\log{n} +
+\log{m})\)</span>。</li>
+</ol>
+<h3 id="实现">实现</h3>
+<h4 id="结构">结构</h4>
+<ul>
+<li>一个内部的类 <code>Node</code> 表示左偏树的一个节点，包含
+<code>dist</code>，<code>val</code> 两个变量，以及
+<code>son[0], son[1]</code> 两个指针，分别指向左儿子和右儿子。</li>
+<li>一个类 <code>Heap</code>，表示一个堆，包含一个 <code>Node</code>
+指针，表示根节点。</li>
+</ul>
+<h4 id="声明">声明</h4>
+<p>这里希望练习使用 C++11
+中的<strong>智能指针</strong>和<strong>移动语义</strong>，所以声明为：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Heap</span>&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Node</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        unique_ptr&lt;Node&gt; son[<span class="number">2</span>];</span><br><span class="line">        <span class="type">int</span> val, dist;</span><br><span class="line">        <span class="built_in">Node</span>(<span class="type">int</span> val=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;son[<span class="number">0</span>]=<span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">this</span>-&gt;son[<span class="number">1</span>]=<span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">this</span>-&gt;val=val;</span><br><span class="line">            <span class="keyword">this</span>-&gt;dist=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    unique_ptr&lt;Node&gt; root;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    其它部分暂时省略</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="构造函数">构造函数</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Heap</span>&#123;</span><br><span class="line">    <span class="built_in">Heap</span>(unique_ptr&lt;Node&gt; root)&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;root=<span class="built_in">move</span>(root);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>通过传入一个 <code>unique_ptr&lt;Node&gt;</code>，构造一个
+<code>Heap</code> 对象。</p>
+<p><code>unique_ptr</code>
+是一种智能指针，它指向的对象是它独享的，不能被其它东西访问。</p>
+<p><code>unique_ptr</code>
+<strong>仅支持移动语义</strong>，这用于<strong>转移</strong>对象的所有权，对象所有权转移后，原来的
+<code>unique_ptr</code> 将失效。</p>
+<p><code>unique_ptr</code>
+<strong>不支持拷贝和赋值</strong>操作，所以上面的构造函数严格来说是有问题的，如果传入的
+<code>unique_ptr</code>
+不是右值则会<strong>尝试调用不存在的拷贝构造函数</strong>，导致编译错误。故应该将参数声明为<strong>右值引用</strong>(注意区分<strong>右值引用</strong>和<strong>常值引用</strong>)。</p>
+<p>具体如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Heap</span>&#123;</span><br><span class="line">    <span class="built_in">Heap</span>(unique_ptr&lt;Node&gt; &amp;&amp;root)&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;root=root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>至于为什么第一份代码是正确的，是因为只要保证传入的
+<code>unique_ptr</code>
+是右值，编译器就会<strong>优先自动调用移动构造函数</strong>，所以不需要显式地写出
+<code>move</code>。</p>
+<h4 id="merge-1">merge</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Heap</span>&#123;</span><br><span class="line">    <span class="function">Heap&amp; <span class="title">merge</span><span class="params">(Heap &amp;&amp;other)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">            root=<span class="built_in">move</span>(other.root);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(other.root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(root-&gt;val &gt; other.root-&gt;val)&#123;</span><br><span class="line">                <span class="built_in">swap</span>(<span class="keyword">this</span>-&gt;root, other.root);</span><br><span class="line">            &#125;</span><br><span class="line">            root-&gt;son[<span class="number">1</span>] = <span class="built_in">move</span>(<span class="built_in">Heap</span>(<span class="built_in">move</span>(root-&gt;son[<span class="number">1</span>])).<span class="built_in">merge</span>(<span class="built_in">move</span>(other.root)).root);</span><br><span class="line">            <span class="keyword">if</span>(root-&gt;son[<span class="number">0</span>] == <span class="literal">nullptr</span> || </span><br><span class="line">                (root-&gt;son[<span class="number">1</span>] != <span class="literal">nullptr</span> &amp;&amp; root-&gt;son[<span class="number">0</span>]-&gt;dist &lt; root-&gt;son[<span class="number">1</span>]-&gt;dist))&#123;</span><br><span class="line">                <span class="built_in">swap</span>(root-&gt;son[<span class="number">0</span>], root-&gt;son[<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(root-&gt;son[<span class="number">1</span>] != <span class="literal">nullptr</span>)</span><br><span class="line">                root-&gt;dist = root-&gt;son[<span class="number">1</span>]-&gt;dist + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                root-&gt;dist = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>merge 返回一个<strong>左值引用</strong>是为了方便链式调用。</p>
+<p>有几个细节：</p>
+<ul>
+<li><p><code>swap</code>: 可以用于交换 <code>unique_ptr</code>,
+它应该是实现了这种移动语义的交换。</p></li>
+<li><p>隐式构造: <code>Heap(xxx).merge(move(other.root)).root</code>
+这里使用了<strong>隐式构造</strong>，<code>Heap.merge</code>
+支持的参数是一个右值的 <code>Heap</code>，传入时传的一个右值的
+<code>unique_ptr</code>，由于定义了右值 <code>unique_ptr</code> 到
+<code>Heap</code>
+的构造函数，这里直接<strong>隐式调用</strong>了构造函数，构造了一个<strong>右值的</strong>
+<code>Heap</code> 并作为参数传递给了 <code>merge</code>。</p></li>
+<li><p>返回左值引用: <code>return *this</code>
+返回左值引用的目的是方便<strong>链式调用</strong>，至于为什么临时构造的
+<code>Heap</code>
+能返回一个左值引用，是因为<strong>临时对象</strong>的<strong>生存周期</strong>是到<strong>表达式结束</strong>为止，而<strong>临时对象在生命周期内可以被左值引用。</strong></p></li>
+</ul>
+<h4 id="push-pop-top">push &amp;&amp; pop &amp;&amp; top</h4>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Heap</span>&#123;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">top</span><span class="params">()</span> <span class="type">const</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> root-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;<span class="built_in">merge</span>(<span class="built_in">unique_ptr</span>&lt;Node&gt;(<span class="keyword">new</span> <span class="built_in">Node</span>(x)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;root = <span class="built_in">move</span>(<span class="built_in">Heap</span>(<span class="built_in">move</span>(root-&gt;son[<span class="number">0</span>])).<span class="built_in">merge</span>(<span class="built_in">move</span>(root-&gt;son[<span class="number">1</span>])).root);</span><br><span class="line">        <span class="comment">// 当 merge 函数返回时, 它返回的是临时对象的左值引用, 临时对象在生命周期内可以被左值引用.</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>比较简单, 不解释了。</p>
+<h3 id="左值右值的理解">左值右值的理解</h3>
+<p>简单的说:</p>
+<ul>
+<li><p>右值是<strong>只能放到表达式右边的值</strong>，左值是<strong>既能放到表达式右边，也能放到左边的值</strong>。</p></li>
+<li><p>右值一般是<strong>没有命名的值</strong>，左值一般是<strong>有名字的值</strong>。</p></li>
+<li><p>右值是<strong>临时的值</strong>，左值是<strong>持久的值</strong>。</p></li>
+</ul>
+<h3 id="完整代码">完整代码</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;bits/stdc++.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Heap</span>&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Node</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        unique_ptr&lt;Node&gt; son[<span class="number">2</span>];</span><br><span class="line">        <span class="type">int</span> val, dist;</span><br><span class="line">        <span class="built_in">Node</span>(<span class="type">int</span> val=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;son[<span class="number">0</span>]=<span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">this</span>-&gt;son[<span class="number">1</span>]=<span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">this</span>-&gt;val=val;</span><br><span class="line">            <span class="keyword">this</span>-&gt;dist=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    unique_ptr&lt;Node&gt; root;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Heap</span>(unique_ptr&lt;Node&gt; &amp;&amp;root)&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;root=<span class="built_in">move</span>(root);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">top</span><span class="params">()</span> <span class="type">const</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> root-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">push</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;<span class="built_in">merge</span>(<span class="built_in">unique_ptr</span>&lt;Node&gt;(<span class="keyword">new</span> <span class="built_in">Node</span>(x)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">Heap&amp; <span class="title">merge</span><span class="params">(Heap &amp;&amp;other)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">            root=<span class="built_in">move</span>(other.root);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(other.root==<span class="literal">nullptr</span>)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(root-&gt;val &gt; other.root-&gt;val)&#123;</span><br><span class="line">                <span class="built_in">swap</span>(<span class="keyword">this</span>-&gt;root, other.root);</span><br><span class="line">            &#125;</span><br><span class="line">            root-&gt;son[<span class="number">1</span>] = <span class="built_in">move</span>(<span class="built_in">Heap</span>(<span class="built_in">move</span>(root-&gt;son[<span class="number">1</span>])).<span class="built_in">merge</span>(<span class="built_in">move</span>(other.root)).root);</span><br><span class="line">            <span class="keyword">if</span>(root-&gt;son[<span class="number">0</span>] == <span class="literal">nullptr</span> || </span><br><span class="line">                (root-&gt;son[<span class="number">1</span>] != <span class="literal">nullptr</span> &amp;&amp; root-&gt;son[<span class="number">0</span>]-&gt;dist &lt; root-&gt;son[<span class="number">1</span>]-&gt;dist))&#123;</span><br><span class="line">                <span class="built_in">swap</span>(root-&gt;son[<span class="number">0</span>], root-&gt;son[<span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(root-&gt;son[<span class="number">1</span>] != <span class="literal">nullptr</span>)</span><br><span class="line">                root-&gt;dist = root-&gt;son[<span class="number">1</span>]-&gt;dist + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                root-&gt;dist = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;root = <span class="built_in">move</span>(<span class="built_in">Heap</span>(<span class="built_in">move</span>(root-&gt;son[<span class="number">0</span>])).<span class="built_in">merge</span>(<span class="built_in">move</span>(root-&gt;son[<span class="number">1</span>])).root);</span><br><span class="line">        <span class="comment">// 当 merge 函数返回时, 它返回的是临时对象的左值引用, 临时对象在生命周期内可以被左值引用.</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">top</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function">Heap <span class="title">h</span><span class="params">(<span class="literal">nullptr</span>)</span></span>;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="type">int</span> tp, x;</span><br><span class="line">        cin &gt;&gt; tp;</span><br><span class="line">        <span class="keyword">switch</span> (tp)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                cin &gt;&gt; x;</span><br><span class="line">                h.<span class="built_in">push</span>(x);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                cout &lt;&lt; h.<span class="built_in">top</span>() &lt;&lt; endl;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                h.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">throw</span> <span class="string">&quot;unsupported operation&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>面向对象</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C-malloc 简介</title>
     <url>/2025/03/11/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/C-malloc%20%E7%AE%80%E4%BB%8B/</url>
     <content><![CDATA[<p>C 使用 malloc() 和 free() 来动态分配和释放内存，C++ 使用 new 和

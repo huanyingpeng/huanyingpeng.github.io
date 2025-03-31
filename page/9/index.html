@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">107</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,372 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/08/03/OI/%E7%AE%97%E6%B3%95/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/03/OI/%E7%AE%97%E6%B3%95/%E7%AE%80%E5%8D%95%E6%95%B0%E8%AE%BA%E5%87%BD%E6%95%B0%E5%92%8C%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">简单数论函数和应用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-03 13:27:13" itemprop="dateCreated datePublished" datetime="2022-08-03T13:27:13+08:00">2022-08-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:55:29" itemprop="dateModified" datetime="2025-02-16T17:55:29+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="简单数论函数和应用">简单数论函数和应用</h1>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/mobius/">OI-WIKI
+莫比乌斯反演</a></li>
+<li><a target="_blank" rel="noopener" href="https://oi-wiki.org/math/poly/dgf/#dirichlet">OI-WIKI
+迪利克雷卷积</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/An-Amazing-Blog/ji-miao-di-mu-bi-wu-si-fan-yan">从莫比乌斯到欧拉</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/An-Amazing-Blog/mu-bi-wu-si-fan-yan-ji-ge-ji-miao-di-dong-xi">莫比乌斯反演-从基础开始</a></li>
+</ul>
+<h2 id="部分定义和约定">部分定义和约定</h2>
+<h3 id="符号">符号</h3>
+<ul>
+<li><span class="math inline">\(\operatorname{id}\)</span> ：<span
+class="math inline">\(\operatorname{id}\)</span> 数论函数，<span
+class="math inline">\(\operatorname{id}(x)=x\)</span></li>
+<li><span class="math inline">\(\epsilon\)</span> : 单位函数 <span
+class="math inline">\(\epsilon(x)=[x=1]\)</span></li>
+<li><span class="math inline">\([]\)</span>
+：中扩号表达式，中扩号内条件成立则为 <span
+class="math inline">\(1\)</span>，否则为 <span
+class="math inline">\(0\)</span></li>
+<li><span class="math inline">\(\boldsymbol{1}\)</span>：<span
+class="math inline">\(\boldsymbol{1}\)</span> 函数，若 <span
+class="math inline">\(f(n)=\boldsymbol{1}\)</span>，则 <span
+class="math inline">\(\forall x \in N^+,f(x)=1\)</span></li>
+</ul>
+<h3 id="数论函数">数论函数</h3>
+<ul>
+<li><p>一个数论函数定义域为正整数，值域为复数。</p></li>
+<li><p>一个数论函数为积性函数，当且仅当 <span
+class="math inline">\(\forall (a,b),\gcd(a,b)=1\rightarrow f(a\times
+b)=f(a)\times f(b)\)</span></p></li>
+<li><p>一个数论函数为完全积性函数，当且仅当 <span
+class="math inline">\(\forall a,b,f(a\times b)=f(a)\times
+f(b)\)</span></p></li>
+</ul>
+<h3 id="迪利克雷卷积">迪利克雷卷积</h3>
+<p>迪利克雷卷积为数论函数的乘法操作，定义两个数论函数的迪利克雷卷积定义为
+<span class="math display">\[
+g=f*h,g(n)=\sum\limits_{d|n} f(d)\times h(\frac{n}{d})
+\]</span></p>
+<p>迪利克雷卷积的除法操作就是逆操作，一般只能构造得到。</p>
+<p>迪利克雷卷积的性质（证明见下一部分）：</p>
+<ul>
+<li>两个积性函数的迪利克雷卷积仍是积性函数。</li>
+<li>两个积性函数的迪利克雷卷积除法结果仍是积性函数。</li>
+</ul>
+<p><strong>为了方便，以下所有数论函数的乘法未经说明均为迪利克雷卷积。</strong></p>
+<h3 id="常见积性函数">常见积性函数</h3>
+<ul>
+<li>欧拉函数 <span class="math inline">\(\phi(n)\)</span></li>
+<li>莫比乌斯函数 <span class="math inline">\(\mu(n)\)</span></li>
+<li>约数个数函数 <span class="math inline">\(d(n)\)</span></li>
+</ul>
+<h2 id="一些结论的简单证明">一些结论的简单证明</h2>
+<h3 id="迪利克雷卷积的性质">迪利克雷卷积的性质</h3>
+<h4 id="简单性质">简单性质</h4>
+<ul>
+<li>积性函数 <span class="math inline">\(f\)</span>，满足 <span
+class="math inline">\(f(1)=1\)</span></li>
+</ul>
+<h4 id="逆元存在且唯一">逆元存在且唯一</h4>
+<p>所有数论函数存在逆元，即对于所有 <span
+class="math inline">\(f\)</span>，存在 <span
+class="math inline">\(g\)</span> 使得 <span
+class="math inline">\(f*g=\epsilon\)</span>，直接构造对应的 <span
+class="math inline">\(g(n)\)</span> 即可。 <span class="math display">\[
+g(n)=-\dfrac{\sum\limits_{d|n,d\neq n}{f(d)\times
+g(\frac{n}{d})}}{f(1)}\\
+g(1)=\frac{1}{f(1)}
+\]</span> 因此数论函数的逆元存在且唯一。</p>
+<h4 id="交换律">交换律</h4>
+<p><span class="math inline">\(f * g=g * f\)</span>，显然成立</p>
+<h4 id="结合律">结合律</h4>
+<p><span class="math inline">\(f * g * h=f * (g *
+h)\)</span>，成立，但不显然。</p>
+<p>令 <span class="math inline">\(f * g * h=f_1,f * (g * h)=f_2,f *
+g=a,g * h=h * g=b\)</span> <span class="math display">\[
+f_1(n)=\sum\limits_{d_1|n} a(d_1)\times
+h(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} f(d_2)\times
+g(\frac{d_1}{d_2})\times h(\frac{n}{d_1})
+\]</span></p>
+<p><span class="math display">\[
+f_2(n)=\sum\limits_{d_1|n} b(d_1)\times
+f(\frac{n}{d_1})=\sum\limits_{d_1|n}\sum\limits_{d_2|d_1} h(d_2)\times
+g(\frac{d_1}{d_2})\times f(\frac{n}{d_1})
+\]</span> 对于任意一组满足 <span
+class="math inline">\(d_1|n,d_2|d_1\)</span> 的 <span
+class="math inline">\(d_1,d_2\)</span>，构造 <span
+class="math inline">\(d_2&#39;=\frac{n}{d_1},d_1&#39;=\frac{n}{d_2}\)</span>
+，容易发现这样的构造是一一对应的，满足 <span
+class="math inline">\(f(d_2)\times g(\frac{d_1}{d_2})\times
+(\frac{n}{d_1})=f(\frac{n}{d_1&#39;}) \times
+g(\frac{d_1&#39;}{d_2&#39;}) \times h(d_2&#39;))\)</span> 。</p>
+<p>因此对于上式中的每一项，下式都有一项与之一一对应，因此上下式相等。</p>
+<h4 id="分配律">分配律</h4>
+<p><span class="math inline">\(f*(g+h)=f*g+f*h\)</span></p>
+<p>显然成立。</p>
+<h4
+id="两个积性函数的迪利克雷卷积为积性函数">两个积性函数的迪利克雷卷积为积性函数</h4>
+<p><span class="math inline">\(f,h\)</span> 为积性函数，则 <span
+class="math inline">\(f*g=h\)</span>，<span
+class="math inline">\(h\)</span> 为积性函数。</p>
+<p><span class="math inline">\(\forall a,b \ , \gcd(a,b)=1\ ,h(a\times
+b)=h(a)\times h(b)\)</span>，满足 <span class="math display">\[
+\begin{align}
+h(a\times b)=&amp;\sum\limits_{d_1|a}\sum\limits_{d_2|b}f(d_1\times
+\frac{b}{d_2})\times g(\frac{a}{d_1}\times d_2)\\
+=&amp;\sum\limits_{d_1|a}\sum\limits_{d_2|b}f(d_1)\times
+f(\frac{b}{d_2})\times g(\frac{a}{d_1})\times g( d_2)\\
+=&amp;\sum\limits_{d_1|a} f(d_1)\times
+g(\frac{a}{d_1})\sum\limits_{d_2|b} f(\frac{b}{d_2})\times g(d_2)\\
+=&amp;h(a)\times h(b)
+\end{align}
+\]</span></p>
+<h4
+id="两个积性函数的迪利克雷卷积除法为积性函数">两个积性函数的迪利克雷卷积除法为积性函数</h4>
+<p>证明 <span class="math inline">\(f,h\)</span> 为积性函数，且 <span
+class="math inline">\(h*g=f\)</span>，则 <span
+class="math inline">\(g\)</span> 为积性函数。</p>
+<p>令 <span class="math inline">\(h&#39;*h=\epsilon\)</span>，则 <span
+class="math inline">\(g=f*h&#39;\)</span></p>
+<p>即证明积性函数的逆元也为积性函数。</p>
+<p><a
+target="_blank" rel="noopener" href="https://oi-wiki.org/math/poly/dgf/#%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E9%80%86%E5%85%83%E4%B9%9F%E6%98%AF%E7%A7%AF%E6%80%A7%E5%87%BD%E6%95%B0">证明</a></p>
+<p>使用了数学归纳法。</p>
+<h4 id="完全积性函数相关">完全积性函数相关</h4>
+<p>若 <span class="math inline">\(w\)</span> 是完全积性函数，则 <span
+class="math display">\[
+(g\cdot w) * (f \cdot w) = (g * f)\cdot w
+\]</span></p>
+<h3 id="常见的积性函数关系">常见的积性函数关系</h3>
+<ul>
+<li><span class="math inline">\(\mu*
+\boldsymbol{1}=\epsilon\)</span></li>
+<li><span class="math inline">\(\phi*
+\boldsymbol{1}=\operatorname{id}\)</span></li>
+<li><span class="math inline">\(\mu * \operatorname{id} =
+\phi\)</span></li>
+</ul>
+<h2 id="莫比乌斯反演">莫比乌斯反演</h2>
+<p><strong>莫比乌斯反演的常见做法是用其它易于交换求和符号的项替换掉不容易求和的相关项。</strong></p>
+<p>不容易交换求和的项一般有 <span class="math inline">\(d,\gcd\)</span>
+等。</p>
+<h3 id="数论分块">数论分块</h3>
+<p>莫比乌斯反演或者其它数数题中常用的优化方式。</p>
+<p>核心原理是对于 <span class="math inline">\([1,n]\)</span> 中所有数
+<span class="math inline">\(i\)</span>，<span
+class="math inline">\(\frac{n}{i}\)</span> 的结果只有 <span
+class="math inline">\(\sqrt{n}\)</span> 个。</p>
+<p>证明是容易的，对于 <span
+class="math inline">\([1,\sqrt{n}]\)</span>，一共有 <span
+class="math inline">\(\sqrt{n}\)</span> 个值，对于 <span
+class="math inline">\([\sqrt{n},n]\)</span>，一共也只有 <span
+class="math inline">\(\sqrt{n}\)</span> 个值。</p>
+<p>枚举的方式是先枚举一个 <span
+class="math inline">\(l\)</span>，然后计算出一个最大的 <span
+class="math inline">\(r\)</span>，满足 <span
+class="math inline">\(\frac{n}{r}=\frac{n}{l}\)</span>，容易证明 <span
+class="math inline">\(r=\big\lfloor\dfrac{n}{\lfloor\frac{n}{l}\rfloor}\big\rfloor\)</span>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">1</span>,r=<span class="number">1</span>;l&lt;=n;l=r<span class="number">+1</span>,r=n/(n/l))&#123;</span><br><span class="line">	<span class="built_in">do_something</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="莫比乌斯函数">莫比乌斯函数</h3>
+<h4 id="定义">定义</h4>
+<p><span class="math display">\[
+\mu(n)=
+\begin{cases}
+1&amp;n=1\\
+0&amp;n\text{ 含有平方因子}\\
+(-1)^k&amp;k\text{ 为 }n\text{ 的本质不同质因子个数}\\
+\end{cases}
+\]</span></p>
+<h4 id="muboldsymbol1epsilon"><span
+class="math inline">\(\mu*\boldsymbol{1}=\epsilon\)</span></h4>
+<p>这是核心结论了。</p>
+<p>考虑证明 <span class="math inline">\(\forall
+n&gt;1,\mu(n)=0\)</span>。</p>
+<p>考虑每个约数的贡献，显然每个质因子只需要考虑一次，如果质因子出现多次，那么根据定义贡献为
+<span class="math inline">\(0\)</span>。</p>
+<p>设有 <span class="math inline">\(k\)</span>
+个质因子，那么选出奇数个和选出偶数个的方案显然是相等的，所以和为 <span
+class="math inline">\(0\)</span>。</p>
+<h3 id="莫比乌斯反演-1">莫比乌斯反演</h3>
+<h4 id="一般形式">一般形式</h4>
+<p><span class="math display">\[
+\begin{align}
+f*\bold{1}=g\iff&amp; g*\mu=f \\
+g(n)=\sum\limits_{d|n}f(d)\iff&amp; f(n)=\sum\limits_{d|n}\mu(d)\times
+g(\frac{n}{d})
+\end{align}
+\]</span></p>
+<p>证明是显然的，因为 <span
+class="math inline">\(\boldsymbol{1}*\mu=\epsilon\)</span></p>
+<h4 id="常用">常用</h4>
+<p><span
+class="math inline">\([\gcd(i,j)=1]=\sum\limits_{d|\gcd(i,j)}\mu(d)\)</span></p>
+<p>枚举 <span class="math inline">\(d\)</span>，即可快速计算。</p>
+<h4 id="欧拉反演">欧拉反演</h4>
+<p>名字是<a target="_blank" rel="noopener" href="https://0x131cc05.github.io/">杰哥</a>取的。</p>
+<h5 id="常用形式">常用形式</h5>
+<p><span
+class="math inline">\(\gcd(i,j)=\sum\limits_{d|\gcd(i,j)}\phi(d)\)</span></p>
+<h5 id="证明">证明</h5>
+<p>即证明 <span
+class="math inline">\(\phi*\boldsymbol{1}=\operatorname{id}\)</span>
+。</p>
+<p>我们只需要证明 <span
+class="math inline">\(\phi*\boldsymbol{1}\)</span> 在 <span
+class="math inline">\(p^c\)</span> 处取值为 <span
+class="math inline">\(\operatorname{id}(p^c)\)</span>，由于 <span
+class="math inline">\(\phi,\boldsymbol{1},\operatorname{id}\)</span>
+均为积性函数，自然在所有位置成立。 <span class="math display">\[
+\begin{align}
+(\phi*\boldsymbol{1})(p^c)=&amp;1+\sum _{i=1}^{c} (p-1)\times p^{i-1}\\
+=&amp; 1+\frac{p^c-1}{p-1}\times(p-1)\\
+=&amp;p^c\\
+=&amp;\operatorname{id}(p^c)
+\end{align}
+\]</span></p>
+<h2 id="筛法">筛法</h2>
+<p>介绍四大筛法。</p>
+<p>四大筛法通常用于求一些<strong>积性函数</strong>的前缀和。</p>
+<p>假设要求 <span class="math inline">\(f\)</span> 的前缀和。</p>
+<p>记 <span class="math inline">\(F(n) = \sum\limits_{i=1}^n
+f(i),H(n)=\sum\limits_{i=1}^n h(i),G(n)=\sum\limits_{i=1}^n
+g(i)\)</span>。</p>
+<h3 id="杜教筛">杜教筛</h3>
+<p>杜教筛的核心是构造两个容易求前缀和的函数 <span
+class="math inline">\(g,h\)</span>，满足 <span class="math inline">\(h =
+f * g\)</span>。</p>
+<p>有 <span class="math display">\[
+\begin{align}
+H(n)&amp;=\sum\limits_{i=1}^n h(i)\\
+&amp;=\sum_{i=1}^n\sum_{d|i}g(d)f(\frac{i}{d})\\
+&amp;=\sum_{d=1}^ng(d)\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor} f(i)
+\end{align}
+\]</span> 将右边 <span class="math inline">\(d\ge 2\)</span>
+的项移到左边 <span class="math display">\[
+H(n)-\sum\limits_{d=2}^ng(d)F(\lfloor\frac{n}{d}\rfloor)=F(n)g(1)
+\]</span> <span class="math inline">\(H(n)\)</span> 是好求的，然后 <span
+class="math inline">\(g(1)=1\)</span>，后面的项对 <span
+class="math inline">\(n\)</span> 数论分块。</p>
+<p>然后有一个结论 <span
+class="math inline">\(\big\lfloor\dfrac{\lfloor\frac{n}{a}\rfloor}{b}\big\rfloor=\lfloor\dfrac{n}{ab}\rfloor\)</span>。因此要求的项只有
+<span class="math inline">\(\sqrt n\)</span> 项。</p>
+<p>线性筛前 <span class="math inline">\(n^\frac{2}{3}\)</span>
+项的前缀和，可以取到最优复杂度 <span
+class="math inline">\(n^\frac{2}{3}\)</span>。复杂度证明见 OI-WIKI，<a
+target="_blank" rel="noopener" href="https://oi-wiki.org/math/number-theory/du/#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%87%BD%E6%95%B0%E5%89%8D%E7%BC%80%E5%92%8C">证明</a>。</p>
+<h3 id="pnpowerful-number-筛">PN(Powerful Number) 筛</h3>
+<p>定义 Powerful Number 是每个质因数质数不小于 <span
+class="math inline">\(2\)</span> 的数。</p>
+<p>如果能构造一个<strong>容易求前缀和的积性函数 <span
+class="math inline">\(g(x)\)</span>，满足 <span
+class="math inline">\(g(p)=f(p)\)</span></strong>，那么我们就可以在
+<span class="math inline">\(O(\sqrt n)\)</span> 的时间复杂度内计算 <span
+class="math inline">\(F(n)\)</span>。</p>
+<p>具体的，考虑构造 <span class="math inline">\(h = f / g\)</span>，所以
+<span class="math inline">\(f(p) = h(1)g(p) + h(p)g(1)\)</span>，由于
+<span class="math inline">\(g(p) =f (p)\)</span>，所以有 <span
+class="math inline">\(h(p)\)</span> 处取值为 <span
+class="math inline">\(0\)</span>，由于 <span
+class="math inline">\(g,f,h\)</span> 都是积性函数，所以 <span
+class="math inline">\(h\)</span> 仅在 Powerful Number
+处有取值，其余处取值为 <span class="math inline">\(0\)</span>。</p>
+<p>考虑 <span class="math display">\[
+\begin{align}
+F(n)&amp;=\sum_{i=1}^nf(i)\\
+&amp;=\sum_{i=1}^n\sum_{d|i}h(d)g(\frac{i}{d})\\
+&amp;=\sum_{d=1}^nh(d)\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}g(i)
+\end{align}
+\]</span> 枚举所有 Powerful Number，计算 <span
+class="math inline">\(h(d)G(\lfloor\frac{n}{d}\rfloor)\)</span>
+即可，Powerful Number 的个数是 <span class="math inline">\(O(\sqrt
+n)\)</span> 的。</p>
+<p>构造 <span class="math inline">\(h\)</span> 的话，可以直接用 <span
+class="math inline">\(g * h =
+f\)</span>，并使用卷积的定义构造，当然，<span
+class="math inline">\(f(p^c)\)</span> 必须要容易求。</p>
+<h3 id="州阁筛">州阁筛</h3>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1943,178 +2309,6 @@ gprof 对程序进行性能分析</h2>
 <h2 id="vtune">VTune</h2>
 <p>一个更厉害的性能分析工具，可以分析 CPU
 流水线利用率和高速缓存命中率等进一步性能。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/17/OI/%E7%AE%97%E6%B3%95/%E4%B8%8E%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/17/OI/%E7%AE%97%E6%B3%95/%E4%B8%8E%E7%BB%84%E5%90%88%E6%81%92%E7%AD%89%E5%BC%8F/" class="post-title-link" itemprop="url">ARC144D与组合恒等式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-17 13:52:25" itemprop="dateCreated datePublished" datetime="2022-07-17T13:52:25+08:00">2022-07-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:56:21" itemprop="dateModified" datetime="2025-02-16T17:56:21+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="arc144d">ARC144D</h2>
-<p>题意略。</p>
-<p>观察，发现 <span class="math inline">\(x \&amp; y + x |y =
-x+y\)</span>，原因是每个二进制位，如果出现两次，会计入二次，如果出现一次，会计入一次。猜想
-<span class="math inline">\(f(x)\)</span>
-的值与每个二进制位相关且对于每个二进制位独立。</p>
-<p>考虑证明，对 <span class="math inline">\(x\)</span> 的二进制下 <span
-class="math inline">\(1\)</span> 的个数 <span
-class="math inline">\(n\)</span> 做归纳。</p>
-<p>对于 <span class="math inline">\(n=0\)</span>，<span
-class="math inline">\(f(0)=f(0)\)</span></p>
-<p>对于 <span class="math inline">\(n=1\)</span>，<span
-class="math inline">\(f(2^i) = f(2^i)\)</span></p>
-<p>对于 <span class="math inline">\(n=2\)</span>，<span
-class="math inline">\(f(2^i+2^j) + f(0) = f(2^i) +f(2^j)\)</span></p>
-<p>考虑证明 <span class="math inline">\(n=k\)</span> 时， <span
-class="math inline">\(f(x) +(k-1)f(0) = \sum\limits_{i\in x}
-f(2^i)\)</span></p>
-<p>设对于 <span class="math inline">\(n=k-1\)</span>
-其成立，对于二进制位 1 个数为 k 的 x， <span
-class="math inline">\(\forall i\in x,f(x)+f(0)=f(x-2^i) +
-f(2^i)\)</span>，易证 <span class="math inline">\(f(x) +(k-1)f(0) =
-\sum\limits_{i\in x} f(2^i)\)</span>，且对于所有涉及元素二进制下 1
-个数少于 n 的，所有限制满足。</p>
-<p>故只需要确定 <span class="math inline">\(f(2^i)\)</span> 和 <span
-class="math inline">\(f(0)\)</span>。其最终限制有两个，其一是，最大值不能超过
-<span class="math inline">\(k\)</span>，其二是最小值不能小于
-0，最大值一定是把所有大于 <span class="math inline">\(f(0)\)</span>
-的元素加起来，最小值则是把所有小于 <span
-class="math inline">\(f(0)\)</span> 的元素加起来。</p>
-<p>枚举 <span class="math inline">\(f(0)\)</span> 和小于 <span
-class="math inline">\(f(0)\)</span>
-的元素个数，我们可以将限制分配给对应元素 ，得到和式： <span
-class="math display">\[
-ans=\sum\limits_{f(0)=0}^{k}\sum\limits_{i=0}^{n}\binom{n}{i}\binom{f(0)}{i}\binom{k-f(0)+n-i}{n-i}
-\]</span> 第一项计算那些小于 <span
-class="math inline">\(f(0)\)</span>，第二项是将<strong>至多</strong>
-<span class="math inline">\(k\)</span> 个冗余值分配给 <span
-class="math inline">\(i\)</span> 个小于 <span
-class="math inline">\(f(0)\)</span>
-的元素的方案数，每个元素至少分配一个，或者说 <span
-class="math inline">\(i\)</span> 个正整数变量和为 <span
-class="math inline">\(f(0)\)</span>
-的方案，可以给一个虚拟元素分别大于等于 0
-个表示放弃，所以先给虚拟元素一个，变成 <span
-class="math inline">\(f(0)+1\)</span> 个元素插 <span
-class="math inline">\(i\)</span> 个板。最后一项是 <span
-class="math inline">\(n-i\)</span> 个非负整数变量，和不超过 <span
-class="math inline">\(k-f(0)\)</span>
-的方案。先来个虚拟变量，然后先各自加 <span
-class="math inline">\(1\)</span>，然后就是 <span
-class="math inline">\(k-f(0)+n-i+1\)</span> ，间隔是 <span
-class="math inline">\(k-f(0)+n-i\)</span> 个，版一共 <span
-class="math inline">\(n\)</span> 个。</p>
-<p>解释完了，考虑计算，二维的，算不了。</p>
-<p>考虑后两项的组合意义。</p>
-<p>根据组合恒等式中的第五个。</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/ewpo1rn4.png" /></p>
-<p>对原式变形有 <span class="math display">\[
-ans=\sum\limits_{i=0}^{n}\binom{n}{i}\binom{k-f(0)+n-i+1}{n-i+1}
-\]</span> 然后 <span class="math inline">\(n\)</span>
-不大，维护个区间乘积枚举计算就行，记得对计算乘积的元素取模。</p>
-<h2 id="组合恒等式">组合恒等式</h2>
-<p>题不是终点，组合恒等式才是重点</p>
-<p>对上面那种图的组合恒等式，我们一一证明</p>
-<h3 id="式子1">式子1</h3>
-<p><span class="math display">\[
-\sum\limits_{k}\binom{r}{m+k}\binom{s}{n-k}=\binom{r+s}{m+n}
-\]</span></p>
-<h4 id="组合意义证明">组合意义证明</h4>
-<p>第一项是从 <span class="math inline">\(r\)</span> 个选 <span
-class="math inline">\(m+k\)</span> 个，第二项是从 <span
-class="math inline">\(s\)</span> 个选 <span
-class="math inline">\(n-k\)</span> 个，把两个拼在一起，从 <span
-class="math inline">\(r+s\)</span> 个中选 <span
-class="math inline">\(n+m\)</span>
-个，容易发现和前者一一对应，故恒等。</p>
-<h4 id="代数证明">代数证明</h4>
-<p>咕咕咕</p>
-<h3 id="式子2">式子2</h3>
-<p><span class="math display">\[
-\sum\limits_{k}\binom{l}{m+k}\binom{s}{n+k} = \binom{l+s}{l-m+n},l\ge0
-\]</span></p>
-<h4 id="组合意义证明-1">组合意义证明</h4>
-<h4 id="代数证明-1">代数证明</h4>
-<p>咕咕咕</p>
-<h3 id="式子3">式子3</h3>
 
       
     </div>

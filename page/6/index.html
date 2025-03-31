@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">107</span>
+          <span class="site-state-item-count">108</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,172 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/17/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1014%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/17/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1014%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1014总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-17 19:07:20" itemprop="dateCreated datePublished" datetime="2022-10-17T19:07:20+08:00">2022-10-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:22:14" itemprop="dateModified" datetime="2025-02-16T20:22:14+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="总结">总结</h2>
+<p>时隔接近一个月写的考试总结...</p>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0133">考试</a></p>
+<h3 id="t1">T1</h3>
+<p>没有什么价值的题，分析一下相位这些就可以做出来。</p>
+<h3 id="t2">T2</h3>
+<p>算区间最大值之和要枚举最大值位置算跨过的数量，所以考虑对这个东西动态规划，设
+<span class="math inline">\(dp[l][r]\)</span> 表示只考虑 <span
+class="math inline">\(l,r\)</span> 区间的最优答案。</p>
+<p>枚举最大值位置后，拆分成两个区间，其答案和最大值位置以及彼此无关，符合最优子结构性质，加上最大值的额外贡献，可以在每一个位置枚举取哪个值，有可能算出来答案比较劣，但是仍然可以遍历解空间，所以这样
+DP 没有问题。</p>
+<p>枚举取值的复杂度很高，发现每个位置的最优值和 dp
+数组无关，考虑预处理每个位置的最优值，本质上是给定若干一次函数，再给定若干
+<span class="math inline">\(x\)</span>，求最值，很简单。</p>
+<h3 id="t3">T3</h3>
+<p>考场上没有做出来的题，但是基本想出来了，ARC
+那道期望题加深了对期望的理解。</p>
+<p>根据期望线性性，<span class="math inline">\(E(dis_{u,v} ) =
+E(dis_u)+E(dis_v)-2\times E(dis_{lca(u,v)})\)</span>。</p>
+<p>前两者是好算的，考虑这样一个 <span
+class="math inline">\(dp\)</span>，<span
+class="math inline">\(dp_u\)</span> 表示 <span
+class="math inline">\(1\)</span> 到 <span
+class="math inline">\(u\)</span> 的期望距离，转移比较简单。</p>
+<p>考虑后者怎么算，即 <span class="math inline">\(u,v\)</span> 两点
+<span class="math inline">\(lca\)</span> 距离的期望，如果 <span
+class="math inline">\(v\)</span> 在下面，由于 <span
+class="math inline">\(lca\)</span> 一定在 <span
+class="math inline">\(u\)</span> 及之前，所以 <span
+class="math inline">\(u,v\)</span> 的 <span
+class="math inline">\(lca\)</span> 的期望等价于 <span
+class="math inline">\(u,u+1\)</span> 的 <span
+class="math inline">\(lca\)</span> 的期望，归纳即可证明。</p>
+<p>考虑计算 <span class="math inline">\(u,u+1\)</span> 的 <span
+class="math inline">\(lca\)</span>
+的期望值，这个也是可以动态规划的了，枚举 <span
+class="math inline">\(u+1\)</span> 的祖先即可，上前缀和优化。</p>
+<h3 id="t4">T4</h3>
+<h4 id="我的想法">我的想法</h4>
+<p>考虑类似点分治一样去做，只不过是随机选点，期望层数应该是 <span
+class="math inline">\(O(\log n)\)</span>，证明的话，考虑将 <span
+class="math inline">\(\frac{n}{4}\)</span>
+个点变成一个点，分两种情况，该点存在大小超过 <span
+class="math inline">\(\frac{n}{2}\)</span>
+的子树和不存在。后者已经证毕，每次问题规模有 <span
+class="math inline">\(\frac{1}{4}\)</span> 的概率变为原来的 <span
+class="math inline">\(\frac{3}{4}\)</span>。前者考虑在该子树中选取包含根的
+<span class="math inline">\(\frac{n}{4}\)</span>
+个点重复以上过程，于是不存在大小超过 <span
+class="math inline">\(\frac{n}{2}\)</span> 的子树，同样证毕。</p>
+<p>基于点分治的原理（独立的子树不跨过分治中心），可以求出每棵子树包含的点集，但如果分治的叉过多，求叉的的过程需要反复尝试每一个叉，复杂度退化到
+<span class="math inline">\(n^2\)</span>。</p>
+<p>树形态随机的情况下（随机父亲），每个点的分叉期望是 <span
+class="math inline">\(\ln n\)</span> 级别的，复杂度为 <span
+class="math inline">\(O(n\log^2 n)\)</span>。</p>
+<h4 id="topsort">Topsort</h4>
+<p>需要问树的形态，考虑单独的一次询问能干什么，可以判断一个点是否为叶子，所以考虑从叶子一层一层往上确定。一种比较暴力的方式是先找出所有的叶子，然后删掉后找出二级叶子，找一个点当根，直接确定某个点的父亲是不好做的，考虑为某个点确定一个儿子，方式是二分，重复若干次即可。</p>
+<p>确定一层的均摊复杂度是 <span
+class="math inline">\(O(leaf\log{(leaf)})\)</span>，外加找叶子的复杂度，总计
+<span
+class="math inline">\(O(n^2)\)</span>，考虑优化找叶子的复杂度，一种可行的方式是先弄出一个拓扑序排列，按照拓扑序去逐一确定。</p>
+<p>弄拓扑序可以考虑以插入的方式构造排列，一个拓扑序合法当且仅当 $
+ i 满足  j[1,i),
+p_i 不是 p_j 的祖先$。插入构造时询问一个前缀到根是否包含当前插入的点，如果包含，那么这个点应该放在更前面，得到拓扑序之后就可以逆序构造。</p>
+<h4 id="subtree">Subtree</h4>
+<p>考虑递归的构造，确定父亲和子树内容，假设有一个函数 <span
+class="math inline">\(f(x)\)</span> 可以求出 <span
+class="math inline">\(x\)</span>
+子树中所有点的父亲（除自身外），那么调用每个 <span
+class="math inline">\(f(x)\)</span>
+一次后就可以保证求出树的结构。维护一个没调用过 <span
+class="math inline">\(f(x)\)</span> 的点集，在点集中找到一个是 <span
+class="math inline">\(x\)</span> 后代的点 <span
+class="math inline">\(y\)</span>，调用 <span
+class="math inline">\(f(y)\)</span>，于是求出了 <span
+class="math inline">\(y\)</span>
+后代所有节点的父亲，维护一下没确定父亲点的点集，在没调用过 <span
+class="math inline">\(f(x)\)</span> 的点集中，若找不到 <span
+class="math inline">\(x\)</span>
+的后代，那么就可以开始在没确定父亲的点集中找出 <span
+class="math inline">\(x\)</span> 的所有儿子了。</p>
+<p>分析复杂度为 <span class="math inline">\(O(n\log n)\)</span>。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1520,228 +1686,6 @@ class="math inline">\(k\)</span>
 条边后不联通的答案，枚举得到的两个连通块就是断开的，还是有重复的问题，但是我们可以钦定每种图只会在与
 <span class="math inline">\(1\)</span>
 相连的连通块处被统计，这是经典的连通图计数方式。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/06/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1006%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/06/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1006%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221006考试总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-06 21:24:52" itemprop="dateCreated datePublished" datetime="2022-10-06T21:24:52+08:00">2022-10-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:22:01" itemprop="dateModified" datetime="2025-02-16T20:22:01+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="考试总结">考试总结</h2>
-<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0130">考试</a></p>
-<p>​ <strong>成功垫底</strong></p>
-<p>​ 难 T</p>
-<p>​ 度 1</p>
-<p>​ 倒 磕</p>
-<p>​ 序 了</p>
-<p>​ 自 一</p>
-<p>​ 闭 万</p>
-<p>​ 场 年</p>
-<h3 id="t1">T1</h3>
-<p>我不会的题。</p>
-<p>求有向图可达点数量实际上不存在低于 <span
-class="math inline">\(O(n^2)\)</span>
-的算法，所以得考虑给定图的性质。</p>
-<p>显然给定的图是个平面图。</p>
-<p>然后定义一个东边的点是有效的，当且仅当它能到一个西边的点，一遍 <span
-class="math inline">\(BFS\)</span> 可以把有效点找出来。</p>
-<p>然后对于所有点，它能到达的有效点集合一定是一段区间，考虑反证，对于某个点，如果被夹在中间的一个有效点到不了，那么如果其它点可以到就只能穿过一些边，这是不可能的。</p>
-<p>写拓扑排序是非常傻逼的行为，直接对每个有效点拓展，算出西边每个点到达有效点坐标的最值就行。</p>
-<h3 id="t2">T2</h3>
-<p>会但是考场写不出来的题。</p>
-<h4 id="method1">Method1</h4>
-<p>考虑枚举排列计算 <code>MST</code>，本质上需要求前 <span
-class="math inline">\(i\)</span> 个边能将图联通的排列一共有多少个。</p>
-<p>可以考虑计算出任选 <span class="math inline">\(i\)</span>
-条边后图联通的选法有多少种，然后通过容斥计算出恰 <span
-class="math inline">\(i\)</span> 个边联通的排列个数。</p>
-<p>可以记录联通性动态规划搞定。</p>
-<p>复杂度 <span class="math inline">\(O(bell(n)\times m^2)\)</span></p>
-<h4 id="method2">Method2</h4>
-<p>枚举联通往往可以弄成二进制枚举联通状态，逆序考虑联通块的构成方式，发现求任
-<span class="math inline">\(i\)</span>
-条边联通的方案数，转移的时候是不强调顺序的，所以枚举子集会导致重复，不妨直接考虑顺序，计算原问题的答案。</p>
-<p>设 <span class="math inline">\(dp[mask][i]\)</span> 表示只考虑 <span
-class="math inline">\(mask\)</span> 子图，答案为 <span
-class="math inline">\(i\)</span>
-的排列个数，转移就可以枚举子集，从上一条边的状态转移，需要进行一些排列组合，复杂度
-<span class="math inline">\(3^n\times m^4\)</span>。</p>
-<h4 id="method3">Method3</h4>
-<p>高达 <span class="math inline">\(m^4\)</span>
-的多项式复杂度还是太逊了，考虑继续优化。</p>
-<p>其实我们很想直接任选 <span class="math inline">\(k\)</span>
-条边，然后排除掉不合法的情况，这样能够求出答案至多为 <span
-class="math inline">\(k\)</span> 的个数，容斥之后就没有问题了。</p>
-<p>所以考虑如何排除不合法的情况，就是边选好了但是图没联通，这个时候我们就可以枚举一个小连通块，可以用若干边连接内部，若干外部边任选，就是一类不合法的情况，但是这样会算重，我们可以钦定枚举的联通块和
-<span class="math inline">\(1\)</span> 联通。</p>
-<p>复杂度 <span class="math inline">\(O(3^n\times m^2)\)</span>。</p>
-<h4 id="总结">总结</h4>
-<p>这一类图论上的二进制枚举问题，往往可以先从枚举联通块入手，再考虑子图的答案，最后综合运用容斥等计数手段，得到复杂度优秀的做法。</p>
-<h3 id="t3">T3</h3>
-<p>非常有意思的题</p>
-<h4 id="method1-1">Method1</h4>
-<p>考场上的想法，主要受到<a href="还没写">某道题</a>的启发。</p>
-<p>只考虑最大值，<span class="math inline">\(O(n)\)</span>
-可以扫一遍，单调栈维护当前每一段的最大值与和。</p>
-<p>很浪费，因为我们本质上对每个右端点都求了合法左端点区间的答案，考虑能不能复用右端点的答案。</p>
-<p>其中一种方式是分块，考虑一段右端点到每个左端点的答案的前缀和，然后查询就可以被拆分了。</p>
-<h4 id="method2-1">Method2</h4>
-<p>为什么我们会分块，回到那道题，我们有办法通过一些预处理结果得到两个区间并的答案，但是无法快速合并两个预处理结果，所以我们分块，只需要预处理一次。</p>
-<p>但是利用随机数的性质我们发现其实可以快速合并预处理的结果。</p>
-<p>将问题转化为两种基本形式，相离和重合，这是容易的。</p>
-<p>先考虑相离怎么做</p>
-<p>考虑利用随机的性质，发现任意一段区间，其有效的贡献个数为 <span
-class="math inline">\(\ln\)</span>
-个，即从区间首或位开始的最长连续上升序列，然后枚举两个 <span
-class="math inline">\(\ln\)</span> 的区间合并，搞定相离的情况，视实现是
-<span class="math inline">\(\ln^2\)</span> 或者 <span
-class="math inline">\(\ln\)</span>，后者常数较大可能并不优秀。</p>
-<p>然后是重合，能不能合并两个重合的区间得到新的区间，可以！转化为一个相离和两个更小的重合问题，因为数量是
-<span class="math inline">\(\ln\)</span>
-的，所以合并预处理信息是可能的。</p>
-<p>但是，为啥要用线段树，因为没有逆元！但是这道题是可以将一个大重合问题减去一个相离和一个小重合问题得到另一个小重合问题的，所以对大重合问题做前缀和即可。</p>
-<h4 id="method3-1">Method3</h4>
-<p>对于二维统计问题，常常可以考虑固定预处理其中一维，尝试快速通过预处理结果查询第二维。</p>
-<p>这道题中，我们可以预处理每个点作为第二个区间中的点时，在第一个区间中每个点的答案。但实际上这个数据量是
-<span class="math inline">\(O(n)\)</span>
-的，没有办法快速搞定，那不妨考虑只处理其前缀和与后缀和，看看是否能够压缩信息。</p>
-<h5 id="一些不太正确的思考">一些不太正确的思考</h5>
-<p>考虑单个右端点对一段区间查询，考虑区间最大值，如果落在自身或者空区间，那么答案容易计算，如果落在左区间</p>
-<p>考虑它前面第一个比它大的位置，如果不存在或者在空区间，那么答案可以通过前缀和快速计算</p>
-<h5 id="正确的思考">正确的思考</h5>
-<p>考虑区间相离的基本情况。由于单点我们都没有办法做，所以不太能直接搞，但是容易发现区间重合时可以搞定的，考虑区间最大值的位置，跨过它的答案容易统计，不跨过它，我们处理了每个点为右端点和左端点时答案的前缀和，那么由于不跨过最大值时，在最大值另一侧的答案完全不受同侧的影响，所以前后缀和减去最大值所在位置的前后缀和就可以得到重合的答案。</p>
-<p>有了重合，我们可以解决区间相邻的答案，定义求两个区间答案的运算是
-<span class="math inline">\(\oplus\)</span>，那么对于两个相邻区间有<span
-class="math inline">\((a+b)\oplus(a+b)=a\oplus a+b\oplus b+a\oplus
-b\)</span>。</p>
-<p>我们能搞定的是 <span class="math inline">\(a\oplus
-a\)</span>，对于相离的区间，转化为相邻区间做 <span
-class="math inline">\(a\oplus c = (a+b+c)\oplus (a+b+c)-a\oplus a-b
-\oplus b-c\oplus c - a\oplus b -b\oplus c\)</span>。</p>
-<p>因而搞定了所有情况。</p>
-<h5 id="实现">实现</h5>
-<p>如果直接这么写，写出来很丑，实际上由更优雅的写法，考虑差分区间，如果左端点大于右端点那么没有问题，<span
-class="math inline">\([l_1,r_2]\)</span> 全部统计，那么会有重复 <span
-class="math inline">\([l_1,l_2-1]\)</span>
-这一段区间就是被重复统计的，当然这个区间可以不存在，需要减去，然后再减去
-<span class="math inline">\([r_1+1,r_2]\)</span>
-这段有可能不存在的区间的答案，最后加上可能被算重的 <span
-class="math inline">\([r_1+1,l_2-1]\)</span> 区间。</p>
-<p>反正这个思想挺神的，看上去有问题但确实是对的，比直接写优雅很多。</p>
-<h4 id="method4">Method4</h4>
-<h5 id="思路">思路</h5>
-<p>考虑每个数对答案的贡献，弄出左右两边第一个比它大的数，那么这些区间以内跨过它的，都在它的贡献范围内，左右端点可以弄成
-<span class="math inline">\(x,y\)</span> 坐标，这是一个矩阵加。</p>
-<p>考虑查询，本质上也是在查询 <span class="math inline">\(x,y\)</span>
-坐标各在一段区间内的答案。</p>
-<p>于是就是一个修改全部在查询前面的矩阵加矩阵查问题，可以用树状数组解决。</p>
-<h5 id="实现-1">实现</h5>
-<p>说着轻松，但其实还没写过这种东西，简单思考下怎么做。</p>
-<p>首先区间查被差分成 <span class="math inline">\(\ge x,\ge y\)</span>
-的区域加一，区间查变成 <span class="math inline">\(\le x,\le y\)</span>
-的区域查询，还是回到了二维偏序问题。</p>
-<p>点是 <span class="math inline">\((x_1,y_1),(x_2,y_2)\)</span>，条件是
-<span class="math inline">\(x_2\ge x_1\wedge y_2\ge y_1\)</span>，贡献是
-<span
-class="math inline">\((x_2-x_1)\times(y_2-y_1)\)</span>，是不是很阴间？所以多维护点东西，一个
-<span class="math inline">\(cnt\)</span> 树状数组搞定 <span
-class="math inline">\(x_2\times y_2\)</span>，两个分别加 <span
-class="math inline">\(x,y\)</span> 来搞定 <span
-class="math inline">\(x_2\times y_1,x_1\times y_2\)</span>
-，再来一个统计 <span class="math inline">\(xy\)</span>
-搞定剩下那一项，其实还算好写。</p>
-<h3 id="t4">T4</h3>
-<p>考虑刻画出图的形态，它是一个基环内向树森林。</p>
-<p>容易发现只用将 <span class="math inline">\(1\)</span>
-和其它点连边，然后有些点是必须连的，入度为 <span
-class="math inline">\(0\)</span> 的，编号非 <span
-class="math inline">\(1\)</span> 的点必须连。</p>
-<p>先不考虑环，这样连了之后，又有一些点是必连的，而且容易发现连这些点一定最优，所以继续连。</p>
-<p>连到不是环上的所有点都连上为止。</p>
-<p>现在还剩一些环，环上一些点是合法的，需要用长度为 <span
-class="math inline">\(k-1\)</span> 的线段取覆盖环，让所有点合法。</p>
-<p>容易发现确定某个起点之后就能贪心了，考虑连续的 <span
-class="math inline">\(k+1\)</span>
-个不合法点，枚举每一个并确定最少数量，然后取 <span
-class="math inline">\(\min\)</span> 就行，因为这连续的 <span
-class="math inline">\(k+1\)</span> 个不合法点一定有一个是起点。</p>
 
       
     </div>
