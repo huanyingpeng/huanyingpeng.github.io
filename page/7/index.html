@@ -150,13 +150,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">109</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -189,6 +189,138 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/07/OI/%E7%AE%97%E6%B3%95/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/07/OI/%E7%AE%97%E6%B3%95/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91%E5%92%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">最小生成树和动态规划</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-07 14:43:38" itemprop="dateCreated datePublished" datetime="2022-10-07T14:43:38+08:00">2022-10-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:56:31" itemprop="dateModified" datetime="2025-02-16T17:56:31+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="最小生成树-x-动态规划">最小生成树 X 动态规划</h2>
+<p>​ |</p>
+<p>​ |</p>
+<p>​ |</p>
+<p>​ /<br />
+</p>
+<p>​ /<br />
+</p>
+<p><strong>F1:</strong> <strong>xxxx</strong> <strong>oooo</strong></p>
+<p>…………</p>
+<h3 id="最小生成树mst">最小生成树(MST)</h3>
+<p>常用算法有 Kruscal 和 Prime，以下会谈一些 MST
+的性质和两种算法的证明</p>
+<h4 id="kruscal-证明参考-oi-wiki">Kruscal 证明（参考 OI-wiki）</h4>
+<p>核心思路是证明任意时刻边集均为一颗 MST 的子集。</p>
+<p>归纳的，令当前边集 <span class="math inline">\(F\)</span> 属于的 MST
+为 <span class="math inline">\(T\)</span>，考虑新加入的一条边 <span
+class="math inline">\(e\)</span>，如果 <span class="math inline">\(e\in
+T\)</span>，自然成立。</p>
+<p>如果 <span class="math inline">\(e\notin T\)</span>，那么 <span
+class="math inline">\(e+T\)</span> 构成了一个环，考虑该环上所有边 <span
+class="math inline">\(E_i\)</span>，一定满足 <span
+class="math inline">\(w_{E_i} \le w_e\)</span>，否则 <span
+class="math inline">\(e\)</span> 应该在 <span
+class="math inline">\(T\)</span> 中，得到更优的 MST，所以 <span
+class="math inline">\(E_i\)</span> 已经在 <span
+class="math inline">\(e\)</span> 之前被加入，构成了一条完整的链。</p>
+<p>所以不会加入 <span class="math inline">\(e\)</span>，进行下一步。</p>
+<h4 id="一些性质">一些性质</h4>
+<h4 id="prime">Prime</h4>
+<h3 id="动态规划最小生成树">动态规划最小生成树</h3>
+<p>一般这种题都是指数级的题，有 <a href="">这道</a>，<a
+href="">这道</a>，和 <a href="">这道</a></p>
+<h4 id="例题">例题</h4>
+<p>给你一张图，问任选 <span class="math inline">\(i\)</span>
+条边，使得图联通的方案数有多少种。</p>
+<h4 id="method1">Method1</h4>
+<p>记录联通性动态规划</p>
+<h4 id="mehod2">Mehod2</h4>
+<p>考虑 <span class="math inline">\(dp[mask][i]\)</span> 表示子图 <span
+class="math inline">\(mask\)</span>
+的答案，转移时发现重复了，因为两种不同的子图分配方案最后可能对应到同一种选边方式，所以我们需要一个顺序一类的东西来保证不重复。</p>
+<p>一种比较可行的方式是计算记录顺序的情况下的方案，这样可以钦定枚举的两个子图一定是最后连上的，最后除以一个阶乘。</p>
+<p>另一种方式是直接容斥，考虑计算选 <span
+class="math inline">\(k\)</span>
+条边后不联通的答案，枚举得到的两个连通块就是断开的，还是有重复的问题，但是我们可以钦定每种图只会在与
+<span class="math inline">\(1\)</span>
+相连的连通块处被统计，这是经典的连通图计数方式。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1439,120 +1571,6 @@ x\)</span>
 class="math inline">\(O(n\log n)\)</span>。常数比较大。</p>
 <p>整体二分的卡常是有一些技巧的，比如巧妙处理归并，归并的同时分裂数组，通过下标分裂而不是
 <code>vector</code> 等。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/09/21/OI/%E7%AE%97%E6%B3%95/%E6%A0%91%E4%B8%8A%E9%93%BE%E9%A2%86%E5%9F%9F%E4%BF%AE%E6%94%B9%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/21/OI/%E7%AE%97%E6%B3%95/%E6%A0%91%E4%B8%8A%E9%93%BE%E9%A2%86%E5%9F%9F%E4%BF%AE%E6%94%B9%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">树上链领域修改问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-09-21 15:02:20" itemprop="dateCreated datePublished" datetime="2022-09-21T15:02:20+08:00">2022-09-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:55:44" itemprop="dateModified" datetime="2025-02-16T17:55:44+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong>还没写完，估计是个论文级别的大坑</strong></p>
-<h2 id="问题引入">问题引入</h2>
-<p>NOI2021
-中的《轻重边》，一种比较经典的解法是将操作视为点染色，然后处理相邻点颜色相同的数量得到答案。但还有一种真正的<strong>树链剖分</strong>做法，这种做法能够体现树链剖分的本质——将树划分成
-<span class="math inline">\(\log n\)</span> 条链，依次处理它们。</p>
-<p>这一类题本质上都是树上邻域修改问题，即给定一条链，修改这条链的邻域。</p>
-<h2 id="单点邻域修改">单点邻域修改</h2>
-<p>条件：操作存在结合律。</p>
-<p>给定一个点，修改其树上邻域。</p>
-<p>这个是比较好做的，分两种情况讨论，操作是否存在逆元（且逆元容易求解）。</p>
-<h3 id="操作存在逆元">操作存在逆元</h3>
-<p>将一个点的操作视为两个部分，自身+父亲，对一个点的邻域操作时，在自身上打一个标记，暴力修改自己父亲的值，如果操作存在交换律则没有问题，如果不存在，则需要先得到父亲的真实值，然后操作后再放一个父亲的父亲标记的逆元。</p>
-<p>共需进行 <span class="math inline">\(O(n)\)</span>
-次操作和求解逆元。</p>
-<h3 id="操作不存在逆元">操作不存在逆元</h3>
-<p>如果操作只有结合律，那么会比较麻烦，如果是邻域赋值这类和<strong>之前的值无关</strong>的操作，可以记录一下每个点操作时间戳，清空一下树上标记，还是有救的。</p>
-<p>如果和之前的值有关，并且查询只在最后做，那么可以开线段树记录一下</p>
-<h3 id="操作不存在结合律">操作不存在结合律</h3>
-<p>没救了，暴力吧。</p>
-<h2 id="单点-k-阶邻域修改">单点 <span class="math inline">\(k\)</span>
-阶邻域修改</h2>
-<h2 id="树剖的优势">树剖的优势</h2>
-<p>首先处理的操作必须具备结合律</p>
-<p>首先处理在链上的情况是比较容易的，因为邻域只涉及额外 <span
-class="math inline">\(O(1)\)</span>
-个点，我们需要将这个优势拿到树上去。</p>
-<p>考虑每次处理的 <span class="math inline">\(\log\)</span>
-条重链，对于每条重链，它只会在 <span
-class="math inline">\(top_u\)</span>
-处对其它，或者受到其它重链的影响。不妨将对一个点的修改放到两个地方，它自己和它父亲</p>
 
       
     </div>

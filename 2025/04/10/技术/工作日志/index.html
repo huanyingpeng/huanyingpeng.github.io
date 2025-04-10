@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="关于日志 有些事情单独开一篇博客太浪费，但是确实不得不记录一下，所以有了这个日志。目前打算是按月开。 VSCode 远程连接到服务器上开发卡死 不要连接到东西太多的目录，有些插件会扫目录，消耗巨大多内存。 建议是单独开一个 workspace 来干活。 另外远程服务器起码有 4GB 内存，2GB 内存纯属冤大头。 Python slots Python 的 __slots__ 机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="四月工作日志">
+<meta property="og:url" content="https://huanyp.cn/2025/04/10/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="关于日志 有些事情单独开一篇博客太浪费，但是确实不得不记录一下，所以有了这个日志。目前打算是按月开。 VSCode 远程连接到服务器上开发卡死 不要连接到东西太多的目录，有些插件会扫目录，消耗巨大多内存。 建议是单独开一个 workspace 来干活。 另外远程服务器起码有 4GB 内存，2GB 内存纯属冤大头。 Python slots Python 的 __slots__ 机">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-10T08:33:05.000Z">
+<meta property="article:modified_time" content="2025-04-10T15:58:45.091Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="算法竞赛, 自动化测试, 工程技术, Python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://huanyp.cn/2025/04/10/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huanyp.cn/2025/04/10/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/","path":"2025/04/10/技术/工作日志/","title":"四月工作日志"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>四月工作日志 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%97%A5%E5%BF%97"><span class="nav-number">1.</span> <span class="nav-text">关于日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vscode-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%BC%80%E5%8F%91%E5%8D%A1%E6%AD%BB"><span class="nav-number">1.1.</span> <span class="nav-text">VSCode
+远程连接到服务器上开发卡死</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python-slots"><span class="nav-number">1.2.</span> <span class="nav-text">Python slots</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-%E6%8B%89%E5%8F%96%E8%BF%9C%E7%AB%AF%E5%85%B6%E5%AE%83%E5%88%86%E6%94%AF%E5%B9%B6%E4%B8%8E%E6%9C%AC%E5%9C%B0%E5%85%B3%E8%81%94"><span class="nav-number">1.3.</span> <span class="nav-text">git
+拉取远端其它分支并与本地关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF"><span class="nav-number">1.4.</span> <span class="nav-text">git 删除分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python-lambda-%E9%97%AD%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">1.5.</span> <span class="nav-text">Python lambda 闭包问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E5%92%8C%E5%AE%9A%E4%B9%89"><span class="nav-number">1.6.</span> <span class="nav-text">C++ 全局变量的声明和定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python-%E7%BA%BF%E7%A8%8B%E7%8B%AC%E7%AB%8B%E8%B5%84%E6%BA%90"><span class="nav-number">1.7.</span> <span class="nav-text">Python 线程独立资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python-%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E7%BA%BF%E7%A8%8B%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.8.</span> <span class="nav-text">Python 异步任务、线程任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python-queue"><span class="nav-number">1.9.</span> <span class="nav-text">Python Queue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nullptr-%E5%92%8C-iteratorend"><span class="nav-number">1.10.</span> <span class="nav-text">nullptr 和 iterator::end()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-%E5%AE%B9%E5%99%A8"><span class="nav-number">1.11.</span> <span class="nav-text">C++ 容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="nav-number">1.12.</span> <span class="nav-text">git 设置代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-iostream"><span class="nav-number">1.13.</span> <span class="nav-text">C++ iostream</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-fsanitize"><span class="nav-number">1.14.</span> <span class="nav-text">C++ Fsanitize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vmware-%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E5%86%85%E6%A0%B8%E8%AE%BE%E5%A4%87"><span class="nav-number">1.15.</span> <span class="nav-text">VMWARE 无法打开内核设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#win11-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%8F%8D%E5%BA%94%E6%85%A2"><span class="nav-number">1.16.</span> <span class="nav-text">Win11 自定义快捷键反应慢</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="huan-yp"
+      src="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">109</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2025/04/10/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="四月工作日志 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          四月工作日志
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-04-10 16:33:05 / 修改时间：23:58:45" itemprop="dateCreated datePublished" datetime="2025-04-10T16:33:05+08:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="关于日志">关于日志</h2>
+<p>有些事情单独开一篇博客太浪费，但是确实不得不记录一下，所以有了这个日志。目前打算是按月开。</p>
+<h3 id="vscode-远程连接到服务器上开发卡死">VSCode
+远程连接到服务器上开发卡死</h3>
+<p>不要连接到东西太多的目录，有些插件会扫目录，消耗巨大多内存。</p>
+<p>建议是单独开一个 workspace 来干活。</p>
+<p>另外远程服务器起码有 4GB 内存，2GB 内存纯属冤大头。</p>
+<h3 id="python-slots">Python <strong>slots</strong></h3>
+<p>Python 的 <code>__slots__</code>
+机制，可以限制实例的属性，只允许在创建实例时定义的属性，不允许动态添加属性。</p>
+<p>如果尝试为没有在 <strong>slots</strong> 中声明的变量赋值，会引发
+AttributeError。</p>
+<h3 id="git-拉取远端其它分支并与本地关联">git
+拉取远端其它分支并与本地关联</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature-branch origin/feature-branch</span><br></pre></td></tr></table></figure>
+<h3 id="git-删除分支">git 删除分支</h3>
+<p>删除本地分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d feature-branch</span><br></pre></td></tr></table></figure>
+<p>删除远端分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --delete feature-branch</span><br></pre></td></tr></table></figure>
+<h3 id="python-lambda-闭包问题">Python lambda 闭包问题</h3>
+<p>lambda
+做函数绑定的时候变量是绑定到<strong>域</strong>上的变量的，而不是绑定到<strong>值</strong>上的。</p>
+<p>例如下面循环的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">funcs = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    funcs.append(<span class="keyword">lambda</span> x: x + i)</span><br><span class="line"><span class="built_in">print</span>(funcs[<span class="number">0</span>](<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<p>输出是 19，而不是 10，因为查找到的 i 是循环结束后域里面的 9。</p>
+<p>正确的做法是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">funcs = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    funcs.append(<span class="keyword">lambda</span> x, i=i: x + i)</span><br><span class="line"><span class="built_in">print</span>(funcs[<span class="number">0</span>](<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="c-全局变量的声明和定义">C++ 全局变量的声明和定义</h3>
+<p>全局变量的声明和定义是分开的，声明是在 <code>.h</code> 中使用
+<code>extern</code> 关键字，定义是 <code>.cpp</code> 中使用
+<code>=</code> 赋值。</p>
+<p>另外就算是用了 <code>#ifdef XXX_H</code>，也不能在 <code>.h</code>
+里面定义。不然多个 <code>.cpp</code> 都包含了
+<code>.h</code>，还是分开编译的，就会报重定义的错误。</p>
+<p>类的静态成员变量是不允许在声明的时候初始化的，只能定义的时候初始化。</p>
+<h3 id="python-线程独立资源">Python 线程独立资源</h3>
+<p>有时候每个线程需要一些独立的资源来执行一些操作，这个可以用
+<code>threading.local()</code> 来实现。</p>
+<p>一般需要配合 <code>concurrent.futures</code> 的线程池来使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">initializer</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;初始化线程独立资源&quot;&quot;&quot;</span></span><br><span class="line">    driver = uc.Chrome(use_subprocess=<span class="literal">True</span>, options=options, driver_executable_path=DRIVER_PATH)    </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">exact</span>(<span class="params">i</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;任务&quot;&quot;&quot;</span></span><br><span class="line">    driver.get(url)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">crawler</span>():</span><br><span class="line">    <span class="keyword">global</span> driver_pools</span><br><span class="line">    driver_pools = threading.local()</span><br><span class="line">    <span class="keyword">with</span> concurrent.futures.ThreadPoolExecutor(max_workers=<span class="number">5</span>, initializer=initializer) <span class="keyword">as</span> executor:</span><br><span class="line">        <span class="comment"># 提交任务</span></span><br><span class="line">        futures = [executor.submit(<span class="keyword">lambda</span> i=i: exact(i)) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">100</span>)]</span><br><span class="line">        <span class="comment"># 等待任务完成</span></span><br><span class="line">        <span class="keyword">for</span> future <span class="keyword">in</span> concurrent.futures.as_completed(futures):</span><br><span class="line">            future.result()</span><br></pre></td></tr></table></figure>
+<h3 id="python-异步任务线程任务">Python 异步任务、线程任务</h3>
+<p>这两个任务一般来说只要<strong>开始阻塞执行</strong>后，都没办法强制中止的。</p>
+<p>后台多线程任务可以设置成
+<code>daemon=True</code>，关闭主程序的时候自动关闭后台任务。</p>
+<p>异步任务一般要避免出现阻塞，否则主线程会卡死。</p>
+<p>另外如果一定要强行中止线程，可以考虑 <code>concurrent.futures</code>
+的 <code>ThreadPoolExecutor._threads.clear</code> 方法。</p>
+<h3 id="python-queue">Python Queue</h3>
+<p>线程安全的 <code>Queue.get</code>
+在使用的时候不管是不是保证有东西，最好都加点 timeout。</p>
+<h3 id="nullptr-和-iteratorend">nullptr 和 iterator::end()</h3>
+<p>处理指针类型一定要想好有没有可能是 <code>nullptr</code>。</p>
+<p>处理迭代器的时候一定要想好有没有可能是 <code>end()</code>。</p>
+<h3 id="c-容器">C++ 容器</h3>
+<p>迭代的时候<strong>别TM的做删除操作</strong>，会漏内存。</p>
+<h3 id="git-设置代理">git 设置代理</h3>
+<p>有时候 git 走不了系统代理，可以配置一个全局的代理设置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+<h3 id="c-iostream">C++ iostream</h3>
+<p><code>istream</code> 和 <code>ostream</code>
+是两个抽象类，不能直接实例化，用的时候应该把一个 <code>ifstream</code>
+或者 <code>ostream</code> 的子类实例化，然后绑定到 <code>istream</code>
+或者 <code>ostream</code> 上。</p>
+<p><code>cerr</code>, <code>cout</code> 这些都是 <code>ostream</code>
+的子类，所以有时候</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ifstream <span class="title">fin</span><span class="params">(<span class="string">&quot;in.txt&quot;</span>)</span></span>;</span><br><span class="line">istream &amp;in = fin;</span><br></pre></td></tr></table></figure>
+<h3 id="c-fsanitize">C++ Fsanitize</h3>
+<p>不要开 O2 优化，开了就定位不了错误。</p>
+<h3 id="vmware-无法打开内核设备">VMWARE 无法打开内核设备</h3>
+<p>对应虚拟机 .vmx 文件中，将 <code>vmci0.present</code> 改为
+<code>"FALSE"</code></p>
+<h3 id="win11-自定义快捷键反应慢">Win11 自定义快捷键反应慢</h3>
+<p><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/m0_67168336/article/details/126240582">参考</a></p>
+<p>就是开始菜单 (建议 Win+Q 搜索 <code>设置</code>)找到 "设置", 点击
+"应用设置", 把 "后台组件权限" 改为 "从不" 即可。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/31/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/C++%E7%A7%BB%E5%8A%A8%E8%AF%AD%E4%B9%89%E7%9A%84%E5%AE%9E%E4%BE%8B-%E6%8C%87%E9%92%88%E5%AE%9E%E7%8E%B0%E5%B7%A6%E5%81%8F%E6%A0%91/" rel="prev" title="左偏树的指针实现——C++移动语义的实例">
+                  <i class="fa fa-angle-left"></i> 左偏树的指针实现——C++移动语义的实例
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

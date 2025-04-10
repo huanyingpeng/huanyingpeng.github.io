@@ -150,13 +150,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">109</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -189,6 +189,120 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/09/21/OI/%E7%AE%97%E6%B3%95/%E6%A0%91%E4%B8%8A%E9%93%BE%E9%A2%86%E5%9F%9F%E4%BF%AE%E6%94%B9%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/21/OI/%E7%AE%97%E6%B3%95/%E6%A0%91%E4%B8%8A%E9%93%BE%E9%A2%86%E5%9F%9F%E4%BF%AE%E6%94%B9%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">树上链领域修改问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-21 15:02:20" itemprop="dateCreated datePublished" datetime="2022-09-21T15:02:20+08:00">2022-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:55:44" itemprop="dateModified" datetime="2025-02-16T17:55:44+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong>还没写完，估计是个论文级别的大坑</strong></p>
+<h2 id="问题引入">问题引入</h2>
+<p>NOI2021
+中的《轻重边》，一种比较经典的解法是将操作视为点染色，然后处理相邻点颜色相同的数量得到答案。但还有一种真正的<strong>树链剖分</strong>做法，这种做法能够体现树链剖分的本质——将树划分成
+<span class="math inline">\(\log n\)</span> 条链，依次处理它们。</p>
+<p>这一类题本质上都是树上邻域修改问题，即给定一条链，修改这条链的邻域。</p>
+<h2 id="单点邻域修改">单点邻域修改</h2>
+<p>条件：操作存在结合律。</p>
+<p>给定一个点，修改其树上邻域。</p>
+<p>这个是比较好做的，分两种情况讨论，操作是否存在逆元（且逆元容易求解）。</p>
+<h3 id="操作存在逆元">操作存在逆元</h3>
+<p>将一个点的操作视为两个部分，自身+父亲，对一个点的邻域操作时，在自身上打一个标记，暴力修改自己父亲的值，如果操作存在交换律则没有问题，如果不存在，则需要先得到父亲的真实值，然后操作后再放一个父亲的父亲标记的逆元。</p>
+<p>共需进行 <span class="math inline">\(O(n)\)</span>
+次操作和求解逆元。</p>
+<h3 id="操作不存在逆元">操作不存在逆元</h3>
+<p>如果操作只有结合律，那么会比较麻烦，如果是邻域赋值这类和<strong>之前的值无关</strong>的操作，可以记录一下每个点操作时间戳，清空一下树上标记，还是有救的。</p>
+<p>如果和之前的值有关，并且查询只在最后做，那么可以开线段树记录一下</p>
+<h3 id="操作不存在结合律">操作不存在结合律</h3>
+<p>没救了，暴力吧。</p>
+<h2 id="单点-k-阶邻域修改">单点 <span class="math inline">\(k\)</span>
+阶邻域修改</h2>
+<h2 id="树剖的优势">树剖的优势</h2>
+<p>首先处理的操作必须具备结合律</p>
+<p>首先处理在链上的情况是比较容易的，因为邻域只涉及额外 <span
+class="math inline">\(O(1)\)</span>
+个点，我们需要将这个优势拿到树上去。</p>
+<p>考虑每次处理的 <span class="math inline">\(\log\)</span>
+条重链，对于每条重链，它只会在 <span
+class="math inline">\(top_u\)</span>
+处对其它，或者受到其它重链的影响。不妨将对一个点的修改放到两个地方，它自己和它父亲</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1501,162 +1615,6 @@ class="math inline">\(512\times3\times8 \text{ Byte}\)</span>
 优化后，编译器会自动完成很多代码层面上的优化，我们更需要关注的是算法常数本身</li>
 <li>高速缓存的利用情况很大程度决定了代码的效率，编写需要卡常的程序时应该尤为注意，滚动数组能有效提升高速缓存利用率，分块处理减少数组大小也是提升效率的一种可行方案。</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/08/04/OI/%E7%AE%97%E6%B3%95/%E4%BB%8EZKW%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9C%8B%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/04/OI/%E7%AE%97%E6%B3%95/%E4%BB%8EZKW%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9C%8B%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%80%A7%E8%B4%A8/" class="post-title-link" itemprop="url">从ZKW线段树看线段树的性质</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-04 20:40:11" itemprop="dateCreated datePublished" datetime="2022-08-04T20:40:11+08:00">2022-08-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:54:33" itemprop="dateModified" datetime="2025-02-16T17:54:33+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="从zkw线段树看线段树的性质">从ZKW线段树看线段树的性质</h2>
-<p>最近遇到了很多线段树性质相关的题目，故在此做一个总结。</p>
-<h3 id="常规建树">常规建树</h3>
-<h4 id="代码">代码</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">build</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r,<span class="type">int</span> rt)</span></span>&#123;</span><br><span class="line">    <span class="built_in">do_something</span>();</span><br><span class="line">	<span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="type">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">build</span>(l,mid,rt&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">build</span>(mid<span class="number">+1</span>,r,rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="性质">性质</h4>
-<ul>
-<li>左儿子长度不小于右儿子。</li>
-<li>节点编号 <code>rt</code>
-描述了从根到自身的父子关系，也间接描述了该点长度和根节点长度的关系，具体的，根节点的最大或最小长度是一个关于该节点长度的一次函数，这个一次函数只由
-<code>rt</code> 决定。</li>
-<li>编号最大的节点不一定是 <code>r</code>，事实上可以在 <span
-class="math inline">\(\log n\)</span>
-的时间内求出，如果左儿子多一层，那么一定在左儿子，否则在右儿子，<strong>决定某个儿子是否会多一层，当且仅当目前长度为奇数，且
-popcount 值为 2</strong>。</li>
-</ul>
-<h4 id="例题">例题</h4>
-<p><a
-target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/showproblem.php?pid=7204">一道简单的题</a></p>
-<p><a
-target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6025">一道比较简单的题</a></p>
-<h3 id="非常规建树">非常规建树</h3>
-<p>非常规建树一般会指定建树的 <code>mid</code> 位置。</p>
-<h4 id="区间覆盖数">区间覆盖数</h4>
-<p>即覆盖一个区间 <span class="math inline">\([l,r]\)</span>
-的最小线段数。</p>
-<p>先转成 <span class="math inline">\((l,r)\)</span>，然后依次跳叶节点
-<span class="math inline">\(l,r\)</span> 的父亲，先判断 <span
-class="math inline">\(l,r\)</span>
-的父亲是否相同，相同就可以走人了。</p>
-<p>如果 <span class="math inline">\(l\)</span>
-作为左儿子跳上去，那么该节点的右儿子会对该区间贡献一次，因为该节点的右儿子的父亲超出了区间，但自身在区间内。如果
-<span class="math inline">\(r\)</span>
-作为右儿子跳上去，那么该节点的左儿子会对区间贡献一次，原因同理，如此就可以找到区间覆盖数，这也是
-ZKW线段树 的原理。</p>
-<h4 id="例题-1">例题</h4>
-<p>给定一个指定 <code>mid</code> 节点的线段树，需要支持
-<code>rotate</code> 一个节点，<code>rotate</code> 定义为伸展树(splay)的
-<code>rotate</code>，强制在线询问区间覆盖数。</p>
-<p>先考虑没有修改，那么就是找到 <span class="math inline">\(l,r\)</span>
-的 <span class="math inline">\(lca\)</span>，然后一路统计 <span
-class="math inline">\(l\)</span>，<span class="math inline">\(r\)</span>
-作为左右儿子的次数即可，可以用倍增快速解决。</p>
-<p>修改本质上就是断边和加边，用 LCT 维护。</p>
-<h3 id="zkw线段树简介">ZKW线段树简介</h3>
-<h4 id="建树">建树</h4>
-<p>为了方便，需要建一棵有 <span class="math inline">\(2^k\)</span>
-个节点的树，主要是为了让高度相同，求出第一个不小于 <span
-class="math inline">\(n\)</span> 的 <span
-class="math inline">\(2\)</span>
-的次幂的方式：<code>k=32-__builtin_clz(n-1)</code>。</p>
-<p><strong>建树时注意没有数据的地方应该弄成
-"0"，且注意初始数组大小，并且要开 <span
-class="math inline">\(2^k+5\)</span> 以免溢出。</strong></p>
-<p>建树时记录单点的编号。</p>
-<h4 id="单点修改">单点修改</h4>
-<p>直接从下往上改就可以了。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">(<span class="type">int</span> rt,<span class="type">int</span> c)</span></span>&#123;</span><br><span class="line">    a[rt].mx1=c;<span class="keyword">while</span>(rt!=<span class="number">1</span>)<span class="built_in">push_up</span>(rt&gt;&gt;=<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="区间查询">区间查询</h4>
-<p>个人习惯闭区间，且有效区间落在 <span
-class="math inline">\([1,n]\)</span>。</p>
-<p>查询时看是否为兄弟节点，如果是就停下，否则对于左端点，是左子树则加上兄弟右子树。对于右端点，是右子树则加上兄弟左子树。<strong>另外需要加上两个端点。</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">node <span class="title">query</span><span class="params">(<span class="type">int</span> lrt,<span class="type">int</span> rrt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(lrt==rrt)<span class="keyword">return</span> a[lrt];</span><br><span class="line">    node ret=a[lrt]+a[rrt];</span><br><span class="line">    <span class="keyword">while</span>(lrt&gt;&gt;<span class="number">1</span>!=rrt&gt;&gt;<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(~lrt&amp;<span class="number">1</span>)ret=ret+a[lrt<span class="number">+1</span>];</span><br><span class="line">        <span class="keyword">if</span>(rrt&amp;<span class="number">1</span>)ret=ret+a[rrt<span class="number">-1</span>];</span><br><span class="line">        lrt&gt;&gt;=<span class="number">1</span>,rrt&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>注意特判区间长度为 <span class="math inline">\(1\)</span>
-的情况。</strong></p>
-<h4 id="区间修改">区间修改</h4>
-<p>由于是从下往上查询，所以只能采用标记永久化的方式，像查询那样做修改，在对应的点上打
-Tag。</p>
-<h4 id="效率">效率</h4>
-<p>对于 <span class="math inline">\(10^5,3\times 10^5,10^6\)</span>
-的随机数据进行了测试，效率改进因子约为 <span
-class="math inline">\(0.4\)</span>。</p>
 
       
     </div>

@@ -150,13 +150,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">109</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -189,6 +189,189 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E7%BD%91%E7%BB%9C%E6%B5%81%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">网络流相关</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 16:06:50" itemprop="dateCreated datePublished" datetime="2022-07-12T16:06:50+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:56:02" itemprop="dateModified" datetime="2025-02-16T17:56:02+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="网络流">网络流</h2>
+<p>内容主要为自己对网络流的一些理解和一些典例。</p>
+<h3 id="一些约定">一些约定：</h3>
+<ul>
+<li>s 为源点，t 为汇点</li>
+<li>对于集合 <span class="math inline">\(S,T,T\subseteq S\)</span>，约定
+<span class="math inline">\(S-T\)</span> 为从 <span
+class="math inline">\(S\)</span> 中删掉 <span
+class="math inline">\(T\)</span> 中每个元素之后的集合</li>
+<li>网络流图为 <span class="math inline">\(G=(V,E)\)</span>，边 <span
+class="math inline">\((u,v)\)</span> 容量记为 <span
+class="math inline">\(c_{u,v}\)</span></li>
+</ul>
+<h3 id="最大流最小割定理和增广路定理">最大流最小割定理和增广路定理</h3>
+<p>这两个定理是网络流问题的核心定理。</p>
+<h4 id="内容">内容</h4>
+<p>最大流 = 最小割。</p>
+<p>残量网络中不存在增广路是当前流为最大流的充要条件。</p>
+<h4 id="证明">证明</h4>
+<ol type="1">
+<li><p>若当前流为最大流，显然不存在增广路。</p></li>
+<li><p>若当前流等于某个割，显然当前流为最大流，且该割为最小割。</p></li>
+<li><p>若不存在增广路，我们证明当前流等于一个割。</p></li>
+</ol>
+<p>令 <span class="math inline">\(S=\{v,\exist\
+p_{s,v}\}\)</span>，<span class="math inline">\(S\)</span> 即 <span
+class="math inline">\(s\)</span> 在残量网络中能到达的点的集合。令 <span
+class="math inline">\(T=V-S\)</span>。显然 <span
+class="math inline">\((S,T)\)</span> 是一个割，对于当前残量网络 <span
+class="math inline">\(G&#39;=(V,E&#39;)\)</span>，一定有 <span
+class="math inline">\(\forall x \in S,\forall y\in T\)</span>，边 <span
+class="math inline">\((x,y)\)</span> 满流，否则 <span
+class="math inline">\(y\in S\)</span>。容易证明当前流恰好为 <span
+class="math inline">\(S\)</span> 到 <span
+class="math inline">\(T\)</span>
+的所有边的容量和，也就是割的大小。因为此时原图 <span
+class="math inline">\(S\)</span> 到 <span
+class="math inline">\(T\)</span> 所有的边流量为容量，<span
+class="math inline">\(T\)</span> 到 <span
+class="math inline">\(S\)</span> 的边流量为 <span
+class="math inline">\(0\)</span>，所以流量为 <span
+class="math inline">\(S\)</span> 到 <span
+class="math inline">\(T\)</span> 的边的流量之和，也就是割 <span
+class="math inline">\(S,T\)</span>。</p>
+<h3 id="算法">算法</h3>
+<h4 id="dinic">Dinic</h4>
+<p>考虑对残量网络 bfs 分层，强制流量只能流向下一层，再进行一次
+dfs，求限制下所有的增广路，搞定。</p>
+<p>复杂度 <span class="math inline">\(O(n^2m)\)</span></p>
+<p>每次增广复杂度为 <span class="math inline">\(O(nm)\)</span>，共计增广
+<span class="math inline">\(n\)</span> 次，因为每次增广都会让 <span
+class="math inline">\(dep[t]\)</span> 增加 1。</p>
+<p>每次增广的复杂度不是很好证，但加了当前弧优化其实就很松。</p>
+<p>代码记在脑子里了，不放了。</p>
+<h4 id="isap">ISAP</h4>
+<p>咕咕咕</p>
+<h4 id="hlpp">HLPP</h4>
+<p>咕咕咕</p>
+<h3 id="费用流相关">费用流相关</h3>
+<p>一般指最小费用最大流，暂时没啥感觉，不写。</p>
+<h2 id="最小割">最小割</h2>
+<p>非常常见的一个网络流模型应用。</p>
+<h3 id="核心思想">核心思想</h3>
+<p>通过构造一个图的割到决策方案的映射，其中决策必须可拆分计算，求出最小的代价，一般来说决策的限制如果比较奇怪就应该考虑最小割。</p>
+<p>常用于规划 <span class="math inline">\(0/1\)</span>
+独立贡献决策问题。</p>
+<h3 id="适用条件">适用条件</h3>
+<ul>
+<li>不能存在负容量边权，我不知道有没有人会，反正我是不会。</li>
+</ul>
+<h3 id="最大闭合权子图问题">1.最大闭合权子图问题</h3>
+<p>给定一张有向图，点带权（权可以为负），选一个子图出来，要求如果 <span
+class="math inline">\(u\)</span> 选了那如果存在 <span
+class="math inline">\((u,v)\)</span>，那 <span
+class="math inline">\(v\)</span> 也要选。求最大权值和。</p>
+<p>决策贡献独立，决策类型为 0/1。应该可以最小割。令割中与 <span
+class="math inline">\(s\)</span> 同集合的点为选择的点，与 <span
+class="math inline">\(t\)</span>
+同一个集合的点为未选择的点。那么每个点应该和 <span
+class="math inline">\(t\)</span>
+连一条流量为权值的相反数的边，代表选它的代价，再对于每条 <span
+class="math inline">\((u,v)\)</span> 从 <span
+class="math inline">\(u\)</span> 向 <span
+class="math inline">\(v\)</span> 连一条 inf 边,代表选了 <span
+class="math inline">\(u\)</span> 不选 <span
+class="math inline">\(v\)</span>
+的代价。考虑这张图的一个最小割，它必然不会包含 inf
+边，也就是说，我们选了 <span class="math inline">\(u\)</span> 在 <span
+class="math inline">\(s\)</span> 中一定会让 <span
+class="math inline">\(v\)</span> 在 <span
+class="math inline">\(s\)</span>
+中，所以一定合法。然后发现原问题的每一个答案都可以和图上的一个不含 inf
+边的割一一对应，故最小割就是原问题的答案的相反数。</p>
+<p>这张图有负数，不行，所以考虑先默认选所有正数。那么选负数的代价为相反数，不选正数的代价为本身。</p>
+<p>那么应该从 <span class="math inline">\(s\)</span>
+向正权点连边，从负权点向 <span class="math inline">\(t\)</span>
+连边，最后对于 <span class="math inline">\((u,v)\)</span> 从 <span
+class="math inline">\(u\)</span> 向 <span
+class="math inline">\(v\)</span> 连 inf 边即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

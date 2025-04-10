@@ -150,13 +150,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">109</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -274,6 +274,161 @@
 <ul>
 <li>QQ：3051561876</li>
 </ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2025/04/10/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/04/10/%E6%8A%80%E6%9C%AF/%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">四月工作日志</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-04-10 16:33:05 / 修改时间：23:58:45" itemprop="dateCreated datePublished" datetime="2025-04-10T16:33:05+08:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%97%A5%E5%BF%97/" itemprop="url" rel="index"><span itemprop="name">日志</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="关于日志">关于日志</h2>
+<p>有些事情单独开一篇博客太浪费，但是确实不得不记录一下，所以有了这个日志。目前打算是按月开。</p>
+<h3 id="vscode-远程连接到服务器上开发卡死">VSCode
+远程连接到服务器上开发卡死</h3>
+<p>不要连接到东西太多的目录，有些插件会扫目录，消耗巨大多内存。</p>
+<p>建议是单独开一个 workspace 来干活。</p>
+<p>另外远程服务器起码有 4GB 内存，2GB 内存纯属冤大头。</p>
+<h3 id="python-slots">Python <strong>slots</strong></h3>
+<p>Python 的 <code>__slots__</code>
+机制，可以限制实例的属性，只允许在创建实例时定义的属性，不允许动态添加属性。</p>
+<p>如果尝试为没有在 <strong>slots</strong> 中声明的变量赋值，会引发
+AttributeError。</p>
+<h3 id="git-拉取远端其它分支并与本地关联">git
+拉取远端其它分支并与本地关联</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature-branch origin/feature-branch</span><br></pre></td></tr></table></figure>
+<h3 id="git-删除分支">git 删除分支</h3>
+<p>删除本地分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d feature-branch</span><br></pre></td></tr></table></figure>
+<p>删除远端分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin --delete feature-branch</span><br></pre></td></tr></table></figure>
+<h3 id="python-lambda-闭包问题">Python lambda 闭包问题</h3>
+<p>lambda
+做函数绑定的时候变量是绑定到<strong>域</strong>上的变量的，而不是绑定到<strong>值</strong>上的。</p>
+<p>例如下面循环的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">funcs = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    funcs.append(<span class="keyword">lambda</span> x: x + i)</span><br><span class="line"><span class="built_in">print</span>(funcs[<span class="number">0</span>](<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<p>输出是 19，而不是 10，因为查找到的 i 是循环结束后域里面的 9。</p>
+<p>正确的做法是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">funcs = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    funcs.append(<span class="keyword">lambda</span> x, i=i: x + i)</span><br><span class="line"><span class="built_in">print</span>(funcs[<span class="number">0</span>](<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="c-全局变量的声明和定义">C++ 全局变量的声明和定义</h3>
+<p>全局变量的声明和定义是分开的，声明是在 <code>.h</code> 中使用
+<code>extern</code> 关键字，定义是 <code>.cpp</code> 中使用
+<code>=</code> 赋值。</p>
+<p>另外就算是用了 <code>#ifdef XXX_H</code>，也不能在 <code>.h</code>
+里面定义。不然多个 <code>.cpp</code> 都包含了
+<code>.h</code>，还是分开编译的，就会报重定义的错误。</p>
+<p>类的静态成员变量是不允许在声明的时候初始化的，只能定义的时候初始化。</p>
+<h3 id="python-线程独立资源">Python 线程独立资源</h3>
+<p>有时候每个线程需要一些独立的资源来执行一些操作，这个可以用
+<code>threading.local()</code> 来实现。</p>
+<p>一般需要配合 <code>concurrent.futures</code> 的线程池来使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">initializer</span>():</span><br><span class="line">    <span class="string">&quot;&quot;&quot;初始化线程独立资源&quot;&quot;&quot;</span></span><br><span class="line">    driver = uc.Chrome(use_subprocess=<span class="literal">True</span>, options=options, driver_executable_path=DRIVER_PATH)    </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">exact</span>(<span class="params">i</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;任务&quot;&quot;&quot;</span></span><br><span class="line">    driver.get(url)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">crawler</span>():</span><br><span class="line">    <span class="keyword">global</span> driver_pools</span><br><span class="line">    driver_pools = threading.local()</span><br><span class="line">    <span class="keyword">with</span> concurrent.futures.ThreadPoolExecutor(max_workers=<span class="number">5</span>, initializer=initializer) <span class="keyword">as</span> executor:</span><br><span class="line">        <span class="comment"># 提交任务</span></span><br><span class="line">        futures = [executor.submit(<span class="keyword">lambda</span> i=i: exact(i)) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">100</span>)]</span><br><span class="line">        <span class="comment"># 等待任务完成</span></span><br><span class="line">        <span class="keyword">for</span> future <span class="keyword">in</span> concurrent.futures.as_completed(futures):</span><br><span class="line">            future.result()</span><br></pre></td></tr></table></figure>
+<h3 id="python-异步任务线程任务">Python 异步任务、线程任务</h3>
+<p>这两个任务一般来说只要<strong>开始阻塞执行</strong>后，都没办法强制中止的。</p>
+<p>后台多线程任务可以设置成
+<code>daemon=True</code>，关闭主程序的时候自动关闭后台任务。</p>
+<p>异步任务一般要避免出现阻塞，否则主线程会卡死。</p>
+<p>另外如果一定要强行中止线程，可以考虑 <code>concurrent.futures</code>
+的 <code>ThreadPoolExecutor._threads.clear</code> 方法。</p>
+<h3 id="python-queue">Python Queue</h3>
+<p>线程安全的 <code>Queue.get</code>
+在使用的时候不管是不是保证有东西，最好都加点 timeout。</p>
+<h3 id="nullptr-和-iteratorend">nullptr 和 iterator::end()</h3>
+<p>处理指针类型一定要想好有没有可能是 <code>nullptr</code>。</p>
+<p>处理迭代器的时候一定要想好有没有可能是 <code>end()</code>。</p>
+<h3 id="c-容器">C++ 容器</h3>
+<p>迭代的时候<strong>别TM的做删除操作</strong>，会漏内存。</p>
+<h3 id="git-设置代理">git 设置代理</h3>
+<p>有时候 git 走不了系统代理，可以配置一个全局的代理设置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+<h3 id="c-iostream">C++ iostream</h3>
+<p><code>istream</code> 和 <code>ostream</code>
+是两个抽象类，不能直接实例化，用的时候应该把一个 <code>ifstream</code>
+或者 <code>ostream</code> 的子类实例化，然后绑定到 <code>istream</code>
+或者 <code>ostream</code> 上。</p>
+<p><code>cerr</code>, <code>cout</code> 这些都是 <code>ostream</code>
+的子类，所以有时候</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ifstream <span class="title">fin</span><span class="params">(<span class="string">&quot;in.txt&quot;</span>)</span></span>;</span><br><span class="line">istream &amp;in = fin;</span><br></pre></td></tr></table></figure>
+<h3 id="c-fsanitize">C++ Fsanitize</h3>
+<p>不要开 O2 优化，开了就定位不了错误。</p>
+<h3 id="vmware-无法打开内核设备">VMWARE 无法打开内核设备</h3>
+<p>对应虚拟机 .vmx 文件中，将 <code>vmci0.present</code> 改为
+<code>"FALSE"</code></p>
+<h3 id="win11-自定义快捷键反应慢">Win11 自定义快捷键反应慢</h3>
+<p><a
+target="_blank" rel="noopener" href="https://blog.csdn.net/m0_67168336/article/details/126240582">参考</a></p>
+<p>就是开始菜单 (建议 Win+Q 搜索 <code>设置</code>)找到 "设置", 点击
+"应用设置", 把 "后台组件权限" 改为 "从不" 即可。</p>
 
       
     </div>
@@ -1787,83 +1942,6 @@ EM，梯度下降的梯度计算比较复杂，而且无法保证满足概率约
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2025/02/15/todo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/15/todo/" class="post-title-link" itemprop="url">Todo</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-02-15 00:00:00" itemprop="dateCreated datePublished" datetime="2025-02-15T00:00:00+08:00">2025-02-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:21:58" itemprop="dateModified" datetime="2025-02-16T17:21:58+08:00">2025-02-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="打算要写的东西">打算要写的东西</h2>
-<h2 id="打算要做的事">打算要做的事</h2>
-
       
     </div>
 
