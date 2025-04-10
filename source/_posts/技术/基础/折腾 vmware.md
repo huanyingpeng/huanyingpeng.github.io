@@ -27,6 +27,10 @@ apt-get install open-vm-tools-desktop
 reboot
 ```
 
+### 共享文件夹
+
+开共享后, 客户机共享文件夹目录: `/mnt/hgfs/`
+
 ### 重安装的网络问题
 
 重新安装 vmware 时，可能会遇到以下问题：

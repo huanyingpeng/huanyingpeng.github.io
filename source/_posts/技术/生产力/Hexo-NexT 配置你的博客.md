@@ -1,22 +1,21 @@
 ---
-title: Hexo-NexT 安装踩坑记录
+title: Hexo-NexT 博客部署
 mathjax: true
 date: 2022-07-12 16:22:10
 categories:
 - 技术
 ---
-## 博客部署
 
 [参考](https://zhuanlan.zhihu.com/p/618864711)
 
-### 环境
+## 环境
 
-#### 基础
+### 基础
 
 - git
 - nodejs && npm
 
-#### 开工作目录
+### 开工作目录
 
 ```bash
 npm install hexo-cli -g
@@ -28,7 +27,7 @@ hexo server
 
 **工作目录**是 `blog`，记住，这很重要，文件名默认为相对工作目录的名字。
 
-#### 本地预览
+### 本地预览
 
 工作目录下：
 
@@ -38,15 +37,15 @@ hexo g && hexo s
 
 `localhost:4000` 上看。
 
-#### 开 GitHub Pages 仓库
+### 开 GitHub Pages 仓库
 
 每个账号只能开一个，仓库名 `username.github.io`。
 
-#### 配源码分支
+### 配源码分支
 
 创仓库的时候把 main 弄下来，源码（不含 public）放这里，免得被覆盖。
 
-#### 自动部署
+### 自动部署
 
 工作目录下安自动部署工具。
 
@@ -70,7 +69,7 @@ deploy:
 hexo clean && hexo g && hexo d
 ```
 
-### metadata
+## metadata
 
 搜 `_config.yml` 相关配置项：
 
@@ -82,12 +81,12 @@ keywords: '算法竞赛, 自动化测试, 工程技术, Python'
 author: huan-yp
 language: zh-CN # 必须改
 
-url: http://huanyp.cn
+url: https://huanyp.cn
 ```
 
-### 主题
+## 主题
 
-#### 安主题（next）
+### 安主题（next）
 
 工作目录下：
 
@@ -95,15 +94,15 @@ url: http://huanyp.cn
 git clone https://github.com/next-theme/hexo-theme-next themes/next
 ```
 
-#### 写上要用这个主题
+### 写上要用这个主题
 
 `_config.yml` 里，找到 `theme`，写上 `next`
 
-### next
+## next
 
 我用 next 主题。
 
-#### menu
+### menu
 
 配置菜单。
 
@@ -119,7 +118,7 @@ menu:
   commonweal: /404/ || fa fa-heartbeat
 ````
 
-#### scheme
+### scheme
 
 在 `themes/next/_config.yml` 调 scheme，传统的应该选 `Gemini`。
 
@@ -131,7 +130,7 @@ menu:
 scheme: Gemini
 ```
 
-#### dark
+### dark
 
 应该没有人喜欢 light，所以调成 dark。
 
@@ -141,15 +140,15 @@ scheme: Gemini
 darkmode: true
 ```
 
-### 背景
+## 背景
 
 一般要加个背景图片什么的
 
-#### 准备 source 图片
+### 准备 source 图片
 
 图片放到 `themes/next/source/image/background.jpg` 里。
 
-#### 改 style
+### 改 style
 
 找到 `themes\next\source\css\_schemes\Gemini\index.styl`，加上：
 
@@ -195,9 +194,9 @@ body {
 
 那个 [0, 1] 的参数是透明度，自己估摸着调。
 
-### 友情链接
+## 友情链接
 
-#### menu 加 link
+### menu 加 link
 
 ```yaml
 menu:
@@ -206,7 +205,7 @@ menu:
 
 写中文就行。
 
-#### 内联 html
+### 内联 html
 
 新建 `source/links/index.md`，写入：
 
@@ -305,9 +304,9 @@ menu:
 
 要加的时候在这复制 html 就行。
 
-### 杂项
+## 杂项
 
-#### 置顶文章
+### 置顶文章
 
 工作目录下执行：
 
@@ -327,7 +326,7 @@ top: true
 
 即可置顶。
 
-#### 折叠
+### 折叠
 
 在 `metadata` 中加上:
 
@@ -340,9 +339,9 @@ description: 文件摘要
 即可折叠.
 
 
-### 插件
+## 插件
 
-#### 搜索插件
+### 搜索插件
 
 工作目录下：
 
@@ -365,7 +364,7 @@ local_search:
 
 有时候会出现部分文章能搜索，部分文章不能搜索的情况。**这一般是因为 `search.xml` 中有不合法的字符导致 xml 解析失败引起的**。浏览器访问一下你的 xml 文件，会有报错提示你在哪里。
 
-#### 数学插件
+### 数学插件
 
 一般用 Mathjax。
 
@@ -399,16 +398,16 @@ mathjax: true
 
 参考资料：[Next 官方有关文档](https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-CN/MATH.md)。
 
-### 常用命令
+## 常用命令
 
 - `hexo g` : 生成
 - `hexo s` : 本地部署
 - `hexo d` : 远端部署
 
 
-### 网络相关
+## 网络相关
 
-#### CNAME
+### CNAME
 
 hexo d 的时候因为是强制 push 的, github CNAME 文件时会被覆盖, 导致域名解析错误.
 
@@ -416,6 +415,6 @@ hexo d 的时候因为是强制 push 的, github CNAME 文件时会被覆盖, �
 
 将 `CNAME` 放入 `./source`，即存在 `./source/CNAME` 文件。
 
-#### SEO
+### SEO
 
 在 `google search console` 申请抓取的时候，一定要看清楚是不是 `https` 协议，如果部署在 `github` 上，可能会强制 `https`，导致抓取出现**重定向错误。**如果出现了这个错误，有可能是没用 `https` 协议。

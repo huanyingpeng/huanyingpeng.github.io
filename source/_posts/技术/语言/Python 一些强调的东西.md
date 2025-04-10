@@ -136,6 +136,21 @@ PYPI 打包发布的时候, 如果文件夹没有 `__init__.py` 文件, 那么�
 
 ## 关于 Request 这一类网络请求函数
 
+### Requests 库的 POST 相关
+
+- requests 的 post 方法有点坑，目前主流数据提交方式都是 json，所以一般用 json 这个可选参数传参，data 传参可能会因为格式问题导致请求失败。
+- 需要**显式指定协议**，直接写 `example.com` 会报错。
+
+```python
+import requests
+
+requests.post("http://example.com", json={
+    "token": "xxx",
+    "value": "yyy"
+})
+```
+
+
 Request 爬虫的时代已经过去了, 现在用 selenium 吧.
 
 当然如果直接最简单的 Request 没出问题也不妨试试.
