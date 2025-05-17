@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">109</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,170 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/08/05/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%BA%8C%E5%BC%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/05/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8BCPU%E5%BA%95%E5%B1%82%E4%BC%98%E5%8C%96-%E7%AC%AC%E4%BA%8C%E5%BC%B9/" class="post-title-link" itemprop="url">从一道题看CPU底层优化-第二弹</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-05 10:30:33" itemprop="dateCreated datePublished" datetime="2022-08-05T10:30:33+08:00">2022-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:53:16" itemprop="dateModified" datetime="2025-02-16T17:53:16+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题意">题意</h3>
+<ul>
+<li><p>给定一个序列 <span class="math inline">\(a\)</span>，长度为 <span
+class="math inline">\(2^n\)</span>，每次询问给定 <span
+class="math inline">\(mask\)</span>，询问 <span
+class="math inline">\(b_i=a_{i\bigoplus mask}\)</span> 得到的 <span
+class="math inline">\(b\)</span> 序列的最大字段和。</p></li>
+<li><p><span class="math inline">\(n\leq 18,q\leq 2\times
+10^5\)</span></p></li>
+<li><p>原题意参考<a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1716/problem/E">题意</a>，这里做了一些不影响做题的转化。</p></li>
+</ul>
+<h3 id="思考">思考</h3>
+<p>我们发现可以类似于线段树一样的去维护最大子段和，即考虑对一层维护其所有可能的交换序列的信息，然后计算一个<strong>节点左右儿子构成的区间</strong>的最大子段和，这样是可以得到正确答案的。</p>
+<p>不难发现我们只需要知道一层的<strong>前缀和最大值和最小值</strong>就可以完成向上传递，这样的信息量是
+<span class="math inline">\(O(1)\)</span> 的，对于第 <span
+class="math inline">\(i\)</span>
+层，会影响它的值的只有它下面的状态，因为上面的状态如何不影响该层最大值和最小值的位置，因此不会影响其计算答案的结果。</p>
+<p>因此很容易设计出一个 <span class="math inline">\(O(2^n\times
+n)\)</span> 的做法，但是我觉得它有点难写。</p>
+<p>所以我们考虑只分两层，预处理第一层的前缀和和最大值位置，最小值位置，扫描第二层计算答案，这样的话，复杂度为
+<span class="math inline">\(O(2^{\frac{3n}{2}})\)</span> ，约为 <span
+class="math inline">\(1.25\times 10^8\)</span>，能卡在边界上。</p>
+<h3 id="实现1">实现1</h3>
+<p>这是我们的第一份代码，得到了 TLE19 的成绩。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">18</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,tp1,tp2;</span><br><span class="line"><span class="type">int</span> a[<span class="number">1</span>&lt;&lt;N],ans[<span class="number">1</span>&lt;&lt;N],mx[<span class="number">1</span>&lt;&lt;N],mi[<span class="number">1</span>&lt;&lt;N],sum[<span class="number">1</span>&lt;&lt;N];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i++)<span class="built_in">read</span>(a[i]);</span><br><span class="line">	<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> mask1=<span class="number">0</span>;mask1&lt;<span class="number">1</span>&lt;&lt;n/<span class="number">2</span>;mask1++)&#123;</span><br><span class="line">		<span class="type">int</span> gap=<span class="number">1</span>&lt;&lt;n/<span class="number">2</span>,max_val=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i+=gap)&#123;</span><br><span class="line">			mi[i]=mx[i]=i;sum[i]=a[i^mask1],<span class="built_in">cmax</span>(max_val,sum[i]);</span><br><span class="line">			<span class="keyword">for</span>(j=i<span class="number">+1</span>;j&lt;i+gap;j++)&#123;</span><br><span class="line">				sum[j]=sum[j<span class="number">-1</span>]+a[j^mask1];</span><br><span class="line">				<span class="keyword">if</span>(sum[j]&gt;sum[mx[i]])mx[i]=j;</span><br><span class="line">				<span class="keyword">if</span>(sum[j]&lt;sum[mi[i]])mi[i]=j;</span><br><span class="line">				<span class="built_in">cmax</span>(max_val,sum[j]-sum[mi[i]]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> mask2=<span class="number">0</span>;mask2&lt;<span class="number">1</span>&lt;&lt;n;mask2+=gap)&#123;</span><br><span class="line">			ans[mask2^mask1]=max_val;</span><br><span class="line">			<span class="type">int</span> min_val=<span class="number">0</span>,sm=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i+=gap)&#123;</span><br><span class="line">				<span class="built_in">cmax</span>(ans[mask2^mask1],sm+sum[mx[i^mask2]]-min_val);</span><br><span class="line">				<span class="built_in">cmin</span>(min_val,sm+sum[mi[i^mask2]]);</span><br><span class="line">				sm+=sum[(i+gap<span class="number">-1</span>)^mask2];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> q;<span class="built_in">read</span>(q);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=q;i++)&#123;</span><br><span class="line">		<span class="built_in">read</span>(tp1);s^=<span class="number">1</span>&lt;&lt;tp1;</span><br><span class="line">		cout&lt;&lt;ans[s]&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<h3 id="常数分析1">常数分析1</h3>
+<p>我们最开始对 <span class="math inline">\(a\)</span> 进行了 <span
+class="math inline">\(512\)</span> 次乱序扫描，但容易发现一共进行了
+<span class="math inline">\(512\times512\)</span>
+次每次扫描的区间大小均为 <span class="math inline">\(512\times4\)</span>
+Byte 的扫描，这种方式可以比较好的利用高速缓存，因为被一次 cacheline
+读取的 64Byte 数据都被放入了高速缓存并在时间上具有局部性。</p>
+<p>注意到第二部分对 <code>sum</code> 计算的前缀和，由于 L3
+高速缓存的约能存下 <span class="math inline">\(2^{18}\)</span> 个
+<code>long long</code> 数据，但是我们又存储了
+<code>sum</code>，并且在第三部分有对 <code>sum</code>
+一些固定位置的随机访问，因此，<code>a</code>
+数组就被踢出了高速缓存，再次访问的时候需要重复读取，造成了相当大的浪费。</p>
+<p>事实上，我们并不需要存储每一个
+<code>sum</code>，每一个块需要存储的数据量是 <span
+class="math inline">\(O(1)\)</span>
+的，对这个做一个优化，我们得到了一份新的代码。</p>
+<h3 id="实现2">实现2</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">18</span>;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,tp1,tp2;</span><br><span class="line"><span class="type">int</span> a[<span class="number">1</span>&lt;&lt;N];</span><br><span class="line">LL mx[<span class="number">1</span>&lt;&lt;N/<span class="number">2</span>],mi[<span class="number">1</span>&lt;&lt;N/<span class="number">2</span>],sum[<span class="number">1</span>&lt;&lt;N/<span class="number">2</span>],ans[<span class="number">1</span>&lt;&lt;N];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">// 	freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//	freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line"><span class="comment">//	freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="built_in">read</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i++)<span class="built_in">read</span>(a[i]);</span><br><span class="line">	<span class="type">int</span> now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> mask1=<span class="number">0</span>;mask1&lt;<span class="number">1</span>&lt;&lt;n/<span class="number">2</span>;mask1++)&#123;</span><br><span class="line">		LL gap=<span class="number">1</span>&lt;&lt;n/<span class="number">2</span>,max_val=<span class="number">0</span>,m=n&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		<span class="built_in">memset</span>(mx,<span class="number">0</span>,<span class="built_in">sizeof</span>(mx)),<span class="built_in">memset</span>(mi,<span class="number">0</span>,<span class="built_in">sizeof</span>(mi));</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i+=gap)&#123;</span><br><span class="line">			LL sm=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(j=i;j&lt;i+gap;j++)&#123;</span><br><span class="line">				sm+=a[j^mask1];</span><br><span class="line">				<span class="keyword">if</span>(sm&gt;mx[i&gt;&gt;m])mx[i&gt;&gt;m]=sm;</span><br><span class="line">				<span class="keyword">if</span>(sm&lt;mi[i&gt;&gt;m])mi[i&gt;&gt;m]=sm;</span><br><span class="line">				<span class="built_in">cmax</span>(max_val,sm-mi[i&gt;&gt;m]);</span><br><span class="line">			&#125;</span><br><span class="line">			sum[i&gt;&gt;m]=sm;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> mask2=<span class="number">0</span>;mask2&lt;<span class="number">1</span>&lt;&lt;n;mask2+=gap)&#123;</span><br><span class="line">			ans[mask2^mask1]=max_val;</span><br><span class="line">			LL min_val=<span class="number">0</span>,sm=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i+=gap)&#123;</span><br><span class="line">				<span class="built_in">cmax</span>(ans[mask2^mask1],sm+mx[(i^mask2)&gt;&gt;m]-min_val);</span><br><span class="line">				<span class="built_in">cmin</span>(min_val,sm+mi[(i^mask2)&gt;&gt;m]);</span><br><span class="line">				sm+=sum[(i^mask2)&gt;&gt;m];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> q;<span class="built_in">read</span>(q);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=q;i++)&#123;</span><br><span class="line">		<span class="built_in">read</span>(tp1);</span><br><span class="line">		s^=<span class="number">1</span>&lt;&lt;tp1;</span><br><span class="line">		cout&lt;&lt;ans[s]&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<h3 id="常数分析2">常数分析2</h3>
+<p>我们将 <code>a</code> 从 <code>long long</code> 改为了
+<code>int</code>，提升了 cacheline 读取效率，并只额外存储了 <span
+class="math inline">\(512\times3\times8 \text{ Byte}\)</span>
+的块信息，这样在以后的计算中，对大数组的随机访问可以变为对小数组的访问，大大提升了高速缓存利用率。</p>
+<p>可以通过此题。</p>
+<h3 id="further-explore">Further Explore</h3>
+<p>继续对代码进行修改，观察其时间变化。</p>
+<p>最初代码用时为 <code>1450ms</code></p>
+<h4 id="e1">E1</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">LL sm=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(j=i;j&lt;i+gap;j++)&#123;</span><br><span class="line">    sm+=a[j^mask1];</span><br><span class="line">    <span class="keyword">if</span>(sm&gt;mx[i&gt;&gt;m])mx[i&gt;&gt;m]=sm;</span><br><span class="line">    <span class="keyword">if</span>(sm&lt;mi[i&gt;&gt;m])mi[i&gt;&gt;m]=sm;</span><br><span class="line">    <span class="built_in">cmax</span>(max_val,sm-mi[i&gt;&gt;m]);</span><br><span class="line">&#125;</span><br><span class="line">sum[i&gt;&gt;m]=sm;</span><br></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sum[i&gt;&gt;m]=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(j=i;j&lt;i+gap;j++)&#123;</span><br><span class="line">    sum[i&gt;&gt;m]+=a[j^mask1];</span><br><span class="line">    <span class="keyword">if</span>(sum[i&gt;&gt;m]&gt;mx[i&gt;&gt;m])mx[i&gt;&gt;m]=sum[i&gt;&gt;m];</span><br><span class="line">    <span class="keyword">if</span>(sum[i&gt;&gt;m]&lt;mi[i&gt;&gt;m])mi[i&gt;&gt;m]=sum[i&gt;&gt;m];</span><br><span class="line">    <span class="built_in">cmax</span>(max_val,sum[i&gt;&gt;m]-mi[i&gt;&gt;m]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>预期效率降低，原因为全局变量不会放入寄存器。</p>
+<p>实际效率未降低，原因推测为 <span class="math inline">\(O2\)</span>
+优化自动使用了该优化。</p>
+<p>继续进行本机测试，共 <code>9</code> 次随机数据，运行时间分别为
+<code>16339ms 16339ms</code>，符合预期，不开启优化时，全局变量一定不会放入寄存器。</p>
+<h4 id="e2">E2</h4>
+<p><code>a</code> 数组改为 <code>long long</code> 类型。</p>
+<p>预期由于高速缓存溢出，效率下降，实际未发生效率下降，应该是不明高速缓存机制原因。</p>
+<h4 id="defin-int-long-long">#defin int long long</h4>
+<p>预期由于高速缓存溢出，效率下降，<code>64bit</code>
+编译器和机子，实际效率有提升，<code>9</code> 组时间分别为
+<code>16636ms 16167ms</code>。</p>
+<p>开启 <code>O2</code> 后无明显差异，分别为
+<code>5577ms 5561ms</code></p>
+<p><code>32bit</code> 编译器，<code>64bit</code> 机子，<code>O2</code>
+效率出现明显下降，分别为 <code>11839ms 14920ms</code></p>
+<h3 id="conclusion">Conclusion</h3>
+<ul>
+<li>O2
+优化后，编译器会自动完成很多代码层面上的优化，我们更需要关注的是算法常数本身</li>
+<li>高速缓存的利用情况很大程度决定了代码的效率，编写需要卡常的程序时应该尤为注意，滚动数组能有效提升高速缓存利用率，分块处理减少数组大小也是提升效率的一种可行方案。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2083,277 +2247,6 @@ AK，实际上这里 <span class="math inline">\(k&lt; i\le 2k\)</span>
 <p><strong>如果 TLE 了换成 64bit 的机子再交一次，64 bit 的 long long
 运算要快一些。</strong></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">1</span>&lt;&lt;<span class="number">19</span>,mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="keyword">namespace</span> NTT&#123;</span><br><span class="line">	<span class="type">const</span> <span class="type">int</span> N=<span class="number">1</span>&lt;&lt;<span class="number">20</span>,mod=<span class="number">998244353</span>,g=<span class="number">3</span>,gi=<span class="number">332748118</span>;</span><br><span class="line">	<span class="type">int</span> i,j,k,n,s,t,m;</span><br><span class="line">	<span class="type">int</span> a[N],b[N],rk[N];</span><br><span class="line">	<span class="function"><span class="type">int</span> <span class="title">quick</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> s,<span class="type">int</span> ret=<span class="number">1</span>)</span></span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(s)&#123;</span><br><span class="line">			<span class="keyword">if</span>(s&amp;<span class="number">1</span>)ret=ret*a%mod;</span><br><span class="line">			a=a*a%mod,s&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">NTT</span><span class="params">(<span class="type">int</span> *a,<span class="type">int</span> type)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;s;i++)</span><br><span class="line">		<span class="keyword">if</span>(rk[i]&gt;i)<span class="built_in">swap</span>(a[rk[i]],a[i]);</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> len=<span class="number">1</span>;len&lt;=s;len++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">int</span> w=<span class="number">1</span>,wn=<span class="built_in">quick</span>(g,mod<span class="number">-1</span>&gt;&gt;len);</span><br><span class="line">			<span class="keyword">if</span>(type==<span class="number">-1</span>)wn=<span class="built_in">quick</span>(wn,mod<span class="number">-2</span>);</span><br><span class="line">			<span class="keyword">for</span>(j=<span class="number">0</span>;j+(<span class="number">1</span>&lt;&lt;len)&lt;=<span class="number">1</span>&lt;&lt;s;j+=<span class="number">1</span>&lt;&lt;len,w=<span class="number">1</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span>(k=j;k&lt;j+(<span class="number">1</span>&lt;&lt;len<span class="number">-1</span>);k++,w=<span class="number">1ll</span>*w*wn%mod)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">int</span> x=a[k],y=a[k+(<span class="number">1</span>&lt;&lt;len<span class="number">-1</span>)];</span><br><span class="line">					a[k]=(x<span class="number">+1ll</span>*w*y%mod)%mod,a[k+(<span class="number">1</span>&lt;&lt;len<span class="number">-1</span>)]=(x<span class="number">-1ll</span>*w*y%mod)%mod;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> nn,<span class="type">int</span> c[],<span class="type">int</span> res[])</span></span>&#123;</span><br><span class="line">		n=m=nn;</span><br><span class="line">		<span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="built_in">sizeof</span>(a)),<span class="built_in">memset</span>(b,<span class="number">0</span>,<span class="built_in">sizeof</span>(b));</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n;i++)a[i]=c[i];</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=m;i++)b[i]=c[i];</span><br><span class="line">		<span class="keyword">while</span>(<span class="number">1</span>&lt;&lt;s&lt;=n+m)s++;</span><br><span class="line">	</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;<span class="number">1</span>&lt;&lt;s;i++)rk[i]=rk[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>|(i%<span class="number">2</span>?<span class="number">1</span>&lt;&lt;s<span class="number">-1</span>:<span class="number">0</span>);</span><br><span class="line">		<span class="built_in">NTT</span>(a,<span class="number">1</span>),<span class="built_in">NTT</span>(b,<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;s;i++)a[i]=<span class="number">1ll</span>*a[i]*b[i]%mod;</span><br><span class="line">		<span class="built_in">NTT</span>(a,<span class="number">-1</span>);<span class="type">int</span> inv=<span class="built_in">quick</span>(<span class="number">1</span>&lt;&lt;s,mod<span class="number">-2</span>);</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n+m;i++)</span><br><span class="line">		res[i]=(<span class="number">1ll</span>*a[i]*inv%mod+mod)%mod;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,tp1,tp2,f;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Inc</span><span class="params">(<span class="type">int</span> &amp;a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">	a+=b;<span class="keyword">if</span>(a&gt;=mod)a-=mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">quick</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> s,<span class="type">int</span> ret=<span class="number">1</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(s)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s&amp;<span class="number">1</span>)ret=ret*a%mod;</span><br><span class="line">		a=a*a%mod,s&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ret;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> dp[<span class="number">16</span>][N&lt;&lt;<span class="number">1</span>],sum[<span class="number">16</span>][N&lt;&lt;<span class="number">1</span>],p[N];</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">// 	freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//	freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line"><span class="comment">//	freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="built_in">read</span>(n),<span class="built_in">read</span>(k),<span class="built_in">read</span>(f);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=k;i++)dp[<span class="number">0</span>][i]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		NTT::<span class="built_in">init</span>(k,dp[i<span class="number">-1</span>],sum[i]);</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=<span class="number">2</span>*k;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(i!=n)dp[i][j]=sum[i][j]*(k-j<span class="number">+1</span>)%mod;</span><br><span class="line">			<span class="keyword">else</span> dp[i][j]=sum[i][j];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(i!=n)<span class="keyword">for</span>(j=<span class="number">2</span>*k<span class="number">-1</span>;j&gt;=<span class="number">0</span>&amp;&amp;i!=n;j--)&#123;</span><br><span class="line">			<span class="keyword">if</span>(j&lt;=k)<span class="built_in">Inc</span>(dp[i][j],sum[i][j<span class="number">+1</span>]);</span><br><span class="line">			<span class="built_in">Inc</span>(sum[i][j],sum[i][j<span class="number">+1</span>]);</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;(dp[n][f]+mod)%mod;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/19/OI/%E7%AE%97%E6%B3%95/Kruskal%E9%87%8D%E6%9E%84%E6%A0%91%E4%B8%8ELCA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/19/OI/%E7%AE%97%E6%B3%95/Kruskal%E9%87%8D%E6%9E%84%E6%A0%91%E4%B8%8ELCA/" class="post-title-link" itemprop="url">Kruskal 重构树和 LCA</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-19 20:10:16" itemprop="dateCreated datePublished" datetime="2022-07-19T20:10:16+08:00">2022-07-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:57:49" itemprop="dateModified" datetime="2025-02-16T17:57:49+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="cf1706-小总结">CF1706 小总结</h2>
-<p>其实都会做，但是各种各样的原因导致了没在场上 AK</p>
-<h3 id="abc">ABC</h3>
-<p>A 题没考虑清楚就在写，WA 了一发样例，然后慢悠悠调好交上去过。</p>
-<p>B 题愣了一会儿，弄了个伪 DP 上去，稍微有点磨蹭，但还好。</p>
-<p>C 题做得无可挑剔。</p>
-<h3 id="d">D</h3>
-<p>D 题先想到可以枚举一个端点，二分另一个，<span
-class="math inline">\(O(n)\)</span>
-check，但是发现枚举一个端点之后，可以快速计算另一个端点的最优值，得到一个
-<span class="math inline">\(O(n^2)\)</span> 的枚举 max 的做法过了
-D1，然后感觉其实只需要查 <span class="math inline">\([\lfloor\frac{\max
-a_i}{k}\rfloor,\lfloor\frac{\max a_i}{k}\rfloor+\sqrt N]\)</span> 和
-<span class="math inline">\(\{\lfloor\frac{\max a_i}{x}\rfloor,x \le
-k\}\)</span>，写好交上去过了 Pretests，但是 FST 了。</p>
-<p>后面想到其实对 min 分类限制更多。暴力算 <span
-class="math inline">\(\min \lfloor \frac{a_i}{k_i}\rfloor\in
-[1,B]\)</span>，然后对于 <span class="math inline">\(\min \lfloor
-\frac{a_i}{k_i}\rfloor\in(B,k]\)</span>，可以发现 <span
-class="math inline">\(p_i\in
-[1,\lceil\frac{10^5}{B}\rceil]\)</span>，考虑维护 max 的变化，可以用一个
-vector 记一下 <span
-class="math inline">\(\lfloor\frac{a_i}{p_i}\rfloor\)</span>
-的所有可能，共 <span class="math inline">\(n\times
-\lceil\frac{10^5}{B}\rceil\)</span> 种，因此对于 <span
-class="math inline">\((B,k]\)</span>，<span
-class="math inline">\(\lfloor\frac{a_i}{p_i}\rfloor\)</span>
-的变化总量是 <span class="math inline">\(O(n\sqrt n)\)</span> 的。</p>
-<p>换一种思路考虑，还是枚举 <span class="math inline">\(x\)</span>，令
-<span class="math inline">\(\lfloor\frac{a_i}{p_i}\rfloor\le
-x\)</span>，易知 <span
-class="math inline">\(p_i\ge\lfloor\frac{a_i}{x+1}\rfloor+1\)</span>，考虑每一个
-<span class="math inline">\(a_i\)</span> 的最好的 <span
-class="math inline">\(p_i\)</span>，不太可行。但是发现上式中能取到的
-<span class="math inline">\(p_i\)</span> 满足 <span
-class="math inline">\(p_i\le\lfloor\frac{N}{x}\rfloor\)</span>
-。于是考虑每一个 <span class="math inline">\(p_i\)</span> 可以让哪些
-<span class="math inline">\(a_i\)</span>
-值取到最优，这是一个区间。而我们要考虑的是
-min，所以取区间中最小的计算就行。</p>
-<p>对于一个 <span class="math inline">\(x\)</span>，区间个数是 <span
-class="math inline">\(\frac{N}{x}\)</span> 的，因此总复杂度 <span
-class="math inline">\(\sum\limits_{i=1}^N \frac{N}{i}=n\ln
-n\)</span>。</p>
-<h3 id="e">E</h3>
-<p>E
-题在考场上想到了可以类似整体二分的做，先给所有的二分，然后再合并一次，查询每一个询问是否可行。查询的维护可以
-dsu on tree 带一个维护线段的 set，复杂度 <span
-class="math inline">\(O(n\log^3n)\)</span>，感觉能信仰，就写了，可惜没交上去。赛后发现其实有些边界的小错，但是交了还是
-TLE 了。告诉我们 set 操作搞个 <span class="math inline">\(10^7\)</span>
-问题还是比较大。</p>
-<p>后面发现可以将询问直接塞进 dsu
-的过程中，但是处理询问只能处理较小的那一边，如果是小的合到大的上面去，此时询问挂在大的上面，会非常的恼火。于是就把询问拆到两个上面去，又发现可能两个询问会在合并时变成一个但是还没解决，所以合并的时候如果变成一个就又找了一个还没合并的把询问扔上去。</p>
-<p>然后又 TLE 了，赛后仔细分析复杂度，发现不对劲，比如有个 <span
-class="math inline">\(O(n)\)</span>
-的点，然后又有个略小于它但主要是询问的点，然后合并的时候把询问全部扔到另一个点上去了，然后另一个点同这个
-<span class="math inline">\(O(n)\)</span>
-点合并的时候又把询问全部扔了，询问就扔了 <span
-class="math inline">\(O(n^2)\)</span> 次，寄。</p>
-<p>然后想到可以把线段合并的过程记下来，这个就是严格 <span
-class="math inline">\(O(n\log n)\)</span>
-级别了，后面做一个二维偏序回答询问。成功 AC。</p>
-<p>其实 E 题和最近做的题都暴露出几个问题，思维模式僵化，没有办法 Think
-out of box，同时代码中常常犯一些不容易注意到的小错误，依赖数据调试。</p>
-<h3 id="sum-up">Sum up</h3>
-<p>关于代码小错的问题，我觉得一边写一边静态查是一个比较理想的解决方案，<strong>先认真核实思路的正确性，再检查代码和思路是否一致</strong>，同时可以在关键点插入数据输出。</p>
-<p>思维上的问题，估计还只有多做题。</p>
-<h3 id="收获-1dsu-on-tree-的复杂度理解">收获 1：Dsu on tree
-的复杂度理解</h3>
-<p>Dsu on tree，复杂度证明的过程是这样的：考虑一个点的权值 <span
-class="math inline">\(w_i\)</span>，当合并时，复杂度贡献为 <span
-class="math inline">\(O(\min(w_u,w_v)\)</span>，将 <span
-class="math inline">\(w_i\)</span> 视为 <span
-class="math inline">\(w_i\)</span>
-个元素。考虑每个元素的贡献次数，发现每个元素仅在其所在集合大小翻倍时贡献。所以复杂度正确。</p>
-<p><strong>因此，权值的构成不影响其时间复杂度</strong></p>
-<p>如果在合并的时候进行了额外的对 <span
-class="math inline">\(w_i\)</span>
-的修改，比如我的错误做法，时间复杂度就应该认真分析了。</p>
-<h3 id="kruscal-重构树的应用和连通性">Kruscal 重构树的应用和连通性</h3>
-<p>E 题可以用 Kruscal
-重构树做，具体的，先做最小生成树，顺便合并点，现在一个连通块就是一个点，合并两个连通块时，新建一个点，点权为这条边的权值，作为被合并的两个点的父亲，任意两个点联通的时最小权值就是它们的
-lca，然后区间 lca 应该都会。事实上甚至没有必要做区间 lca，我们考虑 <span
-class="math inline">\(i,i+1\)</span> 什么时候联通，设其时间为 <span
-class="math inline">\(f(i)\)</span>，可以发现 <span
-class="math inline">\(ans(a,b)=\max\limits_{i\in[a,b)}
-f(i)\)</span>，证明比较容易，首先必须取到这个值，否则必然有两个点不连通，其次，如果取到这个值，那么一定都联通，over
-，复杂度 <span class="math inline">\(O(n\log n)\)</span></p>
-<p>已经知道这个性质了，那么，将询问放到 dsu
-合并过程中的方法也不难写了，合并时处理其中一个询问即可。</p>
-<h3 id="lca-的一些性质">LCA 的一些性质</h3>
-<p>从 2 中的性质，我们总结出了一些 LCA 的共有性质。</p>
-<p>设树上一个点集为 <span class="math inline">\(S\)</span>，定义 <span
-class="math inline">\(\operatorname{lca}(S)\)</span> 为点集 <span
-class="math inline">\(S\)</span> 中所有点的最近公共祖先。定义符号 <span
-class="math inline">\(\operatorname{lca}(a_1,a_2\cdots a_n)\)</span>
-表示 <span class="math inline">\(\operatorname{lca}(\{a_1,a_2,\cdots
-a_n\})\)</span>。</p>
-<p><span class="math inline">\(\text{Lemma 1.1}\)</span></p>
-<p><span class="math inline">\(\operatorname{lca}(S\cup
-u)=\operatorname{lca}(\operatorname{lca}(S),u)\)</span></p>
-<p><span class="math inline">\(\text{Proof 1.1}\)</span></p>
-<p>若 <span class="math inline">\(\operatorname{lca}(S)\)</span> 为
-<span class="math inline">\(u\)</span> 的祖先，则结论显然成立。</p>
-<p>否则，<span class="math inline">\(u\)</span> 位于 <span
-class="math inline">\(\operatorname{lca}(S)\)</span> 的子树外，<span
-class="math inline">\(\operatorname{lca}(S\cup u)\)</span> 必须同时为
-<span class="math inline">\(\operatorname{lca}(S)\)</span> 和 <span
-class="math inline">\(u\)</span> 的祖先，故结论同样成立。</p>
-<p><span class="math inline">\(\text{Theorem 1.2}\)</span></p>
-<p>对于 <span
-class="math inline">\(S=\{a_1,a_2\cdots,a_n\}\)</span>，满足 <span
-class="math inline">\(\operatorname{lca}(S)\in
-\bigcup\limits_{i=1}^{n-1}\operatorname{lca}(a_1,a_2)\)</span>。</p>
-<p><span class="math inline">\(\text{Proof 1.2}\)</span></p>
-<p>对 <span class="math inline">\(S\)</span> 集合大小归纳，设 <span
-class="math inline">\(|S|=n\)</span>，且对于 <span
-class="math inline">\(k\le n\)</span>，结论成立。</p>
-<p>由 Lemma 1.1，有 <span class="math inline">\(\operatorname{lca}(S\cup
-u) = \operatorname{lca}(\operatorname{lca}(S),u)\)</span>，</p>
-<ul>
-<li>若满足 <span class="math inline">\(\operatorname{lca}(S\cup
-u)=\operatorname{lca}(S)\)</span>，对于 <span
-class="math inline">\(S\cup u\)</span>，即 <span
-class="math inline">\(|S&#39;|=n+1\)</span>，结论成立。</li>
-<li>若不满足 <span class="math inline">\(\operatorname{lca}(S\cup
-u)=\operatorname{lca}(S)\)</span>，记 <span
-class="math inline">\(\operatorname{lca}(S)=w\)</span>，则有 <span
-class="math inline">\(\forall a_i\in
-S,\operatorname{lca}(a_i,u)=\operatorname{lca}(w,u)=\operatorname{lca}(S\cup
-u)\)</span>，因此对于 <span
-class="math inline">\(|S&#39;|=n+1\)</span>，结论仍然成立。</li>
-</ul>
-<p>证毕。</p>
-<p><span class="math inline">\(\text{Lemma 2.1}\)</span></p>
-<p>记 <span class="math inline">\(\operatorname{dfn}(u)\)</span> 表示
-<span class="math inline">\(u\)</span> 的 dfs 序。</p>
-<p>对三个元素 <span class="math inline">\(u,v,w\)</span> ，满足 <span
-class="math inline">\(\operatorname{dfn}(u)&lt;\operatorname{dfn}(v)&lt;\operatorname{dfn}(w)\)</span>，有
-<span
-class="math inline">\(\operatorname{lca}(w,u,v)=\operatorname{lca}(u,w)\)</span>。</p>
-<p><span class="math inline">\(\text{Proof 2.1}\)</span></p>
-<p>由 Theorem 1.2，<span
-class="math inline">\(\operatorname{lca}(u,v,w)\in\{\operatorname{lca}(u,v),\operatorname{lca}(u,w)\}\)</span>。</p>
-<p>假设 <span
-class="math inline">\(\operatorname{lca}(u,v,w)=\operatorname{lca}(u,v)\)</span>
-并且 <span class="math inline">\(\operatorname{lca}(u,v)\neq
-\operatorname{lca}(u,w)\)</span>。</p>
-<p>记 <span class="math inline">\(x=\operatorname{lca}(u,v,w)\)</span>
-。</p>
-<p>因此 <span class="math inline">\(v\)</span> 和 <span
-class="math inline">\(\operatorname{lca}(u,w)\)</span> 在 <span
-class="math inline">\(x\)</span> 的不同子树。又有 <span
-class="math inline">\(\operatorname{dfn}(v)&gt;\operatorname{dfn}(u)\)</span>，所以
-<span class="math inline">\(u\)</span> 所在的 <span
-class="math inline">\(x\)</span> 的子树先被访问，即 <span
-class="math inline">\(\operatorname{lca}(u,w)\)</span> 所在的 <span
-class="math inline">\(x\)</span> 的子树先被访问，因此 <span
-class="math inline">\(\operatorname{dfn}(w)&lt;\operatorname{dfn}(v)\)</span>。矛盾，故假设不成立。</p>
-<p>证毕。</p>
-<p><span class="math inline">\(\text{Theorem 2.2}\)</span></p>
-<p>对于序列 <span class="math inline">\(a\)</span>，若集合 <span
-class="math inline">\(A=\{a_1,a_2\cdots a_{n}\}\)</span>，且满足 <span
-class="math inline">\(\forall i\in
-[1,n),\operatorname{dfn}(a_{i+1})&gt;\operatorname{dfn}(a_i)\)</span>，有
-<span
-class="math inline">\(\operatorname{lca}(a_1,a_n)=\operatorname{lca}(A)\)</span>。</p>
-<p><span class="math inline">\(\text{Proof 2.2}\)</span></p>
-<p>归纳证明，设对 <span class="math inline">\(k=n\)</span> 成立。</p>
-<p>由 Theorem 1.2， <span class="math inline">\(\operatorname{lca}(A\cup
-\{a_{n+1}\})=\operatorname{lca}(a_{n+1},\operatorname{lca}(A)\})\)</span>。</p>
-<p>由 Lemma 2.1，Theorem 1.2，<span
-class="math inline">\(\operatorname{lca}(\operatorname{lca}(A),a_{n+1})\operatorname{lca}(\operatorname{lca}(a_1,a_{n}),a_{n+1})=\operatorname{lca}(a_1,a_{n},a_{n+1})=\operatorname{lca}(a_1,a_{n+1})\)</span></p>
-<p>因此定理对 <span class="math inline">\(k=n+1\)</span> 同样成立。</p>
-<p>证毕。</p>
-<p><span class="math inline">\(\text{Theorem 2.3}\)</span></p>
-<p>对于序列 <span class="math inline">\(a\)</span>，若集合 <span
-class="math inline">\(A=\{a_1,a_2\cdots a_{n}\}\)</span>，且满足 <span
-class="math inline">\(\forall i\in
-[1,n),\operatorname{dfn}(a_{i+1})&gt;\operatorname{dfn}(a_i)\)</span>。</p>
-<p>有 <span class="math inline">\(\operatorname{lca}(a_1,a_n)\in
-\bigcup\limits_{i=1}^{n-1}\{\operatorname{lca}(a_i,a_{i+1})\}\)</span>。</p>
-<p><span class="math inline">\(\text{Proof 2.3}\)</span></p>
-<p>由 Theorem 2.1 ，<span
-class="math inline">\(\operatorname{lca}(a_1,a_n)=\operatorname{lca}(A)\)</span></p>
-<p>由 Theorem 1.1，<span class="math inline">\(\operatorname{lca}(A) \in
-\{\operatorname{lca}(a_i,a_{i+1}),i\in[1,n)\}\)</span>。</p>
 
       
     </div>

@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">109</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,217 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2023/02/01/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2023/0201%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/01/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2023/0201%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">0201测试</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-02-01 20:05:26" itemprop="dateCreated datePublished" datetime="2023-02-01T20:05:26+08:00">2023-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:23:39" itemprop="dateModified" datetime="2025-02-16T20:23:39+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="测试">0201 测试</h2>
+<h3 id="t1">T1</h3>
+<p>比较奇怪的题目。</p>
+<p>手玩出 <span class="math inline">\(n=3\)</span>
+的情况，发现是当且仅当看到其他人帽子颜色相同时猜与其相反的颜色。</p>
+<p>然后我们发现对于一种能猜对的情况，一定可以构造出一种会猜错的情况——将猜了的那些翻转即可。</p>
+<p>然后为啥 <span class="math inline">\(n=3\)</span> 的时候能做到 <span
+class="math inline">\(75\%\)</span> 的正确率，是因为
+<code>000 111</code> 这两种情况各自对应了 3 种猜错的情况。</p>
+<p>于是我们考虑建图，将 <span class="math inline">\(2^n\)</span>
+个点每个点向二进制位恰好翻转一位的点连边。</p>
+<p>图是一个 Hypercube（超立方体），虽然这暂时并没有什么卵用。</p>
+<p><strong>逆向考虑一种策略在图上会是怎样的。</strong>对于猜对的点，至少有一个相邻的点是猜错的
+Case，而一个猜错的点最多对应 <span class="math inline">\(n\)</span>
+个猜对的点，这告诉我们正确率的上界是 <span
+class="math inline">\(\dfrac{n}{n+1}\)</span>。而对于 <span
+class="math inline">\(n=3\)</span> 的构造方案显然取到了上界。</p>
+<p>发现这道题的 <span
+class="math inline">\(n=2^k-1\)</span>，所以我们可能取到上界（Case
+总数是分母的倍数）。取到上界，在图上就是存在一个大小为 <span
+class="math inline">\(\dfrac{2^n}{n+1}\)</span> 的支配集。</p>
+<p>换句话说，我们需要给一张图黑白染色，满足白色点最多，且每个白点必须连一个黑点，这个问题比较麻烦，不存在多项式做法，考虑图的特殊性质——Hypercube，这也许能够帮助我们构造出能够取到上界的情况。</p>
+<p>我们需要选 Hypercube 中的一些点，能够取到上界。在 Hypercube
+中的黑点在各个维度上变换后都是白点，考虑用异或的性质去构造。令第 <span
+class="math inline">\(i\)</span> 个维度的权值为 <span
+class="math inline">\(i\)</span>，维度权值异或和（如果该维坐标为 <span
+class="math inline">\(1\)</span> 则异或，否则不异或）为 <span
+class="math inline">\(0\)</span>
+的点为黑点，其它为白点，这样的构造是满足条件的。</p>
+<p><em>无向图 <span class="math inline">\(G(V,E)\)</span>
+的支配集是一个点集 <span class="math inline">\(S\)</span>，记 <span
+class="math inline">\(F(u)\)</span> 表示与 <span
+class="math inline">\(u\)</span> 点有连边的点集，<span
+class="math inline">\(S\)</span> 满足 <span
+class="math inline">\(\forall s_1,s_2(s_1\ne s_2)\in S,F(s_1)\bigcap
+F(s_2)=\emptyset\)</span> 且 <span
+class="math inline">\(\bigcup\limits_{s\in S} F(s)=V -
+S\)</span>。</em></p>
+<p>为什么要考虑建图并将点向二进制位差异为 <span
+class="math inline">\(1\)</span>
+的点连边：这样建图之后确实能够让问题更加形象（也是受到手玩 <span
+class="math inline">\(3\)</span>
+的启发）。<strong>建图则是因为同一种策略正确的情况和不正确的情况的对应关系。</strong></p>
+<p>为什么要考虑用异或的性质构造：<strong>连边的形式是每一维变换</strong>，需要满足变换后不同，又恰好是
+<span class="math inline">\(2^k-1\)</span> 个维度，它们的异或和为 <span
+class="math inline">\(0\)</span>。<strong>异或运算具有高度的对称性</strong></p>
+<h3 id="t2">T2</h3>
+<p>中规中矩的组合题。</p>
+<p>发现如果横向或竖向有贯穿的一行或者一列，那么这些贯穿的行都是连在一起的，不妨考虑有若干列贯穿，枚举贯穿的区间
+<span class="math inline">\([l,r]\)</span>。</p>
+<p>乘上贯穿的方案数 <span class="math inline">\((n+1)^{len}\)</span>
+后剩下的答案是两个类似问题乘起来，问题还是各个方向箭头把矩阵覆盖满，只不过只有上下左三个方向，<strong>且已知左边的某一个箭头把矩阵分成了两半</strong>。不妨枚举那个把矩阵分成两边的箭头的位置，剩下的只有两个方向了，是简单的组合问题。<strong>注意其中有分开的两半有一半左边不能贯穿，如果可以贯穿那么所有左边贯穿的箭头会被算重。</strong></p>
+<p>考虑没有贯穿的情况，记左边箭头最长为 <span
+class="math inline">\(s_1\)</span>，右边最长为 <span
+class="math inline">\(s_2\)</span>，上边下边 <span
+class="math inline">\(s_3,s_4\)</span>。</p>
+<p>如果纵向贯穿，则有 <span
+class="math inline">\(s_1+s_2&lt;m\)</span>，横向贯穿则是 <span
+class="math inline">\(s_3+s_4&lt;n\)</span>。这两种情况的答案单独计算。</p>
+<p><strong>下面的讨论请记住 <span class="math inline">\(s_1+s_2\ge
+m,s_3+s_4\ge n\)</span>。</strong></p>
+<p>考虑 <span class="math inline">\(s_1+s_2&gt;m\)</span>
+的情况，且，则一定能找到一个分界点，上下分别取到 <span
+class="math inline">\(s_1\)</span> 和 <span
+class="math inline">\(s_2\)</span>，此时必有 <span
+class="math inline">\(s_3+s_4=n\)</span>。大概是这个图（不能同时满足
+<span class="math inline">\(s_1+s_2&gt;m\)</span> 且 <span
+class="math inline">\(s_3+s_4&gt;n\)</span>）：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/huan-yp/image_space/master/202302012041959.png"
+alt="image-20230201204107871" />
+<figcaption aria-hidden="true">image-20230201204107871</figcaption>
+</figure>
+<p>这种情况可以枚举某一条红线头的位置，<strong>注意靠上那条红线可以从左边来也可以从右边来，所以要乘
+2</strong>。暴力枚举另一条红线交到的位置。剩下的四个问题独立，都是两个方向填矩阵的情况，基本组合问题。复杂度
+<span class="math inline">\(O(n^3)\)</span></p>
+<p>发现确定第一条红线的行之后移动列时，答案是一个固定值乘上一个前缀和的形式，可以做到均摊
+<span
+class="math inline">\(O(1)\)</span>。<strong>对于绿线也需要将矩阵转置一下计算。</strong></p>
+<p>最后剩下一种情况 <span class="math inline">\(s_1+s_2=m\)</span> 且
+<span class="math inline">\(s_3+s_4=n\)</span>。</p>
+<p>只能是这样的：</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/huan-yp/image_space/master/202302012049795.png"
+alt="image-20230201204943731" />
+<figcaption aria-hidden="true">image-20230201204943731</figcaption>
+</figure>
+<p>枚举左上角的位置计算即可，注意要算两遍，因为左上角位置既可以是横着过来的也可以是竖着过来的。</p>
+<h3 id="t3">T3</h3>
+<p>有趣的数据结构题</p>
+<h4 id="一种暴力">一种暴力</h4>
+<p>维护每个数作为其中一个端点时的答案。</p>
+<p>一个修改会对两个区间的答案造成影响。考虑如果维护这个影响。</p>
+<p>赛时一直以为这是不可做的，实际上问题等价于维护 <span
+class="math inline">\(n\)</span>
+个编号连续的集合，操作是对于一段编号连续的区间都加入一个数，查询是查询全局
+<strong>集合权值 + 集合中最大值</strong> 的最大值。</p>
+<p>用线段树维护一段区间的集合，线段树上一个节点做集合操作时，这个节点代表的所有集合都具有同样的元素，因此直接取集合权值的最大值加上元素最大值即可。</p>
+<p><strong>解决问题的核心是将一个点的贡献/操作拆到了多个位置/多个部分，以便于对于不同的位置各自处理，这是一个非常重要的思想。</strong></p>
+<p>在本题中，将同一个点的贡献拆到了线段树上的多个部分，而一个线段树上的节点可以包括多个点，也便于对它们同时操作。</p>
+<p><strong>倍增并查集也是这个思路。</strong>倍增并查集拆分的是操作本身，将一个<strong>顺序无关</strong>操作分多步完成，多个操作的同一步可以一起做。</p>
+<h4 id="正解1">正解1</h4>
+<p>很神仙的一个想法是考虑按 <span class="math inline">\(k\)</span>
+将序列分块，然后块内是好做的，直接线段树维护。块间最多跨一个块。所以要统计块间的答案。</p>
+<p>然后需要选 <span class="math inline">\(y\le x+k\)</span> 使得 <span
+class="math inline">\(a_x+a_y\)</span> 最大，然后令 <span
+class="math inline">\(b_i=a_{i+k}\)</span>，变成 <span
+class="math inline">\(b_y+a_x\)</span> 最大且 <span
+class="math inline">\(y\le x\)</span>。</p>
+<p>又变回了块内问题。<strong>这个问题如果在序列上是不好做的，因为额外有
+<span class="math inline">\(y\ge x-k\)</span>
+的限制。</strong>但是分块统计的方式去掉了这个限制。</p>
+<p>开一棵线段树来做这个问题，每个节点维护在这个这个节点 <span
+class="math inline">\(a_i,b_i\)</span> 各自的最大值和答案，修改 <span
+class="math inline">\(a_i,b_i\)</span>
+时在各自的位置修改并上传答案即可。</p>
+<p><strong>一个问题如果能够简单的分治解决，套上线段树并记录分治过程之后就可以支持修改操作。</strong></p>
+<h4 id="正解2">正解2</h4>
+<p><strong>考虑取到答案的点的性质</strong>，由于答案由两个点构成，我们枚举了任意一个点都能得到答案，所以只需要考虑较大的那个点的性质。它满足它是区间
+<span class="math inline">\([i-k,i+k]\)</span>
+中的最大值，称满足这样性质的点是好点。</p>
+<p>我们只考虑好点的答案，于是做单点修改时只会修改常数个好点的答案，也只会有常数个好点变成不好的点或者不好的点变成好点。</p>
+<p>好点的答案容易用线段树查询，好点答案最大值容易用 set 维护，时间复杂度
+<span class="math inline">\(O((n+q)\log n)\)</span>。</p>
+<p>线段树需要写 <code>zkw</code> 以卡常。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1832,204 +2043,6 @@ class="math inline">\(68\)</span>，场上第一次写没考虑往一个点旁�
 <h3 id="正解">正解</h3>
 <p>把暴力的动态规划改成倍增版即可。</p>
 <p>有点难写，暂时没写。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/11/22/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1122%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/11/22/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1122%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1122总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-11-22 20:18:33" itemprop="dateCreated datePublished" datetime="2022-11-22T20:18:33+08:00">2022-11-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:22:55" itemprop="dateModified" datetime="2025-02-16T20:22:55+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="总结">1122总结</h2>
-<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0158">考试</a></p>
-<h3 id="t1">T1</h3>
-<p>有趣的题。</p>
-<p>场上瞎撞结论显然是错误的。</p>
-<p>考虑 <span class="math inline">\(01\)</span>
-矩阵乘法的组合意义，就是统计一张图从 <span
-class="math inline">\(S\)</span> 到 <span
-class="math inline">\(T\)</span> 某个长度的路径总条数。</p>
-<p>所以如果不存在长度为 <span class="math inline">\(k\)</span>
-的路径，考虑将点按照最长路径长度分类，每一类需要尽可能均分。</p>
-<p>然后每一类内部不连边，和向外部路长度更短的所有点连单向边。</p>
-<p>考虑证明这样的边数最多，问题本质是有 <span
-class="math inline">\(k\)</span> 个变量 <span
-class="math inline">\(a_1,a_2\cdots a_k\)</span> 满足 <span
-class="math inline">\(\sum\limits_{i\in[1,k]}a_i=n\)</span>，求 <span
-class="math inline">\(\sum\limits_{i\in[1,k]} \binom{a_i}{2}\)</span>
-的最小值，列式计算： <span class="math display">\[
-\begin{align}
-\sum\limits_{i\in[1,k]}
-\binom{a_i}{2}=&amp;\dfrac{a_i\times(a_i-1)}{2}\\
-=&amp;-\dfrac{n+\sum\limits_{i\in[1,k]}a_i^2}{2}
-\end{align}
-\]</span> 考虑证明分布在 <span
-class="math inline">\(v=\lfloor\frac{n}{k}\rfloor\)</span> 和 <span
-class="math inline">\(\lfloor\frac{n}{k}\rfloor+1\)</span> 之间的 <span
-class="math inline">\(a_i\)</span>
-是最优的，假设不为这两个值，那么找到两个值 <span
-class="math inline">\(x&lt;v\)</span> 和<span
-class="math inline">\(y&gt;v+1\)</span>，将 <span
-class="math inline">\(x\)</span> 调整为 <span
-class="math inline">\(x+1\)</span>，<span
-class="math inline">\(y\)</span> 调整为 <span
-class="math inline">\(y-1\)</span>，那么从 <span
-class="math inline">\(x^2+y^2\)</span> 变成了 <span
-class="math inline">\(x^2+2x+1+y^2-2y+1\)</span>，由于 <span
-class="math inline">\(y&gt; x+1\)</span>，所以一定会变优，如果只能找到
-<span class="math inline">\(x\)</span> 或者 <span
-class="math inline">\(y\)</span>，就对应的选择 <span
-class="math inline">\(v+1\)</span> 和 <span
-class="math inline">\(v\)</span>，同样会变优，调整到最后就分布在 <span
-class="math inline">\(v,v+1\)</span>。</p>
-<p><strong>不直观的计数问题，考察其组合意义，变成直观的计数问题。</strong></p>
-<h3 id="t2">T2</h3>
-<p>很容易想到二分，直接二分的复杂度是 <span
-class="math inline">\(O(nq\log^2 n)\)</span> 的。发现 <span
-class="math inline">\(check\)</span>
-的代价和二分值有关，考虑调整二分策略，尝试以 <span
-class="math inline">\(O(ans\log ans\log n)\)</span>
-的代价找出一次清空，发现倍增后二分即可。</p>
-<h3 id="t3">T3</h3>
-<p>朴素的动态规划是 <span class="math inline">\(O(n^5)\)</span>
-的，配合性质的暴力可以有 <span class="math inline">\(50\)</span>。</p>
-<p>观察，发现答案不会很大，考虑改变动态规划状态，设 <span
-class="math inline">\(dp[x][y][i][ans]\)</span> 表示左端点为 <span
-class="math inline">\((x,y)\)</span>，横向延伸到 <span
-class="math inline">\(i(i\ge
-x)\)</span>，纵向延申的最远位置，不难发现该状态有单调性，即 <span
-class="math inline">\(dp[x+1][y][i][ans]\ge
-dp[x][y][i][ans]\)</span>，因此纵向转移是简单的，可以做到 <span
-class="math inline">\(O(1)\)</span>，转移完之后其实就已经单调了，不用前缀
-<span class="math inline">\(\max\)</span>。</p>
-<p>考虑横向的转移，不难发现最优的转移点单调，且答案递减，维护这个最优转移点即可。</p>
-<h3 id="t4">T4</h3>
-<h4 id="朴素做法">朴素做法</h4>
-<p>考虑设 <span class="math inline">\(dp[i][j][k]\)</span> 表示考虑到第
-<span class="math inline">\(i\)</span> 个数，抹掉了 <span
-class="math inline">\(k\)</span> 位后再加上了若干位，最终的 <span
-class="math inline">\(\log_2\)</span> 值为 <span
-class="math inline">\(j\)</span> 的最小方案。</p>
-<p>视实现有 <span class="math inline">\(40-75\)</span>，转移是一个前缀
-<span class="math inline">\(\min\)</span> 加上一个带判断的转移。</p>
-<h4 id="不太需要动脑子的办法">不太需要动脑子的办法</h4>
-<p>转移可以通过类似双指针的方法做到均摊 <span
-class="math inline">\(O(1)\)</span>，考虑优化状态数。</p>
-<p>有一个显然的可行解需要 <span
-class="math inline">\(\sum\log_2{a_i}=sum\)</span> 步。</p>
-<p>考虑每一个位置 <span class="math inline">\(k\)</span> 的上界，设
-<span class="math inline">\(T=\log m
-\approx18\)</span>，那么如果一个位置 <span
-class="math inline">\(i\)</span> 的 <span
-class="math inline">\(j\)</span> 的状态如果满足了 <span
-class="math inline">\((j-T)\times(n-i) \ge sum\)</span>，那么这个 <span
-class="math inline">\(j\)</span> 是没有意义的，这样限制下来 <span
-class="math inline">\(j\)</span> 这一维是 <span
-class="math inline">\(Tn\ln n\)</span> 大小的。</p>
-<p>已经可以比较险的通过了，其实还有一个限制，就是 <span
-class="math inline">\(lim_i\le
-lim_{i-1}+1\)</span>，原因是显然的，加上这个限制之后又会变松很多。</p>
-<p>最后记一个 <span class="math inline">\(mn\)</span>
-表示当前状态的最小可能值，条件变为 <span
-class="math inline">\((j-T)\times(n-i)+mn \ge
-sum\)</span>，就很容易通过了。</p>
-<p><strong>场上前缀最小值只取了上一个位置的，挂了。</strong></p>
-<h4 id="比较聪明的办法">比较聪明的办法</h4>
-<p>考虑如果 <span class="math inline">\(a_i&#39;\)</span> 变到了 <span
-class="math inline">\(\log_2\ge 17\)</span>
-之后会发生什么，它之后的位置的 <span
-class="math inline">\(\log_2\)</span> 值，都必须要大于 <span
-class="math inline">\(17\)</span>，不妨先在这些数后面添 <span
-class="math inline">\(0\)</span> 补到 <span
-class="math inline">\(17\)</span>，进行代价的预付，到一个位置的时候，我们已知它和上一个位置的
-<span class="math inline">\(\log2\)</span>
-已经相同了，只需要改变高位的一些值，这样的改变方式只有 <span
-class="math inline">\(\log n\)</span> 种，代价也是好算的，暴力枚举就是
-<span class="math inline">\(O(n\log^2n )\)</span>
-的，如果会导致后面的位置的 <span class="math inline">\(\log_2\)</span>
-变大，就在这里预付代价。</p>
-<p><strong>本质上，这种方法通过分析 <span class="math inline">\(j\ge
-17\)</span> 后最优解 <span class="math inline">\(\log_2\)</span>
-值的变化，得到了一种新的代价计算方式，这种方式不依赖 <span
-class="math inline">\(j\)</span>，减少了状态数量</strong></p>
-<p><strong>同一个最优化问题，可以采取不同的代价计算方式，得到不同的动态规划状态。预付代价是一种常用的方式。</strong></p>
-<p>典型例题是《任务安排》。</p>
 
       
     </div>

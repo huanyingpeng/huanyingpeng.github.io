@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">109</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,277 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/19/OI/%E7%AE%97%E6%B3%95/Kruskal%E9%87%8D%E6%9E%84%E6%A0%91%E4%B8%8ELCA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/19/OI/%E7%AE%97%E6%B3%95/Kruskal%E9%87%8D%E6%9E%84%E6%A0%91%E4%B8%8ELCA/" class="post-title-link" itemprop="url">Kruskal 重构树和 LCA</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-19 20:10:16" itemprop="dateCreated datePublished" datetime="2022-07-19T20:10:16+08:00">2022-07-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:57:49" itemprop="dateModified" datetime="2025-02-16T17:57:49+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="cf1706-小总结">CF1706 小总结</h2>
+<p>其实都会做，但是各种各样的原因导致了没在场上 AK</p>
+<h3 id="abc">ABC</h3>
+<p>A 题没考虑清楚就在写，WA 了一发样例，然后慢悠悠调好交上去过。</p>
+<p>B 题愣了一会儿，弄了个伪 DP 上去，稍微有点磨蹭，但还好。</p>
+<p>C 题做得无可挑剔。</p>
+<h3 id="d">D</h3>
+<p>D 题先想到可以枚举一个端点，二分另一个，<span
+class="math inline">\(O(n)\)</span>
+check，但是发现枚举一个端点之后，可以快速计算另一个端点的最优值，得到一个
+<span class="math inline">\(O(n^2)\)</span> 的枚举 max 的做法过了
+D1，然后感觉其实只需要查 <span class="math inline">\([\lfloor\frac{\max
+a_i}{k}\rfloor,\lfloor\frac{\max a_i}{k}\rfloor+\sqrt N]\)</span> 和
+<span class="math inline">\(\{\lfloor\frac{\max a_i}{x}\rfloor,x \le
+k\}\)</span>，写好交上去过了 Pretests，但是 FST 了。</p>
+<p>后面想到其实对 min 分类限制更多。暴力算 <span
+class="math inline">\(\min \lfloor \frac{a_i}{k_i}\rfloor\in
+[1,B]\)</span>，然后对于 <span class="math inline">\(\min \lfloor
+\frac{a_i}{k_i}\rfloor\in(B,k]\)</span>，可以发现 <span
+class="math inline">\(p_i\in
+[1,\lceil\frac{10^5}{B}\rceil]\)</span>，考虑维护 max 的变化，可以用一个
+vector 记一下 <span
+class="math inline">\(\lfloor\frac{a_i}{p_i}\rfloor\)</span>
+的所有可能，共 <span class="math inline">\(n\times
+\lceil\frac{10^5}{B}\rceil\)</span> 种，因此对于 <span
+class="math inline">\((B,k]\)</span>，<span
+class="math inline">\(\lfloor\frac{a_i}{p_i}\rfloor\)</span>
+的变化总量是 <span class="math inline">\(O(n\sqrt n)\)</span> 的。</p>
+<p>换一种思路考虑，还是枚举 <span class="math inline">\(x\)</span>，令
+<span class="math inline">\(\lfloor\frac{a_i}{p_i}\rfloor\le
+x\)</span>，易知 <span
+class="math inline">\(p_i\ge\lfloor\frac{a_i}{x+1}\rfloor+1\)</span>，考虑每一个
+<span class="math inline">\(a_i\)</span> 的最好的 <span
+class="math inline">\(p_i\)</span>，不太可行。但是发现上式中能取到的
+<span class="math inline">\(p_i\)</span> 满足 <span
+class="math inline">\(p_i\le\lfloor\frac{N}{x}\rfloor\)</span>
+。于是考虑每一个 <span class="math inline">\(p_i\)</span> 可以让哪些
+<span class="math inline">\(a_i\)</span>
+值取到最优，这是一个区间。而我们要考虑的是
+min，所以取区间中最小的计算就行。</p>
+<p>对于一个 <span class="math inline">\(x\)</span>，区间个数是 <span
+class="math inline">\(\frac{N}{x}\)</span> 的，因此总复杂度 <span
+class="math inline">\(\sum\limits_{i=1}^N \frac{N}{i}=n\ln
+n\)</span>。</p>
+<h3 id="e">E</h3>
+<p>E
+题在考场上想到了可以类似整体二分的做，先给所有的二分，然后再合并一次，查询每一个询问是否可行。查询的维护可以
+dsu on tree 带一个维护线段的 set，复杂度 <span
+class="math inline">\(O(n\log^3n)\)</span>，感觉能信仰，就写了，可惜没交上去。赛后发现其实有些边界的小错，但是交了还是
+TLE 了。告诉我们 set 操作搞个 <span class="math inline">\(10^7\)</span>
+问题还是比较大。</p>
+<p>后面发现可以将询问直接塞进 dsu
+的过程中，但是处理询问只能处理较小的那一边，如果是小的合到大的上面去，此时询问挂在大的上面，会非常的恼火。于是就把询问拆到两个上面去，又发现可能两个询问会在合并时变成一个但是还没解决，所以合并的时候如果变成一个就又找了一个还没合并的把询问扔上去。</p>
+<p>然后又 TLE 了，赛后仔细分析复杂度，发现不对劲，比如有个 <span
+class="math inline">\(O(n)\)</span>
+的点，然后又有个略小于它但主要是询问的点，然后合并的时候把询问全部扔到另一个点上去了，然后另一个点同这个
+<span class="math inline">\(O(n)\)</span>
+点合并的时候又把询问全部扔了，询问就扔了 <span
+class="math inline">\(O(n^2)\)</span> 次，寄。</p>
+<p>然后想到可以把线段合并的过程记下来，这个就是严格 <span
+class="math inline">\(O(n\log n)\)</span>
+级别了，后面做一个二维偏序回答询问。成功 AC。</p>
+<p>其实 E 题和最近做的题都暴露出几个问题，思维模式僵化，没有办法 Think
+out of box，同时代码中常常犯一些不容易注意到的小错误，依赖数据调试。</p>
+<h3 id="sum-up">Sum up</h3>
+<p>关于代码小错的问题，我觉得一边写一边静态查是一个比较理想的解决方案，<strong>先认真核实思路的正确性，再检查代码和思路是否一致</strong>，同时可以在关键点插入数据输出。</p>
+<p>思维上的问题，估计还只有多做题。</p>
+<h3 id="收获-1dsu-on-tree-的复杂度理解">收获 1：Dsu on tree
+的复杂度理解</h3>
+<p>Dsu on tree，复杂度证明的过程是这样的：考虑一个点的权值 <span
+class="math inline">\(w_i\)</span>，当合并时，复杂度贡献为 <span
+class="math inline">\(O(\min(w_u,w_v)\)</span>，将 <span
+class="math inline">\(w_i\)</span> 视为 <span
+class="math inline">\(w_i\)</span>
+个元素。考虑每个元素的贡献次数，发现每个元素仅在其所在集合大小翻倍时贡献。所以复杂度正确。</p>
+<p><strong>因此，权值的构成不影响其时间复杂度</strong></p>
+<p>如果在合并的时候进行了额外的对 <span
+class="math inline">\(w_i\)</span>
+的修改，比如我的错误做法，时间复杂度就应该认真分析了。</p>
+<h3 id="kruscal-重构树的应用和连通性">Kruscal 重构树的应用和连通性</h3>
+<p>E 题可以用 Kruscal
+重构树做，具体的，先做最小生成树，顺便合并点，现在一个连通块就是一个点，合并两个连通块时，新建一个点，点权为这条边的权值，作为被合并的两个点的父亲，任意两个点联通的时最小权值就是它们的
+lca，然后区间 lca 应该都会。事实上甚至没有必要做区间 lca，我们考虑 <span
+class="math inline">\(i,i+1\)</span> 什么时候联通，设其时间为 <span
+class="math inline">\(f(i)\)</span>，可以发现 <span
+class="math inline">\(ans(a,b)=\max\limits_{i\in[a,b)}
+f(i)\)</span>，证明比较容易，首先必须取到这个值，否则必然有两个点不连通，其次，如果取到这个值，那么一定都联通，over
+，复杂度 <span class="math inline">\(O(n\log n)\)</span></p>
+<p>已经知道这个性质了，那么，将询问放到 dsu
+合并过程中的方法也不难写了，合并时处理其中一个询问即可。</p>
+<h3 id="lca-的一些性质">LCA 的一些性质</h3>
+<p>从 2 中的性质，我们总结出了一些 LCA 的共有性质。</p>
+<p>设树上一个点集为 <span class="math inline">\(S\)</span>，定义 <span
+class="math inline">\(\operatorname{lca}(S)\)</span> 为点集 <span
+class="math inline">\(S\)</span> 中所有点的最近公共祖先。定义符号 <span
+class="math inline">\(\operatorname{lca}(a_1,a_2\cdots a_n)\)</span>
+表示 <span class="math inline">\(\operatorname{lca}(\{a_1,a_2,\cdots
+a_n\})\)</span>。</p>
+<p><span class="math inline">\(\text{Lemma 1.1}\)</span></p>
+<p><span class="math inline">\(\operatorname{lca}(S\cup
+u)=\operatorname{lca}(\operatorname{lca}(S),u)\)</span></p>
+<p><span class="math inline">\(\text{Proof 1.1}\)</span></p>
+<p>若 <span class="math inline">\(\operatorname{lca}(S)\)</span> 为
+<span class="math inline">\(u\)</span> 的祖先，则结论显然成立。</p>
+<p>否则，<span class="math inline">\(u\)</span> 位于 <span
+class="math inline">\(\operatorname{lca}(S)\)</span> 的子树外，<span
+class="math inline">\(\operatorname{lca}(S\cup u)\)</span> 必须同时为
+<span class="math inline">\(\operatorname{lca}(S)\)</span> 和 <span
+class="math inline">\(u\)</span> 的祖先，故结论同样成立。</p>
+<p><span class="math inline">\(\text{Theorem 1.2}\)</span></p>
+<p>对于 <span
+class="math inline">\(S=\{a_1,a_2\cdots,a_n\}\)</span>，满足 <span
+class="math inline">\(\operatorname{lca}(S)\in
+\bigcup\limits_{i=1}^{n-1}\operatorname{lca}(a_1,a_2)\)</span>。</p>
+<p><span class="math inline">\(\text{Proof 1.2}\)</span></p>
+<p>对 <span class="math inline">\(S\)</span> 集合大小归纳，设 <span
+class="math inline">\(|S|=n\)</span>，且对于 <span
+class="math inline">\(k\le n\)</span>，结论成立。</p>
+<p>由 Lemma 1.1，有 <span class="math inline">\(\operatorname{lca}(S\cup
+u) = \operatorname{lca}(\operatorname{lca}(S),u)\)</span>，</p>
+<ul>
+<li>若满足 <span class="math inline">\(\operatorname{lca}(S\cup
+u)=\operatorname{lca}(S)\)</span>，对于 <span
+class="math inline">\(S\cup u\)</span>，即 <span
+class="math inline">\(|S&#39;|=n+1\)</span>，结论成立。</li>
+<li>若不满足 <span class="math inline">\(\operatorname{lca}(S\cup
+u)=\operatorname{lca}(S)\)</span>，记 <span
+class="math inline">\(\operatorname{lca}(S)=w\)</span>，则有 <span
+class="math inline">\(\forall a_i\in
+S,\operatorname{lca}(a_i,u)=\operatorname{lca}(w,u)=\operatorname{lca}(S\cup
+u)\)</span>，因此对于 <span
+class="math inline">\(|S&#39;|=n+1\)</span>，结论仍然成立。</li>
+</ul>
+<p>证毕。</p>
+<p><span class="math inline">\(\text{Lemma 2.1}\)</span></p>
+<p>记 <span class="math inline">\(\operatorname{dfn}(u)\)</span> 表示
+<span class="math inline">\(u\)</span> 的 dfs 序。</p>
+<p>对三个元素 <span class="math inline">\(u,v,w\)</span> ，满足 <span
+class="math inline">\(\operatorname{dfn}(u)&lt;\operatorname{dfn}(v)&lt;\operatorname{dfn}(w)\)</span>，有
+<span
+class="math inline">\(\operatorname{lca}(w,u,v)=\operatorname{lca}(u,w)\)</span>。</p>
+<p><span class="math inline">\(\text{Proof 2.1}\)</span></p>
+<p>由 Theorem 1.2，<span
+class="math inline">\(\operatorname{lca}(u,v,w)\in\{\operatorname{lca}(u,v),\operatorname{lca}(u,w)\}\)</span>。</p>
+<p>假设 <span
+class="math inline">\(\operatorname{lca}(u,v,w)=\operatorname{lca}(u,v)\)</span>
+并且 <span class="math inline">\(\operatorname{lca}(u,v)\neq
+\operatorname{lca}(u,w)\)</span>。</p>
+<p>记 <span class="math inline">\(x=\operatorname{lca}(u,v,w)\)</span>
+。</p>
+<p>因此 <span class="math inline">\(v\)</span> 和 <span
+class="math inline">\(\operatorname{lca}(u,w)\)</span> 在 <span
+class="math inline">\(x\)</span> 的不同子树。又有 <span
+class="math inline">\(\operatorname{dfn}(v)&gt;\operatorname{dfn}(u)\)</span>，所以
+<span class="math inline">\(u\)</span> 所在的 <span
+class="math inline">\(x\)</span> 的子树先被访问，即 <span
+class="math inline">\(\operatorname{lca}(u,w)\)</span> 所在的 <span
+class="math inline">\(x\)</span> 的子树先被访问，因此 <span
+class="math inline">\(\operatorname{dfn}(w)&lt;\operatorname{dfn}(v)\)</span>。矛盾，故假设不成立。</p>
+<p>证毕。</p>
+<p><span class="math inline">\(\text{Theorem 2.2}\)</span></p>
+<p>对于序列 <span class="math inline">\(a\)</span>，若集合 <span
+class="math inline">\(A=\{a_1,a_2\cdots a_{n}\}\)</span>，且满足 <span
+class="math inline">\(\forall i\in
+[1,n),\operatorname{dfn}(a_{i+1})&gt;\operatorname{dfn}(a_i)\)</span>，有
+<span
+class="math inline">\(\operatorname{lca}(a_1,a_n)=\operatorname{lca}(A)\)</span>。</p>
+<p><span class="math inline">\(\text{Proof 2.2}\)</span></p>
+<p>归纳证明，设对 <span class="math inline">\(k=n\)</span> 成立。</p>
+<p>由 Theorem 1.2， <span class="math inline">\(\operatorname{lca}(A\cup
+\{a_{n+1}\})=\operatorname{lca}(a_{n+1},\operatorname{lca}(A)\})\)</span>。</p>
+<p>由 Lemma 2.1，Theorem 1.2，<span
+class="math inline">\(\operatorname{lca}(\operatorname{lca}(A),a_{n+1})\operatorname{lca}(\operatorname{lca}(a_1,a_{n}),a_{n+1})=\operatorname{lca}(a_1,a_{n},a_{n+1})=\operatorname{lca}(a_1,a_{n+1})\)</span></p>
+<p>因此定理对 <span class="math inline">\(k=n+1\)</span> 同样成立。</p>
+<p>证毕。</p>
+<p><span class="math inline">\(\text{Theorem 2.3}\)</span></p>
+<p>对于序列 <span class="math inline">\(a\)</span>，若集合 <span
+class="math inline">\(A=\{a_1,a_2\cdots a_{n}\}\)</span>，且满足 <span
+class="math inline">\(\forall i\in
+[1,n),\operatorname{dfn}(a_{i+1})&gt;\operatorname{dfn}(a_i)\)</span>。</p>
+<p>有 <span class="math inline">\(\operatorname{lca}(a_1,a_n)\in
+\bigcup\limits_{i=1}^{n-1}\{\operatorname{lca}(a_i,a_{i+1})\}\)</span>。</p>
+<p><span class="math inline">\(\text{Proof 2.3}\)</span></p>
+<p>由 Theorem 2.1 ，<span
+class="math inline">\(\operatorname{lca}(a_1,a_n)=\operatorname{lca}(A)\)</span></p>
+<p>由 Theorem 1.1，<span class="math inline">\(\operatorname{lca}(A) \in
+\{\operatorname{lca}(a_i,a_{i+1}),i\in[1,n)\}\)</span>。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2483,102 +2754,6 @@ class="math inline">\(k\)</span> 的方案数。优化的话，可以考虑 <spa
 class="math inline">\(\prod sz_i\)</span>
 的组合意义。于是就是需要在每个连通块内选一个代表元，于是状态第三维简化为是否选了代表元，复杂度
 <span class="math inline">\(O(n^2)\)</span>。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%86%99%E6%B3%95%E4%BC%98%E7%BE%8E%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/12/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%86%99%E6%B3%95%E4%BC%98%E7%BE%8E%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">写法优美的常用函数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-12 16:07:45" itemprop="dateCreated datePublished" datetime="2022-07-12T16:07:45+08:00">2022-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:52:49" itemprop="dateModified" datetime="2025-02-16T17:52:49+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="写法优美的常用函数">写法优美的常用函数</h2>
-<p>收录一些优美的常用函数写法。</p>
-<h3 id="分解质因数">分解质因数</h3>
-<p>有人根本不会用 <code>do while</code> 和 <code>vector</code>。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">v</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i*i&lt;=n;i++)<span class="keyword">if</span>(n%i==<span class="number">0</span>)&#123;</span><br><span class="line">    v.<span class="built_in">push_back</span>(i);</span><br><span class="line">    <span class="keyword">do</span> n/=i; <span class="keyword">while</span>(n%i==<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="scc">SCC</h3>
-<p>缩点。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> u)</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> low=dfn[u]=++df;st[++top]=u;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> v:e[u])&#123;</span><br><span class="line">		<span class="keyword">if</span>(!dfn[v])<span class="built_in">cmin</span>(low,<span class="built_in">dfs</span>(v));</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(!scc[v])<span class="built_in">cmin</span>(low,dfn[v]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(low==dfn[u])&#123;</span><br><span class="line">		++cnt;<span class="type">int</span> v;</span><br><span class="line">		<span class="keyword">do</span> val[cnt]+=a[v=st[top--]],scc[v]=cnt; <span class="keyword">while</span>(v!=u);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> low;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="最短路-dijskstra">最短路 Dijskstra</h3>
-<p>如果 <span class="math inline">\(dis\times n\le 8\times
-10^{18}\)</span>，完全可以它们压成一个数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;LL,vector&lt;LL&gt;,greater&lt;LL&gt;&gt; q;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dij</span><span class="params">(<span class="type">int</span> s,<span class="type">int</span> t)</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="built_in">sizeof</span>(vis));</span><br><span class="line">	<span class="built_in">memset</span>(dis,<span class="number">1</span>,<span class="built_in">sizeof</span>(dis));</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())q.<span class="built_in">pop</span>();</span><br><span class="line">	dis[s]=<span class="number">0</span>;q.<span class="built_in">push</span>(s);</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="type">int</span> u=q.<span class="built_in">top</span>()%M;q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">if</span>(vis[u])<span class="keyword">continue</span>;vis[u]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(vis[t])<span class="keyword">return</span> ;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=head[u];~i;i=a[i].next)&#123;</span><br><span class="line">			<span class="type">int</span> v=a[i].v,w=a[i].w;</span><br><span class="line">			<span class="keyword">if</span>(dis[u]+w&gt;=dis[v])<span class="keyword">continue</span>;</span><br><span class="line">			dis[v]=dis[u]+w;q.<span class="built_in">push</span>(dis[v]*M+v);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>

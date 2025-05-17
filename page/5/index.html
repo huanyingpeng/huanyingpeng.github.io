@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">109</span>
+          <span class="site-state-item-count">110</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,152 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/11/02/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1101%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/02/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1101%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1101总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-02 08:24:05" itemprop="dateCreated datePublished" datetime="2022-11-02T08:24:05+08:00">2022-11-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:22:34" itemprop="dateModified" datetime="2025-02-16T20:22:34+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0148">考试</a></p>
+<h2 id="t1">T1</h2>
+<p>不像是有低于 <span class="math inline">\(O(n\sqrt{n})\)</span>
+做法的题，上莫队。</p>
+<p>题解说 <span class="math inline">\(O(n\sqrt n\log n)\)</span>
+过不了是它写得太烂了，肯定是可以过的。</p>
+<p>但是考虑到查询次数为 <span class="math inline">\(O(\sqrt
+n)\)</span>， 于是用分块维护就行了。</p>
+<p>复杂度 <span class="math inline">\(O(n\sqrt
+n)\)</span>，其实进一步观察，发现每次前缀和数组的变换量是 <span
+class="math inline">\(O(1)\)</span> 的，分块都可以省了。</p>
+<p><span class="math inline">\(n,m\)</span> 不要写反，对询问排序的时候
+<span class="math inline">\(n,m\)</span> 写反喜提 WA。</p>
+<h2 id="t2">T2</h2>
+<p>很难的题，我不会。</p>
+<h4 id="my-method">My Method</h4>
+<p>先得想到它是个构造排列的计数题，直接做哈密顿路径题太过困难了。</p>
+<p>构造排列的计数题往往有这些考虑方式：按元素值从小到大考虑构造，按排列下标从小到大构造，以插入元素的方式构造。</p>
+<p>以插入元素的方式构造，往往可以按某个外部值排序，经过这个排序之后再来插入，得到理想的结果。</p>
+<p>这道题是第三种方式，但是我不是很熟悉这种方式。</p>
+<p>转化一下题意，你需要构造一个排列 <span
+class="math inline">\(p\)</span>，排列元素的值代表下标，排列顺序代表遍历顺序，需要满足序列的限制条件。</p>
+<p>考虑大力动态规划，插入了限制序列下标为 <span
+class="math inline">\([1,i]\)</span>，有 <span
+class="math inline">\(j\)</span> 个位置不满足条件（<code>R</code>
+限制，<code>L</code> 限制必须在插入前满足。）的方案总数为 <span
+class="math inline">\(dp[i][j]\)</span>，转移可能还需要记最后一个是否是
+<code>R</code>，可以 <span class="math inline">\(O(n^2)\)</span>
+的算出总方案数。</p>
+<p>考虑计算以每一个下标结尾的答案，那么在对应位置处需要钦定必须放在最后面，其余的可以正常做，仍然需要讨论倒数第二个到底放的什么，但是动态规划过程中无需记录，只需要讨论最后到底是
+<code>R</code> 或 <code>L</code>。</p>
+<p>发现我们的计算过程可以等价于一个行向量乘上若干个矩阵再乘上一个列向量。</p>
+<p>可以 <span class="math inline">\(O(n^2)\)</span>
+的算出前缀行向量和后缀列向量。因为转移参数和前缀 R
+的个数有关，所以还得讨论选择的合并中心是 L 或是 R 。然后 <span
+class="math inline">\(O(n)\)</span> 的合并。</p>
+<p>复杂度为 <span class="math inline">\(O(n^2)\)</span>。</p>
+<h4 id="solution">Solution</h4>
+<p>题解做法比我高明的一点在于它将第二维记录的信息从简单的 “不合法”
+拓展到 “路径条数”，表达力更强，合并起来也更容易理解，同时 DP
+的转移矩阵和前缀 <code>R</code>
+的个数失去了联系，因为被蕴含在了路径条数这一信息中。</p>
+<h2 id="t3">T3</h2>
+<p>很趣味的题，首先有一个暴力，考虑求出变换后的所有边。</p>
+<p>分解样例，猜想答案是一个乘积的形式。</p>
+<p>考虑一条边的限制，发现从小到大不太好做，因为对大的有限制的点之间是没有关系的，然后就从大到小做，发现对小的有限制的点必定相互限制，因此第
+<span class="math inline">\(i\)</span> 个元素的贡献就是后面所有 <span
+class="math inline">\(n-限制它的点的个数\)</span>，由此也容易证明答案确实是一个乘积形式。</p>
+<p>问题变成了求一个点被比它大的哪些点限制，场上没时间了就没想了。</p>
+<p>实际上很简单的，直接从小到大合并上来就行，做启发式合并，用并查集去重（一个点如果被合并了，那么就属于较大的那个点，然后另一个点尝试合并它的时候就合并较大那个点），需要把小于等于
+<span class="math inline">\(i\)</span> 的点动态删掉。</p>
+<p>复杂度 <span class="math inline">\(O(n\log^2 n)\)</span></p>
+<h2 id="t4">T4</h2>
+<p>博弈题，考虑先手必胜的充要条件，直径为 <span
+class="math inline">\(2\)</span> 先手必败，考虑直径大于 <span
+class="math inline">\(2\)</span>
+的所有情况，发现如果选不是叶子的点，每次扔掉所有叶子后直径会减二，如果选直径上的叶子，那直径只会减一，所以一个人可以将一个数减一或者减二。巴什博弈。</p>
+<p>问题变成了给根和子树求直径，先搞出以一为根的所有情况，如果根在子树外，输出答案，如果在子树内，那就是向根走一个点之后那个点的
+<span class="math inline">\(from[u]\)</span> 值，很好算。</p>
+<p><strong>但是喜提
+WA，因为根在当前点是答案是整颗树的答案。</strong></p>
+<p>换根问题总共有三种情况：根在子树内，根在子树外，根就是这个点。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1142,159 +1288,6 @@ class="math inline">\(i-1\)</span>
 级儿子，<strong>这个过程一定要从等级小的矿工到等级大的矿工考虑</strong>，否则会变劣。</p>
 <p>剩余的矿工降级后上传，儿子升级后上传。</p>
 <p>按照这个策略贪心即可。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/19/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%85%B3%E4%BA%8E%E5%B8%B8%E6%95%B0%E4%BC%98%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/19/OI/%E4%BB%A3%E7%A0%81%E6%8A%80%E5%B7%A7/%E5%85%B3%E4%BA%8E%E5%B8%B8%E6%95%B0%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">关于常数优化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-19 11:12:19" itemprop="dateCreated datePublished" datetime="2022-10-19T11:12:19+08:00">2022-10-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:52:09" itemprop="dateModified" datetime="2025-02-16T17:52:09+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="代码层面">代码层面</h2>
-<p>由于现在考试都开 O2，所以只讨论有 O2 的情况。</p>
-<h3 id="循环展开">循环展开</h3>
-<p>由于 CPU
-处理分支的能力很烂，所以循环展开加速的一部分原因在于减少了分支。</p>
-<p>测试标准为 <span class="math inline">\(10^5\)</span>
-次随机区间求和，大小 <span
-class="math inline">\(10^5\)</span>，以下代码用时
-<code>572ms</code>，<code>for</code> 循环用时 <code>1192ms</code></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> sum[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line">    <span class="keyword">for</span>(j=l[i];j<span class="number">+3</span>&lt;=r[i];j+=<span class="number">4</span>)&#123;</span><br><span class="line">        sum[<span class="number">0</span>]+=a[j<span class="number">+0</span>];</span><br><span class="line">        sum[<span class="number">1</span>]+=a[j<span class="number">+1</span>];</span><br><span class="line">        sum[<span class="number">2</span>]+=a[j<span class="number">+2</span>];</span><br><span class="line">        sum[<span class="number">3</span>]+=a[j<span class="number">+3</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(;j&lt;=r[i];j++)&#123;</span><br><span class="line">    	sum[<span class="number">0</span>]+=a[j];</span><br><span class="line">    &#125;</span><br><span class="line">    ans^=sum[<span class="number">0</span>]+sum[<span class="number">1</span>]+sum[<span class="number">2</span>]+sum[<span class="number">3</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>将 <code>sum</code> 数组替换为多个局部变量，效果不变。</p>
-<p>测试了其它展开位数，开 <code>8</code> 位效果最佳，约
-<code>520ms</code>。</p>
-<p><code>16</code> 位会出现寄存器溢出效率下降。</p>
-<p>如果用的求和变量较多，最好开 <code>4</code> 位。</p>
-<p>顺便一提，开 Ofast/O3 后会帮你展开。</p>
-<p>如果你写了假的循环展开，那么效率提升只有约 <span
-class="math inline">\(50\%\)</span>，这是假的循环展开，但是开了 O3
-就是真的了：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">calc</span><span class="params">(<span class="type">int</span>* begin, <span class="type">int</span>* end)</span> </span>&#123;</span><br><span class="line">	<span class="type">long</span> <span class="type">long</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> ((<span class="type">size_t</span>)begin &amp; <span class="number">4</span>) res = *begin++;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span> sum[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">while</span> (begin + <span class="number">7</span> &lt;= end) &#123;</span><br><span class="line">        <span class="keyword">auto</span> addr = (<span class="type">unsigned</span> <span class="type">long</span> <span class="type">long</span>*)begin;</span><br><span class="line">        sum[<span class="number">0</span>] += addr[<span class="number">0</span>];</span><br><span class="line">        sum[<span class="number">1</span>] += addr[<span class="number">1</span>];</span><br><span class="line">        sum[<span class="number">2</span>] += addr[<span class="number">2</span>];</span><br><span class="line">        sum[<span class="number">3</span>] += addr[<span class="number">3</span>];</span><br><span class="line">        begin += <span class="number">8</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) res += (sum[i] &gt;&gt; <span class="number">32</span>) + <span class="built_in">unsigned</span>(sum[i]);</span><br><span class="line">    <span class="keyword">while</span> (begin &lt; end) res += *begin++;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> sum=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> j;</span><br><span class="line">    <span class="keyword">for</span>(j=l[i];j<span class="number">+3</span>&lt;=r[i];j+=<span class="number">4</span>)&#123;</span><br><span class="line">        sum+=a[j<span class="number">+0</span>];</span><br><span class="line">        sum+=a[j<span class="number">+1</span>];</span><br><span class="line">        sum+=a[j<span class="number">+2</span>];</span><br><span class="line">        sum+=a[j<span class="number">+3</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(;j&lt;=r[i];j++)&#123;</span><br><span class="line">    	sum+=a[j];</span><br><span class="line">    &#125;</span><br><span class="line">    ans^=sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>用时 <code>832ms</code>。</p>
-<h3 id="减少分支">减少分支</h3>
-<p>这个减少分支主要指减少内层循环的分支，尤其是<strong>理论预测成功率很低</strong>的分支。</p>
-<p>CPU
-的分支预测，可以视为一种很智能的找规律，在几乎不执行，几乎执行的情况下，或者是否成功具有循环节之类的情况，具有极高的预测效率。</p>
-<p>当分支预测失败时，有较大可能会从内存中重新读取对应代码块，</p>
-<p>一般可以采用乘法等算术方式。</p>
-<p><strong>不建议写偏向条件赋值的代码，因为高版本编译器可能会弄成条件执行，它以认为它读懂了你的代码，但是它就是个蠢逼。</strong></p>
-<p>在一些比较极端的情况，甚至能带来 <span
-class="math inline">\(5\)</span> 倍的效率差异！</p>
-<p>这里的 <span class="math inline">\(k=10\)</span>。</p>
-<p>例子：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> mask=<span class="number">0</span>;mask&lt;<span class="number">1</span>&lt;&lt;(k<span class="number">+1</span>);mask++)&#123;</span><br><span class="line">    <span class="type">int</span> <span class="keyword">final</span>=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;k;j++)<span class="keyword">if</span>(<span class="built_in">bool</span>((<span class="number">1</span>&lt;&lt;j)&amp;mask))</span><br><span class="line">        <span class="keyword">final</span>^=stat[mask&gt;&gt;k][j];</span><br><span class="line">    dp[(i<span class="number">+1</span>)&amp;<span class="number">1</span>][<span class="keyword">final</span>]+=dp[i&amp;<span class="number">1</span>][mask&amp;((<span class="number">1</span>&lt;&lt;k)<span class="number">-1</span>)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以换成：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> mask=<span class="number">0</span>;mask&lt;<span class="number">1</span>&lt;&lt;(k<span class="number">+1</span>);mask++)&#123;</span><br><span class="line">    <span class="type">int</span> <span class="keyword">final</span>=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;k;j++)<span class="keyword">final</span>^=<span class="built_in">bool</span>((<span class="number">1</span>&lt;&lt;j)&amp;mask)*stat[mask&gt;&gt;k][j];</span><br><span class="line">    dp[(i<span class="number">+1</span>)&amp;<span class="number">1</span>][<span class="keyword">final</span>]+=dp[i&amp;<span class="number">1</span>][mask&amp;((<span class="number">1</span>&lt;&lt;k)<span class="number">-1</span>)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>或者更理想的：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> mask=<span class="number">0</span>;mask&lt;<span class="number">1</span>&lt;&lt;(k<span class="number">+1</span>);mask++)&#123;</span><br><span class="line">    <span class="type">int</span> <span class="keyword">final</span>=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> w=mask;w;w-=w&amp;(-w))<span class="keyword">final</span>^=stat[mask&gt;&gt;k][__builtin_ctz(w)];</span><br><span class="line">    dp[(i<span class="number">+1</span>)&amp;<span class="number">1</span>][<span class="keyword">final</span>]+=dp[i&amp;<span class="number">1</span>][mask&amp;((<span class="number">1</span>&lt;&lt;k)<span class="number">-1</span>)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>__builtin_clz()</code> 返回一个数二进制下前导 <code>0</code>
-的个数，<strong>对于负数，返回值是 <code>0</code></strong></p>
-<p><code>__builtin_ctz()</code> 返回二进制末尾连续 <code>0</code>
-的个数。</p>
-<p>三份代码的运行时间分别为 <code>1200ms 213ms 150ms</code>。</p>
-<h3 id="高速缓存">高速缓存</h3>
-<h4 id="一般情况">一般情况</h4>
-<p>用一句话来说，能滚动的数组要滚动。</p>
-<p>可以看看这两个提交，效率改进因子为 <code>1.6</code>。</p>
-<p><a
-target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/submission/6350f85e1aaf020012fced9f">无滚动数组</a>，390ms。</p>
-<p><a
-target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/submission/6350f5211aaf020012fced96">滚动数组</a>，150ms。</p>
-<h4 id="互踢缓存">互踢缓存</h4>
-<p>如果遍历数组的顺序和数组的大小都不太理想，很容易出现互踢缓存的特殊情况，在一些极端情况可能会带来
-<code>10</code> 倍甚至 <code>20</code> 倍的常数差距。</p>
-<p>缓存存储的基本单位是 <code>cacheline</code>，大小为
-<code>64Byte</code>，将一个数据物理地址的末六位抹掉，可以得到它的缓存行编号，缓存行编号视高速缓存大小和分组策略取末
-<span class="math inline">\(k\)</span>
-位，作为高速缓存使用区域编号。同一高速缓存使用区一般可以存储
-<code>16</code> 个
-<code>cacheline</code>，如果超出，则踢出最早进入的。</p>
-<p>举例来说，如果以 <code>256Byte</code> 作为步长遍历数组，那么由于抹掉
-<span class="math inline">\(6\)</span> 位后末 <span
-class="math inline">\(2\)</span>
-位是一样的，<strong>所以实际被利用的高速缓存仅有 <span
-class="math inline">\(\frac{1}{4}\)</span></strong>，会出现非常阴间的情况，需要避免。</p>
-<h3 id="访问连续">访问连续</h3>
-<p>访问连续有两个层面，缓存行连续访问，页的访问连续。</p>
-<p>一般强调前者。</p>
-<h2 id="算法层面">算法层面</h2>
 
       
     </div>
