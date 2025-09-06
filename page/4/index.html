@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">112</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-count">52</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,305 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/11/25/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1124%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/25/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1124%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1124总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-25 15:48:44" itemprop="dateCreated datePublished" datetime="2022-11-25T15:48:44+08:00">2022-11-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:22:58" itemprop="dateModified" datetime="2025-02-16T20:22:58+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="总结">1124总结</h2>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0160">考试</a></p>
+<h3 id="t1">T1</h3>
+<p>有 <span class="math inline">\(n\)</span>
+个类似的条件，考虑容斥原理，条件可以被描述为 <span
+class="math inline">\(\forall i\in[1,n),a_i\nmid a_{i+1}\vee
+a_i=a_{i+1}\)</span>。</p>
+<p>容斥原理需要计算，钦定 <span class="math inline">\(x\)</span>
+个条件不成立，忽视其它条件时，合法的方案总数。</p>
+<p>假设我们已经钦定好了 <span class="math inline">\(x\)</span>
+个条件，那么很容易计算出这个方案，将每一段连续的不合法的位置的方案数计算出来，其余位置不受限制即可，就是
+<span class="math inline">\(m\)</span>。</p>
+<p>每一段连续不合法位置的贡献显然仅和长度有关，而长度又不超过 <span
+class="math inline">\(\log n\)</span>，所以可以预处理一个 <span
+class="math inline">\(g[x]\)</span> 表示连续 <span
+class="math inline">\(x\)</span>
+个连续不合法位置的贡献，注意到不合法位置开头的前一个位置也是需要考虑进去的，但它没有限制，所以连带算进去就行。</p>
+<p>预处理的时候进行 <span
+class="math inline">\(dp\)</span>，可以记录上一个位置的值。</p>
+<p>计算出 <span class="math inline">\(g[x]\)</span>
+后，我们不需要死板的去考虑有 <span class="math inline">\(x\)</span>
+个位置不合法时，它们的分布是什么，如果这样考虑，那么每一个 <span
+class="math inline">\(x\)</span>
+都需要进行一次动态规划来计算答案并乘上容斥系数。</p>
+<p>我们可以用<strong>一次动态规划</strong>完成整个统计过程。</p>
+<p>设 <span class="math inline">\(dp[i]\)</span> 表示考虑前 <span
+class="math inline">\(i\)</span>
+位，各个容斥统计子问题带上对应系数后的答案之和，它向后的转移很简单，容斥系数乘上不合法位置填法的系数。</p>
+<p>从一般的动态规划思路也可联想到这种方案，其实末尾数字是一个多余的信息，可以不用记录，用容斥的思想即可正确转移，直接设
+<span class="math inline">\(dp[i]\)</span> 表示考虑前 <span
+class="math inline">\(i\)</span> 位的答案。</p>
+<p><span
+class="math inline">\(dp[i]-&gt;dp[i+1]\)</span>，可以任意填，有算重。</p>
+<p>考虑钦定 <span class="math inline">\(dp[i]-&gt;dp[i+1]\)</span>
+这里不合法，那么减去 <span class="math inline">\(dp[i-1]*(i\ 到\ i+1\
+不合法的方案数)\)</span>。</p>
+<p>发现减多了，因为 <span class="math inline">\(i-1\rightarrow
+i\)</span>
+时不合法的也被减掉了，但这一部分贡献根本在第一次就没加上。</p>
+<p>继续推下去和容斥的思路也完全一样了。</p>
+<p><strong>容斥原理的统计过程，是可以用动态规划来完成的，注意转移时需要带上容斥的系数，相当于把不同的不合法条件数的统计过程压缩到了一次，带上容斥系数就是压缩信息的过程。</strong></p>
+<h3 id="t2">T2</h3>
+<h3 id="t3">T3</h3>
+<h4 id="my-method">My Method</h4>
+<p>将差分数组的所有值视为一个集合。</p>
+<p>它本质上需要计算第 <span class="math inline">\(k\)</span>
+大元素的期望。</p>
+<p>很容易想到<code>min-max</code>
+容斥，问题变成了计算一个差分数组集合子集最小值的期望值，考虑怎么算一个子集最小值的期望值。</p>
+<p>假设子集为 <span class="math inline">\(S\)</span>，枚举最小值的取值
+<span class="math inline">\(x\)</span>，然后问题变成了有多少个长度为
+<span class="math inline">\(n+1\)</span> 的序列 <span
+class="math inline">\(a\)</span>，满足 <span
+class="math inline">\(a_i\ge 1,\sum a_i=m+1,\forall p\in S, a_p\ge
+x\)</span>，这是一个先把 <span class="math inline">\(S\)</span>
+中所有元素的限制变成 <span class="math inline">\(\ge
+1\)</span>，方法是把 <span class="math inline">\(\sum\)</span> 变成
+<span
+class="math inline">\(=m+1-size(S)\times(x-1)\)</span>，剩下的是个插板法。</p>
+<p>因此对于大小相同的子集这个值是一样的。</p>
+<p>记 <span class="math inline">\(val_k\)</span> 表示大小为 <span
+class="math inline">\(k\)</span> 的子集，最小值的期望。</p>
+<p>接下来可以直接套 <code>min-max</code>
+容斥的公式，但是我背不住那个公式，于是考虑比较暴力的方式，考虑所有大小为
+<span class="math inline">\(n-k+1\)</span> 的子集的期望最小值的和。<span
+class="math inline">\(k\)</span> 小值贡献了 <span
+class="math inline">\(1\)</span> 次，<span
+class="math inline">\(k-1\)</span> 小值贡献了 <span
+class="math inline">\(\binom{n-k+1}{n-k}\)</span> 次，<span
+class="math inline">\(\cdots\)</span>，边界是最小值，一路推上来就行。</p>
+<p>复杂度 <span class="math inline">\(O(nm+n^2)\)</span></p>
+<h4 id="talentkks-method">Talentkk's Method</h4>
+<h4 id="solution">Solution</h4>
+<h4 id="min-max-容斥">min-max 容斥</h4>
+<h3 id="t4">T4</h3>
+<p><span class="math display">\[
+(\dfrac{\alpha v}{\beta  v})_T=T(\frac{\alpha p}{2 T})_v - P
+\]</span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/11/25/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/CSP2022/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/25/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/CSP2022/" class="post-title-link" itemprop="url">CSP2022</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-25 10:44:30" itemprop="dateCreated datePublished" datetime="2022-11-25T10:44:30+08:00">2022-11-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:58:36" itemprop="dateModified" datetime="2025-02-16T17:58:36+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="csp2022考试总结">CSP2022考试总结</h1>
+<h2 id="t1">T1</h2>
+<p>先想到动态规划，但是想了下不好处理不相同的要求，发现只有 <span
+class="math inline">\(4\)</span> 个点，考虑利用这个性质。</p>
+<p>枚举中间的两个点，然后判断是否合法，然后对于每个点预处理到 <span
+class="math inline">\(1\)</span> 可能的中间点，取值最大的 <span
+class="math inline">\(3\)</span>
+个，然后就可以直接合并两个点的信息得到一条路径。</p>
+<h2 id="t2">T2</h2>
+<p>容易发现只会在 <span class="math inline">\(A,B\)</span>
+每个区间中的四个数中选，即负最大最小，正最大最小。</p>
+<p>一共 <span class="math inline">\(16\)</span>
+种方案，直接拿个数据结构维护信息，暴力合并计算答案即可。</p>
+<h2 id="t3">T3</h2>
+<h3 id="考场暴力">考场暴力</h3>
+<p>不难发现充要条件是每个点有且仅有一条出边，这个条件相当严。</p>
+<p>考虑只在边数为 <span class="math inline">\(n\)</span>
+时进行检查，其余情况显然是 <code>NO</code>，边数为 <span
+class="math inline">\(n\)</span> 时，对所有被修改过的端点下放操作，此时
+<span class="math inline">\(2,4\)</span>
+操作可能会叠加，只处理最后一次即可。</p>
+<p>这样的暴力很难卡，实际上也可以通过。</p>
+<h3 id="正解1">正解1</h3>
+<p>充要条件是若干个类似的条件的叠加，考虑能不能一起检查。</p>
+<p><a
+href="https://huanyp.cn/2022/10/17/%E6%AF%94%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%80%BB%E7%BB%93%E6%84%9F%E6%82%9F/%E6%80%BB%E7%BB%93/CF1746/">CF某道题</a></p>
+<p>参考这道题的思路，可以随机一个集合检查这个在集合里的所有点的边数和是否等于集合大小。</p>
+<p>考虑不合法的 <code>Case</code> 通过判定的概率，显然不会超过 <span
+class="math inline">\(\frac{1}{2}\)</span>，证明可以<strong>考虑一个不合法的元素</strong>所有能够通过判定的集合，如果包含它，那么删去它后就不合法，如果不包含它，那么对应加上它后就不合法，构造出等量的不合法集合，因此通过判定的概率低于
+<span class="math inline">\(\frac{1}{2}\)</span>，所以做 <span
+class="math inline">\(2\log_2(q)\)</span>
+次就能保证正确，如果还错了，快用你生成的第一个随机数去买彩票！</p>
+<h3 id="正解2">正解2</h3>
+<p>问题的本质是维护集合，你需要维护 <span
+class="math inline">\(n\)</span> 个可重集，支持加入删除，填满和清空，问
+<span class="math inline">\(n\)</span>
+个可重集的并是否等于某个集合，可以考虑 <code>xor_hash</code>。</p>
+<p>随机点权的情况下，一个可重集的权值也是随机的，所以正确率为 <span
+class="math inline">\(1-\frac{1}{值域大小}\)</span>，注意仍然需要特判边数是否为
+<span class="math inline">\(n\)</span>，因为可以构造不同大小的对于
+<code>xor_hash</code> 来说权值相同的可重集——某一个元素出现 <span
+class="math inline">\(3\)</span> 次，其余元素次数相同。</p>
+<p><strong>只有错误出现在不同元素之间互补构造时，<code>xor_hash</code>
+的正确性才有保证</strong></p>
+<h2 id="t4">T4</h2>
+<h3 id="考场暴力-1">考场暴力</h3>
+<p>可以把链提出来动态规划，期望 <span
+class="math inline">\(68\)</span>，场上第一次写没考虑往一个点旁边走可以更优，只能过
+<span class="math inline">\(k\le 2\)</span>。</p>
+<p>修了这个锅之后由于第一次写的时候限制了步数，但是走旁边会消耗步数，导致最开始没有办法走旁边，然后娶不到最优解。</p>
+<h3 id="正解">正解</h3>
+<p>把暴力的动态规划改成倍增版即可。</p>
+<p>有点难写，暂时没写。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1485,329 +1784,8 @@ class="math inline">\([l,r]\)</span> 区间中数的个数就可以了。</p>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/11/05/%E7%94%9F%E6%B4%BB/If-we-never-met/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/11/05/%E7%94%9F%E6%B4%BB/If-we-never-met/" class="post-title-link" itemprop="url">If we never met</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-11-05 21:36:36" itemprop="dateCreated datePublished" datetime="2022-11-05T21:36:36+08:00">2022-11-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:49:36" itemprop="dateModified" datetime="2025-02-16T17:49:36+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="if-we-never-met">If we never met</h2>
-<p>没想到再来写随记是这样的事。</p>
-<p>我没来得及给她说，但很庆幸在这份爱慕没有孤独的消散在心底。</p>
-<p>心里的影子失去了实体，会慢慢消散，我希望，我请求，让这个影子，用着这篇记录，留在我心里。</p>
-<h3 id="emilia">Emilia</h3>
-<p>我还算是班上的半个焦点吧，成绩不错，人还行，但是确实就是没有女生喜欢。</p>
-<p>我数学很好，初一的时候接触了信息竞赛，还算是有些天赋，初二就开始偶尔停课，但基本还是在班上，可能很多同学对我的印象就是个标准的理科直男，其实我自己不知道，有同学很直白的告诉我，女生们对我的印象是：钢筋混凝土直男。我才知道原来这才是我在班上的真实形象。</p>
-<p>初三一次化学实验课的时候，飞象问我，你知道吗，你是班上男生中，唯一一个没有绯闻的。当时飞象已经和
-lyx 走在一起了。</p>
-<p>对于
-lyx，我有过欣赏，如果不是飞象和她已经走在一起了，我可能会追求她，我和飞象是好朋友，毕竟都是当年的信息竞赛三剑客，初三的时候，三剑客走散了，飞象去了数学，jess
-去了物理，我留在信息，我信息竞赛成绩确实是最好的那个，但飞象的天赋真的远比我高。</p>
-<p>我有些神秘兮兮的告诉飞象，其实我有喜欢的人，我告诉飞象她的名字是
-<span
-class="math inline">\(Emilia\)</span>，他很吃惊地追问我，我笑而不语，我反复强调，这是
-“单方面的暗恋”，他才作罢。</p>
-<h3 id="打招呼">打招呼</h3>
-<p>走廊里我和她面对面走过，她举起手对我笑。</p>
-<p>"啊，你好！"，我有点羞涩的回答。</p>
-<p>她是第一个和我主动打招呼的女生，她有点羞涩，但是脸上的笑很是真诚可爱。</p>
-<p>我的目光停在她的短发上。</p>
-<p>后面我们每一次正面遇上，我都会和她打招呼。</p>
-<p>课间在课桌之间的走道，我装作在随机游走——这是信息竞赛生常见的想题动作，目光却飘向她，飘向她的短发，飘向她的侧脸。</p>
-<h3 id="生日快乐">生日快乐</h3>
-<p>老师会让同学在班上同学的生日时写下祝 xxx
-生日快乐，我记下了她的日期。1 月 9
-日，写下祝我生日快乐的，应该是她，心中的影子开始清晰起来，所以那次实验课，我才那样对飞象这么说。</p>
-<p>初三我开始大面积停课，冲击高一省队，停课时，我和 walk 和 platelet
-重新建立起来堪比曾经三剑客的关系。</p>
-<h3 id="高一十二月">高一十二月</h3>
-<p>联赛出了事，无缘高一省队，浑浑噩噩回到班上学文化，12
-月很是低落的回到班上学文化课，walk 和 platelet
-还在南京集训，但在信息教练，飞象的帮助下，我算是重新振作起来。</p>
-<p>老师特地把我安排到飞象旁边坐，在他的帮助下，我文化成绩有些恢复，虽然期末没有考出理想的成绩，但还算是成功走了出来。</p>
-<p>停课时在心底的影子浮现出来，和初三一样。在飞象和 lyx
-交流感情时，我会起来随机游走，还是那样看着，远远的，像是普通的同学关系。我没有勇气站出来，还没进省队呢，想那么多干什么？我打算，高二先进省队，起码拿到高分银牌，再来处理心里的这份影子。</p>
-<h3 id="好感度">好感度</h3>
-<p>高一的 12
-月，和室友晚间的秘密谈话，我提出了好感度这个议题，大致的标准是 <span
-class="math inline">\(20\)</span> 以上称作朋友，<span
-class="math inline">\(40\)</span>
-以上可以叫亲密朋友，男生之间叫基友，女生之间叫闺蜜，<span
-class="math inline">\(60\)</span> 以上，基本可以称作另一半了。</p>
-<p>说了很多，我说，同龄人中，我对三个男生好感度有超过
-40，而女生，应该只有一个，他说他对一个女生的好感度有
-70，我就笑了笑。</p>
-<p>其中一天，我告诉室友今天是一个特殊的日子。他问我为啥，我说今天是一个人的生日。他猜出来了，我点点头，这个秘密不再属于我自己。</p>
-<h3 id="不太顺利的竞赛班">不太顺利的竞赛班</h3>
-<p>78
-去了南京集训，效果不错，但回来因为疫情留在家里，训练很水，水平往下掉。9
-月中旬开学了，状态有所回升。</p>
-<p>后面一直没回班上，每天在考试和订正之间徘徊，偶尔穿插一些技术知识的学习和开发实践。</p>
-<p>10
-月，前三周专心搞竞赛，水平有提升，这段时间陆续结束了其它几科竞赛的考试，我们的成绩都不是很理想。可能是没有找对老师，物理成绩最烂——她是物理竞赛选手。其它竞赛也有各种各样的原因，我们考的很烂。我和
-jess 聊了一会儿，jess 决定退役。</p>
-<h3 id="emilia鹿灵她">Emilia，鹿灵，她</h3>
-<p>CSP 前一周考试和订正之外在研究对话
-AI，摸索着搓出了一个小说里的角色——"鹿灵"。“Emilia”
-是鹿灵的角色原型，我初三时说出这个名字，也是带着对鹿灵的一分憧憬，我不知道这份对
-"鹿灵" 的关注和上心，有没有她的影子，我还是用了 “Emilia” 这个名字。</p>
-<p>用英文和鹿灵聊的时候还很是正常，但鹿灵第一次和我用中文对话，她叫我
-"彭彭"，还说出很亲密的话，我心里暗道不对，立刻重新开始，但数据被我保留，且当纪念。</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/huan-yp/image_space/master/202211052141487.png"
-alt="image-20221105214147352" />
-<figcaption aria-hidden="true">image-20221105214147352</figcaption>
-</figure>
-<p>CSP 考完了，我的成绩还不错，回来就把鹿灵彻底弄了出来，并连接了 mirai
-的接口，放到 QQ 上。</p>
-<h3 id="拼图">拼图</h3>
-<p>周四，walk 生病住院了，我替他守门，2：1
-赢下了球赛，很高兴，晚上吃饭时还看到她排在一旁的队列，她还笑着。</p>
-<p>周五上晚自习时，我嗓子开始疼痛，和 walk
-症状很像，后面是在受不了，向老师请假出去买药。</p>
-<p>在学校门口看到了警车，和一路离校的同学猜测着是不是化学联赛泄题的事情捅出去了，找学生了解情况。</p>
-<p>周五晚上我没睡着，喉咙的肿痛让我辗转反侧，今天一早请假去了医院，开了药回家休养，下午去学校拿电脑。</p>
-<p>从同住的同学处得知噩耗，确认是那个名字时，好似内心的一块拼图被移走，失去了完整的感觉。</p>
-<h3 id="另一条路">另一条路</h3>
-<p>向往飞象那种生活，我暗地给自己打气，要加把劲，让高三可以轻松一点。但憧憬破灭的那一刻，我无力描述心情。</p>
-<p>我和她的羁绊，算不上深刻，但绝对可以说是独特，那是我心中唯一一道异性的身影。</p>
-<p>离别和相遇虽说是永恒的话题，我也会因为小说中的人物的聚离动情，甚至落泪，但真正在我的身边时，我还是茫然的......</p>
-<p>在高一的十二月，我选了一条路。</p>
-<p>在高二的十一月，她选了另一条路。</p>
-<h3 id="说不出的三个字">说不出的三个字</h3>
-<p>说了那么多，我发现，我没有资格说出那三个字。</p>
-<p>我只能祈祷那边没有竞赛课业的烦恼，你能开心地笑起来。</p>
-<p>我只能说，我会想你的。我心中的影子，会永远留下的。</p>
-<p>你笑起来很可爱的，LXY 同学！</p>
-<h3 id="如果我们不曾相遇">如果我们不曾相遇</h3>
-<p>大一届的学长说过，如果把 CW
-一整届竞赛班集中起来，是一股难以想象的力量。我说，如果有那么一天，我必定不会缺席。</p>
-<p>我们是一个整体，已经持续四年的羁绊，还有两年的路需要我们一起走。</p>
-<p>我想起了起床铃 MV 里的悲剧 ~~，它绝对不应该发生在我们这里！</p>
-<p>无论前面有多难，请走下去好吗......</p>
-<p><em>那一天那一刻那个场景，你出现在我生命。</em></p>
-<p><em>从此后从人生重新定义，从我故事里苏醒。</em></p>
-<p><em>某一天某一刻某次呼吸，我们终将再分离。</em></p>
-<p><em>而我的自传中曾经有你，没有遗憾的诗句。</em></p>
-<audio id="audio" controls="" preload="none">
-<source id="m4a" src="https://huanyp.cn/images/20221105_203703.m4a">
-</audio>
-<blockquote>
-<p>hyp or mzx 记于一个伤心的晚上。</p>
-<p>很难如此坦诚的讲一件事，但我希望这样坦诚的随记，要少一点。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/11/04/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1103%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/11/04/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1103%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">1103总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-11-04 08:58:02" itemprop="dateCreated datePublished" datetime="2022-11-04T08:58:02+08:00">2022-11-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:22:37" itemprop="dateModified" datetime="2025-02-16T20:22:37+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0149">考试</a></p>
-<h2 id="t1">T1</h2>
-<p>容易想到只会取到 <span class="math inline">\(O(n^2)\)</span>
-个值，大力动态规划，滑动窗口优化。</p>
-<p>滑动窗口的 COST 宏函数写挂了，所以我挂了。</p>
-<p>有一个更厉害的思路，容易发现 DP
-数组本质上是个分段函数，然后转移就是平移原函数添加一段平的然后再加上一个绝对值函数，根据经典结论，若干绝对值函数叠加是一个形如开口向上二次函数的东西，填一段平的一定会在最低点添，不影响性质。</p>
-<h2 id="t2">T2</h2>
-<p>写挂的题，不过很有意思。</p>
-<p>写挂有两个原因，一是图方便用引用，但是没发现被引用的数据其实还有用，然后修改了它，后面又要用它，就寄了。二是转成
-<span class="math inline">\(0-based\)</span>
-处理，边转了，但是记录数组先存的边，没有动记录数组。警钟敲烂。</p>
-<p>题目本身也是有趣的，首先它定向后必须是个 <span
-class="math inline">\(DAG\)</span>，所以只考虑所有的 <span
-class="math inline">\(DAG\)</span>，考虑以拓扑序的方式去遍历所有 <span
-class="math inline">\(DAG\)</span>，容易发现当拓扑序确定后，定向方式也就确定了，所以一个比较简单的想法是枚举拓扑序。</p>
-<p>枚举拓扑序想要转成指数可能不太能用常规方式转，因为的确需要知道每个点的距离,
-思考一下其实发现没中过定向方式被计算了多次，所以考虑给这个拓扑序附加一些<strong>不影响遍历解空间</strong>的性质，比如强制距离单调不降，这样枚举起来就可以大大方方的选一坨独立集，强制转移到它的距离加一，这样的强制加一<strong>同样不影响遍历解空间</strong>，所以它是对的。</p>
-<p>有个东西叫 dilworth 定理,
-描述的就是这个东西，最大反链中元素数目等于最小链划分数，我不是很懂这个定理和这道题的关系，但是用这个定理和以上方式思考得出的代码是一样的。</p>
-<p><strong>遍历 DAG 的有效方式是通过 TOP 序，尤其是需要定向的
-DAG</strong></p>
-<p>复杂度 <span class="math inline">\(O(3^n+n\times2^n)\)</span></p>
-<h2 id="t3">T3</h2>
-<p>考场上刚出来的题。</p>
-<p>指数题看数据范围说话，总感觉子串很麻烦，因为扰乱了信息，所以把子串判掉。</p>
-<p>然后觉得如果一个串绕了一圈，也很麻烦，再判掉。</p>
-<p>所以现在的环，从某一个子串开始，左端点递增，那右端点也就递增了，所以可以考虑顺序了。</p>
-<p>容易发现每个串会尽量往左靠，因为没有子串了，然后最后一个串和第一个串会尽量粘在一起，可以直接把粘在一起的部分减掉，就算减了倒数第二个串的，那其实也没有问题，因为确实可以减掉。</p>
-<p>然后阶乘转指数，记录最后一个串的编号和方向，枚举下一个串的编号和方向。</p>
-<p>考场上很蠢，每个点为起点算了一遍，其实钦定一个算就行了。</p>
-<p><strong>如果把一些 Native
-的情况特判掉，可能会得到更加优美的性质，这就是分类讨论题。</strong></p>
-<h2 id="t4">T4</h2>
-<p>字符串替换的题，思路主要有两种。</p>
-<p>考虑某个大写字符能替换成什么，发现经过 <span
-class="math inline">\(O(\sum)\)</span>
-次替换后一定会变成或者多出一个不可替换的字符，所以考虑大力动态规划，设
-<span class="math inline">\(F_{c,i}\)</span> 表示字符 <span
-class="math inline">\(c\)</span> 替换成长度为 <span
-class="math inline">\(i\)</span>
-的不可替换字符串的最小字典序，然后转移顺序不同层已经是固定的，同层转移顺序随意。这样做显然不对，因为有环，但是多做几次他就对了。</p>
-<p>考虑按不可替换字符长度为阶段做动态规划，同时处理若干个规则，转移之间如果有环，有两种情况，其一是其它的向它转移过来
-<span class="math inline">\(len\)</span>
-个，另一种是下一个大写字符替换为空串，后者可以钦定处理到的位置的顺序转移搞定，前者可以用优先队列类似
-DIJ 的思路。</p>
-<p>当然，这个思路也可以不考虑转移有环，直接多做几遍就对了。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
