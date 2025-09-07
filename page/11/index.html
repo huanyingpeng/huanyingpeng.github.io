@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">113</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,193 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%983/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%983/" class="post-title-link" itemprop="url">做题3</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 16:13:03" itemprop="dateCreated datePublished" datetime="2022-07-12T16:13:03+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:58:21" itemprop="dateModified" datetime="2025-02-16T17:58:21+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="cf1698f">CF1698F</h3>
+<h4 id="思路">思路</h4>
+<p>变过来变过去，还 TM 离谱的操作当然要找不变量，算是半个套路。</p>
+<p><code>reverse</code>
+两端相等的区间，可以发现每两个相邻元素构成的无序对不变，然后第一个元素和最后一个元素不改变。</p>
+<p>换句话说，<span class="math inline">\(\{(a_i,a_{i+1},i \in
+[1,n)\}\)</span> 这个集合不随 <span class="math inline">\(a\)</span>
+中操作改变。或者说，如果从 <span class="math inline">\(a_i\)</span> 到
+<span class="math inline">\(a_{i+1}\)</span>
+连边，这张无向图是不变的，同时 <span
+class="math inline">\(a_1,a_n\)</span>
+不改变。这个条件和上个条件之间的转换是解题的关键点之一。</p>
+<p>套路又来了，看看样例，集合相同并且首尾相同这个条件貌似挺充分的，所以考虑证明。</p>
+<p><strong>对于构造问题，常用的证明方式是数学归纳法。</strong></p>
+<p>事实上，如果我们能证明如果第二个数可以成功调整为相同，那么整个数组也可以，因为满足条件的
+<span class="math inline">\(a,b\)</span>
+如果同时删掉第一个数，仍满足条件。</p>
+<p>考虑构造方案，由结论可以知道，如果 <span
+class="math inline">\(a\)</span> 中必定存在 <span
+class="math inline">\((b_1,b_2)\)</span> 无序对，因为 <span
+class="math inline">\(a_2\neq b_2\)</span>，不妨让这对无序对是 <span
+class="math inline">\((a_x,a_{x+1}),x\in[2,n)\)</span>，如果 <span
+class="math inline">\(a_x=b_2\)</span>，考虑直接将这一对中的 <span
+class="math inline">\(a_{x+1}\)</span> 和 <span
+class="math inline">\(a_1\)</span> 子数组 <code>reverse</code>
+，完事。如果 <span
+class="math inline">\(a_{x+1}=b_2\)</span>，事情有点麻烦。</p>
+<p><code>if only i could find a pair which...</code></p>
+<p>补上那句话，如果能找到一对可以被翻转的，左端点在 <span
+class="math inline">\([1,x]\)</span> ，右端点在 <span
+class="math inline">\((x,n]\)</span> 的，那么我们就翻转，改变了 <span
+class="math inline">\(a_x,a_{x+1}\)</span> 的顺序。</p>
+<p>尝试证明一定能找到，即 <span class="math inline">\(\{a_i ,i\in
+[1,x]\} \bigcap \{a_i.i\in(x,n]\} \neq \emptyset\)</span></p>
+<p>反证法，如果找不到，那么可知 $a_i,i$ 与 <span
+class="math inline">\(a_j,j\in (x,n]\)</span> 除开 <span
+class="math inline">\((a_i,a_i+1)\)</span> 这一次相邻外均不相邻，考虑
+<span class="math inline">\(b_2\)</span> 即 <span
+class="math inline">\(a_{x+1}\)</span> 的情况，它与 <span
+class="math inline">\(b_3\)</span> 相邻，可知 <span
+class="math inline">\(b_3 \in \{a_i.i\in(x,n]\}\)</span>，同理有 <span
+class="math inline">\(\forall j\ge
+2,b_j\in\{a_i.i\in(x,n]\}\)</span></p>
+<p>考虑 <span class="math inline">\(a_2\)</span>，它显然不存在于 <span
+class="math inline">\(b\)</span>，故矛盾。</p>
+<h4 id="回顾">回顾</h4>
+<p>这题比较难的有两个点，一是注意到这个不变量极大可能是充分条件，二是发现
+<span class="math inline">\(a_{x+1}=b_2\)</span> 的 case
+中一定存在可交换项，搞定了这两个，问题就迎刃而解。关键点在于第二个，找到
+<span class="math inline">\(a_{[1,x]},a_{[x+1,n]}\)</span>
+交集的关系，并尝试用反证法证明交集不为空是比较困难的。</p>
+<h3 id="abc259g">ABC259G</h3>
+<p>很有意思的网络流题。</p>
+<p>最开始想到二分图相关，因为 <span class="math inline">\(A_{i,j}
+&lt;0\)</span>
+的限制指向性比较明确，然后发现如果二分图的决策正数话会出现不同块之间相互影响，所以考虑决策负数，决策负数不同联通块互不影响，但是无法计算答案，因为最终还是需要确定到底哪些正数被选了。</p>
+<h4 id="解法一">解法一</h4>
+<p>题解给出了一个新思路，考虑先只把所有正数选了，然后再来看满足条件的代价。</p>
+<p>代价被分为了三类，第一类是顺带选择的负数的代价，如果选了一行或者一列，就会有这一行或列所有负数绝对值之和的代价。</p>
+<p>第二类是无法选择正数的代价，如果正数所在的行和列都没被选择，那么就会有这个正数的代价。</p>
+<p>第三类是重复选择负数的代价，如果一个负数被行和列同时选择（为了付出更少的第二类和其它第一类代价），那么这个代价是无穷大。</p>
+<p>我们需要最小化代价。</p>
+<p>0/1 决策问题，考虑套最小割上去，每一行每一列视为一个点。</p>
+<p>令与 <span class="math inline">\(s\)</span> 同集合的为选择，与 <span
+class="math inline">\(t\)</span>
+同集合的为不选，选一行或一列的代价为该行或列负数绝对值之和，从个点到
+<span class="math inline">\(t\)</span>
+连边就行，行列同时选择负数，代价为
+inf，woc，怎么连呢？从行连向列，意义为选了行不选列的代价，从列向行连，意义为选了列不选行的代价。所以我们前面的安排有些问题，需要做出调整。</p>
+<p><strong>对于行和列，我们让属于 s,t
+所在集合对它们有不同意义，下面让属于 s 的行为不选择，属于 t
+的列为不选择</strong>，我们让 <span class="math inline">\(s\)</span>
+向行连边，<strong>这条边</strong>表示选该行的代价，让列向 <span
+class="math inline">\(t\)</span>
+连边，表示选该列的代价。于是，对于一个点，行列都选的代价当且仅当 <span
+class="math inline">\(A_{i,j}&lt;0\)</span> 时为
+inf，此时从列向行连边，表示都选的代价，行列都不选的代价当且仅当 <span
+class="math inline">\(A_{i,j}\ge0\)</span> 时为 <span
+class="math inline">\(A_{i,j}\)</span>，此时从行向列连边。</p>
+<p>注意，我们的割中如果出现了行列都不选，那么对应的行和列与 <span
+class="math inline">\(s,t\)</span>
+的边一定没有断开，所以必须断开行到列的边。如果出现了行和列都选的不合法情况，我们发现，断掉的行能到
+<span class="math inline">\(t\)</span>，从 <span
+class="math inline">\(s\)</span>
+一定能到断掉的列。如果不满足，那么这个割就不是最小割，不会被我们考虑。所以我们需要从列到行连边，保证不会给负数打上两个标记。</p>
+<p>这种思路和某类 dp
+的思路很类似，相当值得学习，其实在原问题的求解中，并没有什么条件来保证不会给一个负数打上两个标记，但是我们在通过最小割求解时，限定了决策的范围和最优性，获得了额外的信息，也就能帮助我们排除掉难处理但是不可能的情况，本质上，这种排除还和我们先假定所有正数都选上的前提有关系，这种解法相当精妙。</p>
+<h4 id="解法二">解法二</h4>
+<p>从直觉上来看，应该不会选择和为负数的行或者列。考虑一个最终方案，它的答案会是
+<span class="math inline">\(\sum 选择的行+\sum 选择的列 -\sum
+行列交叉处的正数\)</span>。考虑从这里面剔除和为负数的列或行，发现最终值一定变大。</p>
+<p>所以删掉和为负数的行和列。</p>
+<p>考虑先把剩下的行和列全选了，然后解决冲突。</p>
+<p>解决冲突的方式有三种，一种时不选行，一种是不选列，另一种是硬吃同时选的代价。</p>
+<p>这样的建图就很简洁了，从 <span class="math inline">\(s\)</span>
+向行，列向 <span class="math inline">\(t\)</span>
+连边，对于交点，正数连其值的边，负数连 inf
+边。很容易发现一个合法解和一个割一一对应，over。</p>
+<h4 id="sum-up">Sum up</h4>
+<p><strong>最小割解决实际问题的核心，在于用一个割，或者可能成为最小割的割，来代表一个实际的决策方案，最小割的容量，代表代价，每个点在哪个割集分别代表什么含义并不重要，重要的是割掉每条边的意义，和决策方案与最小割的对应关系。</strong></p>
+<p>其实这道题还给我们一个启发，就是在考虑0/1决策问题时，可以先考虑钦定一个决策，再来调整使得它合理或者变优，这可能会使得问题变得简单，也许算是一个套路。</p>
+<p><strong>本质上，最小割表达了一种最优的解决决策冲突的方案，我们在 0/1
+决策问题钦定决策的过程中，制造了一些冲突，用一个图的割来表达解决着些冲突的方案。</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -3238,169 +3425,6 @@ void，但是返回又是有条件，并且还需要执行一些简单的操作�
 <h4 id="循环">循环</h4>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> v:&#123;<span class="number">0</span>,<span class="number">1</span>&#125;)&#123;</span><br><span class="line">	<span class="built_in">do_cool_thing</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>分支更少，效率更高，代码更优美！</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%82%B9%E5%AE%B9%E6%98%93%E5%BF%98%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">一些有点容易忘的基础算法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-12 15:53:26" itemprop="dateCreated datePublished" datetime="2022-07-12T15:53:26+08:00">2022-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:56:14" itemprop="dateModified" datetime="2025-02-16T17:56:14+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="树链剖分">树链剖分</h2>
-<p>常用的树链剖分有重链剖分，实链剖分和长链剖分。</p>
-<p>长链剖分主要用于部分和深度有关的树形 <span
-class="math inline">\(dp\)</span> 的优化，一般采用指针数组实现。</p>
-<p>我们说的树链剖分一般指重链剖分，即选择每个点子树最大的儿子。</p>
-<p>不难证明从任何一个点到根都只会经过 <span
-class="math inline">\(log_n\)</span> 条重链，这也是其复杂度的保证。</p>
-<p>可以将每条重链用一个数据结构维护起来，就能做树上操作了。</p>
-<h2 id="动态树">动态树</h2>
-<p>动态树是基于实链剖分的数据结构，非常强大，但编码复杂度相对较高。</p>
-<p>我使用的是基于 <span class="math inline">\(splay\)</span>
-的动态树。</p>
-<p>动态树维护的是若干实链，每个实链用一颗平衡树维护。</p>
-<p>动态树的核心操作是 <code>access</code>，意味将目标点 <span
-class="math inline">\(x\)</span>
-到根的路径全部打通，并且只包含这条路径。</p>
-<p>其它操作简要介绍一下实现：</p>
-<p><code>make_root</code> :先 <code>access</code>，然后把 <span
-class="math inline">\(x\)</span> <code>splay</code> 到根，然后翻转整颗
-<span class="math inline">\(splay\)</span> ，因为 <span
-class="math inline">\(splay\)</span> 外的形态没有改变，所以只要 <span
-class="math inline">\(splay\)</span>
-内部的形态正确，那么整棵树的形态就正确，如果对于一个 <span
-class="math inline">\(splay\)</span>
-所有的节点交换了左右儿子，那么就是倒序了这颗 <span
-class="math inline">\(splay\)</span> ，<span
-class="math inline">\(x\)</span>
-又是深度最大的点，所以这样是正确的。</p>
-<p><code>link</code> :很简单，直接将目标点 <span
-class="math inline">\(x\)</span> <code>splay</code>
-到当前根，当然，注意到原树之间的关系是 <span
-class="math inline">\(splay\)</span> 根节点的关系，<span
-class="math inline">\(splay\)</span> 根节点的父亲其实是 <span
-class="math inline">\(splay\)</span>
-中深度最小的点的父亲，然后改父亲改成 <span
-class="math inline">\(y\)</span> 就行。</p>
-<p><code>cut</code> :假设有一个虚根 <span
-class="math inline">\(0\)</span>，把 <span
-class="math inline">\(x\)</span> <code>make_root</code> ，把 <span
-class="math inline">\(y\)</span> <code>access</code> 然后
-<code>splay</code> <span
-class="math inline">\(y\)</span>,直接双向断开。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">push_up</span><span class="params">(<span class="type">int</span> rt)</span></span>&#123;&#125;</span><br><span class="line"><span class="comment">//该更新的要更新</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">push_down</span><span class="params">(<span class="type">int</span> rt)</span></span>&#123;&#125;</span><br><span class="line"><span class="comment">//旋转标记和其它标记的 push_down</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isroot</span><span class="params">(<span class="type">int</span> rt)</span></span>&#123;<span class="keyword">return</span> T[T[rt].fa].son[<span class="number">0</span>]!=rt&amp;&amp;T[T[rt].fa].son[<span class="number">1</span>]!=rt;&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">rotate</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> y=T[x].fa,z=T[y].fa,o=T[y].son[<span class="number">1</span>]==x,b=T[x].son[o^<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">if</span>(!<span class="built_in">isroot</span>(y))T[z].son[T[z].son[<span class="number">1</span>]==y]=x;</span><br><span class="line">	T[y].fa=x;T[x].son[o^<span class="number">1</span>]=y;T[x].fa=z,T[y].son[o]=b,T[b].fa=y;</span><br><span class="line">	<span class="built_in">push_up</span>(y),<span class="built_in">push_up</span>(x);</span><br><span class="line">    <span class="comment">//已经很熟的 rotate 操作</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">splay</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> u=x;st[++top]=u;</span><br><span class="line">	<span class="keyword">while</span>(!<span class="built_in">isroot</span>(u))u=T[u].fa,st[++top]=u;</span><br><span class="line">	<span class="keyword">while</span>(top)<span class="built_in">push_down</span>(st[top--]);</span><br><span class="line">    <span class="comment">//记得先 push_down</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> y=T[x].fa;!<span class="built_in">isroot</span>(x);y=T[x].fa)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(!<span class="built_in">isroot</span>(y))<span class="built_in">rotate</span>((T[T[y].fa].son[<span class="number">1</span>]==y)==(T[y].son[<span class="number">1</span>]==x)?y:x);</span><br><span class="line">        <span class="comment">//双旋，其实一般单旋也不会卡。</span></span><br><span class="line">		<span class="built_in">rotate</span>(x);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//亲切的 splay 操作</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">access</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y=<span class="number">0</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//记得断开和儿子的连接</span></span><br><span class="line">    <span class="comment">//splay 之间是原树的关系连接，但 splay 内部维护的只是一条链，中序遍历 splay 才能得到原树</span></span><br><span class="line">	<span class="keyword">for</span>(;x;y=x,x=T[x].fa)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">splay</span>(x);T[x].son[<span class="number">1</span>]=y;</span><br><span class="line">		<span class="built_in">push_up</span>(x);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="虚树">虚树：</h2>
-<p>一般用来处理询问很多但规模不大的树上问题。</p>
-<h2 id="点分治">点分治</h2>
-<p>用来处理树上路径的计数问题，特别是路径长度相关</p>
-<h2 id="后缀排序">后缀排序</h2>
-<p>对一个字符串的所有后缀排序，约定 <span
-class="math inline">\(sa[i]\)</span> 表示排名为 <span
-class="math inline">\(i\)</span> 的后缀的起始位置，约定 <span
-class="math inline">\(rk[i]\)</span> 表示起始位置为 <span
-class="math inline">\(i\)</span> 的后缀的排名。<span
-class="math inline">\(height[i]\)</span> 为排名为 <span
-class="math inline">\(i,i-1\)</span> 的后缀的 <span
-class="math inline">\(lcp\)</span> 。</p>
-<p>先按第一个字母基数排序一遍，然后倍增法。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)sum[rk[i]=ch[i]]++;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=<span class="number">128</span>;i++)sum[i]+=sum[i<span class="number">-1</span>];</span><br><span class="line"><span class="comment">//统计 sum,sum[i] 表示关键字比 i 小的总个数，然后遍历的时候，用每个后缀当前排名访问 sum，</span></span><br><span class="line"><span class="comment">//得到 sum[rk[i]] 为以 i 为起始位置的后缀的排名。</span></span><br><span class="line"><span class="comment">//访问后 sum 需要自减。</span></span><br><span class="line"><span class="comment">//但并不记录这个排名，因为它不准确，相同的会认为是不同，记录排名为 sum[rk[i]] 的后缀的起始位置。</span></span><br><span class="line"><span class="keyword">for</span>(i=n;i&gt;=<span class="number">1</span>;i--)sa[sum[rk[i]]--]=i;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)tp[i]=rk[i];</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)rk[sa[i]]=(tp[sa[i]]==tp[sa[i<span class="number">-1</span>]])?m:++m;</span><br><span class="line"><span class="comment">//这里重新计算每个后缀的排名，我们可以简单由 sa 数组得到。</span></span><br><span class="line"><span class="keyword">for</span>(k=<span class="number">1</span>;;k&lt;&lt;=<span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line">    m=s=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=n-k<span class="number">+1</span>;i&lt;=n;i++)tp[++s]=i;</span><br><span class="line">    <span class="comment">//这些第二关键字为 0 ，所以仍在最前面</span></span><br><span class="line">    <span class="comment">//tp[i] 在这里表示第二关键字排名为 i 的后缀的起始位置</span></span><br><span class="line">    <span class="comment">//这里在按第二关键字安排顺序，第一遍在外面排序的时候不关心第二关键字</span></span><br><span class="line">    <span class="comment">//在倍增里排序关心第二关键字，我们只需要按第二关键字的顺序访问 sum，就能得到正确顺序。</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;sum[i++]=<span class="number">0</span>)<span class="keyword">if</span>(sa[i]&gt;k)tp[++s]=sa[i]-k;</span><br><span class="line">    <span class="comment">//同样是处理第二关键字，按照上一轮排名顺序遍历即可。</span></span><br><span class="line">    <span class="comment">//位置减去 k,得到第二关键字的起始位置。</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)sum[rk[i]]++;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)sum[i]+=sum[i<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(i=n;i&gt;=<span class="number">1</span>;i--)sa[sum[rk[tp[i]]]--]=tp[i];</span><br><span class="line">    <span class="comment">//同样的道理，只不过是按第二关键字大小顺序遍历</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)tp[i]=rk[i];</span><br><span class="line">    <span class="comment">//这里的 tp 用来拷贝 rk,因为 rk 在计算时会改变</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)rk[sa[i]]=(tp[sa[i]]==tp[sa[i<span class="number">-1</span>]]&amp;&amp;tp[sa[i]+k]==tp[sa[i<span class="number">-1</span>]+k])?m:++m;</span><br><span class="line">    <span class="comment">//计算每个后缀当前排名</span></span><br><span class="line">    <span class="keyword">if</span>(m==n)<span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">//后缀排序结束后退出。</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//计算 height 数组</span></span><br><span class="line"><span class="comment">//height 数组满足 height[sa[i]] &gt;= height[sa[i]-1] - 1</span></span><br><span class="line"><span class="comment">//如果 sa[i] = 1，那么 height 没定义，不管。</span></span><br><span class="line"><span class="comment">//原因很简单，以  排名在以 sa[i]-1 为起始点的后缀 x 前一个的后缀 y。</span></span><br><span class="line"><span class="comment">//由定义 lcp(x,y) = height[sa[i]-1]</span></span><br><span class="line"><span class="comment">//将 x 删掉最前一个字符得到以 sa[i] 为起始点的后缀 a， y 删掉最前一个字符得到 b</span></span><br><span class="line"><span class="comment">//那么 lcp(a,b) = lcp(x,y)</span></span><br><span class="line"><span class="comment">//显然 b 排在 a 前面</span></span><br><span class="line"><span class="comment">//显然排名在 a 前一位的那个后缀与 a 的 lcp 不可能少于 height[sa[i]-1]</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">&#123;</span><br><span class="line">    height[rk[i]]=<span class="built_in">max</span>(<span class="number">0</span>,height[rk[i<span class="number">-1</span>]]<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">if</span>(rk[i]==<span class="number">1</span>)<span class="keyword">continue</span>;</span><br><span class="line">    <span class="keyword">while</span>(ch[i+height[rk[i]]<span class="number">+1</span>]==ch[sa[rk[i]<span class="number">-1</span>]+height[rk[i]]<span class="number">+1</span>])height[rk[i]]++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="莫队">莫队</h2>
-<p>莫队是暴力数据结构，将询问离线后，以较低的复杂度移动左右端点，然后处理询问。</p>
-<p>设移动端点的复杂度为 <span class="math inline">\(O(x)\)</span>
-，那么莫队复杂度为 <span class="math inline">\(O(n \sqrt n\times
-x)\)</span>，无法将 <span class="math inline">\(x\)</span> 放在 <span
-class="math inline">\(\sqrt n\)</span> 下面。</p>
-<p>常见的卡常技巧有奇偶性排序等。</p>
-<p>如果只能支持插入和删除中的一种操作，那么可以使用回滚莫队，拿一个栈记录操作，基于操作的撤销实现插入或删除。</p>
-<p>树上莫队和普通莫队区别不大。</p>
-<p>(差一个二次离线要补)</p>
-<h3 id="拓展kmp">拓展KMP</h3>
-<p>咕咕咕</p>
-<h3 id="树哈希">树哈希</h3>
-<p>一般来讲，可以这么哈希，<strong>再加上树大小的判断</strong>，就不会出问题。
-<span class="math display">\[
-f_{now}=1+\sum f_{son(now,i)} \times prime(size_{son(now,i)})
-\]</span></p>
-<p>但这个哈希是有错的，可以对最小括号序列哈希。</p>
-<p>具体的，一颗无标号有根树按照遍历顺序可以得到一个括号序列，即将子树的括号序列拼起来再套一个括号。</p>
-<p>然后考虑对这个括号序列哈希，因为遍历顺序无关，所以要最小括号序列。</p>
-<p>实际上可以直接对子树哈希值排序之后，按这个顺序往后写，外面添一层括号，对括号序列（二进制串）哈希。</p>
 
       
     </div>

@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">112</span>
+          <span class="site-state-item-count">113</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,120 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/12/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1012%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/12/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1012%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221012考试总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-12 20:43:39" itemprop="dateCreated datePublished" datetime="2022-10-12T20:43:39+08:00">2022-10-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:22:11" itemprop="dateModified" datetime="2025-02-16T20:22:11+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="考试总结">考试总结</h2>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0132">考试</a></p>
+<p>发挥一般</p>
+<h3 id="t1">T1</h3>
+<p>很趣味的题，考虑计算答案的过程，首先从某个点开始，遇到</p>
+<h3 id="t2">T2</h3>
+<p>平衡树模板，不做评价，权当练习使用 <code>pb_ds</code>。</p>
+<p>其实有平衡树之外的多种解法。</p>
+<h4 id="值域分块">值域分块</h4>
+<p>对这个东西其实一直不熟悉，如果序列分块不容易解决或者复杂度多一个
+<span
+class="math inline">\(\log\)</span>，那么考虑对值域分块，记录和每块数值有关的信息。</p>
+<p><span class="math inline">\(O(1)\)</span>
+改可以只改对应数值块和自身的数据，<span
+class="math inline">\(O(1)\)</span>
+查可以对块和块内维护前缀信息或者其它预处理信息。</p>
+<h4 id="树状数组上二分">树状数组上二分</h4>
+<p>写过若干次，但不熟练。</p>
+<p>以前缀和树状数组为例，它每个节点 <span
+class="math inline">\(x\)</span> 维护的信息是 <span
+class="math inline">\((x-lowbit(x),x]\)</span> 区间的全部信息。</p>
+<p>更新时一直 +lowbit，保证了恰好能够维护这些信息。</p>
+<p>所以如何二分也比较明晰了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> now=<span class="number">0</span>,sum=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">18</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">    <span class="comment">// 现在认为在 (now,now+1&lt;&lt;i+1]</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="number">1</span>&lt;&lt;i|now&lt;=n&amp;&amp;sum+c[now|<span class="number">1</span>&lt;&lt;i]&lt;k)&#123;<span class="comment">//在 (now|1&lt;&lt;i,now|1&lt;&lt;i+1]</span></span><br><span class="line">        now |= <span class="number">1</span>&lt;&lt;i;</span><br><span class="line">        sum += c[now];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> res = now + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="t3">T3</h3>
+<p>有些价值的题，"优化状压DP" 还是有一些话题可谈。</p>
+<h3 id="t4">T4</h3>
+<p>李超树模板题，类似 <code>CDQ</code>
+分治的思路或者平衡树维护凸包其实很趣味，但是没有什么启发意义。</p>
+<p>等有时间了写一份斜率优化的总结。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1487,127 +1601,6 @@ class="math inline">\(DP\)</span>
 出合法的状态，对每种状态计算答案并求和。</p>
 <p>拿到状态后计算答案就是个组合数。</p>
 <h3 id="t3">T3</h3>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/09/27/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0927%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/27/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0927%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20220927测试总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-09-27 19:21:05" itemprop="dateCreated datePublished" datetime="2022-09-27T19:21:05+08:00">2022-09-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:21:30" itemprop="dateModified" datetime="2025-02-16T20:21:30+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="考试总结">0927考试总结</h2>
-<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0126">考试</a></p>
-<h3 id="t1">T1</h3>
-<p>题意超级钢琴。</p>
-<p>真的是非常经典的题目了，可以说是开创了处理同一个问题 <span
-class="math inline">\(1-k\)</span> 优解的先河。</p>
-<p>将解空间拆分成二维，枚举其中一维，考虑第二维的选择并计算答案，用
-<code>priority_queue</code>
-选择最优答案，选择答案后将当前的第一维按第二维剩下的情况拆分。</p>
-<p>动态点分治也是一样的思路。</p>
-<h3 id="t2">T2</h3>
-<p>非常经典的题目，严格递增转不降是经典套路，最优解一定取到每个数值也是经典结论。</p>
-<p>本题保证数据随机，应该是需要利用随机序列单调上升子序列长度为 <span
-class="math inline">\(O(\sqrt n)\)</span> 的性质，但实际上可以 <span
-class="math inline">\(O(n^2)\)</span> 轻松通过。</p>
-<p>哦，应该是考虑补集转化，然后考虑哪些点固定，然后 <span
-class="math inline">\(dp_i\)</span> 表示第 <span
-class="math inline">\(i\)</span> 个点固定的最优代价，转移只能从能完成
-<code>LIS</code>
-转移的点转移过来，中间合法的条件是要么大于右边要么小于左边，根据经典结论一定可以调整成一段和左边相等，一段和右边相等，然后随机的情况下转移点个数
-<span class="math inline">\(O(1)\)</span>，长度 <span
-class="math inline">\(O(\sqrt n)\)</span>，总复杂度 <span
-class="math inline">\(O(n\log n+n\sqrt n)\)</span>。</p>
-<h4 id="简单证明经典结论">简单证明经典结论</h4>
-<p>假设有一种最优解包含了不是原有数的数。</p>
-<p>考虑第一个不是原有数的数，如果它被调大了，那么把它调小成上一个原有数一定更优。</p>
-<p>如果它被调小了，就把它调到第一个比调整后的数大的原有数的位置，如果因此导致后面若干个数小于它了，那么不难得知这些数现在都被夹在两个原有的数之间，而且都是从两个原有数区间的外面调整过来的。从左边第一个数开始，找和它相同的数，如果相同的数中，被调小的数较多，那么全部调到第一个和它不同的数，否则调回第一个原数，变成子问题。</p>
-<h3 id="t3">T3</h3>
-<p>最大值最小显然二分。</p>
-<p>考虑一个划分合法的条件，发现只能在某些合法的位置断开，而且在这些位置是否断开不影响第一个条件的合法性。</p>
-<p>所以考虑对这些位置动态规划，直接转移是 <span
-class="math inline">\(O(n^2)\)</span>
-的，然后考虑维护所有可能的转移，发现如果拿个单调栈记录 <span
-class="math inline">\(a\)</span>，那么转移的改变可以描述为 <span
-class="math inline">\(O(n)\)</span> 次区间加，线段树维护即可。</p>
-<p><strong>一个数组，考虑每个前缀的后缀最大值，可以被描述为 <span
-class="math inline">\(O(n)\)</span> 次区间加。</strong></p>
 
       
     </div>
