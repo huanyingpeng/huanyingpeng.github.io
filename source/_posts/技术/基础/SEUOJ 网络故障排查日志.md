@@ -1,5 +1,5 @@
 ---
-title: OSI 七层模型简单理解
+title: SEUOJ 网络故障排查日志
 mathjax: true
 date: 2025-05-17 09:40:24
 tags:
