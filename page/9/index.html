@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-count">116</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">52</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,226 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/09/19/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%985/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/19/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%985/" class="post-title-link" itemprop="url">20220919小记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-19 20:49:12" itemprop="dateCreated datePublished" datetime="2022-09-19T20:49:12+08:00">2022-09-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:58:30" itemprop="dateModified" datetime="2025-02-16T17:58:30+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="某道-gcd-题">某道 GCD 题</h2>
+<p>给一个 <span class="math inline">\(n\times m\)</span> 矩阵，元素为
+<span class="math inline">\(1-n\times m\)</span>
+的排列，问你所有子矩阵的 GCD 之和。</p>
+<p>反正我想的是考虑一个右下角，移动左上角来统计答案，这样的话考虑到 gcd
+的变化次数是<span class="math inline">\(\log\)</span>
+的，说不定有救，但是需要完成区间取 GCD，这个不好做。</p>
+<p>想一下，这个做法没有利用到每个数只出现一次的性质，通常这种只出现一次的性质往往和倍数这些相联系，不妨换个思路考虑，考虑
+<span class="math inline">\(i\)</span>
+的倍数的子矩阵的数量，然后发现容斥一下就可以得到答案。统计 <span
+class="math inline">\(i\)</span> 的倍数的子矩阵数量不难。</p>
+<h2 id="noi2021d1t1">NOI2021D1T1</h2>
+<p>我想了一下，链是会做的，<strong>树链剖分</strong>，就是把树变成 <span
+class="math inline">\(\log\)</span> 个链来做。</p>
+<p>然后其实每条重链按照链的方式来做，重链的交汇处需要特殊处理。</p>
+<p>不妨把边下放到点，发现如果一个点的父亲的修改时间晚于该点的修改时间，那么这个点所代表的链就没用，所以对每个点维护两个东西，一个是该点的修改时间，另一个是该点代表的边是否被修改成重边。</p>
+<p>查询的时候对链的交界处需要查修改时间判断是否有效。</p>
+<p>其实有个更简易的方式，就是把修改看成染色，一条边有贡献当且仅当其两个端点颜色相同，这个很容易用树剖维护。</p>
+<p>这两种方式其实体现出处理边的两种方式——下放到点考虑，考虑两个端点的状态。</p>
+<p>需要灵活运用这两种方式解题。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/09/05/%E7%94%9F%E6%B4%BB/%E9%9A%8F%E8%AE%B020220904/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/05/%E7%94%9F%E6%B4%BB/%E9%9A%8F%E8%AE%B020220904/" class="post-title-link" itemprop="url">随记20220904</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-05 00:22:54" itemprop="dateCreated datePublished" datetime="2022-09-05T00:22:54+08:00">2022-09-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:49:01" itemprop="dateModified" datetime="2025-02-16T17:49:01+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="随记20220904">随记20220904</h2>
+<p>双膝折叠，跪坐在算不上柔软的沙发上，两臂枕在凸起的窗沿。我有些懒散的将下巴靠在小臂，又竭力不让窗沿压迫小臂，以免有些脆弱敏感的手部神经受到刺激，<span
+class="math inline">\(P=\frac{F}{S}\)</span>，一个非常优美的公式。我开始估算手臂和窗沿的接触面积，我脑袋的半径，以便带入人体平均密度计算出手部受到的压强相当于几个大气压。</p>
+<p>不得不说，物理和数学公式都是优美的，只需要用上统一的几个名字，就能尽情将身边的一切等效。或者说，公式本身不够优美，但是人们设计的物理单位是那么的精巧，避免了那些繁杂的常量，一些无比熟悉的数字又飞入脑海，<span
+class="math inline">\(e\approx2.718\)</span>,<span
+class="math inline">\(\pi\approx3.1415927,G\approx6.67\times
+10^{-11}m^3kg^{-1}s^{-2}\cdots\)</span>。</p>
+<p>将越跑越远的联想收回来，生活不是科学，生活不需要那些能精确到小数点后几十几百位的数字。生活的美感，是一种无法用任何数学语言描述的美感。</p>
+<p>陶渊明的 “采菊东篱下，悠然见南山”，带来田园的悠然自得。</p>
+<p>王维的 “大漠孤烟直，长河落日圆”，给出荒凉的独特答案。</p>
+<p>马致远的
+“枯藤老树昏鸦，小桥流水人家，古道西风瘦马。”，留下秋日的那份伤感。</p>
+<p>但我只是一个平常的理科生，对感性的语文并不敏感，但窗外的宁静，也足以让我有感写下一些拙劣幼稚的文字。</p>
+<p>我不知道今年的干旱具体给天府之国带来了多大的影响，但是从居民区的停电和学校的被迫放假还是能够管中窥豹。刚回到学校没多久，COVID
+就横扫四川所有中学，没有一所逃过延迟开学的结局，即使是强硬如某校，也只不过多坚持了半天，就匆匆将神兽们赶了回去——就在高温假结束后的
+2 天。</p>
+<p>所以我就在这个时候，趴在了窗前，半夜的街道很冷清，只能听见百草路地铁口
+“握紧扶手，注意脚下” 的提醒。目光向上
+90度，我甚至能分辨出夜空中的云朵，它们和蓝色的天空还有一丝界限，但其实都很暗，它们一起向目光尽头的高楼收敛。如果你想具体的体会一下，你可以打开
+<code>mspaint</code>，天的颜色是 <code>0 60 85</code>，云的颜色是
+<code>212 212 212</code>，而它们收敛向 <code>69 24 34</code>。RGB
+空间还是很无力，区区 3Byte
+无法描绘出世界上的，甚至无法描绘出人肉眼可以分辨的所有颜色。</p>
+<p>黯淡的云朵没有动作，视野的右侧有一颗明亮的光点，它是星星。按照不知道从哪里得知的观星技巧，我快速的扫过窗口狭小的天空，又有数十的光点在视野中闪过，但我尝试正眼捕捉，它们又藏入了深色的天空，像是一个个纯黑背景下的白色像素点，于缩放后在显存中被彻底删除，我再也找不到它们。即使有着凹透镜的帮助，变形略显严重的晶状体也失去了精确的将波长仅有
+<span class="math inline">\(300-500nm\)</span>
+的可见光折射到每一个感光细胞的能力。</p>
+<p>一段时间的沉寂后，波浪状的云遮住了唯一那颗被轻易捕捉到的星星，视野渐渐下移，移过
+“立德树人”
+四个大字，是熟悉的水泥路。很突然，沥青从路面翻起，回到工人的铲子，回到工程车辆，回到工厂，最后在分馏器中重新变成原油，再顺着磕头机的管道流入地底。远处的高楼被荒芜的草地替换，眼前的工地，正热火朝天。。。</p>
+<p>又重归沉寂，只有略冷的风打在脸上，我看了看最近都在 1.5km
+之外的高楼，并细细感受周遭的气温，思考着这股风的来历，但已经有些陌生的地理和物理知识不再能闪着光告诉我答案。</p>
+<p><code>shutdown -f</code>，我告诉大脑，但又用留在海马体里的数据恢复了这段文字，像是被设置了关机命令为休眠的计算机。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1733,268 +1953,6 @@ class="math inline">\(O(1)\)</span> 的。</p>
 <p>Exc-Arg
 除了直接解决问题外，也可以用来简化问题，将选择元素并重排的问题变为<strong>排序后</strong>选择子序列的问题。</p>
 <p>对于树上的情况，我还没有见到过相关的问题。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/08/02/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/%E8%80%83%E8%AF%95%E6%8A%80%E5%B7%A7/%E8%80%83%E8%AF%95%E8%B8%A9%E5%9D%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/02/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/%E8%80%83%E8%AF%95%E6%8A%80%E5%B7%A7/%E8%80%83%E8%AF%95%E8%B8%A9%E5%9D%91/" class="post-title-link" itemprop="url">坑</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-02 13:46:46" itemprop="dateCreated datePublished" datetime="2022-08-02T13:46:46+08:00">2022-08-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:23:13" itemprop="dateModified" datetime="2025-02-16T20:23:13+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="多测的奇妙问题">多测的奇妙问题</h2>
-<h3 id="最短路">最短路</h3>
-<p>你清空了吗？</p>
-<p>你真的清空了吗？</p>
-<p>你真的真的真的清空了吗？</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dij</span><span class="params">(<span class="type">int</span> s,<span class="type">int</span> t)</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(vis,<span class="number">0</span>,<span class="built_in">sizeof</span>(vis));</span><br><span class="line">	<span class="built_in">memset</span>(dis,<span class="number">1</span>,<span class="built_in">sizeof</span>(dis));</span><br><span class="line">	<span class="comment">//while(!q.empty())q.pop();</span></span><br><span class="line">	dis[s]=<span class="number">0</span>;q.<span class="built_in">push</span>(s);</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		<span class="type">int</span> u=q.<span class="built_in">top</span>()%M;q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">if</span>(vis[u])<span class="keyword">continue</span>;vis[u]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(vis[t])<span class="keyword">return</span> ;</span><br><span class="line">        <span class="comment">//!!! priority_queue 还没空就跑路了，你不玩完谁玩完</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i=head[u];~i;i=a[i].next)&#123;</span><br><span class="line">			<span class="type">int</span> v=a[i].v,w=a[i].w;</span><br><span class="line">			<span class="keyword">if</span>(dis[u]+w&gt;=dis[v])<span class="keyword">continue</span>;</span><br><span class="line">			dis[v]=dis[u]+w;</span><br><span class="line">			q.<span class="built_in">push</span>(dis[v]*M+v);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="一些迷惑问题">一些迷惑问题</h2>
-<h3 id="prim-最短路">Prim 最短路</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    <span class="type">int</span> tar=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=n;j++)<span class="keyword">if</span>(dis[tar]&gt;dis[j]&amp;&amp;!pd[j])tar=j;</span><br><span class="line">    pd[tar]=<span class="number">1</span>;ans+=dis[tar];dis[tar]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=n;j++)<span class="built_in">cmin</span>(dis[j],dis[tar]+val[tar][j]+val[j][tar]);</span><br><span class="line">    <span class="comment">//	for(j=1;j&lt;=n;j++)if(!pd[j])cmin(dis[j],dis[tar]+val[tar][j]+val[j][tar]);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>你的边权算对了吗？</p>
-<p><del>有人之前写的 <code>Prime</code> 算法</del></p>
-<h3 id="匿名函数排序">匿名函数排序</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sort</span>(b<span class="number">+1</span>,b+m<span class="number">+1</span>,[](<span class="type">int</span> a,<span class="type">int</span> b)&#123;<span class="keyword">return</span> a&lt;b;&#125;);</span><br><span class="line"><span class="built_in">sort</span>(b<span class="number">+1</span>,b+m<span class="number">+1</span>,[](<span class="type">int</span> a,<span class="type">int</span> b)&#123;<span class="keyword">return</span> b&gt;a;&#125;);</span><br></pre></td></tr></table></figure>
-<p>你的排序，是这个升序的，还是这个降序的，还是这个无序的。</p>
-<h3 id="线段去包含">线段去包含</h3>
-<p>思考清楚到底怎么排序，如果右端点相同，按什么排序。</p>
-<p>端点会不会是负数，maxn 初始值会不会太大（开 0，结果有线段端点是 0
-你把它干了）</p>
-<h3 id="需要记录一些原来编号的排序">需要记录一些原来编号的排序</h3>
-<p>想清楚排序得到的 <code>rk</code>
-数组到底是什么，不要乱查乱用，该求逆的求逆。</p>
-<h2 id="一些技巧的坑">一些技巧的坑</h2>
-<h3 id="非显式建边">非显式建边</h3>
-<p>举个例子，点有个性质 <span
-class="math inline">\(c_i\)</span>，可以花费 <span
-class="math inline">\(k_j\)</span> 的代价从任意 <span
-class="math inline">\(c_{a_j}\)</span> 的跳到任意 <span
-class="math inline">\(c_{b_j}\)</span> 的点。</p>
-<p>然后你对每个 <span class="math inline">\(c\)</span>
-建立一个点，从每个点向它连了一条边。</p>
-<p>然后你发现你的每一个 <span class="math inline">\(c\)</span> 可以花费
-<span class="math inline">\(0\)</span> 的代价互相到达。</p>
-<p>正确的方式是每个 <span class="math inline">\(c\)</span>
-建立入点和出点。</p>
-<h3 id="可删除的优先队列">可删除的优先队列</h3>
-<p>一般用两个优先队列实现，<strong>需要保证被删除的元素一定存在</strong>。</p>
-<h2 id="语言本身的坑">语言本身的坑</h2>
-<h3 id="cerr">cerr</h3>
-<p>调试的时候 <code>cerr</code> 很好用的，就算忘了删也不会爆零，但是
-<code>cerr</code>
-真的很慢，因为它直接向标准输出流输出了，没有过缓冲区，相当于每次输出一次就
-<code>fflush(out)</code> 一下，<code>TLE</code> 没商量。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/28/%E7%A7%91%E6%99%AE/%E6%B5%85%E8%B0%88%E4%B8%80%E7%AC%94%E7%94%BB%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/28/%E7%A7%91%E6%99%AE/%E6%B5%85%E8%B0%88%E4%B8%80%E7%AC%94%E7%94%BB%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">浅谈一笔画问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-28 23:42:55" itemprop="dateCreated datePublished" datetime="2022-07-28T23:42:55+08:00">2022-07-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:48:25" itemprop="dateModified" datetime="2025-02-16T17:48:25+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">学术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="qq-群一笔画问题">QQ 群一笔画问题</h2>
-<p><strong>Author:Huan_yp</strong></p>
-<p>一笔画问题，即给定一张无向图 <span
-class="math inline">\(G(V,E)\)</span>，每个点的度数均为偶数或者<strong>仅有</strong>两个点度数为奇数，需要求出一条不重复经过边的路径，遍历所有的边。</p>
-<p>由于在算法竞赛中，这个问题是简单的，这里只讨论在 QQ
-群一笔画中，快速解决问题的方式。</p>
-<h3 id="归纳构造法证明">归纳构造法证明</h3>
-<p>已知给定图为一笔画图，故一定满足每个点的度数均为偶数或者<strong>仅有</strong>两个点度数为奇数，并且图联通，若存在两个点度数为奇数，则从其中一个点开始，否则可以从任意点开始。</p>
-<p>执行以下过程。</p>
-<ul>
-<li>在当前节点任意找一条边，如果可以找到，则重复此过程。</li>
-<li>如果无法找到：
-<ul>
-<li>图已经被遍历，结束，得到保存的路径。</li>
-<li>该点度数为 <span
-class="math inline">\(0\)</span>，所以一定回到了起点或者到了终点。记录并删除该路径中所有边，并回溯到上一个存在出度的点，<strong>可以证明一定存在这样的点，否则图不连通</strong>。该点的度数一定为偶数，对该点进行上述过程，得到一条<strong>首尾相接</strong>的路径，插入到原路径，得到完整的欧拉（回）路。</li>
-</ul></li>
-<li>容易发现，这样的过程将图遍历了一遍，所以最后得到的是完整的欧拉路径。</li>
-</ul>
-<p>代码实现比较简单，只需要使用栈在退出时记录当前节点，得到的，从栈顶到栈底，就是一条完整的欧拉路径。</p>
-<p>下面是一个例子：</p>
-<p><img
-src="https://cdn.luogu.com.cn/upload/image_hosting/4oaujupz.png" /></p>
-<p>按 <span class="math inline">\(1-&gt;2-&gt;5\)</span> 走，<span
-class="math inline">\(5\)</span> 处无路可走，回到 <span
-class="math inline">\(2\)</span>，记录一条路径 <span
-class="math inline">\(2-&gt;5\)</span>，从 <span
-class="math inline">\(2\)</span> 继续走 <span
-class="math inline">\(2-&gt;3-&gt;4-&gt;2\)</span>，回到了，插入原路径变为
-<span
-class="math inline">\(1-&gt;2-&gt;3-&gt;4-&gt;2-&gt;5\)</span>。</p>
-<h3 id="正确的操作方式">正确的操作方式</h3>
-<p>由于找边的耗时比较长，我们需要尽可能少的找边。</p>
-<ul>
-<li>如果有 API
-可以读取边的情况，那么直接做一遍上述过程即可得到答案。</li>
-<li>如果不存在对应的
-API，我们直接进行上诉操作，可以拿一个程序记录已经走过的点和边并提示路径。</li>
-<li>如果图不为欧拉回路，则存在死路，判断方式比较简单，当前点是否为起始点，如果死路位于起始点，直接进行路径回溯操作，即步骤二。否则撤销所有操作，从当前节点开始逆向进行已经进行过的操作。</li>
-</ul>
-<p>这样单纯的找边的次数恰好为 m 次，即边数。</p>
-<p>回溯和走边的操作总和不会超过 2m。</p>
-<h3 id="平均执行次数">平均执行次数</h3>
-<p>考虑图为随机生成，期望的行走次数，感觉是 polylog
-级别，但是我不会证明。</p>
-<h4 id="蒙特卡洛模拟">蒙特卡洛模拟</h4>
-<p>咕咕咕，没时间写代码。</p>
-<p>采用蒙特卡洛模拟算法对该结论进行验证</p>
-<h4 id="严谨数学证明">严谨数学证明</h4>
-<p>咕咕咕。</p>
-<p>也许可以考虑每条边回溯次数期望 <span
-class="math inline">\(e_{u,v}\)</span>。</p>
 
       
     </div>

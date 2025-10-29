@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-count">116</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">52</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,307 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/04/OI/%E7%AE%97%E6%B3%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/04/OI/%E7%AE%97%E6%B3%95/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">计算几何入门</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-04 20:34:24" itemprop="dateCreated datePublished" datetime="2022-10-04T20:34:24+08:00">2022-10-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:55:18" itemprop="dateModified" datetime="2025-02-16T17:55:18+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="计算几何">计算几何</h2>
+<p>写一下学计算几何的感悟。</p>
+<h3 id="向量">向量</h3>
+<h4 id="点积">点积</h4>
+<p><span class="math inline">\(\mathbf{a} \cdot \mathbf{b} =
+|\mathbf{a}|\times|\mathbf{b}| \times \cos\theta =
+x_1x_2+y_1y_2\)</span></p>
+<p>常用来计算向量夹角。</p>
+<h4 id="叉积">叉积</h4>
+<p><span class="math inline">\(\mathbf{a} \times \mathbf{b} =
+|\mathbf{a}|\times |\mathbf{b}|\times \sin\theta =
+x_1y_2-x_2y_1\)</span></p>
+<p>几何意义是两个向量围成的平行四边形的面积。</p>
+<p>从 <span class="math inline">\(\mathbf{a}\)</span> 旋转到 <span
+class="math inline">\(\mathbf{b}\)</span>，如果角度小于 <span
+class="math inline">\(\pi\)</span>，那么为正，否则为负。</p>
+<p>证明的话，方向是直接定义的，先不管，尝试证明。 <span
+class="math display">\[
+(x_1y_2-x_2y_1)^2=\sin^2\theta \mathbf{a}^2\mathbf{b}^2\\
+\]</span> 我觉得这个不太适合用 <code>markdown</code> 写下来。</p>
+<p>为什么方向是对的，可以替换一下 <span
+class="math inline">\(x,y\)</span> 变成 <span
+class="math inline">\(\sin,\cos\)</span>，然后很自然是对的。</p>
+<p>可以用来求线段交点。</p>
+<p>算一下 <span class="math inline">\(BCD,ACD\)</span> 的面积，用相似求
+<span class="math inline">\(AO\)</span>，就可以得到 <span
+class="math inline">\(O\)</span> 点坐标。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/huan-yp/image_space/master/202210042107116.png"
+alt="image-20221004210732068" />
+<figcaption aria-hidden="true">image-20221004210732068</figcaption>
+</figure>
+<h4 id="向量旋转">向量旋转</h4>
+<p>有人不会用这个东西，我不说是谁。</p>
+<p><span class="math inline">\(\mathbf{a}\)</span> 转 <span
+class="math inline">\(\alpha\)</span> 角：<span
+class="math inline">\((|\mathbf{a}|\cos(\theta+\alpha),|\mathbf{a}|\sin(\theta+\alpha))\)</span>。</p>
+<p>和差角公式记不住的话朱某要来找麻烦，所以有人还是能记住。</p>
+<h3 id="多边形">多边形</h3>
+<h4 id="三角剖分">三角剖分</h4>
+<p><span class="math inline">\(S=\dfrac{\sum\mathbf{a_i}\times
+\mathbf{a_{(i+1)\%n}}}{2}\)</span></p>
+<p>盗一波图。</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/huan-yp/image_space/master/202210042117115.png"
+alt="image-20221004211714058" />
+<figcaption aria-hidden="true">image-20221004211714058</figcaption>
+</figure>
+<h4 id="凸包">凸包</h4>
+<p>按照逆时针方向看，多边形凸包永远往左拐。</p>
+<h3 id="直线">直线</h3>
+<p>可以用一个点 <span class="math inline">\(P\)</span> 加方向向量 <span
+class="math inline">\(\mathbf{v}\)</span> 存储，也可以顺便记一个 <span
+class="math inline">\(P_2\)</span>。</p>
+<h4 id="点在直线的哪边">点在直线的哪边</h4>
+<p>求 <span class="math inline">\(PQ\times \mathbf{v}\)</span>
+即可，为正在下方，为负在上方，<span class="math inline">\(0\)</span>
+则在线上，前提条件是向量 <span class="math inline">\(\mathbf{v}\)</span>
+的 <span class="math inline">\(x\)</span> 为正 。</p>
+<h4 id="快速排斥实验和跨立实验">快速排斥实验和跨立实验</h4>
+<figure>
+<img
+src="https://raw.githubusercontent.com/huan-yp/image_space/master/202210051602392.png"
+alt="image-20221005160200348" />
+<figcaption aria-hidden="true">image-20221005160200348</figcaption>
+</figure>
+<p>两个矩阵不交，则通过快速排斥实验。</p>
+<p>比较简易的方式是对于两维独立判断线段是否有交，如果任何一维无交，则通过快速排斥实验。</p>
+<p>跨立实验则是判断一条线段的两端是否在另一条线段的两边，可以用向量叉乘做。</p>
+<p>相互做跨立实验，如果均能通过，则线段有交或共线，<strong>结合快速排斥实验可以判断线段是否有交</strong>。</p>
+<p><strong>两条线段共线但不交也能通过跨立实验。</strong></p>
+<h4 id="两直线交点">两直线交点</h4>
+<p>先判断平行和重合。</p>
+<p>然后对于两条直线 <span
+class="math inline">\((P_1,\mathbf{a_1}),(P_2,\mathbf{a_2})\)</span>，设
+<span class="math inline">\(Q=k\mathbf{a_1}+P_1\)</span>，则有 <span
+class="math inline">\((P_2-(k\mathbf{a_1}+P_1))\times
+\mathbf{a_2}=0\)</span></p>
+<p>叉积有分配律，所以直接拆开解 <span class="math inline">\(k\)</span>
+然后带回去。</p>
+<p><span class="math inline">\(k=\dfrac{(P_2-P_1)\times
+\mathbf{a_2}}{\mathbf{a_1}\times\mathbf{a_2}}\)</span></p>
+<p>如果你敢约分，朱某就敢把你鲨了。</p>
+<h4 id="线和直线的垂足">线和直线的垂足</h4>
+<p>算出 <span class="math inline">\(PQ\)</span> 在 <span
+class="math inline">\(\mathbf{v}\)</span>
+上投影的长度和方向（点积），<span class="math inline">\(P\)</span>
+加上这个就行。</p>
+<h4 id="点到直线距离">点到直线距离</h4>
+<p>可以先算垂足，也可以用记下来的另一个点带面积公式算。</p>
+<h4 id="角平分线">角平分线</h4>
+<p>模长相同的方向向量相加，得到角平分线的方向向量，证明考虑构造菱形。</p>
+<h4 id="凸包-1">凸包</h4>
+<p>于是乎求凸包的时候多了一种判定方式：</p>
+<p>如果是上凸包，弹出点的充要条件是上个点在<strong>该点与上上个点的连线</strong>下方</p>
+<p>下凸包，弹出条件就是在上方，比斜率好一点，而且判共线很方便。</p>
+<h3 id="圆">圆</h3>
+<h4 id="线援交圆交">线<del>援交</del>圆交</h4>
+<p>求出点到直线距离和垂足，然后勾股定理算两个点。</p>
+<h4 id="圆圆交">圆圆交</h4>
+<p>半径相等可以求中点勾股定理偷懒，半径不等可以选一个三角形解三角形。</p>
+<p>具体的，可以算出一个角的 <span class="math inline">\(\cos\)</span>
+然后旋转向量，最后乘半径再加上去。</p>
+<h4 id="切点">切点</h4>
+<p>勾股定理，旋转，解三角形。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/04/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0930%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/04/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0930%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20220930总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-04 20:09:27" itemprop="dateCreated datePublished" datetime="2022-10-04T20:09:27+08:00">2022-10-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:21:40" itemprop="dateModified" datetime="2025-02-16T20:21:40+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="某场考试总结oi-中的解析几何">某场考试总结&amp;&amp;OI
+中的解析几何</h2>
+<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0128">考试</a></p>
+<p>有人几何学的很差，考场上还非要写。</p>
+<h3 id="t1">T1</h3>
+<p>exchange-argument，已经是咱非常了解的题目啦啦啦。</p>
+<p><a
+href="https://huanyp.cn/2022/08/02/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/">Ex-Ar</a></p>
+<h3 id="t2">T2</h3>
+<p>套路题，二分然后最短路</p>
+<h3 id="t3">T3</h3>
+<p>对这种题还是比较熟悉了，不好处理的区间问题分类讨论变偏序，二维偏序解决区间交，贡献独立的情况，李超树搞定贡献分离的情况。</p>
+<p>当然可以 CDQ 然后凸包上二分，但是我觉得我更擅长一般的数据结构。</p>
+<h3 id="t4">T4</h3>
+<p>我.... 不会解析几何。/ll /ll。</p>
+<p>办法其实非常蠢，一条可行的最短路一定经过圆弧交点，且只会在这些交点拐弯。</p>
+<p>所以求出所有交点，然后判断交点两两路径是否合法，连边跑最短路。</p>
+<p>可行的交点其实不多，得判掉在圆内的点，然后剩下点的个数感觉上是 <span
+class="math inline">\(O(n)\)</span> 的，实际也是 <span
+class="math inline">\(O(n)\)</span>
+的，证明我不会，等问数学竞赛的回来再补。</p>
+<p>然后判合法本质上是判一条路径是否被覆盖，需要写线圆交，然后前面要写圆圆交，这玩意不是一次函数，会非常裂开，我写的很丑。</p>
+<p>圆圆交直径相同，比较好办，用极坐标可以偷懒，线圆交相当折磨。</p>
+<p>见 <a
+href="https://huanyp.cn/2022/10/04/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%85%A5%E9%97%A8/">计算几何入门</a>。</p>
+<p>用向量写会相当舒适。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1140,226 +1441,6 @@ class="math inline">\(dij\)</span>，暴力 <span
 class="math inline">\(dp\)</span> 出来做凸包就行。</p>
 <p>然后从 <span class="math inline">\(n\)</span> 的各个在凸包上的 <span
 class="math inline">\(k\)</span>，倒推回去看那些点可能被用到，倒推可以写成记搜，这样只用存一遍边。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/09/19/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%985/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/19/OI/%E9%A2%98%E8%A7%A3%E5%90%88%E9%9B%86/%E5%81%9A%E9%A2%985/" class="post-title-link" itemprop="url">20220919小记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-09-19 20:49:12" itemprop="dateCreated datePublished" datetime="2022-09-19T20:49:12+08:00">2022-09-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:58:30" itemprop="dateModified" datetime="2025-02-16T17:58:30+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="某道-gcd-题">某道 GCD 题</h2>
-<p>给一个 <span class="math inline">\(n\times m\)</span> 矩阵，元素为
-<span class="math inline">\(1-n\times m\)</span>
-的排列，问你所有子矩阵的 GCD 之和。</p>
-<p>反正我想的是考虑一个右下角，移动左上角来统计答案，这样的话考虑到 gcd
-的变化次数是<span class="math inline">\(\log\)</span>
-的，说不定有救，但是需要完成区间取 GCD，这个不好做。</p>
-<p>想一下，这个做法没有利用到每个数只出现一次的性质，通常这种只出现一次的性质往往和倍数这些相联系，不妨换个思路考虑，考虑
-<span class="math inline">\(i\)</span>
-的倍数的子矩阵的数量，然后发现容斥一下就可以得到答案。统计 <span
-class="math inline">\(i\)</span> 的倍数的子矩阵数量不难。</p>
-<h2 id="noi2021d1t1">NOI2021D1T1</h2>
-<p>我想了一下，链是会做的，<strong>树链剖分</strong>，就是把树变成 <span
-class="math inline">\(\log\)</span> 个链来做。</p>
-<p>然后其实每条重链按照链的方式来做，重链的交汇处需要特殊处理。</p>
-<p>不妨把边下放到点，发现如果一个点的父亲的修改时间晚于该点的修改时间，那么这个点所代表的链就没用，所以对每个点维护两个东西，一个是该点的修改时间，另一个是该点代表的边是否被修改成重边。</p>
-<p>查询的时候对链的交界处需要查修改时间判断是否有效。</p>
-<p>其实有个更简易的方式，就是把修改看成染色，一条边有贡献当且仅当其两个端点颜色相同，这个很容易用树剖维护。</p>
-<p>这两种方式其实体现出处理边的两种方式——下放到点考虑，考虑两个端点的状态。</p>
-<p>需要灵活运用这两种方式解题。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/09/05/%E7%94%9F%E6%B4%BB/%E9%9A%8F%E8%AE%B020220904/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/09/05/%E7%94%9F%E6%B4%BB/%E9%9A%8F%E8%AE%B020220904/" class="post-title-link" itemprop="url">随记20220904</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-09-05 00:22:54" itemprop="dateCreated datePublished" datetime="2022-09-05T00:22:54+08:00">2022-09-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:49:01" itemprop="dateModified" datetime="2025-02-16T17:49:01+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="随记20220904">随记20220904</h2>
-<p>双膝折叠，跪坐在算不上柔软的沙发上，两臂枕在凸起的窗沿。我有些懒散的将下巴靠在小臂，又竭力不让窗沿压迫小臂，以免有些脆弱敏感的手部神经受到刺激，<span
-class="math inline">\(P=\frac{F}{S}\)</span>，一个非常优美的公式。我开始估算手臂和窗沿的接触面积，我脑袋的半径，以便带入人体平均密度计算出手部受到的压强相当于几个大气压。</p>
-<p>不得不说，物理和数学公式都是优美的，只需要用上统一的几个名字，就能尽情将身边的一切等效。或者说，公式本身不够优美，但是人们设计的物理单位是那么的精巧，避免了那些繁杂的常量，一些无比熟悉的数字又飞入脑海，<span
-class="math inline">\(e\approx2.718\)</span>,<span
-class="math inline">\(\pi\approx3.1415927,G\approx6.67\times
-10^{-11}m^3kg^{-1}s^{-2}\cdots\)</span>。</p>
-<p>将越跑越远的联想收回来，生活不是科学，生活不需要那些能精确到小数点后几十几百位的数字。生活的美感，是一种无法用任何数学语言描述的美感。</p>
-<p>陶渊明的 “采菊东篱下，悠然见南山”，带来田园的悠然自得。</p>
-<p>王维的 “大漠孤烟直，长河落日圆”，给出荒凉的独特答案。</p>
-<p>马致远的
-“枯藤老树昏鸦，小桥流水人家，古道西风瘦马。”，留下秋日的那份伤感。</p>
-<p>但我只是一个平常的理科生，对感性的语文并不敏感，但窗外的宁静，也足以让我有感写下一些拙劣幼稚的文字。</p>
-<p>我不知道今年的干旱具体给天府之国带来了多大的影响，但是从居民区的停电和学校的被迫放假还是能够管中窥豹。刚回到学校没多久，COVID
-就横扫四川所有中学，没有一所逃过延迟开学的结局，即使是强硬如某校，也只不过多坚持了半天，就匆匆将神兽们赶了回去——就在高温假结束后的
-2 天。</p>
-<p>所以我就在这个时候，趴在了窗前，半夜的街道很冷清，只能听见百草路地铁口
-“握紧扶手，注意脚下” 的提醒。目光向上
-90度，我甚至能分辨出夜空中的云朵，它们和蓝色的天空还有一丝界限，但其实都很暗，它们一起向目光尽头的高楼收敛。如果你想具体的体会一下，你可以打开
-<code>mspaint</code>，天的颜色是 <code>0 60 85</code>，云的颜色是
-<code>212 212 212</code>，而它们收敛向 <code>69 24 34</code>。RGB
-空间还是很无力，区区 3Byte
-无法描绘出世界上的，甚至无法描绘出人肉眼可以分辨的所有颜色。</p>
-<p>黯淡的云朵没有动作，视野的右侧有一颗明亮的光点，它是星星。按照不知道从哪里得知的观星技巧，我快速的扫过窗口狭小的天空，又有数十的光点在视野中闪过，但我尝试正眼捕捉，它们又藏入了深色的天空，像是一个个纯黑背景下的白色像素点，于缩放后在显存中被彻底删除，我再也找不到它们。即使有着凹透镜的帮助，变形略显严重的晶状体也失去了精确的将波长仅有
-<span class="math inline">\(300-500nm\)</span>
-的可见光折射到每一个感光细胞的能力。</p>
-<p>一段时间的沉寂后，波浪状的云遮住了唯一那颗被轻易捕捉到的星星，视野渐渐下移，移过
-“立德树人”
-四个大字，是熟悉的水泥路。很突然，沥青从路面翻起，回到工人的铲子，回到工程车辆，回到工厂，最后在分馏器中重新变成原油，再顺着磕头机的管道流入地底。远处的高楼被荒芜的草地替换，眼前的工地，正热火朝天。。。</p>
-<p>又重归沉寂，只有略冷的风打在脸上，我看了看最近都在 1.5km
-之外的高楼，并细细感受周遭的气温，思考着这股风的来历，但已经有些陌生的地理和物理知识不再能闪着光告诉我答案。</p>
-<p><code>shutdown -f</code>，我告诉大脑，但又用留在海马体里的数据恢复了这段文字，像是被设置了关机命令为休眠的计算机。</p>
 
       
     </div>

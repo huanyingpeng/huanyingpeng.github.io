@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前情提要 发生该事故后，NcatBot 为了避免被卷入有关风波，进行了一些紧急操作以避险。由于是首次遇到此类事件，应对经验不足，导致丢失了约 6 h 的工作代码，同时也切实反映出数据安全的重要性。 本文就 321 原则，提供一个 Windows 操作系统下简易但切实可行的数据安全方案。 321 原则：三份数据、两块介质、一处异地，少一个都可能翻车！ 321 原则是一种广泛应用于数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把 321 原则落到桌面：Windows 零手动备份实战">
+<meta property="og:url" content="https://huanyp.cn/2025/09/06/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/321%E5%8E%9F%E5%88%99-%E8%90%BD%E5%AE%9E%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="前情提要 发生该事故后，NcatBot 为了避免被卷入有关风波，进行了一些紧急操作以避险。由于是首次遇到此类事件，应对经验不足，导致丢失了约 6 h 的工作代码，同时也切实反映出数据安全的重要性。 本文就 321 原则，提供一个 Windows 操作系统下简易但切实可行的数据安全方案。 321 原则：三份数据、两块介质、一处异地，少一个都可能翻车！ 321 原则是一种广泛应用于数">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-09-06T10:11:36.000Z">
+<meta property="article:modified_time" content="2025-10-29T00:28:09.874Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="算法竞赛, 自动化测试, 工程技术, Python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://huanyp.cn/2025/09/06/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/321%E5%8E%9F%E5%88%99-%E8%90%BD%E5%AE%9E%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huanyp.cn/2025/09/06/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/321%E5%8E%9F%E5%88%99-%E8%90%BD%E5%AE%9E%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8/","path":"2025/09/06/技术/基础/321原则-落实数据安全/","title":"把 321 原则落到桌面：Windows 零手动备份实战"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>把 321 原则落到桌面：Windows 零手动备份实战 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%83%85%E6%8F%90%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">前情提要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%88%99%E4%B8%89%E4%BB%BD%E6%95%B0%E6%8D%AE%E4%B8%A4%E5%9D%97%E4%BB%8B%E8%B4%A8%E4%B8%80%E5%A4%84%E5%BC%82%E5%9C%B0%E5%B0%91%E4%B8%80%E4%B8%AA%E9%83%BD%E5%8F%AF%E8%83%BD%E7%BF%BB%E8%BD%A6"><span class="nav-number">2.</span> <span class="nav-text">321
+原则：三份数据、两块介质、一处异地，少一个都可能翻车！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%85%E5%86%B5%E7%AE%80%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">情况简析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%81%93%E9%98%B2%E7%BA%BFvs-code-%E7%9A%84-local-history%E7%A7%92%E7%BA%A7%E5%9B%9E%E8%A1%80"><span class="nav-number">4.</span> <span class="nav-text">第一道防线：VS Code
+的 Local-History，秒级回血</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E7%AE%80%E4%BB%8B"><span class="nav-number">4.1.</span> <span class="nav-text">插件简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">4.2.</span> <span class="nav-text">最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%81%93%E9%98%B2%E7%BA%BFrestic-%E5%BF%AB%E7%85%A7%E9%98%B2%E7%9A%84%E6%98%AF%E6%95%B4%E7%9B%98%E8%92%B8%E5%8F%91"><span class="nav-number">5.</span> <span class="nav-text">第二道防线：Restic
+快照，防的是‘整盘蒸发’</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%85%E5%86%B5%E4%BB%8B%E7%BB%8D"><span class="nav-number">5.1.</span> <span class="nav-text">情况介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-number">5.2.</span> <span class="nav-text">操作过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%8F%98%E9%87%8F"><span class="nav-number">5.2.1.</span> <span class="nav-text">设置工作区变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E6%9C%89%E5%85%B3%E8%BD%AF%E4%BB%B6"><span class="nav-number">5.2.2.</span> <span class="nav-text">下载有关软件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9C%89%E5%85%B3%E4%BB%93%E5%BA%93"><span class="nav-number">5.2.3.</span> <span class="nav-text">初始化有关仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E5%85%A5%E5%AF%86%E7%A0%81"><span class="nav-number">5.2.4.</span> <span class="nav-text">写入密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC"><span class="nav-number">5.2.5.</span> <span class="nav-text">备份脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE-windows-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="nav-number">5.2.6.</span> <span class="nav-text">设置 Windows 定时任务</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%8D%E4%B8%80%E9%81%93%E4%BF%9D%E9%99%A9"><span class="nav-number">5.3.</span> <span class="nav-text">再一道保险</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%95%E8%BF%90%E8%A1%8C%E5%A4%87%E4%BB%BD"><span class="nav-number">5.3.1.</span> <span class="nav-text">试运行备份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E6%9C%9F%E6%A3%80%E6%9F%A5%E5%A4%87%E4%BB%BD%E5%AE%8C%E6%95%B4%E6%80%A7"><span class="nav-number">5.3.2.</span> <span class="nav-text">定期检查备份完整性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%95%E8%BF%90%E8%A1%8C%E9%AA%8C%E8%AF%81"><span class="nav-number">5.4.</span> <span class="nav-text">试运行验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#why-%E5%AE%9A%E6%9C%9F%E9%AA%8C%E8%AF%81"><span class="nav-number">6.1.</span> <span class="nav-text">Why 定期验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A5%E6%96%B9%E6%A1%88%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">6.2.</span> <span class="nav-text">该方案的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%A5%E6%96%B9%E6%A1%88%E7%9A%84%E4%B8%8D%E8%B6%B3"><span class="nav-number">6.3.</span> <span class="nav-text">该方案的不足</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="huan-yp"
+      src="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2025/09/06/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/321%E5%8E%9F%E5%88%99-%E8%90%BD%E5%AE%9E%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="把 321 原则落到桌面：Windows 零手动备份实战 | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          把 321 原则落到桌面：Windows 零手动备份实战
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-09-06 18:11:36" itemprop="dateCreated datePublished" datetime="2025-09-06T18:11:36+08:00">2025-09-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-10-29 08:28:09" itemprop="dateModified" datetime="2025-10-29T08:28:09+08:00">2025-10-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="前情提要">前情提要</h2>
+<p>发生该<a
+href="https://huanyp.cn/2025/09/06/%E6%8A%80%E6%9C%AF/%E5%BC%80%E6%BA%90/NcatBot%20%E7%B3%BB%E5%88%97%E8%BD%AF%E4%BB%B6%E9%87%8D%E5%A4%A7%E5%AE%89%E5%85%A8%E4%BA%8B%E6%95%85%E5%9B%9E%E9%A1%BE/">事故</a>后，NcatBot
+为了避免被卷入有关风波，进行了一些紧急操作以避险。由于是首次遇到此类事件，应对经验不足，导致丢失了约
+6 h 的工作代码，同时也切实反映出数据安全的重要性。</p>
+<p>本文就 321 原则，提供一个 Windows
+操作系统下简易但切实可行的数据安全方案。</p>
+<h2 id="原则三份数据两块介质一处异地少一个都可能翻车">321
+原则：三份数据、两块介质、一处异地，少一个都可能翻车！</h2>
+<p>321
+原则是一种广泛应用于数据备份和数据安全领域的最佳实践。其核心思想是：</p>
+<ul>
+<li><strong>3</strong>：至少保留 3
+份数据副本（包括原始数据和备份）。</li>
+<li><strong>2</strong>：将数据存储在 2
+种不同的介质上（如硬盘、移动硬盘、云存储等）。</li>
+<li><strong>1</strong>：至少有 1
+份备份存放在异地（如云端或物理隔离的地点）。</li>
+</ul>
+<p>通过遵循 321
+原则，即使遇到硬件故障、误操作、自然灾害或勒索软件攻击等突发事件，也能最大程度地保障数据的完整性和可恢复性。这一原则简单易行，适用于个人用户、小型团队以及企业级的数据安全需求。</p>
+<h2 id="情况简析">情况简析</h2>
+<p>对于个人开发者来说，三种情况的概率排序为 误操作 &gt;&gt; 硬件故障
+&gt; 其他所有情况。如果是开源代码，那么数据的
+safety（数据完整性与可恢复性）要求是远大于
+security（数据保密性与防止未授权访问）要求的。</p>
+<p>对于<strong>开发者</strong>来说，数据风险主要在于<strong>劳动成果的损失</strong>，基于这个原则，我设计了以下的备份方案。</p>
+<h2 id="第一道防线vs-code-的-local-history秒级回血">第一道防线：VS Code
+的 Local-History，秒级回血</h2>
+<p>Local-History 是 Visual Studio Code
+编辑器的一个插件，它能够自动记录你对文件的每次修改，形成本地的版本历史。这是防范误操作的第一道防线，简单粗暴但非常有效。</p>
+<h3 id="插件简介">插件简介</h3>
+<p>10 s 即可快速完成安装，极大提升代码安全性。在 VSCode 中搜索并安装
+"Local History" 插件即可。</p>
+<p>每当你阶段性的需要保存文件时（按下
+ctrl+s），插件会自动拷贝一个带时间戳的副本存储在本地，简单粗暴。</p>
+<p>这种方式虽然简单，但对于日常的误删、误改等操作具有极强的防护作用。尤其是进行
+git 有关的操作时。</p>
+<h3 id="最佳实践">最佳实践</h3>
+<ul>
+<li><p>🚨 需要将 <code>.history</code> 加入
+<code>.gitignore</code>。</p></li>
+<li><p>建议 <code>ctrl+,</code> 找到 <code>saveDelay</code> 设置为 15 s
+或者 30 s（连续多长时间无更改就保存），提高空间效率。</p></li>
+</ul>
+<h2 id="第二道防线restic-快照防的是整盘蒸发">第二道防线：Restic
+快照，防的是‘整盘蒸发’</h2>
+<p>有时候脑抽达到了一种地步————把整个项目文件夹都给扬了，这时候 Local
+History 就有些回天乏术了。</p>
+<p>再或者，哪天物理机器突然抽风坏掉了，那又咋办？</p>
+<p>我们需要一个更好的备份操作。</p>
+<h3 id="情况介绍">情况介绍</h3>
+<p>为了防止误删，我们需要在别处完整的建立一个备份区域。这个备份区域是不能采用
+"同步" 策略的，而应该采用 "快照" 策略。</p>
+<details>
+<summary>
+同步和快照分别是什么？
+</summary>
+<figure>
+<img
+src="https://ghfast.top/https://raw.githubusercontent.com/huan-yp/image_space/master/images/image-20250906190851595.png"
+alt="image-20250906190851595" />
+<figcaption aria-hidden="true">image-20250906190851595</figcaption>
+</figure>
+<figure>
+<img
+src="https://ghfast.top/https://raw.githubusercontent.com/huan-yp/image_space/master/images/image-20250906190904014.png"
+alt="image-20250906190904014" />
+<figcaption aria-hidden="true">image-20250906190904014</figcaption>
+</figure>
+</details>
+<p>由于我们能够接受一定程度的数据损失（例如 1 h
+的工作成果损失），所以采用时效性稍差的 "快照"
+仍然可以有效的解决问题。</p>
+<p>特别的，为了防止单盘损坏，我们更需要在与系统盘所在<strong>物理硬盘</strong>不同的另一个盘上做备份。这是所谓的<strong>两种介质</strong>。</p>
+<p>另外，为了防止极端情况发生，我们还需要<strong>一份异地</strong>。这里我采用了
+SMA 共享文件夹方案，这种方案仍然可以用 restic 实现。</p>
+<h3 id="操作过程">操作过程</h3>
+<h4 id="设置工作区变量">设置工作区变量</h4>
+<p>🚨 首先设置工作区目录变量，方便后续使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置工具安装目录变量</span></span><br><span class="line"><span class="variable">$TOOLS_DIR</span> = <span class="string">&quot;C:\tools&quot;</span></span><br><span class="line"><span class="comment"># 设置本地仓库目录变量（先创建对应目录）</span></span><br><span class="line"><span class="variable">$BACKUP_DIR_LOCAL</span> = <span class="string">&quot;D:\restic\MyRepo&quot;</span></span><br><span class="line"><span class="comment"># 设置远程备份目录变量（先创建对应目录）</span></span><br><span class="line"><span class="variable">$BACKUP_DIR_REMOTE</span> = <span class="string">&quot;\\192.168.1.111\share\MyRepo&quot;</span></span><br><span class="line"><span class="comment"># 设置密码（请牢记）</span></span><br><span class="line"><span class="variable">$PASSWORD</span> = <span class="string">&quot;YourStrongPassword&quot;</span></span><br><span class="line"><span class="comment"># 目标目录（写绝对路径）</span></span><br><span class="line"><span class="variable">$TARGET_DIR</span> = <span class="string">&quot;C:/Users/yourname/Desktop/Proj&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="下载有关软件">下载有关软件</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> <span class="variable">$TOOLS_DIR</span></span><br><span class="line">Invoke-WebRequest -Uri https://ghfast.top/https://github.com/restic/restic/releases/download/v0.17.1/restic_0.17.1_windows_amd64.zip ` -OutFile <span class="string">&quot;<span class="variable">$TOOLS_DIR</span>\restic.zip&quot;</span></span><br><span class="line">Expand-Archive <span class="string">&quot;<span class="variable">$TOOLS_DIR</span>\restic.zip&quot;</span> -DestinationPath <span class="variable">$TOOLS_DIR</span></span><br><span class="line">Rename-Item <span class="string">&quot;<span class="variable">$TOOLS_DIR</span>\restic_0.17.1_windows_amd64.exe&quot;</span> -NewName <span class="string">&quot;restic.exe&quot;</span></span><br><span class="line">Remove-Item <span class="string">&quot;<span class="variable">$TOOLS_DIR</span>\restic.zip&quot;</span></span><br><span class="line">setx PATH <span class="string">&quot;%PATH%;<span class="variable">$TOOLS_DIR</span>&quot;</span>          <span class="comment"># 永久加入 PATH</span></span><br></pre></td></tr></table></figure>
+<h4 id="初始化有关仓库">初始化有关仓库</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="variable">$TOOLS_DIR</span></span><br><span class="line"><span class="variable">$Env</span>:RESTIC_REPOSITORY_LOCAL  = <span class="variable">$BACKUP_DIR_LOCAL</span></span><br><span class="line"><span class="variable">$Env</span>:RESTIC_PASSWORD = <span class="variable">$PASSWORD</span>   <span class="comment"># 仓库密码</span></span><br><span class="line">restic init</span><br><span class="line"><span class="variable">$Env</span>:RESTIC_REPOSITORY_REMOTE  = <span class="variable">$BACKUP_DIR_REMOTE</span></span><br><span class="line"><span class="variable">$Env</span>:RESTIC_PASSWORD = <span class="variable">$PASSWORD</span>   <span class="comment"># 仓库密码</span></span><br><span class="line">restic init</span><br></pre></td></tr></table></figure>
+<h4 id="写入密码">写入密码</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> <span class="variable">$PASSWORD</span> | Out-File -FilePath <span class="string">&quot;<span class="variable">$TOOLS_DIR</span>\restic_password.txt&quot;</span> -Encoding ASCII</span><br></pre></td></tr></table></figure>
+<h4 id="备份脚本">备份脚本</h4>
+<p>将脚本内容写入 <code>$TOOLS_DIR</code> 下的
+<code>backup.ps1</code>：</p>
+<details>
+<summary>
+展开即可抄作业
+</summary>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">@&quot;</span></span><br><span class="line"><span class="string">param(</span></span><br><span class="line"><span class="string">    [string]`$Repo,</span></span><br><span class="line"><span class="string">    [string]`$Pass</span></span><br><span class="line"><span class="string">)</span></span><br><span class="line"><span class="string">`$Env:RESTIC_REPOSITORY = `$Repo</span></span><br><span class="line"><span class="string">`$Env:RESTIC_PASSWORD   = `$Pass</span></span><br><span class="line"><span class="string"># 实际备份</span></span><br><span class="line"><span class="string">restic backup ``</span></span><br><span class="line"><span class="string">   --tag hourly ``</span></span><br><span class="line"><span class="string">   --exclude-caches ``</span></span><br><span class="line"><span class="string">   --exclude &quot;*.log&quot; ``</span></span><br><span class="line"><span class="string">   --exclude &quot;node_modules&quot; ``</span></span><br><span class="line"><span class="string">   <span class="variable">$TARGET_DIR</span></span></span><br><span class="line"><span class="string"># 清理旧快照</span></span><br><span class="line"><span class="string">restic forget --prune ``</span></span><br><span class="line"><span class="string">   --keep-hourly 72 --keep-daily 30 --keep-weekly 16</span></span><br><span class="line"><span class="string">&quot;@</span> | <span class="built_in">Out-File</span> <span class="literal">-FilePath</span> <span class="string">&quot;<span class="variable">$TOOLS_DIR</span>\backup.ps1&quot;</span> <span class="literal">-Encoding</span> UTF8</span><br></pre></td></tr></table></figure>
+</details>
+<h4 id="设置-windows-定时任务">设置 Windows 定时任务</h4>
+<details>
+<summary>
+展开即可抄作业
+</summary>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 本地备份任务 - 每小时</span></span><br><span class="line"><span class="variable">$trigger</span> = New-ScheduledTaskTrigger -Once -At (Get-Date) `</span><br><span class="line">                  -RepetitionInterval (New-TimeSpan -Hours 1) `</span><br><span class="line">                  -RepetitionDuration (New-TimeSpan -Days 3650)</span><br><span class="line"><span class="variable">$action</span>  = New-ScheduledTaskAction -Execute <span class="string">&quot;PowerShell.exe&quot;</span> `</span><br><span class="line">                  -Argument <span class="string">&quot;-WindowStyle Hidden -ExecutionPolicy Bypass -File <span class="variable">$TOOLS_DIR</span>\backup.ps1 `</span></span><br><span class="line"><span class="string">                            -Repo <span class="variable">$BACKUP_DIR_LOCAL</span> -Pass <span class="variable">$PASSWORD</span>&quot;</span></span><br><span class="line">Register-ScheduledTask -TaskName <span class="string">&quot;ResticLocal&quot;</span> -Trigger <span class="variable">$trigger</span> -Action <span class="variable">$action</span> `</span><br><span class="line">                       -User <span class="string">&quot;<span class="variable">$env</span>:USERNAME&quot;</span> -Settings (New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. NAS备份任务 - 每小时（错开 15 min 减轻网络突刺）</span></span><br><span class="line"><span class="variable">$trigger2</span> = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(15) `</span><br><span class="line">                   -RepetitionInterval (New-TimeSpan -Hours 1) `</span><br><span class="line">                   -RepetitionDuration (New-TimeSpan -Days 3650)</span><br><span class="line"><span class="variable">$action2</span>  = New-ScheduledTaskAction -Execute <span class="string">&quot;PowerShell.exe&quot;</span> `</span><br><span class="line">                   -Argument <span class="string">&quot;-WindowStyle Hidden -ExecutionPolicy Bypass -File <span class="variable">$TOOLS_DIR</span>\backup.ps1 `</span></span><br><span class="line"><span class="string">                             -Repo <span class="variable">$BACKUP_DIR_REMOTE</span> -Pass <span class="variable">$PASSWORD</span>&quot;</span></span><br><span class="line">Register-ScheduledTask -TaskName <span class="string">&quot;ResticNas&quot;</span> -Trigger <span class="variable">$trigger2</span> -Action <span class="variable">$action2</span> `</span><br><span class="line">                       -User <span class="string">&quot;<span class="variable">$env</span>:USERNAME&quot;</span> -Settings (New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable)</span><br></pre></td></tr></table></figure>
+</details>
+<h3 id="再一道保险">再一道保险</h3>
+<p>需要保证备份程序的正确设置。</p>
+<h4 id="试运行备份">试运行备份</h4>
+<p>创建一个测试文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">New-Item -Path <span class="variable">$TARGET_DIR</span>\test.txt -ItemType File</span><br></pre></td></tr></table></figure>
+<p>运行备份：</p>
+<ul>
+<li><p>打开 "任务计划程序"，找到 "ResticLocal" 和 "ResticNas"
+任务，点击运行。</p></li>
+<li><p>终端运行以下命令检查备份完整性：</p></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$PASSWORD</span> | restic snapshots -r <span class="variable">$BACKUP_DIR_LOCAL</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$PASSWORD</span> | restic snapshots -r <span class="variable">$BACKUP_DIR_REMOTE</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果均显示了一张包含了备份时间、备份目录的表，则备份成功。</li>
+</ul>
+<h4 id="定期检查备份完整性">定期检查备份完整性</h4>
+<p>设置脚本：</p>
+<details>
+<summary>
+展开即可抄作业
+</summary>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">@<span class="string">&#x27;</span></span><br><span class="line"><span class="string">param(</span></span><br><span class="line"><span class="string">    [string]$Repo,</span></span><br><span class="line"><span class="string">    [string]$Pass</span></span><br><span class="line"><span class="string">)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">$Env:RESTIC_REPOSITORY = $Repo</span></span><br><span class="line"><span class="string">$Env:RESTIC_PASSWORD   = $Pass</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">function Write-EventLogError &#123;</span></span><br><span class="line"><span class="string">    param($Message)</span></span><br><span class="line"><span class="string">    Write-Error $Message</span></span><br><span class="line"><span class="string">    New-EventLog -LogName Application -Source &quot;ResticVerify&quot; -ErrorAction SilentlyContinue</span></span><br><span class="line"><span class="string">    Write-EventLog -LogName Application -Source &quot;ResticVerify&quot; -EntryType Error -EventId 1 -Message $Message</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">function Show-ToastNotification &#123;</span></span><br><span class="line"><span class="string">    param(</span></span><br><span class="line"><span class="string">        [string]$Title,</span></span><br><span class="line"><span class="string">        [string]$Message</span></span><br><span class="line"><span class="string">    )</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    # 方法2: 系统托盘气球</span></span><br><span class="line"><span class="string">    Add-Type -AssemblyName System.Windows.Forms</span></span><br><span class="line"><span class="string">    $notify = New-Object System.Windows.Forms.NotifyIcon</span></span><br><span class="line"><span class="string">    $notify.Icon = [System.Drawing.SystemIcons]::Information</span></span><br><span class="line"><span class="string">    $notify.BalloonTipIcon = &quot;Error&quot;</span></span><br><span class="line"><span class="string">    $notify.BalloonTipTitle = $Title</span></span><br><span class="line"><span class="string">    $notify.BalloonTipText  = $Message</span></span><br><span class="line"><span class="string">    $notify.Visible = $true</span></span><br><span class="line"><span class="string">    $notify.ShowBalloonTip(5000)</span></span><br><span class="line"><span class="string">    Start-Sleep -Seconds 6</span></span><br><span class="line"><span class="string">    $notify.Dispose()</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 统一错误处理函数</span></span><br><span class="line"><span class="string">function Invoke-ResticCheck &#123;</span></span><br><span class="line"><span class="string">    param(</span></span><br><span class="line"><span class="string">        [scriptblock]$Command,</span></span><br><span class="line"><span class="string">        [string]$StepName</span></span><br><span class="line"><span class="string">    )</span></span><br><span class="line"><span class="string">    try &#123;</span></span><br><span class="line"><span class="string">        Write-Output &quot;执行步骤: $StepName&quot;</span></span><br><span class="line"><span class="string">        &amp; $Command</span></span><br><span class="line"><span class="string">        if ($LASTEXITCODE -ne 0) &#123; throw &quot;restic 返回非零退出码 $LASTEXITCODE&quot; &#125;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    catch &#123;</span></span><br><span class="line"><span class="string">        $errMsg = &quot;$StepName 失败: $($_.Exception.Message)&quot;</span></span><br><span class="line"><span class="string">        Show-ToastNotification -Title &quot;备份验证失败&quot; -Message $errMsg</span></span><br><span class="line"><span class="string">        Write-EventLogError $errMsg</span></span><br><span class="line"><span class="string">        exit 1</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 1. 基础 check</span></span><br><span class="line"><span class="string">Invoke-ResticCheck -Command &#123; restic check &#125; -StepName &quot;restic check&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 2. 抽检 10%</span></span><br><span class="line"><span class="string">Invoke-ResticCheck -Command &#123; restic check --read-data-subset=10% &#125; -StepName &quot;restic check --read-data-subset=10%&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Write-Output &quot;TestPass&quot;</span></span><br><span class="line"><span class="string">&#x27;</span>@ | Out-File -FilePath <span class="string">&quot;<span class="variable">$TOOLS_DIR</span>\verify.ps1&quot;</span></span><br></pre></td></tr></table></figure>
+</details>
+<p>设置定时任务：</p>
+<details>
+<summary>
+展开即可抄作业
+</summary>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 本地仓库验证任务</span></span><br><span class="line"><span class="variable">$trigger</span> = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday -At 04:30</span><br><span class="line"><span class="variable">$action</span>  = New-ScheduledTaskAction -Execute <span class="string">&quot;PowerShell.exe&quot;</span> `</span><br><span class="line">                  -Argument <span class="string">&quot;-WindowStyle Hidden -ExecutionPolicy Bypass -File <span class="variable">$TOOLS_DIR</span>\verify.ps1 `</span></span><br><span class="line"><span class="string">                            -Repo <span class="variable">$BACKUP_DIR_LOCAL</span> -Pass <span class="variable">$PASSWORD</span>&quot;</span></span><br><span class="line"><span class="variable">$settings</span> = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable</span><br><span class="line">Register-ScheduledTask -TaskName <span class="string">&quot;ResticVerifyLocal&quot;</span> -Trigger <span class="variable">$trigger</span> -Action <span class="variable">$action</span> -Settings <span class="variable">$settings</span> -User <span class="variable">$env</span>:USERNAME</span><br><span class="line"></span><br><span class="line"><span class="comment"># NAS仓库验证任务（错开 30 min 执行）</span></span><br><span class="line"><span class="variable">$trigger2</span> = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday -At 05:00</span><br><span class="line"><span class="variable">$action2</span>  = New-ScheduledTaskAction -Execute <span class="string">&quot;PowerShell.exe&quot;</span> `</span><br><span class="line">                   -Argument <span class="string">&quot;-WindowStyle Hidden -ExecutionPolicy Bypass -File <span class="variable">$TOOLS_DIR</span>\verify.ps1 `</span></span><br><span class="line"><span class="string">                             -Repo <span class="variable">$BACKUP_DIR_REMOTE</span> -Pass <span class="variable">$PASSWORD</span>&quot;</span></span><br><span class="line"><span class="variable">$settings2</span> = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -StartWhenAvailable</span><br><span class="line">Register-ScheduledTask -TaskName <span class="string">&quot;ResticVerifyNas&quot;</span> -Trigger <span class="variable">$trigger2</span> -Action <span class="variable">$action2</span> -Settings <span class="variable">$settings2</span> -User <span class="variable">$env</span>:USERNAME</span><br></pre></td></tr></table></figure>
+</details>
+<h3 id="试运行验证">试运行验证</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PowerShell.exe -File <span class="variable">$TOOLS_DIR</span>\verify.ps1 -Repo <span class="variable">$BACKUP_DIR_LOCAL</span> -Pass <span class="variable">$PASSWORD</span></span><br><span class="line">PowerShell.exe -File <span class="variable">$TOOLS_DIR</span>\verify.ps1 -Repo <span class="variable">$BACKUP_DIR_REMOTE</span> -Pass <span class="variable">$PASSWORD</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果显示 "TestPass"，则验证成功。</li>
+</ul>
+<h2 id="总结">总结</h2>
+<h3 id="why-定期验证">Why 定期验证</h3>
+<p>定期验证的目的是确保备份的完整性，事实上，备份由于偶然因素损坏的概率和硬件损坏的概率大致相当，定期验证可以及时发现备份损坏的问题。</p>
+<p>即使备份发生损坏，同时发生主数据损坏的概率极低。只需要重新修复备份即可。</p>
+<h3 id="该方案的优点">该方案的优点</h3>
+<ul>
+<li>基本践行 321 原则：
+<ul>
+<li>Local-History 作为第一道防线，能够秒级恢复工作区数据。</li>
+<li>Restic
+作为第二和第三道防线，完成<strong>两种介质</strong>和<strong>一份异地</strong>备份。</li>
+</ul></li>
+<li>一次配置，永久使用，备份操作无需任何手动介入。</li>
+</ul>
+<h3 id="该方案的不足">该方案的不足</h3>
+<ul>
+<li>密钥相关：
+<ul>
+<li>🚨 没有提供密钥备份方案，需要自行多端备份恢复密钥。</li>
+<li>🚨 密钥明文存储，对于勒索性丢失有一定风险。</li>
+</ul></li>
+<li>🚨 需要自行配置一个支持 SMB 的 NAS，并且需要确保 NAS 的稳定性。</li>
+<li>备份触发时无法做到<strong>完全无感</strong>，会打断工作聚焦。</li>
+<li>告警机制不够完善，Windows
+弹窗日志偶尔会被忽略，可以考虑发送邮件等更加完善的方式。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/09/06/%E6%8A%80%E6%9C%AF/%E5%BC%80%E6%BA%90/NcatBot%20%E7%B3%BB%E5%88%97%E8%BD%AF%E4%BB%B6%E9%87%8D%E5%A4%A7%E5%AE%89%E5%85%A8%E4%BA%8B%E6%95%85%E5%9B%9E%E9%A1%BE/" rel="prev" title="NcatBot系列软件重大安全事故回顾">
+                  <i class="fa fa-angle-left"></i> NcatBot系列软件重大安全事故回顾
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/10/28/%E7%94%9F%E6%B4%BB/%E5%9B%A2%E5%BB%BA%E6%B4%BB%E5%8A%A8%E7%AD%B9%E5%A4%87%E6%97%A5%E8%AE%B0/" rel="next" title="团建活动筹备日记">
+                  团建活动筹备日记 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

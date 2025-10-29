@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-count">116</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">51</span>
+        <span class="site-state-item-count">52</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,287 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/Python%20%E4%B8%80%E4%BA%9B%E5%BC%BA%E8%B0%83%E7%9A%84%E4%B8%9C%E8%A5%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E8%A8%80/Python%20%E4%B8%80%E4%BA%9B%E5%BC%BA%E8%B0%83%E7%9A%84%E4%B8%9C%E8%A5%BF/" class="post-title-link" itemprop="url">Python 一些强调的东西</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 16:28:24" itemprop="dateCreated datePublished" datetime="2022-07-12T16:28:24+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-11 15:49:22" itemprop="dateModified" datetime="2025-03-11T15:49:22+08:00">2025-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="pip-和包">pip 和包</h2>
+<h3 id="网络问题">网络问题</h3>
+<p>GFW 会墙掉默认的 pip 源, 所以请使用国内源.</p>
+<p><strong>不建议使用代理连接国外源.</strong></p>
+<p>使用国内源时一些注意事项:</p>
+<ul>
+<li><p><strong>彻底关闭代理软件</strong>(退出软件, 关 System Proxy
+没用), 并检查系统代理设置, 确认没有设置代理端口. 由它引起的报错:</p>
+<ul>
+<li>SSL 错误(报错大概长下面这样), 国内源不允许代理连接, 用的 TLS 方式,
+代理的 SSL 证书通不过验证.</li>
+</ul>
+<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by &#x27;SSLError(SSLEOFError(8, &#x27;[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)&#x27;))&#x27;: /simple/proxyscrape/</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Proxy 连接错误(报错大概长下面这样). 原因是命令行代理没有配置好, 但是
+pip 检测到了系统有代理尝试使用.</li>
+</ul>
+<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by &#x27;ProxyError(&#x27;Cannot connect to proxy.&#x27;, timeout(&#x27;_ssl.c:1091: The handshake operation timed out&#x27;))&#x27;: /simple/pandas/</span><br></pre></td></tr></table></figure></p></li>
+<li><p>清华源同步很慢, 速度不稳定, 建议使用阿里云源,
+命令行执行(永久设置):</p>
+<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">pip config set global.trusted-host mirrors.aliyun.com</span><br></pre></td></tr></table></figure></p></li>
+<li><p>检查全局源设置:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip config list</span><br></pre></td></tr></table></figure>
+<p>输出应该是: <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">global.index-url=&#x27;https://mirrors.aliyun.com/pypi/simple&#x27;</span><br><span class="line">install.trusted-host=&#x27;mirrors.aliyun.com&#x27;</span><br></pre></td></tr></table></figure></p></li>
+</ul>
+<h3 id="虚拟环境">虚拟环境</h3>
+<p>Python 包各种包的有复杂的版本依赖关系, 把所有包装在一起不可取.</p>
+<p>建议安装个 anaconda 创建虚拟环境, 然后在虚拟环境里安装包.</p>
+<p>anaconda <a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/75717350?utm_source=wechat_session&amp;utm_medium=social&amp;utm_oi=940926592332066816">安装教程</a>.</p>
+<p>额外提几个注意:</p>
+<ul>
+<li><p>安装 conda 前, 应该<strong>彻底卸载</strong>之前安装的 Python,
+直接用卸载功能不会删除 pip 相关的包, 正确的卸载方式:</p>
+<ol type="1">
+<li><p>找到并记住安装路径.</p></li>
+<li><p>用卸载程序(就是安装包)卸载.</p></li>
+<li><p>彻底删除安装路径.</p></li>
+</ol></li>
+<li><p>第一次安装 conda 完成后, 必须在终端执行 <code>conda init</code>
+命令使 conda 生效.</p></li>
+</ul>
+<h3 id="局部环境">局部环境</h3>
+<p>虚拟环境本质上就是建立了若干个局部环境,
+并使用一个全局的管理工具来管理这些局部环境.</p>
+<p>所以也可以直接建立局部环境, Python 的标准库有个 venv,
+就是用局部环境来做虚拟环境的.</p>
+<p>局部环境也可以用安装包安装, <strong>不要勾选添加系统路径</strong>,
+然后自定义安装路径就能安装 Windows 的 Python 局部环境.</p>
+<p>Linux 下安装 Python 局部环境</p>
+<p>用局部环境的路径去运行 pip, Python 时,
+所有操作都会在这个局部环境里执行, 与全局环境无关.</p>
+<p>理论上这个东西在制作傻瓜式软件的时候有一定作用, 但根据我的经验,
+虽然可能全国有 1% 的人会 Python, 但全国只有 0.1% 的人能够正确安装小众的
+Python 第三方库, 所以还是很有用的.</p>
+<p><del>上周见到两个 conda 装了不 init 的胎神.</del></p>
+<h2 id="import">import</h2>
+<h3 id="name"><strong>name</strong></h3>
+<p><code>__name__</code> 是 Python 的一个内置变量,
+用于判断当前文件是否被<strong>直接运行</strong>.</p>
+<p>用 <code>python xxx.py</code> 直接运行, <code>__name__</code> 为
+"<strong>main</strong>".</p>
+<p>用 <code>python -m xxx</code> 间接运行, <code>__name__</code>
+为<strong>模块名</strong>.</p>
+<h3 id="import-包时的执行逻辑">import 包时的执行逻辑</h3>
+<p>用 import 或者 from 导入模块时,
+对应模块代码会被原封不动的全部执行一遍, 执行时, 被 import 的代码中
+<code>__name__</code> 为 <strong>模块名</strong>.</p>
+<h3 id="import-寻找顺序">import 寻找顺序</h3>
+<p>有一个 <code>sys.path</code> 变量, 里面存着一些路径, 用于寻找模块.
+这玩意是个列表, 从前往后依次寻找, 找到就开始导入, 顺序大概这样: 1.
+在工作目录下寻找(绝对或相对导入). 2. 在 <code>site-packages</code>
+目录下寻找(仅绝对导入).</p>
+<h3 id="莫名其妙的-id-不一致问题">莫名其妙的 id 不一致问题</h3>
+<p>有时候, 你手动加了 <code>sys.path</code> 后, 导入时全局变量可能会出现
+id 不一致的问题, 讲下原因:</p>
+<ul>
+<li><p>ma 模块假设在 <code>module/ma.py</code> 里.</p></li>
+<li><p><code>a.py</code> 代码用 <code>module.ma</code> 导入了
+<code>ma</code> 模块的一个全局变量 <code>g</code>.</p></li>
+<li><p>往 <code>sys.path</code> 里加了 <code>module</code>
+这个目录.</p></li>
+<li><p><code>module/b.py</code> 代码中用 <code>ma</code> 导入了
+<code>ma</code> 模块的全局变量 <code>g</code>.</p></li>
+<li><p><code>a.py</code> 和 <code>b.py</code> 里 <code>g</code> 的 id
+不一致.</p></li>
+</ul>
+<p>所以别问为啥全局变量修改无效了.</p>
+<p>从不同目录下(<code>sys.path</code>值不同)导入同一个文件时,
+被导入的模块代码有不同的 id, 所以里面的东西也有两份.</p>
+<p><strong>无特殊需求, 只建议项目使用绝对导入.</strong></p>
+<h3 id="import-的代码到底执行了几遍">import 的代码到底执行了几遍</h3>
+<p>用同一个 <code>sys.path</code> 量导入的模块代码只会执行一遍,
+第一次执行后被加进 cache 里了, 第二次 import 时发现 cache 里有就直接用
+cache 里的了, 不执行第二次.</p>
+<h2 id="pypi">PYPI</h2>
+<p>PYPI 打包发布的时候, 如果文件夹没有 <code>__init__.py</code> 文件,
+那么这个文件夹会扔掉打包不进去.</p>
+<h2 id="关于-request-这一类网络请求函数">关于 Request
+这一类网络请求函数</h2>
+<h3 id="requests-库的-post-相关">Requests 库的 POST 相关</h3>
+<ul>
+<li>requests 的 post 方法有点坑，目前主流数据提交方式都是
+json，所以一般用 json 这个可选参数传参，data
+传参可能会因为格式问题导致请求失败。</li>
+<li>需要<strong>显式指定协议</strong>，直接写 <code>example.com</code>
+会报错。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">requests.post(<span class="string">&quot;http://example.com&quot;</span>, json=&#123;</span><br><span class="line">    <span class="string">&quot;token&quot;</span>: <span class="string">&quot;xxx&quot;</span>,</span><br><span class="line">    <span class="string">&quot;value&quot;</span>: <span class="string">&quot;yyy&quot;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Request 爬虫的时代已经过去了, 现在用 selenium 吧.</p>
+<p>当然如果直接最简单的 Request 没出问题也不妨试试.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/%E6%8A%80%E6%9C%AF/%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">一些有用的命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 16:24:19" itemprop="dateCreated datePublished" datetime="2022-07-12T16:24:19+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:47:52" itemprop="dateModified" datetime="2025-02-16T17:47:52+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="设置-pip-默认下载源">设置 pip 默认下载源</h4>
+<p><code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2454,439 +2735,6 @@ class="math inline">\((y_0 - m,x_0 + m)\)</span>。</li>
 class="math inline">\(y=-x+m\)</span> 的对称点：<span
 class="math inline">\((- y_0 + m,- x_0 + m)\)</span>。</li>
 </ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E6%95%B0%E5%AD%A6%E7%AE%97%E6%B3%95%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">数学算法汇总</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-12 16:02:23" itemprop="dateCreated datePublished" datetime="2022-07-12T16:02:23+08:00">2022-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:55:56" itemprop="dateModified" datetime="2025-02-16T17:55:56+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="数学算法介绍">数学算法介绍</h1>
-<p>主要介绍一些数学相关的算法。</p>
-<h2 id="多项式">多项式</h2>
-<ul>
-<li>DFT:离散傅里叶变换，方式有两种， FFT 和 NTT。</li>
-<li>IDFT:逆离散傅里叶变换。</li>
-</ul>
-<h3 id="fft-多项式乘法">FFT 多项式乘法</h3>
-<p><del>最开始学这玩意的时候感觉非常迷，后面数学水平上去了其实也不难。</del></p>
-<p>多项式有两种表示方法，一种是系数法，另一种是点值法，总所周知 <span
-class="math inline">\(n\)</span> 个不同点唯一确定一个 <span
-class="math inline">\(n-1\)</span> 次多项式。</p>
-<p>原理：多项式的两个系数表达式相乘是 <span
-class="math inline">\(O(n^2)\)</span> 的，但是其点值表达式相乘却是 <span
-class="math inline">\(O(n)\)</span>
-的，所以考虑将系数表达式转成点值表达式然后相乘。</p>
-<p>事实上，点值表达式和系数表达式的互相转化，如果点值取特殊点，可以做到
-<span class="math inline">\(O(n\log
-n)\)</span>，即使是任意点，即多项式多点求值和多项式多点插值也可以做到
-<span class="math inline">\(O(n \log^2n)\)</span></p>
-<p>设最终多项式次数为 <span
-class="math inline">\(n-1\)</span>，我们进行多项式乘法时选择的点值叫单位根，即
-<span class="math inline">\(x^n=1\)</span> 在复数域上的所有根。</p>
-<p>这玩意有一些性质，不过我们得先把次数变为 <span
-class="math inline">\(n=2^k\)</span> 形式。</p>
-<p>无法想象发明这个东西的人是怎么想到的，可能这就是被记在历史书上的人的水平。</p>
-<p><em>以下内容如果将坐标系视为极坐标系会更好理解</em> $$ <span
-class="math display">\[\begin{align}
-W_n^i &amp;= -W_n^{i+\frac{n}{2}}\\
-  
-W_{\frac{n}{2}}^{i} &amp;= W_{n}^{2i}\\
-\end{align}\]</span> $$ 考虑这样一个问题，对于一个多项式 <span
-class="math inline">\(a_0+a_1x+a_2x^2 \cdots a_{n-1}x^{n-1}\)</span>
-，我们需要同时求出它在 <span class="math inline">\(W_n^{0},W_n^{1}\cdots
-W_n^{n-1}\)</span> 处的取值。发现由于第一个性质，貌似可以偷个懒，因为后
-<span class="math inline">\(\frac{n}{2}\)</span> 个 <span
-class="math inline">\(W_i\)</span> 就是前 <span
-class="math inline">\(\frac{n}{2}\)</span> 个数的相反数。</p>
-<p>相反数的性质，奇数次幂的符号要改变。考虑对系数按奇偶性分类，式子变成了这个样子。</p>
-<p><span class="math inline">\((a_0+a_2x^2+\cdots
-+a_{n-2}x^{n-2})+x(a_1+a_3x^2+\cdots + a_{n-1}x^{n-2})\)</span></p>
-<p>然后考虑前后两个部分，都是一个多项式，需要对他们各自求 <span
-class="math inline">\(x=W_\frac{2}{n}^0,W_\frac{2}{n}^1\cdots
-W_\frac{2}{n}^{\frac{n}{2}-1}\)</span> 处的取值，本质上是求 <span
-class="math inline">\(x^2=W_{\frac{2}{n}}^0,W_{\frac{2}{n}}^2\cdots
-W_{\frac{2}{n}}^{n-2}\)</span>
-处的取值，结合第二个性质，woc，就是两个子问题，解决之后就可以 <span
-class="math inline">\(O(n)\)</span> 得到原问题的解，边界显然是 <span
-class="math inline">\(n=1\)</span>。</p>
-<p>复杂度 <span class="math inline">\(T(n)=2T(\frac{n}{2}) + O(n) =
-O(n\log n)\)</span></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">FFT</span><span class="params">(<span class="type">int</span> now,com *a,<span class="type">int</span> op)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(now==<span class="number">0</span>)</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">	com a1[<span class="number">1</span>&lt;&lt;now],a2[<span class="number">1</span>&lt;&lt;now];</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;now;i+=<span class="number">2</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		a1[i/<span class="number">2</span>]=a[i];</span><br><span class="line">		a2[i/<span class="number">2</span>]=a[i<span class="number">+1</span>];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">FFT</span>(now<span class="number">-1</span>,a1,op);</span><br><span class="line">	<span class="built_in">FFT</span>(now<span class="number">-1</span>,a2,op);</span><br><span class="line">	com w0=(com&#123;<span class="built_in">cos</span>(<span class="number">2.0</span>*Pi/(<span class="number">1</span>&lt;&lt;now)),op*<span class="built_in">sin</span>(<span class="number">2.0</span>*Pi/(<span class="number">1</span>&lt;&lt;now))&#125;),w=(com)&#123;<span class="number">1</span>,<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;now<span class="number">-1</span>;i++,w=w*w0)</span><br><span class="line">	&#123;</span><br><span class="line">		a[i]=a1[i]+w*a2[i];</span><br><span class="line">		a[i+(<span class="number">1</span>&lt;&lt;(now<span class="number">-1</span>))]=a1[i]-w*a2[i];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但是如果递归的话，常数会比较拉跨。因为递归必然需要复制数组重新弄成一个下标
-<span class="math inline">\(1-n\)</span>
-的问题，无论用什么办法解决，你的高速缓存都会表示意见很大，所以考虑迭代写法。</p>
-<p>本质上递归是一层一层合并了两个数组，那么能不能直接模拟这个合并的过程呢，答案是可以的。</p>
-<p>观察发现本质上是将下标二进制 <code>reverse</code>
-之后逐层合并的，我们也这么做就行。</p>
-<p>求 <code>reverse</code> 可以 <span
-class="math inline">\(O(n)\)</span>，如下（如果你不了解运算顺序，请老老实实打括号）</p>
-<p>这个原理很简单，不看最后一位，其它位先
-<code>reverse</code>，然后处理一下最后一位就行。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)res[i]=res[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>|(i&amp;<span class="number">1</span>)&lt;&lt;<span class="number">1</span>-lim;</span><br></pre></td></tr></table></figure>
-<p>下面是迭代写法代码，本质是模拟了递归合并的过程。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">FFT</span><span class="params">(com a[],com b[],<span class="type">int</span> op)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;maxn;i++)</span><br><span class="line">    <span class="keyword">if</span>(r[i]&gt;i)<span class="built_in">swap</span>(a[r[i]],a[i]),<span class="built_in">swap</span>(b[r[i]],b[i]);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=maxn;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">1</span>&lt;&lt;maxn;j+=<span class="number">1</span>&lt;&lt;i)&#123;</span><br><span class="line">			com w0=(com)&#123;<span class="built_in">cos</span>(<span class="number">2.0</span>*Pi/(<span class="number">1</span>&lt;&lt;i)),op*<span class="built_in">sin</span>(<span class="number">2.0</span>*Pi/(<span class="number">1</span>&lt;&lt;i))&#125;,w=(com)&#123;<span class="number">1</span>,<span class="number">0</span>&#125;;</span><br><span class="line">			<span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>;k++,w=w*w0)&#123;</span><br><span class="line">				com x=a[j+k],y=a[j+k+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]*w;</span><br><span class="line">				a[j+k]=x+y;</span><br><span class="line">				a[j+k+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]=x-y;</span><br><span class="line">                </span><br><span class="line">				x=b[j+k],y=b[j+k+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]*w;</span><br><span class="line">				b[j+k]=x+y;</span><br><span class="line">				b[j+k+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]=x-y;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>搞完了系数转点值，接下来是点值转系数。</p>
-<p>前人告诉我们只需要将单位根改为 <span
-class="math inline">\(W_n^{0},W_n^{-1}\cdots
-W_n^{-n+1}\)</span>，再做一遍系数转点值的过程就可以得到系数，但是系数会变成原来的
-<span class="math inline">\(n\)</span> 倍，除掉就行。</p>
-<p>给出简要证明，<span class="math inline">\(i\)</span> 次项的系数为
-<span class="math inline">\(a_i\)</span>，转一次点值</p>
-<p>之后变为 <span class="math inline">\(b_i\)</span>，再做一次变成 <span
-class="math inline">\(c_i\)</span> <span class="math display">\[
-\begin{eqnarray}
-c_x &amp;=&amp; \sum\limits_{i=0}^{n-1}b_iW_n^{-ix} \\
-&amp;=&amp; \sum\limits_{i=0}^{n-1}
-W_n^{-ix}\sum\limits_{j=0}^{n-1}a_jW_n^{ij}\\
-&amp;=&amp; \sum\limits_{i=0}^{n-1}
-\sum\limits_{j=0}^{n-1}a_jW_n^{i(j-x)}\\
-\end{eqnarray}
-\]</span> 对于 <span class="math inline">\(j=x\)</span>，贡献显然为
-<span class="math inline">\(\sum\limits_{i=0}^{n-1}a_xW_n^{i\times0} =
-na_x\)</span></p>
-<p>对于 <span class="math inline">\(j\neq x\)</span> 贡献为 <span
-class="math inline">\(a_j
-\sum\limits_{i=0}^{n-1}(W_n^{j-x})^{i}\)</span></p>
-<p>对这个式子的求和用等比数列求和公式有贡献为 <span
-class="math inline">\(\dfrac{W_n^{n(j-x)}-1}{W_n^{j-x}-1}\)</span></p>
-<p>显然分子为 <span class="math inline">\(0\)</span>，分母不为 <span
-class="math inline">\(0\)</span>，所以贡献是 <span
-class="math inline">\(0\)</span>，所以结果就是 <span
-class="math inline">\(na_x\)</span></p>
-<p>搞定。</p>
-<h3 id="ntt-多项式乘法">NTT 多项式乘法</h3>
-<p>FFT 多项式乘法是由缺陷的，由于浮点数精度和运算速度问题，FFT
-可能并不能很好的解决一些问题，所以引入了 NTT，NTT
-从有限整数域中找到了这样一组具有同样优秀性质的 <span
-class="math inline">\(W_n\)</span>，即 <span
-class="math inline">\(g\)</span>，也就是原根。</p>
-<p>原根的内容可以参考数学证明总结中的介绍。</p>
-<p><strong>注意，和 FFT 一样，NTT 也需要严格的按照 <span
-class="math inline">\(2^k\)</span> 取次数，因为我们利用了 <span
-class="math inline">\(W_n^{2i} = W_{\frac{n}{2}}^{i}\)</span>
-这一重要性质</strong></p>
-<p>所以能取出较大的 <span class="math inline">\(2^k\)</span>
-作为阶的质数才可以作为 NTT 的模数，常见的 NTT 模数是 <span
-class="math inline">\(998244353=2^{23}\times 7\times 17 +1\)</span>
-，我们可以取它的原根 <span class="math inline">\(g=3\)</span>
-作为基本单位根带入，实际上如果要找到一个应用于 <span
-class="math inline">\(n\)</span> 的单位根 <span
-class="math inline">\(W_n\)</span>，需要取 <span
-class="math inline">\(W_n=g^{\frac{p-1}{n}}\)</span>。这样它就满足了我们在
-FFT 证明中用到的一切性质。</p>
-<p>然后照着 FFT 打一遍就行，只是基本运算这些换为模 <span
-class="math inline">\(p\)</span> 意义下的运算就行。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">NTT</span><span class="params">(<span class="type">int</span> *a,<span class="type">int</span> type)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;s;i++)</span><br><span class="line">	<span class="keyword">if</span>(rk[i]&gt;i)<span class="built_in">swap</span>(a[rk[i]],a[i]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> len=<span class="number">1</span>;len&lt;=s;len++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> w=<span class="number">1</span>,wn=<span class="built_in">quick</span>(g,mod<span class="number">-1</span>&gt;&gt;len);</span><br><span class="line">		<span class="keyword">if</span>(type==<span class="number">-1</span>)wn=<span class="built_in">quick</span>(wn,mod<span class="number">-2</span>);</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j+(<span class="number">1</span>&lt;&lt;len)&lt;=<span class="number">1</span>&lt;&lt;s;j+=<span class="number">1</span>&lt;&lt;len,w=<span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(k=j;k&lt;j+(<span class="number">1</span>&lt;&lt;len<span class="number">-1</span>);k++,w=<span class="number">1ll</span>*w*wn%mod)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="type">int</span> x=a[k],y=a[k+(<span class="number">1</span>&lt;&lt;len<span class="number">-1</span>)];</span><br><span class="line">				a[k]=(x<span class="number">+1ll</span>*w*y%mod)%mod,a[k+(<span class="number">1</span>&lt;&lt;len<span class="number">-1</span>)]=(x<span class="number">-1ll</span>*w*y%mod)%mod;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="其它多项式乘法和一些优化">其它多项式乘法和一些优化</h3>
-<h4 id="fft-三次变两次">FFT 三次变两次</h4>
-<p>FFT 三次变两次，把 <span class="math inline">\(b\)</span> 扔到 <span
-class="math inline">\(a\)</span> 的虚部去，变成了 <span
-class="math inline">\(A(x) = (a_0+b_0i) + (a_1+b_1i)x+ \cdots +
-(a_{n-1}+b_{n-1}i)x^{n-1}\)</span></p>
-<p>然后求 <span
-class="math inline">\(A^2(x)\)</span>，得到的系数表达式的虚部就是 <span
-class="math inline">\(2ab\)</span>。</p>
-<p>证明显然，会比 NTT 略快。</p>
-<h4 id="任意模数-ntt">任意模数 NTT</h4>
-<p>NTT
-解决的是模意义下的乘法问题，当然，如果<strong>确保值域不超出模数</strong>，那么模意义下的结果就是正确结果。</p>
-<p>如果模数不是 NTT 模数，就需要写任意模数 NTT。</p>
-<p>实现方式有两种，其一是拆系数 FFT，其二是多模数 NTT 后用 CRT
-合并。</p>
-<h5 id="多模数-ntt">多模数 NTT</h5>
-<p>一般选取 <code>998244353 1004535809 469726049</code> 作为 NTT
-模数，它们的原根都是 <code>3</code>。分别进行 NTT
-后，可以得到在模它们意义下的结果，用中国剩余定理合并，得到一个模约 <span
-class="math inline">\(5\times 10^{26}\)</span>
-的数的结果，一般来说任意的模数不会超过 <span
-class="math inline">\(10^9\)</span>，所以乘起来的结果不超过 <span
-class="math inline">\(10^{24}\)</span>，直接用合并的结果就行。</p>
-<p>提一下实现细节。</p>
-<p>一种方式是写个 Num 类，里面放三个 int，重写一下加减乘除，正常做。</p>
-<p>另一种方式是写个 Poly 类，封装个乘法，用 for 做三次，都比较阳间。</p>
-<p>用 CRT 时记得 __int128。或者用一个科技</p>
-<p>一共三个方程，考虑这样合并。</p>
-<p>其中 <span class="math inline">\(mod_1^{-1}\)</span> 表示 <span
-class="math inline">\(mod_1\)</span> 在 <span
-class="math inline">\(mod_2\)</span> 意义下的逆元。 <span
-class="math display">\[
-x = x_1 \pmod {mod1} \\
-x = x_2 \pmod {mod2} \\
-k_1 mod_1 + x_1 = x_2 \pmod{mod2}\\
-x = (x_2-x_1)mod_1^{-1}mod_1 + x_1  \pmod {mod_2*mod_1}
-\]</span></p>
-<p>发现这样第二次合并的时候可以直接在模需要的模数 <span
-class="math inline">\(p\)</span> 下进行计算。</p>
-<p><strong>注意，务必考虑好取模的顺序，计算第二个时不能先对 p
-取模，因为可能结果还需要先模上 <span
-class="math inline">\(mod_1*mod_2*mod_3\)</span></strong>，</p>
-<p>怎样避免 __int128 ?</p>
-<p>把 <span class="math inline">\((x_2-x_1)mod_1^{-1}\)</span> 对 <span
-class="math inline">\(mod_2\)</span>
-取模即可，注意处理正负号，保证<strong>任意时刻</strong>结果在
-[0,对应模数) 内。</p>
-<h5 id="拆系数-fft">拆系数 FFT</h5>
-<p>FFT 精度不高，一般来说 double 跑个 <span
-class="math inline">\(10^{14}\)</span> 问题不大（最后除掉 <span
-class="math inline">\(n\)</span>
-以后的结果，也就是乘出来的多项式的系数，举个例子就是如果跑 <span
-class="math inline">\(n=10^4\)</span>，那需要保证 <span
-class="math inline">\(a_i,b_i\leq 10^5\)</span>），但是跑 <span
-class="math inline">\(10^{24}\)</span> 次方， FFT 表示我做不到，用 long
-double 也不行。</p>
-<p>所以考虑拆系数，把每个数写成 <span
-class="math inline">\(a_1\times2^{15} + a_2\)</span> 的形式。</p>
-<p>然后乘法就变成了 <span
-class="math inline">\(a_1b_1*2^{30}+(a_1b_2+a_2b_1)*2^{15}+a_2b_2\)</span>。</p>
-<p>设新的四个多项式为 <span
-class="math inline">\(A_1,A_2,B_1,B_2\)</span></p>
-<p>一共 8 次 FFT，但可以优化，考虑复多项式 <span class="math display">\[
-P=B_1+B_2i\\
-T_1=P\times A_1 \\
-T_2=P\times A_2
-\]</span></p>
-<p>发现需要的系数在 <span class="math inline">\(T_1,T_2\)</span>
-的实部和虚部，对这俩做 IDFT，收工。</p>
-<p>一共 5 次 DFT。</p>
-<p>也可以这样:</p>
-<p>先考虑 <span class="math display">\[
-P=A_1+A_2i\\
-P&#39;=A_1-A_2i\\
-Q=B_1+B_2i
-\]</span></p>
-<p>再考虑： <span class="math display">\[
-T_1=PQ=(A_1B_1-A_2B_2)+(A_1B_2+A_2B_1)i\\
-T_2=P&#39;Q=(A_1B_1+A_2B_2)+(A_1B_2-A_2B_1)i
-\]</span> 最后： <span class="math display">\[
-T_1+T_2=2(A_1B_1+A_1B_2i)\\
-T_1-T_2=-2(A_2B_2-A_2B_1i)
-\]</span></p>
-<p>弄出 <span class="math inline">\(T_1,T_2\)</span>
-的系数表示法就行。其实复系数多项式乘法和普通系数多项式乘法没有什么区别。</p>
-<p>这种 5 次的思路还有其它方式，不一一介绍了。</p>
-<p>听说有种方法可以把两次实数域多项式的 DFT 和 IDFT
-整成一次复数域的，但我觉得没啥必要会。</p>
-<p>DFT 思路是构造一个多项式 <span
-class="math inline">\(P=A+Bi\)</span>，对其做 DFT，然后线性求 <span
-class="math inline">\(Q=A-Bi\)</span> 的 DFT 结果。</p>
-<p>IDFT 思路不会。</p>
-<p><strong>更推荐第一种写法，不会出现精度问题，如果效率不够再考虑改成第二种</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/%E6%8A%80%E6%9C%AF/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/12/%E6%8A%80%E6%9C%AF/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">深入理解计算机系统学习笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-12 15:57:08" itemprop="dateCreated datePublished" datetime="2022-07-12T15:57:08+08:00">2022-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:47:27" itemprop="dateModified" datetime="2025-02-16T17:47:27+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="c-语言编译过程">C 语言编译过程</h3>
-<ul>
-<li>源文本-------预处理，处理 define,include 等</li>
-<li>预处理文本--------编译</li>
-<li>汇编文本----------汇编得到二进制文件 .o</li>
-<li>目标格式----------链接</li>
-<li>可执行文件</li>
-</ul>
-<h3 id="二进制补码原理和-c-语言处理类型转换">二进制补码原理和 C
-语言处理类型转换</h3>
-<ul>
-<li>二进制补码最高位本质是一个 <span
-class="math inline">\(-2^x\)</span></li>
-<li>同时处理有符号和无符号整数比较时或者进行其它二元运算时，C
-语言会默认无符号且均为正数。</li>
-<li>编译器处理一个 <code>-x</code> 的表达式时，会先读 <code>x</code>
-然后取反，所以 <code>-2147483648</code> 是不合法的，应该写为
-<code>-2147483647-1</code></li>
-</ul>
-<h3 id="简单的汇编语言">简单的汇编语言</h3>
-<ul>
-<li><p>操作系统将物理内存抽象为了一个一维数组，所有汇编层面的操作均在一维数组内进行</p></li>
-<li><p>每一条汇编指令都可以被描述为两个部分，指令和操作对象，这两部分的<strong>整体</strong>可以被一个或多个字节描述，此规则本质上是一颗哈夫曼树。</p></li>
-<li><p>一个程序的汇编指令会被保存在主存上，有一个程序计数器
-<code>epi</code> 指出当前执行到的地方。</p></li>
-<li><p>常用寄存器名有
-<code>eax,ecx,edx,ebx,esi,edi,esp,ebp</code>。前三者的数据由当前程序保存在栈中，后三者的值由下级程序保存，最后二者为帧指针和栈指针，一般不使用。前四个寄存器可以通过
-<code>ah,al,ax</code> 等形式访问低二字节和低一字，但都可以用
-<code>di</code> 形式访问低一字。</p></li>
-<li><p>传送指令分为三种 <code>movb movw movl</code>
-分别表示字节，字和双字。传送对应类型时，应该使用对应的寄存器位置。
-<code>push,pop</code>
-指令为压栈和弹栈，本质上是操作了主存和栈指针。</p></li>
-<li><p><code>lea</code> 指令可以快速计算 <code>a+b*(1,2,4,8)+c</code>
-，<code>a</code> 必须为常量，<code>b,c</code>
-必须为寄存器中的数。</p></li>
-<li><p>操作数分为三类，一类是立即数，一类是寄存器，一类是主存数据，访问格式如下。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$imm //立即数 imm</span><br><span class="line">eg. $0x3f</span><br><span class="line"></span><br><span class="line">E	//寄存器 E</span><br><span class="line">eg. eax</span><br><span class="line"></span><br><span class="line">Imm(e1,e2,s) //主存上 Imm+e1+e2*s 位置上的数据，Imm 可以缺省，后二者可以缺省，e1 缺省时不能省略 &#x27;,&#x27;</span><br><span class="line">eg. 0x3f(eax,ebx,4)</span><br><span class="line">eg. (eax)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>用 <code>test</code> 和 <code>cmp</code>
-指令来控指条件，本质上，它们改变了条件寄存器内的值，<code>test x x</code>
-等价于 <code>cmp 0 x</code>。执行 <code>cmp</code> 后，<code>jl</code>
-等条件跳转语句会在 <code>cmp</code> 成立时执行，<code>jl</code>
-表示小于时跳转，<code>cmp x y</code> 可以看作是 <code>y&lt;x</code>
-时执行 <code>jl</code></p></li>
-<li><p><code>call</code> 指令会将返回地址 (call)
-语句后那条语句的地址入栈后跳转到函数所在位置。<code>ret</code>
-指令利用返回地址跳转回去，一般来说，用 <code>eax</code>
-保存返回内容。</p></li>
-<li><p>由于程序寄存器中的某些值会被缓存到主存中，所以使用
-<code>gets</code>
-等不安全函数读取时，如果读取的内容过长超出了为此缓存区分别的字节后，会污染一些<strong>先前被存储在主存中的寄存器值</strong>，因为超出分配的内存后，会写在外面，通过这样的操作，我们可以改变一些系统寄存器的值，让程序跳转执行一些我们希望让它执行的代码（这样的代码通常被写在我们的输入里），这就是缓冲区攻击，通常操作是改变
-<code>ebp</code> 的值使得 <code>ret</code>
-操作跳到我们希望的地方。</p></li>
-</ul>
 
       
     </div>
