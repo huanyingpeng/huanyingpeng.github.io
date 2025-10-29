@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">114</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,7 +161,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-count">51</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,480 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/24/OI/%E6%AF%94%E8%B5%9B/CF1753/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/24/OI/%E6%AF%94%E8%B5%9B/CF1753/" class="post-title-link" itemprop="url">CF1753</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-24 19:12:49" itemprop="dateCreated datePublished" datetime="2022-10-24T19:12:49+08:00">2022-10-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:51:13" itemprop="dateModified" datetime="2025-02-16T17:51:13+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="d">D</h2>
+<p>很有意思的一道题，感觉有人一碰到这种二维平面上的图论题就只有瓜起。</p>
+<p>首先它是一个跳棋形式的题目，我们不要考虑去移动床，考虑移动空格，容易发现相邻的两个空格一定不会是同一个空格，所以可以枚举每两个相邻的位置，计算这里有空格的最小代价。</p>
+<p>怎么算，感觉两个东西是独立的，可以直接跑最短路。</p>
+<p>实际上也确实是这样的，由于最短路必定不会经过同一个点两次，所以考虑某个空格在一个点时的移动方式，如果它使用了某个床两次，那么一定在第二次使用这个床时回到了原点，必定不优。</p>
+<p>感性的考虑在两个点路径距离大于等于 <span
+class="math inline">\(3\)</span>
+的任意时刻，二者的路径都是互不影响的，小于 <span
+class="math inline">\(3\)</span> 时已经相遇，所以两个点时独立的。</p>
+<p>怎么说，虽然没做出来，但是这道题还是给了我们思考这类题的方向。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/24/OI/%E6%AF%94%E8%B5%9B/CF1749/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/24/OI/%E6%AF%94%E8%B5%9B/CF1749/" class="post-title-link" itemprop="url">CF1749</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-24 16:29:08" itemprop="dateCreated datePublished" datetime="2022-10-24T16:29:08+08:00">2022-10-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:51:11" itemprop="dateModified" datetime="2025-02-16T17:51:11+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="e">E</h2>
+<p>一个 <span class="math inline">\(n\times m\le 3\times 10^5\)</span>
+的网格，里面有一些 <span class="math inline">\(1\)</span>，其余是 <span
+class="math inline">\(0\)</span>，你需要填上尽可能少的 <span
+class="math inline">\(1\)</span>，让网格上下不连通，并且 <span
+class="math inline">\(1\)</span> 之间边不相邻。</p>
+<p>这道题还是发现我网格图图论不扎实的问题。</p>
+<p>首先很容易想到一定会存在一条自左到右的链，分隔了上下两部分。所以我直接从左到右
+<span class="math inline">\(DP\)</span>。</p>
+<p>但是得到了 <span class="math inline">\(WA2\)</span> 的好成绩。</p>
+<p>左思右想也找不出问题，但是对拍后发现似乎是可以往回走的。</p>
+<p>改成最短路算法就通过了。</p>
+<p><strong>矩阵图论的题目，不要只看到自左向右，要考虑存不存在往回的可能。</strong></p>
+<p>如果没有错过，确实很难意识到这种思维漏洞，所以一定要记住！</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/24/%E7%94%9F%E6%B4%BB/%E4%B8%80%E4%BB%B6%E4%BA%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/24/%E7%94%9F%E6%B4%BB/%E4%B8%80%E4%BB%B6%E4%BA%8B/" class="post-title-link" itemprop="url">一件事</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-24 09:14:14" itemprop="dateCreated datePublished" datetime="2022-10-24T09:14:14+08:00">2022-10-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:49:21" itemprop="dateModified" datetime="2025-02-16T17:49:21+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="随便写写">随便写写</h3>
+<p>昨天考试，模数很离谱 <code>998244 8 53</code>，我文件名还写错了，挂了
+<code>190</code>。</p>
+<p>考完在机房随口骂了出题人两句，自己也没当回事，题做不来，看错了，我本事不够，我认，文件名写错，我的问题。骂人，就是心情不好，也没多想。</p>
+<p>上周有套题出的很离谱，考完也在机房骂了几句，想着反正已经考完了，相当于是下课时间，发泄几句也没什么。</p>
+<p>上周教练下午找我聊，说要控制情绪云云，我没当回事，说
+“我就是这个性格”，骂出来被批最多难受
+10min，不说两句说不定憋着难受一个星期，这件事也就这么稀里糊涂的过了，高一的老师
+qq 找我聊了一下，说我 "恶意发泄情绪"，我想确实是这样，虽然我还没把所谓的
+"恶意发泄情绪" 当回事，不过配合老师工作，我还是接受惩罚，20
+个俯卧撑当锻炼了。</p>
+<p>昨天考完又骂了几句，然后一起考的同学都没怎么管，晚上教练叫我和我爸打个电话，打过去披头盖脸就是一顿骂，我好好的心情被这一顿搞炸了，随即想都没想就怼了回去，也没有什么目的，就是对着干，爸叫我，自己反思错误，手写检讨，晚上
+11 点前拍照发给他，否则第二天来学校接我回家。</p>
+<p>我...</p>
+<p>说实话我确实不知道骂几句又有什么问题，搞得这么恼火，反正一下子就哭了。</p>
+<p>稍微冷静一下去找了
+<code>Walk</code>，和他好好聊了一会儿，其实我能想到看到的东西真的很少。。。</p>
+<p>回想一下，<code>Walk</code>
+说的确实有道理，再怎么说，直接骂出来是一件很不好的事情，虽然骂出来确实很爽，不过可能我不把这件事当事，很多人也不会放在心上，甚至有共情，但总有一些居心不良的人干一些龌龊的事，骂人了确实会留下一些把柄。<strong>注意，我在这里甚至用了
+"居心不良"
+这个非常文艺的词，而没有用一些更加常用的，更能表达我对这些人看法的词。</strong>
+所以这件事终归还是我有问题。</p>
+<p>冷静下来和老爸回个电话，说了这一点，但是爸还是说我没有看到主要问题，我这一部分看法只是很小的一面。</p>
+<p>他说了这些点：</p>
+<ul>
+<li><p>保护自己，别留下把柄（我说到的）</p></li>
+<li><p>这件事让身边的其他人很难办。</p></li>
+<li><p>不可避免的受到了一些网络影响。</p></li>
+<li><p>情绪控制上的问题</p></li>
+<li><p>文化素养的问题。</p></li>
+</ul>
+<p>第一点就不再多谈。</p>
+<p>第二点，这里的其它人并不指同学，指老师，他举了一个挺现实的例子，假定老师要写评语，那这件事情怎么办。可能平日里不会在意，但是比较正式和严肃的场合，爆粗口这件事情被提出来肯定会有很大的形象减分，所以为了咱还算行的个人形象，少骂几句。</p>
+<p>第三点，我也不得不承认受到了整个 OI
+圈某些不太好的风气的影响，走偏了，或者说没有守住 "本心"，在被不好的
+"大多数" 带着走，以前完全没有意识到这一点，还是需要想想，是不是
+"大多数"，就是正确的，这个
+"大多数"，甚至还是片面的，是一个小圈子。所以，哪些是精华，哪些是糟粕，需要认真思考。</p>
+<p>第四点，情绪控制，说起来容易，做起来难，人脑和电脑是一样的，CPU
+寄存器就那几个，赛不了太多东西，情绪控制的数据都放进了内存了，但是情绪上来的时候，不要说内存延迟的
+200 个周期了，L1 几个 CPU
+周期你都等不了，会直接把寄存器里的情绪用最快捷的方式扔出来，放电脑上就是——"死机，爆炸"，所以最有效的方式还是多找找样本，多获取一些负反馈，让你的思维模型对情绪控制更敏感，遇到相似的输入能够把读取
+"情绪控制"
+模块的权重算的高一点，所以还是一个阅历的问题，样本不够，训练出来的 AI
+就是典型的 "欠拟合"，处理基本问题都没有办法，换到人身上就是
+"年轻人"。机器学习之所以叫机器学习那是因为它模仿了人的学习过程，是有道理的。</p>
+<p>第五点，其实我不太想细谈，爸总是把文化素养和 "语文"
+挂钩起来。<strong>我很讨厌以主观看法作为基础的一切。</strong>放在义务教育中，就是语文，历史，和政治。为什么我不把英语算进来？<strong>英语学习的是使用英语这个工具，而不是学习语文这种主观印象。</strong>除开义务教育，一个典例就是中医，也许我对中医有误解，但是至少到现在为止，我还认为它是一个以主观看法为基础的
+Subject，所以直接告诉我。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/21/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1020%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/10/21/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1020%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221020考试总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-21 11:06:48" itemprop="dateCreated datePublished" datetime="2022-10-21T11:06:48+08:00">2022-10-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:22:25" itemprop="dateModified" datetime="2025-02-16T20:22:25+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0139">考试</a></p>
+<h3 id="t1">T1</h3>
+<p>套路状压题，有一些关于分支的常数优化技巧</p>
+<h3 id="t2">T2</h3>
+<p>有趣的容斥原理题，但是不太适合出在考试。</p>
+<p>首先猜想答案比较多，所以考场上直接一个随机化过掉。</p>
+<p>考虑两人集合交的大小 <span class="math inline">\(\sum|S_i\bigcap
+S_j|\)</span>
+，如果能算出这玩意，很容易用鸽巢原理算出答案个数的下界。</p>
+<p>考虑每个元素对它的贡献，是 <span
+class="math inline">\(\binom{cnt_i}{2}\)</span> 的，所以 <span
+class="math inline">\(cnt\)</span> 的分布需要尽可能平均，不妨让它就为
+<span class="math inline">\(cnt_i\)</span>。</p>
+<p>所以上面那个式子的下界是 <span
+class="math inline">\(\dfrac{n^3}{4}\)</span>
+级别的。鸽巢原理，集合总个数为 <span
+class="math inline">\(\dfrac{n\times(n+1)}{2}\)</span>，每一个集合先分配
+<span class="math inline">\(\lfloor\frac{n-1}{2}\rfloor\)</span>
+个，剩下的数级别是 <span class="math inline">\(O(n^2)\)</span>
+的，因此答案个数是 <span class="math inline">\(O(n)\)</span>
+的，期望随机 <span class="math inline">\(n\)</span>
+次可以找到一组合法解。</p>
+<h3 id="t3">T3</h3>
+<p>能看出很多问题的题。</p>
+<p>题目本身不难，但是坑点极多。</p>
+<p>考虑转化问题的时候一定要搞清楚转化的前提条件，以及对应的<strong>充要条件</strong>。</p>
+<p>第一次出错：认为选定合法的删除子序列后一定有解，实际上没有位置放
+<span class="math inline">\(1/0\)</span></p>
+<p>第二次出错：认为必须留位置给 <span
+class="math inline">\(1/0\)</span>，但实际上有可能根本不存在 <span
+class="math inline">\(1/0\)</span>，留位置是没有意义的，需要特判。</p>
+<p>另外还有必要提的一点是，这种选择一个元素，移动到任意位置的题，往往可以考虑最终结果，也就是选择了哪些，或者是选择了哪些不动。</p>
+<p>和求改为最长不下降子序列最小代价的题目一样，可以考虑补集转化，最多的，能不动的元素个数，就是
+LIS，LCS 的长度。</p>
+<p><strong>多次出错的原因也就是误以为只要选择合法，那么就一定可以构造合法的方案。</strong></p>
+<h3 id="t4">T4</h3>
+<p>有趣的贪心题。</p>
+<p>我们给矿工分级，并认为操作是放一组矿工，每个矿工只能挖一个，<span
+class="math inline">\(k\)</span> 级矿工能挖掉距离小于 <span
+class="math inline">\(k\)</span> 的点。</p>
+<p>考虑有一条线从下往上扫描，我们需要尽可能把矿工往上放，这样能够到更多的点。</p>
+<p>先考虑最深的必须放矿工的点，它一定满足，<span
+class="math inline">\(k\)</span>
+级儿子有一个还没有被挖的宝藏，否则可以继续往上，这一定不劣，不妨从最简单的情况开始。</p>
+<p>假设在这个点放了矿工，那矿工必须挖掉 <span
+class="math inline">\(k\)</span>
+级儿子，否则上面就处理不了了。如果矿工还能挖，那么需要让他把 <span
+class="math inline">\(k-1\)</span>
+级儿子也尽可能挖，因为如果让父亲处理，需要付出一个 <span
+class="math inline">\(k\)</span>
+级矿工的代价，但是这个点的矿工上到父亲的时候降级为 <span
+class="math inline">\(k-1\)</span>
+级，矿工等级显然越高越好，对于等级低的儿子，在这里挖可以看成于先上去降级再挖。</p>
+<p>所以在第一个必须放矿工的点，矿工<strong>必须</strong>挖掉 <span
+class="math inline">\(k\)</span> 级儿子，<strong>尽可能</strong>挖 <span
+class="math inline">\(k-1\)</span> 级儿子，意思是如果还有 <span
+class="math inline">\(k-1\)</span>
+级儿子没有挖完，那就没必要再放矿工，可以留给父亲处理。</p>
+<p>接下来的点就有不同等级的矿工了，对于 <span
+class="math inline">\(i\)</span>
+级矿工，他会尽可能挖掉和它同级的儿子，如果还有剩余，会挖掉 <span
+class="math inline">\(i-1\)</span>
+级儿子，<strong>这个过程一定要从等级小的矿工到等级大的矿工考虑</strong>，否则会变劣。</p>
+<p>剩余的矿工降级后上传，儿子升级后上传。</p>
+<p>按照这个策略贪心即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1072,698 +1546,8 @@ flip。</strong></p>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/12/OI/%E7%AE%97%E6%B3%95/%E5%85%B3%E4%BA%8E%E5%B9%B3%E8%A1%A1%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/12/OI/%E7%AE%97%E6%B3%95/%E5%85%B3%E4%BA%8E%E5%B9%B3%E8%A1%A1%E6%A0%91/" class="post-title-link" itemprop="url">关于平衡树</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-12 20:54:04" itemprop="dateCreated datePublished" datetime="2022-10-12T20:54:04+08:00">2022-10-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:55:07" itemprop="dateModified" datetime="2025-02-16T17:55:07+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="平衡树">平衡树</h1>
-<p>既然标题敢写平衡树，那就需要来谈谈平衡树本身，而不仅仅是实现它的方法。</p>
-<h2 id="平衡树本身">平衡树本身</h2>
-<p>平衡树是一颗二叉搜索树，每个节点<strong>权值</strong>大于左子树所有节点，小于右子树所有节点。</p>
-<p>和线段树相比，它是一种动态结构，适合维护结构动态变化的信息，比如需要支持插入和删除以及翻转的序列，也可以用来维护一棵树（LCT）</p>
-<p>和块状链表相比，它只能处理能够快速合并的信息，但是复杂度有所降低。</p>
-<h2 id="实现">实现</h2>
-<h3 id="splay">Splay</h3>
-<p>已经很熟悉的方式，不再多说，不过可以多嘴提一句势能分析。</p>
-<h3 id="势能分析原理">势能分析原理</h3>
-<p>定义势能函数 <span class="math inline">\(F(S)\)</span> 表示状态 <span
-class="math inline">\(S\)</span> 的势能，定义操作代价 <span
-class="math inline">\(p_i=c_i+F(S&#39;)-F(S)\)</span>，其中 <span
-class="math inline">\(c_i\)</span> 表示操作时间。</p>
-<p>求解 <span class="math inline">\(\sum p_i=\sum c_i +
-F(S_m)-F(S_0)\)</span></p>
-<p>移项得到 <span class="math inline">\(\sum c_i=\sum
-p_i+F(S_0)-F(S_m)\)</span></p>
-<p>一般来说，<span class="math inline">\(c_i\)</span>
-会比较奇怪，但是通过 <span class="math inline">\(F\)</span>
-函数的变化值可以去抵消掉这个奇怪的值得到优雅的 <span
-class="math inline">\(p_i\)</span>，然后一般来说最后的复杂度和 <span
-class="math inline">\(\sum p_i,F(S)\)</span> 同阶</p>
-<h3 id="分析-splay-的复杂度和单旋的复杂度">分析 Splay
-的复杂度和单旋的复杂度</h3>
-<p>定义势能函数，定义单点势能 <span
-class="math inline">\(w(u)=\log_2(size_u)\)</span>， <span
-class="math inline">\(F(S)=\sum\limits_{u\in S} w(u)=O(n\log
-n)\)</span>。</p>
-<p>旋转点为 <span class="math inline">\(x\)</span>，父亲为 <span
-class="math inline">\(f\)</span>，祖父为 <span
-class="math inline">\(g\)</span>。</p>
-<h4 id="左旋代价">左旋代价</h4>
-<p>注意到 <span
-class="math inline">\(size_{x&#39;}=size_{fa}\)</span>。</p>
-<p><span class="math inline">\(1+w(x&#39;)+w(fa&#39;)-w(x)-w(fa)\le
-1+w(fa)-w(x)\le 1+w(x&#39;)-w(x)\)</span></p>
-<h4 id="双左旋代价">双左旋代价</h4>
-<p><span
-class="math inline">\(1+w(x&#39;)+w(f&#39;)+w(g&#39;)-w(x)-w(f)-w(g)\le
-1+w(f&#39;)+w(g&#39;)-w(x)-w(f)\)</span></p>
-<p><span class="math inline">\(w(f)\ge w(x),w(f&#39;)\le
-w(x&#39;)\)</span></p>
-<p><span class="math inline">\(w(x&#39;)-w(x)\ge
-w(f&#39;)-w(f)\)</span></p>
-<p><span class="math inline">\(1+w(f&#39;)+w(g&#39;)-w(x)-w(f) \le 1+
-w(x&#39;)+w(g&#39;)-2w(x)\)</span></p>
-<p>若 <span class="math inline">\(w(x&#39;)-w(x) \ge 1\)</span></p>
-<p>则 $ 1+ w(x')+w(g')-2w(x)(w(x')-w(x))$</p>
-<p>否则因为先旋的 <span class="math inline">\(f\)</span>，所以 <span
-class="math inline">\(g&#39;\)</span> 下的点不包括 <span
-class="math inline">\(x\)</span> 中的点，所以有 <span
-class="math inline">\(size_x\ge size_{g&#39;}\)</span>，因此 <span
-class="math inline">\(w(x&#39;)-w(g&#39;) \ge1\)</span></p>
-<p>得到 <span class="math inline">\(1+ w(x&#39;)+w(g&#39;)-2w(x)\le
-2(w(x&#39;)-w(x))\)</span></p>
-<p>综上 <span
-class="math inline">\(1+w(x&#39;)+w(f&#39;)+w(g&#39;)-w(x)-w(f)-w(g)\le
-3(w(x&#39;)-w(x))\)</span></p>
-<h4 id="左右旋代价">左右旋代价</h4>
-<p><span class="math inline">\(1+w(x&#39;)+w(f&#39;)+w(g&#39;)\le
-1+w(f&#39;)+w(g&#39;)-w(x)-w(f)\le
-1+w(f&#39;)+w(g&#39;)-2w(x)\)</span></p>
-<p>由于最终 <span class="math inline">\(f&#39;,g&#39;\)</span> 都是
-<span class="math inline">\(x&#39;\)</span> 的儿子，所以 <span
-class="math inline">\(1+w(f&#39;)+w(g&#39;)-2w(x)\le2w(x&#39;)-2w(x)\)</span></p>
-<p>所以 <span class="math inline">\(1+w(x&#39;)+w(f&#39;)+w(g&#39;)\le
-2w(x&#39;)-2w(x)\)</span></p>
-<h4 id="双旋代价">双旋代价</h4>
-<p>注意到只会进行一次 zig 操作，所以可以忽视 zig 的那个
-1，其余代价直接相加，得到 <span class="math inline">\(3\)</span>，因此
-<span class="math inline">\(p_i=O(\log n)\)</span>。</p>
-<p>观察到一次 Splay 操作的每个子操作可以弄成 <span
-class="math inline">\(3\)</span> ，然后相加抵消掉得到 <span
-class="math inline">\(3+3w(x&#39;)-3w(x)\)</span>，是 <span
-class="math inline">\(O(n\log n)\)</span> 级别，势能变化量为 <span
-class="math inline">\(O(n\log n)\)</span> 级别，故时间为 <span
-class="math inline">\(O(n\log n)\)</span> 级别。</p>
-<h4 id="单旋代价">单旋代价</h4>
-<p>单旋代价为左旋代价的和，每次 <code>Splay</code> 操作数为 <span
-class="math inline">\(O(n)\)</span>，故单旋的复杂度上界是 <span
-class="math inline">\(O(n^2)\)</span></p>
-<h4 id="总结">总结</h4>
-<p>以上势能分析对 Splay 操作的要求是非常严格的，因此如果在查询中没有进行
-Splay
-操作，那么操作时间无法导致对应的势能变化，最后出现不正确的复杂度。</p>
-<h3 id="treap">Treap</h3>
-<p>数据随机的情况下，一个堆（每个节点的权值均大于它全部后代的权值）的期望高度是
-<span class="math inline">\(\log n\)</span>
-的，通过左右旋保证堆的性质，可以保证 Treap 的复杂度，左旋右旋和 Splay
-完全相同。</p>
-<h3 id="fhq_treap">FHQ_Treap</h3>
-<p>元素 <code>val</code>：需要维护的值。</p>
-<p>权值 <code>height</code>：随机的，用于保持堆性质的值。</p>
-<p>核心操作是 <code>Merge</code> 和 <code>Split</code>。</p>
-<p><strong>过程中需要时刻保证满足堆的性质</strong></p>
-<h4 id="mergeuv">merge(u,v)</h4>
-<p>合并两个子树 <code>u,v</code> ，保证 <code>u</code> 中元素全部小于
-<code>v</code>，返回根。</p>
-<p>和线段树合并非常像。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!u||!v)<span class="keyword">return</span> u^v;</span><br><span class="line">    <span class="keyword">if</span>(height[u]&gt;height[v])&#123;</span><br><span class="line">        son[u][<span class="number">1</span>]=<span class="built_in">merge</span>(son[u][<span class="number">1</span>],v);</span><br><span class="line">        <span class="built_in">push_up</span>(u);<span class="keyword">return</span> u;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        son[v][<span class="number">0</span>]=<span class="built_in">merge</span>(u,son[v][<span class="number">0</span>]);</span><br><span class="line">        <span class="built_in">push_up</span>(v);<span class="keyword">return</span> v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="splituxyk">Split(u,x,y,k)</h4>
-<p>按照元素值小于等于 <span class="math inline">\(k\)</span>
-划分为两颗树，较小的那棵树树根为 <span
-class="math inline">\(x\)</span>，较大的那个树根为 <span
-class="math inline">\(y\)</span>。</p>
-<p>细看这个函数其实相当妙。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">split</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> &amp;x,<span class="type">int</span> &amp;y,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(u==<span class="number">0</span>)&#123;</span><br><span class="line">    	x=y=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(val&lt;=k)&#123;</span><br><span class="line">        x=u;</span><br><span class="line">        <span class="built_in">split</span>(son[u][<span class="number">1</span>],son[u][<span class="number">1</span>],y,k);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">		y=u;</span><br><span class="line">        <span class="built_in">split</span>(son[u][<span class="number">0</span>],x,son[u][<span class="number">0</span>],k)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">push_up</span>(u);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其实也可以按照子树大小划分，用于文艺平衡树。</p>
-<h4 id="其它操作">其它操作</h4>
-<ul>
-<li>get_l(element)：按照小于 <code>element</code>
-划分，然后返回较小那边的大小，重新 merge</li>
-<li>get_element(rank)：与 <code>splay</code> 没有差异。</li>
-<li>insert(element)：按照小于等于它划分，然后 merge 两遍。</li>
-<li>erase(element)：按照小于等于它划分，然后按小于它划分，然后把划分得到的两个儿子
-<code>Merge</code> 起来再 merge，然后再
-merge，<strong>这样是能够处理元素相同节点的</strong>。</li>
-<li>get_prev(element)：按照小于它划分，用 get_element()</li>
-<li>get_next(element)：按照小于等于它划分，用 get_element()</li>
-<li>合并的时候也可以按概率选择父亲，<span
-class="math inline">\(sz\)</span> 较大的权重较大，期望复杂度可以证明是
-<span class="math inline">\(O(n\log n)\)</span> 的。</li>
-</ul>
-<h4 id="某些实验">某些实验</h4>
-<p>采用佳老师的神奇插入删除方式：</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/huan-yp/image_space/master/202210132101632.png"
-alt="image-20221013210116511" />
-<figcaption aria-hidden="true">image-20221013210116511</figcaption>
-</figure>
-<p>可以发现正常的插入方式需要 <span
-class="math inline">\(14S\)</span>，<span
-class="math inline">\(18S\)</span>
-是按子树大小概率合并，加上佳老师优化后变为 <span
-class="math inline">\(10S\)</span>，有一定改进。</p>
-<p>如果直接实现 get_rank 系列函数可以更快，但是没什么必要了。</p>
-<p>手写 get_rank 系列后耗时为 <span
-class="math inline">\(9S\)</span>，手写 get_rank
-系列，采用正常插入方式，用时 <span
-class="math inline">\(12S\)</span>。</p>
-<p>全实现的 Splay 需要 11S。</p>
-<h3 id="vector">vector</h3>
-<p>一般来说，如果数据范围 <span class="math inline">\(\le 5\times
-10^4\)</span>，或者时限比较宽松，可以用 <code>vector</code>
-实现平衡树。</p>
-<h3 id="pb_ds">pb_ds</h3>
-<p>自带平衡树，一般用于操作比较简单的情况，如果需要打 Tag 之类的，重写
-<code>node_update</code> 不如手写一颗。</p>
-<h2 id="可持久化平衡树">可持久化平衡树</h2>
-<p>可持久化平衡树一般用于解决强制在线的历史版本问题，对于非强制在线问题，其实可以离线到树上实现一个支持撤销的平衡树。</p>
-<p>对于强制在线问题，基本思路都是复制修改过的路径，复用没有修改过的路径。</p>
-<p>可以发现其实任何一个版本创建之后就是静态的，所以可持久化数据结构的核心是：<strong>任何时刻访问先前的版本，都能得到正确的结果，任何修改不能影响到先前的版本。</strong></p>
-<h3 id="splay-实现">Splay 实现</h3>
-<p>其它操作不变，Splay
-时复制<strong>涉及</strong>的所有点作为一个新版本。</p>
-<p>但是，这玩意的复杂度有问题，<strong>Splay</strong>
-的复杂度保证在于对操作进行势能分析，引入可持久化后，势能的变化量会变成
-<span class="math inline">\(n^2\log n\)</span> ,因此复杂度会退化。</p>
-<p>由于实际应用中，很少存在只能用 Splay 的情况，因此没有必要深究 Splay
-的可持久化。</p>
-<h3 id="fhq-treap-实现">FHQ-Treap 实现</h3>
-<p><strong>听说这种实现有点问题，但是实际中并没有出现过问题，如果觉得不太行可以换下面那种奇怪的实现。</strong></p>
-<h4 id="split">Split</h4>
-<p>由于操作都是从 <code>Split</code> 开始的，所以每次 <code>Split</code>
-前都复制一个版本出来，具体的，像可持久化线段树一样把不变的儿子共用，改变的儿子复制。</p>
-<p>Split
-的路径上所有点的信息都被改变了，需要复制一遍得到新的，这样原先版本的所有节点不会有任何变化。</p>
-<p>大致刻画以下 Split 中被修改的点，它呈一条链</p>
-<h4 id="merge">Merge</h4>
-<p>Merge
-过程中的复制不是必须的，原因是每个被修改的点都是被新建出来的点，这个证明可以考虑归纳，合并深度为
-<span class="math inline">\(1\)</span>
-的节点时，两点显然都是被复制的，不影响原树，合并任何被复制的两个节点时，较小的那个的右儿子，较大的那个的左儿子要么不存在，要么是被复制的，因为在被复制的节点处，链一定会向下延申。</p>
-<p>因此合并时可以不用新建节点。</p>
-<h4 id="神奇方法">神奇方法</h4>
-<p>佳老师有一个神奇写法，理论常数为 <span
-class="math inline">\(\frac{1}{2}\)</span>，具体的，插入和删除时先找到第一个
-<code>key</code> 小于当前点 <code>key</code>
-的点，然后这个点一定是被插入/删除点的儿子，然后把只对这个儿子做一遍
-Split，并把树分到插入点的两个儿子上面去，这个思路同样可以用于一般
-FHQ-Treap，运用在普通平衡树中，实际效率改进因子在 <span
-class="math inline">\(0.33\)</span> 左右。</p>
-<p>一般来说删除就正常搞，不然容易写错。</p>
-<p><strong>考试的时候如果不卡常就写正常写法，减少可能的错误。</strong></p>
-<p><strong>一般来说，空间得开 50 倍。</strong></p>
-<p>注：效率改进因子，若效率改进因子为 <span
-class="math inline">\(x\)</span>，原时间 <span
-class="math inline">\(t\)</span>，则改进后时间为 <span
-class="math inline">\(\frac{t}{1+x}\)</span>。</p>
-<h3 id="treap-实现">Treap 实现</h3>
-<p>由于期望树高是 <span class="math inline">\(\log n\)</span>
-的，所以直接复制所有已经被修改的点的信息</p>
-<h3 id="某种奇怪的实现">某种奇怪的实现</h3>
-<p>类似 FHQ-Treap，但是 Merge
-的时候按照子树大小作为权重，随机选一个做父亲，这样的复杂度是有保证的。</p>
-<h2 id="文艺平衡树">文艺平衡树</h2>
-<p>文艺平衡树是一类用于维护区间的平衡树，它和正常的平衡树类似，但是用树的结构来决定一个元素的大小，适合用来维护结构动态变化的序列。</p>
-<p>一般用 Splay 和 FHQ-Treap 实现。</p>
-<p>FHQ-Treap 实现时需要支持按 <code>size</code> 划分。</p>
-<h2 id="动态树">动态树</h2>
-<p>一般用 Splay 实现，复杂度 <span class="math inline">\(O(n\log
-n)\)</span>，进行实链剖分，每条实链被一颗 Splay
-维护，思想和文艺平衡树类似，用平衡树树的结构表明了原树节点中的的高度关系。</p>
-<p>核心操作是 <code>access</code> 和 <code>make_root</code>。</p>
-<h3 id="accessx">access(x)</h3>
-<p>使得 <span class="math inline">\(x\)</span>
-到树根上的路径成为一条实链，断开 <span class="math inline">\(x\)</span>
-和它实儿子的连接，并让 <span class="math inline">\(x\)</span> 成为该
-Splay 的根。</p>
-<h3 id="make_rootx">make_root(x)</h3>
-<p>使得 <span class="math inline">\(x\)</span> 成为树根，操作方式是先
-<code>accsess</code>，然后翻转这条实链，使得 <span
-class="math inline">\(x\)</span> 的深度最小。</p>
-<p>由于虚儿子认父不认子，所以整个结构都没有问题。</p>
-<h3 id="实现-1">实现</h3>
-<p>一般采用 Splay，FHQ-Treap 也没有问题。</p>
-<p>但是不能用一般 Treap，因为一般 Treap
-对树结构的要求决定了它无法进行旋转操作。</p>
-<p>FHQ-Treap 的复杂度很难证明是 <span class="math inline">\(n\log
-n\)</span>，但是可以保证上界为 <span class="math inline">\(O(n\log
-n^2)\)</span>，Splay 的复杂度则为 <span class="math inline">\(O(n\log
-n)\)</span></p>
-<p>似乎有 <span class="math inline">\(O(n\log n)\)</span> 的 FHQ-Treap
-实现。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/12/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1012%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/12/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1012%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221012考试总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-12 20:43:39" itemprop="dateCreated datePublished" datetime="2022-10-12T20:43:39+08:00">2022-10-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:22:11" itemprop="dateModified" datetime="2025-02-16T20:22:11+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="考试总结">考试总结</h2>
-<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0132">考试</a></p>
-<p>发挥一般</p>
-<h3 id="t1">T1</h3>
-<p>很趣味的题，考虑计算答案的过程，首先从某个点开始，遇到</p>
-<h3 id="t2">T2</h3>
-<p>平衡树模板，不做评价，权当练习使用 <code>pb_ds</code>。</p>
-<p>其实有平衡树之外的多种解法。</p>
-<h4 id="值域分块">值域分块</h4>
-<p>对这个东西其实一直不熟悉，如果序列分块不容易解决或者复杂度多一个
-<span
-class="math inline">\(\log\)</span>，那么考虑对值域分块，记录和每块数值有关的信息。</p>
-<p><span class="math inline">\(O(1)\)</span>
-改可以只改对应数值块和自身的数据，<span
-class="math inline">\(O(1)\)</span>
-查可以对块和块内维护前缀信息或者其它预处理信息。</p>
-<h4 id="树状数组上二分">树状数组上二分</h4>
-<p>写过若干次，但不熟练。</p>
-<p>以前缀和树状数组为例，它每个节点 <span
-class="math inline">\(x\)</span> 维护的信息是 <span
-class="math inline">\((x-lowbit(x),x]\)</span> 区间的全部信息。</p>
-<p>更新时一直 +lowbit，保证了恰好能够维护这些信息。</p>
-<p>所以如何二分也比较明晰了。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> now=<span class="number">0</span>,sum=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">18</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">    <span class="comment">// 现在认为在 (now,now+1&lt;&lt;i+1]</span></span><br><span class="line">	<span class="keyword">if</span>(<span class="number">1</span>&lt;&lt;i|now&lt;=n&amp;&amp;sum+c[now|<span class="number">1</span>&lt;&lt;i]&lt;k)&#123;<span class="comment">//在 (now|1&lt;&lt;i,now|1&lt;&lt;i+1]</span></span><br><span class="line">        now |= <span class="number">1</span>&lt;&lt;i;</span><br><span class="line">        sum += c[now];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> res = now + <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="t3">T3</h3>
-<p>有些价值的题，"优化状压DP" 还是有一些话题可谈。</p>
-<h3 id="t4">T4</h3>
-<p>李超树模板题，类似 <code>CDQ</code>
-分治的思路或者平衡树维护凸包其实很趣味，但是没有什么启发意义。</p>
-<p>等有时间了写一份斜率优化的总结。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/12/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1011%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/12/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/1011%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20221011考试总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-12 20:43:33" itemprop="dateCreated datePublished" datetime="2022-10-12T20:43:33+08:00">2022-10-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:22:06" itemprop="dateModified" datetime="2025-02-16T20:22:06+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="考试总结">20221011 考试总结</h2>
-<p><a target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0131">考试</a></p>
-<h3 id="t1">T1</h3>
-<p>假的可持久化题，弄到树上做撤销就行。</p>
-<p>其实写可持久化 FHQ-Treap 更容易</p>
-<p>参考 <a href="">关于平衡树</a></p>
-<p>还可以用块状链表搞定。</p>
-<h3 id="t2">T2</h3>
-<p>树套树模板题，但是有一些不同的思考方式。</p>
-<p>我采用了线段树套值域线段树，但是需要同时二分多个主席树，不够优雅。</p>
-<h4 id="值域树套位置树">值域树套位置树</h4>
-<p>一般来说，位置树套值域树更加常见，但如果有些涉及到二分的操作，也许把它们反过来会更加容易，因为反过来之后就可以在数据结构上二分，减少一个
-<span class="math inline">\(\log\)</span>。</p>
-<p>其实位置树套值域树也可以在数据结构上二分，只是实现起来相对麻烦一些。</p>
-<p>可以采用值域线段树套平衡树。</p>
-<p>这个时候 FHQ-Treap 的优势就体现出来了，很简单的可以查到 <span
-class="math inline">\([l,r]\)</span> 区间内数的个数。</p>
-<h4 id="莫队和值域分块">莫队和值域分块</h4>
-<p>带修莫队可以处理单点改区间查的问题，修改一共 <span
-class="math inline">\(O(n^{\frac{5}{3}})\)</span> 次，查询 <span
-class="math inline">\(O(n)\)</span> 次，使用 <span
-class="math inline">\(O(\sqrt n)-O(1)\)</span>
-的值域分块即可处理问题。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/10/10/OI/%E7%AE%97%E6%B3%95/%E4%B8%80%E7%B1%BB%E6%9C%9F%E6%9C%9B%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">ARC150D-一类期望问题的思考方式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-10-10 21:08:17" itemprop="dateCreated datePublished" datetime="2022-10-10T21:08:17+08:00">2022-10-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:56:07" itemprop="dateModified" datetime="2025-02-16T17:56:07+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="题意">题意</h2>
-<ul>
-<li><p>给你一棵有根树，定义一个点合法当且仅当它到根上的点全为黑色，否则不合法。</p></li>
-<li><p>最开始所有点为白色，每次选一个不合法的点涂黑，每个点可以被涂黑多次。</p></li>
-<li><p>问所有点被涂黑的期望次数</p></li>
-</ul>
-<h2 id="思考1">思考1</h2>
-<p>这次想题引爆了某人概率论基础不扎实的炸弹。</p>
-<p>考虑每个点被涂黑的顺序，是一个排列，取到每种排列的概率相同。</p>
-<p>考虑使用全期望公式计算，先考虑固定一个排列时的答案。</p>
-<p>先假设只有 <span class="math inline">\(3\)</span> 个点，且顺序为
-<span class="math inline">\(3,2,1\)</span>，也就是赠券收集问题。</p>
-<p>选第一个点的期望次数为 <span
-class="math inline">\(1\)</span>，因为所有满足这个排列的样本点都是以
-<span class="math inline">\(3\)</span>
-开头，选第二个点，期望次数是多少，或者说，选出第一个点后，下一个被选择的点，在顺序为
-<span class="math inline">\(3,2,1\)</span> 的前提下，是 <span
-class="math inline">\(2\)</span> 的概率是多少？</p>
-<h3 id="frac12-的来历"><span class="math inline">\(\frac{1}{2}\)</span>
-的来历</h3>
-<p>选第二个点时，可以选的点有 <span
-class="math inline">\(3,2\)</span>，选择每个点的概率相同，所以概率为
-<span class="math inline">\(\frac{1}{2}\)</span></p>
-<p><strong>虽然原本每个点概率时相同的，但是我们求的时条件概率，条件概率的样本空间已经被改变了，所以选择每个点的概率不再相同。</strong></p>
-<h3 id="frac23-的来历"><span class="math inline">\(\frac{2}{3}\)</span>
-的来历</h3>
-<p>考虑概率的定义，<span
-class="math inline">\(P=\frac{事件大小}{样本空间大小}\)</span>，考虑该条件的集合和事件与条件的交集，因为此题样本空间无限大，所以考虑将一个无限长序列映射到我们的样本空间，容易发现这样的映射不会改变概率函数。</p>
-<p>设 <span class="math inline">\(k\)</span> 为已经选取的数的个数，<span
-class="math inline">\(n\)</span> 为数的总数。 $$ <span
-class="math display">\[\begin{align}
-
-P=&amp;\lim\limits_{m\rightarrow
-\infty}\dfrac{n^{m-1}}{\sum\limits_{1\le i\le m} k^{i-1}\times
-n^{m-i}}\\
-=&amp;\dfrac{n^{m-1}}{\frac{n^{m}}{n-k}}\\
-=&amp;\frac{n-k}{n}
-\end{align}\]</span> $$ 这是在正确的样本空间算出的正确结果。</p>
-<p>从 Beyes 公式考虑： <span class="math display">\[
-\begin{align}
-P(下一个值为目标|满足排列限制)=&amp;\dfrac{P(下一个值为目标\wedge满足排列限制)}{P(满足排列限制)}\\
-=&amp;\dfrac{\frac{1}{n}\times\frac{1}{(n-k-1)!}}{\frac{1}{(n-k)!}}\\
-=&amp;\dfrac{n-k}{n}
-\end{align}
-\]</span> 神奇吧？</p>
-<p><strong>贝叶斯公式连接了条件概率和原问题的样本空间。</strong></p>
-<h3 id="总结">总结</h3>
-<p><strong>样本空间无限大的时候要小心，不能轻易认为两个元素等价，因为此时
-<span class="math inline">\(\infty \ne \infty\)</span></strong>。</p>
-<p>用贝叶斯公式好好算算吧。</p>
-<p>草率的断言概率为 <span
-class="math inline">\(\frac{1}{2}\)</span>，很大一部分原因都是认为两个正无穷时相等的。</p>
-<p>有了这个东西就可以愉快的推狮子 NTT 了。</p>
-<h2 id="思考2">思考2</h2>
-<p>其实这种题还有一种更加普遍的做法，期望线性性，考虑每个点被选的次数，相加可以得到最终答案。</p>
-<p>期望线性性来源于期望的定义，一个随机变量是一个函数，定义域为样本空间，值域为
-<span
-class="math inline">\(\R\)</span>，随机变量的期望为其密度函数积分的收敛值。</p>
-<p>因此，无论两个随机变量是否独立，它们的期望都是可加的。</p>
-<p>感性理解的话，两个随机变量之和的期望等于这样一个随机变量的期望：每个样本点的取值为两个随机变量在该样本点的取值之和，期望可以粗略理解为随机变量在样本空间每个点的平均值，因此随机变量的期望可加。</p>
-<p>所以可以考虑每个点被选的期望次数，如果选到了不在这个点到根路径上的点，那么我们忽略这一次选择，这样的忽略不会影响这个点被选的期望次数，然后问题变成了一条链上的最后一个点被选择的期望次数。</p>
-<p><strong>注意，我们只关心这个点被选择的期望次数。</strong></p>
-<p>考虑怎么求这玩意，因为整个过程在点到根路径上所有点被选择之后才会结束，所以像赠券收集问题一样倒序。假设有
-<span class="math inline">\(k\)</span> 个点还没选，总共 <span
-class="math inline">\(n\)</span> 个点，其中 <span
-class="math inline">\(w\)</span> 个点可以选，那么转移答案是 <span
-class="math inline">\(dp[k]=\frac{k}{w}dp[k+1]+\frac{w-k}{w}dp[k]+\frac{1}{w}\)</span></p>
-<p>移项得到 <span
-class="math inline">\(dp[k]=dp[k+1]+\frac{1}{k}\)</span>，实际上和 <span
-class="math inline">\(w\)</span> 无关，所以就很好算了。</p>
-<p>官方题解的说法是如果考虑可以选已经 <code>good</code>
-的点，最终答案不变，我理解不了这个过程。</p>
-<p>upd：其实现在也可以理解了，因为如果选了已经 good
-的点，那么再选一次就行了。</p>
-<p><strong>有几个比较重要的地方，一是忽略和答案绝对无关的操作，二是考虑计算过程。</strong></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
