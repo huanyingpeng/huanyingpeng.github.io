@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"huanyp.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","display":"post","width_expanded":320,"width_dual_column":240,"padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="用 5 min 讲清前端三剑客、内容&#x2F;应用服务器、CORS、完整 HTTP 回包链路，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="漫谈 B&#x2F;S 架构">
+<meta property="og:url" content="https://huanyp.cn/2025/12/12/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/%E6%BC%AB%E8%B0%88-B-S-%E6%9E%B6%E6%9E%84/index.html">
+<meta property="og:site_name" content="幻影彭的彩虹">
+<meta property="og:description" content="用 5 min 讲清前端三剑客、内容&#x2F;应用服务器、CORS、完整 HTTP 回包链路，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-12T06:13:40.000Z">
+<meta property="article:modified_time" content="2025-12-12T07:46:47.416Z">
+<meta property="article:author" content="huan-yp">
+<meta property="article:tag" content="算法竞赛, 自动化测试, 工程技术, Python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://huanyp.cn/2025/12/12/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/%E6%BC%AB%E8%B0%88-B-S-%E6%9E%B6%E6%9E%84/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://huanyp.cn/2025/12/12/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/%E6%BC%AB%E8%B0%88-B-S-%E6%9E%B6%E6%9E%84/","path":"2025/12/12/技术/基础/漫谈-B-S-架构/","title":"漫谈 B/S 架构"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>漫谈 B/S 架构 | 幻影彭的彩虹</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">幻影彭的彩虹</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录青春的扇区</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-友情链接"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友情链接</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BC%AB%E8%B0%88-bs-%E6%9E%B6%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">漫谈 B&#x2F;S 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF"><span class="nav-number">1.1.</span> <span class="nav-text">前端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">前端框架</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF"><span class="nav-number">1.2.</span> <span class="nav-text">后端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E5%92%8C%E7%AB%AF%E5%8F%A3"><span class="nav-number">1.2.1.</span> <span class="nav-text">网络请求和端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">内容服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.2.3.</span> <span class="nav-text">应用服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E8%AF%B7%E6%B1%82"><span class="nav-number">1.2.4.</span> <span class="nav-text">跨域资源请求</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="huan-yp"
+      src="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+  <p class="site-author-name" itemprop="name">huan-yp</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">117</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">52</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/huan-yp" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;huan-yp" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:3051561876@qq.com" title="E-Mail → mailto:3051561876@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/1155409006?spm_id_from=333.1369.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;1155409006?spm_id_from&#x3D;333.1369.0.0" rel="noopener me" target="_blank"><i class="fab fa-youtube fa-fw"></i>Bilibili</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2025/12/12/%E6%8A%80%E6%9C%AF/%E5%9F%BA%E7%A1%80/%E6%BC%AB%E8%B0%88-B-S-%E6%9E%B6%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="漫谈 B/S 架构 | 幻影彭的彩虹">
+      <meta itemprop="description" content="用 5 min 讲清前端三剑客、内容/应用服务器、CORS、完整 HTTP 回包链路，">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          漫谈 B/S 架构
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-12-12 14:13:40 / 修改时间：15:46:47" itemprop="dateCreated datePublished" datetime="2025-12-12T14:13:40+08:00">2025-12-12</time>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">用 5 min 讲清前端三剑客、内容/应用服务器、CORS、完整 HTTP 回包链路，</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="漫谈-bs-架构">漫谈 B/S 架构</h1>
+<p>B/S
+架构，即浏览器/服务器（Browser/Server）架构，是一种现在最常见的软件架构模式。它通过<strong>浏览器作为客户端</strong>，与服务器进行交互，实现数据的展示和处理。</p>
+<h2 id="前端">前端</h2>
+<p>前端即 Browser（浏览器）。可以认为由
+<code>HTML</code>、<code>CSS</code> 和 <code>JavaScript</code>
+三大部分组成。</p>
+<p><code>HTML</code>
+定义了网页的<strong>结构和内容</strong>（有什么），<code>CSS</code>
+用于定义网页的<strong>样式和布局</strong>（长什么样），<code>JavaScript</code>
+则负责网页的<strong>交互和动态效果</strong>（能做什么）。</p>
+<p><code>JavaScript</code> 可以操作 <code>HTML</code> 和
+<code>CSS</code>，以便实现网页的<strong>动态效果</strong>和<strong>数据变化</strong>；可以控制读取
+<code>HTML</code>
+元素中的（用户输入的）内容，以便实现与<strong>用户的交互</strong>；可以发起网络请求，与<strong>服务器</strong>进行数据交换。</p>
+<p>举个例子，当你给一个帖子点赞时，你的输入（点击点赞按钮）的动作被
+<code>JavaScript</code> 捕获，它操作 <code>CSS</code>
+元素改变按钮的样式表示已点赞（通常是深蓝色）。</p>
+<p><em>同时也会发起一个网络请求将点赞信息发送到服务器。</em></p>
+<p>再举个例子，当你查看一个帖子的评论时（通常是往下滚），<code>JavaScript</code>
+能检测到这个动作，并发起一个网络请求从服务器获取评论数据。获得数据后动态去修改页面上的
+<code>HTML</code> 元素将评论内容显示在页面上。</p>
+<figure>
+<img
+src="https://ghfast.top/https://raw.githubusercontent.com/huan-yp/image_space/master/img/202512121441170.png"
+alt="image-20251212144120965" />
+<figcaption aria-hidden="true">image-20251212144120965</figcaption>
+</figure>
+<h3 id="前端框架">前端框架</h3>
+<p>理论上只需要编写这三块就能完成前端。但是，实际开发中，我们多用
+<code>Vue</code>, <code>React</code>
+等<strong>前端框架</strong>来开发。</p>
+<p>这些框架提供了很多<strong>封装好的组件</strong>和<strong>工具函数</strong>，并定义了一套可拓展性很好的架构，使用它们可以大大提高前端开发效率。</p>
+<p>使用前端框架编写的前端程序，通常需要经过<strong>编译打包</strong>，生成浏览器能直接运行的
+<code>HTML</code>、<code>CSS</code> 和 <code>JavaScript</code>
+文件。</p>
+<h2 id="后端">后端</h2>
+<p>严格意义上，后端是 "内容服务" 和 "应用服务" 的总和。这里的 "xx服务"
+指一个运行在某台物理机器上的<strong>程序</strong>，不妨叫它
+"后端程序"。</p>
+<p>后端的开发比较自由，只要能监听和处理 HTTP
+请求，就可以用任何编程语言和框架来实现。</p>
+<h3 id="网络请求和端口">网络请求和端口</h3>
+<p>在计算机网络中，常以 "IP 地址" 来区分不同的机器，而以 "端口号"
+来区分同一台机器上的不同服务。</p>
+<p>一个后端程序需要<strong>监听</strong>一个端口号，以便接收和处理网络请求。</p>
+<p>一个网络请求通常需要包含三个要素：目标机器的 IP
+地址、目标机器的端口号、请求的数据内容。</p>
+<p>前端（浏览器）发送网络请求后，数据包经过互联网传输到达目标机器，目标机器的<strong>操作系统</strong>根据端口号将请求数据交给对应的后端程序处理。如果后端程序有<strong>响应数据包</strong>，那么会向前端回传响应数据包。回传数据包的过程和发送请求数据包的过程类似。</p>
+<details>
+<summary>
+一张快递单看完整 HTTP 旅程（点击展开）
+</summary>
+<ol type="1">
+<li><strong>应用层</strong>填单：<strong>浏览器</strong>把“GET
+/index.html”当成货物（<strong>请求数据</strong>），意思是“请把首页发给我”。<br />
+</li>
+<li><strong>传输层</strong>打包：<strong>浏览器</strong>通过快递小哥（<strong>操作系统</strong>）提供的物流
+APP（<strong>套接字接口</strong>），委托物流公司（<strong>TCP
+协议传输层</strong>）来运送货物。浏览器会在物流 APP
+上填写目标小区名字（<strong>目的地
+IP</strong>）和门牌号（<strong>目的端口</strong>）。<br />
+</li>
+<li><strong>操作系统</strong>打包贴单：快递小哥给包裹贴上“始发地址:本机
+IP（ + 临时端口”和“目的地址:服务器 IP +
+端口”，然后扔进小区（<strong>物理机器</strong>）的快递网点（<strong>网卡</strong>）。<br />
+</li>
+<li><strong>路由器</strong>中转站：城市转运中心（<strong>家用路由器</strong>）只看“服务器
+IP”（目标小区名字）字段，查<strong>路由表</strong>决定走哪条高速；随后每到一个新转运中心（路由器）都重复这一动作，直到包裹抵达目标城市的转运中心。<br />
+</li>
+<li>签收与分拣：目标机器的<strong>网卡</strong>签收包裹，操作系统按“<strong>目的端口</strong>”分拣，把包裹交给正在该端口“蹲守”的<strong>后端程序</strong>进程。<br />
+</li>
+<li>后端回货：<strong>后端程序</strong>拆开包裹，处理请求，再生成新的响应包裹（HTML
+页面），按原路回寄，只是收发地址对调。<br />
+</li>
+<li>浏览器收件：浏览器收到响应包裹，拆开展示，页面渲染完成。</li>
+</ol>
+<em>这里省略了数据链路层的交互逻辑，不完全过程不完全准确。</em>
+</details>
+<h3 id="内容服务器">内容服务器</h3>
+<p>内容服务器一般用于提供一些<strong>静态资源</strong>；例如访问一个网站时，必须要先请求这个网站的前端程序（<code>HTML</code>、<code>CSS</code>、<code>JavaScript</code>
+文件），这些文件通常存放在内容服务器上。</p>
+<p>获取到前端程序后，浏览器会解析并运行这些程序，从而实现网页的展示和交互。</p>
+<p>一些图片资源等，也放在内容服务器上。</p>
+<h3 id="应用服务器">应用服务器</h3>
+<p>应用服务器用于处理<strong>本网站的前端程序</strong>发起的各种请求，例如获取数据、提交数据等。</p>
+<p>当然，应用服务器和内容服务器可以是<strong>同一个后端程序提供</strong>。</p>
+<p>设计应用服务器时，务必注意<strong>鉴权</strong>问题，只能允许<strong>合法的用户</strong>以<strong>合法的方式</strong>访问<strong>合法的数据</strong>。</p>
+<h3 id="跨域资源请求">跨域资源请求</h3>
+<p>浏览器出于安全考虑，通常会限制前端程序<strong>向协议、域名或端口不一致</strong>的服务器发起请求，这种限制称为“同源策略”。</p>
+<p>假设前端程序是从 <code>https://example.com:443</code>
+中请求获取到的，那么这个前端程序只能向
+<code>https://example.com:443</code> 发起请求，不能向
+<code>https://api.example.com:443</code> 或
+<code>http://example.com:8000</code> 发起请求。</p>
+<p>一般来说，当内容服务器和应用服务器是同一个后端程序时，这个限制不会带来问题。</p>
+<p>但是，当你想在浏览器上执行的前端程序，向另一个服务器发起请求时（例如前端程序托管在
+<code>https://example.com</code>，而应用服务器是
+<code>https://api.example.com</code>），就会遇到跨域资源请求的问题。</p>
+<p>这些问题可以通过一些技术手段来解决，例如
+<code>CORS</code>（跨域资源共享）。</p>
+<p><em>偶尔可能会写一写本地的 html/javascript
+程序，虽然它可以方便的运行在浏览器中，但如果需要向别的服务发送请求，请求就会被浏览器拦下来。</em></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/10/28/%E7%94%9F%E6%B4%BB/%E5%9B%A2%E5%BB%BA%E6%B4%BB%E5%8A%A8%E7%AD%B9%E5%A4%87%E6%97%A5%E8%AE%B0/" rel="prev" title="团建活动筹备日记">
+                  <i class="fa fa-angle-left"></i> 团建活动筹备日记
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">huan-yp</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

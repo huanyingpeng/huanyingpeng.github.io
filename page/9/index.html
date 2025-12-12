@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,125 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/09/20/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0920%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/09/20/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0920%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">20220920总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-20 19:27:26" itemprop="dateCreated datePublished" datetime="2022-09-20T19:27:26+08:00">2022-09-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 20:21:14" itemprop="dateModified" datetime="2025-02-16T20:21:14+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="某场考试t1"><a
+target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0123/problem/A">某场考试T1</a></h2>
+<p>怎么说，题不难，但是需要想一下。</p>
+<p>考虑右端点进行贪心的思路挺妙的。</p>
+<h2 id="某场考试t2"><a
+target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0123/problem/B">某场考试T2</a></h2>
+<p>比较套路的题，先弄出一个 <span class="math inline">\(t\times
+n^4\)</span>
+的凑合做，然后发现两维转移系数独立，转移答案为三角形和形式乘上两维系数，可以考虑固定第二维，单独计算第一维不同转移系数对应的式子，每一种系数的变化量为
+<span class="math inline">\(O(1)\)</span>，所以一次转移可以做到 <span
+class="math inline">\(O(n)\)</span>。</p>
+<h2 id="某场考试t3"><a
+target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0123/problem/C">某场考试T3</a></h2>
+<p>神仙题，考场上猜到树一定有解，但是想的是通过背包来构造解，事实上，可以归纳的证明每棵子树带来的差异可以取
+<span class="math inline">\([-sz_u,sz_u]\)</span>
+中的任意值，所以对于树暴力构造一条从根到某个点的路径，可以满足路径两边大小相等。</p>
+<p>考虑图上的结果。</p>
+<p>09
+年的一篇集训队论文告诉我们对于图上的问题，往往可以考虑其生成树的解法，从而进行拓展，发现无向图的生成树没有横插边，所以直接选取生成树上的答案，由于没有返祖边，所以原来合法的同样合法。</p>
+<h2 id="某场考试t4"><a
+target="_blank" rel="noopener" href="https://local.cwoi.com.cn:8443/contest/C0123/problem/D">某场考试T4</a></h2>
+<p>也是比较套路的题。</p>
+<p>很明显本质上是给你个一次函数做路径边权，然后 <span
+class="math inline">\(k\)</span> 的值为 <span
+class="math inline">\(1\)</span>，所以计算出每个点每个 <span
+class="math inline">\(k\)</span> 的值即可。</p>
+<p>我选择分层图跑 <span class="math inline">\(dij\)</span>
+外加大力卡常，但这是一种非常 <span class="math inline">\(SB\)</span>
+的行为，<span class="math inline">\(dij\)</span>
+本质上还是保证了转移的无环性，但 <span class="math inline">\(TM\)</span>
+这个转移本来就无环还跑你大爷的 <span
+class="math inline">\(dij\)</span>，暴力 <span
+class="math inline">\(dp\)</span> 出来做凸包就行。</p>
+<p>然后从 <span class="math inline">\(n\)</span> 的各个在凸包上的 <span
+class="math inline">\(k\)</span>，倒推回去看那些点可能被用到，倒推可以写成记搜，这样只用存一遍边。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1770,189 +1889,6 @@ class="math inline">\(g * h =
 f\)</span>，并使用卷积的定义构造，当然，<span
 class="math inline">\(f(p^c)\)</span> 必须要容易求。</p>
 <h3 id="州阁筛">州阁筛</h3>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/08/02/OI/%E7%AE%97%E6%B3%95/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/02/OI/%E7%AE%97%E6%B3%95/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Exchange-Argument小总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-02 23:04:58" itemprop="dateCreated datePublished" datetime="2022-08-02T23:04:58+08:00">2022-08-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 17:56:45" itemprop="dateModified" datetime="2025-02-16T17:56:45+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="exchange-argument">Exchange-Argument</h2>
-<ul>
-<li><p>参考资料：2022
-集训队论文《浅谈一类基于交换的贪心在信息学竞赛中的应用》</p></li>
-<li><p>本文主要介绍树上形式。</p></li>
-</ul>
-<h3 id="一般形式">一般形式</h3>
-<p>你需要为 <span class="math inline">\(n\)</span>
-个元素安排一个排名，得到一个序列 <span
-class="math inline">\(a\)</span>，最小化某函数 <span
-class="math inline">\(F(a)\)</span>。</p>
-<p>如果存在一个满足<strong>传递性和强完全性</strong>的关系 <span
-class="math inline">\(\le\)</span>，满足 <span
-class="math inline">\(a,b\)</span> 均为元素， $
-ab,F(s_1+a+b+s_2)F(s_1+b+a+s_2)$，则按照 <span
-class="math inline">\(\le\)</span> 排序后的排名可以最小化 <span
-class="math inline">\(F(a)\)</span>。</p>
-<p>典例为 NOIP2012 国王游戏。</p>
-<p>我们在这里略去证明，详见参考资料。</p>
-<ul>
-<li>强完全性指 <span class="math inline">\(\forall  a,b, a\le b\bigvee
-b\le a\)</span>，显然满足强完全性一定满足自反性。</li>
-<li>条件中 <span class="math inline">\(\{s_1+a+b+s_2\}\)</span>
-为全集。</li>
-</ul>
-<h3 id="树上问题">树上问题</h3>
-<h4 id="例题">例题</h4>
-<p>给定一棵树，需要为树的每个节点安排排名 <span
-class="math inline">\(p_u\)</span>，父节点的排名需要低于子节点。每个点有一个价值
-<span class="math inline">\(c_i\)</span>，需要最小化 <span
-class="math inline">\(\sum c_u\times p_u\)</span>。</p>
-<h4 id="分析与结论">分析与结论</h4>
-<p>唯一的变化是，对于原问题元素的比较 <span
-class="math inline">\(\le\)</span>，拓展到了对于子序列的比较，即 <span
-class="math inline">\(a,b\)</span> 为原来元素的一个序列。</p>
-<p><strong>以下是一个重要结论</strong></p>
-<p>考虑一个元素 <span
-class="math inline">\(v\)</span>，我们希望说明如果它的父亲 <span
-class="math inline">\(u\)</span>， <span
-class="math inline">\(u&gt;v\)</span>，那么 <span
-class="math inline">\(v\)</span> 一定在 <span
-class="math inline">\(u\)</span> 之后<strong>立刻被选择</strong>，此时将
-<span class="math inline">\(v,u\)</span> 合并，可以得到一个规模为 <span
-class="math inline">\(n-1\)</span> 的子问题。</p>
-<p>考虑证明 <span class="math inline">\(u\)</span> 被选择后一定会选择
-<span class="math inline">\(v\)</span>，对于一个满足树的限制的排列 <span
-class="math inline">\(p\)</span>，如果 <span
-class="math inline">\(u,v\)</span> 不相邻，那么由于 <span
-class="math inline">\(v&gt;u\)</span>，所以对于序列 <span
-class="math inline">\(p_1,p_2\dots u,p_l,p_{l1} \dots
-p_r,v,\dots,p_n\)</span>，一定有 <span
-class="math inline">\(u&gt;p_{l,r} \bigvee p_{l,r}&gt;v\)</span>，否则
-<span class="math inline">\(v&lt;u\)</span>，如果为前者，那么交换 <span
-class="math inline">\(u\)</span> 和 <span
-class="math inline">\(p_{l,r}\)</span>，后者同理，所以 <span
-class="math inline">\(v\)</span> 一定紧接着 <span
-class="math inline">\(u\)</span> 被选择。</p>
-<p>我们可以用以下两种方式解决问题。</p>
-<h4 id="方式1">方式1</h4>
-<p>考虑最大的元素 <span
-class="math inline">\(v\)</span>，显然可以合并它和它的父亲 <span
-class="math inline">\(u\)</span>，变成一个新的规模更小的问题。</p>
-<p>合并的过程可以用并查集维护连通块，注意区分并查集父亲和实际父亲。</p>
-<p>使用 <code>priority_queue</code> 或者 <code>set</code>
-可以实现加入删除和查询最小值，<code>priority_queue</code>
-的方式是同时维护一个代表删除的 <code>priority_queue</code>，实际上
-<code>priority_queue</code> 会比 <code>set</code> 快 <span
-class="math inline">\(1\)</span> 倍。</p>
-<p>注意实现的时候，如果找到了根，那么根其实有可能不在
-<code>priority_queue</code> 里面，可删除的 <code>priority_queue</code>
-如果删除了不存在的元素是会出问题的，所以一定要特判掉。</p>
-<p>复杂度 <span class="math inline">\(O(n\log n)\)</span></p>
-<h4 id="方式2">方式2</h4>
-<p>我们考虑对每个子树求其答案。</p>
-<p>利用分析中的结论，不妨将一棵子树划分成一些<strong>必须连续选择的序列</strong>，作为<strong>树对排列顺序的要求</strong>，将这些连续的序列视为一个元素后，我们可以对序列按照正常方式排序得到最优解。</p>
-<p>划分序列的过程是对于一棵子树 <span
-class="math inline">\(u\)</span>，将它的所有儿子的序列拿来排序，尝试将
-<span class="math inline">\(u\)</span>
-与最小的序列合并得到新的序列，如果 <span
-class="math inline">\(u\)</span>
-当前所在的序列较大，由于结论我们知道合并后一定能拿到最优解，否则停止合并，此时
-<span class="math inline">\(u\)</span>
-所在序列的权值最小，一定会被最先选择，其中 <span
-class="math inline">\(u\)</span> 又一定会被第一个选择。</p>
-<p>容易发现合并的过程一定不会改变子树内的选择顺序。</p>
-<p>合并时采用启发式合并，利用 <code>set</code> 或
-<code>priority_queue</code> 维护当前子树序列，复杂度为 <span
-class="math inline">\(O(n\log^2n)\)</span>，但优势在于可以求出所有子树的答案。</p>
-<p>当然可以使用可并堆达到 <span class="math inline">\(O(n\log
-n)\)</span></p>
-<p>注意到其实一遍 <code>dfs</code>
-就可以解决问题，因为启发式合并复杂度保证的来源是合并一次的复杂度为 <span
-class="math inline">\(O(\min(|u|,|v|))\)</span>，所以并不需要提前计算子树大小，直接合并即可，<code>set</code>
-或 <code>priority_queue</code> 的 <code>swap</code> 操作是 <span
-class="math inline">\(O(1)\)</span> 的。</p>
-<h3 id="碎碎念">碎碎念</h3>
-<p>Exc-Arg
-除了直接解决问题外，也可以用来简化问题，将选择元素并重排的问题变为<strong>排序后</strong>选择子序列的问题。</p>
-<p>对于树上的情况，我还没有见到过相关的问题。</p>
 
       
     </div>

@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,189 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/08/02/OI/%E7%AE%97%E6%B3%95/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/02/OI/%E7%AE%97%E6%B3%95/Exchange-Argument%E5%B0%8F%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Exchange-Argument小总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-02 23:04:58" itemprop="dateCreated datePublished" datetime="2022-08-02T23:04:58+08:00">2022-08-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:56:45" itemprop="dateModified" datetime="2025-02-16T17:56:45+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="exchange-argument">Exchange-Argument</h2>
+<ul>
+<li><p>参考资料：2022
+集训队论文《浅谈一类基于交换的贪心在信息学竞赛中的应用》</p></li>
+<li><p>本文主要介绍树上形式。</p></li>
+</ul>
+<h3 id="一般形式">一般形式</h3>
+<p>你需要为 <span class="math inline">\(n\)</span>
+个元素安排一个排名，得到一个序列 <span
+class="math inline">\(a\)</span>，最小化某函数 <span
+class="math inline">\(F(a)\)</span>。</p>
+<p>如果存在一个满足<strong>传递性和强完全性</strong>的关系 <span
+class="math inline">\(\le\)</span>，满足 <span
+class="math inline">\(a,b\)</span> 均为元素， $
+ab,F(s_1+a+b+s_2)F(s_1+b+a+s_2)$，则按照 <span
+class="math inline">\(\le\)</span> 排序后的排名可以最小化 <span
+class="math inline">\(F(a)\)</span>。</p>
+<p>典例为 NOIP2012 国王游戏。</p>
+<p>我们在这里略去证明，详见参考资料。</p>
+<ul>
+<li>强完全性指 <span class="math inline">\(\forall  a,b, a\le b\bigvee
+b\le a\)</span>，显然满足强完全性一定满足自反性。</li>
+<li>条件中 <span class="math inline">\(\{s_1+a+b+s_2\}\)</span>
+为全集。</li>
+</ul>
+<h3 id="树上问题">树上问题</h3>
+<h4 id="例题">例题</h4>
+<p>给定一棵树，需要为树的每个节点安排排名 <span
+class="math inline">\(p_u\)</span>，父节点的排名需要低于子节点。每个点有一个价值
+<span class="math inline">\(c_i\)</span>，需要最小化 <span
+class="math inline">\(\sum c_u\times p_u\)</span>。</p>
+<h4 id="分析与结论">分析与结论</h4>
+<p>唯一的变化是，对于原问题元素的比较 <span
+class="math inline">\(\le\)</span>，拓展到了对于子序列的比较，即 <span
+class="math inline">\(a,b\)</span> 为原来元素的一个序列。</p>
+<p><strong>以下是一个重要结论</strong></p>
+<p>考虑一个元素 <span
+class="math inline">\(v\)</span>，我们希望说明如果它的父亲 <span
+class="math inline">\(u\)</span>， <span
+class="math inline">\(u&gt;v\)</span>，那么 <span
+class="math inline">\(v\)</span> 一定在 <span
+class="math inline">\(u\)</span> 之后<strong>立刻被选择</strong>，此时将
+<span class="math inline">\(v,u\)</span> 合并，可以得到一个规模为 <span
+class="math inline">\(n-1\)</span> 的子问题。</p>
+<p>考虑证明 <span class="math inline">\(u\)</span> 被选择后一定会选择
+<span class="math inline">\(v\)</span>，对于一个满足树的限制的排列 <span
+class="math inline">\(p\)</span>，如果 <span
+class="math inline">\(u,v\)</span> 不相邻，那么由于 <span
+class="math inline">\(v&gt;u\)</span>，所以对于序列 <span
+class="math inline">\(p_1,p_2\dots u,p_l,p_{l1} \dots
+p_r,v,\dots,p_n\)</span>，一定有 <span
+class="math inline">\(u&gt;p_{l,r} \bigvee p_{l,r}&gt;v\)</span>，否则
+<span class="math inline">\(v&lt;u\)</span>，如果为前者，那么交换 <span
+class="math inline">\(u\)</span> 和 <span
+class="math inline">\(p_{l,r}\)</span>，后者同理，所以 <span
+class="math inline">\(v\)</span> 一定紧接着 <span
+class="math inline">\(u\)</span> 被选择。</p>
+<p>我们可以用以下两种方式解决问题。</p>
+<h4 id="方式1">方式1</h4>
+<p>考虑最大的元素 <span
+class="math inline">\(v\)</span>，显然可以合并它和它的父亲 <span
+class="math inline">\(u\)</span>，变成一个新的规模更小的问题。</p>
+<p>合并的过程可以用并查集维护连通块，注意区分并查集父亲和实际父亲。</p>
+<p>使用 <code>priority_queue</code> 或者 <code>set</code>
+可以实现加入删除和查询最小值，<code>priority_queue</code>
+的方式是同时维护一个代表删除的 <code>priority_queue</code>，实际上
+<code>priority_queue</code> 会比 <code>set</code> 快 <span
+class="math inline">\(1\)</span> 倍。</p>
+<p>注意实现的时候，如果找到了根，那么根其实有可能不在
+<code>priority_queue</code> 里面，可删除的 <code>priority_queue</code>
+如果删除了不存在的元素是会出问题的，所以一定要特判掉。</p>
+<p>复杂度 <span class="math inline">\(O(n\log n)\)</span></p>
+<h4 id="方式2">方式2</h4>
+<p>我们考虑对每个子树求其答案。</p>
+<p>利用分析中的结论，不妨将一棵子树划分成一些<strong>必须连续选择的序列</strong>，作为<strong>树对排列顺序的要求</strong>，将这些连续的序列视为一个元素后，我们可以对序列按照正常方式排序得到最优解。</p>
+<p>划分序列的过程是对于一棵子树 <span
+class="math inline">\(u\)</span>，将它的所有儿子的序列拿来排序，尝试将
+<span class="math inline">\(u\)</span>
+与最小的序列合并得到新的序列，如果 <span
+class="math inline">\(u\)</span>
+当前所在的序列较大，由于结论我们知道合并后一定能拿到最优解，否则停止合并，此时
+<span class="math inline">\(u\)</span>
+所在序列的权值最小，一定会被最先选择，其中 <span
+class="math inline">\(u\)</span> 又一定会被第一个选择。</p>
+<p>容易发现合并的过程一定不会改变子树内的选择顺序。</p>
+<p>合并时采用启发式合并，利用 <code>set</code> 或
+<code>priority_queue</code> 维护当前子树序列，复杂度为 <span
+class="math inline">\(O(n\log^2n)\)</span>，但优势在于可以求出所有子树的答案。</p>
+<p>当然可以使用可并堆达到 <span class="math inline">\(O(n\log
+n)\)</span></p>
+<p>注意到其实一遍 <code>dfs</code>
+就可以解决问题，因为启发式合并复杂度保证的来源是合并一次的复杂度为 <span
+class="math inline">\(O(\min(|u|,|v|))\)</span>，所以并不需要提前计算子树大小，直接合并即可，<code>set</code>
+或 <code>priority_queue</code> 的 <code>swap</code> 操作是 <span
+class="math inline">\(O(1)\)</span> 的。</p>
+<h3 id="碎碎念">碎碎念</h3>
+<p>Exc-Arg
+除了直接解决问题外，也可以用来简化问题，将选择元素并重排的问题变为<strong>排序后</strong>选择子序列的问题。</p>
+<p>对于树上的情况，我还没有见到过相关的问题。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1932,179 +2115,6 @@ class="math inline">\(n+m\)</span>
 <h4 id="代数证明-1">代数证明</h4>
 <p>咕咕咕</p>
 <h3 id="式子3">式子3</h3>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0705%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
-      <meta itemprop="name" content="huan-yp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/12/OI/%E8%80%83%E8%AF%95%E6%80%BB%E7%BB%93/2022/0705%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">2022.7.5考试总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-12 16:32:56" itemprop="dateCreated datePublished" datetime="2022-07-12T16:32:56+08:00">2022-07-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-16 20:20:55" itemprop="dateModified" datetime="2025-02-16T20:20:55+08:00">2025-02-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="t1">T1</h2>
-<p><a target="_blank" rel="noopener" href="https://haltoj.top/d/haoba/p/224">T1</a></p>
-<h3 id="某个不太正确的方式">某个不太正确的方式</h3>
-<p>想到了分块，暴力没操过去。</p>
-<p>考虑暴力计算出前 <span class="math inline">\(\sqrt P\)</span>
-个数的值，期望得到的最大值为 <span class="math inline">\(P-\sqrt
-P\)</span>，剩下来的数一定不多，我的想法是分块探测一下下一个块中是否存在比当前最大值更大的数，探测方式是用个
-<span class="math inline">\(\text{hash\_table}\)</span>
-记录下每块的每个数的方幂，然后把等式左边乘上逆元后再查找，但是这个做法只有
-<span class="math inline">\(60pts\)</span>，虽然我本机能跑过。</p>
-<p>后面想了一下还看了下代码，这个方式的复杂度是错的，因为探测总次数还是不对头。2022.10.7</p>
-<h3 id="正常的考虑方式">正常的考虑方式</h3>
-<p>发现我们对同一个数的探测次数有点多，考虑能不能对一个数只探测一次。本质上是需要求
-<span class="math inline">\(P-1,P-2,\cdots P - \sqrt P\)</span>
-这些数在数列中出现的第一个位置。我们的探测实际上是判断了一个幂函数的解是否存在于一个区间。所以直接考虑求解这个幂函数方程
-<span class="math inline">\(x^r = a\)</span>。</p>
-<p>考虑 <span class="math inline">\(BSGS\)</span>，但是需要解 <span
-class="math inline">\(T\times \sqrt{P}\)</span> 次，每次的复杂度为 <span
-class="math inline">\(O(\sqrt P)\)</span>，不如暴力。</p>
-<p>考虑平衡复杂度，设暴力处理的长度为 <span
-class="math inline">\(S\)</span>，<span
-class="math inline">\(BSGS\)</span> 预处理长度为 <span
-class="math inline">\(B\)</span>，那么复杂度为 $T(S+ + B) $</p>
-<p>后面那一坨最优应该是 <span class="math inline">\(3e6\)</span>
-，压力山大。</p>
-<p>发现质数是同一个质数，有没有什么办法可以优化一下。</p>
-<p>答案是，处理离散对数。</p>
-<p>离散对数有着和正常对数一样优美的换底公式，如果我们对 <span
-class="math inline">\(x,P-1,P-2\cdots P-\sqrt P\)</span>。向 <span
-class="math inline">\(P\)</span> 的原根 <span
-class="math inline">\(g\)</span>，取对数，那么可以利用换底公式很方便的求解
-<span class="math inline">\(x^r = a\)</span>，取对数的过程就是 <span
-class="math inline">\(BSGS\)</span>，注意到换底公式的除法变成了模 <span
-class="math inline">\(P-1\)</span> 意义下的除法，因为 <span
-class="math inline">\(g^{P-1} = 1\)</span>。</p>
-<p>所以 <span class="math inline">\(BSGS\)</span> 的总次数变为了 <span
-class="math inline">\(O(\frac{P}{S})\)</span>
-次，预处理只需要一次。这里可以放开玩。</p>
-<p>总复杂度变为了 <span class="math inline">\(O(T*(S+\frac{P}{S})+ B  +
-\frac{P}{S}\times\frac{P}{B})\)</span></p>
-<p>取 <span class="math inline">\(B = P^{\frac{3}{4}}\)</span>，<span
-class="math inline">\(S=\sqrt P\)</span> 可以取到最优。</p>
-<p>我实现的时候写的比较丑，算了每个东西的位置之后，还需要排个序，实际上从大到小倒着做就可以了。</p>
-<p>看看佳老师的代码，长进不少。</p>
-<h2 id="t2">T2</h2>
-<p><a target="_blank" rel="noopener" href="https://haltoj.top/d/haoba/p/224">T2</a></p>
-<p>定义字符串的 border 为一个它的前缀，这个前缀也是它的后缀。</p>
-<p>场上是只会 <span class="math inline">\(O(n^2)\)</span> 的，还 TM
-暴力打挂了只有 40。</p>
-<p>后面了解到可以用 FFT 处理带通配符的字符串匹配问题。</p>
-<p>具体的，定义距离函数 <span
-class="math inline">\(d_i=\sum\limits_{j=1}^{m}
-s_{i+j-1}t_i(s_{i+j-1}-t_j)^2\)</span></p>
-<p>显然，如果距离 <span class="math inline">\(d_i\)</span> 为 <span
-class="math inline">\(0\)</span>，那么 <span
-class="math inline">\(i\)</span> 开头的字符串就能匹配上。</p>
-<p>下标有点问题，所以把 <span class="math inline">\(t\)</span>
-反转一下，把式子拆了，就是三遍 FFT 求出来每一个 <span
-class="math inline">\(d_i\)</span>。</p>
-<p>我们就知道了哪些结束位置可能可以匹配上。</p>
-<p>不是所有能匹配上的位置一定可以对答案贡献，因为如果前面的匹配上了，通配符就没了，所以后面要匹配上，就要求重叠的部分必须是一个
-border。</p>
-<p>其实 border 在字符串随机的情况下是很少的。我们可以考虑记录下所有的
-border，然后 dp，设 dp[i] 表示强制 i
-结尾匹配上了，最多能匹配的个数，如果 <span class="math inline">\(j\leq
-i-m\)</span>，就是个前缀 max，如果 <span class="math inline">\(j&gt;
-i-m\)</span>，就只有 border 能转移。</p>
-<p>border 有个性质，就是它们的长度构成 <span class="math inline">\(\log
-n\)</span> 个等差数列，所以我们考虑对每个等差数列做转移。</p>
-<p>更具体的，如果 <span
-class="math inline">\(next[n]&gt;\frac{n}{2}\)</span>，那么模板串一定是一个循环，并且最小循环长度为
-<span class="math inline">\(n-next[n]\)</span>，它的长度大于等于 <span
-class="math inline">\(r=n\%(n-next[n])\)</span> 的 border
-一定构成一个公差为 <span class="math inline">\(d=n-next[n]\)</span>
-的等差数列。这样的话，<span class="math inline">\(n\)</span>
-每次至少减半，所以至多有 <span class="math inline">\(\log n\)</span>
-个等差数列。</p>
-<p>考虑证明。如果存在一个长度大于 <span class="math inline">\(r\)</span>
-的 border <span class="math inline">\(x\)</span> 长度不能写成 <span
-class="math inline">\(kd+r\)</span>，感性理解下，把原串划分为长度为
-<span class="math inline">\(d\)</span> 的小串，把 <span
-class="math inline">\(x\)</span>
-在末尾的部分平移到开头，显然它还有一个更小的循环。</p>
-<p>所以我们对于一个点，含 border 的转移就可以分为 <span
-class="math inline">\(\log n\)</span> 类，对每一类记一个前缀 <span
-class="math inline">\(\max\)</span>
-即可转移，注意每一类需要按照模公差分类。</p>
-<p>注意转移细节。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> y1 y3647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INF 1000000000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> pii pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(_type &amp;x)</span></span>&#123;</span><br><span class="line">	x=<span class="number">0</span>;<span class="type">int</span> f=<span class="number">1</span>;<span class="type">char</span> ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">while</span>(ch!=<span class="number">45</span>&amp;&amp;(ch&gt;<span class="string">&#x27;9&#x27;</span>||ch&lt;<span class="string">&#x27;0&#x27;</span>))ch=<span class="built_in">getchar</span>();</span><br><span class="line">	<span class="keyword">if</span>(ch==<span class="number">45</span>)&#123;f=<span class="number">-1</span>,ch=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">	<span class="keyword">while</span>(ch&lt;=<span class="string">&#x27;9&#x27;</span>&amp;&amp;ch&gt;=<span class="string">&#x27;0&#x27;</span>)&#123;x=x*<span class="number">10</span>+ch<span class="number">-48</span>;ch=<span class="built_in">getchar</span>();&#125;x*=f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmin</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&gt;b)a=b;&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _type1,<span class="keyword">typename</span> _type2&gt;<span class="function"><span class="type">void</span> <span class="title">cmax</span><span class="params">(_type1 &amp;a,<span class="type">const</span> _type2 b)</span></span>&#123;<span class="keyword">if</span>(a&lt;b)a=b;&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">2e5</span><span class="number">+10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">double</span> Pi=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">comple</span>&#123;</span><br><span class="line">	<span class="type">double</span> x,y;</span><br><span class="line">	comple <span class="keyword">operator</span> +(<span class="type">const</span> comple &amp;a)&#123;<span class="keyword">return</span> comple&#123;x+a.x,y+a.y&#125;;&#125;</span><br><span class="line">	comple <span class="keyword">operator</span> -(<span class="type">const</span> comple &amp;a)&#123;<span class="keyword">return</span> comple&#123;x-a.x,y-a.y&#125;;&#125;</span><br><span class="line">	comple <span class="keyword">operator</span> *(<span class="type">const</span> comple &amp;a)&#123;<span class="keyword">return</span> comple&#123;x*a.x-y*a.y,x*a.y+y*a.x&#125;;&#125;</span><br><span class="line">	<span class="type">void</span> <span class="keyword">operator</span> +=(<span class="type">const</span> comple &amp;a)&#123;x+=a.x,y+=a.y;&#125;</span><br><span class="line">	<span class="type">void</span> <span class="keyword">operator</span> -=(<span class="type">const</span> comple &amp;a)&#123;x-=a.x,y-=a.y;&#125;</span><br><span class="line">	<span class="type">void</span> <span class="keyword">operator</span> *=(<span class="type">const</span> comple &amp;a)&#123;<span class="type">double</span> tp=x;x=x*a.x-y*a.y,y=tp*a.y+y*a.x;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> i,j,k,n,s,t,m,lim,ans;</span><br><span class="line"><span class="type">int</span> res[N],vala[N],valb[N],sum[N],nxt[N];</span><br><span class="line"><span class="type">int</span> dp[N],border[N][<span class="number">2</span>],pre[<span class="number">32</span>][N][<span class="number">2</span>],from[N];</span><br><span class="line"><span class="type">char</span> ch[N],str[N];</span><br><span class="line"><span class="type">double</span> d[N];</span><br><span class="line">comple a[N],b[N],c[N];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">FFT</span><span class="params">(comple val[],<span class="type">int</span> type=<span class="number">1</span>)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)<span class="keyword">if</span>(res[i]&gt;i)<span class="built_in">swap</span>(val[res[i]],val[i]);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=lim;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">1</span>&lt;&lt;lim;j+=<span class="number">1</span>&lt;&lt;i)&#123;</span><br><span class="line">			comple w=&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,wn=&#123;<span class="built_in">cos</span>(<span class="number">2</span>*Pi/(<span class="number">1</span>&lt;&lt;i)),type*<span class="built_in">sin</span>(<span class="number">2</span>*Pi/(<span class="number">1</span>&lt;&lt;i))&#125;;</span><br><span class="line">			<span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>;k++,w*=wn)&#123;</span><br><span class="line">				comple y=val[k+j+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]*w;</span><br><span class="line">				val[k+j+(<span class="number">1</span>&lt;&lt;i<span class="number">-1</span>)]=val[k+j]-y,val[k+j]+=y;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(type==<span class="number">-1</span>)<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)c[i].x/=(<span class="number">1</span>&lt;&lt;lim);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">get_border</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x==<span class="number">0</span>)<span class="keyword">return</span> ;</span><br><span class="line">	border[++s][<span class="number">0</span>]=nxt[x],border[s][<span class="number">1</span>]=x-nxt[x];</span><br><span class="line">	<span class="keyword">if</span>(nxt[x]*<span class="number">2</span>&gt;x)<span class="built_in">get_border</span>(x%(x-nxt[x]));</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">get_border</span>(nxt[x]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">int</span> pos,<span class="type">int</span> lst)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(dp[pos]==<span class="number">0</span>)<span class="keyword">return</span> ;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>,j=pos-m<span class="number">+1</span>;i&lt;=m&amp;&amp;j&lt;lst;i++,j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(ch[j]!=<span class="string">&#x27;?&#x27;</span>&amp;&amp;ch[j]!=str[i])&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;Error&quot;</span>);</span><br><span class="line">			<span class="keyword">return</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(j&lt;<span class="number">1</span>)<span class="keyword">continue</span>;</span><br><span class="line">		ch[j]=str[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">print</span>(from[pos],pos-m<span class="number">+1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> 	<span class="built_in">freopen</span>(<span class="string">&quot;match.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;match.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">	<span class="comment">//freopen(&quot;.in&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%s%s&quot;</span>,ch<span class="number">+1</span>,str<span class="number">+1</span>);</span><br><span class="line">	n=<span class="built_in">strlen</span>(ch<span class="number">+1</span>),m=<span class="built_in">strlen</span>(str<span class="number">+1</span>);</span><br><span class="line">	nxt[<span class="number">0</span>]=j=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;str[j<span class="number">+1</span>]!=str[i])j=nxt[j];</span><br><span class="line">		nxt[i]=++j;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">get_border</span>(m);border[s][<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>&lt;&lt;lim&lt;=n+m)lim++;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)res[i]=res[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>|(i&amp;<span class="number">1</span>)&lt;&lt;lim<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)vala[i]=ch[i]==<span class="string">&#x27;?&#x27;</span>?<span class="number">0</span>:ch[i]-<span class="string">&#x27;a&#x27;</span><span class="number">+1</span>,sum[i]=sum[i<span class="number">-1</span>]+vala[i]*vala[i]*vala[i];</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)valb[i]=str[i]-<span class="string">&#x27;a&#x27;</span><span class="number">+1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=&#123;<span class="built_in">pow</span>(vala[i],<span class="number">2</span>)&#125;;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)b[i]=&#123;<span class="number">-2</span>*valb[m-i<span class="number">+1</span>]&#125;;</span><br><span class="line">	<span class="built_in">FFT</span>(a),<span class="built_in">FFT</span>(b);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)c[i]+=a[i]*b[i];</span><br><span class="line">	<span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="built_in">sizeof</span>(a)),<span class="built_in">memset</span>(b,<span class="number">0</span>,<span class="built_in">sizeof</span>(b));</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)a[i]=&#123;vala[i]&#125;;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)b[i]=&#123;<span class="built_in">pow</span>(valb[m-i<span class="number">+1</span>],<span class="number">2</span>)&#125;;</span><br><span class="line">	<span class="built_in">FFT</span>(a),<span class="built_in">FFT</span>(b);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">1</span>&lt;&lt;lim;i++)c[i]+=a[i]*b[i];</span><br><span class="line">	<span class="built_in">FFT</span>(c,<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=m;i&lt;=n;i++)</span><br><span class="line">	d[i]=sum[i]-sum[i-m]+c[i<span class="number">+1</span>].x;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(i=m;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=s;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(pre[j][i-m+border[j][<span class="number">0</span>]][<span class="number">0</span>]<span class="number">+1</span>&gt;dp[i])&#123;</span><br><span class="line">				dp[i]=pre[j][i-m+border[j][<span class="number">0</span>]][<span class="number">0</span>]<span class="number">+1</span>;</span><br><span class="line">				from[i]=pre[j][i-m+border[j][<span class="number">0</span>]][<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">abs</span>(d[i])&gt;<span class="number">0.1</span>)dp[i]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=s;j++)&#123;</span><br><span class="line">			pre[j][i][<span class="number">0</span>]=dp[i],pre[j][i][<span class="number">1</span>]=i;</span><br><span class="line">			<span class="keyword">if</span>(pre[j][i-border[j][<span class="number">1</span>]][<span class="number">0</span>]&gt;pre[j][i][<span class="number">0</span>])&#123;</span><br><span class="line"></span><br><span class="line">				pre[j][i][<span class="number">0</span>]=pre[j][i-border[j][<span class="number">1</span>]][<span class="number">0</span>];</span><br><span class="line">				pre[j][i][<span class="number">1</span>]=pre[j][i-border[j][<span class="number">1</span>]][<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(dp[i]&gt;dp[ans])ans=i;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;dp[ans]&lt;&lt;endl;</span><br><span class="line">	<span class="built_in">print</span>(ans,ans<span class="number">+1</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(ch[i]==<span class="string">&#x27;?&#x27;</span>)ch[i]=<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">	cout&lt;&lt;ch<span class="number">+1</span>&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>

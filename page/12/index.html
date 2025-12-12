@@ -150,7 +150,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-count">117</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -189,6 +189,310 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://huanyp.cn/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%BB%93%E8%AE%BA%E8%AF%81%E6%98%8E%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/image_hosting/kvac64s4.png">
+      <meta itemprop="name" content="huan-yp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 幻影彭的彩虹">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/12/OI/%E7%AE%97%E6%B3%95/%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%BB%93%E8%AE%BA%E8%AF%81%E6%98%8E%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">常用数学结论证明汇总</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-12 16:04:07" itemprop="dateCreated datePublished" datetime="2022-07-12T16:04:07+08:00">2022-07-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-16 17:54:22" itemprop="dateModified" datetime="2025-02-16T17:54:22+08:00">2025-02-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">算法竞赛</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="简单事实">简单事实</h3>
+<ol type="1">
+<li><span class="math inline">\(\gcd(a,x_1)=1,\gcd(a,x_2)=1 \iff
+\gcd(a,x_1x_2)\)</span></li>
+<li>若 <span class="math inline">\(n\ |\ m\)</span> 则 <span
+class="math inline">\(\phi(n)\ |\ \phi(m)\)</span></li>
+<li>若 <span class="math inline">\(\gcd(a,p)=1\)</span>,则 <span
+class="math inline">\(ax,x \in [1,p]\)</span> 模 <span
+class="math inline">\(p\)</span> 意义下互不相同，反之亦然。</li>
+</ol>
+<h3 id="模运算和满足的运算率">模运算和满足的运算率</h3>
+<p>注：符号均为模 <span class="math inline">\(p\)</span> 意义下。</p>
+<ul>
+<li>加法交换律</li>
+<li>加法结合律</li>
+<li>乘法交换律</li>
+<li>乘法结合率</li>
+<li>如果 <span class="math inline">\(p\)</span> 为质数 ，<span
+class="math inline">\(g\)</span> 为 <span
+class="math inline">\(p\)</span> 的一个原根，则 <span
+class="math inline">\(\log_x(y) = \frac{\log_g(y)}{\log_g(x)} \pmod
+{p-1}\)</span></li>
+</ul>
+<h3 id="复数运算满足的运算性质">复数运算满足的运算性质</h3>
+<ul>
+<li>加法交换律</li>
+<li>加法结合律</li>
+</ul>
+<h3 id="一些抽象代数内容">一些抽象代数内容</h3>
+<h4 id="事实1">事实1</h4>
+<p>令 <span class="math inline">\(g\)</span> 为 <span
+class="math inline">\(p\)</span> 的一个原根，记 <span
+class="math inline">\(\log_g(x) = y\)</span>，模 <span
+class="math inline">\(p\)</span> 意义下 <span
+class="math inline">\(x\)</span> 的阶数为 <span class="math display">\[
+\Large ord = \frac{\phi(p)}{\gcd(\phi(p),\log_g(x))}
+\]</span></p>
+<h4 id="证明1">证明1</h4>
+<p>显然 <span class="math inline">\(g\)</span> 的阶数为 <span
+class="math inline">\(\phi(p)\)</span>，又因为 <span
+class="math inline">\(g^y = x\)</span>。所以 <span
+class="math inline">\(x^{ord} = 1\)</span>。</p>
+<p>然后证明 <span class="math inline">\(x^i,i \in [1,ord]\)</span>
+互不相同。</p>
+<p>反证，如果相同，设为 <span class="math inline">\(i,j(i\ge
+j)\)</span>，那么 <span class="math inline">\(g^{yi} = g^{yj}\)</span>
+得到 <span class="math inline">\(\phi(x) |\ y(i-j)\)</span> 两边同时除以
+<span class="math inline">\(\gcd(\phi(p),y)\)</span>，得到 <span
+class="math inline">\(ord |\ y&#39;(i-j)\)</span>，其中 <span
+class="math inline">\(\gcd(y&#39;,ord) = 1\)</span> ，得出 <span
+class="math inline">\(i-j \ge ord\)</span> 矛盾。</p>
+<p>所以 <span class="math inline">\(x\)</span> 的阶数为 <span
+class="math inline">\(ord\)</span></p>
+<h3 id="裴蜀定理">裴蜀定理</h3>
+<h4 id="内容">内容</h4>
+<p><span class="math inline">\(\exist\  x,y \in \Z\)</span> 使得 <span
+class="math inline">\(ax+by=\gcd(x,y)\)</span></p>
+<h4 id="证明">证明</h4>
+<p>归纳构造。</p>
+<p>先证明 <span class="math inline">\(\exist\ x&#39;,y&#39;\in
+\Z\)</span> 使得 <span class="math inline">\(bx&#39;+(a\%b)y&#39; =
+\gcd(a,b)\)</span></p>
+<p>即 <span class="math inline">\(ay&#39; +
+b(x&#39;-\big\lfloor\dfrac{a}{b}\big\rfloor y&#39;) =
+\gcd(a,b)\)</span></p>
+<p>构造 <span class="math inline">\(x = y&#39;,y=x&#39;-
+\big\lfloor\dfrac{a}{b}\big\rfloor y&#39;\)</span> 即可满足条件。</p>
+<p>递归证明构造式子，得到边界证明 <span class="math inline">\(\exist \
+x,y\)</span> 使得 <span class="math inline">\(\gcd(a,b)x + 0 \times y
+=\gcd(a,b)\)</span></p>
+<p>令 <span class="math inline">\(x=1,y=0\)</span></p>
+<h3 id="欧拉函数是积性函数">欧拉函数是积性函数</h3>
+<p>即证明若 <span class="math inline">\(\gcd(n,m) =1,\)</span> 则 <span
+class="math inline">\(\phi(n*m) = \phi(n) *\phi(m)\)</span></p>
+<h4 id="证明一">证明一</h4>
+<p>考虑若干个同余方程组 <span class="math display">\[
+x ≡ r_1 \pmod n\\
+x ≡ r_2 \pmod m\\
+\]</span> 列出 <span class="math inline">\(n,m,nm\)</span>
+意义下的最小缩系 <span class="math inline">\(S_n,S_m,T\)</span></p>
+<p>容易证明 <span class="math inline">\(\forall\ r_1\in S_n, r_2 \in
+S_m\)</span>，存在唯一 <span class="math inline">\(x \in [1,nm]\)</span>
+是上同余方程组的解，且 <span class="math inline">\(x \in
+T\)</span>。</p>
+<p>存在唯一就是 EXCRT， <span class="math inline">\(x\in T\)</span>
+由事实 1 显然。</p>
+<p>故 <span class="math inline">\(\phi(n*m) \ge \phi(n)
+*\phi(m)\)</span></p>
+<p>再证明 <span class="math inline">\(\forall\ x\in
+T\)</span>，可以对应一个以上同余方程组的解，假设不对应，那么它一定与
+<span class="math inline">\(n,m\)</span> 中的一个不互质，由事实 1
+推出矛盾。</p>
+<p>故 <span class="math inline">\(\phi(n*m) \le \phi(n)
+*\phi(m)\)</span></p>
+<p>证毕。</p>
+<h4 id="证明二">证明二</h4>
+<h3 id="欧拉定理">欧拉定理</h3>
+<h4 id="内容-1">内容</h4>
+<p><span class="math display">\[
+\Large 若 \ \gcd(a,m)= 1 ,\ 则\  a^{\phi(m)}≡1\mod m
+\]</span></p>
+<h4 id="证明-1">证明</h4>
+<p>考虑模 <span class="math inline">\(m\)</span>
+意义下的最小缩系，即最小完全剩余系删去与 <span
+class="math inline">\(m\)</span> 不互质的元素后的剩余系，记为 <span
+class="math inline">\(S\)</span>。</p>
+<p>构造 <span class="math inline">\(T = \{ax,x \in S\}\)</span></p>
+<p>可以证明 <span class="math inline">\(T=S\)</span>， 若 <span
+class="math inline">\(\exist\ x_1,x_2\)</span> 使得 <span
+class="math inline">\(x_1\neq x_2\)</span> 且 <span
+class="math inline">\(ax_1 ≡ ax_2 \pmod m\)</span> ，因为 <span
+class="math inline">\(\gcd(a,m)=1\)</span></p>
+<p>所以 <span class="math inline">\(m\ |\ x_1 - x_2\)</span>，并推出
+<span class="math inline">\(x_1 \neq x_2\)</span>，故 <span
+class="math inline">\(T\)</span> 中元素两两不同且均与 <span
+class="math inline">\(m\)</span> 互质，即为 <span
+class="math inline">\(S\)</span>。</p>
+<p>考虑 <span class="math inline">\(T,S\)</span> 中所有元素的乘积，得到
+<span class="math inline">\(\prod\limits_{i=1}^{\phi(n)} ax_i ≡
+\prod\limits_{i=1}^{\phi(n)} x_i \pmod n\)</span>，又因为 <span
+class="math inline">\(\prod\limits_{i=1}^{\phi(n)} x_i\)</span> 与 <span
+class="math inline">\(m\)</span> 互质，所以 <span
+class="math inline">\(a^{\phi(n)} ≡ 1\pmod n\)</span></p>
+<h3 id="扩展欧拉定理">扩展欧拉定理</h3>
+<h4 id="内容-2">内容</h4>
+<p><span class="math display">\[
+\Large 若 \ b≥φ(m) ,\ 则\  a^b≡a^{b \mod φ(m) +φ(m)}\mod m
+\]</span></p>
+<h4 id="证明-2">证明</h4>
+<p>对 <span class="math inline">\(m\)</span> 考虑唯一分解定理。</p>
+<p>对于任意因子 <span class="math inline">\(p_i^{k_i}\)</span>，若与
+<span class="math inline">\(a\)</span> 互质，那就有 <span
+class="math inline">\(a^b≡a^{b \mod φ(m) +φ(m)}\mod
+p^{k_i}_i\)</span>。</p>
+<p>如果和 <span class="math inline">\(a\)</span> 不互质，因为 <span
+class="math inline">\(b\ge \phi(m)\)</span>，那么因为有 <span
+class="math inline">\(b\ge \phi(m)\ge k_i\)</span>，所以 <span
+class="math inline">\(a^b,a^{(b \mod φ(m)) +φ(m)}\)</span> 都是 <span
+class="math inline">\(p^{k_i}_i\)</span> 的倍数。</p>
+<p>得到 <span class="math inline">\(a^b - a^{(b \mod φ(m))
++φ(m)}\)</span> 是 <span class="math inline">\(p_i^{k_i}\)</span>
+的倍数，故同余。</p>
+<h3 id="原根">原根：</h3>
+<h4 id="定义">定义：</h4>
+<p>如果 <span class="math inline">\(x^1,x^2,x^3 \cdots
+x^{\phi(n)}\)</span> 模 <span class="math inline">\(n\)</span>
+意义下互不相同，且 <span
+class="math inline">\(\gcd(x,n)=1\)</span>，则称 <span
+class="math inline">\(x\)</span> 为 <span
+class="math inline">\(n\)</span> 的原根。</p>
+<h4 id="性质">性质:</h4>
+<p>质数 <span class="math inline">\(p\)</span> 的原根的方幂能取遍 <span
+class="math inline">\([1,p-1]\)</span></p>
+<h4 id="求质数的原根">求质数的原根</h4>
+<p>数学大佬证明了一个数 <span class="math inline">\(n\)</span>
+的最小正原根不超过 <span
+class="math inline">\(n^{\frac{1}{4}+\epsilon}\)</span>，所以枚举每个数，检查所有
+<span class="math inline">\(n\)</span> 的约数是否是 <span
+class="math inline">\(a\)</span> 的阶，如果不是，那么 <span
+class="math inline">\(a\)</span> 为一个原根，复杂度 <span
+class="math inline">\(\sqrt n\)</span>，瓶颈在分解质因数。</p>
+<h4 id="应用">应用</h4>
+<p>开离散对数的时候上原根和换底公式有奇效。</p>
+<h4 id="原根存在定理">原根存在定理</h4>
+<p>一个数 <span class="math inline">\(x\)</span> 有原根当且仅当 <span
+class="math inline">\(x= 2,4,p^n,2\times p^n\)</span>，其中 <span
+class="math inline">\(p\)</span> 为奇素数。</p>
+<p>证明不会。</p>
+<h3 id="中国剩余定理">中国剩余定理</h3>
+<p>咕咕咕</p>
+<h3 id="平面图欧拉定理">平面图欧拉定理</h3>
+<p>顶点数-边数-连通块数+区域数=1</p>
+<h3 id="几何体欧拉定理">几何体欧拉定理</h3>
+<p>顶点数-边数+面数=2</p>
+<h3 id="除法下取整相关">除法下取整相关：</h3>
+<ol type="1">
+<li><span class="math inline">\(\lfloor\frac{a}{b}\rfloor\ge x\iff b\le
+\lfloor\frac{a}{x}\rfloor\)</span>
+<ul>
+<li>含义：<span
+class="math inline">\(b=\lfloor\frac{a}{x}\rfloor\)</span> 是满足 <span
+class="math inline">\(\lfloor\frac{a}{b}\rfloor\ge x\)</span> 的最大的
+<span class="math inline">\(b\)</span>。</li>
+</ul></li>
+<li><span class="math inline">\(\lfloor\frac{a}{b}\rfloor&lt; x \iff
+b&gt;\lfloor\frac{a}{x}\rfloor\)</span>
+<ul>
+<li>上面那个反过来。</li>
+</ul></li>
+<li><span
+class="math inline">\(\big\lfloor\dfrac{\lfloor\frac{n}{a}\rfloor}{b}\big\rfloor=\lfloor\dfrac{n}{ab}\rfloor\)</span>
+<ul>
+<li>设 <span class="math inline">\(n=kab+r,r&lt; ab\)</span>，则 <span
+class="math inline">\(\lfloor\frac{n}{a}\rfloor&lt;(k+1)b\)</span>，自然有
+<span
+class="math inline">\(\big\lfloor\dfrac{\lfloor\frac{n}{a}\rfloor}{b}\big\rfloor\le
+\lfloor\dfrac{n}{ab}\rfloor\)</span>。又因为 <span
+class="math inline">\(\lfloor\frac{n}{a}\rfloor\ge kb\)</span>，因此
+<span
+class="math inline">\(\big\lfloor\dfrac{\lfloor\frac{n}{a}\rfloor}{b}\big\rfloor\ge
+\lfloor\dfrac{n}{ab}\rfloor\)</span>，得证。</li>
+</ul></li>
+</ol>
+<h3 id="余数相关">余数相关</h3>
+<ol type="1">
+<li>若 <span class="math inline">\(\gcd(x,y)=1,k\in[0,y)\)</span>，则
+<span class="math inline">\(kx\pmod y\)</span> 互不相同。
+<ul>
+<li>证明反证法，移到同一边然后是倍数。</li>
+</ul></li>
+</ol>
+<h3 id="解析几何相关">解析几何相关</h3>
+<ol type="1">
+<li><span class="math inline">\((x_0,y_0)\)</span> 关于 <span
+class="math inline">\(y=x+m\)</span> 的对称点：<span
+class="math inline">\((y_0 - m,x_0 + m)\)</span>。</li>
+<li><span class="math inline">\((x_0,y_0)\)</span> 关于 <span
+class="math inline">\(y=-x+m\)</span> 的对称点：<span
+class="math inline">\((- y_0 + m,- x_0 + m)\)</span>。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
